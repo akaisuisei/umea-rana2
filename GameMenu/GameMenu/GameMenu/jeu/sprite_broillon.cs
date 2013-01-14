@@ -86,21 +86,40 @@ namespace Umea_rana
             {
 
                 dir = true;
-                this.FrameLine = 2;
-                this.Direction = Direction.Left;
-                this.Animate();              
-                
-                
+                if (chute == true)
+                {
+                    this.FrameLine = 2;
+                    this.Direction = Direction.Left;
+                    
+                }
+                else
+                {
+                    this.FrameLine = 5;
+                    this.Direction = Direction.Left;
+                }            
             }
-            else
             
+            else
+
                 if (keyboard.IsKeyDown(Keys.Right))
                 {
                     dir = false;
+                    if(chute == true)
+                    {
                     this.FrameLine = 2;
                     this.Direction = Direction.Right;
-                    this.Animate();
-                                        
+                    
+                    }
+                else
+                {
+                    this.FrameLine = 5;
+                    this.Direction = Direction.Right;
+                }
+                }
+                else if (keyboard.IsKeyDown(Keys.Right) && chute == true)
+                {
+                    dir = false;
+                    this.FrameLine = 5;
                 }
                 else if (keyboard.IsKeyDown(Keys.X))
                 {
@@ -110,7 +129,7 @@ namespace Umea_rana
                 else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off)
                 {
                     this.FrameLine = 5;
-                    
+
                 }
                 else if (keyboard.IsKeyDown(Keys.Space) && chute == false)
                 {
