@@ -17,7 +17,7 @@ namespace Umea_rana
     public class Level1_state : GameState
     {
 
-        Scrolling_H scrolling1, scrolling2, scrolling3, scrolling4;
+        Scrolling_H scrolling1, scrolling2;//, scrolling3, scrolling4;
         sprite_broillon allen;
         platform sol, sol2;
         Collision collision;
@@ -29,7 +29,7 @@ namespace Umea_rana
             game1.IsMouseVisible = false;
             collision = new Collision();
             oldkey = Keyboard.GetState();
-
+            
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -47,8 +47,8 @@ namespace Umea_rana
             //background
             scrolling1 = new Scrolling_H(Content.Load<Texture2D>("fond_niv1"), new Rectangle(0, 0, width, height), 3);
             scrolling2 = new Scrolling_H(Content.Load<Texture2D>("fond_niv1"), new Rectangle(width, 0, width, height), 3);
-            scrolling3 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(0, 0, width, height), 4);
-            scrolling4 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(width, 0, width, height), 4);
+          //  scrolling3 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(0, 0, width, height), 4);
+           // scrolling4 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(width, 0, width, height), 4);
             //sprite brouillon
             allen = new sprite_broillon(Content.Load<Texture2D>("fiches_sprite_allen"), new Rectangle(width / 2, 0, 125, 93), collision, Content);
 
@@ -72,8 +72,8 @@ namespace Umea_rana
             // TODO: Add your update logic here
             scrolling1.Update(keyboard);
             scrolling2.Update(keyboard);
-            scrolling3.Update(keyboard);
-            scrolling4.Update(keyboard);
+        //    scrolling3.Update(keyboard);
+        //    scrolling4.Update(keyboard);
 
             //scrolling horrizontale fond
             if (scrolling1.rectangle.X + scrolling1.rectangle.Width <= 0)
@@ -86,7 +86,7 @@ namespace Umea_rana
             if (scrolling2.rectangle.X >= 0)
                 scrolling1.rectangle.X = scrolling2.rectangle.X - scrolling2.rectangle.Width;
 
-            // scrolling horrizontale devant
+         /*   // scrolling horrizontale devant
             if (scrolling3.rectangle.X + scrolling3.rectangle.Width <= 0)
                 scrolling3.rectangle.X = scrolling4.rectangle.X + scrolling4.rectangle.Width;
             if (scrolling4.rectangle.X + scrolling4.rectangle.Width <= 0)
@@ -95,7 +95,7 @@ namespace Umea_rana
                 scrolling4.rectangle.X = scrolling3.rectangle.X - scrolling3.rectangle.Width;
             if (scrolling4.rectangle.X >= 0)
                 scrolling3.rectangle.X = scrolling4.rectangle.X - scrolling4.rectangle.Width;
-
+            */
             if (collision.Collision_sp_sol(allen, sol.rectangle) || collision.Collision_sp_sol(allen, sol2.rectangle))
             {
                 allen.marche();
@@ -131,8 +131,8 @@ namespace Umea_rana
             spriteBatch.Begin();
             scrolling1.Draw(spriteBatch);
             scrolling2.Draw(spriteBatch);
-            scrolling3.Draw(spriteBatch);
-            scrolling4.Draw(spriteBatch);
+            //scrolling3.Draw(spriteBatch);
+            //scrolling4.Draw(spriteBatch);
             allen.Draw(spriteBatch);
             sol.Draw(spriteBatch);
             sol2.Draw(spriteBatch);
