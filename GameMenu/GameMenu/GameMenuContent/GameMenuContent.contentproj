@@ -42,13 +42,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\background menu.jpg">
-      <Name>background menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Menu\jouer.png">
       <Name>jouer</Name>
       <Importer>TextureImporter</Importer>
@@ -275,6 +268,13 @@
   <ItemGroup>
     <Compile Include="level2\asteroide-sprite.png">
       <Name>asteroide-sprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\background menu.jpg">
+      <Name>background menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
