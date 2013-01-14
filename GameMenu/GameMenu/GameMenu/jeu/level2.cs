@@ -39,8 +39,8 @@ namespace Umea_rana
 
         public override void LoadContent(ContentManager Content)
         {
-            bacground1 = Content.Load<Texture2D>("background");
-            background2 = Content.Load<Texture2D>("background2");
+            bacground1 = Content.Load<Texture2D>("level2//fond");
+            background2 = Content.Load<Texture2D>("level2//fond2");
 
             T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman1"));
             T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman1d"));
@@ -106,10 +106,11 @@ namespace Umea_rana
             //scrolling
             scrolling1.Draw(spriteBatch);
             scrolling2.Draw(spriteBatch);
-            scrolling3.Draw(spriteBatch);
-            scrolling4.Draw(spriteBatch);
 
             vaisseau.Draw(spriteBatch);
+
+            scrolling3.Draw(spriteBatch);
+            scrolling4.Draw(spriteBatch);
 
             spriteBatch.End();
         }

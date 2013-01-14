@@ -12,9 +12,9 @@ namespace Umea_rana
 {
     class Bullet_manager
     {
-        Texture2D texture, tex1, tex2, tex;
+        Texture2D texture;
         Rectangle rectangle;
-        bool aura;
+
 
         public List<munition> bullet = new List<munition>();
         int speed, change;
@@ -26,7 +26,7 @@ namespace Umea_rana
             bullet.Capacity = nb;
             change = 0;
             this.speed = speed;
-            aura = false;
+
         }
 
         public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey)
@@ -34,13 +34,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space))
             {
                 bullet.Add(new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top -sprite.rectangle.Height/2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed));
-                if (change % 2 == 0)
-                    tex = tex1;
-                else
-                    tex = tex2;
-                aura = true;
             }
-            aura = false;
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
@@ -54,8 +48,6 @@ namespace Umea_rana
         {
             for (int i = 0; i < bullet.Count; i++)
                 bullet[i].Draw(spritebach);
-            if (aura)
-                spritebach.Draw(tex , rectangle, Color.White);
         }
 
 
