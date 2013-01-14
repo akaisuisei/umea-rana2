@@ -15,8 +15,9 @@ namespace Umea_rana
     {
         public Texture2D texture;
         public Rectangle rectangle;
-        public bool existe;
+        public bool existe,bool_dexistence;
         int speed;
+        public int temps_dexitence=0;
 
         public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed)
         {
@@ -24,6 +25,7 @@ namespace Umea_rana
             rectangle = n_rectangle;
             existe = true;
             speed = n_speed;
+            bool_dexistence = true;
         }
 
 

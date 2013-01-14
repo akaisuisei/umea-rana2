@@ -66,7 +66,7 @@ namespace Umea_rana
 
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
-            aster=new asteroid (aster_t,new Rectangle (100,100,100,100),1f,width );
+            aster=new asteroid (aster_t,new Rectangle (100,100,100,100),0.02f,width );
         }
 
         public override void UnloadContent()
@@ -109,13 +109,15 @@ namespace Umea_rana
                 if(collision.Collision_as_mis(aster,vaisseau.bullet.bullet[i]))
                 {
                     vaisseau.bullet.bullet.RemoveAt(i);
-                    aster.rectangle.Y -= 5;
+                    aster.rectangle.Y -= 20;
                 }
             }
 
 
-            if (aster.rectangle.Bottom < 0)
+            if (aster.rectangle.Center.Y < 0)
                 game.ChangeState(Game1.gameState.Pause );
+
+            oldkey = keybord;
         }
 
 

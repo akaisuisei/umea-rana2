@@ -20,6 +20,7 @@ namespace Umea_rana
         int dir;
         Random rnd;
         int widt_max;
+        float rot, movrot;
 
         public asteroid(Texture2D n_texture, Rectangle n_rectanle, float rot, int witdhm)
         {
@@ -28,28 +29,36 @@ namespace Umea_rana
             rnd = new Random();
             dir = 1;
             widt_max = witdhm ;
+
+            this.rot = rot ;
+            movrot = rot;
         }
 
         public void update()
         {
+            
             if (rectangle.Right > widt_max  )
             {
                 rectangle.X = widt_max-rectangle.Width -1 ;
                 dir = -dir;
             }
-            if(rectangle.Left < 0)
+            if (rectangle.Left < 0)
             {
-            rectangle.X = 0;
+                rectangle.X = 0;
                 dir = -dir;
+
             }
+            
             rectangle.X += rnd.Next(0, 20) * dir;
 
+            
+            rot += movrot;
         }
 
 
         public void Draw(SpriteBatch spritebach)
         {
-            spritebach.Draw(texture, rectangle, Color.White);
+            spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width,rectangle.Height )  ,SpriteEffects.None,0f);
         }
 
     }

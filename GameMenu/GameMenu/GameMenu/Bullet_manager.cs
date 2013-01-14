@@ -15,6 +15,8 @@ namespace Umea_rana
         Texture2D texture;
         Rectangle rectangle;
         SoundEffect soundeffect;
+       
+        int time1, tem2=0;
 
         public List<munition> bullet = new List<munition>();
         int speed, change;
@@ -27,16 +29,21 @@ namespace Umea_rana
             change = 0;
             this.speed = speed;
             soundeffect = n_soundeffect;
+            time1 = 30;
         }
 
         public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey)
         {
-            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space))
+            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space)&&tem2<=0)
             {
+
+                tem2 = time1 ;
                 bullet.Add(new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top -sprite.rectangle.Height/2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed));
                
                 soundeffect.Play();
+               
             }
+            tem2--;
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
@@ -52,6 +59,6 @@ namespace Umea_rana
                 bullet[i].Draw(spritebach);
         }
 
-
+        
     }
 }
