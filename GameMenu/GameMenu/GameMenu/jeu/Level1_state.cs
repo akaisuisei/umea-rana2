@@ -45,8 +45,8 @@ namespace Umea_rana
             // TODO: use this.Content to load your game content here
 
             //background
-            scrolling1 = new Scrolling_H(Content.Load<Texture2D>("background"), new Rectangle(0, 0, width, height), 3);
-            scrolling2 = new Scrolling_H(Content.Load<Texture2D>("background"), new Rectangle(width, 0, width, height), 3);
+            scrolling1 = new Scrolling_H(Content.Load<Texture2D>("fond_niv1"), new Rectangle(0, 0, width, height), 3);
+            scrolling2 = new Scrolling_H(Content.Load<Texture2D>("fond_niv1"), new Rectangle(width, 0, width, height), 3);
             scrolling3 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(0, 0, width, height), 4);
             scrolling4 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(width, 0, width, height), 4);
             //sprite brouillon

@@ -27,12 +27,14 @@ namespace Umea_rana
         bool in_air;
         public int impulse, pos_marche;
         Song marchell;
+        
         Direction Direction;
         int FrameLine;
         int FrameColumn;
         SpriteEffects Effects;
         bool dir=false;
-        
+        int Timer;
+        int AnimationSpeed = 10;
         
 
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
@@ -47,9 +49,10 @@ namespace Umea_rana
             pos_marche = rectangle.Y;
              marchell = content.Load<Song>("jogging");
              MediaPlayer.Play(marchell);
-             this.FrameLine = 1;
-             this.FrameColumn = 1;
              
+            this.FrameLine = 1;
+             this.FrameColumn = 1;
+             this.Timer = 0;  
 
         }
 
@@ -80,22 +83,28 @@ namespace Umea_rana
             {
 
                 dir = true;
+                this.FrameLine = 2;
                 this.Direction = Direction.Left;
                 this.Animate();              
                 
                 
             }
             else
-            {
+            
                 if (keyboard.IsKeyDown(Keys.Right))
                 {
                     dir = false;
+                    this.FrameLine = 2;
                     this.Direction = Direction.Right;
                     this.Animate();
-                    
-                    
+                                        
                 }
-            }
+                else if (keyboard.IsKeyDown(Keys.X))
+                {
+                    this.FrameLine = 8;
+                    this.Animate();
+                }
+            
 
             if (dir == true)
             {
@@ -107,19 +116,27 @@ namespace Umea_rana
                 this.Effects = SpriteEffects.None;
             }
 
-            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right))
+            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X))
             {
+                this.FrameLine = 1;
+                this.Animate();
                 this.FrameColumn = 1;
+                this.Timer = 0;
             }
 
         }
 
         public void Animate()
         {
-            this.FrameColumn++;
-            if (FrameColumn > 3)
+            this.Timer++;
+            if (this.Timer == this.AnimationSpeed)
             {
-                FrameColumn = 1;
+                this.Timer = 0;
+                this.FrameColumn++;
+                if (FrameColumn > 3)
+                {
+                    FrameColumn = 1;
+                }
             }
         }
 

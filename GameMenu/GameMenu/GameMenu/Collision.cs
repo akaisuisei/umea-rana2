@@ -22,7 +22,7 @@ namespace Umea_rana
 
         public bool Collision_sp_sol(sprite_broillon sprite, Rectangle sprite2)
         {
-            if (sprite.rectangle.Bottom  == sprite2.Top && sprite.rectangle.Right > sprite2.Left  && sprite.rectangle.Left < sprite2.Right)
+            if (sprite.rectangle.Bottom >= sprite2.Top && sprite.rectangle.Right > sprite2.Left && sprite.rectangle.Left < sprite2.Right && sprite.rectangle.Bottom <= sprite2.Bottom)
             {
                 sprite.jump_off = true;
                 return true;
