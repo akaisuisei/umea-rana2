@@ -86,40 +86,21 @@ namespace Umea_rana
             {
 
                 dir = true;
-                if (chute == true)
-                {
-                    this.FrameLine = 2;
-                    this.Direction = Direction.Left;
-                    
-                }
-                else
-                {
-                    this.FrameLine = 5;
-                    this.Direction = Direction.Left;
-                }            
+                this.FrameLine = 2;
+                this.Direction = Direction.Left;
+                this.Animate();
+
+
             }
-            
             else
 
                 if (keyboard.IsKeyDown(Keys.Right))
                 {
                     dir = false;
-                    if(chute == true)
-                    {
                     this.FrameLine = 2;
                     this.Direction = Direction.Right;
-                    
-                    }
-                else
-                {
-                    this.FrameLine = 5;
-                    this.Direction = Direction.Right;
-                }
-                }
-                else if (keyboard.IsKeyDown(Keys.Right) && chute == true)
-                {
-                    dir = false;
-                    this.FrameLine = 5;
+                    this.Animate();
+
                 }
                 else if (keyboard.IsKeyDown(Keys.X))
                 {
@@ -141,17 +122,17 @@ namespace Umea_rana
                     this.FrameLine = 3;
                     this.FrameColumn = 2;
                 }
-            
+
 
             if (dir == true)
             {
                 this.Effects = SpriteEffects.FlipHorizontally;
             }
             else
-                if(dir == false)
-            {
-                this.Effects = SpriteEffects.None;
-            }
+                if (dir == false)
+                {
+                    this.Effects = SpriteEffects.None;
+                }
 
             if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)
             {
@@ -162,6 +143,8 @@ namespace Umea_rana
             }
 
         }
+
+       
 
         public void Animate()
         {
