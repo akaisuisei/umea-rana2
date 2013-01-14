@@ -41,7 +41,7 @@ namespace Umea_rana
             change_T = 0;
 
 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7);
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("tir2"));
 
 
 
