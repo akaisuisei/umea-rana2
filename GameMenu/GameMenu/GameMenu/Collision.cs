@@ -41,5 +41,14 @@ namespace Umea_rana
                 sprite.jump_off = false;
         }
 
+        public bool Collision_as_mis(asteroid aster, munition muni)
+        {
+            if (aster.rectangle.Bottom < muni.rectangle.Top && aster.rectangle.Left < muni.rectangle.Right && aster.rectangle.Right > muni.rectangle.Left)
+            {
+                muni.existe = false;
+                return true;
+            }
+            return false;
+        }
     }
 }

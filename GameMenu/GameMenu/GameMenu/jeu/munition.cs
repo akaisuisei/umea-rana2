@@ -11,17 +11,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class munition
+    public class munition
     {
         public Texture2D texture;
         public Rectangle rectangle;
+        public bool existe;
         int speed;
 
         public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed)
         {
             texture = n_texture;
             rectangle = n_rectangle;
-
+            existe = true;
             speed = n_speed;
         }
 
@@ -33,6 +34,7 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebatch)
         {
+            if(existe)
             spritebatch.Draw(texture, rectangle, Color.White);
         }
     }

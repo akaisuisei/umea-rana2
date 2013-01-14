@@ -18,9 +18,12 @@ namespace Umea_rana
     {
         Scrolling scrolling1, scrolling2, scrolling3, scrolling4;
         sripte_V vaisseau;
+        asteroid aster;
         KeyboardState oldkey;
-        Texture2D bacground1, background2;
+        Texture2D bacground1, background2,aster_t;
         List<Texture2D> T_sprite;
+        Collision collision;
+
         int V_height, V_width;
 
 
@@ -30,6 +33,7 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
             T_sprite = new List<Texture2D>();
             V_height = 100; V_width = 100;
+            collision = new Collision();
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -48,18 +52,20 @@ namespace Umea_rana
             T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2"));
             T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2d"));
             T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2g"));
+
+            aster_t=Content.Load<Texture2D>("level2//asteroide-sprite");
             // Create a new SpriteBatch, which can be used to draw textures.
 
             // TODO: use this.Content to load your game content here
 
             scrolling1 = new Scrolling(bacground1, new Rectangle(0, 0, width, height), 2);
             scrolling2 = new Scrolling(bacground1, new Rectangle(0, -height, width, height), 2);
-            scrolling3 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3);
+            scrolling3 = new Scrolling(background2, new Rectangle(0, -height, width, height), 3);
             scrolling4 = new Scrolling(background2, new Rectangle(0, -height, width, height), 3);
 
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
-
+            aster=new asteroid (aster_t,new Rectangle (400,400,500,500),1f);
         }
 
         public override void UnloadContent()
@@ -94,6 +100,17 @@ namespace Umea_rana
 
             pause(game, keybord);
             oldkey = keybord;
+
+            aster.update();
+
+            for (int i = 0; i<vaisseau.bullet.bullet.Count; i++)
+            {
+                if(collision.Collision_as_mis(aster,vaisseau.bullet.bullet[i]))
+                {
+                    vaisseau.bullet.bullet.RemoveAt(i);
+                    aster.rectangle.Y -= 7;
+                }
+            }
         }
 
 
@@ -111,6 +128,8 @@ namespace Umea_rana
 
             scrolling3.Draw(spriteBatch);
             scrolling4.Draw(spriteBatch);
+
+            aster.Draw(spriteBatch);
 
             spriteBatch.End();
         }

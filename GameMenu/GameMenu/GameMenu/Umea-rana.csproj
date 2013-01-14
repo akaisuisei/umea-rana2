@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="asteroid.cs" />
     <Compile Include="Audio.cs" />
     <Compile Include="Bullet_manager.cs" />
     <Compile Include="Collision.cs" />

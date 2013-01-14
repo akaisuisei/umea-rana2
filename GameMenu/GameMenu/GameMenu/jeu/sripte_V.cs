@@ -19,7 +19,7 @@ namespace Umea_rana
         int change_T;
         public Rectangle rectangle;
         int height, width;
-        Bullet_manager bullet;
+        public Bullet_manager bullet;
 
         int speed, nb;
 
