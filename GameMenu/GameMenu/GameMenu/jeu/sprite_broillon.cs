@@ -35,6 +35,7 @@ namespace Umea_rana
         bool dir=false;
         int Timer;
         int AnimationSpeed = 10;
+        public bool chute = true;
         
 
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
@@ -58,6 +59,8 @@ namespace Umea_rana
 
         public void update(KeyboardState keyboard)
         {
+
+            
             if (in_air)
             {
                 rectangle.Y += poid;
@@ -104,6 +107,21 @@ namespace Umea_rana
                     this.FrameLine = 8;
                     this.Animate();
                 }
+                else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off)
+                {
+                    this.FrameLine = 5;
+                    
+                }
+                else if (keyboard.IsKeyDown(Keys.Space) && chute == false)
+                {
+                    this.FrameLine = 3;
+                    this.FrameColumn = 1;
+                }
+                else if (keyboard.IsKeyDown(Keys.Space) && chute == true)
+                {
+                    this.FrameLine = 3;
+                    this.FrameColumn = 2;
+                }
             
 
             if (dir == true)
@@ -116,7 +134,7 @@ namespace Umea_rana
                 this.Effects = SpriteEffects.None;
             }
 
-            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X))
+            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)
             {
                 this.FrameLine = 1;
                 this.Animate();

@@ -97,9 +97,14 @@ namespace Umea_rana
                 scrolling3.rectangle.X = scrolling4.rectangle.X - scrolling4.rectangle.Width;
 
             if (collision.Collision_sp_sol(allen, sol.rectangle) || collision.Collision_sp_sol(allen, sol2.rectangle))
+            {
                 allen.marche();
+                allen.chute = false;
+            }
             else
+            {
                 allen.air();
+            }
             allen.update(keyboard);
 
 
