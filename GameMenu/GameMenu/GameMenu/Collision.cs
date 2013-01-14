@@ -43,7 +43,7 @@ namespace Umea_rana
 
         public bool Collision_as_mis(asteroid aster, munition muni)
         {
-            if (aster.rectangle.Bottom < muni.rectangle.Top && aster.rectangle.Left < muni.rectangle.Right && aster.rectangle.Right > muni.rectangle.Left)
+            if (aster.rectangle.Bottom >= muni.rectangle.Top && aster.rectangle.Left < muni.rectangle.Left  && aster.rectangle.Right > muni.rectangle.Right)
             {
                 muni.existe = false;
                 return true;

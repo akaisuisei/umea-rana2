@@ -25,7 +25,7 @@ namespace Umea_rana
         Collision collision;
 
         int V_height, V_width;
-
+       
 
         public level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -34,6 +34,7 @@ namespace Umea_rana
             T_sprite = new List<Texture2D>();
             V_height = 100; V_width = 100;
             collision = new Collision();
+            
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -60,12 +61,12 @@ namespace Umea_rana
 
             scrolling1 = new Scrolling(bacground1, new Rectangle(0, 0, width, height), 2);
             scrolling2 = new Scrolling(bacground1, new Rectangle(0, -height, width, height), 2);
-            scrolling3 = new Scrolling(background2, new Rectangle(0, -height, width, height), 3);
+            scrolling3 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3);
             scrolling4 = new Scrolling(background2, new Rectangle(0, -height, width, height), 3);
 
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
-            aster=new asteroid (aster_t,new Rectangle (400,400,500,500),1f);
+            aster=new asteroid (aster_t,new Rectangle (100,100,100,100),1f,width );
         }
 
         public override void UnloadContent()
@@ -108,9 +109,13 @@ namespace Umea_rana
                 if(collision.Collision_as_mis(aster,vaisseau.bullet.bullet[i]))
                 {
                     vaisseau.bullet.bullet.RemoveAt(i);
-                    aster.rectangle.Y -= 7;
+                    aster.rectangle.Y -= 5;
                 }
             }
+
+
+            if (aster.rectangle.Bottom < 0)
+                game.ChangeState(Game1.gameState.Pause );
         }
 
 

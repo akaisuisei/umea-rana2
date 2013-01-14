@@ -34,6 +34,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space))
             {
                 bullet.Add(new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top -sprite.rectangle.Height/2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed));
+               
                 soundeffect.Play();
             }
             for (int i = 0; i < bullet.Count; i++)
