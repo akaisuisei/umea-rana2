@@ -110,11 +110,12 @@ namespace Umea_rana
                 {
                     vaisseau.bullet.bullet.RemoveAt(i);
                     aster.rectangle.Y -= 20;
+                    aster.toucher();
                 }
             }
 
 
-            if (aster.rectangle.Center.Y < 0)
+            if (aster.rectangle.Top+10  < 0)
                 game.ChangeState(Game1.gameState.Pause );
 
             oldkey = keybord;

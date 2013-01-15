@@ -61,5 +61,9 @@ namespace Umea_rana
             spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width,rectangle.Height )  ,SpriteEffects.None,0f);
         }
 
+        public void toucher()
+        {
+            this.dir = -dir;
+        }
     }
 }
