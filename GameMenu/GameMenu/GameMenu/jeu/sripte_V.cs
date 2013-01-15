@@ -20,7 +20,7 @@ namespace Umea_rana
         public Rectangle rectangle;
         int height, width;
         public Bullet_manager bullet;
-
+        bool automatic_controlled;
         int speed, nb;
 
         public void Draw(SpriteBatch spritebatch)
@@ -39,7 +39,7 @@ namespace Umea_rana
             nb = 60;
             speed = 5;
             change_T = 0;
-
+            automatic_controlled = false;
 
             bullet = new Bullet_manager(content.Load<Texture2D>("bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("tir2"));
 
@@ -49,18 +49,23 @@ namespace Umea_rana
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
-            if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
-                move();
+            if (automatic_controlled)
+                up();
             else
             {
-                if (keyboard.IsKeyDown(Keys.Up) && (rectangle.Y > 0))
-                    up();
-                if (keyboard.IsKeyDown(Keys.Down) && (rectangle.Bottom < height))
-                    down();
-                if (keyboard.IsKeyDown(Keys.Right) && (rectangle.X + rectangle.Width < width))
-                    right();
-                if (keyboard.IsKeyDown(Keys.Left) && (rectangle.X > 0))
-                    left();
+                if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
+                    move();
+                else
+                {
+                    if (keyboard.IsKeyDown(Keys.Up) && (rectangle.Y > 0))
+                        up();
+                    if (keyboard.IsKeyDown(Keys.Down) && (rectangle.Bottom < height))
+                        down();
+                    if (keyboard.IsKeyDown(Keys.Right) && (rectangle.X + rectangle.Width < width))
+                        right();
+                    if (keyboard.IsKeyDown(Keys.Left) && (rectangle.X > 0))
+                        left();
+                }
             }
 
             change_T += 1;
@@ -101,6 +106,11 @@ namespace Umea_rana
                 texture = L_texture[0];
             else
                 texture = L_texture[3];
+        }
+        public void gagne()
+        {
+            automatic_controlled = true;
+            this.bullet.enableFire = false;
         }
     }
 }

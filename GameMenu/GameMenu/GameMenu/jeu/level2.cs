@@ -23,6 +23,7 @@ namespace Umea_rana
         Texture2D bacground1, background2,aster_t;
         List<Texture2D> T_sprite;
         Collision collision;
+        int timer;
 
         int V_height, V_width;
        
@@ -34,7 +35,7 @@ namespace Umea_rana
             T_sprite = new List<Texture2D>();
             V_height = 100; V_width = 100;
             collision = new Collision();
-            
+            timer = -100;
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -115,8 +116,19 @@ namespace Umea_rana
             }
 
 
-            if (aster.rectangle.Top+10  < 0)
-                game.ChangeState(Game1.gameState.Pause );
+            if (aster.rectangle.Top + 10 < 0)
+            {
+
+                if (timer == -100)
+                {
+                    vaisseau.gagne();
+                    timer = vaisseau.rectangle.Y/2;
+                    aster.visible = false;
+                }
+                if(  timer<0 && timer!=-100)           
+                    game.ChangeState(Game1.gameState.Pause);
+                timer--;
+            }
 
             oldkey = keybord;
         }

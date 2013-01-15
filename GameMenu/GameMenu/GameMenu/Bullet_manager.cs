@@ -15,6 +15,7 @@ namespace Umea_rana
         Texture2D texture;
         Rectangle rectangle;
         SoundEffect soundeffect;
+        public bool enableFire;
        
         int time1, tem2=0;
 
@@ -30,11 +31,12 @@ namespace Umea_rana
             this.speed = speed;
             soundeffect = n_soundeffect;
             time1 = 30;
+            enableFire = true;
         }
 
         public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey)
         {
-            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space)&&tem2<=0)
+            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space)&&tem2<=0&&enableFire )
             {
 
                 tem2 = time1 ;

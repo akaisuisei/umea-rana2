@@ -21,6 +21,7 @@ namespace Umea_rana
         Random rnd;
         int widt_max;
         float rot, movrot;
+       public bool visible;
 
         public asteroid(Texture2D n_texture, Rectangle n_rectanle, float rot, int witdhm)
         {
@@ -32,6 +33,7 @@ namespace Umea_rana
 
             this.rot = rot ;
             movrot = rot;
+            visible = true;
         }
 
         public void update()
@@ -58,6 +60,7 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebach)
         {
+            if (visible)
             spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width,rectangle.Height )  ,SpriteEffects.None,0f);
         }
 
