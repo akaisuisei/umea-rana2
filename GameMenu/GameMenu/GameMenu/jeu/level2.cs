@@ -66,7 +66,7 @@ namespace Umea_rana
 
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
-            aster=new asteroid (aster_t,new Rectangle (100,75,100,100),0.02f,width );
+            aster=new asteroid (aster_t,new Rectangle (100,75,100,100),0.01f,width);
         }
 
         public override void UnloadContent()

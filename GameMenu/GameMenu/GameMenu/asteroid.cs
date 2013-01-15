@@ -37,9 +37,9 @@ namespace Umea_rana
         public void update()
         {
             
-            if (rectangle.Right > widt_max  )
+            if (rectangle.Right > widt_max +rectangle.Width  )
             {
-                rectangle.X = widt_max-rectangle.Width -1 ;
+                rectangle.X = widt_max-1;
                 dir = -dir;
             }
             if (rectangle.Left < 0)

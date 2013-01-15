@@ -1,4 +1,3 @@
-Content\Menu\background menu.xnb
 Content\Menu\jouer.xnb
 Content\Menu\options.xnb
 Content\Menu\quitter.xnb
@@ -30,11 +29,12 @@ Content\bullet\aura.xnb
 Content\bullet\aura2.xnb
 Content\level2\fond.xnb
 Content\level2\fond2.xnb
-Content\songMenu.xnb
-Content\jogging.xnb
 Content\fiches_sprite_allen.xnb
-Content\tir2.xnb
 Content\fond_niv1.xnb
 Content\level2\asteroide-sprite.xnb
+Content\Menu\background menu.xnb
+Content\songMenu.xnb
+Content\jogging.xnb
+Content\tir2.xnb
 Content\songMenu.wma
 Content\jogging.wma
