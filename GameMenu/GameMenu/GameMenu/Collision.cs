@@ -24,6 +24,7 @@ namespace Umea_rana
         {
             if (sprite.rectangle.Bottom >= sprite2.Top && sprite.rectangle_Colision .Right >= sprite2.Left && sprite.rectangle_Colision .Left <= sprite2.Right && sprite.rectangle.Bottom -9<= sprite2.Top )
             {
+                sprite.rectangle.Y = sprite2.Top - sprite.rectangle.Height;
                 sprite.jump_off = true;
                 return true;
             }
