@@ -245,13 +245,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fiches_sprite_allen.png">
-      <Name>fiches_sprite_allen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="tir2.wav">
       <Name>tir2</Name>
       <Importer>WavImporter</Importer>
@@ -275,6 +268,13 @@
   <ItemGroup>
     <Compile Include="Menu\background menu.jpg">
       <Name>background menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fiches_sprite_allen.png">
+      <Name>fiches_sprite_allen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
