@@ -41,7 +41,8 @@ namespace Umea_rana
             change_T = 0;
             automatic_controlled = false;
 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("tir2"));
+            // intencie le manager de missille 
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"));
 
 
 
@@ -49,9 +50,9 @@ namespace Umea_rana
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
-            if (automatic_controlled)
+            if (automatic_controlled)//movement automatic de fin de jeu
                 up();
-            else
+            else// controlle du vaisseau
             {
                 if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
                     move();
@@ -68,11 +69,12 @@ namespace Umea_rana
                 }
             }
 
-            change_T += 1;
+            change_T += 1;// timer pour l animation
 
             bullet.Bullet_Update(keyboard, this, oldkey);
         }
 
+        // movement et animation
         private void up()
         {
             rectangle.Y -= speed;
@@ -100,6 +102,7 @@ namespace Umea_rana
                 texture = L_texture[5];
         }
 
+       // animation
         private void move()
         {
             if (change_T % 5 == 0)
@@ -107,6 +110,8 @@ namespace Umea_rana
             else
                 texture = L_texture[3];
         }
+
+        // procedure pour indiquer au vaisseau la fin de niveau
         public void gagne()
         {
             automatic_controlled = true;

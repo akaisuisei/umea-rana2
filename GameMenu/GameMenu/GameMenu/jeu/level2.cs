@@ -14,143 +14,127 @@ namespace Umea_rana
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class level2 : GameState
+    public class Level2 : GameState
     {
-        Scrolling scrolling1, scrolling2, scrolling3, scrolling4;
-        sripte_V vaisseau;
-        asteroid aster;
-        KeyboardState oldkey;
-        Texture2D bacground1, background2,aster_t;
-        List<Texture2D> T_sprite;
+
+        Scrolling_H scrolling1, scrolling2;//, scrolling3, scrolling4;
+        sprite_broillon allen;
+        platform sol, sol2;
         Collision collision;
-        int timer;
+        KeyboardState oldkey;
 
-        int V_height, V_width;
-       
 
-        public level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             game1.IsMouseVisible = false;
-            oldkey = Keyboard.GetState();
-            T_sprite = new List<Texture2D>();
-            V_height = 100; V_width = 100;
             collision = new Collision();
-            timer = -100;
+            oldkey = Keyboard.GetState();
+            
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
+
         }
 
         public override void LoadContent(ContentManager Content)
         {
-            bacground1 = Content.Load<Texture2D>("level2//fond");
-            background2 = Content.Load<Texture2D>("level2//fond2");
 
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman1"));
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman1d"));
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman1g"));
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2"));
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2d"));
-            T_sprite.Add(Content.Load<Texture2D>("level2//sazabiHaman2g"));
+            //background
+            scrolling1 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(0, 0, width, height), 3);
+            scrolling2 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(width, 0, width, height), 3);
+          //  scrolling3 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(0, 0, width, height), 4);
+           // scrolling4 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(width, 0, width, height), 4);
+            //sprite brouillon
+            allen = new sprite_broillon(Content.Load<Texture2D>("hero//fiches_sprite_allen"), new Rectangle(width / 2, 0, 125, 93), collision, Content);
 
-            aster_t=Content.Load<Texture2D>("level2//asteroide-sprite");
-            // Create a new SpriteBatch, which can be used to draw textures.
-
-            // TODO: use this.Content to load your game content here
-
-            scrolling1 = new Scrolling(bacground1, new Rectangle(0, 0, width, height), 2);
-            scrolling2 = new Scrolling(bacground1, new Rectangle(0, -height, width, height), 2);
-            scrolling3 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3);
-            scrolling4 = new Scrolling(background2, new Rectangle(0, -height, width, height), 3);
-
-            vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
-            aster=new asteroid (aster_t,new Rectangle (100,75,100,100),0.01f,width);
+            //platfom
+            sol = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(0, height / 6 * 5, width, height / 15), 4);
+            sol2 = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(width-150, height/6*4, width, height / 15), 4);
         }
 
         public override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
+
         public override void Update(Game1 game, Audio audio)
         {
-            KeyboardState keybord;
-            keybord = Keyboard.GetState();
+            KeyboardState keyboard;
+
+            keyboard = Keyboard.GetState();
             // Allows the game to exit
 
-            // scrolling verticale
+            // TODO: Add your update logic here
+            scrolling1.Update(keyboard);
+            scrolling2.Update(keyboard);
+        //    scrolling3.Update(keyboard);
+        //    scrolling4.Update(keyboard);
 
-            if (scrolling1.rectangle.Y >= height)
-                scrolling1.rectangle.Y = scrolling2.rectangle.Y - scrolling2.rectangle.Height;
-            if (scrolling2.rectangle.Y >= height)
-                scrolling2.rectangle.Y = scrolling1.rectangle.Y - scrolling1.rectangle.Height;
+            //scrolling horrizontale fond
+            if (scrolling1.rectangle.X + scrolling1.rectangle.Width <= 0)
+                scrolling1.rectangle.X = scrolling2.rectangle.X + scrolling2.rectangle.Width;
+            if (scrolling2.rectangle.X + scrolling2.rectangle.Width <= 0)
+                scrolling2.rectangle.X = scrolling1.rectangle.X + scrolling1.rectangle.Width;
 
-            if (scrolling3.rectangle.Y >= height)
-                scrolling3.rectangle.Y = scrolling4.rectangle.Y - scrolling4.rectangle.Height;
-            if (scrolling4.rectangle.Y >= height)
-                scrolling4.rectangle.Y = scrolling3.rectangle.Y - scrolling3.rectangle.Height;
+            if (scrolling1.rectangle.X >= 0)
+                scrolling2.rectangle.X = scrolling1.rectangle.X - scrolling1.rectangle.Width;
+            if (scrolling2.rectangle.X >= 0)
+                scrolling1.rectangle.X = scrolling2.rectangle.X - scrolling2.rectangle.Width;
 
-            scrolling1.Update();
-            scrolling2.Update();
-            scrolling3.Update();
-            scrolling4.Update();
-
-            //vaisseau
-            vaisseau.Update(keybord, game, oldkey);
-
-            pause(game, keybord);
-            oldkey = keybord;
-
-            aster.update();
-
-            for (int i = 0; i<vaisseau.bullet.bullet.Count; i++)
+         /*   // scrolling horrizontale devant
+            if (scrolling3.rectangle.X + scrolling3.rectangle.Width <= 0)
+                scrolling3.rectangle.X = scrolling4.rectangle.X + scrolling4.rectangle.Width;
+            if (scrolling4.rectangle.X + scrolling4.rectangle.Width <= 0)
+                scrolling4.rectangle.X = scrolling3.rectangle.X + scrolling3.rectangle.Width;
+            if (scrolling3.rectangle.X >= 0)
+                scrolling4.rectangle.X = scrolling3.rectangle.X - scrolling3.rectangle.Width;
+            if (scrolling4.rectangle.X >= 0)
+                scrolling3.rectangle.X = scrolling4.rectangle.X - scrolling4.rectangle.Width;
+            */
+            if (collision.Collision_sp_sol(allen, sol.rectangle) || collision.Collision_sp_sol(allen, sol2.rectangle))
             {
-                if(collision.Collision_as_mis(aster,vaisseau.bullet.bullet[i]))
-                {
-                    vaisseau.bullet.bullet.RemoveAt(i);
-                    aster.rectangle.Y -= 20;
-                    aster.toucher();
-                }
+                allen.marche();
+                allen.chute = false;
             }
-
-
-            if (aster.rectangle.Top + 10 < 0)
+            else
             {
-
-                if (timer == -100)
-                {
-                    vaisseau.gagne();
-                    timer = vaisseau.rectangle.Y/2;
-                    aster.visible = false;
-                }
-                if(  timer<0 && timer!=-100)           
-                    game.ChangeState(Game1.gameState.Pause);
-                timer--;
+                allen.air();
             }
+            allen.update(keyboard);
 
-            oldkey = keybord;
+
+
+            //sprite brouillon
+
+            //pause
+            pause(game, keyboard);
+
+            //partie perdu
+            fail(game, allen);
+
+            //platform
+            sol.update(keyboard);
+            sol2.update(keyboard);
+            //audio
+
+            if (allen.rectangle.Right >= width * 2 - 50)
+                game.ChangeState(Game1.gameState.level2);
         }
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
 
-            //scrolling
+            spriteBatch.Begin();
             scrolling1.Draw(spriteBatch);
             scrolling2.Draw(spriteBatch);
-
-            vaisseau.Draw(spriteBatch);
-
-            scrolling3.Draw(spriteBatch);
-            scrolling4.Draw(spriteBatch);
-
-            aster.Draw(spriteBatch);
-
+            //scrolling3.Draw(spriteBatch);
+            //scrolling4.Draw(spriteBatch);
+            allen.Draw(spriteBatch);
+            sol.Draw(spriteBatch);
+            sol2.Draw(spriteBatch);
             spriteBatch.End();
         }
     }

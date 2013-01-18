@@ -19,7 +19,7 @@
     <ApplicationIcon>GameThail.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\akai_suisei\Desktop\Umea-rana\</PublishUrl>
+    <PublishUrl>C:\Users\akai_suisei\Desktop\Umea-rana\umera\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -32,7 +32,7 @@
     <TargetCulture>fr</TargetCulture>
     <ProductName>Umea-rana</ProductName>
     <SuiteName>project-2017</SuiteName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -125,27 +125,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="asteroid.cs" />
-    <Compile Include="Audio.cs" />
-    <Compile Include="Bullet_manager.cs" />
-    <Compile Include="Collision.cs" />
-    <Compile Include="jeu\Background.cs" />
-    <Compile Include="jeu\Level1_state.cs" />
-    <Compile Include="jeu\level2.cs" />
-    <Compile Include="jeu\munition.cs" />
-    <Compile Include="jeu\Scrolling-V.cs" />
+    <Compile Include="IA\asteroid.cs" />
+    <Compile Include="moteur_son\Audio.cs" />
+    <Compile Include="manager\Bullet_manager.cs" />
+    <Compile Include="moteur_physique\Collision.cs" />
+    <Compile Include="moteur_jeu\Background.cs" />
+    <Compile Include="jeu\Level2.cs" />
+    <Compile Include="jeu\level1.cs" />
+    <Compile Include="moteur_jeu\munition.cs" />
+    <Compile Include="moteur_jeu\Scrolling-V.cs" />
     <Compile Include="jeu\sripte_V.cs" />
-    <Compile Include="menu\Level_select_state.cs" />
-    <Compile Include="menu\MainMenuState.cs" />
-    <Compile Include="menu\GameState.cs" />
-    <Compile Include="menu\PlayingState.cs" />
-    <Compile Include="menu\Pause.cs" />
-    <Compile Include="jeu\platform.cs" />
+    <Compile Include="interface\Level_select_state.cs" />
+    <Compile Include="interface\MainMenuState.cs" />
+    <Compile Include="interface\GameState.cs" />
+    <Compile Include="interface\PlayingState.cs" />
+    <Compile Include="interface\Pause.cs" />
+    <Compile Include="moteur_jeu\platform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Resources.cs" />
-    <Compile Include="jeu\Scrolling_H.cs" />
+    <Compile Include="moteur_jeu\Scrolling_H.cs" />
     <Compile Include="jeu\sprite_broillon.cs" />
   </ItemGroup>
   <ItemGroup>

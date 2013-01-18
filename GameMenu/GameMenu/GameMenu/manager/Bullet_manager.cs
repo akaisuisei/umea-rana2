@@ -16,18 +16,18 @@ namespace Umea_rana
         Rectangle rectangle;
         SoundEffect soundeffect;
         public bool enableFire;
-       
-        int time1, tem2=0;
+
+        int time1, tem2 = 0;
 
         public List<munition> bullet = new List<munition>();
-        int speed, change;
+        int speed;
 
-        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed,SoundEffect n_soundeffect)
+        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect)
         {
             texture = n_texture;
             rectangle = n_rectangle;
             bullet.Capacity = nb;
-            change = 0;
+
             this.speed = speed;
             soundeffect = n_soundeffect;
             time1 = 30;
@@ -36,23 +36,24 @@ namespace Umea_rana
 
         public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey)
         {
-            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space)&&tem2<=0&&enableFire )
+            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space) && tem2 <= 0 && enableFire) //autorisation de tire
             {
 
-                tem2 = time1 ;
-                bullet.Add(new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top -sprite.rectangle.Height/2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed));
-               
-                soundeffect.Play();
-               
+                tem2 = time1;
+                bullet.Add(new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed));
+
+                soundeffect.Play(); //lance un son lors du tire
+
             }
             tem2--;
+            //update che chaque missile
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
                 if (bullet[i].rectangle.Bottom < 0)
                     bullet.RemoveAt(i);
             }
-            change++;
+
         }
 
         public void Bullet_draw(SpriteBatch spritebach)
@@ -61,6 +62,6 @@ namespace Umea_rana
                 bullet[i].Draw(spritebach);
         }
 
-        
+
     }
 }

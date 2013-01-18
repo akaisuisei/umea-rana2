@@ -34,7 +34,7 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("songMenu");
+            songMenu = content.Load<Song>("Menu//songMenu");
             coordonnees_continuer = new Vector2(100, 80);
             coordonnees_selection = new Vector2(50, 80);
             coordonnees_menu = new Vector2(100, 180);
@@ -47,11 +47,11 @@ namespace Umea_rana
         public override void LoadContent(ContentManager content)
         {
             background = content.Load<Texture2D>("Menu//background menu");
-            continuer = content.Load<Texture2D>("pause//continuer");
+            continuer = content.Load<Texture2D>("Menu//pause//continuer");
             selection = content.Load<Texture2D>("Menu//selection");
-            menu = content.Load<Texture2D>("pause//Menu");
+            menu = content.Load<Texture2D>("Menu//pause//Menu");
             quitter = content.Load<Texture2D>("Menu//quitter");
-            titre = content.Load<Texture2D>("pause//pause");
+            titre = content.Load<Texture2D>("Menu//pause//pause");
         }
         public override void UnloadContent()
         {

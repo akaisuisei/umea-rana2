@@ -15,9 +15,9 @@ namespace Umea_rana
     {
         public Texture2D texture;
         public Rectangle rectangle;
-        public bool existe,bool_dexistence;
+        public bool existe, bool_dexistence;
         int speed;
-        public int temps_dexitence=0;
+        public int temps_dexitence = 0;
 
         public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed)
         {
@@ -36,8 +36,8 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebatch)
         {
-            if(existe)
-            spritebatch.Draw(texture, rectangle, Color.White);
+            if (existe)
+                spritebatch.Draw(texture, rectangle, Color.White);
         }
     }
 }

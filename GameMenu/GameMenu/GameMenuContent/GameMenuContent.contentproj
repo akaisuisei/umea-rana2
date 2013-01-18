@@ -64,108 +64,84 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Untitled.png">
-      <Name>Untitled</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="songMenu.mp3">
+    <Compile Include="Menu\songMenu.mp3">
       <Name>songMenu</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LevelSelect\level1.png">
+    <Compile Include="Menu\LevelSelect\level1.png">
       <Name>level1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LevelSelect\level2.png">
+    <Compile Include="Menu\LevelSelect\level2.png">
       <Name>level2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bullet.png">
+    <Compile Include="bullet\bullet.png">
       <Name>bullet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="vaisseau 1.png">
-      <Name>vaisseau 1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="background.png">
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="background2.png">
-      <Name>background2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="platform.png">
+    <Compile Include="level1\platform.png">
       <Name>platform</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pause\Menu.png">
+    <Compile Include="Menu\pause\Menu.png">
       <Name>Menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pause\continuer.png">
+    <Compile Include="Menu\pause\continuer.png">
       <Name>continuer</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="jogging.mp3">
+    <Compile Include="hero\jogging.mp3">
       <Name>jogging</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pause\pause.png">
+    <Compile Include="Menu\pause\pause.png">
       <Name>pause</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LevelSelect\niveau.png">
+    <Compile Include="Menu\LevelSelect\niveau.png">
       <Name>niveau</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LevelSelect\retour.png">
+    <Compile Include="Menu\LevelSelect\retour.png">
       <Name>retour</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pause\perdu.png">
+    <Compile Include="Menu\pause\perdu.png">
       <Name>perdu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -189,32 +165,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level2\sazabiHaman1.png">
+    <Compile Include="hero\vaisseau\sazabiHaman1.png">
       <Name>sazabiHaman1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level2\sazabiHaman1d.png">
+    <Compile Include="hero\vaisseau\sazabiHaman1d.png">
       <Name>sazabiHaman1d</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level2\sazabiHaman1g.png">
+    <Compile Include="hero\vaisseau\sazabiHaman1g.png">
       <Name>sazabiHaman1g</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level2\sazabiHaman2.png">
+    <Compile Include="hero\vaisseau\sazabiHaman2.png">
       <Name>sazabiHaman2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level2\sazabiHaman2d.png">
+    <Compile Include="hero\vaisseau\sazabiHaman2d.png">
       <Name>sazabiHaman2d</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level2\sazabiHaman2g.png">
+    <Compile Include="hero\vaisseau\sazabiHaman2g.png">
       <Name>sazabiHaman2g</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -245,21 +221,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="tir2.wav">
+    <Compile Include="hero\vaisseau\tir2.wav">
       <Name>tir2</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fond_niv1.jpg">
+    <Compile Include="level1\fond_niv1.jpg">
       <Name>fond_niv1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level2\asteroide-sprite.png">
+    <Compile Include="IA\asteroid\asteroide-sprite.png">
       <Name>asteroide-sprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -273,7 +249,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fiches_sprite_allen.png">
+    <Compile Include="hero\fiches_sprite_allen.png">
       <Name>fiches_sprite_allen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

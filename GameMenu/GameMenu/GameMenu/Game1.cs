@@ -32,7 +32,7 @@ namespace Umea_rana
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
 
             //content
             Content.RootDirectory = "Content";
@@ -43,8 +43,8 @@ namespace Umea_rana
             StateManager.Add(gameState.PlayingState, new PlayingState());
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
-            StateManager.Add(gameState.Level1_state, new Level1_state(this, graphics, Content));
-            StateManager.Add(gameState.level2, new level2(this, graphics, Content));
+            StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
+            StateManager.Add(gameState.level2, new level1(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
         }
 
