@@ -20,7 +20,7 @@ namespace Umea_rana
         {
         }
 
-        public bool Collision_sp_sol(sprite_broillon sprite, Rectangle sprite2)
+        public bool Collision_sp_sol(ref sprite_broillon sprite,ref Rectangle sprite2)
         {
             if (sprite.rectangle.Bottom >= sprite2.Top && sprite.rectangle_Colision .Right >= sprite2.Left && sprite.rectangle_Colision .Left <= sprite2.Right && sprite.rectangle.Bottom -9<= sprite2.Top )
             {

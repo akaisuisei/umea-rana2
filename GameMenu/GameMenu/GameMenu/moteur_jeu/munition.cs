@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    public class munition
+    public class munition :objet 
     {
         public Texture2D texture;
         public Rectangle rectangle;

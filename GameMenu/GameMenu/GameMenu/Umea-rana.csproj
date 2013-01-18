@@ -141,6 +141,7 @@
     <Compile Include="interface\PlayingState.cs" />
     <Compile Include="interface\Pause.cs" />
     <Compile Include="moteur_jeu\platform.cs" />
+    <Compile Include="jeu\objet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

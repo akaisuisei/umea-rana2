@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class sripte_V
+    class sripte_V :objet 
     {
         public Texture2D texture;
         List<Texture2D> L_texture;

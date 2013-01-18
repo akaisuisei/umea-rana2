@@ -17,10 +17,10 @@ namespace Umea_rana
     };
 
 
-    public class sprite_broillon
+    public class sprite_broillon :objet 
     {
         Texture2D texture;
-        public Rectangle rectangle, rectangle_Colision;
+        public Rectangle rectangle ;
         Collision collision;
         public int poid;
         public bool jump_ok, jump_off;

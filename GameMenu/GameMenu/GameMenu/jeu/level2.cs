@@ -93,7 +93,7 @@ namespace Umea_rana
             if (scrolling4.rectangle.X >= 0)
                 scrolling3.rectangle.X = scrolling4.rectangle.X - scrolling4.rectangle.Width;
             */
-            if (collision.Collision_sp_sol(allen, sol.rectangle) || collision.Collision_sp_sol(allen, sol2.rectangle))
+            if (collision.Collision_sp_sol(ref allen,ref  sol.rectangle) || collision.Collision_sp_sol(ref allen,ref  sol2.rectangle))
             {
                 allen.marche();
                 allen.chute = false;
