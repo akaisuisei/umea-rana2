@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IA\asteroid.cs" />
+    <Compile Include="Initialisateur.cs" />
     <Compile Include="moteur_son\Audio.cs" />
     <Compile Include="manager\Bullet_manager.cs" />
     <Compile Include="moteur_physique\Collision.cs" />

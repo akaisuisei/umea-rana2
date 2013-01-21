@@ -38,7 +38,7 @@ namespace Umea_rana
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
             //state
-            _currentState = gameState.MainMenuState;
+            _currentState = gameState.Initialisateur ;
             StateManager = new Dictionary<gameState, GameState>();
             StateManager.Add(gameState.PlayingState, new PlayingState());
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
@@ -46,6 +46,8 @@ namespace Umea_rana
             StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
             StateManager.Add(gameState.level2, new level1(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
+            StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
+            
         }
 
         protected override void Initialize()
@@ -58,6 +60,7 @@ namespace Umea_rana
             {
             }
             base.Initialize();
+
         }
 
         protected override void LoadContent()
@@ -87,8 +90,10 @@ namespace Umea_rana
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Black);
             base.Draw(gameTime);
             StateManager[_currentState].Draw(spriteBatch);
+            
         }
 
         public enum gameState
@@ -100,6 +105,7 @@ namespace Umea_rana
             Level1_state,
             level2,
             Pause,
+            Initialisateur,
         }
 
         public void ChangeState(gameState NewState)
