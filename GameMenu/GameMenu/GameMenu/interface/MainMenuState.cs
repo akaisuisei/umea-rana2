@@ -38,16 +38,16 @@ namespace Umea_rana
             MediaPlayer.Volume = vol;
             songMenu = content.Load<Song>("Menu//songMenu");
             MediaPlayer.Play(songMenu);
-            coordonnees_jouer = new Vector2(100, 80);
-            coordonnees_selection = new Vector2(50, 80);
-            coordonnees_options = new Vector2(100, 180);
-            coordonnees_quitter = new Vector2(100, 280);
+
 
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            
+            coordonnees_jouer = new Vector2(100, 80);
+            coordonnees_selection = new Vector2(50, 80);
+            coordonnees_options = new Vector2(100, 180);
+            coordonnees_quitter = new Vector2(100, 280);
         }
         public override void LoadContent(ContentManager content)
         {

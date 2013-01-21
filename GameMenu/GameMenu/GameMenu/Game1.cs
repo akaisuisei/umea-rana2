@@ -111,7 +111,7 @@ namespace Umea_rana
         public void ChangeState(gameState NewState)
         {
             _currentState = NewState;
-            base.Initialize();
+            this.Initialize();
         }
 
     }
