@@ -71,7 +71,7 @@ namespace Umea_rana
 
             change_T += 1;// timer pour l animation
 
-            bullet.Bullet_Update(keyboard, this, oldkey);
+            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),1);
         }
 
         // movement et animation

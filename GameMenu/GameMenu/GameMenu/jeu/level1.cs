@@ -23,6 +23,7 @@ namespace Umea_rana
         Texture2D bacgkround1, background2,aster_t;
         List<Texture2D> T_sprite;
         Collision collision;
+        int taille_sprt;
         int timer;
 
         int V_height, V_width;
@@ -36,12 +37,13 @@ namespace Umea_rana
             V_height = 100; V_width = 100;
             collision = new Collision();
             timer = -100;
-
+            taille_sprt=(int)(Math.Min (width,height )*0.1f);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
+            
         }
 
         public override void LoadContent(ContentManager Content)
@@ -72,7 +74,7 @@ namespace Umea_rana
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
 
             //instancie l ia
-            aster=new asteroid (aster_t,new Rectangle (100,75,100,100),0.01f,width);
+            aster=new asteroid (aster_t,new Rectangle (100,75,taille_sprt,taille_sprt ),0.01f,width);
         }
 
         public override void UnloadContent()

@@ -15,23 +15,26 @@ namespace Umea_rana
     {
         public Texture2D texture;
         public Rectangle rectangle;
+        Vector2 vect;
         public bool existe, bool_dexistence;
         int speed;
         public int temps_dexitence = 0;
 
-        public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed)
+        public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed, Vector2 vect )
         {
             texture = n_texture;
             rectangle = n_rectangle;
             existe = true;
             speed = n_speed;
             bool_dexistence = true;
+            this.vect = vect;
         }
 
 
         public void update2()
         {
-            rectangle.Y -= speed;
+            rectangle.Y -=(int) (speed*vect.Y) ;
+            rectangle.X += (int)(speed * vect.X);
         }
 
         public void Draw(SpriteBatch spritebatch)
