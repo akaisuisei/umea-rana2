@@ -13,13 +13,15 @@ namespace Umea_rana
 {
     public class vaisseau_IA : objet
     {
-        Texture2D _texture;
-        public Rectangle rectangle;
-        int _speed;
-        int decallageX, decallageY, largeurX, hauteurY;
-        Bullet_manager bullet;
 
-
+        protected Texture2D _texture;
+         public Rectangle rectangle;
+       protected  int _speed, width, dir;
+        protected int decallageX, decallageY, largeurX, hauteurY;
+        public Bullet_manager bullet;
+       protected  Color Munition_color;
+        /*
+     
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
         {
             this.rectangle = n_rectangle;
@@ -32,10 +34,7 @@ namespace Umea_rana
             decallageX = 0;
             decallageY = 0;
         }
-
-        public void Update()
-        {
-        }
+        
 
         public void moveUp()
         {
@@ -68,6 +67,6 @@ namespace Umea_rana
             return _vecteur;
         }
 
-
+        */
     }
 }

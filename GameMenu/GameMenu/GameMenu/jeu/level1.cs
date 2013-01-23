@@ -23,6 +23,7 @@ namespace Umea_rana
         Texture2D bacgkround1, background2,aster_t;
         List<Texture2D> T_sprite;
         Collision collision;
+        Tireur  mecha;
         int taille_sprt;
         int timer;
 
@@ -75,6 +76,8 @@ namespace Umea_rana
 
             //instancie l ia
             aster=new asteroid (aster_t,new Rectangle (100,75,taille_sprt,taille_sprt ),0.01f,width);
+            mecha = new Tireur(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300,0,100,100), Content, height, width);
+
         }
 
         public override void UnloadContent()
@@ -108,6 +111,7 @@ namespace Umea_rana
 
             //update ia
             aster.update();
+            mecha.Update(game);
 
             //update collision
             for (int i = 0; i<vaisseau.bullet.bullet.Count; i++)
@@ -158,6 +162,7 @@ namespace Umea_rana
             scrolling4.Draw(spriteBatch);
 
             aster.Draw(spriteBatch);
+            mecha.draw(spriteBatch);
 
             spriteBatch.End();
         }

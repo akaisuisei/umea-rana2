@@ -11,10 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class sripte_V :objet 
+    public class sripte_V :objet 
     {
         public Texture2D texture;
         List<Texture2D> L_texture;
+        Color color_V;
 
         int change_T;
         public Rectangle rectangle;
@@ -40,9 +41,9 @@ namespace Umea_rana
             speed = 5;
             change_T = 0;
             automatic_controlled = false;
-
+            color_V = Color.Red ;
             // intencie le manager de missille 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"));
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width  );
 
 
 
@@ -71,7 +72,7 @@ namespace Umea_rana
 
             change_T += 1;// timer pour l animation
 
-            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),1);
+            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5);
         }
 
         // movement et animation
