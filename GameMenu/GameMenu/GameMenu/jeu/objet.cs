@@ -14,7 +14,7 @@ namespace Umea_rana
 {
      public class objet
     {
-         public Rectangle rectangle_Colision;
+         public Rectangle rectangle_Colision, rectangle;
 
     }
 }

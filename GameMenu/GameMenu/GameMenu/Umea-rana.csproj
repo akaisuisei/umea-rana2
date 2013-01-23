@@ -131,7 +131,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tireur.cs" />
+    <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
     <Compile Include="interface\Initialisateur.cs" />
     <Compile Include="moteur_son\Audio.cs" />
@@ -157,6 +157,7 @@
     <Compile Include="moteur_jeu\Scrolling_H.cs" />
     <Compile Include="jeu\sprite_broillon.cs" />
     <Compile Include="IA\vaisseau_IA.cs" />
+    <Compile Include="Viseur_aI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

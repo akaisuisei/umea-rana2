@@ -22,36 +22,24 @@ public   class Tireur :vaisseau_IA
             this._texture = texture;
             this.rectangle = rectangle;
             this.rectangle_Colision = rectangle;
+            this.Ia_color = Color.Red;
 
             Munition_color = Color.Red;
             bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color ,width );
             this.width = width;
             dir = 1;
+            _speed = 7;
         }
 
         public void Update(Game1 game)
         {
-            bullet.Bullet_Update2(this, new Vector2(0, -1), 5);
+            bullet.Bullet_Update2(this, new Vector2(0, -1), 1);
 
-            if (rectangle.Right > width  + rectangle.Width)
-            {
-                rectangle.X = width  - 1;
-                dir = -dir;
-            }
-            if (rectangle.Left < 0)
-            {
-                rectangle.X = 0;
-                dir = -dir;
+            move_H();
 
-            }
-
-            rectangle.X += 6*dir;
+            
         }
 
-        public void draw(SpriteBatch spritback)
-        {
-            bullet.Bullet_draw(spritback);
-            spritback.Draw(_texture, rectangle, Color.Red );
-        }
+
     }
 }

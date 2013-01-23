@@ -15,11 +15,11 @@ namespace Umea_rana
     {
 
         protected Texture2D _texture;
-         public Rectangle rectangle;
        protected  int _speed, width, dir;
         protected int decallageX, decallageY, largeurX, hauteurY;
         public Bullet_manager bullet;
-       protected  Color Munition_color;
+       protected  Color Munition_color, Ia_color;
+       
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -57,16 +57,37 @@ namespace Umea_rana
             rectangle_Colision.X = rectangle.X + decallageX;
         }
 
-
+        */
         protected Vector2 vise( objet sprt)
         {
             Vector2 _vecteur;
-            _vecteur.X = sprt.rectangle_Colision.Center.X - this.rectangle_Colision.Center.X;
-            _vecteur.Y = sprt.rectangle_Colision.Center.Y - this.rectangle_Colision.Center.Y;
+            _vecteur.X =- sprt.rectangle.Center.X ;
+            _vecteur.Y = - sprt.rectangle.Center.Y ;
             _vecteur.Normalize();
             return _vecteur;
         }
 
-        */
+        
+       public void draw(SpriteBatch spritback)
+       {
+           bullet.Bullet_draw(spritback);
+           spritback.Draw(_texture, rectangle, Ia_color );
+       }
+
+       public void move_H()
+       {
+           if (rectangle.Right > width + rectangle.Width)
+           {
+               rectangle.X = width - 1;
+               dir = -dir;
+           }
+           if (rectangle.Left < 0)
+           {
+               rectangle.X = 0;
+               dir = -dir;
+
+           }
+           rectangle.X += _speed  * dir;
+       }
     }
 }

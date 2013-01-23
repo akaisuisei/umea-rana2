@@ -36,7 +36,7 @@ namespace Umea_rana
             this.colo = colo;
         }
 
-        public void Bullet_Update2(Tireur sprite, Vector2 vise, int nb)
+        public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb)
         {
             if ( tem2 <= 0 && enableFire) //autorisation de tire
             {

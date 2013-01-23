@@ -51,5 +51,17 @@ namespace Umea_rana
             }
             return false;
         }
+
+        public void  Collision_hero_missile( vaisseau_IA  ia, sripte_V  sprite, Game1 game)
+        {
+            for(int i=0;i<ia.bullet.bullet.Count ();++i)
+                if (ia.bullet.bullet[i].rectangle.Intersects(sprite.rectangle))
+                {
+                    game.ChangeState(Game1.gameState.Pause);
+
+                }
+            if (ia.rectangle.Intersects(sprite.rectangle ))
+                game.ChangeState(Game1.gameState.Pause);
+        }
     }
 }

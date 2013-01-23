@@ -18,7 +18,7 @@ namespace Umea_rana
         Color color_V;
 
         int change_T;
-        public Rectangle rectangle;
+        
         int height, width;
         public Bullet_manager bullet;
         bool automatic_controlled;
@@ -36,6 +36,7 @@ namespace Umea_rana
             L_texture = new List<Texture2D>();
             L_texture = n_texture;
             rectangle = n_rectangle;
+            rectangle_Colision = rectangle;
             this.height = height; this.width = width;
             nb = 60;
             speed = 5;
@@ -73,6 +74,7 @@ namespace Umea_rana
             change_T += 1;// timer pour l animation
 
             bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5);
+            rectangle_Colision = rectangle;
         }
 
         // movement et animation
