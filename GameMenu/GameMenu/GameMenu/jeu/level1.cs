@@ -20,16 +20,16 @@ namespace Umea_rana
         sripte_V vaisseau;
         asteroid aster;
         KeyboardState oldkey;
-        Texture2D bacgkround1, background2,aster_t;
+        Texture2D bacgkround1, background2, aster_t;
         List<Texture2D> T_sprite;
         Collision collision;
-        Tireur  mecha;
+        Tireur mecha;
         Viseur_aI mecha2;
         int taille_sprt;
         int timer;
 
         int V_height, V_width;
-       
+
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -39,13 +39,13 @@ namespace Umea_rana
             V_height = 100; V_width = 100;
             collision = new Collision();
             timer = -100;
-            taille_sprt=(int)(Math.Min (width,height )*0.1f);
+            taille_sprt = (int)(Math.Min(width, height) * 0.1f);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-            
+
         }
 
         public override void LoadContent(ContentManager Content)
@@ -62,7 +62,7 @@ namespace Umea_rana
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
 
             //charge l IA
-            aster_t=Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
+            aster_t = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
 
             //instancie le scolling
 
@@ -76,8 +76,8 @@ namespace Umea_rana
                 new Rectangle(height / 2 + V_height / 2, width / 2 + V_width / 2, V_height, V_width), Content, height, width);
 
             //instancie l ia
-            aster=new asteroid (aster_t,new Rectangle (100,75,taille_sprt,taille_sprt ),0.01f,width);
-            mecha = new Tireur(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300,0,100,100), Content, height, width);
+            aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width);
+            mecha = new Tireur(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300, 0, 100, 100), Content, height, width);
             mecha2 = new Viseur_aI(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300, 0, 100, 100), Content, height, width);
         }
 
@@ -112,13 +112,19 @@ namespace Umea_rana
 
             //update ia
             aster.update();
-            mecha.Update(game);
-            mecha2.Update(vaisseau);
+
+            if (!vaisseau.automatic_controlled)
+            {
+                collision.Collision_hero_missile(mecha, vaisseau, game);
+                collision.Collision_hero_missile(mecha2, vaisseau, game);
+                mecha.Update(game);
+                mecha2.Update(vaisseau);
+            }
 
             //update collision
-            for (int i = 0; i<vaisseau.bullet.bullet.Count; i++)
+            for (int i = 0; i < vaisseau.bullet.bullet.Count; i++)
             {
-                if(collision.Collision_as_mis(aster,vaisseau.bullet.bullet[i]))
+                if (collision.Collision_as_mis(aster, vaisseau.bullet.bullet[i]))
                 {
                     vaisseau.bullet.bullet.RemoveAt(i);
                     aster.rectangle.Y -= 20;
@@ -133,16 +139,14 @@ namespace Umea_rana
                 if (timer == -100)
                 {
                     vaisseau.gagne();
-                    timer = vaisseau.rectangle.Y/2;
+                    timer = vaisseau.rectangle.Y / 2;
                     aster.visible = false;
+
                 }
-                if(  timer<0 && timer!=-100)           
+                if (timer < 0 && timer != -100)
                     game.ChangeState(Game1.gameState.Level1_state);//va au level2
                 timer--;
             }
-
-            collision.Collision_hero_missile(mecha, vaisseau, game);
-            collision.Collision_hero_missile(mecha2,vaisseau,game);
 
             //update interface
             pause(game, keybord);
