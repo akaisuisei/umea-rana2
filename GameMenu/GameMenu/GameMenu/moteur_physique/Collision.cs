@@ -20,15 +20,35 @@ namespace Umea_rana
         {
         }
 
-        public bool Collision_sp_sol(sprite_broillon  sprite,ref Rectangle sprite2)
+        public bool Collision_sp_sol(sprite_broillon sprite, ref Rectangle sprite2)
         {
-            if (sprite.rectangle.Bottom >= sprite2.Top && sprite.rectangle_Colision .Right >= sprite2.Left && sprite.rectangle_Colision .Left <= sprite2.Right && sprite.rectangle.Bottom -9<= sprite2.Top )
+            if (sprite.rectangle.Bottom >= sprite2.Top && sprite.rectangle_Colision.Right >= sprite2.Left &&
+                sprite.rectangle_Colision.Left <= sprite2.Right && sprite.rectangle.Bottom - 9 <= sprite2.Top)
             {
                 sprite.rectangle.Y = sprite2.Top - sprite.rectangle.Height;
                 sprite.jump_off = true;
                 return true;
             }
             return false;
+        }
+
+        public void collision_ia_sol(vaisseau_IA ia, ref Rectangle platfom) //ia stalker
+        {
+            if (ia.rectangle_Colision.Bottom >= platfom.Top && ia.rectangle_Colision.Right >= platfom.Left &&
+                ia.rectangle_Colision.Left <= platfom.Right && ia.rectangle_Colision.Bottom - 9 <= platfom.Top)
+            {
+                ia.rectangle_Colision.Y = platfom.Top - ia.rectangle.Height;
+                ia.tombe = false;
+            }
+            else
+                ia.tombe = true;
+        }
+
+        public void collision_ia_AR_sol(vaisseau_IA ia, ref Rectangle platfom) // ia AR
+        {
+            if (ia.rectangle_Colision.Right >= platfom.Right || ia.rectangle_Colision.Left <= platfom.Left)
+                ia.dir = -ia.dir;
+            collision_ia_sol(ia, ref platfom);
         }
 
         public void jump(sprite_broillon sprite)
@@ -44,7 +64,7 @@ namespace Umea_rana
 
         public bool Collision_as_mis(asteroid aster, munition muni)
         {
-            if (aster.rectangle.Center.Y >= muni.rectangle.Top&& aster.rectangle.Right>=muni.rectangle.Right &&aster.rectangle.Left<muni.rectangle.Left)
+            if (aster.rectangle.Center.Y >= muni.rectangle.Top && aster.rectangle.Right >= muni.rectangle.Right && aster.rectangle.Left < muni.rectangle.Left)
             {
                 muni.existe = false;
                 return true;
@@ -52,15 +72,14 @@ namespace Umea_rana
             return false;
         }
 
-        public void  Collision_hero_missile( vaisseau_IA  ia, sripte_V  sprite, Game1 game)
+        public void Collision_hero_missile(vaisseau_IA ia, sripte_V sprite, Game1 game)
         {
-            for(int i=0;i<ia.bullet.bullet.Count ();++i)
+            for (int i = 0; i < ia.bullet.bullet.Count(); ++i)
                 if (ia.bullet.bullet[i].rectangle.Intersects(sprite.rectangle))
                 {
                     game.ChangeState(Game1.gameState.Pause);
-
                 }
-            if (ia.rectangle.Intersects(sprite.rectangle ))
+            if (ia.rectangle.Intersects(sprite.rectangle))
                 game.ChangeState(Game1.gameState.Pause);
         }
     }

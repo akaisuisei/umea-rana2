@@ -11,15 +11,19 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
+    
     public class vaisseau_IA : objet
     {
 
         protected Texture2D _texture;
-       protected  int _speed, width, dir;
+        protected int _speed, width,front_sc;
+        public int dir;
         protected int decallageX, decallageY, largeurX, hauteurY;
         public Bullet_manager bullet;
        protected  Color Munition_color, Ia_color;
-       
+       public int poid;
+
+
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -89,5 +93,12 @@ namespace Umea_rana
            }
            rectangle.X += _speed  * dir;
        }
+
+       public void Update_rec_collision()
+       {
+           rectangle_Colision.X = rectangle.X + decallageX;
+           rectangle_Colision.Y = rectangle.Y + decallageY;
+       }
+
     }
 }

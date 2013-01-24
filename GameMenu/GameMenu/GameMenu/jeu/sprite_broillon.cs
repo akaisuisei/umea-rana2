@@ -22,7 +22,6 @@ namespace Umea_rana
     {
     private level1 lvl=null;
         Texture2D texture;
-        public Rectangle rectangle ;
         Collision collision;
         public int poid;
         public bool jump_ok, jump_off;

@@ -14,7 +14,6 @@ namespace Umea_rana
     public class munition :objet 
     {
         public Texture2D texture;
-        public Rectangle rectangle;
         Vector2 vect;
         public bool existe, bool_dexistence;
         int speed;

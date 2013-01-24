@@ -19,11 +19,11 @@ namespace Umea_rana
 
         Scrolling_H scrolling1, scrolling2;//, scrolling3, scrolling4;
         sprite_broillon allen;
-        Stalker stock;
+        Stalker stock,AR;
         platform sol, sol2;
         Collision collision;
         KeyboardState oldkey;
-
+        int front_sc, back_sc;
 
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -36,24 +36,27 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-
+            front_sc = 4;
+            back_sc = 5;
         }
 
         public override void LoadContent(ContentManager Content)
         {
 
             //background
-            scrolling1 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(0, 0, width, height), 3);
-            scrolling2 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(width, 0, width, height), 3);
+            scrolling1 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(0, 0, width, height), back_sc );
+            scrolling2 = new Scrolling_H(Content.Load<Texture2D>("level1//fond_niv1"), new Rectangle(width, 0, width, height), back_sc );
           //  scrolling3 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(0, 0, width, height), 4);
            // scrolling4 = new Scrolling_H(Content.Load<Texture2D>("background2"), new Rectangle(width, 0, width, height), 4);
             //sprite brouillon
             allen = new sprite_broillon(Content.Load<Texture2D>("hero//fiches_sprite_allen"), new Rectangle(width / 2, 0, 125, 93), collision, Content);
 
             //platfom
-            sol = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(0, height / 6 * 5, width, height / 15), 4);
-            sol2 = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(width-150, height/6*4, width, height / 15), 4);
-            stock = new Stalker (Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"),new Rectangle (0,0,100,100),width );
+            sol = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(0, height / 6 * 5, width, height / 15), front_sc );
+            sol2 = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(width-450, height/6*4, width, height / 15), front_sc );
+            //ia
+            stock = new Stalker (Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"),new Rectangle (1300,0,100,100),width ,front_sc,3 );
+            AR = new Stalker(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(1300, 0, 100, 100), width, front_sc, 3);
         }
 
         public override void UnloadContent()
@@ -105,10 +108,12 @@ namespace Umea_rana
                 allen.air();
             }
             allen.update(keyboard);
-
-
-            //sprite brouillon
-            stock.Update(allen);
+            //ia
+            collision.collision_ia_sol(stock , ref sol.rectangle );
+            collision.collision_ia_AR_sol(AR, ref sol2.rectangle);
+           
+            stock.Update(allen, ref keyboard );
+            AR.UpdateAR(ref keyboard);
             //pause
             pause(game, keyboard);
 
@@ -137,6 +142,7 @@ namespace Umea_rana
             sol.Draw(spriteBatch);
             sol2.Draw(spriteBatch);
             stock.draw(spriteBatch);
+            AR.draw(spriteBatch);
             spriteBatch.End();
         }
     }
