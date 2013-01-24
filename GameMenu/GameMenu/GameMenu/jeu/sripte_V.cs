@@ -21,7 +21,7 @@ namespace Umea_rana
         
         int height, width;
         public Bullet_manager bullet;
-        bool automatic_controlled;
+        public bool automatic_controlled;
         int speed, nb;
 
         public void Draw(SpriteBatch spritebatch)

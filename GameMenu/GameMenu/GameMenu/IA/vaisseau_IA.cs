@@ -61,10 +61,10 @@ namespace Umea_rana
         protected Vector2 vise( objet sprt)
         {
             Vector2 _vecteur;
-            _vecteur.X =- sprt.rectangle.Center.X ;
-            _vecteur.Y = - sprt.rectangle.Center.Y ;
+            _vecteur.X =-rectangle.Center.X + sprt.rectangle.Center.X ;
+            _vecteur.Y = rectangle.Center.Y- sprt.rectangle.Center.Y ;
             _vecteur.Normalize();
-            return _vecteur;
+            return (_vecteur);
         }
 
         
