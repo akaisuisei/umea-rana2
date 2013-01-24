@@ -157,6 +157,7 @@
     <Compile Include="moteur_jeu\Scrolling_H.cs" />
     <Compile Include="jeu\sprite_broillon.cs" />
     <Compile Include="IA\vaisseau_IA.cs" />
+    <Compile Include="Stalker.cs" />
     <Compile Include="Viseur_aI.cs" />
   </ItemGroup>
   <ItemGroup>

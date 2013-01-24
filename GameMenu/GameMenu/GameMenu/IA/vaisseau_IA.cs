@@ -68,7 +68,7 @@ namespace Umea_rana
         }
 
         
-       public void draw(SpriteBatch spritback)
+       public virtual void draw(SpriteBatch spritback)
        {
            bullet.Bullet_draw(spritback);
            spritback.Draw(_texture, rectangle, Ia_color );

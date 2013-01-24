@@ -51,7 +51,7 @@ namespace Umea_rana
             pos_marche = rectangle.Y;
             marchell = content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
-
+            
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;

@@ -15,6 +15,7 @@ namespace Umea_rana
      public class objet
     {
          public Rectangle rectangle_Colision, rectangle;
+         public bool tombe;
 
     }
 }

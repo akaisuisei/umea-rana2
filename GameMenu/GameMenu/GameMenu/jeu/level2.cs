@@ -19,6 +19,7 @@ namespace Umea_rana
 
         Scrolling_H scrolling1, scrolling2;//, scrolling3, scrolling4;
         sprite_broillon allen;
+        Stalker stock;
         platform sol, sol2;
         Collision collision;
         KeyboardState oldkey;
@@ -52,6 +53,7 @@ namespace Umea_rana
             //platfom
             sol = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(0, height / 6 * 5, width, height / 15), 4);
             sol2 = new platform(Content.Load<Texture2D>("level1//platform"), new Rectangle(width-150, height/6*4, width, height / 15), 4);
+            stock = new Stalker (Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"),new Rectangle (0,0,100,100),width );
         }
 
         public override void UnloadContent()
@@ -93,7 +95,7 @@ namespace Umea_rana
             if (scrolling4.rectangle.X >= 0)
                 scrolling3.rectangle.X = scrolling4.rectangle.X - scrolling4.rectangle.Width;
             */
-            if (collision.Collision_sp_sol(ref allen,ref  sol.rectangle) || collision.Collision_sp_sol(ref allen,ref  sol2.rectangle))
+            if (collision.Collision_sp_sol( allen,ref  sol.rectangle) || collision.Collision_sp_sol( allen,ref  sol2.rectangle))
             {
                 allen.marche();
                 allen.chute = false;
@@ -105,9 +107,8 @@ namespace Umea_rana
             allen.update(keyboard);
 
 
-
             //sprite brouillon
-
+            stock.Update(allen);
             //pause
             pause(game, keyboard);
 
@@ -135,6 +136,7 @@ namespace Umea_rana
             allen.Draw(spriteBatch);
             sol.Draw(spriteBatch);
             sol2.Draw(spriteBatch);
+            stock.draw(spriteBatch);
             spriteBatch.End();
         }
     }
