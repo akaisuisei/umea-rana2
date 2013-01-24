@@ -17,8 +17,10 @@ namespace Umea_rana
     };
 
 
+
     public class sprite_broillon :objet 
     {
+    private level1 lvl=null;
         Texture2D texture;
         public Rectangle rectangle ;
         Collision collision;
@@ -82,8 +84,32 @@ namespace Umea_rana
                 collision.jump(this);
             }
 
+            this.AnimSprite(keyboard);
+
+        }
+
+
+
+        public void Animate()  //animation de base d'une frame à trois images EXACTEMENT
+        {
+            this.Timer++;
+            if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn++;
+                if (FrameColumn > 3)
+                {
+                    FrameColumn = 1;
+                }
+            }
+        }
+
+        public void AnimSprite(KeyboardState keyboard) //gestion des différentes possibilités d'animation du sprite
+        {
+
+            //lvl.Initialize(null);
             this.Effects = SpriteEffects.None;
-            if (keyboard.IsKeyDown(Keys.Left))
+            if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
             {
 
                 dir = true;
@@ -93,36 +119,73 @@ namespace Umea_rana
 
 
             }
-            else
+            else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la gauche
+            {
 
-                if (keyboard.IsKeyDown(Keys.Right))
+                dir = true;
+                if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
                 {
-                    dir = false;
-                    this.FrameLine = 2;
-                    this.Direction = Direction.Right;
-                    this.Animate();
-
-                }
-                else if (keyboard.IsKeyDown(Keys.X))
-                {
-                    this.FrameLine = 8;
-                    this.Animate();
-                }
-                else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off)
-                {
-                    this.FrameLine = 5;
-
-                }
-                else if (keyboard.IsKeyDown(Keys.Space) && chute == false)
-                {
-                    this.FrameLine = 3;
                     this.FrameColumn = 1;
+                    this.FrameLine = 5;
                 }
-                else if (keyboard.IsKeyDown(Keys.Space) && chute == true)
+                else                              //phase ascendante
                 {
+                    this.FrameColumn = 1;
                     this.FrameLine = 3;
-                    this.FrameColumn = 2;
                 }
+                this.Direction = Direction.Left;
+                
+            }
+
+            else if (keyboard.IsKeyDown(Keys.Right) && in_air == false) //court vers la droite
+            {
+
+                dir = false;
+                this.FrameLine = 2;
+                this.Direction = Direction.Right;
+                this.Animate();
+
+
+            }
+            else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la droite
+            {
+
+                dir = false;
+                if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
+                {
+                    this.FrameColumn = 1;
+                    this.FrameLine = 5;
+                }
+                else                               //phase ascendante
+                {
+                    this.FrameColumn = 1;
+                    this.FrameLine = 3;
+                }
+                this.Direction = Direction.Right;
+
+            }
+
+            else if (keyboard.IsKeyDown(Keys.X)) //attaque
+            {
+                this.FrameLine = 8;
+                this.Animate();
+            }
+            else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off) //saut phase descendante
+            {
+                this.FrameColumn = 1;
+                this.FrameLine = 5;
+
+            }
+            else if (keyboard.IsKeyDown(Keys.Space) && chute == false) //saut phase ascendante
+            {
+                this.FrameLine = 3;
+                this.FrameColumn = 1;
+            }
+            else if (keyboard.IsKeyDown(Keys.Space) && chute == true) //saut phase ascendante complément ?
+            {
+                this.FrameLine = 3;
+                this.FrameColumn = 1;
+            }
 
 
             if (dir == true)
@@ -138,27 +201,10 @@ namespace Umea_rana
             if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)
             {
                 this.FrameLine = 1;
-                this.Animate();
                 this.FrameColumn = 1;
+                this.Animate();                
                 this.Timer = 0;
-            }
-
-        }
-
-
-
-        public void Animate()
-        {
-            this.Timer++;
-            if (this.Timer == this.AnimationSpeed)
-            {
-                this.Timer = 0;
-                this.FrameColumn++;
-                if (FrameColumn > 3)
-                {
-                    FrameColumn = 1;
-                }
-            }
+            }            
         }
 
 
