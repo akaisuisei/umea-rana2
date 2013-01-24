@@ -25,6 +25,7 @@ namespace Umea_rana
         Collision collision;
         Tireur mecha;
         Viseur_aI mecha2;
+        Stalker kamikase;
         int taille_sprt;
         int timer;
 
@@ -39,7 +40,7 @@ namespace Umea_rana
             V_height = 100; V_width = 100;
             collision = new Collision();
             timer = -100;
-            taille_sprt = (int)(Math.Min(width, height) * 0.1f);
+            taille_sprt = (int)(Math.Min(width, height) * 0.05);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -77,8 +78,9 @@ namespace Umea_rana
 
             //instancie l ia
             aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width);
-            mecha = new Tireur(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300, 0, 100, 100), Content, height, width);
-            mecha2 = new Viseur_aI(Content.Load<Texture2D>("IA//asteroid//asteroide-sprite"), new Rectangle(300, 0, 100, 100), Content, height, width);
+            mecha = new Tireur(aster_t, new Rectangle(300, 0, taille_sprt, taille_sprt), Content, height, width);
+            mecha2 = new Viseur_aI(aster_t, new Rectangle(300, 0, taille_sprt, taille_sprt), Content, height, width);
+            kamikase = new Stalker(aster_t, new Rectangle(300, 0, taille_sprt, taille_sprt), width, 0, 4);
         }
 
         public override void UnloadContent()
@@ -119,6 +121,7 @@ namespace Umea_rana
                 collision.Collision_hero_missile(mecha2, vaisseau, game);
                 mecha.Update(game);
                 mecha2.Update(vaisseau);
+                kamikase.Update_Kamikaze(vaisseau);
             }
 
             //update collision
@@ -173,6 +176,7 @@ namespace Umea_rana
             aster.Draw(spriteBatch);
             mecha.draw(spriteBatch);
             mecha2.draw(spriteBatch);
+            kamikase.draw(spriteBatch);
 
             spriteBatch.End();
         }

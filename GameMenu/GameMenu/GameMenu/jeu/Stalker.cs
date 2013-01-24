@@ -73,14 +73,15 @@ namespace Umea_rana
 
         public void Update_Kamikaze(objet sprite)
         {
-            if (rectangle_Colision.Center.X - _speed > sprite.rectangle_Colision.Center.X)
+            if (rectangle_Colision.Center.X  > sprite.rectangle_Colision.Center.X)
                 rectangle.X -= _speed;
-            else if (rectangle_Colision.Center.X + _speed < sprite.rectangle_Colision.Center.X)
+            else 
                 rectangle.X += _speed;
-            if (rectangle_Colision.Center.Y - _speed > sprite.rectangle_Colision.Center.Y)
+            if (rectangle_Colision.Center.Y  > sprite.rectangle_Colision.Center.Y)
                 rectangle.Y -= _speed;
-            else if (rectangle_Colision.Center.Y + _speed < sprite.rectangle_Colision.Center.Y)
+            else 
                 rectangle.Y += _speed;
+            Update_rec_collision();
         }
 
 
