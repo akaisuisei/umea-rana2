@@ -106,7 +106,7 @@ namespace Umea_rana
         public void AnimSprite(KeyboardState keyboard) //gestion des différentes possibilités d'animation du sprite
         {
 
-            //lvl.Initialize(null);
+            
             this.Effects = SpriteEffects.None;
             if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
             {
@@ -186,6 +186,8 @@ namespace Umea_rana
                 this.FrameColumn = 1;
             }
 
+            
+
 
             if (dir == true)
             {
@@ -197,7 +199,8 @@ namespace Umea_rana
                     this.Effects = SpriteEffects.None;
                 }
 
-            if (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)
+            if ((keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
+                (keyboard.IsKeyDown(Keys.Left)&&keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
             {
                 this.FrameLine = 1;
                 this.FrameColumn = 1;
