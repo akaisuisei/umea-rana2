@@ -26,7 +26,7 @@ namespace Umea_rana
 
             this._texture = n_textture;
             Ia_color = Color.AliceBlue;
-
+            vie = 2;
 
             
             tombe = true;

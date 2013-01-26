@@ -29,5 +29,12 @@ namespace Umea_rana
         {
             ia_manage.Add(new Stalker(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), front_sc, speed));
         }
+
+        public void remove()
+        {
+            for (int i = 0; i < ia_manage.Count; ++i)
+                if (ia_manage[i].vie <= 0)
+                    ia_manage.RemoveAt(i);
+        }
     }
 }

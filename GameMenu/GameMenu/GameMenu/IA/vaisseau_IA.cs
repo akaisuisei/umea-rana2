@@ -21,7 +21,7 @@ namespace Umea_rana
 
         public Bullet_manager bullet;
        protected  Color Munition_color, Ia_color;
-       public int poid;
+       public int poid, vie;
 
 
         /*

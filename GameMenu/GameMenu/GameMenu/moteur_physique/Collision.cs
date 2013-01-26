@@ -140,5 +140,15 @@ namespace Umea_rana
                    game.ChangeState(Game1.gameState.Pause );
         }
 
+        public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
+        {
+            for (int i = 0; i < sprite.bullet.bullet .Count ; ++i)
+                foreach (vaisseau_IA ai in iamanage.Ia_manage )
+                    if(sprite.bullet.bullet[i].rectangle_C.Intersects (ai.rectangle_C ))
+                    {
+                        sprite.bullet.bullet.RemoveAt(i);
+                        ai.vie--;
+                    }
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace Umea_rana
         {
             foreach (Tireur vaiss in ia_manage)
                 vaiss.Update(game);
+            remove();
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -59,12 +60,16 @@ namespace Umea_rana
             this.height = height;
             this.width = width;
             this.colo = colo_min;
+            
         }
 
         public void Update(ref sripte_V sprite)
         {
             foreach (Viseur_aI vaiss in ia_manage)
+            {
                 vaiss.Update(sprite);
+            }
+            remove();
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -77,6 +82,8 @@ namespace Umea_rana
         {
             ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), content, height, width, colo));
         }
+
+
     }
 
     public class IA_manager_K : IA_Manager_max
@@ -96,6 +103,7 @@ namespace Umea_rana
         {
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Update_Kamikaze(sprite);
+            remove();
         }
 
         public void Draw(SpriteBatch spritebatch)

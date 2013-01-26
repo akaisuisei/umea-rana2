@@ -29,6 +29,7 @@ namespace Umea_rana
             this.width = width;
             dir = 1;
             _speed = 7;
+            vie = 5;
         }
 
         public void Update(Game1 game)

@@ -128,8 +128,9 @@ namespace Umea_rana
                 aster.rectangle.Y -= 20;
                 aster.toucher();
             }
-
-
+            collision.collision_ai_missile(ref vaisseau, manage_k);
+            collision.collision_ai_missile(ref vaisseau, manage_V);
+            collision.collision_ai_missile(ref vaisseau, manage_T);
             // update fin de jeu
             if (aster.rectangle.Top + 10 < 0)
             {
