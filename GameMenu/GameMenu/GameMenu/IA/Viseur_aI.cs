@@ -18,6 +18,8 @@ namespace Umea_rana
             this._texture = texture;
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
+            this.decallageX = 0; decallageY = 0;
+            largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
             this.Ia_color = Color.Green;
             this.vie = 5;
 
@@ -31,6 +33,7 @@ namespace Umea_rana
         public void Update(sripte_V sprite)
         {
             bullet.Bullet_Update2(this, vise(sprite), 2);
+            Update_rec_collision();
             move_H();
         }
 

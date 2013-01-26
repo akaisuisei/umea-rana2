@@ -18,11 +18,9 @@ namespace Umea_rana
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc,int speed)
         {
             decallageX = 0; decallageY = 0;
-            hauteurY = rectangle.Height-decallageX ; largeurX = rectangle.Width-decallageY ;
+            hauteurY = n_rectangle.Height-decallageX ; largeurX =n_rectangle.Width-decallageY ;
             this.rectangle = n_rectangle;
             this.rectangle_C = rectangle;
-            rectangle_C.Width = largeurX  ;
-            rectangle_C.Height = hauteurY  ;
 
             this._texture = n_textture;
             Ia_color = Color.AliceBlue;
@@ -38,6 +36,7 @@ namespace Umea_rana
 
         public void Update(objet   sprite, ref KeyboardState keyboard)
         {
+            Update_rec_collision();
            if (tombe)
                 rectangle.Y += poid;
             if (keyboard.IsKeyDown(Keys.Right))
@@ -56,11 +55,12 @@ namespace Umea_rana
             //    rectangle.Y += 1;
             //else
               //  rectangle.Y -= 1;
-           Update_rec_collision();           
+                  
         }
 
         public void UpdateAR(ref KeyboardState keyboard)
         {
+            Update_rec_collision();
             if (tombe)
                 rectangle.Y += poid;
             if (keyboard.IsKeyDown(Keys.Right))
@@ -70,11 +70,12 @@ namespace Umea_rana
             rectangle.X += dir * _speed ;
 
             
-            Update_rec_collision();
+            
         }
 
         public void Update_Kamikaze(objet sprite)
         {
+            Update_rec_collision();
             if (rectangle_C.Center.X > sprite.rectangle_C.Center.X +9)
                 rectangle.X -= _speed ;
             else 
@@ -84,16 +85,17 @@ namespace Umea_rana
             else 
                 rectangle.Y += _speed;
 
-            Update_rec_collision();
+         
         }
 
         public void Update_A()
-        { 
+        {
+            Update_rec_collision();
             if (tombe)
                 rectangle.Y += poid;
             rectangle.X -= _speed;
            
-            Update_rec_collision();
+        
         }
 
 
