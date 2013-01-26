@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
+namespace Umea_rana
+{
+    public class IA_Manager_max
+    {
+        protected List<vaisseau_IA> ia_manage;
+        protected Texture2D _texture;
+        protected Rectangle _rectangle;
+        protected int front_sc, speed, height, width;
+        protected ContentManager content;
+        protected Color colo;
+
+        public Texture2D _Texture { get { return _texture; } }
+        public Rectangle _Rectangle { get { return _rectangle; } }
+
+        public List<vaisseau_IA> Ia_manage { get { return ia_manage; } }
+
+        public void Add_Stal(float X, float Y)
+        {
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), front_sc, speed));
+        }
+    }
+}

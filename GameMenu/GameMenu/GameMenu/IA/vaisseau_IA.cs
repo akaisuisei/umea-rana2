@@ -18,7 +18,7 @@ namespace Umea_rana
         protected Texture2D _texture;
         protected int _speed, width,front_sc;
         public int dir;
-        protected int decallageX, decallageY, largeurX, hauteurY;
+
         public Bullet_manager bullet;
        protected  Color Munition_color, Ia_color;
        public int poid;
@@ -89,16 +89,10 @@ namespace Umea_rana
            {
                rectangle.X = 0;
                dir = -dir;
-
            }
            rectangle.X += _speed  * dir;
        }
 
-       public void Update_rec_collision()
-       {
-           rectangle_Colision.X = rectangle.X + decallageX;
-           rectangle_Colision.Y = rectangle.Y + decallageY;
-       }
 
     }
 }

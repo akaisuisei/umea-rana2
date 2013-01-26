@@ -30,23 +30,24 @@ namespace Umea_rana
             spritebatch.Draw(texture, rectangle, Color.White);
         }
 
-        public sripte_V(List<Texture2D> n_texture, Rectangle n_rectangle, ContentManager content, int height, int width)
+        public sripte_V(List<Texture2D> n_texture, Rectangle n_rectangle, ContentManager content, int height, int width, Color colo, int speed)
         {
+            decallageX = 10;
+            decallageY = 10;
+            largeurX = n_rectangle.Width - decallageX;
+            hauteurY = n_rectangle.Height - decallageY;
+
             texture = n_texture[0];
-            L_texture = new List<Texture2D>();
             L_texture = n_texture;
             rectangle = n_rectangle;
-            rectangle_Colision = rectangle;
-            this.height = height; this.width = width;
-            nb = 60;
-            speed = 5;
+            rectangle_C = rectangle;
+            this.height = height; this.width = width;this.speed = speed;
             change_T = 0;
+            
             automatic_controlled = false;
-            color_V = Color.Red ;
+            color_V = colo;
             // intencie le manager de missille 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), nb, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width  );
-
-
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width  );
 
         }
 
@@ -74,7 +75,7 @@ namespace Umea_rana
             change_T += 1;// timer pour l animation
 
             bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5);
-            rectangle_Colision = rectangle;
+            Update_rec_collision();
         }
 
         // movement et animation

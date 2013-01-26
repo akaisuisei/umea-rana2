@@ -14,8 +14,16 @@ namespace Umea_rana
 {
      public class objet
     {
-         public Rectangle rectangle_Colision, rectangle;
+         public Rectangle rectangle_C, rectangle;
+         protected int decallageX, decallageY, largeurX, hauteurY;
          public bool tombe;
 
+         public void Update_rec_collision()
+         {
+             rectangle_C.X = rectangle.X + decallageX;
+             rectangle_C.Y = rectangle.Y + decallageY;
+             rectangle_C.Height = hauteurY;
+             rectangle_C.Width = largeurX;
+         }
     }
 }

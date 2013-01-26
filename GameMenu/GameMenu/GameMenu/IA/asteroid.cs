@@ -13,9 +13,8 @@ using Umea_rana;
 
 namespace Umea_rana
 {
-    public class asteroid
+    public class asteroid :objet 
     {
-        public Rectangle rectangle;
         Texture2D texture;
         int dir;
         Random rnd;
@@ -53,7 +52,7 @@ namespace Umea_rana
             
             rectangle.X += rnd.Next(0, 20) * dir;
 
-            
+            rectangle_C = rectangle;
             rot += movrot;
         }
 

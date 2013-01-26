@@ -20,7 +20,7 @@ namespace Umea_rana
 
     public class sprite_broillon :objet 
     {
-    private level1 lvl=null;
+   
         Texture2D texture;
         Collision collision;
         public int poid;
@@ -42,7 +42,7 @@ namespace Umea_rana
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
         {
             texture = n_textture;
-            rectangle_Colision = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
+            rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
             poid = 10;
             in_air = false;
@@ -67,7 +67,7 @@ namespace Umea_rana
             {
                 rectangle.Y += poid;
                 MediaPlayer.Pause();
-                rectangle_Colision.Y = rectangle.Y;
+                rectangle_C.Y = rectangle.Y;
             }
             else
             {
