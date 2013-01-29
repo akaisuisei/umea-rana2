@@ -23,7 +23,7 @@ namespace Umea_rana
        protected  Color Munition_color, Ia_color;
        public int poid, vie;
 
-
+       public int Speed { get { return _speed; } }
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)

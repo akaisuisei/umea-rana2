@@ -22,7 +22,7 @@ namespace Umea_rana
         int height, width;
         public Bullet_manager bullet;
         public bool automatic_controlled;
-        int speed, nb;
+        int speed;
 
         public void Draw(SpriteBatch spritebatch)
         {
@@ -47,7 +47,7 @@ namespace Umea_rana
             automatic_controlled = false;
             color_V = colo;
             // intencie le manager de missille 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width  );
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
 
         }
 

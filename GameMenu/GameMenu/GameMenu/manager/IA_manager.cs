@@ -20,9 +20,9 @@ namespace Umea_rana
             this._texture = texture;
             this._rectangle = rectangle;
             this.content = content;
-            this.height = height;
-            this.height = height;
-            this.width = width;
+            this.window_H = height;
+            this.window_H = height;
+            this.window_W = width;
             this.colo = colo_min;
         }
 
@@ -41,7 +41,7 @@ namespace Umea_rana
 
         public void Add(float X, float Y)
         {
-            ia_manage.Add(new Tireur(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), content, height, width, colo));
+            ia_manage.Add(new Tireur(_texture, new Rectangle((int)(X*window_W ), (int)(Y*window_H ), _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo));
         }
 
     }
@@ -56,9 +56,9 @@ namespace Umea_rana
             this._texture = texture;
             this._rectangle = rectangle;
             this.content = content;
-            this.height = height;
-            this.height = height;
-            this.width = width;
+            this.window_H = height;
+            this.window_H = height;
+            this.window_W = width;
             this.colo = colo_min;
             
         }
@@ -80,7 +80,7 @@ namespace Umea_rana
 
         public void Add(float X, float Y)
         {
-            ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), content, height, width, colo));
+            ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo));
         }
 
 

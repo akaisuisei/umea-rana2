@@ -16,7 +16,7 @@ namespace Umea_rana
         protected List<vaisseau_IA> ia_manage;
         protected Texture2D _texture;
         protected Rectangle _rectangle;
-        protected int front_sc, speed, height, width;
+        protected int front_sc, speed, window_H, window_W;
         protected ContentManager content;
         protected Color colo;
 
@@ -27,7 +27,7 @@ namespace Umea_rana
 
         public void Add_Stal(float X, float Y)
         {
-            ia_manage.Add(new Stalker(_texture, new Rectangle((int)X, (int)Y, _rectangle.Width, _rectangle.Height), front_sc, speed));
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed));
         }
 
         public void remove()

@@ -18,6 +18,9 @@ namespace Umea_rana
          protected int decallageX, decallageY, largeurX, hauteurY;
          public bool tombe;
 
+         public int decalageX { get { return decallageX; }  }
+         public int decalageY { get { return decallageY; }  } 
+
          public void Update_rec_collision()
          {
              rectangle_C.X = rectangle.X + decallageX;

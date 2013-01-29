@@ -16,14 +16,14 @@ namespace Umea_rana
         Rectangle rectangle;
         SoundEffect soundeffect;
         public bool enableFire;
-        int Taille_h, taille_L,width;
+        int width;
         int time1, tem2 = 0;
         Color colo;
 
         public List<munition> bullet = new List<munition>();
         int speed;
 
-        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width)
+        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width, int timer)
         {
             texture = n_texture;
             rectangle = n_rectangle;
@@ -31,7 +31,7 @@ namespace Umea_rana
             this.width = width;
             this.speed = speed;
             soundeffect = n_soundeffect;
-            time1 = 30;
+            time1 = timer ;
             enableFire = true;
             this.colo = colo;
         }
@@ -46,7 +46,7 @@ namespace Umea_rana
                 {
                     case 1:
                 bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Center.X + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle.Center.X + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
                         break ;
                     case 2:
                         bullet.Add(

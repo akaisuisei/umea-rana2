@@ -64,11 +64,12 @@ namespace Umea_rana
         // ia AR avec sol 
         public void collision_ia_AR_sol(IA_Manager_max ia, ref Platform_manager platform_m)
         {
-            bool b, b2 = false;
-            int top = 0;
+            bool b, b2 = false, b3 = false, b4 = false;
+            int top = 0, right = 0, left = 0;
             for (int i = 0; i < ia.Ia_manage.Count; ++i)
             {
-                b = false;
+                b = false; top = 0; right = 0; left = 0;
+                b2 = false; b3 = false;
                 foreach (platform plato in platform_m.plato)
                 {
                     b |= (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
@@ -76,8 +77,30 @@ namespace Umea_rana
 
                     if ((ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
+                    {
                         top = plato.rectangle_C.Top;
-                    b2 ^= (ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Right ^ ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Left);
+                        if (ia.Ia_manage[i].rectangle_C.Right + ia.Ia_manage[i].Speed /3> plato.rectangle_C.Right)
+                        {
+                            foreach (platform plato2 in platform_m.plato)
+                            {
+                                b4 |= (plato != plato2 && ((ia.Ia_manage[i].rectangle_C.Bottom >= plato2.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato2.rectangle_C.Left &&
+                                    ia.Ia_manage[i].rectangle_C.Left <= plato2.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato2.rectangle_C.Top)));
+                            }
+                            b2 ^= true;
+                            right = plato.rectangle_C.Right - ia.Ia_manage[i].rectangle_C.Width - ia.Ia_manage[i].decalageX - ia.Ia_manage[i].Speed-1;
+
+                        }
+                        if (ia.Ia_manage[i].rectangle_C.Left - ia.Ia_manage[i].Speed / 3 < plato.rectangle_C.Left)
+                        {
+                            foreach (platform plato2 in platform_m.plato)
+                            {
+                                b4 |= (plato != plato2 && ((ia.Ia_manage[i].rectangle_C.Bottom >= plato2.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato2.rectangle_C.Left &&
+                                    ia.Ia_manage[i].rectangle_C.Left <= plato2.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato2.rectangle_C.Top)));
+                            }
+                            b3 ^= true;
+                            left = plato.rectangle_C.Left + ia.Ia_manage[i].decalageX + ia.Ia_manage[i].Speed+1;
+                        }
+                    }
                 }
                 if (b)
                 {
@@ -86,10 +109,17 @@ namespace Umea_rana
                 }
                 else
                     ia.Ia_manage[i].tombe = true;
-                if (b2) ia.Ia_manage[i].dir = -ia.Ia_manage[i].dir;
+                if (b2 && !b4)
+                {
+                    ia.Ia_manage[i].dir = -ia.Ia_manage[i].dir;
+                    ia.Ia_manage[i].rectangle.X = right;
+                }
+                if (b3 && !b4)
+                {
+                    ia.Ia_manage[i].dir = -ia.Ia_manage[i].dir;
+                    ia.Ia_manage[i].rectangle.X = left;
+                }
             }
-
-
         }
 
 
@@ -107,21 +137,21 @@ namespace Umea_rana
 
 
         // collision objet missible
-        public bool Collision_as_mis(objet aster, sripte_V  sprite)
+        public bool Collision_as_mis(objet aster, sripte_V sprite)
         {
-          
-            for (int i = 0; i < sprite.bullet.bullet .Count ; ++i)
-                if (aster.rectangle_C.Intersects(sprite.bullet .bullet[i].rectangle_C))
+
+            for (int i = 0; i < sprite.bullet.bullet.Count; ++i)
+                if (aster.rectangle_C.Intersects(sprite.bullet.bullet[i].rectangle_C))
                 {
-                    sprite.bullet .bullet.RemoveAt(i);
-                    sprite.bullet .bullet[i].existe = false;
+                    sprite.bullet.bullet.RemoveAt(i);
+                    sprite.bullet.bullet[i].existe = false;
                     return true;
                 }
             return false;
         }
 
         // collision hero avec missille ou ia
-        public void Collision_hero_missile( IA_Manager_max  ia_manage, ref sripte_V sprite, ref Game1 game)
+        public void Collision_hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite, ref Game1 game)
         {
             foreach (vaisseau_IA ia in ia_manage.Ia_manage)
             {
@@ -133,18 +163,18 @@ namespace Umea_rana
             }
         }
 
-        public void col_H_IA( IA_Manager_max  ia_manage, ref sripte_V sprite, ref Game1 game)
+        public void col_H_IA(IA_Manager_max ia_manage, ref sripte_V sprite, ref Game1 game)
         {
             foreach (vaisseau_IA ia in ia_manage.Ia_manage)
-               if( ia.rectangle_C.Intersects(sprite.rectangle_C ))
-                   game.ChangeState(Game1.gameState.Pause );
+                if (ia.rectangle_C.Intersects(sprite.rectangle_C))
+                    game.ChangeState(Game1.gameState.Pause);
         }
 
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
         {
-            for (int i = 0; i < sprite.bullet.bullet .Count ; ++i)
-                foreach (vaisseau_IA ai in iamanage.Ia_manage )
-                    if(sprite.bullet.bullet[i].rectangle_C.Intersects (ai.rectangle_C ))
+            for (int i = 0; i < sprite.bullet.bullet.Count; ++i)
+                foreach (vaisseau_IA ai in iamanage.Ia_manage)
+                    if (sprite.bullet.bullet[i].rectangle_C.Intersects(ai.rectangle_C))
                     {
                         sprite.bullet.bullet.RemoveAt(i);
                         ai.vie--;

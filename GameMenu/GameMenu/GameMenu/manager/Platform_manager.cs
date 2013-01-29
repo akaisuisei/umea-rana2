@@ -14,15 +14,17 @@ namespace Umea_rana
    public class Platform_manager
     {
         Texture2D texture;
-        int speed,width_pla,heith_pla;
+        int speed,width_pla,heith_pla, window_H, window_W;
         public List<platform> plato;
 
-       public Platform_manager(Texture2D n_texture,float  width_pla, float  heith_pla,int speed)
+       public Platform_manager(Texture2D n_texture,float  width_pla, float  heith_pla,int speed, int window_H, int window_W)
         {
             this.texture = n_texture;
             this.speed = speed;
             this.width_pla =(int) width_pla;
             this.heith_pla = (int)heith_pla;
+            this.window_H = window_H;
+            this.window_W = window_W;
             plato = new List<platform>();
         }
 
@@ -44,7 +46,7 @@ namespace Umea_rana
 
        public void Add(float  X, float  Y)
        {
-           plato.Add(new platform (texture,new Rectangle((int)X,(int)Y,width_pla ,heith_pla  ),speed));
+           plato.Add(new platform (texture,new Rectangle((int) (X*window_W ),(int)(Y*window_H ),width_pla ,heith_pla  ),speed));
        }
 
     }

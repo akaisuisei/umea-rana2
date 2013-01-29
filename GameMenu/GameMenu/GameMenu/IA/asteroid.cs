@@ -59,7 +59,7 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebach)
         {
-            if (visible)
+            if (visible) 
             spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width,rectangle.Height )  ,SpriteEffects.None,0f);
         }
 

@@ -29,7 +29,6 @@ namespace Umea_rana
         int taille_sprt;
         int timer;
 
-        int V_height, V_width;
 
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
@@ -43,7 +42,7 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-            V_height = 100; V_width = 100;
+
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
 

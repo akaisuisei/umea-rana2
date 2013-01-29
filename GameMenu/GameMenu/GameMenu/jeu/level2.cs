@@ -37,7 +37,6 @@ namespace Umea_rana
             collision = new Collision();
             oldkey = Keyboard.GetState();
             this.content = content;
-
         }
 
 
@@ -65,21 +64,22 @@ namespace Umea_rana
             allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, content);
 
             //platfom
-            platform_M = new Platform_manager(platform_t, width, height*0.1f, front_sc);
+            platform_M = new Platform_manager(platform_t, width, height*0.1f, front_sc, height,width  );
             //ia
-            managerAA = new IA_manager_AA(aster, new Rectangle(0, 0, 100, 100), front_sc, 3);
-            managerAR = new IA_manager_AR(aster, new Rectangle(0, 0, 100, 100), front_sc, 3);
-            manageS = new IA_manager_S(aster, new Rectangle(0, 0, 100, 100), front_sc, 3);
+            managerAA = new IA_manager_AA(aster, new Rectangle(0, 0, 100, 100), front_sc, 3,height ,width );
+            managerAR = new IA_manager_AR(aster, new Rectangle(0, 0, 100, 100), front_sc, 4,height ,width );
+            manageS = new IA_manager_S(aster, new Rectangle(0, 0, 100, 100), front_sc, 3,height ,width );
 
 
-            managerAA.Add_Stal(1300f, 0f);
-            managerAR.Add_Stal(1400f, 0);
-            manageS.Add_Stal(8f, 0);
 
-            platform_M.Add(0f, 600);
-            platform_M.Add(1300, 800);
-
-
+            managerAR.Add_Stal(1.1f, 0);
+            managerAR.Add_Stal(0.5f, 0.5f);
+            managerAR.Add_Stal(2.1f, 0.5f);
+            managerAR.Add_Stal(-0.5f, 0f);
+            platform_M.Add(0f,0.8f );
+            platform_M.Add(1f, 0.7f);
+            platform_M.Add(1.8f, 0.9f);
+            platform_M.Add(-0.7f, 0.8f);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -89,12 +89,7 @@ namespace Umea_rana
             front_sc = 4;
             back_sc = 5;
 
-
-
-
             //ajout IA
-
-
             // ajout platform
 
         }
