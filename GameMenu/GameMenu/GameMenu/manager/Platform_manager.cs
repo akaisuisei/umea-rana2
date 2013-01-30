@@ -44,9 +44,14 @@ namespace Umea_rana
            }
        }
 
-       public void Add(float  X, float  Y)
+       public void Add(float  X, float  Y, int number)
        {
-           plato.Add(new platform (texture,new Rectangle((int) (X*window_W ),(int)(Y*window_H ),width_pla ,heith_pla  ),speed));
+           int x2 = (int)(X * window_W), y2 = (int)(Y * window_H);
+
+           for (int i = 0; i < number; ++i)
+           {
+               plato.Add(new platform(texture, new Rectangle(x2+i*width_pla , y2 , width_pla, heith_pla), speed));
+           }
        }
 
     }

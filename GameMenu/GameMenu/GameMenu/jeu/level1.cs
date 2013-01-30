@@ -63,7 +63,7 @@ namespace Umea_rana
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
 
             //charge l IA
-            aster_t = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
+            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
 
             //instancie le scolling
 
@@ -83,9 +83,13 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4);
 
             // ajout IA
+
             manage_k.Add_Stal(0f, 0f);
             manage_T.Add(0f, 0f);
             manage_V.Add(0f, 0f);
+            manage_k.Add_Stal(1f, 0f);
+            manage_T.Add(0.9f, 0f);
+            manage_V.Add(0.9f, 0f);
 
         }
 
@@ -163,8 +167,8 @@ namespace Umea_rana
             scrolling2.Draw(spriteBatch);
             aster.Draw(spriteBatch);
             manage_T.Draw(spriteBatch);
-            manage_V.Draw(spriteBatch);
-            manage_k.Draw(spriteBatch);
+            manage_V.Draw( spriteBatch);
+            manage_k.Draw( spriteBatch);
 
             spriteBatch.End();
         }
