@@ -76,13 +76,7 @@ namespace Umea_rana
 
             }
             tem2--;
-            //update che chaque missile
-            for (int i = 0; i < bullet.Count; i++)
-            {
-                bullet[i].update2();
-                if ( bullet[i].rectangle_C.Top >1080)
-                    bullet.RemoveAt(i);
-            }
+
 
         }
 

@@ -32,12 +32,21 @@ namespace Umea_rana
             foreach (Tireur vaiss in ia_manage)
                 vaiss.Update(game,ref gametime,ref bulletL );
             remove();
+            //update che chaque missile
+            for (int i = 0; i < bulletL.Count; i++)
+            {
+                bulletL[i].update2();
+                if (bulletL[i].rectangle_C.Top > 1080)
+                    bulletL.RemoveAt(i);
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.draw(spritebatch,ref bulletL );
+                vaiss.draw(spritebatch);
+            for (int i = 0; i < bulletL.Count; i++)
+                bulletL[i].Draw(spritebatch );
         }
 
         public void Add(float X, float Y, int seconde, int number)
@@ -74,13 +83,22 @@ namespace Umea_rana
             {
                 vaiss.Update(ref sprite, ref gameTime, ref bulletL );
             }
+            //update che chaque missile
+            for (int i = 0; i < bulletL.Count; i++)
+            {
+                bulletL[i].update2();
+                if (bulletL[i].rectangle_C.Top > 1080)
+                    bulletL.RemoveAt(i);
+            }
             remove();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Viseur_aI vaiss in ia_manage)
-                vaiss.draw(spritebatch, ref bulletL );
+                vaiss.draw(spritebatch);
+            for (int i = 0; i < bulletL.Count; i++)
+                bulletL[i].Draw(spritebatch);
         }
 
         public void Add(float X, float Y, int lunch_time,int number)

@@ -85,9 +85,9 @@ namespace Umea_rana
             // ajout IA
 
 
-            manage_T.Add(0f, -0.05f, 100, 5);
+            manage_T.Add(0f, -0.05f, 500, 5);
 
-            manage_V.Add(0f, -0.05f, 2000, 5);
+            manage_V.Add(0f, -0.05f, 50, 5);
             manage_k.Add(1f, -0.05f, 0);
 
 
