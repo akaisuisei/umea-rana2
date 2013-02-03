@@ -31,11 +31,11 @@ namespace Umea_rana
             _speed = 6;
         }
 
-        public void Update(ref sripte_V sprite, ref int game_time)
+        public void Update(ref sripte_V sprite, ref int game_time, ref List<munition > bulletL)
         {
             if (timer_lunch <= game_time)
             {
-                bullet.Bullet_Update2(this, vise(sprite), 1);
+                bullet.Bullet_Update2(this, vise(sprite), 1,ref bulletL );
                 Update_rec_collision();
                 move_H();
             }

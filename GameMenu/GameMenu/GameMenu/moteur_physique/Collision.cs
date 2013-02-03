@@ -137,11 +137,11 @@ namespace Umea_rana
         public bool Collision_as_mis(objet aster, sripte_V sprite)
         {
 
-            for (int i = 0; i < sprite.bullet.bullet.Count; ++i)
-                if (aster.rectangle_C.Intersects(sprite.bullet.bullet[i].rectangle_C))
+            for (int i = 0; i < sprite.bulletL.Count; ++i)
+                if (aster.rectangle_C.Intersects(sprite.bulletL[i].rectangle_C))
                 {
-                    sprite.bullet.bullet.RemoveAt(i);
-                    sprite.bullet.bullet[i].existe = false;
+                    sprite.bulletL.RemoveAt(i);
+                    sprite.bulletL[i].existe = false;
                     return true;
                 }
             return false;
@@ -150,14 +150,13 @@ namespace Umea_rana
         // collision hero avec missille ou ia avetion game over
         public void Collision_hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite, ref Game1 game)
         {
-            foreach (vaisseau_IA ia in ia_manage.Ia_manage)
-            {
-                for (int i = 0; i < ia.bullet.bullet.Count(); ++i)
-                    if (ia.bullet.bullet[i].rectangle.Intersects(sprite.rectangle))
+
+                for (int i = 0; i < ia_manage.bulletL.Count ; ++i)
+                    if (ia_manage.bulletL[i].rectangle.Intersects(sprite.rectangle))
                     {
                         game.ChangeState(Game1.gameState.Pause);
                     }
-            }
+            
         }
         //collision IA hero action: game over
         public void col_H_IA(IA_Manager_max ia_manage, ref sripte_V sprite, ref Game1 game)
@@ -179,11 +178,11 @@ namespace Umea_rana
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
         {
-            for (int i = 0; i < sprite.bullet.bullet.Count; ++i)
+            for (int i = 0; i < sprite.bulletL.Count; ++i)
                 foreach (vaisseau_IA ai in iamanage.Ia_manage)
-                    if (sprite.bullet.bullet[i].rectangle_C.Intersects(ai.rectangle_C))
+                    if (sprite.bulletL[i].rectangle_C.Intersects(ai.rectangle_C))
                     {
-                        sprite.bullet.bullet.RemoveAt(i);
+                        sprite.bulletL.RemoveAt(i);
                         ai.vie--;
                     }
         }

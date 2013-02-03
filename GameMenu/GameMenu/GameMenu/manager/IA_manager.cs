@@ -17,6 +17,7 @@ namespace Umea_rana
         public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo_min)
         {
             ia_manage = new List<vaisseau_IA>();
+            bulletL = new List<munition>();
             this._texture = texture;
             this._rectangle = rectangle;
             this.content = content;
@@ -29,14 +30,14 @@ namespace Umea_rana
         public void Update(ref Game1 game, ref int gametime)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.Update(game,ref gametime);
+                vaiss.Update(game,ref gametime,ref bulletL );
             remove();
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.draw(spritebatch);
+                vaiss.draw(spritebatch,ref bulletL );
         }
 
         public void Add(float X, float Y, int seconde, int number)
@@ -56,6 +57,7 @@ namespace Umea_rana
         public IA_manager_V(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo_min)
         {
             ia_manage = new List<vaisseau_IA>();
+            bulletL = new List<munition>();
             this._texture = texture;
             this._rectangle = rectangle;
             this.content = content;
@@ -70,7 +72,7 @@ namespace Umea_rana
         {
             foreach (Viseur_aI vaiss in ia_manage)
             {
-                vaiss.Update(ref sprite, ref gameTime );
+                vaiss.Update(ref sprite, ref gameTime, ref bulletL );
             }
             remove();
         }
@@ -78,7 +80,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Viseur_aI vaiss in ia_manage)
-                vaiss.draw(spritebatch);
+                vaiss.draw(spritebatch, ref bulletL );
         }
 
         public void Add(float X, float Y, int lunch_time,int number)
@@ -100,6 +102,7 @@ namespace Umea_rana
         {
 
             ia_manage = new List<vaisseau_IA>();
+
             this._texture = n_textture;
             this._rectangle = n_rectangle;
             this.speed = speed;

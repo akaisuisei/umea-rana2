@@ -24,7 +24,7 @@ namespace Umea_rana
         public Rectangle _Rectangle { get { return _rectangle; } }
 
         public List<vaisseau_IA> Ia_manage { get { return ia_manage; } }
-
+        public List<munition> bulletL;
         public void Add_Stal(float X, float Y)
         {
             ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W,0));

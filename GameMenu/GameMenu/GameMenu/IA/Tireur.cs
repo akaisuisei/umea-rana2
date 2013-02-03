@@ -27,18 +27,18 @@ namespace Umea_rana
             this.Ia_color = Color.Red;
             this.timer_lunch = time_lunch;
             Munition_color = colo;
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 30);
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 4, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 30);
             this.width = width;
             dir = -1;
             _speed = 7;
             vie = 2;
         }
 
-        public void Update(Game1 game, ref int gameTime)
+        public void Update(Game1 game, ref int gameTime, ref List <munition> bulletL)
         {
             if (gameTime >= timer_lunch)
             {
-                bullet.Bullet_Update2(this, new Vector2(0, -1), 1);
+                bullet.Bullet_Update2(this, new Vector2(0, -1), 1,ref bulletL );
                 move_H();
                 Update_rec_collision();
             }

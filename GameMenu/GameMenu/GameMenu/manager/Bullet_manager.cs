@@ -20,14 +20,13 @@ namespace Umea_rana
         int time1, tem2 = 0;
         Color colo;
 
-        public List<munition> bullet = new List<munition>();
         int speed;
 
         public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width, int timer)
         {
             texture = n_texture;
             rectangle = n_rectangle;
-            bullet.Capacity = nb;
+
             this.width = width;
             this.speed = speed;
             soundeffect = n_soundeffect;
@@ -36,7 +35,7 @@ namespace Umea_rana
             this.colo = colo;
         }
 
-        public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb)
+        public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb,ref List<munition > bullet)
         {
             if ( tem2 <= 0 && enableFire) //autorisation de tire
             {
@@ -87,7 +86,7 @@ namespace Umea_rana
 
         }
 
-        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb)
+        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet)
         {
             if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space) && tem2 <= 0 && enableFire) //autorisation de tire
             {
@@ -139,7 +138,7 @@ namespace Umea_rana
         }
 
 
-        public void Bullet_draw(SpriteBatch spritebach)
+        public void Bullet_draw(SpriteBatch spritebach,ref List<munition> bullet)
         {
             for (int i = 0; i < bullet.Count; i++)
                 bullet[i].Draw(spritebach);
