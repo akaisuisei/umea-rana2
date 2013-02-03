@@ -16,23 +16,25 @@ namespace Umea_rana
     public class asteroid :objet 
     {
         Texture2D texture;
-        int dir;
+        int dirX, dirY;
         Random rnd;
-        int widt_max;
+        int widt_max, windowH;
         float rot, movrot;
        public bool visible;
 
-        public asteroid(Texture2D n_texture, Rectangle n_rectanle, float rot, int witdhm)
+        public asteroid(Texture2D n_texture, Rectangle n_rectanle, float rot, int witdhm, int windows_H)
         {
             rectangle = n_rectanle;
             texture = n_texture;
             rnd = new Random();
-            dir = 1;
+            dirX = 1;
+            dirY = 1;
             widt_max = witdhm ;
 
             this.rot = rot ;
             movrot = rot;
             visible = true;
+            this.windowH = windows_H;
         }
 
         public void update()
@@ -41,17 +43,26 @@ namespace Umea_rana
             if (rectangle.Right > widt_max +rectangle.Width  )
             {
                 rectangle.X = widt_max-1;
-                dir = -dir;
+                dirX = -dirX;
             }
             if (rectangle.Left < 0)
             {
                 rectangle.X = 0;
-                dir = -dir;
-
+                dirX = -dirX;
+            }
+            if (rectangle.Top < 0)
+            {
+                rectangle.Y = 0;
+                dirY = -dirY;
+            }
+            if (rectangle.Bottom > windowH+rectangle.Height   )
+            {
+                rectangle.Y = windowH - 1;
+                dirY = -dirY;
             }
             
-            rectangle.X += rnd.Next(0, 20) * dir;
-
+            rectangle.X += rnd.Next(0, 20) * dirX;
+            rectangle.Y += rnd.Next(0, 10) * dirY;
             rectangle_C = rectangle;
             rot += movrot;
         }
@@ -60,12 +71,12 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebach)
         {
             if (visible) 
-            spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width,rectangle.Height )  ,SpriteEffects.None,0f);
+            spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width/2,rectangle.Height/2 )  ,SpriteEffects.None,0f);
         }
 
         public void toucher()
         {
-            this.dir = -dir;
+            this.dirX = -dirX;
         }
     }
 }

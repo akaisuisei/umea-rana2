@@ -81,7 +81,7 @@ namespace Umea_rana
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
-                if (bullet[i].rectangle.Bottom > width +100)
+                if ( bullet[i].rectangle_C.Top >1080)
                     bullet.RemoveAt(i);
             }
 
@@ -132,7 +132,7 @@ namespace Umea_rana
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
-                if (bullet[i].rectangle.Bottom < 0)
+                if (bullet[i].rectangle.Top < 0)
                     bullet.RemoveAt(i);
             }
 

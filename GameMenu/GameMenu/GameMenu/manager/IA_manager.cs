@@ -26,10 +26,10 @@ namespace Umea_rana
             this.colo = colo_min;
         }
 
-        public void Update(ref Game1 game)
+        public void Update(ref Game1 game, ref int gametime)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.Update(game);
+                vaiss.Update(game,ref gametime);
             remove();
         }
 
@@ -39,9 +39,12 @@ namespace Umea_rana
                 vaiss.draw(spritebatch);
         }
 
-        public void Add(float X, float Y)
+        public void Add(float X, float Y, int seconde, int number)
         {
-            ia_manage.Add(new Tireur(_texture, new Rectangle((int)(X*window_W ), (int)(Y*window_H ), _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo));
+            int x = (int)(X * window_W);
+            int y = (int)(Y * window_H);
+            for (int i = 0; i < number; ++i)
+            ia_manage.Add(new Tireur(_texture, new Rectangle(x+i*_rectangle.Width,y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo,seconde ));
         }
 
     }
@@ -63,11 +66,11 @@ namespace Umea_rana
             
         }
 
-        public void Update(ref sripte_V sprite)
+        public void Update(ref sripte_V sprite, ref int gameTime)
         {
             foreach (Viseur_aI vaiss in ia_manage)
             {
-                vaiss.Update(sprite);
+                vaiss.Update(ref sprite, ref gameTime );
             }
             remove();
         }
@@ -78,9 +81,12 @@ namespace Umea_rana
                 vaiss.draw(spritebatch);
         }
 
-        public void Add(float X, float Y)
+        public void Add(float X, float Y, int lunch_time,int number)
         {
-            ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo));
+            int x = (int)(X * window_W);
+            int y = (int)(Y * window_H);
+            for (int i = 0; i < number; ++i)
+            ia_manage.Add(new Viseur_aI(_texture, new Rectangle(x+i*_rectangle.Width , y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo, lunch_time ));
         }
 
 
@@ -90,19 +96,20 @@ namespace Umea_rana
     {
 
 
-        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed)
+        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed,int window_H)
         {
 
             ia_manage = new List<vaisseau_IA>();
             this._texture = n_textture;
             this._rectangle = n_rectangle;
             this.speed = speed;
+            this.window_H = window_H;
         }
 
-        public void Update(ref sripte_V sprite)
+        public void Update(ref sripte_V sprite, ref int gametime)
         {
             foreach (Stalker vaiss in ia_manage)
-                vaiss.Update_Kamikaze(sprite);
+                vaiss.Update_Kamikaze(sprite, ref gametime);
             remove();
         }
 
@@ -110,6 +117,10 @@ namespace Umea_rana
         {
             foreach (Stalker vaiss in ia_manage)
                 vaiss.draw(spritebatch);
+        }
+        public void Add(float  X, float  Y, int launch_time)
+        {
+            ia_manage.Add (new Stalker(_texture,new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height ),front_sc , speed , window_H , window_W , launch_time ));
         }
     }
 }

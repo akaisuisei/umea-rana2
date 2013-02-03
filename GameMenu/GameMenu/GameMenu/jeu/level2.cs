@@ -86,7 +86,7 @@ namespace Umea_rana
 
             // ajout platform (position X,position Y, nombre de plateforme juxtaposer)
             platform_M.Add(0.4f, 0.8f, 9);
-            platform_M.Add(1f, 0.7f, 1);
+            platform_M.Add(1f, 0.7f, 9);
             platform_M.Add(1.86f, 0.9f, 10);
             platform_M.Add(-0.76f, 0.6f, 10);
         }

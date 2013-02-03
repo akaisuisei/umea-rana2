@@ -27,14 +27,17 @@ namespace Umea_rana
 
         public void Add_Stal(float X, float Y)
         {
-            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W));
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W,0));
         }
 
-        public void remove()//enleve ia si pv =0
+        public void remove()//enleve ia si pv =0 ou sort de l ecran
         {
             for (int i = 0; i < ia_manage.Count; ++i)
-                if (ia_manage[i].vie <= 0)
+            {
+                if (ia_manage[i].vie <= 0||ia_manage [i].rectangle .Top >window_H )
                     ia_manage.RemoveAt(i);
+            }
+
         }
         public void removed(int i_de_list)// enleve un ia
         {

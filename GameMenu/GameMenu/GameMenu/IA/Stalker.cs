@@ -15,7 +15,7 @@ namespace Umea_rana
     {
 
         int window_W, window_H;
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W)
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime)
         {
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
@@ -33,6 +33,7 @@ namespace Umea_rana
             poid = 10;
             this.dir = 1;
             this.front_sc = front_sc;
+            this.timer_lunch = launchTime;
         }
         // le stalker
         public void Update(objet sprite, ref KeyboardState keyboard)
@@ -79,17 +80,20 @@ namespace Umea_rana
 
         }
         // le bon kamikaze
-        public void Update_Kamikaze(objet sprite)
+        public void Update_Kamikaze(objet sprite,ref int gameTime)
         {
-            Update_rec_collision();
-            if (rectangle_C.Center.X > sprite.rectangle_C.Center.X + 9)
-                rectangle.X -= _speed;
-            else
-                rectangle.X += _speed;
-            if (rectangle_C.Center.Y > sprite.rectangle_C.Center.Y + 9)
-                rectangle.Y -= _speed;
-            else
-                rectangle.Y += _speed;
+            if (timer_lunch <= gameTime)
+            {
+                Update_rec_collision();
+                if (rectangle_C.Center.X > sprite.rectangle_C.Center.X + 9)
+                    rectangle.X -= _speed;
+                else
+                    rectangle.X += _speed;
+                if (rectangle_C.Center.Y > sprite.rectangle_C.Center.Y + 9)
+                    rectangle.Y -= _speed;
+                else
+                    rectangle.Y += _speed;
+            }
 
 
         }
