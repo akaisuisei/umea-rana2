@@ -45,7 +45,6 @@ namespace Umea_rana
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
             StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
             StateManager.Add(gameState.level2, new level1(this, graphics, Content));
-            StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
             
         }
@@ -78,7 +77,6 @@ namespace Umea_rana
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
             try
             {
                 StateManager[_currentState].Update(this, audio);
@@ -104,7 +102,6 @@ namespace Umea_rana
             Level_select_state,
             Level1_state,
             level2,
-            Pause,
             Initialisateur,
         }
 

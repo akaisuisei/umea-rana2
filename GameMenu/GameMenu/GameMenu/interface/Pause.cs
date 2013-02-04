@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class Pause : GameState
+    public class Pause
     {
         Song songMenu;
         public static float vol = 1.0f;
@@ -41,22 +41,21 @@ namespace Umea_rana
             coordonnees_quitter = new Vector2(100, 280);
         }
 
-        public override void Initialize(GraphicsDeviceManager graphics)
+        public void Initialize(GraphicsDeviceManager graphics)
         {
         }
-        public override void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             continuer = content.Load<Texture2D>("Menu//pause//continuer");
             selection = content.Load<Texture2D>("Menu//selection");
             menu = content.Load<Texture2D>("Menu//pause//Menu");
             quitter = content.Load<Texture2D>("Menu//quitter");
-            titre = content.Load<Texture2D>("Menu//pause//pause");
         }
-        public override void UnloadContent()
+        public void UnloadContent()
         {
         }
-        public override void Update(Game1 game, Audio audio)
+        public void Update(Game1 game, Audio audio,ref bool check_pause)
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
@@ -95,15 +94,15 @@ namespace Umea_rana
             {
                 if (select == 0)// selection menu
                 {
-                    game.ChangeState(Game1.gameState.Level_select_state );
+                    check_pause=false;
                     MediaPlayer.Stop();
-                    System.Threading.Thread.Sleep(G_latence);
+                    System.Threading.Thread.Sleep(200);
                 }
                 else if (select == 1)// va aux menu
                 {
-
+                    check_pause = false;
                     game.ChangeState(Game1.gameState.MainMenuState);
-                    System.Threading.Thread.Sleep(G_latence);
+                    System.Threading.Thread.Sleep(200);
                     MediaPlayer.Play(songMenu);
                 }
                 else// quitte le jeu
@@ -114,18 +113,25 @@ namespace Umea_rana
             }
 
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(continuer, coordonnees_continuer, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
-            spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);
-            spriteBatch.Draw(titre, titre_P, Color.White);
+            spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);       
             spriteBatch.End();
         }
 
-
+        public void checkpause(ref bool check_pause)
+        {
+            if (check_pause == false)
+                check_pause = true;
+            else
+                check_pause = false;
+        }
+    
+    
     }
 }

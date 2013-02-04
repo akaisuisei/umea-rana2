@@ -28,9 +28,8 @@ namespace Umea_rana
         IA_manager_K manage_k;
         int taille_sprt;
         int timer;
-
-        int V_height, V_width;
-
+        Pause pause;
+        bool check_pause = false;
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -38,12 +37,12 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
             T_sprite = new List<Texture2D>();
             collision = new Collision();
+            pause = new Pause(game1, graphics, content);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-            V_height = 100; V_width = 100;
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
 
@@ -62,7 +61,7 @@ namespace Umea_rana
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2"));
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2d"));
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
-
+            pause.LoadContent(Content);
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
 
@@ -87,7 +86,6 @@ namespace Umea_rana
             manage_k.Add_Stal(0f, 0f);
             manage_T.Add(0f, 0f);
             manage_V.Add(0f, 0f);
-
         }
 
         public override void UnloadContent()
@@ -98,55 +96,65 @@ namespace Umea_rana
         {
             KeyboardState keybord;
             keybord = Keyboard.GetState();
-
-            // scrolling verticale
-            scrolling1.Update();
-            scrolling2.Update();
-
-            //vaisseau
-            vaisseau.Update(keybord, game, oldkey);
-
-            //update ia
-            aster.update();
-
-            if (!vaisseau.automatic_controlled)
+            if (keybord.IsKeyDown(Keys.P) || keybord.IsKeyDown(Keys.Escape))
             {
-                manage_T.Update(ref game);
-                manage_V.Update(ref vaisseau);
-                manage_k.Update(ref vaisseau);
-                collision.Collision_hero_missile( manage_T, ref vaisseau, ref  game);
-                collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
-                collision.col_H_IA(manage_k, ref vaisseau, ref game);
-                collision.col_H_IA(manage_V , ref vaisseau, ref game);
-                collision.col_H_IA(manage_T , ref vaisseau, ref game);
+                if (check_pause == false)
+                    check_pause = true;
+                else
+                    check_pause = false;
             }
-
-            //update collision
-
-            if (collision.Collision_as_mis(aster, vaisseau))
+            if(check_pause==false)
             {
-                aster.rectangle.Y -= 20;
-                aster.toucher();
-            }
-            collision.collision_ai_missile(ref vaisseau, manage_k);
-            collision.collision_ai_missile(ref vaisseau, manage_V);
-            collision.collision_ai_missile(ref vaisseau, manage_T);
-            // update fin de jeu
-            if (aster.rectangle.Top + 10 < 0)
-            {
-                if (timer == -100)
+                // scrolling verticale
+                scrolling1.Update();
+                scrolling2.Update();
+
+                //vaisseau
+                vaisseau.Update(keybord, game, oldkey);
+
+                //update ia
+                aster.update();
+
+                if (!vaisseau.automatic_controlled)
                 {
-                    vaisseau.gagne();
-                    timer = vaisseau.rectangle.Y / 2;
-                    aster.visible = false;
+                    manage_T.Update(ref game);
+                    manage_V.Update(ref vaisseau);
+                    manage_k.Update(ref vaisseau);
+                    collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
+                    collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
+                    collision.col_H_IA(manage_k, ref vaisseau, ref game);
+                    collision.col_H_IA(manage_V, ref vaisseau, ref game);
+                    collision.col_H_IA(manage_T, ref vaisseau, ref game);
                 }
-                if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.Level1_state);//va au level2
-                timer--;
-            }
 
+                //update collision
+
+                if (collision.Collision_as_mis(aster, vaisseau))
+                {
+                    aster.rectangle.Y -= 20;
+                    aster.toucher();
+                }
+                collision.collision_ai_missile(ref vaisseau, manage_k);
+                collision.collision_ai_missile(ref vaisseau, manage_V);
+                collision.collision_ai_missile(ref vaisseau, manage_T);
+                // update fin de jeu
+                if (aster.rectangle.Top + 10 < 0)
+                {
+                    if (timer == -100)
+                    {
+                        vaisseau.gagne();
+                        timer = vaisseau.rectangle.Y / 2;
+                        aster.visible = false;
+                    }
+                    if (timer < 0 && timer != -100)
+                        game.ChangeState(Game1.gameState.Level1_state);//va au level2
+                    timer--;
+                }
+            }
+            else
+                pause.Update(game, audio, ref check_pause );
             //update interface
-            pause(game, keybord);
+            
 
             oldkey = keybord;
         }
@@ -154,20 +162,24 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (check_pause == false)
+            {
+                spriteBatch.Begin();
 
-            spriteBatch.Begin();
+                //scrolling
+                scrolling1.Draw(spriteBatch);
 
-            //scrolling
-            scrolling1.Draw(spriteBatch);
+                vaisseau.Draw(spriteBatch);
+                scrolling2.Draw(spriteBatch);
+                aster.Draw(spriteBatch);
+                manage_T.Draw(spriteBatch);
+                manage_V.Draw(spriteBatch);
+                manage_k.Draw(spriteBatch);
 
-            vaisseau.Draw(spriteBatch);
-            scrolling2.Draw(spriteBatch);
-            aster.Draw(spriteBatch);
-            manage_T.Draw(spriteBatch);
-            manage_V.Draw(spriteBatch);
-            manage_k.Draw(spriteBatch);
-
-            spriteBatch.End();
+                spriteBatch.End();
+            }
+            else
+                pause.Draw(spriteBatch);
         }
     }
 }

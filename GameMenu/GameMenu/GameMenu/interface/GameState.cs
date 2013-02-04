@@ -25,19 +25,5 @@ namespace Umea_rana
         public abstract void Update(Game1 game, Audio audio);
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        protected void pause(Game1 game, KeyboardState keybord)
-        {
-            if (keybord.IsKeyDown(Keys.P) || keybord.IsKeyDown(Keys.Escape))
-            {
-                game.ChangeState(Game1.gameState.Pause);
-            }
-
-        }
-
-        protected void fail(Game1 game, sprite_broillon sprite)
-        {
-            if (sprite.rectangle.Bottom > 2 * height)
-                game.ChangeState(Game1.gameState.Pause);
-        }
     }
 }

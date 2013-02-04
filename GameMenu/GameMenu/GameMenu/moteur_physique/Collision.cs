@@ -71,9 +71,7 @@ namespace Umea_rana
                 b = false;
                 foreach (platform plato in platform_m.plato)
                 {
-                    b |= (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
-                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top);
-
+                    b |= (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top);
                     if ((ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
                         top = plato.rectangle_C.Top;
@@ -128,16 +126,15 @@ namespace Umea_rana
                 for (int i = 0; i < ia.bullet.bullet.Count(); ++i)
                     if (ia.bullet.bullet[i].rectangle.Intersects(sprite.rectangle))
                     {
-                        game.ChangeState(Game1.gameState.Pause);
+                       
                     }
             }
         }
 
         public void col_H_IA( IA_Manager_max  ia_manage, ref sripte_V sprite, ref Game1 game)
         {
-            foreach (vaisseau_IA ia in ia_manage.Ia_manage)
-               if( ia.rectangle_C.Intersects(sprite.rectangle_C ))
-                   game.ChangeState(Game1.gameState.Pause );
+            
+                   
         }
 
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
