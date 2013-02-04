@@ -85,7 +85,7 @@ namespace Umea_rana
             // ajout IA
 
 
-            manage_T.Add(0f, -0.05f, 500, 5);
+            manage_T.Add(0f, -0.05f, 1000, 5);
 
             manage_V.Add(0f, -0.05f, 50, 5);
             manage_k.Add(1f, -0.05f, 0);
@@ -137,6 +137,9 @@ namespace Umea_rana
                     vaisseau.gagne();
                     timer = vaisseau.rectangle.Y / 2;
                     aster.visible = false;
+                    manage_k.bulletL.Clear();
+                    manage_T.bulletL.Clear();
+                    manage_V.bulletL.Clear();
                 }
                 if (timer < 0 && timer != -100)
                     game.ChangeState(Game1.gameState.Level1_state);//va au level2
