@@ -16,27 +16,26 @@ namespace Umea_rana
         Rectangle rectangle;
         SoundEffect soundeffect;
         public bool enableFire;
-        int Taille_h, taille_L,width;
+        int width;
         int time1, tem2 = 0;
         Color colo;
 
-        public List<munition> bullet = new List<munition>();
         int speed;
 
-        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width)
+        public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width, int timer)
         {
             texture = n_texture;
             rectangle = n_rectangle;
-            bullet.Capacity = nb;
+
             this.width = width;
             this.speed = speed;
             soundeffect = n_soundeffect;
-            time1 = 30;
+            time1 = timer ;
             enableFire = true;
             this.colo = colo;
         }
 
-        public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb)
+        public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb,ref List<munition > bullet)
         {
             if ( tem2 <= 0 && enableFire) //autorisation de tire
             {
@@ -46,7 +45,7 @@ namespace Umea_rana
                 {
                     case 1:
                 bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Center.X + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle.Center.X + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
                         break ;
                     case 2:
                         bullet.Add(
@@ -77,17 +76,11 @@ namespace Umea_rana
 
             }
             tem2--;
-            //update che chaque missile
-            for (int i = 0; i < bullet.Count; i++)
-            {
-                bullet[i].update2();
-                if (bullet[i].rectangle.Bottom > width +100)
-                    bullet.RemoveAt(i);
-            }
+
 
         }
 
-        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb)
+        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet)
         {
             if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space) && tem2 <= 0 && enableFire) //autorisation de tire
             {
@@ -132,14 +125,14 @@ namespace Umea_rana
             for (int i = 0; i < bullet.Count; i++)
             {
                 bullet[i].update2();
-                if (bullet[i].rectangle.Bottom < 0)
+                if (bullet[i].rectangle.Top < 0)
                     bullet.RemoveAt(i);
             }
 
         }
 
 
-        public void Bullet_draw(SpriteBatch spritebach)
+        public void Bullet_draw(SpriteBatch spritebach,ref List<munition> bullet)
         {
             for (int i = 0; i < bullet.Count; i++)
                 bullet[i].Draw(spritebach);

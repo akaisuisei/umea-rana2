@@ -23,7 +23,6 @@ namespace Umea_rana
    
         Texture2D texture;
         Collision collision;
-        public int poid;
         public bool jump_ok, jump_off;
         bool in_air;
         public int impulse, pos_marche;
@@ -48,7 +47,7 @@ namespace Umea_rana
             in_air = false;
             jump_off = false;
             collision = n_collision;
-            impulse = 300;
+            impulse = 150;
             pos_marche = rectangle.Y;
             marchell = content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
@@ -56,7 +55,8 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
-
+            vie = 10;
+            
         }
 
         public void update(KeyboardState keyboard)
@@ -84,7 +84,7 @@ namespace Umea_rana
             }
 
             this.AnimSprite(keyboard);
-
+            
         }
 
 

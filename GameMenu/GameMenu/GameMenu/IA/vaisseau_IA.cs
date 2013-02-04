@@ -11,19 +11,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    
+
     public class vaisseau_IA : objet
     {
 
         protected Texture2D _texture;
-        protected int _speed, width,front_sc;
+        protected int _speed, width, front_sc, timer_lunch;
         public int dir;
 
         public Bullet_manager bullet;
-       protected  Color Munition_color, Ia_color;
-       public int poid, vie;
+        protected Color Munition_color, Ia_color;
 
 
+        public int Speed { get { return _speed; } }
+        public int timer_Lunche { get { return timer_lunch; } }
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -62,36 +63,38 @@ namespace Umea_rana
         }
 
         */
-        protected Vector2 vise( objet sprt)
+        protected Vector2 vise(objet sprt)
         {
             Vector2 _vecteur;
-            _vecteur.X =-rectangle.Center.X + sprt.rectangle.Center.X ;
-            _vecteur.Y = rectangle.Center.Y- sprt.rectangle.Center.Y ;
+            _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
+            _vecteur.Y = rectangle.Center.Y - sprt.rectangle.Center.Y;
             _vecteur.Normalize();
             return (_vecteur);
         }
 
-        
-       public virtual void draw(SpriteBatch spritback)
-       {
-           bullet.Bullet_draw(spritback);
-           spritback.Draw(_texture, rectangle, Ia_color );
-       }
 
-       public void move_H()
-       {
-           if (rectangle.Right > width + rectangle.Width)
-           {
-               rectangle.X = width - 1;
-               dir = -dir;
-           }
-           if (rectangle.Left < 0)
-           {
-               rectangle.X = 0;
-               dir = -dir;
-           }
-           rectangle.X += _speed  * dir;
-       }
+        public virtual void draw(SpriteBatch spritback)
+        {
+            spritback.Draw(_texture, rectangle, Ia_color);
+        }
+
+        public void move_H()
+        {
+            if (rectangle.Right > width + rectangle.Width)
+            {
+                rectangle.X = width - 1;
+                rectangle.Y += rectangle_C.Height;
+                dir = -dir;
+
+            }
+            if (rectangle.Left < 0)
+            {
+                rectangle.X = 0;
+                    rectangle.Y += rectangle_C.Height;
+                dir = -dir;
+            }
+            rectangle.X += _speed * dir;
+        }
 
 
     }

@@ -28,8 +28,13 @@ namespace Umea_rana
         IA_manager_K manage_k;
         int taille_sprt;
         int timer;
+<<<<<<< HEAD
         Pause pause;
         bool check_pause = false;
+=======
+        int game_time;
+
+>>>>>>> origin/master
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -43,9 +48,13 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
-
+            game_time = 0;
             // ajout IA
         }
 
@@ -63,7 +72,7 @@ namespace Umea_rana
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
             pause.LoadContent(Content);
             //charge l IA
-            aster_t = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
+            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
 
             //instancie le scolling
 
@@ -74,18 +83,29 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + taille_sprt/2, width / 2 + taille_sprt  / 2,taille_sprt , taille_sprt ), Content, height, width,Color.Gray,9 );
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
 
             //instancie l ia
-            aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width);
+            aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
             manage_T = new IA_manager_T(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
-            manage_V = new IA_manager_V(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green );
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4);
+            manage_V = new IA_manager_V(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
             // ajout IA
+<<<<<<< HEAD
             manage_k.Add_Stal(0f, 0f);
             manage_T.Add(0f, 0f);
             manage_V.Add(0f, 0f);
+=======
+
+
+            manage_T.Add(0f, -0.05f, 500, 5);
+
+            manage_V.Add(0f, -0.05f, 50, 5);
+            manage_k.Add(1f, -0.05f, 0);
+
+
+>>>>>>> origin/master
         }
 
         public override void UnloadContent()
@@ -115,6 +135,7 @@ namespace Umea_rana
                 //update ia
                 aster.update();
 
+<<<<<<< HEAD
                 if (!vaisseau.automatic_controlled)
                 {
                     manage_T.Update(ref game);
@@ -126,9 +147,22 @@ namespace Umea_rana
                     collision.col_H_IA(manage_V, ref vaisseau, ref game);
                     collision.col_H_IA(manage_T, ref vaisseau, ref game);
                 }
+=======
+
+            manage_T.Update(ref game, ref game_time);
+            manage_V.Update(ref vaisseau, ref game_time);
+            manage_k.Update(ref vaisseau, ref game_time);
+            collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
+            collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
+            collision.col_H_IA(manage_k, ref vaisseau, ref game);
+            collision.col_H_IA(manage_V, ref vaisseau, ref game);
+            collision.col_H_IA(manage_T, ref vaisseau, ref game);
+
+>>>>>>> origin/master
 
                 //update collision
 
+<<<<<<< HEAD
                 if (collision.Collision_as_mis(aster, vaisseau))
                 {
                     aster.rectangle.Y -= 20;
@@ -139,6 +173,16 @@ namespace Umea_rana
                 collision.collision_ai_missile(ref vaisseau, manage_T);
                 // update fin de jeu
                 if (aster.rectangle.Top + 10 < 0)
+=======
+            collision.collision_ai_missile(ref vaisseau, manage_k);
+            collision.collision_ai_missile(ref vaisseau, manage_V);
+            collision.collision_ai_missile(ref vaisseau, manage_T);
+
+            // update fin de jeu
+            if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)
+            {
+                if (timer == -100)
+>>>>>>> origin/master
                 {
                     if (timer == -100)
                     {
@@ -150,6 +194,13 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.Level1_state);//va au level2
                     timer--;
                 }
+<<<<<<< HEAD
+=======
+                if (timer < 0 && timer != -100)
+                    game.ChangeState(Game1.gameState.Level1_state);//va au level2
+                timer--;
+
+>>>>>>> origin/master
             }
             else
                 pause.Update(game, audio, ref check_pause );
@@ -157,6 +208,8 @@ namespace Umea_rana
             
 
             oldkey = keybord;
+
+            game_time++;
         }
 
 

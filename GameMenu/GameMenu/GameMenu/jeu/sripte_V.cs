@@ -15,6 +15,7 @@ namespace Umea_rana
     {
         public Texture2D texture;
         List<Texture2D> L_texture;
+        public List<munition> bulletL;
         Color color_V;
 
         int change_T;
@@ -22,11 +23,11 @@ namespace Umea_rana
         int height, width;
         public Bullet_manager bullet;
         public bool automatic_controlled;
-        int speed, nb;
+        int speed;
 
         public void Draw(SpriteBatch spritebatch)
         {
-            bullet.Bullet_draw(spritebatch);
+            bullet.Bullet_draw(spritebatch,ref bulletL );
             spritebatch.Draw(texture, rectangle, Color.White);
         }
 
@@ -47,7 +48,8 @@ namespace Umea_rana
             automatic_controlled = false;
             color_V = colo;
             // intencie le manager de missille 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width  );
+            bulletL = new List<munition>();
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
 
         }
 
@@ -74,7 +76,7 @@ namespace Umea_rana
 
             change_T += 1;// timer pour l animation
 
-            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5);
+            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5,ref bulletL );
             Update_rec_collision();
         }
 
