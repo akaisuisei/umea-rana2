@@ -109,7 +109,7 @@ namespace Umea_rana
             //vaisseau
             vaisseau.Update(keybord, game, oldkey);
 
-            //update ia
+            //update ia jbdcvf
             aster.update();
 
 
