@@ -149,9 +149,9 @@ namespace Umea_rana
             }
             else
             {
-                _pause.Update(game, audio,ref _checkpause);
+                _pause.Update(game, audio, ref _checkpause);
             }
-           
+
             //partie perdu
             fail(game, allen);
 
