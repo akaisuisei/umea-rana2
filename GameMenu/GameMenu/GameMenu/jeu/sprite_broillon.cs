@@ -89,7 +89,7 @@ namespace Umea_rana
             }
 
             this.AnimSprite(keyboard);
-            
+            Update_rec_collision();
         }
 
 
