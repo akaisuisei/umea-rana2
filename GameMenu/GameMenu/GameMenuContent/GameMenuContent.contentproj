@@ -244,13 +244,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\fiches_sprite_allen.png">
-      <Name>fiches_sprite_allen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Menu\logofin.png">
       <Name>logofin</Name>
       <Importer>TextureImporter</Importer>
@@ -260,6 +253,13 @@
   <ItemGroup>
     <Compile Include="level2\fond.jpg">
       <Name>fond</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="hero\fiches_sprite_allen.png">
+      <Name>fiches_sprite_allen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

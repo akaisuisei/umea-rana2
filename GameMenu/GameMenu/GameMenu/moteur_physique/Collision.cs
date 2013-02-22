@@ -24,10 +24,11 @@ namespace Umea_rana
         public bool Collision_sp_sol(ref sprite_broillon sprite, ref Platform_manager platform_m)
         {
             foreach (platform plato in platform_m.plato)
-                if (sprite.rectangle.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
+                if (sprite.rectangle_C.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
                     sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle.Bottom - 9 <= plato.rectangle_C.Top)
                 {
-                    sprite.rectangle.Y = plato.rectangle_C.Top - sprite.rectangle.Height;
+                    
+                    sprite.rectangle.Y = plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height;
 
                     return true;
                 }
