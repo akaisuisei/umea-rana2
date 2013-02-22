@@ -20,7 +20,10 @@ namespace Umea_rana
             texture = n_texture;
 
             rectangle = n_rectangle;
+            rectangle2 = n_rectangle;
+            rectangle2.X = rectangle2.Width;
             speed = n_speed;
+            
         }
 
         public void Update(KeyboardState keyboard)
@@ -28,11 +31,25 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Right))
             {
                 rectangle.X -= speed;
+                rectangle2.X -= speed;
             }
             if (keyboard.IsKeyDown(Keys.Left))
             {
                 rectangle.X += speed;
+                rectangle2.X += speed;
             }
+
+            if (rectangle.X + rectangle.Width <= 0)
+                rectangle.X = rectangle2.X + rectangle2.Width;
+            if (rectangle2.X + rectangle2.Width <= 0)
+                rectangle2.X = rectangle.X + rectangle.Width;
+
+            if (rectangle.X >= 0)
+                rectangle2.X = rectangle.X - rectangle.Width;
+            if (rectangle2.X >= 0)
+               rectangle.X = rectangle2.X - rectangle2.Width;
+     
+
         }
     }
 }

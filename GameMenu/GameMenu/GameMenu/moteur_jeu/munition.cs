@@ -36,6 +36,7 @@ namespace Umea_rana
         {
             rectangle.Y -=(int) (speed*vect.Y) ;
             rectangle.X += (int)(speed * vect.X);
+            rectangle_C = rectangle;
         }
 
         public void Draw(SpriteBatch spritebatch)

@@ -14,11 +14,12 @@ namespace Umea_rana
     class Background
     {
         public Texture2D texture;
-        public Rectangle rectangle;
+        public Rectangle rectangle, rectangle2;
 
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture, rectangle, Color.White);
+            spritebatch.Draw(texture, rectangle2, Color.White);
         }
     }
 }

@@ -20,10 +20,9 @@ namespace Umea_rana
 
     public class sprite_broillon :objet 
     {
-    private level1 lvl=null;
+   
         Texture2D texture;
         Collision collision;
-        public int poid;
         public bool jump_ok, jump_off;
         bool in_air;
         public int impulse, pos_marche;
@@ -42,13 +41,13 @@ namespace Umea_rana
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
         {
             texture = n_textture;
-            rectangle_Colision = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
+            rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
             poid = 10;
             in_air = false;
             jump_off = false;
             collision = n_collision;
-            impulse = 300;
+            impulse = 150;
             pos_marche = rectangle.Y;
             marchell = content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
@@ -56,7 +55,8 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
-
+            vie = 10;
+            
         }
 
         public void update(KeyboardState keyboard)
@@ -67,7 +67,7 @@ namespace Umea_rana
             {
                 rectangle.Y += poid;
                 MediaPlayer.Pause();
-                rectangle_Colision.Y = rectangle.Y;
+                rectangle_C.Y = rectangle.Y;
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Umea_rana
             }
 
             this.AnimSprite(keyboard);
-
+            
         }
 
 

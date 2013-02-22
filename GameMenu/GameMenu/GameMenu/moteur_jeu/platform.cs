@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class platform :objet 
+   public class platform :objet 
     {
         Texture2D texture;
         int speed, width, height;
@@ -37,6 +37,7 @@ namespace Umea_rana
             {
                 rectangle.X += speed;
             }
+            rectangle_C = rectangle;
         }
 
 
@@ -44,6 +45,7 @@ namespace Umea_rana
         {
             spritebatch.Draw(texture, rectangle, Color.White);
         }
+
 
     }
 }

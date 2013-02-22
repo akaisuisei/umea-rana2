@@ -12,10 +12,23 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-     public class objet
+    public class objet
     {
-         public Rectangle rectangle_Colision, rectangle;
-         public bool tombe;
+        public Rectangle rectangle_C, rectangle;
+        protected int decallageX, decallageY, largeurX, hauteurY;
+        public  int poid, vie;
+        public bool tombe;
 
+        public int decalageX { get { return decallageX; } }
+        public int decalageY { get { return decallageY; } }
+
+
+        public void Update_rec_collision()
+        {
+            rectangle_C.X = rectangle.X + decallageX;
+            rectangle_C.Y = rectangle.Y + decallageY;
+            rectangle_C.Height = hauteurY;
+            rectangle_C.Width = largeurX;
+        }
     }
 }
