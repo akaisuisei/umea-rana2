@@ -113,7 +113,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
             {
                 _pause.checkpause(keyboard, ref _checkpause);
-                latence = 10;
+                latence = 30;
             }
             if (latence > 0)
                 --latence;
