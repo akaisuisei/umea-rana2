@@ -209,11 +209,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level2\fond.jpg">
-      <Name>fond</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="level2\fond2.png">
       <Name>fond2</Name>
       <Importer>TextureImporter</Importer>
@@ -258,6 +253,13 @@
   <ItemGroup>
     <Compile Include="Menu\logofin.png">
       <Name>logofin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="level2\fond.jpg">
+      <Name>fond</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
