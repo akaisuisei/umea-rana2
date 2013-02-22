@@ -29,7 +29,9 @@ namespace Umea_rana
         int taille_sprt;
         int timer;
         int game_time;
-
+        _Pause _pause;
+        bool _checkpause = false;
+        int latence = 0;
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -37,6 +39,7 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
             T_sprite = new List<Texture2D>();
             collision = new Collision();
+            _pause = new _Pause(game1, graphics, content);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -83,14 +86,11 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
             // ajout IA
-
-
             manage_T.Add(0f, -0.05f, 1000, 5);
-
             manage_V.Add(0f, -0.05f, 50, 5);
             manage_k.Add(1f, -0.05f, 0);
-
-
+            //instancie les donnees de la pause
+            _pause.LoadContent(Content);
         }
 
         public override void UnloadContent()
@@ -99,36 +99,44 @@ namespace Umea_rana
         }
         public override void Update(Game1 game, Audio audio)
         {
-            KeyboardState keybord;
-            keybord = Keyboard.GetState();
+            KeyboardState keyboard;
+            keyboard = Keyboard.GetState();
+            if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
+            {
+                _pause.checkpause(keyboard, ref _checkpause);
+                latence = 10;
+            }
+            if (latence > 0)
+                --latence;
+            if (_checkpause == false)
+            {
+                // scrolling verticale
+                scrolling1.Update();
+                scrolling2.Update();
 
-            // scrolling verticale
-            scrolling1.Update();
-            scrolling2.Update();
+                //vaisseau
+                vaisseau.Update(keyboard, game, oldkey);
 
-            //vaisseau
-            vaisseau.Update(keybord, game, oldkey);
-
-            //update ia jbdcvf
-            aster.update();
-
-
-            manage_T.Update(ref game, ref game_time);
-            manage_V.Update(ref vaisseau, ref game_time);
-            manage_k.Update(ref vaisseau, ref game_time);
-            collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
-            collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
-            collision.col_H_IA(manage_k, ref vaisseau, ref game);
-            collision.col_H_IA(manage_V, ref vaisseau, ref game);
-            collision.col_H_IA(manage_T, ref vaisseau, ref game);
+                //update ia jbdcvf
+                aster.update();
 
 
-            //update collision
+                manage_T.Update(ref game, ref game_time);
+                manage_V.Update(ref vaisseau, ref game_time);
+                manage_k.Update(ref vaisseau, ref game_time);
+                collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
+                collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
+                collision.col_H_IA(manage_k, ref vaisseau, ref game);
+                collision.col_H_IA(manage_V, ref vaisseau, ref game);
+                collision.col_H_IA(manage_T, ref vaisseau, ref game);
 
-            collision.collision_ai_missile(ref vaisseau, manage_k);
-            collision.collision_ai_missile(ref vaisseau, manage_V);
-            collision.collision_ai_missile(ref vaisseau, manage_T);
 
+                //update collision
+
+                collision.collision_ai_missile(ref vaisseau, manage_k);
+                collision.collision_ai_missile(ref vaisseau, manage_V);
+                collision.collision_ai_missile(ref vaisseau, manage_T);
+            }
             // update fin de jeu
             if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)
             {
@@ -144,34 +152,38 @@ namespace Umea_rana
                 if (timer < 0 && timer != -100)
                     game.ChangeState(Game1.gameState.Level1_state);//va au level2
                 timer--;
-
             }
+            else
+                _pause.Update(game, audio, ref _checkpause);
+
+
 
             //update interface
-            pause(game, keybord);
 
-            oldkey = keybord;
-
+            oldkey = keyboard;
             game_time++;
         }
 
 
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Begin();
-
-            //scrolling
-            scrolling1.Draw(spriteBatch);
-
-            vaisseau.Draw(spriteBatch);
-            scrolling2.Draw(spriteBatch);
-            aster.Draw(spriteBatch);
-            manage_T.Draw(spriteBatch);
-            manage_V.Draw(spriteBatch);
-            manage_k.Draw(spriteBatch);
-
-            spriteBatch.End();
+            if (_checkpause == false)
+            {
+                spriteBatch.Begin();
+                //scrolling
+                scrolling1.Draw(spriteBatch);
+                vaisseau.Draw(spriteBatch);
+                scrolling2.Draw(spriteBatch);
+                aster.Draw(spriteBatch);
+                manage_T.Draw(spriteBatch);
+                manage_V.Draw(spriteBatch);
+                manage_k.Draw(spriteBatch);
+                spriteBatch.End();
+            }
+            else
+                _pause.Draw(spriteBatch);
         }
     }
 }
+
