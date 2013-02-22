@@ -26,8 +26,9 @@ namespace Umea_rana
         Collision collision;
         KeyboardState oldkey;
         ContentManager content;
-
-
+        _Pause _pause;
+        int latence = 0;
+        bool _checkpause = false;
         Texture2D aster, alllenT, backgroundT, platform_t;
         int front_sc, back_sc;
 
@@ -37,6 +38,7 @@ namespace Umea_rana
             collision = new Collision();
             oldkey = Keyboard.GetState();
             this.content = content;
+            _pause = new _Pause(game1, graphics, content);
         }
 
 
@@ -62,8 +64,8 @@ namespace Umea_rana
             managerAA = new IA_manager_AA(aster, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             managerAR = new IA_manager_AR(aster, new Rectangle(0, 0, 100, 100), front_sc, 4, height, width);
             manageS = new IA_manager_S(aster, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
-
-
+            //instancie les donnees de la pause
+            _pause.LoadContent(Content);
             for (int i = 0; i < 100; ++i)
             {
                 // ajout ia aller retour (X,Y)
@@ -108,37 +110,48 @@ namespace Umea_rana
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
-
-            // scrolling
-            scrolling1.Update(keyboard);
-
-            // collision Allen
-            if (collision.Collision_sp_sol(ref allen, ref platform_M))
+            if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
             {
-                allen.marche();
-                allen.jump_off = true;
-                allen.chute = false;
+                _pause.checkpause(keyboard, ref _checkpause);
+                latence = 10;
+            }
+            if (latence > 0)
+                --latence;
+            if (_checkpause == false)
+            {
+                // scrolling
+                scrolling1.Update(keyboard);
+
+                // collision Allen
+                if (collision.Collision_sp_sol(ref allen, ref platform_M))
+                {
+                    allen.marche();
+                    allen.jump_off = true;
+                    allen.chute = false;
+                }
+                else
+                {
+                    allen.air();
+                }
+                allen.update(keyboard);
+
+                //collision ia
+                collision.collision_ia_sol(manageS, ref platform_M);
+                collision.collision_ia_AR_sol(managerAR, ref platform_M);
+                collision.collision_ia_sol(managerAA, ref platform_M);
+
+                //manager IA 
+                managerAR.Update(ref keyboard);
+                managerAA.Update(ref keyboard);
+                manageS.Update(allen, ref keyboard);
+                //manager platform
+                platform_M.Update(keyboard);
             }
             else
             {
-                allen.air();
+                _pause.Update(game, audio,ref _checkpause);
             }
-            allen.update( keyboard);
-
-            //collision ia
-            collision.collision_ia_sol(manageS, ref platform_M);
-            collision.collision_ia_AR_sol(managerAR, ref platform_M);
-            collision.collision_ia_sol(managerAA, ref platform_M);
-
-            //manager IA 
-            managerAR.Update(ref keyboard);
-            managerAA.Update(ref keyboard);
-            manageS.Update(allen, ref keyboard);
-            //manager platform
-            platform_M.Update(keyboard);
-
-            //pause
-            pause(game, keyboard);
+           
             //partie perdu
             fail(game, allen);
 
@@ -151,19 +164,20 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spriteBatch)
         {
             // TODO: Add your drawing code here
-
-            spriteBatch.Begin();
-            scrolling1.Draw(spriteBatch);
-
-            //scrolling3.Draw(spriteBatch);
-
-            allen.Draw(spriteBatch);
-            platform_M.Draw(spriteBatch);
-            managerAA.Draw(spriteBatch);
-            managerAR.Draw(spriteBatch);
-            manageS.Draw(spriteBatch);
-
-            spriteBatch.End();
+            if (_checkpause == false)
+            {
+                spriteBatch.Begin();
+                scrolling1.Draw(spriteBatch);
+                //scrolling3.Draw(spriteBatch);
+                allen.Draw(spriteBatch);
+                platform_M.Draw(spriteBatch);
+                managerAA.Draw(spriteBatch);
+                managerAR.Draw(spriteBatch);
+                manageS.Draw(spriteBatch);
+                spriteBatch.End();
+            }
+            else
+                _pause.Draw(spriteBatch);
         }
     }
 }
