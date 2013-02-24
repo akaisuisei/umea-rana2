@@ -41,6 +41,12 @@ namespace Umea_rana
             }
         }
 
+        public void Update_ophelia(KeyboardState keybord)
+        {
+            foreach (Tireur vaiss in ia_manage)
+                vaiss.Update_ophelia(keybord );
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Tireur vaiss in ia_manage)
@@ -49,7 +55,7 @@ namespace Umea_rana
                 bulletL[i].Draw(spritebatch );
         }
 
-        public void Add(float X, float Y, int seconde, int number)
+        public void Add(float X, float Y, int seconde, int number, Color colo)
         {
             int x = (int)(X * window_W);
             int y = (int)(Y * window_H);
@@ -92,6 +98,11 @@ namespace Umea_rana
             }
             remove();
         }
+        public void Update_ophelia(KeyboardState keybord)
+        {
+            foreach (Viseur_aI vaiss in ia_manage)
+                vaiss.Update_ophelia(keybord);
+        }
 
         public void Draw(SpriteBatch spritebatch)
         {
@@ -101,7 +112,7 @@ namespace Umea_rana
                 bulletL[i].Draw(spritebatch);
         }
 
-        public void Add(float X, float Y, int lunch_time,int number)
+        public void Add(float X, float Y, int lunch_time,int number, Color colo)
         {
             int x = (int)(X * window_W);
             int y = (int)(Y * window_H);
@@ -132,6 +143,12 @@ namespace Umea_rana
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Update_Kamikaze(sprite, ref gametime);
             remove();
+        }
+
+        public void Update_ophelia(KeyboardState keybord)
+        {
+            foreach (Stalker vaiss in ia_manage)
+                vaiss.Update_ophelia(keybord);
         }
 
         public void Draw(SpriteBatch spritebatch)

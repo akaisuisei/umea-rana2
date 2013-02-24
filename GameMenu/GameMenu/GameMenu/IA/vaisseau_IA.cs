@@ -96,6 +96,13 @@ namespace Umea_rana
             rectangle.X += _speed * dir;
         }
 
-
+        public void Update_ophelia(KeyboardState keyboard )
+        {
+            if (keyboard.IsKeyDown(Keys.Up))
+                ++rectangle.Y;
+            if (keyboard.IsKeyDown(Keys.Down))
+                --rectangle.Y;
+            Update_rec_collision();
+        }
     }
 }

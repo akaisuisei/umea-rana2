@@ -27,15 +27,34 @@ namespace Umea_rana
 
         public void Update()
         {
-
             rectangle.Y += speed;
             rectangle2.Y += speed;
             if (rectangle.Y >= height)
                 rectangle.Y = rectangle2.Y - rectangle2.Height;
             if (rectangle2.Y >= height)
                 rectangle2.Y = rectangle.Y - rectangle.Height;
+        }
 
-
+        public void update_ophelia(KeyboardState keybord)
+        {
+            if (keybord.IsKeyDown(Keys.Up))
+            {
+                rectangle.Y += speed;
+                rectangle2.Y += speed;
+            }
+            if (keybord.IsKeyDown(Keys.Down))
+            {
+                rectangle.Y -= speed;
+                rectangle2.Y -= speed;
+            }
+            if (rectangle.Y >= height)
+                rectangle.Y = rectangle2.Y - rectangle2.Height;
+            if (rectangle2.Y >= height)
+                rectangle2.Y = rectangle.Y - rectangle.Height;
+            if (rectangle.Bottom <= 0)
+                rectangle.Y = rectangle2.Bottom ;
+            if (rectangle2.Bottom  <= 0)
+                rectangle2.Y = rectangle.Bottom ;
         }
     }
 }

@@ -136,6 +136,7 @@
   <ItemGroup>
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
+    <Compile Include="jeu\Editeur_MapVV.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
     <Compile Include="manager\IA_manger_jeuP.cs" />
     <Compile Include="manager\IA_manager.cs" />
@@ -167,9 +168,9 @@
     <Compile Include="IA\Stalker.cs" />
     <Compile Include="IA\Viseur_aI.cs" />
     <Compile Include="UserControl1.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
+    <Compile Include="UserControl1.designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="_Pause.cs" />
