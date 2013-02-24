@@ -32,7 +32,7 @@ namespace Umea_rana
                 {
                     var settingsNeige = new ParticleSettings(2500 + i * 300, new Color(255, 255, 255), new Color(255, 255, 255), 10, 1000, 1,
                          (v, t) => Vector2.UnitY * 10 + Vector2.UnitX * ParticleHelper.GetRandomFloat(-10, 10),
-                         pos => pos + ParticleHelper.GetRandomVector());
+                         pos => pos + ParticleHelper.GetRandomVector(),0.3f,0.3f);
                     var Neige = new ParticlesMgr(game, settingsNeige) { Pos = new Vector2(ParticleHelper.GetRandomFloat(0, 1500), i * -100) };
                     game.Components.Add(Neige);
                 }
