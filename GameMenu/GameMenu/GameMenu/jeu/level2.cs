@@ -29,7 +29,7 @@ namespace Umea_rana
         _Pause _pause;
         int latence = 0;
         bool _checkpause = false;
-        Texture2D aster, alllenT, backgroundT, platform_t;
+        Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker;
         int front_sc, back_sc;
 
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
@@ -53,6 +53,7 @@ namespace Umea_rana
             platform_t = Content.Load<Texture2D>("level1//platform");
             //ia
             aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
+            naruto_stalker = Content.Load<Texture2D>("IA//naruto");
 
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
@@ -63,7 +64,7 @@ namespace Umea_rana
             //intenciement des 3 ia
             managerAA = new IA_manager_AA(aster, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             managerAR = new IA_manager_AR(aster, new Rectangle(0, 0, 100, 100), front_sc, 4, height, width);
-            manageS = new IA_manager_S(aster, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
+            manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             for (int i = 0; i < 100; ++i)
@@ -137,13 +138,15 @@ namespace Umea_rana
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);
+manageS.Update(allen, ref keyboard);
                 collision.collision_ia_AR_sol(managerAR, ref platform_M);
+ managerAA.Update(ref keyboard);
                 collision.collision_ia_sol(managerAA, ref platform_M);
 
                 //manager IA 
                 managerAR.Update(ref keyboard);
-                managerAA.Update(ref keyboard);
-                manageS.Update(allen, ref keyboard);
+               
+                
                 //manager platform
                 platform_M.Update(keyboard);
             }

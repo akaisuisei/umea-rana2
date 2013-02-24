@@ -13,14 +13,37 @@ namespace Umea_rana
 {
     class Stalker : vaisseau_IA
     {
+        int FrameLine;
+        int FrameColumn;
+        SpriteEffects Effects;        
+        int Timer;
+        int AnimationSpeed = 10;
+        
 
         int window_W, window_H;
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime)
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime, int id)
         {
+            this.rectangle_C = n_rectangle;
+            switch (id)
+            {
+                case 1:
+                    
+                        decallageX = 72; decallageY = 36 ;
+                        hauteurY =26 ; largeurX = 37;
+                     break;
+
+                default :
+                    decallageX = 0; decallageY = 0;
+                        hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    break ;
+
+            }
+
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+
             this.rectangle = n_rectangle;
-            this.rectangle_C = rectangle;
+
 
             this._texture = n_textture;
             Ia_color = Color.AliceBlue;
@@ -34,6 +57,10 @@ namespace Umea_rana
             this.dir = 1;
             this.front_sc = front_sc;
             this.timer_lunch = launchTime;
+
+            this.FrameLine = 1;
+            this.FrameColumn = 1;
+            this.Timer = 0;
         }
         // le stalker
         public void Update(objet sprite, ref KeyboardState keyboard)
@@ -41,16 +68,18 @@ namespace Umea_rana
             Update_rec_collision();
             if (this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
+               
+
+
                 if (tombe)
                     rectangle.Y += poid;
-
-
                 if (rectangle_C.Center.X - _speed > sprite.rectangle_C.Center.X)
                     rectangle.X -= _speed;
                 else if (rectangle_C.Center.X + _speed < sprite.rectangle_C.Center.X)
                     rectangle.X += _speed;
 
-            } if (keyboard.IsKeyDown(Keys.Right))
+            } 
+            if (keyboard.IsKeyDown(Keys.Right))
                 rectangle.X -= front_sc;
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
@@ -64,7 +93,6 @@ namespace Umea_rana
         // le debile ki avnace et recule
         public void UpdateAR(ref KeyboardState keyboard)
         {
-            Update_rec_collision();
             if (this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (tombe)
@@ -77,6 +105,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
 
+            Update_rec_collision();
 
         }
         // le bon kamikaze
@@ -119,6 +148,11 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Ia_color);
+        }
+
+        public void Draw_S(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 143, (this.FrameLine - 1) * 72, 143, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
     }
 }

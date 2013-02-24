@@ -158,7 +158,7 @@ namespace Umea_rana
         }
         public void Add(float  X, float  Y, int launch_time)
         {
-            ia_manage.Add (new Stalker(_texture,new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height ),front_sc , speed , window_H , window_W , launch_time ));
+            ia_manage.Add (new Stalker(_texture,new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height ),front_sc , speed , window_H , window_W , launch_time ,0));
         }
     }
 }
