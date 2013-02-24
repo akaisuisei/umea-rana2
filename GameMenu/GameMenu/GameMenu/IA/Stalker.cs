@@ -116,7 +116,7 @@ namespace Umea_rana
         }
 
 
-        public override void draw(SpriteBatch spritback)
+        public override void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Ia_color);
         }

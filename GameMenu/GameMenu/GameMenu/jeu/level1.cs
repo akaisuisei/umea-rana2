@@ -20,13 +20,13 @@ namespace Umea_rana
         sripte_V vaisseau;
         asteroid aster;
         KeyboardState oldkey;
-        Texture2D bacgkround1, background2, aster_t;
+        Texture2D bacgkround1, background2, aster_t, planet1;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
         IA_manager_V manage_V;
         IA_manager_K manage_k;
-        int taille_sprt;
+        int taille_sprt, taille_sprt2;
         int timer;
         int game_time;
         _Pause _pause;
@@ -48,6 +48,7 @@ namespace Umea_rana
 
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
+            taille_sprt2 = (int)(Math.Min(width, height) * 0.1);
             game_time = 0;
             // ajout IA
         }
@@ -67,6 +68,7 @@ namespace Umea_rana
 
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
+            planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
 
             //instancie le scolling
 
@@ -81,13 +83,13 @@ namespace Umea_rana
 
             //instancie l ia
             aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
-            manage_T = new IA_manager_T(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width, Color.White); 
             manage_V = new IA_manager_V(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
             // ajout IA
-            manage_T.Add(0f, -0.05f, 1000, 5);
-            manage_V.Add(0f, -0.05f, 50, 5);
+            manage_T.Add(0f, -0.05f, 50, 1);
+            manage_V.Add(0f, -0.05f, 1000, 5);
             manage_k.Add(1f, -0.05f, 0);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
