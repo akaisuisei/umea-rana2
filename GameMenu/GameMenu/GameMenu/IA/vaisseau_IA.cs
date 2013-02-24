@@ -73,7 +73,7 @@ namespace Umea_rana
         }
 
 
-        public virtual void draw(SpriteBatch spritback)
+        public virtual void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Ia_color);
         }

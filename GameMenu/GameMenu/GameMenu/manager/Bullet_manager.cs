@@ -45,7 +45,7 @@ namespace Umea_rana
                 {
                     case 1:
                 bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Center.X + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle.Center.X , sprite.rectangle_C.Bottom , sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
                         break ;
                     case 2:
                         bullet.Add(
