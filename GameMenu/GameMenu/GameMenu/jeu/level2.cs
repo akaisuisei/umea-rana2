@@ -138,15 +138,15 @@ namespace Umea_rana
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);
-manageS.Update(allen, ref keyboard);
+                manageS.Update(allen, ref keyboard);
                 collision.collision_ia_AR_sol(managerAR, ref platform_M);
- managerAA.Update(ref keyboard);
+                managerAA.Update(ref keyboard);
                 collision.collision_ia_sol(managerAA, ref platform_M);
 
                 //manager IA 
                 managerAR.Update(ref keyboard);
-               
-                
+
+
                 //manager platform
                 platform_M.Update(keyboard);
             }
@@ -156,12 +156,12 @@ manageS.Update(allen, ref keyboard);
             }
 
             //partie perdu
-            fail(game, allen);
+            fail(game, allen, Game1.gameState.level2);
 
             //audio
 
             if (allen.rectangle.Right >= width * 2 - 50)
-                game.ChangeState(Game1.gameState.level2);
+                game.ChangeState(Game1.gameState.Pause, Game1.gameState.level2);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -169,7 +169,6 @@ manageS.Update(allen, ref keyboard);
             // TODO: Add your drawing code here
             if (_checkpause == false)
             {
-                spriteBatch.Begin();
                 scrolling1.Draw(spriteBatch);
                 //scrolling3.Draw(spriteBatch);
                 allen.Draw(spriteBatch);
@@ -177,7 +176,6 @@ manageS.Update(allen, ref keyboard);
                 managerAA.Draw(spriteBatch);
                 managerAR.Draw(spriteBatch);
                 manageS.Draw(spriteBatch);
-                spriteBatch.End();
             }
             else
                 _pause.Draw(spriteBatch);

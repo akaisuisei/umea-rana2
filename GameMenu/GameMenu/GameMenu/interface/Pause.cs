@@ -95,7 +95,7 @@ namespace Umea_rana
             {
                 if (select == 0)// selection menu
                 {
-                    game.ChangeState(Game1.gameState.Level_select_state );
+                    game.GetPreviousState();
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence);
                 }
@@ -116,14 +116,12 @@ namespace Umea_rana
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(continuer, coordonnees_continuer, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
             spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);
             spriteBatch.Draw(titre, titre_P, Color.White);
-            spriteBatch.End();
         }
 
 

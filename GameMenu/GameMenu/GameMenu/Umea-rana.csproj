@@ -141,6 +141,10 @@
     <Compile Include="manager\IA_manger_jeuP.cs" />
     <Compile Include="manager\IA_manager.cs" />
     <Compile Include="interface\Initialisateur.cs" />
+    <Compile Include="Moteur à particule\Particle.cs" />
+    <Compile Include="Moteur à particule\ParticleAdder.cs" />
+    <Compile Include="Moteur à particule\ParticleHelper.cs" />
+    <Compile Include="Moteur à particule\ParticlesMgr.cs" />
     <Compile Include="moteur_son\Audio.cs" />
     <Compile Include="manager\Bullet_manager.cs" />
     <Compile Include="moteur_physique\Collision.cs" />

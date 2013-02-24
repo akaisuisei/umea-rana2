@@ -15,8 +15,9 @@ namespace Umea_rana
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         gameState _currentState;
+        public gameState _previousState { get; set; }
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
         Dictionary<gameState, GameState> StateManager;
         int height, width;
         Audio audio;
@@ -54,6 +55,7 @@ namespace Umea_rana
 
         protected override void Initialize()
         {
+            ParticleAdder.adder(this, _currentState);
             try
             {
                 StateManager[_currentState].Initialize(graphics);
@@ -93,8 +95,10 @@ namespace Umea_rana
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            base.Draw(gameTime);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
             StateManager[_currentState].Draw(spriteBatch);
+            base.Draw(gameTime);
+            spriteBatch.End();
             
         }
 
@@ -109,11 +113,18 @@ namespace Umea_rana
             Pause,
             Initialisateur,
             Editeur_mapVV,
+            Null,
         }
 
-        public void ChangeState(gameState NewState)
+        public void ChangeState(gameState NewState, gameState previousState = gameState.Null)
         {
+            _previousState = _currentState;
             _currentState = NewState;
+            this.Initialize();
+        }
+        public void GetPreviousState()
+        {
+            _currentState = this._previousState;
             this.Initialize();
         }
 
