@@ -49,7 +49,7 @@ namespace Umea_rana
                     if ((ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
                     {
-                        top = plato.rectangle_C.Top;
+                          top = plato.rectangle_C.Top;
                         b |= true;
                     }
                 }
@@ -125,13 +125,17 @@ namespace Umea_rana
         // saut non fini
         public void jump(sprite_broillon sprite)
         {
-            int i = 10;
+            
             if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
             {
-                sprite.rectangle.Y -= (i + sprite.poid);
+                sprite.rectangle.Y -= ( sprite.poid+ sprite.upsidedown );
+                --sprite.upsidedown; 
             }
             if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
+            {
                 sprite.jump_off = false;
+                sprite.upsidedown = 10;
+            }
         }
 
         // collision objet missible
@@ -169,12 +173,31 @@ namespace Umea_rana
         //collision IA allen action vie--
         public void coll_AL_IA(IA_Manager_max ia_manage, ref sprite_broillon  sprite)
         {
-            for(int i =0; i<ia_manage.Ia_manage.Count ;++i)
-                if (ia_manage.Ia_manage[i].rectangle_C.Intersects(sprite.rectangle_C))
+            for (int i = 0; i < ia_manage.Ia_manage.Count; ++i)
+            {
+                if(ia_manage.Ia_manage[i].rectangle_C.Bottom <sprite.rectangle_C.Top  && sprite.rectangle_C.Bottom<ia_manage.Ia_manage[i].rectangle_C.Top)
+                if (ia_manage.Ia_manage[i].dir == 1 && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left )
                 {
                     sprite.vie--;
-                    ia_manage.removed(i);
+                
                 }
+                if (ia_manage.Ia_manage[i].dir == -1 && ia_manage.Ia_manage[i].rectangle_C.Left  - 10 < sprite.rectangle_C.Right)
+                {
+                    sprite.vie--;
+                
+                }
+                if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
+                {
+                    --ia_manage.Ia_manage[i].vie;
+                }
+                if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
+                {
+                    --ia_manage.Ia_manage[i].vie;
+                }
+
+            }
+
+
         }
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
@@ -187,5 +210,6 @@ namespace Umea_rana
                         ai.vie--;
                     }
         }
+
     }
 }

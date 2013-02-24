@@ -37,6 +37,10 @@ namespace Umea_rana
         int AnimationSpeed = 10;
         public bool chute = true;
 
+       public bool _dir {get { return dir; } }
+
+       int prout;
+   public     int upsidedown {  get { return prout ; } set { if (upsidedown < 0) prout = 1; } }
 
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
         {
@@ -60,8 +64,8 @@ namespace Umea_rana
             hauteurY = 50;
             decallageX = 55;
             decallageY = 31;
-            
-            
+
+            upsidedown = 10;
         }
 
         public void update(KeyboardState keyboard)
