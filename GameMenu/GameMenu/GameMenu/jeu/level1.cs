@@ -88,8 +88,8 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
             // ajout IA
-            manage_T.Add(0f, -0.05f, 50, 1);
-            manage_V.Add(0f, -0.05f, 1000, 5);
+            manage_T.Add(0f, -0.05f, 50, 1,Color.Wheat );
+            manage_V.Add(0f, -0.05f, 1000, 5,Color.Turquoise );
             manage_k.Add(1f, -0.05f, 0);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
