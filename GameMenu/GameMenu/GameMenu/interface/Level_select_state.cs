@@ -103,7 +103,7 @@ namespace Umea_rana
                 } // level1
                 else if (select == 1)
                 {
-                    game.ChangeState(Game1.gameState.Level1_state );
+                    game.ChangeState(Game1.gameState.Level1_state, Game1.gameState.Level1_state);
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence);
                 }
@@ -117,14 +117,12 @@ namespace Umea_rana
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(level1, coordonnees_level1, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(level2, coordonnees_level2, Color.White);
             spriteBatch.Draw(retour, coordonnees_retour, Color.White);
             spriteBatch.Draw(titre, titre_P, Color.White);
-            spriteBatch.End();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Umea_rana
                 foreach (platform plato in platform_m.plato)
                 {
 
-                    if ((ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
+                    if (!b&&(ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
                     {
                           top = plato.rectangle_C.Top;
@@ -56,7 +56,7 @@ namespace Umea_rana
                 if (b)
                 {
                     ia.Ia_manage[i].tombe = false;
-                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height;
+                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height ;
                 }
                 else
                     ia.Ia_manage[i].tombe = true;
@@ -109,7 +109,7 @@ namespace Umea_rana
                 if (b)
                 {
                     ia.Ia_manage[i].tombe = false;
-                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height;
+                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height ;
                 }
                 else
                     ia.Ia_manage[i].tombe = true;
@@ -159,7 +159,7 @@ namespace Umea_rana
                 for (int i = 0; i < ia_manage.bulletL.Count ; ++i)
                     if (ia_manage.bulletL[i].rectangle.Intersects(sprite.rectangle))
                     {
-                        game.ChangeState(Game1.gameState.Pause);
+                        game.ChangeState(Game1.gameState.Pause, Game1.gameState.level2);
                     }
             
         }

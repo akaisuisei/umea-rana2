@@ -109,13 +109,11 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(continuer, coordonnees_continuer, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
             spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);
-            spriteBatch.End();
         }
         public void checkpause(KeyboardState keyboard, ref bool _checkpause)
         {

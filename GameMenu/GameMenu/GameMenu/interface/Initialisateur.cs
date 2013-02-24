@@ -49,12 +49,8 @@ namespace Umea_rana
 
         }
         public override void Draw(SpriteBatch spriteBatch)
-        {
-
-            spriteBatch.Begin();
-            
+        {            
             spriteBatch.Draw(background, rectangle, Color.White );
-            spriteBatch.End();
         }
 
     }

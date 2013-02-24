@@ -35,7 +35,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebatch)
         {
             foreach (Stalker vaiss in ia_manage)
-                vaiss.Draw(spritebatch);
+                vaiss.Draw_S(spritebatch);
         }
     }
 
