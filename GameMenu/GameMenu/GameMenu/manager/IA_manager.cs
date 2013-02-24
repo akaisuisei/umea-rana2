@@ -156,9 +156,9 @@ namespace Umea_rana
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Draw(spritebatch);
         }
-        public void Add(float  X, float  Y, int launch_time)
+        public override void Add(float X, float Y, int launch_time)
         {
-            ia_manage.Add (new Stalker(_texture,new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height ),front_sc , speed , window_H , window_W , launch_time ,0));
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, launch_time, 0));
         }
     }
 }

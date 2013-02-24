@@ -70,20 +70,20 @@ namespace Umea_rana
             for (int i = 0; i < 100; ++i)
             {
                 // ajout ia aller retour (X,Y)
-                managerAR.Add_Stal(1.1f, 0);
-                managerAR.Add_Stal(0.5f, 0.5f);
-                managerAR.Add_Stal(2.1f, 0.5f);
-                managerAR.Add_Stal(-0.5f, 0f);
+                managerAR.Add(1.1f, 0);
+                managerAR.Add(0.5f, 0.5f);
+                managerAR.Add(2.1f, 0.5f);
+                managerAR.Add(-0.5f, 0f);
                 // ajout IA qui vont tous droit(X,Y)
-                managerAA.Add_Stal(1.11f, 0);
-                managerAA.Add_Stal(0.54f, 0.5f);
-                managerAA.Add_Stal(2.14f, 0.5f);
-                managerAA.Add_Stal(-0.58f, 0f);
+                managerAA.Add(1.11f, 0);
+                managerAA.Add(0.54f, 0.5f);
+                managerAA.Add(2.14f, 0.5f);
+                managerAA.Add(-0.58f, 0f);
                 // ajout des ia Stalker (X,Y)
-                manageS.Add_Stal(1.15f, 0);
-                manageS.Add_Stal(0.57f, 0.5f);
-                manageS.Add_Stal(2.18f, 0.5f);
-                manageS.Add_Stal(-0.5f, 0f);
+                manageS.Add(1.15f, 0);
+                manageS.Add(0.57f, 0.5f);
+                manageS.Add(2.18f, 0.5f);
+                manageS.Add(-0.5f, 0f);
             }
 
 

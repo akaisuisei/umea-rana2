@@ -37,6 +37,10 @@ namespace Umea_rana
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Draw_S(spritebatch);
         }
+        public virtual void Add(float X, float Y)
+        {
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, 0, 1));
+        }
     }
 
     public class IA_manager_AR : IA_Manager_max
@@ -65,6 +69,10 @@ namespace Umea_rana
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Draw(spritebatch);
         }
+        public void Add(float X, float Y)
+        {
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, 0, 2));
+        }
     }
 
 
@@ -92,6 +100,10 @@ namespace Umea_rana
         {
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Draw(spritebatch);
+        }
+        public void Add(float X, float Y)
+        {
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, 0, 3));
         }
     }
 

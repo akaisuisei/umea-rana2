@@ -25,9 +25,10 @@ namespace Umea_rana
 
         public List<vaisseau_IA> Ia_manage { get { return ia_manage; } }
         public List<munition> bulletL;
-        public void Add_Stal(float X, float Y)
+
+        public virtual void Add(float X, float Y, int id)
         {
-            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W,0,1));
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, 0, id));
         }
 
         public void remove()//enleve ia si pv =0 ou sort de l ecran

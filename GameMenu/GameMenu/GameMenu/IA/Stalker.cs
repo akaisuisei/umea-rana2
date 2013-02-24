@@ -24,20 +24,6 @@ namespace Umea_rana
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime, int id)
         {
             this.rectangle_C = n_rectangle;
-            switch (id)
-            {
-                case 1:
-                    
-                        decallageX = 72; decallageY = 36 ;
-                        hauteurY =26 ; largeurX = 37;
-                     break;
-
-                default :
-                    decallageX = 0; decallageY = 0;
-                        hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
-                    break ;
-
-            }
 
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
@@ -61,6 +47,26 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
+            switch (id)
+            {
+                case 0://kamikaze
+
+                    decallageX = 0; decallageY = 0;
+                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    break;
+
+                case 1:// stalker
+                    decallageX = 72; decallageY = 36;
+                    hauteurY = rectangle.Height - decalageY - 10; largeurX = 37;
+                    break;
+                case 2:// ia AR
+
+                default:// iaAA
+                    decallageX = 0; decallageY = 0;
+                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    break;
+
+            }
         }
         // le stalker
         public void Update(objet sprite, ref KeyboardState keyboard)
