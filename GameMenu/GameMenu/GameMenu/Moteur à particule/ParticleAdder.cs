@@ -25,7 +25,7 @@ namespace Umea_rana
                 var BlueFire = new ParticlesMgr(game, settingsBlueFire) { Pos = new Vector2(640, 355) };
                 game.Components.Add(BlueFire);
             }
-            if (_currentState == Game1.gameState.Level1_state)
+            if ((_currentState == Game1.gameState.Level1_state)||_currentState==Game1.gameState.Checkpause)
             {
                 game.Components.Clear();
                 for (int i = 0; i < 40; i++)
@@ -37,7 +37,7 @@ namespace Umea_rana
                     game.Components.Add(Neige);
                 }
             }
-            if (_currentState == Game1.gameState.level2)
+            if (_currentState == Game1.gameState.level2||_currentState==Game1.gameState.Editeur_mapVV)
             {
                 game.Components.Clear();
             }
