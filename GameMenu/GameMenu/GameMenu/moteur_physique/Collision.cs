@@ -15,7 +15,7 @@ namespace Umea_rana
 {
     public class Collision
     {
-
+        
         public Collision()
         {
         }
@@ -176,31 +176,35 @@ namespace Umea_rana
         //collision IA allen action vie--
         public void coll_AL_IA(IA_Manager_max ia_manage, ref sprite_broillon sprite)
         {
+            bool attaque;
             for (int i = 0; i < ia_manage.Ia_manage.Count; ++i)
             {
                 if (ia_manage.Ia_manage[i].rectangle_C.Bottom < sprite.rectangle_C.Top && sprite.rectangle_C.Bottom < ia_manage.Ia_manage[i].rectangle_C.Top)
+                {
                     if (ia_manage.Ia_manage[i].dir == 1 && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
                     {
                         sprite.vie--;
-
+                        //bool pr dire qd on attaque
+                        attaque = true;
                     }
-                if (ia_manage.Ia_manage[i].dir == -1 && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
-                {
-                    sprite.vie--;
+                    if (ia_manage.Ia_manage[i].dir == -1 && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
+                    {
+                        sprite.vie--;
+                        //bool pr attaquer
+                        attaque = true;
+                    }
+                    if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
+                    {
+                        --ia_manage.Ia_manage[i].vie;
+                    }
+                    if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
+                    {
+                        --ia_manage.Ia_manage[i].vie;
+                    }
 
                 }
-                if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
-                {
-                    --ia_manage.Ia_manage[i].vie;
-                }
-                if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
-                {
-                    --ia_manage.Ia_manage[i].vie;
-                }
-
+                attaque = false;
             }
-
-
         }
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)

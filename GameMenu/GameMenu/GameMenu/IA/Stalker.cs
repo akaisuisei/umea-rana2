@@ -94,7 +94,54 @@ namespace Umea_rana
             //    rectangle.Y += 1;
             //else
             //  rectangle.Y -= 1;
-
+            if (dir == 1)
+            {
+                this.Effects = SpriteEffects.None;
+                if (tombe == true)
+                {
+                    FrameColumn = 1;
+                    FrameLine = 5;
+                }
+                else 
+                {
+                    FrameLine = 2;
+                    this.Timer++;
+                    if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+                        if (FrameColumn > 4)
+                        {
+                            FrameColumn = 1;
+                        }
+                    }
+                }
+            }
+            else 
+            {
+                this.Effects = SpriteEffects.FlipHorizontally;
+                if (tombe == true)
+                {
+                    FrameColumn = 1;
+                    FrameLine = 5;
+                }
+                else
+                {
+                    FrameLine = 2;
+                    this.Timer++;
+                    if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+                        if (FrameColumn > 4)
+                        {
+                            FrameColumn = 1;
+                        }
+                    }
+                    
+                }
+                
+            }
         }
         // le debile ki avnace et recule
         public void UpdateAR(ref KeyboardState keyboard)
