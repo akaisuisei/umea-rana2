@@ -14,6 +14,7 @@ namespace Umea_rana
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        gameState _checkpause;
         gameState _currentState;
         public gameState _previousState { get; set; }
         GraphicsDeviceManager graphics;
@@ -114,6 +115,7 @@ namespace Umea_rana
             level2,
             Pause,
             Initialisateur,
+            Checkpause,
             Editeur_mapVV,
             Null,
         }
