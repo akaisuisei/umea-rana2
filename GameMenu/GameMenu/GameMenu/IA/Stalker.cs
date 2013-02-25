@@ -18,6 +18,12 @@ namespace Umea_rana
         SpriteEffects Effects;        
         int Timer;
         int AnimationSpeed = 10;
+
+        int FrameLine2;
+        int FrameColumn2;
+        SpriteEffects Effects2;
+        int Timer2;
+        
         
 
         int window_W, window_H;
@@ -58,6 +64,7 @@ namespace Umea_rana
                 case 1:// stalker
                     decallageX = 72; decallageY = 36;
                     hauteurY = rectangle.Height - decalageY - 10; largeurX = 37;
+                    longueur_attaque = 100;
                     break;
                 case 2:// ia AR
 
@@ -80,9 +87,15 @@ namespace Umea_rana
                 if (tombe)
                     rectangle.Y += poid;
                 if (rectangle_C.Center.X - _speed > sprite.rectangle_C.Center.X)
+                {
                     rectangle.X -= _speed;
+                    dir = -1;
+                }
                 else if (rectangle_C.Center.X + _speed < sprite.rectangle_C.Center.X)
+                {
                     rectangle.X += _speed;
+                    dir = 1;
+                }
 
             } 
             if (keyboard.IsKeyDown(Keys.Right))
@@ -102,7 +115,21 @@ namespace Umea_rana
                     FrameColumn = 1;
                     FrameLine = 5;
                 }
-                else 
+                else if (this.attaque == true)
+                {
+                    FrameLine = 4;
+                    this.Timer++;
+                    if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+                        if (FrameColumn > 6)
+                        {
+                            FrameColumn = 1;
+                        }
+                    }
+                }
+                else
                 {
                     FrameLine = 2;
                     this.Timer++;
@@ -117,7 +144,7 @@ namespace Umea_rana
                     }
                 }
             }
-            else 
+            else if (dir== -1)
             {
                 this.Effects = SpriteEffects.FlipHorizontally;
                 if (tombe == true)
@@ -137,6 +164,7 @@ namespace Umea_rana
                         {
                             FrameColumn = 1;
                         }
+                        
                     }
                     
                 }
@@ -149,17 +177,30 @@ namespace Umea_rana
             if (this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (tombe)
+                {
                     rectangle.Y += poid;
-
+                    
+                }
                 rectangle.X += dir * _speed;
             }
             if (keyboard.IsKeyDown(Keys.Right))
                 rectangle.X -= front_sc;
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
+            if (dir == 1)
+            {
+                this.Effects2 = SpriteEffects.None;
+            }
 
+            else if (dir == -1)
+            {
+                this.Effects2 = SpriteEffects.FlipHorizontally;
+            }
             Update_rec_collision();
 
+
+
+            
         }
         // le bon kamikaze
         public void Update_Kamikaze(objet sprite,ref int gameTime)
@@ -206,6 +247,11 @@ namespace Umea_rana
         public void Draw_S(SpriteBatch spritebatch)
         {
             spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 143, (this.FrameLine - 1) * 72, 143, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+        }
+
+        public void Draw_AR(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 130, (this.FrameLine - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.Effects2, 0f);
         }
     }
 }

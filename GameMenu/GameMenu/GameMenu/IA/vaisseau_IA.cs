@@ -21,7 +21,10 @@ namespace Umea_rana
 
         public Bullet_manager bullet;
         protected Color Munition_color, Ia_color;
-
+        public bool attaque;
+        public bool attaque_ { get { return attaque; } }
+        protected int longueur_attaque;
+        public int longueur_Attaque { get { return longueur_attaque; } }
 
         public int Speed { get { return _speed; } }
         public int timer_Lunche { get { return timer_lunch; } }
