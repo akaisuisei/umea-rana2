@@ -123,6 +123,7 @@ namespace Umea_rana
                 --latence;
             if (_checkpause == false)
             {
+                game.ChangeState2(Game1.gameState.Null);
                 // scrolling
                 scrolling1.Update(keyboard);
 
@@ -158,6 +159,8 @@ namespace Umea_rana
             }
             else
             {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                MediaPlayer.Stop();
                 ParticleAdder.adder(game, Game1.gameState.Checkpause,height,width);
                 _pause.Update(game, audio, ref _checkpause);
             }
@@ -185,7 +188,16 @@ namespace Umea_rana
                 manageS.Draw(spriteBatch);
             }
             else
+            {
+                scrolling1.Draw(spriteBatch);
+                //scrolling3.Draw(spriteBatch);
+                allen.Draw(spriteBatch);
+                platform_M.Draw(spriteBatch);
+                managerAA.Draw(spriteBatch);
+                managerAR.Draw(spriteBatch);
+                manageS.Draw(spriteBatch);
                 _pause.Draw(spriteBatch);
+            }
         }
     }
 }

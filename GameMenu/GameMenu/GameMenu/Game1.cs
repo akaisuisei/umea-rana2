@@ -83,7 +83,6 @@ namespace Umea_rana
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
             try
             {
                 StateManager[_currentState].Update(this, audio);
@@ -96,13 +95,19 @@ namespace Umea_rana
         protected override void Draw(GameTime gameTime)
         {
             if (_currentState != gameState.Level1_state)
+            {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-            else
-                spriteBatch.Begin();
                 GraphicsDevice.Clear(Color.Black);
-                StateManager[_currentState].Draw(spriteBatch);
-                base.Draw(gameTime);
-                spriteBatch.End();           
+            }
+            else
+                if (_checkpause == gameState.Checkpause)
+                    spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.AlphaBlend);
+                else
+                    spriteBatch.Begin();
+            GraphicsDevice.Clear(Color.Black);
+            StateManager[_currentState].Draw(spriteBatch);
+            base.Draw(gameTime);
+            spriteBatch.End();
         }
 
         public enum gameState
@@ -131,6 +136,9 @@ namespace Umea_rana
             _currentState = this._previousState;
             this.Initialize();
         }
-
+        public void ChangeState2(gameState checkpause)
+        {
+            _checkpause = checkpause;
+        }
     }
 }
