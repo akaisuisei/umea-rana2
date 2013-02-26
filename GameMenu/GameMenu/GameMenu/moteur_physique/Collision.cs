@@ -180,29 +180,35 @@ namespace Umea_rana
             for (int i = 0; i < ia_manage.Ia_manage.Count; ++i)
             {
                 if (ia_manage.Ia_manage[i].rectangle_C.Bottom > sprite.rectangle_C.Top && sprite.rectangle_C.Bottom > ia_manage.Ia_manage[i].rectangle_C.Top)
-                {
-                    if (ia_manage.Ia_manage[i].dir == -1 && ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Left)
+                {// attaque vers droite
+                    if (ia_manage.Ia_manage[i].dir == 1 &&
+                        ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Left &&
+                        ia_manage.Ia_manage[i].rectangle_C.Right > sprite.rectangle_C.Left)
                     {
                         sprite.vie--;
                         //bool pr dire qd on attaque
                         ia_manage.Ia_manage[i].attaque = true;
                     }
-                    if (ia_manage.Ia_manage[i].dir == 1 && ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Right)
+                    // attaque vers la gauche-
+                    else if (ia_manage.Ia_manage[i].dir == -1 &&
+                        ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Right&&
+                        ia_manage.Ia_manage[i].rectangle_C.Left  > sprite.rectangle_C.Right)
                     {
                         sprite.vie--;
                         //bool pr attaquer
                         ia_manage.Ia_manage[i].attaque = true;
                     }
-                    if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
+                    else   if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
                     {
                         --ia_manage.Ia_manage[i].vie;
                     }
-                    if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
+                    else if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
                     {
                         --ia_manage.Ia_manage[i].vie;
                     }
 
                 }
+                else
                 ia_manage.Ia_manage[i].attaque = false;
             }
         }
