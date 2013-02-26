@@ -56,7 +56,7 @@ namespace Umea_rana
             naruto_stalker = Content.Load<Texture2D>("IA//naruto");
             eve = Content.Load<Texture2D>("IA//eve");
             truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
-            //truc_jaune = Content.Load<Texture2D>("IA//truc_jaune");
+            
 
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
