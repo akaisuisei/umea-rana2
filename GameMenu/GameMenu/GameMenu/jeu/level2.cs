@@ -44,7 +44,7 @@ namespace Umea_rana
 
         public override void LoadContent(ContentManager Content)
         {
-
+            
             //background
             backgroundT = Content.Load<Texture2D>("level1//fond_niv1");
             //sprite brouillon
@@ -114,6 +114,8 @@ namespace Umea_rana
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
+            if (keyboard.IsKeyDown(Keys.A))
+                game.ChangeState(Game1.gameState.Editeur_mapVV);
             if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
             {
                 _pause.checkpause(keyboard, ref _checkpause);

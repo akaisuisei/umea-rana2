@@ -139,7 +139,7 @@ namespace Umea_rana
         {
             if (_checkpause == false)
             {
-                spriteBatch.Begin();
+        
                 //scrolling
                 scrolling1.Draw(spriteBatch);
                 vaisseau.Draw(spriteBatch);
@@ -147,7 +147,7 @@ namespace Umea_rana
                 manage_T.Draw(spriteBatch);
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
-                spriteBatch.End();
+    
             }
             else
                 _pause.Draw(spriteBatch);

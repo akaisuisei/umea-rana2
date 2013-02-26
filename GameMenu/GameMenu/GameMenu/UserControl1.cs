@@ -14,7 +14,7 @@ namespace Umea_rana
     public partial class UserControl1 : Form
     {
         string life, speed, couleur, onglet1, onglet2, onglet3, onglet4, trajectoir, align, OK, firerate, end;
-        string imagefond, vitessefond, vitesseV, open, cancel, load, save;
+        string imagefond, vitessefond, vitesseV, open, cancel, load, save,filepath,filepathlabel;
         System.Drawing.Color color2, color4;
         int width, height;
         int seconde;
@@ -24,6 +24,8 @@ namespace Umea_rana
         IA_manager_T manage_T;
         IA_manager_V manage_V;
         IA_manager_K manage_k;
+        Sauveguarde sauve;
+        savefile savefile;
 
         public UserControl1(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k)
         {
@@ -41,6 +43,12 @@ namespace Umea_rana
             this.manage_V = manage_V;
             this.manage_k = manage_k;
             seconde = 0;
+            filepath = string.Empty; 
+            sauve = new Sauveguarde();
+            savefile = new savefile();
+            savefile.ia_Kamikaze = new List<couple>();
+            savefile.ia_tireur = new List<quaintuplet>();
+            savefile.ia_viseur = new List<quaintuplet>();
         }
 
         public void _show(int X, int y)
@@ -149,6 +157,24 @@ namespace Umea_rana
             intcheck(textBox9);
         }
 
+
+        private void nameCheck(TextBox textbox)
+        {
+            string text = string.Empty;
+            if (textbox.Text != string.Empty)
+            {
+                for (int i = 0; i < textbox.Text.Length && textbox.Text[i] != '.'; ++i)
+                    text += textbox.Text[i];
+            }
+            textbox.BackColor = System.Drawing.Color.Green;
+            filepath  = text;
+
+        }
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            nameCheck(textBox10);
+        }
+
         #endregion
 
         #region dialogopen
@@ -197,6 +223,7 @@ namespace Umea_rana
             cancel = "annulee";
             load = "charger un fichier";
             save = "sauvegarder";
+            filepathlabel = "nom du niveau";
             color2 = System.Drawing.Color.Black;
 
 
@@ -240,7 +267,11 @@ namespace Umea_rana
             button7.Text = cancel;
             button8.Text = save;
             button9.Text = load;
-
+            label14.Text = filepathlabel;
+            if (textBox10.Text == string.Empty)
+                textBox10.BackColor = System.Drawing.Color.Red;
+            else
+                textBox10.BackColor = System.Drawing.Color.Green;
             textBox1.BackColor = TextBox.DefaultBackColor;
             textBox2.BackColor = TextBox.DefaultBackColor;
             textBox3.BackColor = TextBox.DefaultBackColor;
@@ -270,6 +301,12 @@ namespace Umea_rana
         {
             if (textBox4.BackColor == System.Drawing.Color.Green && textBox5.BackColor == System.Drawing.Color.Green)
             {
+                couple couple = new couple();
+                couple.X = openX;
+                couple.Y = openY;
+                couple.seconde = seconde;
+                savefile.ia_Kamikaze.Add(couple );
+
                 manage_k.Add(openX, openY, seconde);
                 this.hidou();
 
@@ -281,7 +318,7 @@ namespace Umea_rana
         }
         private void button8_Click(object sender, EventArgs e)// validate
         {
-            saveFileDialog1.ShowDialog();
+            savegame(filepath);
             this.hidou();
         }
         private void button1_Click_1(object sender, EventArgs e)// tab
@@ -291,15 +328,23 @@ namespace Umea_rana
                 textBox3.BackColor == System.Drawing.Color.Green && textBox6.BackColor == System.Drawing.Color.Green &&
                 color2 != System.Drawing.Color.Black)
             {
+                quaintuplet quaint = new quaintuplet();
+                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.B, color2.G, color2.A);
+                quaint.X = openX;
+                quaint.Y = openY;
+                quaint.seconde = seconde;
+                quaint.nombre = int.Parse(textBox3.Text);
+                
                 if (radioButton1.Checked)
                 {
 
-                    manage_T.Add(openX, openY, seconde, int.Parse(textBox3.Text),new Microsoft.Xna.Framework.Color(color2.R,color2.B,color2.G,color2.A  ));
+                    savefile.ia_tireur.Add(quaint);
+                    manage_T.Add(openX, openY, seconde, quaint.nombre, quaint.color);
                     this.hidou();
                 }
                 else if (radioButton2.Checked)
                 {
-
+                    savefile.ia_viseur.Add(quaint );
                     manage_V.Add(openX, openY, seconde, int.Parse(textBox3.Text), new Microsoft.Xna.Framework.Color(color2.R, color2.B, color2.G, color2.A));
                     this.hidou();
                 }
@@ -327,7 +372,10 @@ namespace Umea_rana
 
         #endregion
 
-
+        private void savegame(string file_name)
+        {
+            sauve.save(file_name, ref savefile.ia_tireur ,ref savefile.ia_viseur ,ref savefile.ia_Kamikaze   );
+        }
 
     }
 }

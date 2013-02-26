@@ -171,6 +171,7 @@
     <Compile Include="IA\vaisseau_IA.cs" />
     <Compile Include="IA\Stalker.cs" />
     <Compile Include="IA\Viseur_aI.cs" />
+    <Compile Include="Sauveguarde.cs" />
     <Compile Include="UserControl1.cs">
       <SubType>Form</SubType>
     </Compile>
