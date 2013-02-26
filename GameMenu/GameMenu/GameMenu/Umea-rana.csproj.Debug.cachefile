@@ -1,7 +1,15 @@
+Content\Menu\background menu.xnb
 Content\Menu\jouer.xnb
 Content\Menu\options.xnb
 Content\Menu\quitter.xnb
 Content\Menu\selection.xnb
+Content\bullet\tir.xnb
+Content\bullet\tir2.xnb
+Content\bullet\tir3.xnb
+Content\bullet\aura.xnb
+Content\bullet\aura2.xnb
+Content\level2\fond.xnb
+Content\level2\fond2.xnb
 Content\Menu\LevelSelect\level1.xnb
 Content\Menu\LevelSelect\level2.xnb
 Content\bullet\bullet.xnb
@@ -12,32 +20,25 @@ Content\Menu\pause\pause.xnb
 Content\Menu\LevelSelect\niveau.xnb
 Content\Menu\LevelSelect\retour.xnb
 Content\Menu\pause\perdu.xnb
-Content\bullet\tir.xnb
-Content\bullet\tir2.xnb
-Content\bullet\tir3.xnb
 Content\hero\vaisseau\sazabiHaman1.xnb
 Content\hero\vaisseau\sazabiHaman1d.xnb
 Content\hero\vaisseau\sazabiHaman1g.xnb
 Content\hero\vaisseau\sazabiHaman2.xnb
 Content\hero\vaisseau\sazabiHaman2d.xnb
 Content\hero\vaisseau\sazabiHaman2g.xnb
-Content\bullet\aura.xnb
-Content\bullet\aura2.xnb
-Content\level2\fond2.xnb
 Content\level1\fond_niv1.xnb
 Content\IA\asteroid\asteroide-sprite.xnb
-Content\Menu\background menu.xnb
-Content\Menu\logofin.xnb
-Content\level2\fond.xnb
 Content\hero\fiches_sprite_allen.xnb
-Content\IA\asteroid\planet4.xnb
-Content\IA\naruto.xnb
-Content\Moteur à particule\particle2.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
+Content\Menu\logofin.xnb
+Content\IA\asteroid\planet4.xnb
+Content\IA\naruto.xnb
+Content\Moteur à particule\particle2.xnb
 Content\IA\eve.xnb
 Content\IA\tuc_jaune.xnb
 Content\IA\asteroid\star.xnb
+Content\Menu\pause\fond_pause.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma

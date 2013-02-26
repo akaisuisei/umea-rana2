@@ -43,7 +43,7 @@ namespace Umea_rana
 
         public void LoadContent(ContentManager content)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
+            background = content.Load<Texture2D>("Menu//pause//fond_pause");
             continuer = content.Load<Texture2D>("Menu//pause//continuer");
             selection = content.Load<Texture2D>("Menu//selection");
             menu = content.Load<Texture2D>("Menu//pause//Menu");
@@ -109,7 +109,7 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, rectangle, Color.White);
+            spriteBatch.Draw(background, rectangle, Color.White * 0.05f);
             spriteBatch.Draw(continuer, coordonnees_continuer, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
