@@ -55,6 +55,7 @@ namespace Umea_rana
             aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
             naruto_stalker = Content.Load<Texture2D>("IA//naruto");
             eve = Content.Load<Texture2D>("IA//eve");
+            truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
             //truc_jaune = Content.Load<Texture2D>("IA//truc_jaune");
 
             //background
@@ -64,7 +65,7 @@ namespace Umea_rana
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia
-            managerAA = new IA_manager_AA(aster, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
+            managerAA = new IA_manager_AA(truc_jaune, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             managerAR = new IA_manager_AR(eve, new Rectangle(0, 0, 100, 100), front_sc, 4, height, width);
             manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             //instancie les donnees de la pause

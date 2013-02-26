@@ -286,15 +286,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\eve.png">
-      <Name>eve</Name>
+    <Compile Include="IA\tuc_jaune.png">
+      <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\tuc_jaune.png">
-      <Name>tuc_jaune</Name>
+    <Compile Include="IA\eve.png">
+      <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
