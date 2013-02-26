@@ -96,6 +96,7 @@ namespace Umea_rana
             Update_rec_collision();
             if (this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
+
                 if (tombe)
                     rectangle.Y += poid;
 
@@ -128,7 +129,22 @@ namespace Umea_rana
             if (dir == 1)
             {
                 this.Effects = SpriteEffects.None;
-                if (tombe == true)
+                if (vie == 0)
+                {
+                    FrameLine = 3;
+                    this.Timer++;
+                    if (FrameColumn == 4)
+                    {
+
+                    }
+                    else if (this.Timer == this.AnimationSpeed )
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+                        
+                    }
+                }
+                else if (tombe == true)
                 {
                     FrameColumn = 1;
                     FrameLine = 5;
@@ -165,7 +181,22 @@ namespace Umea_rana
             else if (dir == -1)
             {
                 this.Effects = SpriteEffects.FlipHorizontally;
-                if (tombe == true)
+                if (vie == 0)
+                {
+                    FrameLine = 3;
+                    this.Timer++;
+                    if (FrameColumn == 4)
+                    {
+
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+                }
+                else if (tombe == true)
                 {
                     FrameColumn = 1;
                     FrameLine = 5;
