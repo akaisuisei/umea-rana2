@@ -55,11 +55,11 @@ namespace Umea_rana
             FileStream file3 = null;
             XmlSerializer f = null, g = null, i = null;
             string sav = path + "\\" + foldername;
-            DirectoryInfo dir = new DirectoryInfo(path);
+            DirectoryInfo dir = new DirectoryInfo(sav);
             if (!dir.Exists)
                 dir.Create();
-            if (dir.Exists)
-            {
+          
+            
 
                 file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
                 f = new XmlSerializer(typeof(List<quaintuplet>));
@@ -73,8 +73,57 @@ namespace Umea_rana
                 i = new XmlSerializer(typeof(List<couple>));
                 i.Serialize(file3, ia_K);
                 file3.Close();
-            }
+            
         }
 
+        public void load(string foldername, ref List<quaintuplet> ia, ref List<quaintuplet> ia_V, ref List<couple> ia_K)
+        {
+            FileStream file1 = null;
+            FileStream file2 = null;
+            FileStream file3 = null;
+            XmlSerializer f = null, g = null, i = null;
+
+            DirectoryInfo dir = null;
+            dir = new DirectoryInfo(path + "\\" + foldername);
+            if (dir.Exists)
+            {
+                
+                
+                    file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Open, FileAccess.Read );
+                    f = new XmlSerializer(typeof(List<quaintuplet>));
+                    ia = (List<quaintuplet>)f.Deserialize(file1);
+                    file1.Close();
+                    file2 = new FileStream(dir.FullName + "\\ai_V" + ".xml", FileMode.Open, FileAccess.Read );
+                    g = new XmlSerializer(typeof(List<quaintuplet>));
+                    ia_V = (List<quaintuplet>)g.Deserialize(file2);
+                    file2.Close();
+                    file3 = new FileStream(dir.FullName + "\\ai_K" + ".xml", FileMode.Open, FileAccess.Read );
+                    i = new XmlSerializer(typeof(List<couple>));
+                    ia_K = (List<couple>)i.Deserialize(file3);
+                    file3.Close();
+                
+
+            }
+
+            
+        }
+
+        public string[] subdirectory()
+        {
+            string g ;
+            string [] hello=System.IO.Directory.GetDirectories(path);
+            for (int j =0;j<hello.Length ;++j)
+            {
+                g = string.Empty;
+                for (int i = 0; i < hello[j].Length; ++i)
+                {
+                    g += hello[j][i];
+                    if (hello[j][i] == '\\')
+                        g = string.Empty;
+                }
+                hello[j] = g;
+            }
+            return   hello ;
+        }
     }
 }

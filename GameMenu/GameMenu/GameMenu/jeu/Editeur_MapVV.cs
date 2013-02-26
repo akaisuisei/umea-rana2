@@ -19,7 +19,7 @@ namespace Umea_rana
         sripte_V vaisseau;
 
         KeyboardState oldkey;
-        Texture2D bacgkround1, aster_t;
+        Texture2D bacgkround1, background2, aster_t, planet1, star;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -71,14 +71,16 @@ namespace Umea_rana
 
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
-
+            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
+            planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
+            star = Content.Load<Texture2D>("IA/asteroid/star");
             //instancie le scolling
 
             scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 1, height);
 
            
-            manage_T = new IA_manager_T(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
-            manage_V = new IA_manager_V(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
+            manage_T = new IA_manager_T(planet1 , new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
+            manage_V = new IA_manager_V(star , new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
 

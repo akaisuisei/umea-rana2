@@ -14,7 +14,7 @@ namespace Umea_rana
     public partial class UserControl1 : Form
     {
         string life, speed, couleur, onglet1, onglet2, onglet3, onglet4, trajectoir, align, OK, firerate, end;
-        string imagefond, vitessefond, vitesseV, open, cancel, load, save,filepath,filepathlabel;
+        string imagefond, vitessefond, vitesseV, open, cancel, load, save, filepath, filepathlabel;
         System.Drawing.Color color2, color4;
         int width, height;
         int seconde;
@@ -26,6 +26,7 @@ namespace Umea_rana
         IA_manager_K manage_k;
         Sauveguarde sauve;
         savefile savefile;
+        List<string> subdirectory;
 
         public UserControl1(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k)
         {
@@ -43,12 +44,27 @@ namespace Umea_rana
             this.manage_V = manage_V;
             this.manage_k = manage_k;
             seconde = 0;
-            filepath = string.Empty; 
+            filepath = string.Empty;
             sauve = new Sauveguarde();
             savefile = new savefile();
             savefile.ia_Kamikaze = new List<couple>();
             savefile.ia_tireur = new List<quaintuplet>();
             savefile.ia_viseur = new List<quaintuplet>();
+            subdirectory = new List<string>();
+            button9.Enabled = false;
+            string[] hello = sauve.subdirectory();
+            if (hello.Length == 0)
+            {
+                comboBox2.Enabled = false;
+                comboBox2.Text = "vide";
+            }
+            else
+            {
+                foreach (string h in hello)
+                    comboBox2.Items.Add(h);
+                comboBox2.Enabled = true;
+                comboBox2.Text = "dossier existant";
+            }
         }
 
         public void _show(int X, int y)
@@ -158,22 +174,21 @@ namespace Umea_rana
         }
 
 
-        private void nameCheck(TextBox textbox)
+        private void nameCheck(ref TextBox textbox)
         {
             string text = string.Empty;
             if (textbox.Text != string.Empty)
             {
                 for (int i = 0; i < textbox.Text.Length && textbox.Text[i] != '.'; ++i)
                     text += textbox.Text[i];
+
+                textbox.BackColor = System.Drawing.Color.Green;
             }
-            textbox.BackColor = System.Drawing.Color.Green;
-            filepath  = text;
+            filepath = text;
+            textbox.Text = filepath;
 
         }
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-            nameCheck(textBox10);
-        }
+
 
         #endregion
 
@@ -305,7 +320,7 @@ namespace Umea_rana
                 couple.X = openX;
                 couple.Y = openY;
                 couple.seconde = seconde;
-                savefile.ia_Kamikaze.Add(couple );
+                savefile.ia_Kamikaze.Add(couple);
 
                 manage_k.Add(openX, openY, seconde);
                 this.hidou();
@@ -334,7 +349,7 @@ namespace Umea_rana
                 quaint.Y = openY;
                 quaint.seconde = seconde;
                 quaint.nombre = int.Parse(textBox3.Text);
-                
+
                 if (radioButton1.Checked)
                 {
 
@@ -344,7 +359,7 @@ namespace Umea_rana
                 }
                 else if (radioButton2.Checked)
                 {
-                    savefile.ia_viseur.Add(quaint );
+                    savefile.ia_viseur.Add(quaint);
                     manage_V.Add(openX, openY, seconde, int.Parse(textBox3.Text), new Microsoft.Xna.Framework.Color(color2.R, color2.B, color2.G, color2.A));
                     this.hidou();
                 }
@@ -366,16 +381,41 @@ namespace Umea_rana
 
 
         private void button9_Click(object sender, EventArgs e)// load
-        {
-
+        { 
+            
+            loadgame((string)  comboBox2.SelectedItem );
+            hidou();
         }
 
         #endregion
 
         private void savegame(string file_name)
         {
-            sauve.save(file_name, ref savefile.ia_tireur ,ref savefile.ia_viseur ,ref savefile.ia_Kamikaze   );
+            sauve.save(file_name, ref savefile.ia_tireur, ref savefile.ia_viseur, ref savefile.ia_Kamikaze);
         }
+
+        private void loadgame(string file_name)
+        {
+            sauve.load(file_name, ref savefile.ia_tireur, ref savefile.ia_viseur, ref savefile.ia_Kamikaze);
+
+            for (int i = 0; i < savefile.ia_tireur.Count; ++i)
+                manage_T.Add(savefile.ia_tireur[i].X, savefile.ia_tireur[i].Y, savefile.ia_tireur[i].seconde, savefile.ia_tireur[i].nombre, savefile.ia_tireur[i].color);
+            for (int i = 0; i < savefile.ia_viseur.Count; ++i)
+                manage_V.Add(savefile.ia_viseur[i].X, savefile.ia_viseur[i].Y,savefile . ia_viseur[i].seconde, savefile.ia_viseur[i].nombre, savefile.ia_viseur[i].color);
+            for (int i = 0; i < savefile.ia_Kamikaze.Count; ++i)
+                manage_k.Add(savefile.ia_Kamikaze[i].X, savefile.ia_Kamikaze[i].Y, savefile.ia_Kamikaze[i].seconde);
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            nameCheck(ref textBox10);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button9.Enabled = true;
+        }
+
 
     }
 }

@@ -33,12 +33,12 @@ Content\hero\fiches_sprite_allen.xnb
 Content\IA\asteroid\planet4.xnb
 Content\IA\naruto.xnb
 Content\Moteur à particule\particle2.xnb
-Content\IA\tuc_jaune.xnb
-Content\IA\eve.xnb
-Content\IA\asteroid\star.xnb
-Content\Menu\pause\fond_pause.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
+Content\IA\eve.xnb
+Content\IA\tuc_jaune.xnb
+Content\IA\asteroid\star.xnb
+Content\Menu\pause\fond_pause.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
