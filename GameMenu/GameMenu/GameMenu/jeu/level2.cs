@@ -158,7 +158,7 @@ namespace Umea_rana
             }
             else
             {
-                ParticleAdder.adder(game, Game1.gameState.Checkpause);
+                ParticleAdder.adder(game, Game1.gameState.Checkpause,height,width);
                 _pause.Update(game, audio, ref _checkpause);
             }
 

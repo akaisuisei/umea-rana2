@@ -14,7 +14,7 @@ namespace Umea_rana
 {
     public class ParticleAdder
     {
-        public static void adder(Game1 game,Game1.gameState _currentState)
+        public static void adder(Game1 game,Game1.gameState _currentState,int width,int height)
         {
             if ((_currentState == Game1.gameState.MainMenuState)||(_currentState==Game1.gameState.Pause))
             {
@@ -22,7 +22,7 @@ namespace Umea_rana
                 var settingsBlueFire = new ParticleSettings(300, new Color(100, 147, 237, 255), new Color(0, 1f, 1f, 0f), 200, 30, 1,
                 (v, t) => Vector2.UnitY * -5 + Vector2.UnitX * 2,
                 pos => pos + ParticleHelper.GetRandomVector() * 10, 2, 0.4f);
-                var BlueFire = new ParticlesMgr(game, settingsBlueFire) { Pos = new Vector2(640, 355) };
+                var BlueFire = new ParticlesMgr(game, settingsBlueFire) { Pos = new Vector2((float)width*0.5f, (float)height*0.45f) };
                 game.Components.Add(BlueFire);
             }
             if ((_currentState == Game1.gameState.Level1_state)||_currentState==Game1.gameState.Checkpause)
