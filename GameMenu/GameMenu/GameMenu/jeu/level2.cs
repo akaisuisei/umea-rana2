@@ -147,6 +147,8 @@ namespace Umea_rana
                 collision.collision_ia_sol(managerAA, ref platform_M);
 
                 collision.coll_AL_IA(manageS, ref allen);
+               collision.coll_AL_IA(managerAA , ref allen);
+                collision.coll_AL_IA(managerAR, ref allen);
                 //manager IA 
                 managerAR.Update(ref keyboard);
 

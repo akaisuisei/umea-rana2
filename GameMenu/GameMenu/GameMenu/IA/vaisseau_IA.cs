@@ -16,7 +16,7 @@ namespace Umea_rana
     {
 
         protected Texture2D _texture;
-        protected int _speed, width, front_sc, timer_lunch;
+        protected int _speed, width, front_sc, timer_lunch, normalspeed;
         public int dir;
 
         public Bullet_manager bullet;

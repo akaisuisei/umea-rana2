@@ -15,7 +15,7 @@ namespace Umea_rana
     {
         int FrameLine;
         int FrameColumn;
-        SpriteEffects Effects;        
+        SpriteEffects Effects;
         int Timer;
         int AnimationSpeed = 10;
 
@@ -28,11 +28,12 @@ namespace Umea_rana
         int FrameColumn3;
         SpriteEffects Effects3;
         int Timer3;
-        
+
 
         int window_W, window_H;
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime, int id)
         {
+
             this.rectangle_C = n_rectangle;
 
             decallageX = 0; decallageY = 0;
@@ -49,6 +50,7 @@ namespace Umea_rana
             this.window_W = window_W;
             tombe = true;
             _speed = speed;
+            normalspeed = speed;
             poid = 10;
             this.dir = 1;
             this.front_sc = front_sc;
@@ -94,23 +96,26 @@ namespace Umea_rana
             Update_rec_collision();
             if (this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
-               
-
-
                 if (tombe)
                     rectangle.Y += poid;
-                if (rectangle_C.Center.X - _speed > sprite.rectangle_C.Center.X)
-                {
-                    rectangle.X -= _speed;
-                    dir = -1;
-                }
-                else if (rectangle_C.Center.X + _speed < sprite.rectangle_C.Center.X)
-                {
-                    rectangle.X += _speed;
-                    dir = 1;
-                }
 
-            } 
+                if (rectangle_C.Center.X  - longueur_attaque/2 > sprite.rectangle_C.Center.X )
+                {
+                    dir = -1;
+                    _speed = normalspeed;
+                }
+                else
+                 if (rectangle_C.Center.X  + longueur_attaque/2< sprite.rectangle_C.Center.X )
+                {
+                    dir = 1;
+                    _speed = normalspeed;
+                }
+                 else
+                     _speed = 0;
+               
+                rectangle.X += dir * _speed;
+
+            }
             if (keyboard.IsKeyDown(Keys.Right))
                 rectangle.X -= front_sc;
             if (keyboard.IsKeyDown(Keys.Left))
@@ -157,13 +162,27 @@ namespace Umea_rana
                     }
                 }
             }
-            else if (dir== -1)
+            else if (dir == -1)
             {
                 this.Effects = SpriteEffects.FlipHorizontally;
                 if (tombe == true)
                 {
                     FrameColumn = 1;
                     FrameLine = 5;
+                }
+                 else if (this.attaque == true)
+                {
+                    FrameLine = 4;
+                    this.Timer++;
+                    if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+                        if (FrameColumn > 6)
+                        {
+                            FrameColumn = 1;
+                        }
+                    }
                 }
                 else
                 {
@@ -177,11 +196,11 @@ namespace Umea_rana
                         {
                             FrameColumn = 1;
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
             }
         }
         // le debile ki avnace et recule
@@ -192,7 +211,7 @@ namespace Umea_rana
                 if (tombe)
                 {
                     rectangle.Y += poid;
-                    
+
                 }
                 rectangle.X += dir * _speed;
             }
@@ -204,11 +223,11 @@ namespace Umea_rana
             {
                 this.Effects2 = SpriteEffects.None;
                 FrameLine2 = 2;
-                this.Timer2 ++;
+                this.Timer2++;
                 if (this.Timer2 == this.AnimationSpeed)
                 {
                     this.Timer2 = 0;
-                    this.FrameColumn2 ++;
+                    this.FrameColumn2++;
                     if (FrameColumn2 > 4)
                     {
                         FrameColumn2 = 1;
@@ -237,10 +256,10 @@ namespace Umea_rana
 
 
 
-            
+
         }
         // le bon kamikaze
-        public void Update_Kamikaze(objet sprite,ref int gameTime)
+        public void Update_Kamikaze(objet sprite, ref int gameTime)
         {
             if (timer_lunch <= gameTime)
             {
@@ -291,7 +310,7 @@ namespace Umea_rana
                         this.FrameColumn3++;
                         if (FrameColumn3 > 4)
                         {
-                            
+
                             FrameColumn3 = 1;
                         }
                     }

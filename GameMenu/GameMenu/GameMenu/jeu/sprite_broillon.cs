@@ -23,7 +23,7 @@ namespace Umea_rana
    
         Texture2D texture;
         Collision collision;
-        public bool jump_ok, jump_off;
+        public bool jump_ok, jump_off,atq;
         bool in_air;
         public int impulse, pos_marche;
         Song marchell;
@@ -66,6 +66,7 @@ namespace Umea_rana
             decallageY = 31;
 
             upsidedown = 10;
+            atq = false;
         }
 
         public void update(KeyboardState keyboard)
@@ -91,6 +92,10 @@ namespace Umea_rana
             {
                 collision.jump(this);
             }
+            if (keyboard.IsKeyDown(Keys.X))
+                atq = true;
+            else
+                atq = false;
 
             this.AnimSprite(keyboard);
             Update_rec_collision();

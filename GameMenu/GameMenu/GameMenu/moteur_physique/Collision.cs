@@ -15,7 +15,7 @@ namespace Umea_rana
 {
     public class Collision
     {
-        
+
         public Collision()
         {
         }
@@ -122,22 +122,22 @@ namespace Umea_rana
             }
         }
         #endregion
-      
+
 
         // saut non fini
         public void jump(sprite_broillon sprite)
         {
-            int i=10;
+            int i = 10;
             if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
             {
                 sprite.rectangle.Y -= (i + sprite.poid);
                 sprite.jump_off = true;
-              
+
             }
             if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
             {
-                sprite.jump_off = false; 
-            
+                sprite.jump_off = false;
+
             }
         }
         #region collisionshout em up
@@ -181,32 +181,42 @@ namespace Umea_rana
             {
                 if (ia_manage.Ia_manage[i].rectangle_C.Bottom > sprite.rectangle_C.Top && sprite.rectangle_C.Bottom > ia_manage.Ia_manage[i].rectangle_C.Top)
                 {// attaque vers droite
-                    if (ia_manage.Ia_manage[i].dir == 1 &&
-                        ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Left &&
-                        ia_manage.Ia_manage[i].rectangle_C.Right > sprite.rectangle_C.Left)
+                    if (!sprite.atq)
                     {
-                        sprite.vie--;
-                        //bool pr dire qd on attaque
-                        ia_manage.Ia_manage[i].attaque = true;
-                    }
-                    // attaque vers la gauche-
-                    else if (ia_manage.Ia_manage[i].dir == -1 &&
-                        ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque < sprite.rectangle_C.Right&&
-                        ia_manage.Ia_manage[i].rectangle_C.Left  > sprite.rectangle_C.Right)
-                    {
-                        sprite.vie--;
-                        //bool pr attaquer
-                        ia_manage.Ia_manage[i].attaque = true;
-                    }
-                    else   if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
-                    {
-                        --ia_manage.Ia_manage[i].vie;
-                    }
-                    else if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
-                    {
-                        --ia_manage.Ia_manage[i].vie;
-                    }
+                        if (ia_manage.Ia_manage[i].dir == 1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque >= sprite.rectangle_C.Left &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right < sprite.rectangle_C.Left)
+                        {
+                            sprite.vie--;
+                            //bool pr dire qd on attaque
+                            ia_manage.Ia_manage[i].attaque = true;
+                        }
+                        // attaque vers la gauche-
+                        else if (ia_manage.Ia_manage[i].dir == -1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque <= sprite.rectangle_C.Right &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right)
+                        {
+                            sprite.vie--;
+                            //bool pr attaquer
+                            ia_manage.Ia_manage[i].attaque = true;
 
+                        }else
+                            ia_manage.Ia_manage[i].attaque = false;
+                    }
+                    else
+                    {
+                        ia_manage.Ia_manage[i].attaque = false;
+                        if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Right + 10 > sprite.rectangle_C.Left)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+                        else if (sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - 10 < sprite.rectangle_C.Right)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+
+                        
+                    }
                 }
                 else
                 ia_manage.Ia_manage[i].attaque = false;
@@ -224,7 +234,7 @@ namespace Umea_rana
                     }
         }
         #endregion
-        
+
 
     }
 }
