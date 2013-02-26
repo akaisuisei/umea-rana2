@@ -23,7 +23,11 @@ namespace Umea_rana
         int FrameColumn2;
         SpriteEffects Effects2;
         int Timer2;
-        
+
+        int FrameLine3;
+        int FrameColumn3;
+        SpriteEffects Effects3;
+        int Timer3;
         
 
         int window_W, window_H;
@@ -53,6 +57,15 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
+
+            this.FrameLine2 = 1;
+            this.FrameColumn2 = 1;
+            this.Timer2 = 0;
+
+            this.FrameLine3 = 1;
+            this.FrameColumn3 = 1;
+            this.Timer3 = 0;
+
             switch (id)
             {
                 case 0://kamikaze
@@ -190,11 +203,35 @@ namespace Umea_rana
             if (dir == 1)
             {
                 this.Effects2 = SpriteEffects.None;
+                FrameLine2 = 2;
+                this.Timer2 ++;
+                if (this.Timer2 == this.AnimationSpeed)
+                {
+                    this.Timer2 = 0;
+                    this.FrameColumn2 ++;
+                    if (FrameColumn2 > 4)
+                    {
+                        FrameColumn2 = 1;
+                    }
+
+                }
             }
 
             else if (dir == -1)
             {
                 this.Effects2 = SpriteEffects.FlipHorizontally;
+                FrameLine2 = 2;
+                this.Timer2++;
+                if (this.Timer2 == this.AnimationSpeed)
+                {
+                    this.Timer2 = 0;
+                    this.FrameColumn2++;
+                    if (FrameColumn2 > 4)
+                    {
+                        FrameColumn2 = 1;
+                    }
+
+                }
             }
             Update_rec_collision();
 
@@ -236,6 +273,55 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
 
+            if (dir == -1)
+            {
+                this.Effects3 = SpriteEffects.None;
+                if (tombe)
+                {
+                    FrameLine3 = 5;
+                    FrameColumn3 = 1;
+                }
+                else
+                {
+                    FrameLine3 = 2;
+                    this.Timer3++;
+                    if (this.Timer3 == this.AnimationSpeed)
+                    {
+                        this.Timer3 = 0;
+                        this.FrameColumn3++;
+                        if (FrameColumn3 > 4)
+                        {
+                            
+                            FrameColumn3 = 1;
+                        }
+                    }
+                }
+            }
+
+            else if (dir == 1)
+            {
+                this.Effects3 = SpriteEffects.FlipHorizontally;
+                if (tombe)
+                {
+                    FrameLine3 = 5;
+                    FrameColumn3 = 1;
+                }
+                else
+                {
+                    FrameLine3 = 2;
+                    this.Timer3++;
+                    if (this.Timer3 == this.AnimationSpeed)
+                    {
+                        this.Timer3 = 0;
+                        this.FrameColumn3++;
+                        if (FrameColumn3 > 4)
+                        {
+                            FrameColumn3 = 1;
+                        }
+                    }
+                }
+            }
+
         }
 
 
@@ -251,7 +337,12 @@ namespace Umea_rana
 
         public void Draw_AR(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 130, (this.FrameLine - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.Effects2, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn2 - 1) * 130, (this.FrameLine2 - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.Effects2, 0f);
+        }
+
+        public void Draw_AA(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn3 - 1) * 90, (this.FrameLine3 - 1) * 63, 90, 63), Color.White, 0f, new Vector2(0, 0), this.Effects3, 0f);
         }
     }
 }
