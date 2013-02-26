@@ -70,8 +70,7 @@ namespace Umea_rana
             manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            for (int i = 0; i < 100; ++i)
-            {
+           
                 // ajout ia aller retour (X,Y)
                 managerAR.Add(1.1f, 0);
                 managerAR.Add(0.5f, 0.5f);
@@ -84,10 +83,8 @@ namespace Umea_rana
                 managerAA.Add(-0.58f, 0f);
                 // ajout des ia Stalker (X,Y)
                 manageS.Add(1.15f, 0);
-                manageS.Add(0.57f, 0.5f);
-                manageS.Add(2.18f, 0.5f);
-                manageS.Add(-0.5f, 0f);
-            }
+
+            
 
 
             // ajout platform (position X,position Y, nombre de plateforme juxtaposer)

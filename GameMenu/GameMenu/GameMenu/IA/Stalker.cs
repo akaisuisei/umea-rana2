@@ -74,6 +74,7 @@ namespace Umea_rana
 
                     decallageX = 0; decallageY = 0;
                     hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    longueur_attaque = 100;
                     break;
 
                 case 1:// stalker
@@ -82,10 +83,14 @@ namespace Umea_rana
                     longueur_attaque = 100;
                     break;
                 case 2:// ia AR
-
+                    decallageX = 0; decallageY = 0;
+                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    longueur_attaque = 2;
+                    break;
                 default:// iaAA
                     decallageX = 0; decallageY = 0;
                     hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+                    longueur_attaque = 100;
                     break;
 
             }
@@ -94,7 +99,7 @@ namespace Umea_rana
         public void Update(objet sprite, ref KeyboardState keyboard)
         {
             Update_rec_collision();
-            if (this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie>=0 && this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
 
                 if (tombe)
@@ -129,65 +134,55 @@ namespace Umea_rana
             if (dir == 1)
             {
                 this.Effects = SpriteEffects.None;
-                if (vie == 0)
+                
+                if (vie >= 0)
                 {
-                    FrameLine = 3;
-                    this.Timer++;
-                    if (FrameColumn == 4)
+                    if (tombe == true)
                     {
-
+                        FrameColumn = 1;
+                        FrameLine = 5;
                     }
-                    else if (this.Timer == this.AnimationSpeed )
+                    else if (this.attaque == true)
                     {
-                        this.Timer = 0;
-                        this.FrameColumn++;
-                        
-                    }
-                }
-                else if (tombe == true)
-                {
-                    FrameColumn = 1;
-                    FrameLine = 5;
-                }
-                else if (this.attaque == true)
-                {
-                    FrameLine = 4;
-                    this.Timer++;
-                    if (this.Timer == this.AnimationSpeed)
-                    {
-                        this.Timer = 0;
-                        this.FrameColumn++;
-                        if (FrameColumn > 6)
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            FrameColumn = 1;
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 6)
+                            {
+                                FrameColumn = 1;
+                            }
+                        }
+                    }
+                    else 
+                    {
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 4)
+                            {
+                                FrameColumn = 1;
+                            }
                         }
                     }
                 }
+
                 else
                 {
-                    FrameLine = 2;
-                    this.Timer++;
-                    if (this.Timer == this.AnimationSpeed)
-                    {
-                        this.Timer = 0;
-                        this.FrameColumn++;
-                        if (FrameColumn > 4)
-                        {
-                            FrameColumn = 1;
-                        }
-                    }
-                }
-            }
-            else if (dir == -1)
-            {
-                this.Effects = SpriteEffects.FlipHorizontally;
-                if (vie == 0)
-                {
                     FrameLine = 3;
                     this.Timer++;
                     if (FrameColumn == 4)
                     {
 
+                    }
+                    else if (FrameColumn > 4)
+                    {
+                        FrameColumn = 1;
                     }
                     else if (this.Timer == this.AnimationSpeed)
                     {
@@ -196,91 +191,196 @@ namespace Umea_rana
 
                     }
                 }
-                else if (tombe == true)
+            }
+            else if (dir == -1)
+            {
+                this.Effects = SpriteEffects.FlipHorizontally;
+                
+                if (vie >= 0)
                 {
-                    FrameColumn = 1;
-                    FrameLine = 5;
-                }
-                 else if (this.attaque == true)
-                {
-                    FrameLine = 4;
-                    this.Timer++;
-                    if (this.Timer == this.AnimationSpeed)
+                    if (tombe == true)
                     {
-                        this.Timer = 0;
-                        this.FrameColumn++;
-                        if (FrameColumn > 6)
+                        FrameColumn = 1;
+                        FrameLine = 5;
+                    }
+                    else if (this.attaque == true)
+                    {
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            FrameColumn = 1;
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 6)
+                            {
+                                FrameColumn = 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 4)
+                            {
+                                FrameColumn = 1;
+                            }
                         }
                     }
                 }
+
                 else
                 {
-                    FrameLine = 2;
+                    FrameLine = 3;
                     this.Timer++;
-                    if (this.Timer == this.AnimationSpeed)
+                    if (FrameColumn == 4)
+                    {
+
+                    }
+                    else if (FrameColumn > 4)
+                    {
+                        FrameColumn = 1;
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
                     {
                         this.Timer = 0;
                         this.FrameColumn++;
-                        if (FrameColumn > 4)
-                        {
-                            FrameColumn = 1;
-                        }
 
                     }
-
                 }
-
             }
         }
         // le debile ki avnace et recule
         public void UpdateAR(ref KeyboardState keyboard)
         {
-            if (this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie != 0 && this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (tombe)
                 {
                     rectangle.Y += poid;
 
                 }
+                if(!attaque )
                 rectangle.X += dir * _speed;
             }
             if (keyboard.IsKeyDown(Keys.Right))
                 rectangle.X -= front_sc;
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
+            
             if (dir == 1)
             {
                 this.Effects2 = SpriteEffects.None;
-                FrameLine2 = 2;
-                this.Timer2++;
-                if (this.Timer2 == this.AnimationSpeed)
+                if (vie != 0)
                 {
-                    this.Timer2 = 0;
-                    this.FrameColumn2++;
-                    if (FrameColumn2 > 4)
+                    if (this.attaque == true)
+                    {
+                        FrameLine2 = 4;
+                        this.Timer2++;
+                        if (this.Timer2 == this.AnimationSpeed)
+                        {
+                            this.Timer2 = 0;
+                            this.FrameColumn2++;
+                            if (FrameColumn2 > 10)
+                            {
+                                FrameColumn2 = 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FrameLine2 = 2;
+                        this.Timer2++;
+                        if (this.Timer2 == this.AnimationSpeed)
+                        {
+                            this.Timer2 = 0;
+                            this.FrameColumn2++;
+                            if (FrameColumn2 > 4)
+                            {
+                                FrameColumn2 = 1;
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    FrameLine2 = 3;
+                    this.Timer2++;
+                    if (FrameColumn2 == 4)
+                    {
+
+                    }
+                    else if (FrameColumn2 > 4)
                     {
                         FrameColumn2 = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer2 = 0;
+                        this.FrameColumn2++;
 
+                    }
                 }
             }
 
             else if (dir == -1)
             {
                 this.Effects2 = SpriteEffects.FlipHorizontally;
-                FrameLine2 = 2;
-                this.Timer2++;
-                if (this.Timer2 == this.AnimationSpeed)
+                if (vie != 0)
                 {
-                    this.Timer2 = 0;
-                    this.FrameColumn2++;
-                    if (FrameColumn2 > 4)
+                    if (this.attaque == true)
+                    {
+                        FrameLine2 = 4;
+                        this.Timer2++;
+                        if (this.Timer2 == this.AnimationSpeed)
+                        {
+                            this.Timer2 = 0;
+                            this.FrameColumn2++;
+                            if (FrameColumn2 > 10)
+                            {
+                                FrameColumn2 = 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FrameLine2 = 2;
+                        this.Timer2++;
+                        if (this.Timer2 == this.AnimationSpeed)
+                        {
+                            this.Timer2 = 0;
+                            this.FrameColumn2++;
+                            if (FrameColumn2 > 4)
+                            {
+                                FrameColumn2 = 1;
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    FrameLine2 = 3;
+                    this.Timer2++;
+                    if (FrameColumn2 == 4)
+                    {
+
+                    }
+                    else if (FrameColumn2 > 4)
                     {
                         FrameColumn2 = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer2 = 0;
+                        this.FrameColumn2++;
 
+                    }
                 }
             }
             Update_rec_collision();
@@ -314,6 +414,7 @@ namespace Umea_rana
 
             if (this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
+                if (attaque == false)
                 rectangle.X -= _speed;
                 if (tombe)
                     rectangle.Y += poid;
@@ -382,7 +483,7 @@ namespace Umea_rana
 
         public void Draw_S(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 143, (this.FrameLine - 1) * 72, 143, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 150, (this.FrameLine - 1) * 72, 150, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
 
         public void Draw_AR(SpriteBatch spritebatch)
