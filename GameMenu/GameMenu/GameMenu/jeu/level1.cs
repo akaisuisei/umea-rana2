@@ -158,7 +158,10 @@ namespace Umea_rana
                 timer--;
             }
             else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
                 _pause.Update(game, audio, ref _checkpause);
+            }
 
 
 
@@ -172,7 +175,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (_checkpause == false)
+            if (_checkpause==false)
             {
                 //scrolling
                 scrolling1.Draw(spriteBatch);
@@ -184,7 +187,16 @@ namespace Umea_rana
                 manage_k.Draw(spriteBatch);
             }
             else
+            {
+                scrolling1.Draw(spriteBatch);
+                vaisseau.Draw(spriteBatch);
+                scrolling2.Draw(spriteBatch);
+                aster.Draw(spriteBatch);
+                manage_T.Draw(spriteBatch);
+                manage_V.Draw(spriteBatch);
+                manage_k.Draw(spriteBatch);
                 _pause.Draw(spriteBatch);
+            }
         }
     }
 }

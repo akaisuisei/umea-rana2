@@ -89,6 +89,7 @@ namespace Umea_rana
             {
                 if (select == 0)// selection menu
                 {
+                    game.ChangeState2(Game1.gameState.Null);
                     MediaPlayer.Stop();
                     checkpause = false;
                     System.Threading.Thread.Sleep(200);
@@ -109,7 +110,7 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, rectangle, Color.White * 0.05f);
+            spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(continuer, coordonnees_continuer, Color.White);
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
