@@ -56,7 +56,7 @@ namespace Umea_rana
 
         protected override void Initialize()
         {
-            ParticleAdder.adder(this, _currentState);
+            ParticleAdder.adder(this, _currentState,width,height);
             try
             {
                 StateManager[_currentState].Initialize(graphics);
