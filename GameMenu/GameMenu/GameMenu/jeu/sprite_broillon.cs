@@ -123,7 +123,7 @@ namespace Umea_rana
 
             
             this.Effects = SpriteEffects.None;
-            if (vie != 0)
+            if (vie > 0)
             {
                 if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
                 {
@@ -204,10 +204,10 @@ namespace Umea_rana
                 }
             }
 
-            else 
+            else if (vie <= 0)
             {
 
-                FrameLine = 5;
+                FrameLine = 6;
                 this.Timer++;
                 if (FrameColumn == 5)
                 {
@@ -238,7 +238,7 @@ namespace Umea_rana
                     this.Effects = SpriteEffects.None;
                 }
 
-            if ((vie != 0)&&(keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
+            if ((vie > 0)&&(keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
                 (keyboard.IsKeyDown(Keys.Left)&&keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
             {
                 this.FrameLine = 1;
