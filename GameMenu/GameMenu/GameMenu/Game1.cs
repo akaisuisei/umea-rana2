@@ -25,6 +25,7 @@ namespace Umea_rana
         DisplayMode displaymode;
         public SoundEffect menu_cursor;
         public SoundEffect menu_select;
+        public float vol = 0.3f;
         public Game1()
         {
             //display
@@ -50,11 +51,12 @@ namespace Umea_rana
             StateManager.Add(gameState.level2, new level1(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
-            StateManager.Add(gameState.Editeur_mapVV ,new Editeur_MapVV(this,graphics,Content)); 
+            StateManager.Add(gameState.Editeur_mapVV ,new Editeur_MapVV(this,graphics,Content));
         }
 
         protected override void Initialize()
         {
+            SoundEffect.MasterVolume = vol;
             ParticleAdder.adder(this, _currentState,width,height);
             try
             {
