@@ -204,16 +204,16 @@ namespace Umea_rana
                 }
             }
 
-            else
+            else 
             {
 
-                FrameLine = 3;
+                FrameLine = 5;
                 this.Timer++;
-                if (FrameColumn == 4)
+                if (FrameColumn == 5)
                 {
 
                 }
-                else if (FrameColumn > 4)
+                else if (FrameColumn > 5)
                 {
                     FrameColumn = 1;
                 }
