@@ -278,8 +278,10 @@ namespace Umea_rana
             {
                 decallageX = 54;
                 this.Effects2 = SpriteEffects.None;
+
                 if (vie >= 0)
                 {
+
                     if (this.attaque == true)
                     {
                         FrameLine2 = 4;
@@ -306,7 +308,6 @@ namespace Umea_rana
                             {
                                 FrameColumn2 = 1;
                             }
-
                         }
                     }
                 }
@@ -322,7 +323,7 @@ namespace Umea_rana
                     {
                         FrameColumn2 = 1;
                     }
-                    else if (this.Timer == this.AnimationSpeed)
+                    else if (this.Timer2 == this.AnimationSpeed)
                     {
                         this.Timer2 = 0;
                         this.FrameColumn2++;
@@ -335,8 +336,10 @@ namespace Umea_rana
             {
                 decallageX = 23;
                 this.Effects2 = SpriteEffects.FlipHorizontally;
+
                 if (vie >= 0)
                 {
+
                     if (this.attaque == true)
                     {
                         FrameLine2 = 4;
@@ -363,7 +366,6 @@ namespace Umea_rana
                             {
                                 FrameColumn2 = 1;
                             }
-
                         }
                     }
                 }
@@ -379,7 +381,7 @@ namespace Umea_rana
                     {
                         FrameColumn2 = 1;
                     }
-                    else if (this.Timer == this.AnimationSpeed)
+                    else if (this.Timer2 == this.AnimationSpeed)
                     {
                         this.Timer2 = 0;
                         this.FrameColumn2++;
@@ -431,49 +433,124 @@ namespace Umea_rana
             if (dir == 1)
             {
                 this.Effects3 = SpriteEffects.None;
-                if (tombe)
+                if (vie >= 0)
                 {
-                    FrameLine3 = 5;
-                    FrameColumn3 = 1;
+                    if (tombe == true)
+                    {
+                        FrameColumn3 = 1;
+                        FrameLine3 = 5;
+                    }
+                    else if (this.attaque == true)
+                    {
+                        FrameLine3 = 4;
+                        this.Timer3++;
+                        if (this.Timer3 == this.AnimationSpeed)
+                        {
+                            this.Timer3 = 0;
+                            this.FrameColumn3++;
+                            if (FrameColumn3 > 6)
+                            {
+                                FrameColumn3 = 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FrameLine3 = 2;
+                        this.Timer3++;
+                        if (this.Timer3 == this.AnimationSpeed)
+                        {
+                            this.Timer3 = 0;
+                            this.FrameColumn3++;
+                            if (FrameColumn3 > 4)
+                            {
+                                FrameColumn3 = 1;
+                            }
+                        }
+                    }
                 }
+
                 else
                 {
-                    FrameLine3 = 2;
-                    this.Timer3++;
-                    if (this.Timer3 == this.AnimationSpeed)
+                    FrameLine3 = 3;
+                    FrameColumn3 = 4;
+                    this.Timer++;
+                    /*if (FrameColumn3 == 4)
+                    {
+
+                    }
+                    else if (FrameColumn3 > 4)
+                    {
+                        FrameColumn3 = 1;
+                    }
+                    else if (this.Timer3 == this.AnimationSpeed)
                     {
                         this.Timer3 = 0;
                         this.FrameColumn3++;
-                        if (FrameColumn3 > 4)
-                        {
 
-                            FrameColumn3 = 1;
-                        }
-                    }
+                    }*/
                 }
             }
 
             else if (dir == -1)
             {
                 this.Effects3 = SpriteEffects.FlipHorizontally;
-                if (tombe)
+                if (vie >= 0)
                 {
-                    FrameLine3 = 5;
-                    FrameColumn3 = 1;
+                    if (tombe == true)
+                    {
+                        FrameColumn3 = 1;
+                        FrameLine3 = 5;
+                    }
+                    else if (this.attaque == true)
+                    {
+                        FrameLine3 = 4;
+                        this.Timer3++;
+                        if (this.Timer3 == this.AnimationSpeed)
+                        {
+                            this.Timer3 = 0;
+                            this.FrameColumn3++;
+                            if (FrameColumn3 > 6)
+                            {
+                                FrameColumn3 = 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FrameLine3 = 2;
+                        this.Timer3++;
+                        if (this.Timer3 == this.AnimationSpeed)
+                        {
+                            this.Timer3 = 0;
+                            this.FrameColumn3++;
+                            if (FrameColumn3 > 4)
+                            {
+                                FrameColumn3 = 1;
+                            }
+                        }
+                    }
                 }
+
                 else
                 {
-                    FrameLine3 = 2;
-                    this.Timer3++;
-                    if (this.Timer3 == this.AnimationSpeed)
+                    FrameLine3 = 3;
+                    FrameColumn3 = 4;
+                    /*this.Timer++;
+                    if (FrameColumn3 == 4)
+                    {
+
+                    }
+                    else if (FrameColumn3 > 4)
+                    {
+                        FrameColumn3 = 1;
+                    }
+                    else if (this.Timer3 == this.AnimationSpeed)
                     {
                         this.Timer3 = 0;
                         this.FrameColumn3++;
-                        if (FrameColumn3 > 4)
-                        {
-                            FrameColumn3 = 1;
-                        }
-                    }
+
+                    }*/
                 }
             }
 

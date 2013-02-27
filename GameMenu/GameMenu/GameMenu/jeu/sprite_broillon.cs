@@ -123,82 +123,106 @@ namespace Umea_rana
 
             
             this.Effects = SpriteEffects.None;
-            if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
+            if (vie != 0)
             {
+                if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
+                {
 
-                dir = true;
-                this.FrameLine = 2;
-                this.Direction = Direction.Left;
-                this.Animate();
+                    dir = true;
+                    this.FrameLine = 2;
+                    this.Direction = Direction.Left;
+                    this.Animate();
 
 
-            }
-            else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la gauche
-            {
+                }
+                else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la gauche
+                {
 
-                dir = true;
-                if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                    dir = true;
+                    if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                    {
+                        this.FrameColumn = 1;
+                        this.FrameLine = 5;
+                    }
+                    else                              //phase ascendante
+                    {
+                        this.FrameColumn = 1;
+                        this.FrameLine = 3;
+                    }
+                    this.Direction = Direction.Left;
+
+                }
+
+                else if (keyboard.IsKeyDown(Keys.Right) && in_air == false) //court vers la droite
+                {
+
+                    dir = false;
+                    this.FrameLine = 2;
+                    this.Direction = Direction.Right;
+                    this.Animate();
+
+
+                }
+                else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la droite
+                {
+
+                    dir = false;
+                    if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
+                    {
+                        this.FrameColumn = 1;
+                        this.FrameLine = 5;
+                    }
+                    else                               //phase ascendante
+                    {
+                        this.FrameColumn = 1;
+                        this.FrameLine = 3;
+                    }
+                    this.Direction = Direction.Right;
+
+                }
+
+                else if (keyboard.IsKeyDown(Keys.X)) //attaque
+                {
+                    this.FrameLine = 8;
+                    this.Animate();
+                }
+                else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off) //saut phase descendante
                 {
                     this.FrameColumn = 1;
                     this.FrameLine = 5;
+
                 }
-                else                              //phase ascendante
+                else if (keyboard.IsKeyDown(Keys.Space) && chute == false) //saut phase ascendante
                 {
-                    this.FrameColumn = 1;
                     this.FrameLine = 3;
-                }
-                this.Direction = Direction.Left;
-                
-            }
-
-            else if (keyboard.IsKeyDown(Keys.Right) && in_air == false) //court vers la droite
-            {
-
-                dir = false;
-                this.FrameLine = 2;
-                this.Direction = Direction.Right;
-                this.Animate();
-
-
-            }
-            else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la droite
-            {
-
-                dir = false;
-                if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
-                {
                     this.FrameColumn = 1;
-                    this.FrameLine = 5;
                 }
-                else                               //phase ascendante
+                else if (keyboard.IsKeyDown(Keys.Space) && chute == true) //saut phase ascendante complément ?
                 {
-                    this.FrameColumn = 1;
                     this.FrameLine = 3;
+                    this.FrameColumn = 1;
                 }
-                this.Direction = Direction.Right;
-
             }
 
-            else if (keyboard.IsKeyDown(Keys.X)) //attaque
+            else
             {
-                this.FrameLine = 8;
-                this.Animate();
-            }
-            else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off) //saut phase descendante
-            {
-                this.FrameColumn = 1;
-                this.FrameLine = 5;
 
-            }
-            else if (keyboard.IsKeyDown(Keys.Space) && chute == false) //saut phase ascendante
-            {
-                this.FrameLine = 3;
-                this.FrameColumn = 1;
-            }
-            else if (keyboard.IsKeyDown(Keys.Space) && chute == true) //saut phase ascendante complément ?
-            {
-                this.FrameLine = 3;
-                this.FrameColumn = 1;
+                FrameLine = 3;
+                this.Timer++;
+                if (FrameColumn == 4)
+                {
+
+                }
+                else if (FrameColumn > 4)
+                {
+                    FrameColumn = 1;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+
+                }
             }
 
             
@@ -214,7 +238,7 @@ namespace Umea_rana
                     this.Effects = SpriteEffects.None;
                 }
 
-            if ((keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
+            if ((vie != 0)&&(keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
                 (keyboard.IsKeyDown(Keys.Left)&&keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
             {
                 this.FrameLine = 1;
