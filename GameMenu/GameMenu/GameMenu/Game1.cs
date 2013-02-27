@@ -23,7 +23,7 @@ namespace Umea_rana
         int height, width;
         Audio audio;
         DisplayMode displaymode;
-
+        public string path = "test";
         public Game1()
         {
             //display
@@ -50,7 +50,7 @@ namespace Umea_rana
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV ,new Editeur_MapVV(this,graphics,Content));
-
+            StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             
         }
 
@@ -116,6 +116,7 @@ namespace Umea_rana
             Initialisateur,
             Checkpause,
             Editeur_mapVV,
+            leveleditor,
             Null,
         }
 
