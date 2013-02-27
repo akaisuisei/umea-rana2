@@ -346,7 +346,7 @@ namespace Umea_rana
                 quaintuplet quaint = new quaintuplet();
                 quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.B, color2.G, color2.A);
                 quaint.X = openX;
-                quaint.Y = openY;
+                quaint.Y = openY-1;
                 quaint.seconde = seconde;
                 quaint.nombre = int.Parse(textBox3.Text);
 
@@ -399,7 +399,7 @@ namespace Umea_rana
             sauve.load(file_name, ref savefile.ia_tireur, ref savefile.ia_viseur, ref savefile.ia_Kamikaze);
 
             for (int i = 0; i < savefile.ia_tireur.Count; ++i)
-                manage_T.Add(savefile.ia_tireur[i].X, savefile.ia_tireur[i].Y, savefile.ia_tireur[i].seconde, savefile.ia_tireur[i].nombre, savefile.ia_tireur[i].color);
+                manage_T.Add(savefile.ia_tireur[i].X, savefile.ia_tireur[i].Y+1, savefile.ia_tireur[i].seconde, savefile.ia_tireur[i].nombre, savefile.ia_tireur[i].color);
             for (int i = 0; i < savefile.ia_viseur.Count; ++i)
                 manage_V.Add(savefile.ia_viseur[i].X, savefile.ia_viseur[i].Y,savefile . ia_viseur[i].seconde, savefile.ia_viseur[i].nombre, savefile.ia_viseur[i].color);
             for (int i = 0; i < savefile.ia_Kamikaze.Count; ++i)
