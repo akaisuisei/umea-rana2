@@ -28,19 +28,18 @@ namespace Umea_rana
         int FrameColumn3;
         SpriteEffects Effects3;
         int Timer3;
-
+ 
 
         int window_W, window_H;
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime, int id)
         {
-
+            
             this.rectangle_C = n_rectangle;
 
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
 
             this.rectangle = n_rectangle;
-
 
             this._texture = n_textture;
             Ia_color = Color.AliceBlue;
@@ -78,19 +77,20 @@ namespace Umea_rana
                     break;
 
                 case 1:// stalker
-                    decallageX = 72; decallageY = 36;
-                    hauteurY = rectangle.Height - decalageY - 10; largeurX = 37;
-                    longueur_attaque = 100;
+                    decallageX =32; decallageY = 36;
+                    hauteurY = rectangle.Height - decalageY - 13; largeurX = 37;
+                    longueur_attaque = 20;
                     break;
                 case 2:// ia AR
-                    decallageX = 0; decallageY = 0;
-                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
-                    longueur_attaque = 2;
+                    decallageX = 23; decallageY = 9;
+                    hauteurY = rectangle.Height - decalageY +4; largeurX =20;
+                    longueur_attaque = 18;//2;
                     break;
                 default:// iaAA
-                    decallageX = 0; decallageY = 0;
-                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
-                    longueur_attaque = 100;
+                    decallageX = 21; decallageY = 23;
+                    hauteurY = rectangle.Height - decalageY - 10; largeurX =25;
+                    longueur_attaque = 14;
+                    dir = -1;
                     break;
 
             }
@@ -99,19 +99,19 @@ namespace Umea_rana
         public void Update(objet sprite, ref KeyboardState keyboard)
         {
             Update_rec_collision();
-            if (vie>=0 && this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie>=0&&!attaque  && this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
 
                 if (tombe)
                     rectangle.Y += poid;
 
-                if (rectangle_C.Center.X  - longueur_attaque/2 > sprite.rectangle_C.Center.X )
+                if (rectangle_C.Center.X  - longueur_attaque > sprite.rectangle_C.Center.X )
                 {
                     dir = -1;
                     _speed = normalspeed;
                 }
                 else
-                 if (rectangle_C.Center.X  + longueur_attaque/2< sprite.rectangle_C.Center.X )
+                 if (rectangle_C.Center.X  + longueur_attaque< sprite.rectangle_C.Center.X )
                 {
                     dir = 1;
                     _speed = normalspeed;
@@ -133,6 +133,7 @@ namespace Umea_rana
             //  rectangle.Y -= 1;
             if (dir == 1)
             {
+                decallageX = 43;
                 this.Effects = SpriteEffects.None;
                 
                 if (vie >= 0)
@@ -194,6 +195,7 @@ namespace Umea_rana
             }
             else if (dir == -1)
             {
+                decallageX = 25;
                 this.Effects = SpriteEffects.FlipHorizontally;
                 
                 if (vie >= 0)
@@ -257,7 +259,7 @@ namespace Umea_rana
         // le debile ki avnace et recule
         public void UpdateAR(ref KeyboardState keyboard)
         {
-            if (vie != 0 && this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie >= 0 && this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (tombe)
                 {
@@ -274,8 +276,9 @@ namespace Umea_rana
             
             if (dir == 1)
             {
+                decallageX = 54;
                 this.Effects2 = SpriteEffects.None;
-                if (vie != 0)
+                if (vie >= 0)
                 {
                     if (this.attaque == true)
                     {
@@ -330,8 +333,9 @@ namespace Umea_rana
 
             else if (dir == -1)
             {
+                decallageX = 23;
                 this.Effects2 = SpriteEffects.FlipHorizontally;
-                if (vie != 0)
+                if (vie >= 0)
                 {
                     if (this.attaque == true)
                     {
@@ -412,10 +416,10 @@ namespace Umea_rana
         {
             Update_rec_collision();
 
-            if (this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie>0&&this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (attaque == false)
-                rectangle.X -= _speed;
+                rectangle.X +=dir * _speed;
                 if (tombe)
                     rectangle.Y += poid;
             }
@@ -424,7 +428,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
 
-            if (dir == -1)
+            if (dir == 1)
             {
                 this.Effects3 = SpriteEffects.None;
                 if (tombe)
@@ -449,7 +453,7 @@ namespace Umea_rana
                 }
             }
 
-            else if (dir == 1)
+            else if (dir == -1)
             {
                 this.Effects3 = SpriteEffects.FlipHorizontally;
                 if (tombe)

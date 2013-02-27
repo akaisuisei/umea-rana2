@@ -25,7 +25,7 @@ namespace Umea_rana
         Collision collision;
         public bool jump_ok, jump_off,atq;
         bool in_air;
-        public int impulse, pos_marche;
+        public int impulse, pos_marche,longattaque;
         Song marchell;
 
         Direction Direction;
@@ -67,6 +67,7 @@ namespace Umea_rana
 
             upsidedown = 10;
             atq = false;
+            longattaque = 17;
         }
 
         public void update(KeyboardState keyboard)
