@@ -35,10 +35,10 @@ namespace Umea_rana
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
             songMenu = content.Load<Song>("Menu//songMenu");
-            coordonnees_continuer = new Vector2(100, 80);
-            coordonnees_selection = new Vector2(50, 80);
-            coordonnees_menu = new Vector2(100, 180);
-            coordonnees_quitter = new Vector2(100, 280);
+            coordonnees_continuer = new Vector2(100, 180);
+            coordonnees_selection = new Vector2(50, 180);
+            coordonnees_menu = new Vector2(100, 280);
+            coordonnees_quitter = new Vector2(100, 380);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -46,12 +46,11 @@ namespace Umea_rana
         }
         public override void LoadContent(ContentManager content)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
-            continuer = content.Load<Texture2D>("Menu//pause//continuer");
+            background = content.Load<Texture2D>("Menu//game_over");
+            continuer = content.Load<Texture2D>("Menu//pause//rejouer");
             selection = content.Load<Texture2D>("Menu//selection");
             menu = content.Load<Texture2D>("Menu//pause//Menu");
             quitter = content.Load<Texture2D>("Menu//quitter");
-            titre = content.Load<Texture2D>("Menu//pause//pause");
         }
         public override void UnloadContent()
         {
@@ -71,11 +70,11 @@ namespace Umea_rana
                 mouse.Y > coordonnees_quitter.Y && mouse.Y < coordonnees_quitter.Y + quitter.Height)
                 select = 2;
             if (select == 0)
-                coordonnees_selection = new Vector2(50, 80);
-            else if (select == 1)
                 coordonnees_selection = new Vector2(50, 180);
-            else
+            else if (select == 1)
                 coordonnees_selection = new Vector2(50, 280);
+            else
+                coordonnees_selection = new Vector2(50, 380);
             if (latence > 0)  // la latence créé un temps d'attente avant de pouvoir changer à nouveau de boutton
                 latence--;    // sinon les changements sont bien trop rapides
             else
@@ -121,7 +120,6 @@ namespace Umea_rana
             spriteBatch.Draw(selection, coordonnees_selection, Color.White);
             spriteBatch.Draw(menu, coordonnees_menu, Color.White);
             spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);
-            spriteBatch.Draw(titre, titre_P, Color.White);
         }
 
 

@@ -94,13 +94,10 @@ namespace Umea_rana
 
         protected override void Draw(GameTime gameTime)
         {
-            if (_currentState != gameState.level2&&_currentState!=gameState.Level1_state)
-            {
+            if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-                GraphicsDevice.Clear(Color.Black);
-            }
             else
-            spriteBatch.Begin();
+                spriteBatch.Begin();
             GraphicsDevice.Clear(Color.Black);
             StateManager[_currentState].Draw(spriteBatch);
             base.Draw(gameTime);

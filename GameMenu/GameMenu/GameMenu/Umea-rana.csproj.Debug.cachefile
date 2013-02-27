@@ -40,5 +40,8 @@ Content\Menu\pause\fond_pause.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
+Content\Menu\pause\rejouer.xnb
+Content\Menu\game_over.xnb
+Content\Menu\editeur_de_map.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
