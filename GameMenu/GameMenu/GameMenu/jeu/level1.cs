@@ -115,6 +115,7 @@ namespace Umea_rana
                 --latence;
             if (_checkpause == false)
             {
+                game.ChangeState2(Game1.gameState.Null);
                 // scrolling verticale
                 scrolling1.Update();
                 scrolling2.Update();
@@ -142,6 +143,11 @@ namespace Umea_rana
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
             }
+            else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                _pause.Update(game, audio, ref _checkpause);
+            }
             // update fin de jeu
             if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)
             {
@@ -158,14 +164,6 @@ namespace Umea_rana
                     game.ChangeState(Game1.gameState.Level1_state);//va au level2
                 timer--;
             }
-            else
-            {
-                game.ChangeState2(Game1.gameState.Checkpause);
-                _pause.Update(game, audio, ref _checkpause);
-            }
-
-
-
             //update interface
 
             oldkey = keyboard;

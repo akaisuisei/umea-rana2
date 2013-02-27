@@ -185,7 +185,7 @@
     <Compile Include="UserControl1.designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
-    <Compile Include="_Pause.cs" />
+    <Compile Include="interface\_Pause.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -24,6 +24,7 @@ namespace Umea_rana
         Audio audio;
         DisplayMode displaymode;
         public string path = "test";
+        public SoundEffect menu_cursor, menu_select;
         public Game1()
         {
             //display
@@ -71,6 +72,8 @@ namespace Umea_rana
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
+            menu_select = Content.Load<SoundEffect>("Menu//menu_select");
             StateManager[_currentState].LoadContent(Content);
             base.LoadContent();
         }

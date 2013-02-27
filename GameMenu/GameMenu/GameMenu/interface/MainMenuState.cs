@@ -97,16 +97,19 @@ namespace Umea_rana
                 if (keyboard.IsKeyDown(Keys.Down))  //la selection est faite grâce à un modulo égal au nombre total de bouttons
                 {
                     select = (select + 1) % 4;
+                    game.menu_cursor.Play();
                     latence = 10;
                 }
                 else if (keyboard.IsKeyDown(Keys.Up))
                 {
                     select = (select - 1) % 4;
+                    game.menu_cursor.Play();
                     latence = 10;
                 }
             }
             if (keyboard.IsKeyDown(Keys.Enter) || mouse.LeftButton == ButtonState.Pressed)
             {
+                game.menu_select.Play();
                 if (select == 0)// lance la selecteur partie
                 {
                     game.ChangeState(Game1.gameState.Level_select_state);
