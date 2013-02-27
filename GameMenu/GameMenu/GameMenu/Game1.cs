@@ -23,7 +23,8 @@ namespace Umea_rana
         int height, width;
         Audio audio;
         DisplayMode displaymode;
-
+        public string path = "test";
+        public SoundEffect menu_cursor, menu_select;
         public Game1()
         {
             //display
@@ -50,7 +51,7 @@ namespace Umea_rana
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV ,new Editeur_MapVV(this,graphics,Content));
-
+            StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             
         }
 
@@ -71,6 +72,8 @@ namespace Umea_rana
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
+            menu_select = Content.Load<SoundEffect>("Menu//menu_select");
             StateManager[_currentState].LoadContent(Content);
             base.LoadContent();
         }
@@ -116,6 +119,7 @@ namespace Umea_rana
             Initialisateur,
             Checkpause,
             Editeur_mapVV,
+            leveleditor,
             Null,
         }
 

@@ -43,5 +43,10 @@ Content\Menu\pause\fond_pause.xnb
 Content\Menu\game_over.xnb
 Content\Menu\pause\rejouer.xnb
 Content\Menu\editeur_de_map.xnb
+Content\Menu\menu_cursor.xnb
+Content\Menu\menu_select.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
+Content\level1\ai_K.xml
+Content\level1\ai_T.xml
+Content\level1\ai_V.xml

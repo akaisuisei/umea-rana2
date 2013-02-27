@@ -72,7 +72,7 @@ namespace Umea_rana
                     new munition(texture, new Rectangle(sprite.rectangle.Center.X, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, new Vector2(-1f, -1f), colo));
                          break;
             }
-                soundeffect.Play(); //lance un son lors du tire
+              //  soundeffect.Play(); //lance un son lors du tire
 
             }
             tem2--;

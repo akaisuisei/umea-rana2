@@ -47,7 +47,6 @@ namespace Umea_rana
         }
         public override void LoadContent(ContentManager content)
         {
-
             background = content.Load<Texture2D>("Menu//background menu");
             level1 = content.Load<Texture2D>("Menu//LevelSelect//level1");
             selection = content.Load<Texture2D>("Menu//selection");
@@ -85,16 +84,19 @@ namespace Umea_rana
                 if (keyboard.IsKeyDown(Keys.Down))  //la selection est faite grâce à un modulo égal au nombre total de bouttons
                 {
                     select = (select + 1) % 3;
+                    game.menu_cursor.Play();
                     latence = 10;
                 }
                 else if (keyboard.IsKeyDown(Keys.Up))
                 {
                     select = (select - 1) % 3;
+                    game.menu_cursor.Play();
                     latence = 10;
                 }
             }
             if (keyboard.IsKeyDown(Keys.Enter) || mouse.LeftButton == ButtonState.Pressed)
             {
+                game.menu_select.Play();
                 if (select == 0)
                 {
                     game.ChangeState(Game1.gameState.level2 );
