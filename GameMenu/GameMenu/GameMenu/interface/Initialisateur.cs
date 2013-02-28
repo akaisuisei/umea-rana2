@@ -27,7 +27,7 @@ namespace Umea_rana
                 taille_logo ,taille_logo  );
             game1.IsMouseVisible = false;
 
-            timer = 60;
+            timer = 550;
 
         }
 
