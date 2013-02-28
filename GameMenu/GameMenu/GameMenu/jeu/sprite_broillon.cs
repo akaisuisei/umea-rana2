@@ -18,14 +18,14 @@ namespace Umea_rana
 
 
 
-    public class sprite_broillon :objet 
+    public class sprite_broillon : objet
     {
-   
+
         Texture2D texture;
         Collision collision;
-        public bool jump_ok, jump_off,atq, dead;
+        public bool jump_ok, jump_off, atq, dead;
         bool in_air;
-        public int impulse, pos_marche,longattaque;
+        public int impulse, pos_marche, longattaque;
         Song marchell;
 
         Direction Direction;
@@ -37,10 +37,10 @@ namespace Umea_rana
         int AnimationSpeed = 10;
         public bool chute = true;
         int timer_dead;
-       public bool _dir {get { return dir; } }
+        public bool _dir { get { return dir; } }
 
-       int prout;
-   public     int upsidedown {  get { return prout ; } set { if (upsidedown < 0) prout = 1; } }
+        int prout;
+        public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
 
         public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
         {
@@ -55,7 +55,7 @@ namespace Umea_rana
             pos_marche = rectangle.Y;
             marchell = content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
-            
+
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
@@ -69,7 +69,7 @@ namespace Umea_rana
             atq = false;
             longattaque = 17;
             dead = false;
-            timer_dead =200;
+            timer_dead = 200;
 
         }
 
@@ -128,7 +128,7 @@ namespace Umea_rana
         public void AnimSprite(KeyboardState keyboard) //gestion des différentes possibilités d'animation du sprite
         {
 
-            
+
             this.Effects = SpriteEffects.None;
             if (vie > 0)
             {
@@ -232,7 +232,7 @@ namespace Umea_rana
                 }
             }
 
-            
+
 
 
             if (dir == true)
@@ -245,14 +245,14 @@ namespace Umea_rana
                     this.Effects = SpriteEffects.None;
                 }
 
-            if ((vie > 0)&&(keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false)||
-                (keyboard.IsKeyDown(Keys.Left)&&keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
+            if ((vie > 0) && (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false) ||
+                (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
             {
                 this.FrameLine = 1;
                 this.FrameColumn = 1;
-                this.Animate();                
+                this.Animate();
                 this.Timer = 0;
-            }            
+            }
         }
 
 

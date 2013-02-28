@@ -118,7 +118,7 @@ namespace Umea_rana
 
             if (mouse.LeftButton  == Microsoft.Xna.Framework.Input.ButtonState.Pressed&& !user.IHave_control )
             {
-                user.Hide();
+                
                 user._show(mouse.X, mouse.Y);
             }
             if (user.IHave_control)

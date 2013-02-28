@@ -35,7 +35,7 @@ namespace Umea_rana
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
 
             //content
             Content.RootDirectory = "Content";
