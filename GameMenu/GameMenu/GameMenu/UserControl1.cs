@@ -68,7 +68,7 @@ namespace Umea_rana
         }
 
         public void _show(int X, int y)
-        {
+        {        IHave_control = true;
             int decal = 100;
             openX = (float)X / (float)width;
             openY = (float)y / (float)height;
@@ -83,7 +83,7 @@ namespace Umea_rana
                 y += decal;
             this.Location = new System.Drawing.Point(X, y);
             this.Show();
-            IHave_control = true;
+    
         }
 
         public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k, ref KeyboardState keybord)
