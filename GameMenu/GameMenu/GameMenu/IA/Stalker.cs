@@ -157,7 +157,21 @@ namespace Umea_rana
                             }
                         }
                     }
-                    else 
+                    else if (attaque == false && _speed == 0)
+                    {
+                        FrameLine = 1;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 4)
+                            {
+                                FrameColumn = 1;
+                            }
+                        }
+                    }
+                    else
                     {
                         FrameLine = 2;
                         this.Timer++;
@@ -179,7 +193,8 @@ namespace Umea_rana
                     this.Timer++;
                     if (FrameColumn == 4)
                     {
-
+                        FrameColumn = 1;
+                        FrameLine = 1;
                     }
                     else if (FrameColumn > 4)
                     {
@@ -214,6 +229,21 @@ namespace Umea_rana
                             this.Timer = 0;
                             this.FrameColumn++;
                             if (FrameColumn > 6)
+                            {
+                                FrameColumn = 1;
+                            }
+                        }
+                    }
+                    else if (attaque == false && _speed == 0)
+                    {
+                        
+                        FrameLine = 1;                        
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+                            if (FrameColumn > 4)
                             {
                                 FrameColumn = 1;
                             }

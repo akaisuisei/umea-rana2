@@ -307,13 +307,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\naruto.png">
-      <Name>naruto</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Menu\game_over.png">
       <Name>game_over</Name>
       <Importer>TextureImporter</Importer>
@@ -335,6 +328,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IA\naruto.png">
+      <Name>naruto</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="level1\ai_K.xml">
       <Name>ai_K</Name>
       <Importer>XmlImporter</Importer>
