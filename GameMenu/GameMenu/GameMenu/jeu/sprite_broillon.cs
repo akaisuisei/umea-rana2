@@ -59,7 +59,7 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
-            vie = 10;
+            vie = 100;
             largeurX = 17;
             hauteurY = 50;
             decallageX = 55;
