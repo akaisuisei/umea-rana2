@@ -24,7 +24,7 @@ namespace Umea_rana
         public Bullet_manager bullet;
         public bool automatic_controlled;
         int speed;
-
+        int n;
         public void Draw(SpriteBatch spritebatch)
         {
             bullet.Bullet_draw(spritebatch,ref bulletL );
@@ -50,11 +50,12 @@ namespace Umea_rana
             // intencie le manager de missille 
             bulletL = new List<munition>();
             bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
-
+            n = 0;
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
+      
             if (automatic_controlled)//movement automatic de fin de jeu
                 up();
             else// controlle du vaisseau
@@ -75,8 +76,16 @@ namespace Umea_rana
             }
 
             change_T += 1;// timer pour l animation
+            if(keyboard.IsKeyDown(Keys.D1)||keyboard.IsKeyDown(Keys.F1 ))
+                n=1;
+            if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
+                n = 2;
+            if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
+                n = 3;
+            if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
+                n = 4;
 
-            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),5,ref bulletL );
+            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),n,ref bulletL );
             Update_rec_collision();
         }
 

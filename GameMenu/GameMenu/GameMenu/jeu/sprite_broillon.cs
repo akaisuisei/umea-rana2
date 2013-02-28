@@ -23,7 +23,7 @@ namespace Umea_rana
    
         Texture2D texture;
         Collision collision;
-        public bool jump_ok, jump_off,atq;
+        public bool jump_ok, jump_off,atq, dead;
         bool in_air;
         public int impulse, pos_marche,longattaque;
         Song marchell;
@@ -36,7 +36,7 @@ namespace Umea_rana
         int Timer;
         int AnimationSpeed = 10;
         public bool chute = true;
-
+        int timer_dead;
        public bool _dir {get { return dir; } }
 
        int prout;
@@ -68,6 +68,9 @@ namespace Umea_rana
             upsidedown = 10;
             atq = false;
             longattaque = 17;
+            dead = false;
+            timer_dead =200;
+
         }
 
         public void update(KeyboardState keyboard)
@@ -100,6 +103,10 @@ namespace Umea_rana
 
             this.AnimSprite(keyboard);
             Update_rec_collision();
+            if (vie < 0)
+                --timer_dead;
+            if (timer_dead < 0)
+                dead = true;
         }
 
 
