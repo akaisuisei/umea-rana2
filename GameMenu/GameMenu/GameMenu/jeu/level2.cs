@@ -78,6 +78,8 @@ namespace Umea_rana
                 managerAR.Add(-0.5f, 0f);
                 managerAR.Add(2.1f, 0.45f);
                 managerAR.Add(2.4f, 0.55f);
+                managerAR.Add(3.2f, 0.7f);
+                managerAR.Add(3.6f, 0.7f);
                 // ajout IA qui vont tous droit(X,Y)
                 managerAA.Add(1.11f, 0);
                 managerAA.Add(0.54f, 0.5f);
@@ -85,10 +87,12 @@ namespace Umea_rana
                 managerAA.Add(-0.58f, 0f);
                 managerAA.Add(2.3f, 0.45f);
                 managerAA.Add(2.6f, 0.45f);
+                managerAA.Add(3.2f, 0.7f);
                 // ajout des ia Stalker (X,Y)
                 manageS.Add(1.15f, 0);
                 manageS.Add(2f, 0.7f);
                 manageS.Add(2.1f, 0.45f);
+                manageS.Add(3.2f, 0.7f);
 
             
 
@@ -101,6 +105,10 @@ namespace Umea_rana
             platform_M.Add(1.9f,0.6f,5);
             platform_M.Add(2.6f, 0.6f, 2);
             platform_M.Add(2.4f, 0.7f, 1);
+            platform_M.Add(2.9f, 0.8f, 1);
+            platform_M.Add(3f, 0.9f, 1);
+            platform_M.Add(3.2f, 0.9f, 6);
+            platform_M.Add(3.1f, 1f, 1);
             
         }
 
