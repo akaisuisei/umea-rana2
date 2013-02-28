@@ -36,7 +36,7 @@ namespace Umea_rana
 
         protected void fail(Game1 game, sprite_broillon sprite, Game1.gameState _currentState)
         {
-            if (sprite.rectangle.Bottom > 2 * height)
+            if (sprite.rectangle.Bottom > 2 * height||sprite.dead )
                 game.ChangeState(Game1.gameState.Pause, _currentState);
         }
     }

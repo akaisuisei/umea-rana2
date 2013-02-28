@@ -186,7 +186,7 @@ namespace Umea_rana
             fail(game, allen, Game1.gameState.level2);
 
             //audio
-
+            
             if (allen.rectangle.Right >= width * 2 - 50)
                 game.ChangeState(Game1.gameState.Pause, Game1.gameState.level2);
         }
