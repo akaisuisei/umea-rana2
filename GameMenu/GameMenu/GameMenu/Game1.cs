@@ -36,7 +36,7 @@ namespace Umea_rana
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
             graphics.IsFullScreen =true ;
-
+            
             //content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
@@ -61,6 +61,7 @@ namespace Umea_rana
             try
             {
                 StateManager[_currentState].Initialize(graphics);
+                
             }
             catch
             {
@@ -127,7 +128,12 @@ namespace Umea_rana
         {
             _previousState = _currentState;
             _currentState = NewState;
-            this.Initialize();
+           if (_currentState == gameState.Editeur_mapVV && graphics.IsFullScreen)
+                graphics.ToggleFullScreen();
+            if (_currentState != gameState.Editeur_mapVV && !graphics.IsFullScreen)
+                graphics.ToggleFullScreen();
+            this.Initialize(); 
+           
         }
         public void GetPreviousState()
         {

@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Umea_rana
 {
-    class Editeur_MapVV: GameState 
+    class Editeur_MapVV : GameState
     {
-         Scrolling scrolling1;
+        Scrolling scrolling1;
         sripte_V vaisseau;
 
         KeyboardState oldkey;
@@ -30,7 +30,7 @@ namespace Umea_rana
         _Pause _pause;
         bool _checkpause = false;
         int latence = 0;
-     
+
 
         UserControl1 user;
         string backGround;
@@ -42,25 +42,27 @@ namespace Umea_rana
             T_sprite = new List<Texture2D>();
             collision = new Collision();
             _pause = new _Pause(game1, graphics, content);
-           
+
+
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
 
+
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
             game_time = 0;
             backGround = "level2//fond";
             // ajout IA 
-                        Application.Run(user);
+            Application.Run(user);
         }
 
         public override void LoadContent(ContentManager Content)
         {
 
             //charge le fond
-            bacgkround1 = Content.Load<Texture2D>(backGround );
+            bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1"));
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1d"));
@@ -78,9 +80,9 @@ namespace Umea_rana
 
             scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 1, height);
 
-           
-            manage_T = new IA_manager_T(planet1 , new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
-            manage_V = new IA_manager_V(star , new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
+
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
 
@@ -88,7 +90,7 @@ namespace Umea_rana
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
 
- 
+
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             user = new UserControl1(manage_T, manage_V, manage_k);
@@ -107,25 +109,32 @@ namespace Umea_rana
             keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
             {
-                _pause.checkpause(keyboard, ref _checkpause );
+
+                _pause.checkpause(keyboard, ref _checkpause);
                 latence = 30;
                 user.Hide();
             }
             if (latence > 0)
                 --latence;
-            if (_checkpause)
-                _pause.Update(game, audio, ref _checkpause);
-
-            if (mouse.LeftButton  == Microsoft.Xna.Framework.Input.ButtonState.Pressed&& !user.IHave_control )
+            if (!_checkpause)
             {
-                
-                user._show(mouse.X, mouse.Y);
+                if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control)
+                {
+                    user._show(mouse.X, mouse.Y);
+                }
+                if (user.IHave_control)
+                    user.TopMost = true;
             }
-            if (user.IHave_control)
-                user.TopMost = true;
+            else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                MediaPlayer.Stop();
+                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
+                _pause.Update(game, audio, ref _checkpause);
+            }
 
-            //update interface
-            user.update(ref manage_T,ref manage_V,ref manage_k,ref keyboard );
+                //update interface
+                user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
             scrolling1.update_ophelia(keyboard);
             manage_k.Update_ophelia(keyboard);
             manage_T.Update_ophelia(keyboard);
@@ -141,19 +150,19 @@ namespace Umea_rana
         {
             if (_checkpause == false)
             {
-        
+
                 //scrolling
                 scrolling1.Draw(spriteBatch);
                 vaisseau.Draw(spriteBatch);
-               
+
                 manage_T.Draw(spriteBatch);
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
-    
+
             }
             else
                 _pause.Draw(spriteBatch);
         }
-        
+
     }
 }
