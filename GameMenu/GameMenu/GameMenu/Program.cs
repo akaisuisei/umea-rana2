@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Umea_rana
 {
@@ -14,13 +15,16 @@ namespace Umea_rana
 
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
 
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+            
             using (Game1 game = new Game1())
             {
                 game.Run();
             }
+           
 
         }
 

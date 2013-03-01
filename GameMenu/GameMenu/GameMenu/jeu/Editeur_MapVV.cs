@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Umea_rana
 {
@@ -19,7 +20,7 @@ namespace Umea_rana
         sripte_V vaisseau;
 
         KeyboardState oldkey;
-        Texture2D bacgkround1, background2, aster_t, planet1, star;
+        Texture2D bacgkround1, aster_t, planet1, star;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -30,7 +31,6 @@ namespace Umea_rana
         _Pause _pause;
         bool _checkpause = false;
         int latence = 0;
-
 
         UserControl1 user;
         string backGround;
@@ -55,7 +55,9 @@ namespace Umea_rana
             game_time = 0;
             backGround = "level2//fond";
             // ajout IA 
+            user = new UserControl1();
             Application.Run(user);
+
         }
 
         public override void LoadContent(ContentManager Content)
@@ -86,6 +88,7 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
 
+
             //intancie le vaisseau
             vaisseau = new sripte_V(T_sprite,
                 new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
@@ -93,12 +96,13 @@ namespace Umea_rana
 
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user = new UserControl1(manage_T, manage_V, manage_k);
+            user.LoadContent(manage_T, manage_V, manage_k);
         }
 
         public override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
             user.destroy();
         }
         public override void Update(Game1 game, Audio audio)
@@ -133,8 +137,8 @@ namespace Umea_rana
                 _pause.Update(game, audio, ref _checkpause);
             }
 
-                //update interface
-                user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
+            //update interface
+            user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
             scrolling1.update_ophelia(keyboard);
             manage_k.Update_ophelia(keyboard);
             manage_T.Update_ophelia(keyboard);

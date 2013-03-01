@@ -17,7 +17,7 @@ namespace Umea_rana
         savefile savefile;
         List<string> subdirectory;
         public bool loading;
-
+        string type;
         public string file { get { return filename; } }
 
         public Form1()
@@ -33,7 +33,9 @@ namespace Umea_rana
             this.Show();
             subdirectory = new List<string>();
             button1.Enabled = false;
-            string[] hello = sauve.subdirectory();
+            button1.Text = charger;
+            type = "S_";
+            string[] hello = sauve.subdirectory(type );
             if (hello.Length == 0)
             {
                 listBox1. Enabled = false;
@@ -51,7 +53,7 @@ namespace Umea_rana
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sauve.load(filename, ref savefile.ia_tireur, ref savefile.ia_viseur, ref savefile.ia_Kamikaze);
+            sauve.load(ref filename,ref savefile );
           
             this.Hide();
             loading = false;

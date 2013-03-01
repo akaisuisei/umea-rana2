@@ -118,6 +118,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
@@ -179,6 +180,7 @@
     <Compile Include="IA\Stalker.cs" />
     <Compile Include="IA\Viseur_aI.cs" />
     <Compile Include="Sauveguarde.cs" />
+    <Compile Include="Structure_Sav.cs" />
     <Compile Include="UserControl1.cs">
       <SubType>Form</SubType>
     </Compile>
