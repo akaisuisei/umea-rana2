@@ -22,6 +22,7 @@ namespace Umea_rana
         public Color color;
         public int damage;
         public int firerate;
+        public int bullet_Speed;
         public string trajectory;
     }
     public struct couple
@@ -45,6 +46,7 @@ namespace Umea_rana
         public int firerate;
         public Color color;
         public int damage;
+        public int bullet_speed;
 
     }
 

@@ -11,14 +11,48 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
+
+    // bullet speed oublier
+
     public class Viseur_aI : vaisseau_IA
     {
         int FrameLine;
         int FrameColumn;
-        SpriteEffects Effects;       
+        SpriteEffects Effects;
         int Timer;
         int AnimationSpeed = 10;
+        /// <summary>
+        /// pour le add de jeu
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="rectangle"></param>
+        /// <param name="content"></param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        /// <param name="quaint"></param>
+        public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
+        {
+            this._texture = texture;
+            this.rectangle = rectangle;
+            this.rectangle_C = rectangle;
+            this.decallageX = 0; decallageY = 0;
+            largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
+            this.width = width;
+            dir = -1;
 
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
+                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+
+            timer_lunch = quaint.seconde;
+            _speed = quaint.speed;
+            vie = quaint.vie;
+            trajectory = quaint.trajectory;
+
+            this.Effects = SpriteEffects.None;
+            this.FrameLine = 1;
+            this.FrameColumn = 1;
+            this.Timer = 0;
+        }
 
         public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo, int gametime)
         {
@@ -27,6 +61,13 @@ namespace Umea_rana
             this.rectangle_C = rectangle;
             this.decallageX = 0; decallageY = 0;
             largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
+
+            Munition_color = colo;
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 60);
+            this.width = width;
+            dir = -1;
+            _speed = 6;
+
             this.Ia_color = Color.Green;
             this.vie = 2;
             this.timer_lunch = gametime;
@@ -35,18 +76,14 @@ namespace Umea_rana
             this.FrameColumn = 1;
             this.Timer = 0;
 
-            Munition_color = colo;
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width,60);
-            this.width = width;
-            dir = -1;
-            _speed = 6;
+
         }
 
-        public void Update(ref sripte_V sprite, ref int game_time, ref List<munition > bulletL)
+        public void Update(ref sripte_V sprite, ref int game_time, ref List<munition> bulletL)
         {
             if (timer_lunch <= game_time)
             {
-                bullet.Bullet_Update2(this, vise(sprite), 1,ref bulletL );
+                bullet.Bullet_Update2(this, vise(sprite), 1, ref bulletL);
                 Update_rec_collision();
                 move_H();
             }
@@ -56,12 +93,12 @@ namespace Umea_rana
             {
                 this.Timer = 0;
                 this.FrameColumn++;
-                if (FrameLine ==1 && FrameColumn > 5)
+                if (FrameLine == 1 && FrameColumn > 5)
                 {
                     FrameColumn = 1;
                     FrameLine = 2;
                 }
-                else if (FrameLine == 2 &&FrameColumn > 8  )
+                else if (FrameLine == 2 && FrameColumn > 8)
                 {
                     FrameColumn = 1;
                     FrameLine = 1;

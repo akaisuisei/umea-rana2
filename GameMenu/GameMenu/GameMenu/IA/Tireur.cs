@@ -21,6 +21,29 @@ namespace Umea_rana
         int AnimationSpeed = 10;
 
 
+        public Tireur(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
+        {
+            this._texture = texture;
+            this.rectangle = rectangle;
+            this.rectangle_C = rectangle;
+            this.decallageX = 0; decallageY = 0;
+            largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
+            this.width = width;
+            dir = -1;
+
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
+                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+
+            timer_lunch = quaint.seconde;
+            _speed = quaint.speed;
+            vie = quaint.vie;
+            trajectory = quaint.trajectory;
+
+            this.FrameColumn = 1;
+            AnimationSpeed = 10;
+
+        }
+
         public Tireur(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo, int time_lunch)
         {
             this._texture = texture;

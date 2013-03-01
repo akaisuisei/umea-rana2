@@ -14,7 +14,7 @@ namespace Umea_rana
     public class IA_manager_T : IA_Manager_max
     {
 
-        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo_min)
+        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width)
         {
             ia_manage = new List<vaisseau_IA>();
             bulletL = new List<munition>();
@@ -24,13 +24,12 @@ namespace Umea_rana
             this.window_H = height;
             this.window_H = height;
             this.window_W = width;
-            this.colo = colo_min;
         }
 
         public void Update(ref Game1 game, ref int gametime)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.Update(game,ref gametime,ref bulletL );
+                vaiss.Update(game, ref gametime, ref bulletL);
             remove();
             //update che chaque missile
             for (int i = 0; i < bulletL.Count; i++)
@@ -44,7 +43,7 @@ namespace Umea_rana
         public void Update_ophelia(KeyboardState keybord)
         {
             foreach (Tireur vaiss in ia_manage)
-                vaiss.Update_ophelia(keybord );
+                vaiss.Update_ophelia(keybord);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -52,25 +51,25 @@ namespace Umea_rana
             foreach (Tireur vaiss in ia_manage)
                 vaiss.Draw(spritebatch);
             for (int i = 0; i < bulletL.Count; i++)
-                bulletL[i].Draw(spritebatch );
+                bulletL[i].Draw(spritebatch);
         }
         /// <summary>
         /// add pour jouer
         /// </summary>
         /// <param name="quaint"></param>
         public void Add(quaintuplet quaint)
-        {  for (int i = 0; i < quaint.nombre ; ++i)
-            ia_manage.Add(new Tireur (_texture ,new Rectangle ((int)(quaint.X *window_W )+i*_rectangle.Width,-_rectangle.Height,_rectangle.Width, _rectangle.Height ),
-                content ,window_H,window_W,quaint.color ,quaint.seconde));
+        {
+            for (int i = 0; i < quaint.nombre; ++i)
+                ia_manage.Add(new Tireur(_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
+                    content, window_H, window_W, quaint));
         }
-
 
         public void Add(float X, float Y, int seconde, int number, Color colo)
         {
             int x = (int)(X * window_W);
             int y = (int)(Y * window_H);
             for (int i = 0; i < number; ++i)
-            ia_manage.Add(new Tireur(_texture, new Rectangle(x+i*_rectangle.Width,y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo,seconde ));
+                ia_manage.Add(new Tireur(_texture, new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo, seconde));
         }
 
     }
@@ -79,7 +78,7 @@ namespace Umea_rana
     {
 
 
-        public IA_manager_V(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo_min)
+        public IA_manager_V(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width)
         {
             ia_manage = new List<vaisseau_IA>();
             bulletL = new List<munition>();
@@ -89,15 +88,14 @@ namespace Umea_rana
             this.window_H = height;
             this.window_H = height;
             this.window_W = width;
-            this.colo = colo_min;
-            
+
         }
 
         public void Update(ref sripte_V sprite, ref int gameTime)
         {
             foreach (Viseur_aI vaiss in ia_manage)
             {
-                vaiss.Update(ref sprite, ref gameTime, ref bulletL );
+                vaiss.Update(ref sprite, ref gameTime, ref bulletL);
             }
             //update che chaque missile
             for (int i = 0; i < bulletL.Count; i++)
@@ -128,16 +126,16 @@ namespace Umea_rana
         public void Add(quaintuplet quaint)
         {
             for (int i = 0; i < quaint.nombre; ++i)
-                ia_manage.Add(new Viseur_aI (_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
-                    content, window_H, window_W, quaint.color, quaint.seconde));
+                ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
+                    content, window_H, window_W,quaint ));
         }
 
-        public void Add(float X, float Y, int lunch_time,int number, Color colo)
+        public void Add(float X, float Y, int lunch_time, int number, Color colo)
         {
             int x = (int)(X * window_W);
             int y = (int)(Y * window_H);
             for (int i = 0; i < number; ++i)
-            ia_manage.Add(new Viseur_aI(_texture, new Rectangle(x+i*_rectangle.Width , y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo, lunch_time ));
+                ia_manage.Add(new Viseur_aI(_texture, new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo, lunch_time));
         }
 
 
@@ -147,14 +145,13 @@ namespace Umea_rana
     {
 
 
-        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed,int window_H)
+        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int window_H)
         {
 
             ia_manage = new List<vaisseau_IA>();
 
             this._texture = n_textture;
             this._rectangle = n_rectangle;
-            this.speed = speed;
             this.window_H = window_H;
         }
 
@@ -177,17 +174,16 @@ namespace Umea_rana
                 vaiss.Draw(spritebatch);
         }
         #region ADD
-        
-      
-        public override void Add(couple couple)
+
+
+        public void Add(couple couple)
         {
-            ia_manage.Add (new Stalker (_texture ,new Rectangle ((int)(couple.X * window_W), (int)(couple.Y * window_H), _rectangle.Width, _rectangle.Height),
-                front_sc ,speed ,window_H,window_W ,couple.seconde ,0));
+            ia_manage.Add (new Stalker (_texture ,new Rectangle ((int)(couple.X * window_W), (int)(couple.Y * window_H),_rectangle.Width,_rectangle.Height ),couple ));
         }
         public override void Add(float X, float Y, int launch_time)
         {
             ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, launch_time, 0));
-        } 
+        }
         #endregion
     }
 }

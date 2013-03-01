@@ -87,9 +87,9 @@ namespace Umea_rana
 
             //instancie l ia
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.White);
-            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.White);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height);
 
             // ajout IA
             save.load_leveleditor_SEU("level1", ref manage_k, ref manage_T, ref manage_V);
@@ -181,19 +181,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (_checkpause == false)
-            {
-                //scrolling
-                scrolling1.Draw(spriteBatch);
-                vaisseau.Draw(spriteBatch);
-                scrolling2.Draw(spriteBatch);
-                //    aster.Draw(spriteBatch);
-                manage_T.Draw(spriteBatch);
-                manage_V.Draw(spriteBatch);
-                manage_k.Draw(spriteBatch);
-            }
-            else
-            {
+
                 scrolling1.Draw(spriteBatch);
                 vaisseau.Draw(spriteBatch);
                 scrolling2.Draw(spriteBatch);
@@ -201,8 +189,9 @@ namespace Umea_rana
                 manage_T.Draw(spriteBatch);
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
+                if(_checkpause)
                 _pause.Draw(spriteBatch);
-            }
+            
         }
 
     }

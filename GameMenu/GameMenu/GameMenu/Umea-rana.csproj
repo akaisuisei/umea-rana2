@@ -135,16 +135,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Editeur de map\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Editeur de map\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
-    <Compile Include="jeu\Editeur_MapVV.cs" />
-    <Compile Include="leveleditor.cs" />
+    <Compile Include="Editeur de map\Editeur_MapVV.cs" />
+    <Compile Include="Editeur de map\leveleditor.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
     <Compile Include="manager\IA_manger_jeuP.cs" />
     <Compile Include="manager\IA_manager.cs" />
@@ -179,12 +179,12 @@
     <Compile Include="IA\vaisseau_IA.cs" />
     <Compile Include="IA\Stalker.cs" />
     <Compile Include="IA\Viseur_aI.cs" />
-    <Compile Include="Sauveguarde.cs" />
-    <Compile Include="Structure_Sav.cs" />
-    <Compile Include="UserControl1.cs">
+    <Compile Include="Editeur de map\Sauveguarde.cs" />
+    <Compile Include="Editeur de map\Structure_Sav.cs" />
+    <Compile Include="Editeur de map\UserControl1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControl1.designer.cs">
+    <Compile Include="Editeur de map\UserControl1.designer.cs">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="interface\_Pause.cs" />
@@ -236,10 +236,10 @@
     <None Include="Umea-rana_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Editeur de map\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
+    <EmbeddedResource Include="Editeur de map\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

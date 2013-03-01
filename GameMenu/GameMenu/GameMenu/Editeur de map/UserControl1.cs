@@ -16,7 +16,7 @@ namespace Umea_rana
     {
         string life, speed, couleur, onglet1, onglet2, onglet3, onglet4, trajectoir, align, OK, firerate, end;
         string imagefond, vitessefond, vitesseV, open, cancel, load, save, filepath, filepathlabel, onglet5;
-        string scrolling, file, damage;
+        string scrolling, file, damage, bullet_speed, supp;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_firerate = "fire", t_nbr = "nbr";
         // type
@@ -70,6 +70,15 @@ namespace Umea_rana
                 comboBox2.Enabled = true;
                 comboBox2.Text = "dossier existant";
             }
+            //8,9,14,16
+            textBox7.BackColor = System.Drawing.Color.Red;
+            textBox8.BackColor = System.Drawing.Color.Red;
+            textBox9.BackColor = System.Drawing.Color.Red;
+            textBox14.BackColor = System.Drawing.Color.Red;
+            textBox16.BackColor = System.Drawing.Color.Red;
+
+            textBox10.BackColor = System.Drawing.Color.Red;
+            textBox11.BackColor = System.Drawing.Color.Red;
         }
 
         public void _show(int X, int y)
@@ -146,9 +155,9 @@ namespace Umea_rana
             {
                 texbox.BackColor = System.Drawing.Color.Red;
             }
-
-
         }
+
+
 
         #region texbox chek
 
@@ -217,7 +226,15 @@ namespace Umea_rana
         {
             intcheck(textBox14);
         }
+        private void textBox15_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox15);
+        }
 
+        private void textBox16_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox16);
+        }
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
             nameCheck(ref textBox10);
@@ -293,7 +310,7 @@ namespace Umea_rana
 
             if (textBox1.BackColor == System.Drawing.Color.Green && textBox2.BackColor == System.Drawing.Color.Green &&
                 textBox3.BackColor == System.Drawing.Color.Green && textBox6.BackColor == System.Drawing.Color.Green &&
-                textBox13.BackColor == System.Drawing.Color.Green &&
+                textBox13.BackColor == System.Drawing.Color.Green && textBox15.BackColor == System.Drawing.Color.Green &&
                 color2 != System.Drawing.Color.Black)//+combobox4 a veriff
             {
                 quaintuplet quaint = new quaintuplet();
@@ -349,6 +366,7 @@ namespace Umea_rana
         {
             if (textBox14.BackColor == System.Drawing.Color.Green && textBox8.BackColor == System.Drawing.Color.Green &&
                 textBox9.BackColor == System.Drawing.Color.Green && textBox11.BackColor == System.Drawing.Color.Green &&
+                textBox16.BackColor == System.Drawing.Color.Green &&
                 color4 != System.Drawing.Color.Black)
             {
                 savefile.levelProfile.color = new Microsoft.Xna.Framework.Color(color4.R, color4.G, color4.B, color4.A);
@@ -410,8 +428,8 @@ namespace Umea_rana
             scrolling = "defilement vertical";
             file = "fichier";
             damage = "degat infligee";
-
-
+            bullet_speed = "vitesse de la balle";
+            supp = "supprimer"
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -435,6 +453,7 @@ namespace Umea_rana
             label1.Text = firerate;
             button1.Text = OK;
             label19.Text = damage;
+            label22.Text = bullet_speed;
             //tab2
             label18.Text = damage;
             button3.Text = OK;
@@ -448,6 +467,7 @@ namespace Umea_rana
             label16.Text = scrolling + " : 2";
             //tab 4
             button7.Text = cancel;
+            button11.Text= supp;
             button8.Text = save;
             button9.Text = load;
             label14.Text = filepathlabel;
@@ -461,6 +481,7 @@ namespace Umea_rana
             label12.Text = firerate;
             label13.Text = couleur;
             button6.Text = couleur;
+            label21.Text = bullet_speed;
 
             label8.Text = life;
             label9.Text = speed;
@@ -468,8 +489,8 @@ namespace Umea_rana
             label17.Text = damage;
             label20.Text = life;
             // default 
-            button6.BackColor = button1.BackColor ;
-            button2.BackColor = button1.BackColor ;
+            button6.BackColor = button1.BackColor;
+            button2.BackColor = button1.BackColor;
 
             textBox1.BackColor = System.Drawing.Color.White;
             textBox2.BackColor = System.Drawing.Color.White;
@@ -477,23 +498,27 @@ namespace Umea_rana
             textBox4.BackColor = System.Drawing.Color.White;
             textBox5.BackColor = System.Drawing.Color.White;
             textBox6.BackColor = System.Drawing.Color.White;
-            textBox7.BackColor = System.Drawing.Color.White;
-            textBox8.BackColor = System.Drawing.Color.White;
-            textBox9.BackColor = System.Drawing.Color.White;
+            //     textBox7.BackColor = System.Drawing.Color.White;
+            //   textBox8.BackColor = System.Drawing.Color.White;
+            //    textBox9.BackColor = System.Drawing.Color.White;
+
             textBox12.BackColor = System.Drawing.Color.White;
             textBox13.BackColor = System.Drawing.Color.White;
-
+            //   textBox14.BackColor = System.Drawing.Color.White; tab5
+            textBox15.BackColor = System.Drawing.Color.White;
+            //    textBox16.BackColor = System.Drawing.Color.White; tab5
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
             textBox4.Text = string.Empty;
             textBox5.Text = string.Empty;
             textBox6.Text = string.Empty;
-            textBox7.Text = string.Empty;
-            textBox8.Text = string.Empty;
-            textBox9.Text = string.Empty;
+            //       textBox7.Text = string.Empty;
+            //    textBox8.Text = string.Empty;
+            //   textBox9.Text = string.Empty;
             textBox12.Text = string.Empty;
             textBox13.Text = string.Empty;
+            textBox15.Text = string.Empty;
             //tag
             textBox1.Tag = t_life;
             textBox2.Tag = t_speed;
@@ -504,13 +529,15 @@ namespace Umea_rana
             textBox7.Tag = t_speed;
             textBox8.Tag = t_speed;
             textBox9.Tag = t_firerate;
-            //  / textBox10. Tag = t_speed;
+            //  / textBox10. Tag = t_speed;  check name
             textBox11.Tag = t_damage;
             textBox12.Tag = t_damage;
             textBox13.Tag = t_damage;
             textBox14.Tag = t_life;
             openX = 0;
             openY = 0;
+
+            button11.Enabled=false;
         }
 
         private void savegame()
@@ -528,6 +555,29 @@ namespace Umea_rana
                 manage_V.Add(savefile.ia_viseur[i].X, savefile.ia_viseur[i].Y, savefile.ia_viseur[i].seconde, savefile.ia_viseur[i].nombre, savefile.ia_viseur[i].color);
             for (int i = 0; i < savefile.ia_Kamikaze.Count; ++i)
                 manage_k.Add(savefile.ia_Kamikaze[i].X, savefile.ia_Kamikaze[i].Y, savefile.ia_Kamikaze[i].seconde);
+
+
+            textBox7.BackColor = System.Drawing.Color.Green;
+            textBox8.BackColor = System.Drawing.Color.Green;
+            textBox9.BackColor = System.Drawing.Color.Green;
+            textBox14.BackColor = System.Drawing.Color.Green;
+            textBox16.BackColor = System.Drawing.Color.Green;
+            textBox10.BackColor = System.Drawing.Color.Green;
+
+            textBox7.Text = "" + savefile.levelProfile.fc_speed;
+            comboBox1.SelectedText = savefile.levelProfile.second_background;
+            comboBox3.SelectedText = savefile.levelProfile.third_bacground;
+            imageB = savefile.levelProfile.background_name;
+            comboBox2.SelectedText = savefile.levelProfile.levelname;
+            textBox10.Text = savefile.levelProfile.levelname;
+
+            button6.BackColor = System.Drawing.Color.FromArgb(savefile.levelProfile.color.A, savefile.levelProfile.color.R, savefile.levelProfile.color.G, savefile.levelProfile.color.B);
+            textBox8.Text = "" + savefile.levelProfile.player_speed;
+            textBox9.Text = "" + savefile.levelProfile.firerate;
+            textBox11.Text = "" + savefile.levelProfile.damage;
+            textBox14.Text = "" + savefile.levelProfile.playerLife;
+            textBox16.Text = "" + savefile.levelProfile.bullet_speed;
+
         }
 
         private void open_File_dialogue()
@@ -544,6 +594,5 @@ namespace Umea_rana
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }
-
     }
 }

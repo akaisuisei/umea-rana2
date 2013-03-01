@@ -83,9 +83,9 @@ namespace Umea_rana
             scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 1, height);
 
 
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Red);
-            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width, Color.Green);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height);
 
 
 
@@ -156,8 +156,8 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (_checkpause == false)
-            {
+   
+            
 
                 //scrolling
                 scrolling1.Draw(spriteBatch);
@@ -167,9 +167,10 @@ namespace Umea_rana
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
 
-            }
-            else
+            
+           if(_checkpause)
                 _pause.Draw(spriteBatch);
+     
         }
 
     }

@@ -18,7 +18,7 @@ namespace Umea_rana
         protected Texture2D _texture;
         protected int _speed, width, front_sc, timer_lunch, normalspeed, _damage;
         public int dir;
-
+        protected string trajectory;
         public Bullet_manager bullet;
         protected Color Munition_color, Ia_color;
         public bool attaque;

@@ -24,6 +24,7 @@ namespace Umea_rana
 
         public Bullet_manager(Texture2D n_texture, Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width, int timer)
         {
+
             texture = n_texture;
             rectangle = n_rectangle;
 

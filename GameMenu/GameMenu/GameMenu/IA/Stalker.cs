@@ -42,7 +42,7 @@ namespace Umea_rana
         /// <param name="window_W"></param>
         /// <param name="launchTime"></param>
         /// <param name="vie"></param>
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int speed, int launchTime, int vie,int damage)
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle,couple couple)
         {
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
@@ -51,11 +51,13 @@ namespace Umea_rana
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
             longueur_attaque = 100;
-            
-            this.vie = vie;
-            _speed = speed;
+
+            this.timer_lunch = couple.seconde;
+            this.vie = couple.vie;
+            _speed = couple.speed;
+            this._damage = couple.damage;
             this.dir = 1;
-            this._damage = _damage;
+            
 
         }
         /// <summary>
