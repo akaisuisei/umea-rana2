@@ -54,6 +54,16 @@ namespace Umea_rana
             for (int i = 0; i < bulletL.Count; i++)
                 bulletL[i].Draw(spritebatch );
         }
+        /// <summary>
+        /// add pour jouer
+        /// </summary>
+        /// <param name="quaint"></param>
+        public void Add(quaintuplet quaint)
+        {  for (int i = 0; i < quaint.nombre ; ++i)
+            ia_manage.Add(new Tireur (_texture ,new Rectangle ((int)(quaint.X *window_W )+i*_rectangle.Width,-_rectangle.Height,_rectangle.Width, _rectangle.Height ),
+                content ,window_H,window_W,quaint.color ,quaint.seconde));
+        }
+
 
         public void Add(float X, float Y, int seconde, int number, Color colo)
         {
@@ -111,6 +121,16 @@ namespace Umea_rana
             for (int i = 0; i < bulletL.Count; i++)
                 bulletL[i].Draw(spritebatch);
         }
+        /// <summary>
+        /// add pour jouer
+        /// </summary>
+        /// <param name="quaint"></param>
+        public void Add(quaintuplet quaint)
+        {
+            for (int i = 0; i < quaint.nombre; ++i)
+                ia_manage.Add(new Viseur_aI (_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
+                    content, window_H, window_W, quaint.color, quaint.seconde));
+        }
 
         public void Add(float X, float Y, int lunch_time,int number, Color colo)
         {
@@ -156,9 +176,18 @@ namespace Umea_rana
             foreach (Stalker vaiss in ia_manage)
                 vaiss.Draw(spritebatch);
         }
+        #region ADD
+        
+      
+        public override void Add(couple couple)
+        {
+            ia_manage.Add (new Stalker (_texture ,new Rectangle ((int)(couple.X * window_W), (int)(couple.Y * window_H), _rectangle.Width, _rectangle.Height),
+                front_sc ,speed ,window_H,window_W ,couple.seconde ,0));
+        }
         public override void Add(float X, float Y, int launch_time)
         {
             ia_manage.Add(new Stalker(_texture, new Rectangle((int)(X * window_W), (int)(Y * window_H), _rectangle.Width, _rectangle.Height), front_sc, speed, window_H, window_W, launch_time, 0));
-        }
+        } 
+        #endregion
     }
 }

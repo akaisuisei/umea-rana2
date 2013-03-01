@@ -21,17 +21,20 @@ namespace Umea_rana
         public Sauveguarde()
         {
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
-            Path.Combine(path, "SavedGames\\GameMenu\\MyApplication\\Player1");
         }
-
-        public void save(ref savefile save)
+        /// <summary>
+        /// save sEU pour editeur de map pas fini manque la copie du fond ds le dossier
+        /// </summary>
+        /// <param name="save"></param>
+        public void save_SEU(ref savefile save) 
         {
             FileStream file1 = null;
             FileStream file2 = null;
             FileStream file3 = null, file4 = null;
             XmlSerializer f = null, g = null, i = null, h = null;
-            string sav = path + "\\" + "S_" + save.levelProfile.levelname;
+            string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
+            
             if (!dir.Exists)
                 dir.Create();
 
@@ -51,9 +54,16 @@ namespace Umea_rana
             h = new XmlSerializer(typeof(levelProfile));
             h.Serialize(file4, save.levelProfile);
             file4.Close();
-        }
 
-        public void load(ref string filename, ref savefile savefile)// S_ pour shoot em up a modif c est faux
+            // 
+
+        }
+        /// <summary>
+        /// SEU pour shhot em up a utilier ds l editeur de map non fini manque le recuperation du fond
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="savefile"></param>
+        public void load_SEU(ref string filename, ref savefile savefile)
         {
             FileStream file1 = null;
             FileStream file2 = null;
@@ -62,7 +72,7 @@ namespace Umea_rana
             XmlSerializer f = null, g = null, i = null, j = null;
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(path + "\\" + "S_" + filename);
+            dir = new DirectoryInfo(path + "\\SEU\\" + filename);
             if (dir.Exists)
             {
                 file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Open, FileAccess.Read);
@@ -84,25 +94,33 @@ namespace Umea_rana
             }
         }
 
-        public string[] subdirectory(string type)
+        public string[] subdirectory(string type) // nom des dossier ds le dossier gamesave\\...\\ type
         {
             string g;
-            string[] hello = System.IO.Directory.GetDirectories(path);
+            if(!Directory.Exists(path +"\\"+type ))
+                Directory.CreateDirectory(path +"\\"+type );
+            string[] hello = System.IO.Directory.GetDirectories(path+"\\"+type );
             for (int j = 0; j < hello.Length; ++j)
             {
                 g = string.Empty;
                 for (int i = 0; i < hello[j].Length; ++i)
                 {
                     g += hello[j][i];
-                    if (hello[j][i] == '\\' || (hello[j][i - 1] == type[0] && hello[j][i] == type[1]))
+                    if (hello[j][i] == '\\')
                         g = string.Empty;
                 }
-                hello[j] = g;
             }
             return hello;
         }
-
-        public void load_level(ContentManager content, string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
+/// <summary>
+/// non fini manque le fond pour la phase de jeu normal
+/// </summary>
+/// <param name="content"></param>
+/// <param name="level">nom du nivau</param>
+/// <param name="iamanage_K"></param>
+/// <param name="iamanage_T"></param>
+/// <param name="iamanage_V"></param>
+        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -140,17 +158,25 @@ namespace Umea_rana
 
             }
         }
-        public void load_leveleditor(string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
+ /// <summary>
+ /// non fini manque le fond pour la phase de jeu level perso
+ /// </summary>
+ /// <param name="level"></param>
+ /// <param name="iamanage_K"></param>
+ /// <param name="iamanage_T"></param>
+ /// <param name="iamanage_V"></param>
+        public void load_leveleditor_SEU(string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
             FileStream file1 = null;
             FileStream file2 = null;
             FileStream file3 = null;
-            XmlSerializer f = null, g = null, i = null;
+            //     FileStream file4 = null;
+            XmlSerializer f = null, g = null, i = null;//,h=null ;
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(path + "\\" + level);
+            dir = new DirectoryInfo(path + "\\SEU\\" + level);
             if (dir.Exists)
             {
                 ia = new List<quaintuplet>();
@@ -168,6 +194,10 @@ namespace Umea_rana
                 i = new XmlSerializer(typeof(List<couple>));
                 ia_K = (List<couple>)i.Deserialize(file3);
                 file3.Close();
+                // file4 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Open, FileAccess.Read);
+                // h = new XmlSerializer(typeof(levelProfile));
+                // level_profile= (levelProfile)h.Deserialize(file4);
+                //file4.close();
 
                 for (int j = 0; j < ia.Count; ++j)
                     iamanage_T.Add(ia[j].X, -0.08f, ia[j].seconde, ia[j].nombre, ia[j].color);

@@ -28,23 +28,55 @@ namespace Umea_rana
         int FrameColumn3;
         SpriteEffects Effects3;
         int Timer3;
- 
-
         int window_W, window_H;
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int launchTime, int id)
-        {
-            
-            this.rectangle_C = n_rectangle;
 
+
+        /// <summary>
+        /// pour le kamikaze pour le SEU
+        /// </summary>
+        /// <param name="n_textture"></param>
+        /// <param name="n_rectangle"></param>
+        /// <param name="front_sc"></param>
+        /// <param name="speed"></param>
+        /// <param name="window_H"></param>
+        /// <param name="window_W"></param>
+        /// <param name="launchTime"></param>
+        /// <param name="vie"></param>
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int speed, int launchTime, int vie,int damage)
+        {
+            this.rectangle_C = n_rectangle;
+            this.rectangle = n_rectangle;
+            this._texture = n_textture;
+           
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+            longueur_attaque = 100;
+            
+            this.vie = vie;
+            _speed = speed;
+            this.dir = 1;
+            this._damage = _damage;
 
+        }
+        /// <summary>
+        /// pour les ia platforme
+        /// </summary>
+        /// <param name="n_textture"></param>
+        /// <param name="n_rectangle"></param>
+        /// <param name="front_sc"></param>
+        /// <param name="speed"></param>
+        /// <param name="window_H"></param>
+        /// <param name="window_W"></param>
+        /// <param name="id"></param>
+        /// <param name="vie"></param>
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int id, int vie)
+        {
+            this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
-
             this._texture = n_textture;
+           
             Ia_color = Color.AliceBlue;
-            vie = 2;
-
+            this.vie = vie;
             this.window_H = window_H;
             this.window_W = window_W;
             tombe = true;
@@ -53,7 +85,6 @@ namespace Umea_rana
             poid = 10;
             this.dir = 1;
             this.front_sc = front_sc;
-            this.timer_lunch = launchTime;
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -69,12 +100,6 @@ namespace Umea_rana
 
             switch (id)
             {
-                case 0://kamikaze
-
-                    decallageX = 0; decallageY = 0;
-                    hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
-                    longueur_attaque = 100;
-                    break;
 
                 case 1:// stalker
                     decallageX =32; decallageY = 36;

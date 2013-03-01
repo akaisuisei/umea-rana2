@@ -92,7 +92,7 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), 0, 4, height);
 
             // ajout IA
-            save.load_leveleditor("level1", ref manage_k, ref manage_T, ref manage_V);
+            save.load_leveleditor_SEU("level1", ref manage_k, ref manage_T, ref manage_V);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
         }

@@ -27,7 +27,7 @@ namespace Umea_rana
         IA_manager_V manage_V;
         IA_manager_K manage_k;
         int taille_sprt;
-        int game_time;
+
         _Pause _pause;
         bool _checkpause = false;
         int latence = 0;
@@ -52,7 +52,7 @@ namespace Umea_rana
 
 
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
-            game_time = 0;
+
             backGround = "level2//fond";
             // ajout IA 
             user = new UserControl1();
@@ -128,6 +128,14 @@ namespace Umea_rana
                 }
                 if (user.IHave_control)
                     user.TopMost = true;
+                else
+                {
+                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
+                    scrolling1.update_ophelia(keyboard);
+                }
+                manage_k.Update_ophelia(keyboard);
+                manage_T.Update_ophelia(keyboard);
+                manage_V.Update_ophelia(keyboard);
             }
             else
             {
@@ -138,14 +146,10 @@ namespace Umea_rana
             }
 
             //update interface
-            user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
-            scrolling1.update_ophelia(keyboard);
-            manage_k.Update_ophelia(keyboard);
-            manage_T.Update_ophelia(keyboard);
-            manage_V.Update_ophelia(keyboard);
+
 
             oldkey = keyboard;
-            game_time++;
+
         }
 
 

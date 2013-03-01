@@ -18,7 +18,7 @@ namespace Umea_rana
         SpriteEffects Effects;       
         int Timer;
         int AnimationSpeed = 10;
-        
+
 
         public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo, int gametime)
         {

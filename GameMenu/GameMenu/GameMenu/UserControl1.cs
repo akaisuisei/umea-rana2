@@ -56,8 +56,8 @@ namespace Umea_rana
             savefile.levelProfile = new levelProfile();
             subdirectory = new List<string>();
             button9.Enabled = false;
-            type = "S_";
-            string[] hello = sauve.subdirectory(type );
+            type = "SEU";
+            string[] hello = sauve.subdirectory(type);
             if (hello.Length == 0)
             {
                 comboBox2.Enabled = false;
@@ -124,7 +124,7 @@ namespace Umea_rana
 
         private void intcheck(TextBox texbox)
         {
-            int res, n=0;
+            int res, n = 0;
             if ((string)texbox.Tag == t_damage)
                 n = 3;
             else if ((string)texbox.Tag == t_firerate)
@@ -137,17 +137,17 @@ namespace Umea_rana
                 n = 10;
 
             if (texbox.Text != string.Empty)
+            {
                 if (int.TryParse(texbox.Text, out res))
                     if (res <= n)
                         texbox.BackColor = System.Drawing.Color.Green;
-                    else
-                    {
-                        texbox.BackColor = System.Drawing.Color.Red;
-                    }
-                else
-                {
-                    texbox.BackColor = System.Drawing.Color.Red;
-                }
+            }
+            else
+            {
+                texbox.BackColor = System.Drawing.Color.Red;
+            }
+
+
         }
 
         #region texbox chek
@@ -468,8 +468,8 @@ namespace Umea_rana
             label17.Text = damage;
             label20.Text = life;
             // default 
-            button6.BackColor = Button.DefaultBackColor;
-            button2.BackColor = Button.DefaultBackColor;
+            button6.BackColor = button1.BackColor ;
+            button2.BackColor = button1.BackColor ;
 
             textBox1.BackColor = System.Drawing.Color.White;
             textBox2.BackColor = System.Drawing.Color.White;
@@ -496,7 +496,7 @@ namespace Umea_rana
             textBox13.Text = string.Empty;
             //tag
             textBox1.Tag = t_life;
-            textBox2.Tag  = t_speed;
+            textBox2.Tag = t_speed;
             textBox3.Tag = t_nbr;
             textBox4.Tag = t_life;
             textBox5.Tag = t_speed;
@@ -504,7 +504,7 @@ namespace Umea_rana
             textBox7.Tag = t_speed;
             textBox8.Tag = t_speed;
             textBox9.Tag = t_firerate;
-        //  / textBox10. Tag = t_speed;
+            //  / textBox10. Tag = t_speed;
             textBox11.Tag = t_damage;
             textBox12.Tag = t_damage;
             textBox13.Tag = t_damage;
@@ -515,12 +515,12 @@ namespace Umea_rana
 
         private void savegame()
         {
-            sauve.save(ref savefile );
+            sauve.save_SEU(ref savefile);
         }
 
         private void loadgame(string file_name)
         {
-            sauve.load(ref file_name, ref savefile );
+            sauve.load_SEU(ref file_name, ref savefile);
 
             for (int i = 0; i < savefile.ia_tireur.Count; ++i)
                 manage_T.Add(savefile.ia_tireur[i].X, savefile.ia_tireur[i].Y + 1, savefile.ia_tireur[i].seconde, savefile.ia_tireur[i].nombre, savefile.ia_tireur[i].color);
@@ -535,7 +535,7 @@ namespace Umea_rana
             Thread thread = new Thread(() =>
             {
                 var yourForm = new OpenFileDialog();
-                
+
                 if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     imageB = yourForm.FileName;

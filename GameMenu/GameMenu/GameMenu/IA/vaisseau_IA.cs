@@ -16,7 +16,7 @@ namespace Umea_rana
     {
 
         protected Texture2D _texture;
-        protected int _speed, width, front_sc, timer_lunch, normalspeed;
+        protected int _speed, width, front_sc, timer_lunch, normalspeed, _damage;
         public int dir;
 
         public Bullet_manager bullet;
@@ -28,6 +28,8 @@ namespace Umea_rana
 
         public int Speed { get { return _speed; } }
         public int timer_Lunche { get { return timer_lunch; } }
+        public int damage { get { return _damage; } }
+
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -93,13 +95,13 @@ namespace Umea_rana
             if (rectangle.Left < 0)
             {
                 rectangle.X = 0;
-                    rectangle.Y += rectangle_C.Height;
+                rectangle.Y += rectangle_C.Height;
                 dir = -dir;
             }
             rectangle.X += _speed * dir;
         }
 
-        public void Update_ophelia(KeyboardState keyboard )
+        public void Update_ophelia(KeyboardState keyboard)
         {
             if (keyboard.IsKeyDown(Keys.Up))
                 ++rectangle.Y;

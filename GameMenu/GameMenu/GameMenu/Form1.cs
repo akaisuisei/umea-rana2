@@ -53,7 +53,7 @@ namespace Umea_rana
 
         private void button1_Click(object sender, EventArgs e)
         {
-            sauve.load(ref filename,ref savefile );
+            sauve.load_SEU(ref filename,ref savefile );
           
             this.Hide();
             loading = false;
