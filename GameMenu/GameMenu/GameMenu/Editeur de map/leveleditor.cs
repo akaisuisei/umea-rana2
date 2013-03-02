@@ -77,9 +77,9 @@ namespace Umea_rana
 
             //instancie le scolling
 
-            scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height);
+            scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,0.01f);
 
-            scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height);
+            scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,1f);
 
             //intancie le vaisseau
             vaisseau = new sripte_V(T_sprite,

@@ -33,6 +33,7 @@ namespace Umea_rana
         Sauveguarde sauve;
         savefile savefile;
         List<string> subdirectory;
+        Scrolling_ManagerV scrollingM;
 
         int spawn;
         string ia_type;
@@ -68,8 +69,8 @@ namespace Umea_rana
             textBox16.BackColor = System.Drawing.Color.Red;
 
             textBox10.BackColor = System.Drawing.Color.Red;
-            textBox11.BackColor = System.Drawing.Color.Red;  
-           
+            textBox11.BackColor = System.Drawing.Color.Red;
+            scrollingM = new Scrolling_ManagerV(width,height  ); 
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -183,11 +184,12 @@ namespace Umea_rana
                 --seconde;
         }
 
-        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k)
+        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k,Scrolling_ManagerV scrolling)
         {
             this.manage_T = manage_T;
             this.manage_V = manage_V;
             this.manage_k = manage_k;
+            this.scrollingM = scrolling;
         }
 
         public void destroy()

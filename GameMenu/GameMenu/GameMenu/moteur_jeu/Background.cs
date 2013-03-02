@@ -11,15 +11,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class Background
+   public class Background
     {
         public Texture2D texture;
         public Rectangle rectangle, rectangle2;
-
+        public float couche;
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, rectangle, Color.White);
-            spritebatch.Draw(texture, rectangle2, Color.White);
+            spritebatch.Draw(texture, rectangle, new Rectangle(0,0,texture.Width ,texture.Height ), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche);
+            spritebatch.Draw(texture, rectangle2, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche);
+
         }
     }
 }

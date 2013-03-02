@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class Scrolling : Background
+  public  class Scrolling : Background
     {
         private int speed, height;
 
-        public Scrolling(Texture2D n_texture, Rectangle n_rectangle, int n_speed, int height)
+        public Scrolling(Texture2D n_texture, Rectangle n_rectangle, int n_speed, int height, float coche)
         {
             texture = n_texture;
             rectangle = n_rectangle;
@@ -23,6 +23,7 @@ namespace Umea_rana
             rectangle2.Y = -height;
             speed = n_speed;
             this.height = height;
+            this.couche = coche;
         }
 
         public void Update()
