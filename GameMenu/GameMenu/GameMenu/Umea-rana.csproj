@@ -188,6 +188,7 @@
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="interface\_Pause.cs" />
+    <Compile Include="Scrolling_Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -17,7 +17,7 @@ namespace Umea_rana
     {
 
         string path;
-
+        public string _path { get { return path; } }
         public Sauveguarde()
         {
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
@@ -34,9 +34,18 @@ namespace Umea_rana
             XmlSerializer f = null, g = null, i = null, h = null;
             string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
-
+            string ext = "";
             if (!dir.Exists)
                 dir.Create();
+            for (int j = 0; j < save.levelProfile.background_name.Length; ++j)
+            {
+                sav += save.levelProfile.background_name[j];
+                if (save.levelProfile.background_name[j] == '.')
+                    sav = "";
+            }
+
+            System.IO.File.Copy(save.levelProfile.background_name, sav + "background" + ext, true);
+            save.levelProfile.background_name = "background" + ext;
 
             file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
             f = new XmlSerializer(typeof(List<quaintuplet>));
@@ -109,6 +118,7 @@ namespace Umea_rana
                     if (hello[j][i] == '\\')
                         g = string.Empty;
                 }
+                hello[j] = g;
             }
             return hello;
         }
@@ -208,7 +218,16 @@ namespace Umea_rana
                     iamanage_K.Add(ia_K[j]);
 
             }
+        }
+
+        public void supp_dir(string filename)
+        {
+            DirectoryInfo dir = new DirectoryInfo(path + "\\SEU\\" + filename);
+
+            if (dir.Exists)
+                dir.Delete(true);
 
         }
+
     }
 }

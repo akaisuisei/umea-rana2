@@ -40,7 +40,7 @@ namespace Umea_rana
         public UserControl1()
         {
             InitializeComponent();
-            Initialize();
+       
             this.Hide();
             color4 = System.Drawing.Color.Black;
             imagefond = string.Empty;
@@ -59,19 +59,7 @@ namespace Umea_rana
             subdirectory = new List<string>();
             button9.Enabled = false;
             type = "SEU";
-            string[] hello = sauve.subdirectory(type);
-            if (hello.Length == 0)
-            {
-                comboBox2.Enabled = false;
-                comboBox2.Text = "vide";
-            }
-            else
-            {
-                foreach (string h in hello)
-                    comboBox2.Items.Add(h);
-                comboBox2.Enabled = true;
-                comboBox2.Text = "dossier existant";
-            }
+           Initialize();
             //8,9,14,16
             textBox7.BackColor = System.Drawing.Color.Red;
             textBox8.BackColor = System.Drawing.Color.Red;
@@ -80,7 +68,8 @@ namespace Umea_rana
             textBox16.BackColor = System.Drawing.Color.Red;
 
             textBox10.BackColor = System.Drawing.Color.Red;
-            textBox11.BackColor = System.Drawing.Color.Red;
+            textBox11.BackColor = System.Drawing.Color.Red;  
+           
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -309,6 +298,7 @@ namespace Umea_rana
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             button9.Enabled = true;
+            button11.Enabled = true;
         }
         #endregion
 
@@ -443,9 +433,10 @@ namespace Umea_rana
             {
                 savefile.levelProfile.color = new Microsoft.Xna.Framework.Color(color4.R, color4.G, color4.B, color4.A);
                 savefile.levelProfile.damage = int.Parse(textBox11.Text);
-                savefile.levelProfile.firerate = int.Parse(firerate);
+                savefile.levelProfile.firerate = int.Parse(textBox9.Text);
                 savefile.levelProfile.playerLife = int.Parse(textBox14.Text);
                 savefile.levelProfile.player_speed = int.Parse(textBox8.Text);
+                savefile.levelProfile.bullet_speed  = int.Parse(textBox16.Text);
                 hidou();
             }
 
@@ -616,6 +607,20 @@ namespace Umea_rana
 
             spawn = -1;
             ia_type = "kawabunga";
+            comboBox2.Items.Clear();
+            string[] hello = sauve.subdirectory(type);
+            if (hello.Length == 0)
+            {
+                comboBox2.Enabled = false;
+                comboBox2.Text = "vide";
+            }
+            else
+            {
+                foreach (string h in hello)
+                    comboBox2.Items.Add(h);
+                comboBox2.Enabled = true;
+                comboBox2.Text = "dossier existant";
+            }
         }
 
         private void savegame()
@@ -663,7 +668,7 @@ namespace Umea_rana
             Thread thread = new Thread(() =>
             {
                 var yourForm = new OpenFileDialog();
-
+               yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
                 if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     imageB = yourForm.FileName;
@@ -678,6 +683,10 @@ namespace Umea_rana
             if (spawn != -1)
             {
                 delete(spawn, ia_type);
+            }
+            else
+            {
+                sauve.supp_dir(comboBox2.SelectedText);
             }
 
             hidou();
