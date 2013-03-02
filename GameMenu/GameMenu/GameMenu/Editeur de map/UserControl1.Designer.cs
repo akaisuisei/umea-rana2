@@ -72,6 +72,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Tabcontrol = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -83,6 +85,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button11 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.button10 = new System.Windows.Forms.Button();
@@ -97,12 +100,9 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
-            this.label21 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -686,6 +686,29 @@
             this.comboBox4.Size = new System.Drawing.Size(79, 21);
             this.comboBox4.TabIndex = 16;
             // 
+            // label21
+            // 
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 208);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(79, 34);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "label21";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox15
+            // 
+            this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox15.Location = new System.Drawing.Point(88, 211);
+            this.textBox15.MaxLength = 3;
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(79, 20);
+            this.textBox15.TabIndex = 18;
+            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
+            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -695,7 +718,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Tabcontrol
             // 
@@ -833,6 +856,17 @@
             this.comboBox2.TabIndex = 4;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
+            // button11
+            // 
+            this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button11.Location = new System.Drawing.Point(3, 95);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(170, 40);
+            this.button11.TabIndex = 5;
+            this.button11.Text = "button11";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.tableLayoutPanel12);
@@ -942,6 +976,7 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox8
             // 
@@ -951,6 +986,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(79, 20);
             this.textBox8.TabIndex = 4;
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox9
             // 
@@ -960,6 +996,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(79, 20);
             this.textBox9.TabIndex = 5;
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label17
             // 
@@ -982,6 +1019,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(79, 20);
             this.textBox11.TabIndex = 7;
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // label20
             // 
@@ -1004,29 +1042,6 @@
             this.textBox14.TabIndex = 9;
             this.textBox14.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
             // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 208);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(79, 34);
-            this.label21.TabIndex = 17;
-            this.label21.Text = "label21";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox15
-            // 
-            this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox15.Location = new System.Drawing.Point(88, 211);
-            this.textBox15.MaxLength = 3;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(79, 20);
-            this.textBox15.TabIndex = 18;
-            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -1046,16 +1061,6 @@
             this.textBox16.Size = new System.Drawing.Size(79, 20);
             this.textBox16.TabIndex = 11;
             this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
-            // 
-            // button11
-            // 
-            this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button11.Location = new System.Drawing.Point(3, 95);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(170, 40);
-            this.button11.TabIndex = 5;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
             // 
             // UserControl1
             // 

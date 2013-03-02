@@ -30,7 +30,24 @@ namespace Umea_rana
         int Timer3;
         int window_W, window_H;
 
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, couple couple,int spawn)
+        {
+            this.rectangle_C = n_rectangle;
+            this.rectangle = n_rectangle;
+            this._texture = n_textture;
 
+            decallageX = 0; decallageY = 0;
+            hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
+            longueur_attaque = 100;
+
+            this.timer_lunch = couple.seconde;
+            this.vie = couple.vie;
+            _speed = couple.speed;
+            this._damage = couple.damage;
+            this.dir = 1;
+            this.spawn = spawn;
+
+        }
         /// <summary>
         /// pour le kamikaze pour le SEU
         /// </summary>

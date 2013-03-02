@@ -22,7 +22,6 @@ namespace Umea_rana
 
         public Texture2D _Texture { get { return _texture; } }
         public Rectangle _Rectangle { get { return _rectangle; } }
-
         public List<vaisseau_IA> Ia_manage { get { return ia_manage; } }
         public List<munition> bulletL;
 
@@ -43,6 +42,10 @@ namespace Umea_rana
         public void removed(int i_de_list)// enleve un ia
         {
             this.ia_manage.RemoveAt(i_de_list);
+        }
+        public void remove_all()
+        {            
+            this.ia_manage = new List<vaisseau_IA>();
         }
     }
 }

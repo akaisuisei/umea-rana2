@@ -53,6 +53,14 @@ namespace Umea_rana
             for (int i = 0; i < bulletL.Count; i++)
                 bulletL[i].Draw(spritebatch);
         }
+
+        public void Add(quaintuplet quaint,int spawn)
+        {
+            for (int i = 0; i < quaint.nombre; ++i)
+                ia_manage.Add(new Tireur(_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, (int)(quaint.Y * window_H), _rectangle.Width, _rectangle.Height),
+                    content, window_H, window_W, quaint,spawn ));
+        }
+
         /// <summary>
         /// add pour jouer
         /// </summary>
@@ -119,6 +127,14 @@ namespace Umea_rana
             for (int i = 0; i < bulletL.Count; i++)
                 bulletL[i].Draw(spritebatch);
         }
+        public void Add(quaintuplet quaint,int spawn)
+        {
+            for (int i = 0; i < quaint.nombre; ++i)
+                ia_manage.Add(new Viseur_aI(_texture, new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width,(int)( quaint.Y *window_H ), _rectangle.Width, _rectangle.Height),
+                    content, window_H, window_W, quaint,spawn ));
+        }
+        
+
         /// <summary>
         /// add pour jouer
         /// </summary>
@@ -175,10 +191,14 @@ namespace Umea_rana
         }
         #region ADD
 
+        public void Add(couple couple,int spawn)
+        {
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(couple.X * window_W), (int)(couple.Y * window_H), _rectangle.Width, _rectangle.Height), couple,spawn ));
+        }
 
         public void Add(couple couple)
         {
-            ia_manage.Add (new Stalker (_texture ,new Rectangle ((int)(couple.X * window_W), (int)(couple.Y * window_H),_rectangle.Width,_rectangle.Height ),couple ));
+            ia_manage.Add(new Stalker(_texture, new Rectangle((int)(couple.X * window_W), -1*_rectangle.Height , _rectangle.Width, _rectangle.Height), couple));
         }
         public override void Add(float X, float Y, int launch_time)
         {

@@ -34,6 +34,8 @@ namespace Umea_rana
 
         UserControl1 user;
         string backGround;
+        int spawn;
+        string iaType;
 
         public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -49,20 +51,17 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-
-
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
-
             backGround = "level2//fond";
             // ajout IA 
             user = new UserControl1();
             Application.Run(user);
-
+            spawn = -1;
+            iaType = "kawabunga";
         }
 
         public override void LoadContent(ContentManager Content)
         {
-
             //charge le fond
             bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite
@@ -81,8 +80,6 @@ namespace Umea_rana
             //instancie le scolling
 
             scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 1, height);
-
-
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height);
@@ -124,7 +121,9 @@ namespace Umea_rana
             {
                 if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control)
                 {
-                    user._show(mouse.X, mouse.Y);
+                    spawn = existcheck(ref iaType, mouse);
+                    
+                    user._show(mouse.X, mouse.Y, iaType , spawn );
                 }
                 if (user.IHave_control)
                     user.TopMost = true;
@@ -156,22 +155,48 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-   
-            
 
-                //scrolling
-                scrolling1.Draw(spriteBatch);
-                vaisseau.Draw(spriteBatch);
 
-                manage_T.Draw(spriteBatch);
-                manage_V.Draw(spriteBatch);
-                manage_k.Draw(spriteBatch);
 
-            
-           if(_checkpause)
+            //scrolling
+            scrolling1.Draw(spriteBatch);
+            vaisseau.Draw(spriteBatch);
+
+            manage_T.Draw(spriteBatch);
+            manage_V.Draw(spriteBatch);
+            manage_k.Draw(spriteBatch);
+
+
+            if (_checkpause)
                 _pause.Draw(spriteBatch);
-     
+
         }
 
+        private int existcheck(ref string hello, MouseState mouse)
+        {
+            Rectangle recM = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
+            for (int i = 0; i < manage_k.Ia_manage.Count; ++i)
+                if (manage_k.Ia_manage[i].rectangle.Intersects(recM))
+                {
+                    hello = "IA_K";
+                    return manage_k.Ia_manage[i].spawn;
+                }
+            for (int i = 0; i < manage_T.Ia_manage.Count; ++i)
+                if (manage_T.Ia_manage[i].rectangle.Intersects(recM))
+                {
+                    hello = "IA_T";
+                    return manage_T.Ia_manage[i].spawn;
+                }
+            for (int i = 0; i < manage_V.Ia_manage.Count; ++i)
+                if (manage_V.Ia_manage[i].rectangle.Intersects(recM))
+                {
+                    hello = "IA_V";
+                    return manage_V.Ia_manage[i].spawn;
+                }
+            hello = "";
+            return -1;
+
+        }
     }
 }

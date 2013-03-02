@@ -30,6 +30,7 @@ namespace Umea_rana
         public int timer_Lunche { get { return timer_lunch; } }
         public int damage { get { return _damage; } }
 
+        public int spawn;
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)

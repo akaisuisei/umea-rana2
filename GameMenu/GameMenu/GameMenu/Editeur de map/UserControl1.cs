@@ -34,6 +34,9 @@ namespace Umea_rana
         savefile savefile;
         List<string> subdirectory;
 
+        int spawn;
+        string ia_type;
+
         public UserControl1()
         {
             InitializeComponent();
@@ -44,7 +47,6 @@ namespace Umea_rana
             this.width = Screen.PrimaryScreen.Bounds.Width;
             this.height = Screen.PrimaryScreen.Bounds.Height;
             IHave_control = false;
-            //    game = this.game;
 
             seconde = 0;
             filepath = string.Empty;
@@ -81,7 +83,7 @@ namespace Umea_rana
             textBox11.BackColor = System.Drawing.Color.Red;
         }
 
-        public void _show(int X, int y)
+        public void _show(int X, int y, string touch, int spawn)
         {
             IHave_control = true;
             int decal = 100;
@@ -96,16 +98,96 @@ namespace Umea_rana
                 y -= (decal + this.Height);
             else
                 y += decal;
+            EnableTab(tabPage2, false);
             this.Location = new System.Drawing.Point(X, y);
-            this.Show();
+            this.spawn = spawn;
+            this.ia_type = touch;
 
+            switch (touch)
+            {
+                case "IA_K":
+                    EnableTab(tabPage3, true);
+                    EnableTab(tabPage2, false);
+                    enableall(false);
+                    textBox4.Text = "" + savefile.ia_Kamikaze[spawn].vie;
+                    textBox5.Text = "" + savefile.ia_Kamikaze[spawn].speed;
+                    textBox12.Text = "" + savefile.ia_Kamikaze[spawn].damage;
+                    break;
+                case "IA_V":
+                    EnableTab(tabPage3, false);
+                    EnableTab(tabPage2, true);
+                    enableall(false);
+                    radioButton1.Enabled = false;
+                    radioButton2.Enabled = false;
+                    radioButton2.Checked = true;
+                    textBox1.Text = "" + savefile.ia_viseur[spawn].vie;
+                    textBox2.Text = "" + savefile.ia_viseur[spawn].speed;
+                    textBox3.Text = "" + savefile.ia_viseur[spawn].nombre;
+                    textBox6.Text = "" + savefile.ia_viseur[spawn].firerate;
+                    textBox13.Text = "" + savefile.ia_viseur[spawn].damage;
+                    textBox15.Text = "" + savefile.ia_viseur[spawn].bullet_Speed;
+                    comboBox4.SelectedText = savefile.ia_viseur[spawn].trajectory;
+                    button2.BackColor = System.Drawing.Color.FromArgb(savefile.ia_viseur[spawn].color.A, savefile.ia_viseur[spawn].color.R, savefile.ia_viseur[spawn].color.G, savefile.ia_viseur[spawn].color.B);
+                    break;
+                case "IA_T":
+                    EnableTab(tabPage3, false);
+                    EnableTab(tabPage2, true);
+                    enableall(false);
+                    radioButton1.Enabled = false;
+                    radioButton2.Enabled = false;
+                    radioButton1.Checked = true;
+                    textBox1.Text = "" + savefile.ia_tireur[spawn].vie;
+                    textBox2.Text = "" + savefile.ia_tireur[spawn].speed;
+                    textBox3.Text = "" + savefile.ia_tireur[spawn].nombre;
+                    textBox6.Text = "" + savefile.ia_tireur[spawn].firerate;
+                    textBox13.Text = "" + savefile.ia_tireur[spawn].damage;
+                    textBox15.Text = "" + savefile.ia_tireur[spawn].bullet_Speed;
+                    comboBox4.SelectedText = savefile.ia_tireur[spawn].trajectory;
+                    button2.BackColor = System.Drawing.Color.FromArgb(savefile.ia_tireur[spawn].color.A, savefile.ia_tireur[spawn].color.R, savefile.ia_tireur[spawn].color.G, savefile.ia_tireur[spawn].color.B);
+
+                    break;
+                default:
+                    EnableTab(tabPage2, true);
+                    EnableTab(tabPage3, true);
+                    enableall(true);
+                    radioButton1.Enabled = true;
+                    radioButton2.Enabled = true;
+                    break;
+            }
+            this.Show();
         }
+        private void enableall(bool f)
+        {
+            EnableTab(tabPage4, f);
+            EnableTab(tabPage5, f);
+
+            comboBox2.Enabled = f;
+            button8.Enabled = f;
+            button11.Enabled = !f;
+            button7.Enabled = true;
+            textBox10.Enabled = f;
+        }
+
+        private static void EnableTab(TabPage page, bool enable)
+        {
+            EnableControls(page.Controls, enable);
+        }
+        private static void EnableControls(Control.ControlCollection ctls, bool enable)
+        {
+            foreach (Control ctl in ctls)
+            {
+                ctl.Enabled = enable;
+                EnableControls(ctl.Controls, enable);
+            }
+        }
+
 
         public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k, ref KeyboardState keybord)
         {
             manage_T = this.manage_T;
             manage_V = this.manage_V;
             manage_k = this.manage_k;
+
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
@@ -166,7 +248,6 @@ namespace Umea_rana
         {
             intcheck(textBox1);
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             intcheck(textBox2);
@@ -180,8 +261,6 @@ namespace Umea_rana
         {
             intcheck(textBox4);
         }
-
-
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
@@ -197,21 +276,9 @@ namespace Umea_rana
             intcheck(textBox7);
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-            intcheck(textBox8);
-        }
+     
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-            intcheck(textBox9);
-        }
-
-        // textbox 10 namcheck
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-            intcheck(textBox11);
-        }
+    
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
             intcheck(textBox12);
@@ -254,12 +321,7 @@ namespace Umea_rana
             button2.BackColor = color2;
         }
 
-        private void button6_Click(object sender, EventArgs e)// tab4 color
-        {
-            colorDialog2.ShowDialog();
-            color4 = colorDialog2.Color;
-            button6.BackColor = color4;
-        }
+       
         private void button5_Click(object sender, EventArgs e)// tab4 showfile
         {
             open_File_dialogue();
@@ -275,16 +337,21 @@ namespace Umea_rana
                 textBox5.BackColor == System.Drawing.Color.Green &&
                 textBox12.BackColor == System.Drawing.Color.Green)
             {
-                couple couple = new couple();
-                couple.X = openX;
-                couple.Y = openY;
-                couple.seconde = seconde;
-                couple.damage = int.Parse(textBox12.Text);
-                couple.speed = int.Parse(textBox5.Text);
-                couple.vie = int.Parse(textBox4.Text);
-                savefile.ia_Kamikaze.Add(couple);
-                manage_k.Add(openX, openY, seconde);
-                this.hidou();
+                if (spawn == -1)
+                {
+                    couple couple = new couple();
+                    couple.X = openX;
+                    couple.Y = openY;
+                    couple.seconde = seconde;
+                    couple.damage = int.Parse(textBox12.Text);
+                    couple.speed = int.Parse(textBox5.Text);
+                    couple.vie = int.Parse(textBox4.Text);
+                    savefile.ia_Kamikaze.Add(couple);
+                    manage_k.Add(couple, manage_k.Ia_manage.Count);
+                    this.hidou();
+                }
+                else
+                    modif(spawn, ia_type);
 
             }
         }
@@ -292,7 +359,7 @@ namespace Umea_rana
         {
             this.hidou();
         }
-        private void button8_Click(object sender, EventArgs e)// save and load
+        private void button8_Click(object sender, EventArgs e)// save 
         {
             if (textBox10.BackColor == System.Drawing.Color.Green)
             {
@@ -305,7 +372,7 @@ namespace Umea_rana
                 }
             }
         }
-        private void button1_Click_1(object sender, EventArgs e)// tab viseur et tireur
+        private void button1_Click(object sender, EventArgs e)// tab viseur et tireur
         {
 
             if (textBox1.BackColor == System.Drawing.Color.Green && textBox2.BackColor == System.Drawing.Color.Green &&
@@ -313,31 +380,36 @@ namespace Umea_rana
                 textBox13.BackColor == System.Drawing.Color.Green && textBox15.BackColor == System.Drawing.Color.Green &&
                 color2 != System.Drawing.Color.Black)//+combobox4 a veriff
             {
-                quaintuplet quaint = new quaintuplet();
-                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.B, color2.G, color2.A);
-                quaint.damage = int.Parse(textBox13.Text);
-                quaint.firerate = int.Parse(textBox6.Text);
-                quaint.nombre = int.Parse(textBox3.Text);
-                quaint.seconde = seconde;
-                quaint.speed = int.Parse(textBox2.Text);
-                quaint.trajectory = (string)comboBox4.SelectedItem;
-                quaint.vie = int.Parse(textBox1.Text);
-                quaint.X = openX;
-                quaint.Y = openY - 1;
-
-                if (radioButton1.Checked)
+                if (spawn == -1)
                 {
+                    quaintuplet quaint = new quaintuplet();
+                    quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.G, color2.B, color2.A);
+                    quaint.damage = int.Parse(textBox13.Text);
+                    quaint.firerate = int.Parse(textBox6.Text);
+                    quaint.nombre = int.Parse(textBox3.Text);
+                    quaint.seconde = seconde;
+                    quaint.speed = int.Parse(textBox2.Text);
+                    quaint.trajectory = (string)comboBox4.SelectedItem;
+                    quaint.vie = int.Parse(textBox1.Text);
+                    quaint.X = openX;
+                    quaint.Y = openY ;
 
-                    savefile.ia_tireur.Add(quaint);
-                    manage_T.Add(openX, openY, seconde, quaint.nombre, quaint.color);
-                    this.hidou();
+                    if (radioButton1.Checked)
+                    {
+
+                        savefile.ia_tireur.Add(quaint);
+                        manage_T.Add(quaint, manage_T.Ia_manage.Count);
+                        this.hidou();
+                    }
+                    else if (radioButton2.Checked)
+                    {
+                        savefile.ia_viseur.Add(quaint);
+                        manage_V.Add(quaint, manage_V.Ia_manage.Count);
+                        this.hidou();
+                    }
                 }
-                else if (radioButton2.Checked)
-                {
-                    savefile.ia_viseur.Add(quaint);
-                    manage_V.Add(openX, openY, seconde, quaint.nombre, quaint.color);
-                    this.hidou();
-                }
+                else
+                    modif(spawn, ia_type);
 
             }
         } // tab1
@@ -429,7 +501,7 @@ namespace Umea_rana
             file = "fichier";
             damage = "degat infligee";
             bullet_speed = "vitesse de la balle";
-            supp = "supprimer"
+            supp = "supprimer";
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -467,7 +539,7 @@ namespace Umea_rana
             label16.Text = scrolling + " : 2";
             //tab 4
             button7.Text = cancel;
-            button11.Text= supp;
+            button11.Text = supp;
             button8.Text = save;
             button9.Text = load;
             label14.Text = filepathlabel;
@@ -492,21 +564,6 @@ namespace Umea_rana
             button6.BackColor = button1.BackColor;
             button2.BackColor = button1.BackColor;
 
-            textBox1.BackColor = System.Drawing.Color.White;
-            textBox2.BackColor = System.Drawing.Color.White;
-            textBox3.BackColor = System.Drawing.Color.White;
-            textBox4.BackColor = System.Drawing.Color.White;
-            textBox5.BackColor = System.Drawing.Color.White;
-            textBox6.BackColor = System.Drawing.Color.White;
-            //     textBox7.BackColor = System.Drawing.Color.White;
-            //   textBox8.BackColor = System.Drawing.Color.White;
-            //    textBox9.BackColor = System.Drawing.Color.White;
-
-            textBox12.BackColor = System.Drawing.Color.White;
-            textBox13.BackColor = System.Drawing.Color.White;
-            //   textBox14.BackColor = System.Drawing.Color.White; tab5
-            textBox15.BackColor = System.Drawing.Color.White;
-            //    textBox16.BackColor = System.Drawing.Color.White; tab5
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
@@ -534,10 +591,31 @@ namespace Umea_rana
             textBox12.Tag = t_damage;
             textBox13.Tag = t_damage;
             textBox14.Tag = t_life;
+            textBox15.Tag = t_speed;
+            textBox16.Tag = t_speed;
             openX = 0;
             openY = 0;
 
-            button11.Enabled=false;
+            button11.Enabled = false;
+
+            textBox1.BackColor = System.Drawing.Color.White;
+            textBox2.BackColor = System.Drawing.Color.White;
+            textBox3.BackColor = System.Drawing.Color.White;
+            textBox4.BackColor = System.Drawing.Color.White;
+            textBox5.BackColor = System.Drawing.Color.White;
+            textBox6.BackColor = System.Drawing.Color.White;
+            //     textBox7.BackColor = System.Drawing.Color.White;
+            //   textBox8.BackColor = System.Drawing.Color.White;
+            //    textBox9.BackColor = System.Drawing.Color.White;
+
+            textBox12.BackColor = System.Drawing.Color.White;
+            textBox13.BackColor = System.Drawing.Color.White;
+            //   textBox14.BackColor = System.Drawing.Color.White; tab5
+            textBox15.BackColor = System.Drawing.Color.White;
+            //    textBox16.BackColor = System.Drawing.Color.White; tab5
+
+            spawn = -1;
+            ia_type = "kawabunga";
         }
 
         private void savegame()
@@ -550,12 +628,11 @@ namespace Umea_rana
             sauve.load_SEU(ref file_name, ref savefile);
 
             for (int i = 0; i < savefile.ia_tireur.Count; ++i)
-                manage_T.Add(savefile.ia_tireur[i].X, savefile.ia_tireur[i].Y + 1, savefile.ia_tireur[i].seconde, savefile.ia_tireur[i].nombre, savefile.ia_tireur[i].color);
+                manage_T.Add(savefile.ia_tireur[i], i);
             for (int i = 0; i < savefile.ia_viseur.Count; ++i)
-                manage_V.Add(savefile.ia_viseur[i].X, savefile.ia_viseur[i].Y, savefile.ia_viseur[i].seconde, savefile.ia_viseur[i].nombre, savefile.ia_viseur[i].color);
+                manage_V.Add(savefile.ia_viseur[i], i);
             for (int i = 0; i < savefile.ia_Kamikaze.Count; ++i)
-                manage_k.Add(savefile.ia_Kamikaze[i].X, savefile.ia_Kamikaze[i].Y, savefile.ia_Kamikaze[i].seconde);
-
+                manage_k.Add(savefile.ia_Kamikaze[i], i);
 
             textBox7.BackColor = System.Drawing.Color.Green;
             textBox8.BackColor = System.Drawing.Color.Green;
@@ -578,6 +655,7 @@ namespace Umea_rana
             textBox14.Text = "" + savefile.levelProfile.playerLife;
             textBox16.Text = "" + savefile.levelProfile.bullet_speed;
 
+
         }
 
         private void open_File_dialogue()
@@ -594,5 +672,113 @@ namespace Umea_rana
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (spawn != -1)
+            {
+                delete(spawn, ia_type);
+            }
+
+            hidou();
+
+        }// delete
+
+        private void delete(int spawn, string type)
+        {
+            switch (type)
+            {
+                case "IA_K":
+                    savefile.ia_Kamikaze.RemoveAt(spawn);
+                    manage_k.remove_all();
+                    for (int i = 0; i < savefile.ia_Kamikaze.Count; ++i)
+                        manage_k.Add(savefile.ia_Kamikaze[i], i);
+                    break;
+                case "IA_V":
+                    savefile.ia_viseur.RemoveAt(spawn);
+                    manage_V.remove_all();
+                    for (int i = 0; i < savefile.ia_viseur.Count; ++i)
+                        manage_V.Add(savefile.ia_viseur[i], i);
+                    break;
+                case "IA_T":
+                    savefile.ia_tireur.RemoveAt(spawn);
+                    manage_T.remove_all();
+                    for (int i = 0; i < savefile.ia_viseur.Count; ++i)
+                        manage_T.Add(savefile.ia_tireur[i], i);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void modif(int spawn, string type)
+        {
+            if (type == "IA_K")
+            {
+                couple cople = new couple();
+                cople.vie = int.Parse(textBox4.Text);
+                cople.speed = int.Parse(textBox5.Text);
+                cople.damage = int.Parse(textBox12.Text);
+                savefile.ia_Kamikaze[spawn] = cople;
+                manage_k.remove_all();
+                for (int i = 0; i < savefile.ia_Kamikaze.Count; i++)
+                    manage_k.Add(cople, i);
+            }
+            else
+            {
+                quaintuplet quaint = new quaintuplet();
+                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.G ,color2.B, color2.A);
+                quaint.damage = int.Parse(textBox13.Text);
+                quaint.firerate = int.Parse(textBox6.Text);
+                quaint.nombre = int.Parse(textBox3.Text);
+                quaint.seconde = seconde;
+                quaint.speed = int.Parse(textBox2.Text);
+                quaint.trajectory = (string)comboBox4.SelectedItem;
+                quaint.vie = int.Parse(textBox1.Text);
+                quaint.X = openX;
+                quaint.Y = openY ;
+
+                if (type == "IA_V")
+                {
+                    savefile.ia_viseur[spawn] = quaint;
+                    manage_V.remove_all();
+                    for (int i = 0; i < savefile.ia_viseur.Count; ++i)
+                        manage_V.Add(savefile.ia_viseur[i], i);
+                }
+                if (type == "IA_T")
+                {
+                    savefile.ia_tireur[spawn] = quaint;
+                    manage_T.remove_all();
+                    for (int i = 0; i < savefile.ia_tireur.Count; ++i)
+                        manage_T.Add(savefile.ia_tireur[i], i);
+                }
+
+            }          
+        }
+
+        private void button6_Click(object sender, EventArgs e)// tab 4couleur
+        {
+            colorDialog2.ShowDialog();
+            color4 = colorDialog2.Color;
+            button6.BackColor = color4;
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox8);
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox9);
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox11);
+        }
+
+
+
     }
 }
