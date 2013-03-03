@@ -35,13 +35,13 @@ namespace Umea_rana
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
-            graphics.IsFullScreen =true ;
+            graphics.IsFullScreen = false;
             
             //content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
             //state
-            _currentState = gameState.Initialisateur ;
+            _currentState = gameState.Initialisateur;
             StateManager = new Dictionary<gameState, GameState>();
             StateManager.Add(gameState.PlayingState, new PlayingState());
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
@@ -49,19 +49,19 @@ namespace Umea_rana
             StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
             StateManager.Add(gameState.level2, new level1(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
-            StateManager.Add(gameState.Initialisateur , new Initialisateur (this, graphics, Content));
-            StateManager.Add(gameState.Editeur_mapVV ,new Editeur_MapVV(this,graphics,Content));
+            StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
+            StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
-            
+
         }
 
         protected override void Initialize()
         {
-            ParticleAdder.adder(this, _currentState,width,height);
+            ParticleAdder.adder(this, _currentState, width, height);
             try
             {
                 StateManager[_currentState].Initialize(graphics);
-                
+
             }
             catch
             {
@@ -128,12 +128,9 @@ namespace Umea_rana
         {
             _previousState = _currentState;
             _currentState = NewState;
-           if (_currentState == gameState.Editeur_mapVV && graphics.IsFullScreen)
-                graphics.ToggleFullScreen();
-            if (_currentState != gameState.Editeur_mapVV && !graphics.IsFullScreen)
-                graphics.ToggleFullScreen();
-            this.Initialize(); 
-           
+            is_fullscreen(false);
+            this.Initialize();
+
         }
         public void GetPreviousState()
         {
@@ -143,6 +140,17 @@ namespace Umea_rana
         public void ChangeState2(gameState checkpause)
         {
             _checkpause = checkpause;
+        }
+
+        private void is_fullscreen(bool full)
+        {
+            if (full)
+            {
+                if (_currentState == gameState.Editeur_mapVV && graphics.IsFullScreen)
+                    graphics.ToggleFullScreen();
+                if (_currentState != gameState.Editeur_mapVV && !graphics.IsFullScreen)
+                    graphics.ToggleFullScreen();
+            }
         }
     }
 }

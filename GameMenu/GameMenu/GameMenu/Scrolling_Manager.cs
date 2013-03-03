@@ -50,20 +50,20 @@ namespace Umea_rana
             {
                 FileStream file = new FileStream(save._path + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
                 texture.Add(Texture2D.FromStream(graphics, file));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
 
             }
             else
             {
                 texture.Add(Content.Load<Texture2D>("level2\\fond"));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
          
             }
 
             if (levelprofile.second_background != "")
             {
                 texture.Add(Content.Load<Texture2D>("background\\" + levelprofile.second_background));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H,1f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H,0.9f));
             }
             if (levelprofile.third_bacground != "")
             {

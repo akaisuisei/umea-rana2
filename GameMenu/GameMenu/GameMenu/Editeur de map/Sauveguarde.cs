@@ -128,6 +128,27 @@ namespace Umea_rana
             }
             return hello;
         }
+
+        public string[] filename(ContentManager content)
+        {
+            string g;
+            if (!Directory.Exists(Path.GetDirectoryName(  content.RootDirectory ) + "\\back" ))
+                Directory.CreateDirectory(content.RootDirectory  + "\\back"  );
+            string[] hello =System.IO.Directory.GetFiles (content.RootDirectory + "\\back");
+            for (int j = 0; j < hello.Length; ++j)
+            {
+                g = string.Empty;
+                for (int i = 0; i < hello[j].Length&&hello[j][i]!='.' ; ++i)
+                {
+                    g += hello[j][i];
+                    if (hello[j][i] == '\\')
+                        g = string.Empty;
+                }
+                hello[j] = g;
+            }
+            return hello;
+
+        }
         /// <summary>
         /// non fini manque le fond pour la phase de jeu normal
         /// </summary>
@@ -148,8 +169,9 @@ namespace Umea_rana
             FileStream file4 = null;
             XmlSerializer f = null, g = null, i = null,e=null;
 
+
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(content.RootDirectory + level);
+            dir = new DirectoryInfo(content.RootDirectory  + level);
             if (dir.Exists)
             {
                 ia = new List<quaintuplet>();

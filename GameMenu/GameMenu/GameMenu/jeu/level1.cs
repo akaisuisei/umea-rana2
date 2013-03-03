@@ -16,11 +16,11 @@ namespace Umea_rana
     /// </summary>
     public class level1 : GameState
     {
-        Scrolling scrolling1, scrolling2;
+       // Scrolling scrolling1, scrolling2;
         sripte_V vaisseau;
         asteroid aster;
         KeyboardState oldkey;
-        Texture2D bacgkround1, background2, aster_t, planet1, star;
+        Texture2D  aster_t, planet1, star;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -78,9 +78,9 @@ namespace Umea_rana
 
             //instancie le scolling
 
-            scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
+         //   scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
 
-            scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,0.5f);
+        //    scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,0.5f);
 
 
             //intancie le vaisseau
@@ -91,10 +91,10 @@ namespace Umea_rana
             aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width); 
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),  height);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),  height,width );
 
             // ajout IA
-            save.load_level_SEU(Content, "\\level1", ref manage_k, ref manage_T, ref manage_V,ref scroll );
+            save.load_level_SEU(Content, "\\level3", ref manage_k, ref manage_T, ref manage_V,ref scroll );
            
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
@@ -119,9 +119,9 @@ namespace Umea_rana
             {
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling verticale
-                scrolling1.Update();
-                scrolling2.Update();
-
+          //      scrolling1.Update();
+           //     scrolling2.Update();
+                scroll.Update();
                 //vaisseau
                 vaisseau.Update(keyboard, game, oldkey);
 
@@ -177,27 +177,29 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (_checkpause==false)
-            {
+            {        scroll.Draw(spriteBatch);
                 //scrolling
-                scrolling1.Draw(spriteBatch);
+            //    scrolling1.Draw(spriteBatch);
                 vaisseau.Draw(spriteBatch);
-                scrolling2.Draw(spriteBatch);
+          //      scrolling2.Draw(spriteBatch);
                 aster.Draw(spriteBatch);
                 manage_T.Draw(spriteBatch);
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
+        
             }
             else
             {
-                scrolling1.Draw(spriteBatch);
+           //     scrolling1.Draw(spriteBatch);
                 vaisseau.Draw(spriteBatch);
-                scrolling2.Draw(spriteBatch);
+           //     scrolling2.Draw(spriteBatch);
                 aster.Draw(spriteBatch);
                 manage_T.Draw(spriteBatch);
                 manage_V.Draw(spriteBatch);
                 manage_k.Draw(spriteBatch);
                 _pause.Draw(spriteBatch);
             }
+
         }
     }
 }

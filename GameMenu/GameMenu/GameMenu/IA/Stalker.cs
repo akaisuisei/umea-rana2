@@ -633,7 +633,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spritback)
         {
-            spritback.Draw(_texture, rectangle, Ia_color);
+            spritback.Draw(_texture, rectangle, Color.White );
         }
 
         public void Draw_S(SpriteBatch spritebatch)

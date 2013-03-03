@@ -161,7 +161,7 @@ namespace Umea_rana
     {
 
 
-        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int window_H)
+        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int window_H,int window_W)
         {
 
             ia_manage = new List<vaisseau_IA>();
@@ -169,6 +169,7 @@ namespace Umea_rana
             this._texture = n_textture;
             this._rectangle = n_rectangle;
             this.window_H = window_H;
+            this.window_W = window_W;
         }
 
         public void Update(ref sripte_V sprite, ref int gametime)

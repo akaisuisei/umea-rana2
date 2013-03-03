@@ -23,7 +23,7 @@ Content\hero\vaisseau\sazabiHaman2d.xnb
 Content\hero\vaisseau\sazabiHaman2g.xnb
 Content\bullet\aura.xnb
 Content\bullet\aura2.xnb
-Content\level2\fond2.xnb
+Content\back\fond2.xnb
 Content\level1\fond_niv1.xnb
 Content\IA\asteroid\asteroide-sprite.xnb
 Content\Menu\background menu.xnb
@@ -40,6 +40,7 @@ Content\Menu\editeur_de_map.xnb
 Content\IA\naruto.xnb
 Content\IA\eve.xnb
 Content\IA\tuc_jaune.xnb
+Content\level3\background.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
@@ -50,3 +51,7 @@ Content\hero\jogging.wma
 Content\level1\ai_K.xml
 Content\level1\ai_T.xml
 Content\level1\ai_V.xml
+Content\level3\ai_K.xml
+Content\level3\ai_T.xml
+Content\level3\ai_V.xml
+Content\level3\level_profile.xml

@@ -89,7 +89,7 @@ namespace Umea_rana
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height,width );
 
             // ajout IA
             save.load_leveleditor_SEU("level1", ref manage_k, ref manage_T, ref manage_V);
@@ -132,8 +132,8 @@ namespace Umea_rana
                 manage_T.Update(ref game, ref game_time);
                 manage_V.Update(ref vaisseau, ref game_time);
                 manage_k.Update(ref vaisseau, ref game_time);
-                collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
-                collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
+             //   collision.Collision_hero_missile(manage_T, ref vaisseau, ref  game);
+              //  collision.Collision_hero_missile(manage_V, ref  vaisseau, ref  game);
                 collision.col_H_IA(manage_k, ref vaisseau, ref game);
                 collision.col_H_IA(manage_V, ref vaisseau, ref game);
                 collision.col_H_IA(manage_T, ref vaisseau, ref game);
@@ -141,9 +141,9 @@ namespace Umea_rana
 
                 //update collision
 
-                collision.collision_ai_missile(ref vaisseau, manage_k);
-                collision.collision_ai_missile(ref vaisseau, manage_V);
-                collision.collision_ai_missile(ref vaisseau, manage_T);
+         //       collision.collision_ai_missile(ref vaisseau, manage_k);
+           //     collision.collision_ai_missile(ref vaisseau, manage_V);
+             //   collision.collision_ai_missile(ref vaisseau, manage_T);
             }
             // update fin de jeu
             if ( manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)

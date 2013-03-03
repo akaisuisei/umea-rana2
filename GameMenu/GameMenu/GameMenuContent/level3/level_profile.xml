@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<levelProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <levelname>level3</levelname>
+  <background_name>background.jpg</background_name>
+  <fc_speed>4</fc_speed>
+  <second_background>fond2</second_background>
+  <playerLife>10</playerLife>
+  <player_speed>6</player_speed>
+  <firerate>50</firerate>
+  <color>
+    <R>192</R>
+    <G>192</G>
+    <B>192</B>
+    <A>255</A>
+    <PackedValue>4290822336</PackedValue>
+  </color>
+  <damage>3</damage>
+  <bullet_speed>6</bullet_speed>
+</levelProfile>

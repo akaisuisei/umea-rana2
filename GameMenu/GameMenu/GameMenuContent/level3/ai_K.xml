@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ArrayOfCouple xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <couple>
+    <X>0.72265625</X>
+    <Y>0.29375</Y>
+    <vie>1</vie>
+    <speed>1</speed>
+    <seconde>162</seconde>
+    <damage>1</damage>
+  </couple>
+</ArrayOfCouple>
