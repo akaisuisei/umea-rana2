@@ -92,7 +92,7 @@ namespace Umea_rana
 
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager );
+            user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager,Content  );
         }
 
         public override void UnloadContent()
@@ -128,7 +128,7 @@ namespace Umea_rana
                     user.TopMost = true;
                 else
                 {
-                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard);
+                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game,ref Scroll_manager);
             //        scrolling1.update_ophelia(keyboard);
                     Scroll_manager.Update_ophelia(keyboard);
                 }

@@ -34,19 +34,25 @@ namespace Umea_rana
             XmlSerializer f = null, g = null, i = null, h = null;
             string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
-            string ext = "";
+            string ext = "", nam = "" ;
             if (!dir.Exists)
                 dir.Create();
+
             for (int j = 0; j < save.levelProfile.background_name.Length; ++j)
-            {
-                sav += save.levelProfile.background_name[j];
+            {      
                 if (save.levelProfile.background_name[j] == '.')
-                    sav = "";
+                    ext = "";
+                nam += save.levelProfile.background_name[j];
+                ext += save.levelProfile.background_name[j];
+
+                if (save.levelProfile.background_name[j] == '\\')
+                    nam = "";
             }
-
-            System.IO.File.Copy(save.levelProfile.background_name, sav + "background" + ext, true);
-            save.levelProfile.background_name = "background" + ext;
-
+            if (nam != save.levelProfile.background_name)
+            {
+                System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
+                save.levelProfile.background_name = "background" + ext;
+            }
             file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
             f = new XmlSerializer(typeof(List<quaintuplet>));
             f.Serialize(file1, save.ia_tireur);
@@ -130,14 +136,17 @@ namespace Umea_rana
         /// <param name="iamanage_K"></param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
+        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K, 
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V,ref Scrolling_ManagerV scrollM)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
+            levelProfile levelprof;
             FileStream file1 = null;
             FileStream file2 = null;
             FileStream file3 = null;
-            XmlSerializer f = null, g = null, i = null;
+            FileStream file4 = null;
+            XmlSerializer f = null, g = null, i = null,e=null;
 
             DirectoryInfo dir = null;
             dir = new DirectoryInfo(content.RootDirectory + level);
@@ -158,6 +167,10 @@ namespace Umea_rana
                 i = new XmlSerializer(typeof(List<couple>));
                 ia_K = (List<couple>)i.Deserialize(file3);
                 file3.Close();
+                file4 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Open, FileAccess.Read);
+                e = new XmlSerializer(typeof(levelProfile));
+                levelprof = (levelProfile)e.Deserialize(file4);
+                file4.Close();
 
                 for (int j = 0; j < ia.Count; ++j)
                     iamanage_T.Add(ia[j]);
@@ -165,6 +178,8 @@ namespace Umea_rana
                     iamanage_V.Add(ia_V[j]);
                 for (int j = 0; j < ia_K.Count; ++j)
                     iamanage_K.Add(ia_K[j]);
+
+                scrollM.Load(content, levelprof);
 
             }
         }

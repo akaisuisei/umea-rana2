@@ -209,7 +209,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level2\fond2.png">
+    <Compile Include="back\fond2.png">
       <Name>fond2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

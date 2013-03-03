@@ -14,8 +14,9 @@ namespace Umea_rana
 {
   public   class Scrolling_ManagerV
     {
-        List<Scrolling> scroll;
-        List<Texture2D> texture;
+     public    List<Scrolling> scroll;
+     public    List<Texture2D> texture;
+     GraphicsDevice graphics;
 
         int windows_W, window_H;
         public Scrolling_ManagerV(int width, int heiht)
@@ -24,9 +25,18 @@ namespace Umea_rana
             texture = new List<Texture2D>();
             window_H = heiht;
             windows_W = width;
+            
+        }
+        public Scrolling_ManagerV(int width, int heiht, GraphicsDevice graph)
+        {
+            scroll = new List<Scrolling>();
+            texture = new List<Texture2D>();
+            window_H = heiht;
+            windows_W = width;
+            graphics = graph;
         }
 
-        public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice graphics)
+        public void Load(ContentManager Content, levelProfile levelprofile)
         {        Sauveguarde save=new Sauveguarde();
             int speed1 = levelprofile.fc_speed / 2;
             int speed2 = levelprofile.fc_speed / 3;

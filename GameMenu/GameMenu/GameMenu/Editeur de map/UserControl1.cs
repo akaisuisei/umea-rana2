@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System.Threading;
+using System.IO;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace Umea_rana
 {
@@ -34,14 +37,15 @@ namespace Umea_rana
         savefile savefile;
         List<string> subdirectory;
         Scrolling_ManagerV scrollingM;
-
+        Game1 game;
         int spawn;
         string ia_type;
+        ContentManager Content;
 
         public UserControl1()
         {
             InitializeComponent();
-       
+
             this.Hide();
             color4 = System.Drawing.Color.Black;
             imagefond = string.Empty;
@@ -60,7 +64,7 @@ namespace Umea_rana
             subdirectory = new List<string>();
             button9.Enabled = false;
             type = "SEU";
-           Initialize();
+            Initialize();
             //8,9,14,16
             textBox7.BackColor = System.Drawing.Color.Red;
             textBox8.BackColor = System.Drawing.Color.Red;
@@ -70,7 +74,7 @@ namespace Umea_rana
 
             textBox10.BackColor = System.Drawing.Color.Red;
             textBox11.BackColor = System.Drawing.Color.Red;
-            scrollingM = new Scrolling_ManagerV(width,height  ); 
+            scrollingM = new Scrolling_ManagerV(width, height);
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -172,24 +176,27 @@ namespace Umea_rana
         }
 
 
-        public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k, ref KeyboardState keybord)
+        public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k,
+            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM)
         {
             manage_T = this.manage_T;
             manage_V = this.manage_V;
             manage_k = this.manage_k;
-
+            scrollM = this.scrollingM;
+            this.game = game;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
                 --seconde;
         }
 
-        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k,Scrolling_ManagerV scrolling)
+        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content)
         {
             this.manage_T = manage_T;
             this.manage_V = manage_V;
             this.manage_k = manage_k;
             this.scrollingM = scrolling;
+            this.Content = Content;
         }
 
         public void destroy()
@@ -267,9 +274,9 @@ namespace Umea_rana
             intcheck(textBox7);
         }
 
-     
 
-    
+
+
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
             intcheck(textBox12);
@@ -313,7 +320,7 @@ namespace Umea_rana
             button2.BackColor = color2;
         }
 
-       
+
         private void button5_Click(object sender, EventArgs e)// tab4 showfile
         {
             open_File_dialogue();
@@ -384,7 +391,7 @@ namespace Umea_rana
                     quaint.trajectory = (string)comboBox4.SelectedItem;
                     quaint.vie = int.Parse(textBox1.Text);
                     quaint.X = openX;
-                    quaint.Y = openY ;
+                    quaint.Y = openY;
 
                     if (radioButton1.Checked)
                     {
@@ -413,6 +420,30 @@ namespace Umea_rana
                 savefile.levelProfile.fc_speed = int.Parse(textBox7.Text);
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
                 savefile.levelProfile.third_bacground = (string)comboBox3.SelectedItem;
+                FileStream file = new FileStream(imageB, FileMode.Open, FileAccess.Read);
+                if (scrollingM.scroll.Count == 0)
+                    scrollingM.scroll.Add(new Scrolling(Texture2D.FromStream(game.GraphicsDevice, file), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.01f));
+                else
+                {
+                    scrollingM.scroll[0].texture = Texture2D.FromStream(game.GraphicsDevice, file);
+                }
+                if (savefile.levelProfile.second_background != null)
+                    if (scrollingM.scroll.Count >= 1)
+                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>(savefile.levelProfile.second_background), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.01f));
+                    else
+                        scrollingM.scroll[1].texture = Texture2D.FromStream(game.GraphicsDevice, file);
+                else if (savefile.levelProfile.third_bacground != null)
+                    if (scrollingM.scroll.Count >= 1)
+                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>(savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 2, height, 0.01f));
+                    else
+                        scrollingM.scroll[1].texture = Texture2D.FromStream(game.GraphicsDevice, file);
+
+                if (savefile.levelProfile.third_bacground != null)
+                    if (scrollingM.scroll.Count >= 2)
+                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>(savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 1, height, 0.01f));
+                    else
+                        scrollingM.scroll[2].texture = Texture2D.FromStream(game.GraphicsDevice, file);
+
                 this.hidou();
             }
 
@@ -438,7 +469,7 @@ namespace Umea_rana
                 savefile.levelProfile.firerate = int.Parse(textBox9.Text);
                 savefile.levelProfile.playerLife = int.Parse(textBox14.Text);
                 savefile.levelProfile.player_speed = int.Parse(textBox8.Text);
-                savefile.levelProfile.bullet_speed  = int.Parse(textBox16.Text);
+                savefile.levelProfile.bullet_speed = int.Parse(textBox16.Text);
                 hidou();
             }
 
@@ -670,7 +701,7 @@ namespace Umea_rana
             Thread thread = new Thread(() =>
             {
                 var yourForm = new OpenFileDialog();
-               yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
                 if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     imageB = yourForm.FileName;
@@ -738,7 +769,7 @@ namespace Umea_rana
             else
             {
                 quaintuplet quaint = new quaintuplet();
-                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.G ,color2.B, color2.A);
+                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.G, color2.B, color2.A);
                 quaint.damage = int.Parse(textBox13.Text);
                 quaint.firerate = int.Parse(textBox6.Text);
                 quaint.nombre = int.Parse(textBox3.Text);
@@ -747,7 +778,7 @@ namespace Umea_rana
                 quaint.trajectory = (string)comboBox4.SelectedItem;
                 quaint.vie = int.Parse(textBox1.Text);
                 quaint.X = openX;
-                quaint.Y = openY ;
+                quaint.Y = openY;
 
                 if (type == "IA_V")
                 {
@@ -764,7 +795,7 @@ namespace Umea_rana
                         manage_T.Add(savefile.ia_tireur[i], i);
                 }
 
-            }          
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)// tab 4couleur

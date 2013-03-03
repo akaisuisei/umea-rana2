@@ -33,6 +33,7 @@ namespace Umea_rana
         bool _checkpause = false;
         int latence = 0;
         Sauveguarde save;
+        Scrolling_ManagerV scroll;
 
         public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -42,6 +43,7 @@ namespace Umea_rana
             collision = new Collision();
             _pause = new _Pause(game1, graphics, content);
             save = new Sauveguarde();
+            scroll = new Scrolling_ManagerV(width, height,game1.GraphicsDevice );
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -51,7 +53,7 @@ namespace Umea_rana
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
             taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
-           
+            
             game_time = 0;
             // ajout IA
         }
@@ -60,7 +62,7 @@ namespace Umea_rana
         {
             //charge le fond
             bacgkround1 = Content.Load<Texture2D>("level2//fond");
-            background2 = Content.Load<Texture2D>("level2//fond2");
+            background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1"));
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1d"));
@@ -92,7 +94,7 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),  height);
 
             // ajout IA
-            save.load_level_SEU(Content, "\\level1", ref manage_k, ref manage_T, ref manage_V);
+            save.load_level_SEU(Content, "\\level1", ref manage_k, ref manage_T, ref manage_V,ref scroll );
            
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
