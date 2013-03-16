@@ -25,7 +25,7 @@ namespace Umea_rana
         IA_manager_S manageS;
         Collision collision;
         KeyboardState oldkey;
-        ContentManager content;
+        
         _Pause _pause;
         int latence = 0;
         bool _checkpause = false;
@@ -37,7 +37,7 @@ namespace Umea_rana
             game1.IsMouseVisible = false;
             collision = new Collision();
             oldkey = Keyboard.GetState();
-            this.content = content;
+            
             _pause = new _Pause(game1, graphics, content);
         }
 
@@ -61,7 +61,7 @@ namespace Umea_rana
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, content);
+            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content);
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia

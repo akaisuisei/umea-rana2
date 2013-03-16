@@ -20,7 +20,7 @@ namespace Umea_rana
         sripte_V vaisseau;
         asteroid aster;
         KeyboardState oldkey;
-        Texture2D  aster_t, planet1, star;
+        Texture2D aster_t, planet1, star, background1, background2;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -61,7 +61,7 @@ namespace Umea_rana
         public override void LoadContent(ContentManager Content)
         {
             //charge le fond
-            bacgkround1 = Content.Load<Texture2D>("level2//fond");
+            background1 = Content.Load<Texture2D>("level2//fond");
             background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
             T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1"));
@@ -92,12 +92,13 @@ namespace Umea_rana
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width); 
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),  height,width );
+            //instancie les donnees de la pause
+            _pause.LoadContent(Content);
 
             // ajout IA
             save.load_level_SEU(Content, "\\level3", ref manage_k, ref manage_T, ref manage_V,ref scroll );
            
-            //instancie les donnees de la pause
-            _pause.LoadContent(Content);
+            
         }
 
         public override void UnloadContent()

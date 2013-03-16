@@ -40,12 +40,12 @@ Content\Menu\editeur_de_map.xnb
 Content\IA\naruto.xnb
 Content\IA\eve.xnb
 Content\IA\tuc_jaune.xnb
-Content\level3\background.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
+Content\level3\background.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
 Content\level1\ai_K.xml

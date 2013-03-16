@@ -73,9 +73,9 @@ namespace Umea_rana
                 select = 2;
             if (select == 0)
                 coordonnees_selection = new Vector2(50, 80);
-            else if (select == 1)
+            else if (select == 1||select==-2)
                 coordonnees_selection = new Vector2(50, 180);
-            else
+            else if(select ==2 || select==-1)
                 coordonnees_selection = new Vector2(50, 280);
             if (latence > 0)  // la latence créé un temps d'attente avant de pouvoir changer à nouveau de boutton
                 latence--;    // sinon les changements sont bien trop rapides
