@@ -28,7 +28,6 @@ namespace Umea_rana
         int width, height;
         int seconde;
         public bool IHave_control;
-        bool openF;
         string imageB;
         float openX, openY;
         IA_manager_T manage_T;
@@ -76,8 +75,6 @@ namespace Umea_rana
             textBox10.BackColor = System.Drawing.Color.Red;
             textBox11.BackColor = System.Drawing.Color.Red;
             scrollingM = new Scrolling_ManagerV(width, height);
-            openF = false;
-
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -720,24 +717,17 @@ namespace Umea_rana
 
         private void open_File_dialogue()
         {
-            if (!openF)
+            Thread thread = new Thread(() =>
             {
-                openF = true;
-                Thread thread = new Thread(() =>
+                var yourForm = new OpenFileDialog();
+                yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    var yourForm = new OpenFileDialog();
-                    //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-                    yourForm.Filter = "Image Files (*.jpeg;*.png)|*.jpeg;*.png";
-                    if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        imageB = yourForm.FileName;
-                        openF = false;
-                    }
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-
-            }
+                    imageB = yourForm.FileName;
+                }
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
 
         private void button11_Click(object sender, EventArgs e)

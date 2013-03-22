@@ -23,7 +23,7 @@ namespace Umea_rana
         int height, width;
         Audio audio;
         DisplayMode displaymode;
-        public string path = "test", level= "level3";
+        public string path = "test";
         public SoundEffect menu_cursor, menu_select;
         public Game1()
         {
@@ -47,7 +47,7 @@ namespace Umea_rana
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
             StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
-            StateManager.Add(gameState.level2, new level1(this, graphics, Content, level ));
+            StateManager.Add(gameState.level2, new level1(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
@@ -97,15 +97,12 @@ namespace Umea_rana
         }
 
         protected override void Draw(GameTime gameTime)
-        { 
-            GraphicsDevice.Clear(Color.Black );
-          //  if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
-           //     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-            //else
-
-            //begiin a mettre ds les games
+        {
+            if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            else
                 spriteBatch.Begin();
-        
+            GraphicsDevice.Clear(Color.Black);
             StateManager[_currentState].Draw(spriteBatch);
             base.Draw(gameTime);
             spriteBatch.End();
