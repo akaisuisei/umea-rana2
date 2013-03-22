@@ -23,7 +23,7 @@ namespace Umea_rana
         int height, width;
         Audio audio;
         DisplayMode displaymode;
-        public string path = "test";
+        public string path = "test", level = "level3";
         public SoundEffect menu_cursor, menu_select;
         public Game1()
         {
@@ -98,9 +98,9 @@ namespace Umea_rana
 
         protected override void Draw(GameTime gameTime)
         {
-            if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
+       /*     if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-            else
+            else*/
                 spriteBatch.Begin();
             GraphicsDevice.Clear(Color.Black);
             StateManager[_currentState].Draw(spriteBatch);

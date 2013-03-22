@@ -25,7 +25,7 @@ namespace Umea_rana
         public abstract void Update(Game1 game, Audio audio);
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        protected void pause(Game1 game, KeyboardState keybord, Game1.gameState _currentState)
+       protected void pause(Game1 game, KeyboardState keybord, Game1.gameState _currentState)
         {
             if (keybord.IsKeyDown(Keys.P) || keybord.IsKeyDown(Keys.Escape))
             {

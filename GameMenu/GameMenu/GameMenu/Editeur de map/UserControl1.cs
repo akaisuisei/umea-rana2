@@ -28,6 +28,7 @@ namespace Umea_rana
         int width, height;
         int seconde;
         public bool IHave_control;
+        bool openF;
         string imageB;
         float openX, openY;
         IA_manager_T manage_T;
@@ -75,6 +76,7 @@ namespace Umea_rana
             textBox10.BackColor = System.Drawing.Color.Red;
             textBox11.BackColor = System.Drawing.Color.Red;
             scrollingM = new Scrolling_ManagerV(width, height);
+                      openF = false;
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -717,17 +719,25 @@ namespace Umea_rana
 
         private void open_File_dialogue()
         {
-            Thread thread = new Thread(() =>
+            if (!openF)
             {
-                var yourForm = new OpenFileDialog();
-                yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-                if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Thread thread = new Thread(() =>
                 {
-                    imageB = yourForm.FileName;
-                }
-            });
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+                    openF = true;
+                    var yourForm = new OpenFileDialog();
+                    //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                    yourForm.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
+            
+                
+                    if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        imageB = yourForm.FileName;
+                        openF = false;
+                    }
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+            }
         }
 
         private void button11_Click(object sender, EventArgs e)
