@@ -45,6 +45,9 @@ Content\Menu\menu_cursor.xnb
 Content\level1\fond_niv1.xnb
 Content\level1\platform.xnb
 Content\SEU1\backgroundT.xnb
+Content\ListBoxBG.xnb
+Content\fleche.xnb
+Content\FontList.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
 Content\SEU1\ai_K.xml

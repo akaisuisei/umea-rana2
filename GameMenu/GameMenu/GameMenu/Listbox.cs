@@ -22,12 +22,13 @@ namespace Umea_rana
         string[] level;
         SpriteFont font;
         int selected, oldselected, surlig, oldsur, latence = 0, lat = 10;
-        public string selectedItem { public get; private set; }
-        public bool in_use { public get; private set; }
+        public string selectedItem;
+        public bool in_use;
 
 
         public Listbox(string type, int X, int Y, int width, int height)
         {
+            selectedItem = "";
             save = new Sauveguarde();
             level = save.subdirectory(type);
             rectangle = new Rectangle[level.Length];
@@ -35,9 +36,12 @@ namespace Umea_rana
             selected = 0;
             surlig = 0;
             oldsur = 0;
+            fond = new Rectangle(X, Y, width, height);
+            UP = new Rectangle(width + X - width / 10, Y + 10, width / 10, height / 10);
+            Down = new Rectangle(width + X - width / 10, Y + height - height / 10, width / 10, height / 10);
             for (int i = 0; i < level.Length; ++i)
             {
-                rectangle[i] = new Rectangle(X, Y * (i + 1), width, height);
+                rectangle[i] = new Rectangle(X, Y * (i + 1) + height / 10, width - UP.Width, height / level.Length);
                 color[i] = Color.White;
             }
         }
@@ -106,7 +110,7 @@ namespace Umea_rana
                     {
                         selected = surlig;
                         color[oldselected] = Color.White;
-                        color[selected] = Color.Azure;
+                        selectedItem = level[selected];
                         oldselected = selected;
                     }
                     // UP Down
@@ -116,6 +120,7 @@ namespace Umea_rana
                     if (UP.Intersects(Mouse_rec))
                         Uplist();
                 }
+                color[selected] = Color.Azure;
             }
         }
 
@@ -132,17 +137,20 @@ namespace Umea_rana
             }
             // vecteur a modif
             spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
-            spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, new Vector2 (60,60), SpriteEffects.FlipHorizontally , 0);
+            spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.FlipVertically, 0);
+       //     spritbach.DrawString(font, "selected Item : " + selected, new Vector2(fond.X, fond.Y), Color.Black);
         }
         private void Uplist()
         {
-            for (int i = 0; i < rectangle.Length; ++i)
-                rectangle[i].Y += (rectangle[i].Height + 10);
+            if (rectangle[0].Top < fond.Top)
+                for (int i = 0; i < rectangle.Length; ++i)
+                    rectangle[i].Y += 1;
         }
         private void Downlist()
         {
-            for (int i = 0; i < rectangle.Length; ++i)
-                rectangle[i].Y -= (rectangle[i].Height + 10);
+            if (rectangle[rectangle.Length - 1].Top > fond.Top)
+                for (int i = 0; i < rectangle.Length; ++i)
+                    rectangle[i].Y -= 1;
         }
 
     }
