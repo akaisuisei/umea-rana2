@@ -57,7 +57,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, string level)
         {
             //charge le fond
             bacgkround1 = Content.Load<Texture2D>("level2//fond");

@@ -12,11 +12,11 @@ using System.IO;
 
 namespace Umea_rana
 {
-  public   class Scrolling_ManagerV
+    public class Scrolling_ManagerV
     {
-     public    List<Scrolling> scroll;
-     public    List<Texture2D> texture;
-     GraphicsDevice graphics;
+        public List<Scrolling> scroll;
+        public List<Texture2D> texture;
+        GraphicsDevice graphics;
 
         int windows_W, window_H;
         public Scrolling_ManagerV(int width, int heiht)
@@ -25,7 +25,7 @@ namespace Umea_rana
             texture = new List<Texture2D>();
             window_H = heiht;
             windows_W = width;
-            
+
         }
         public Scrolling_ManagerV(int width, int heiht, GraphicsDevice graph)
         {
@@ -37,17 +37,18 @@ namespace Umea_rana
         }
 
         public void Load(ContentManager Content, levelProfile levelprofile)
-        {        Sauveguarde save=new Sauveguarde();
+        {
             int speed1 = levelprofile.fc_speed / 2;
             int speed2 = levelprofile.fc_speed / 3;
 
-            if (levelprofile.background_name == "backgroundT")
+            if (levelprofile.background_name == "backgroundT")// si c est un jeu normal
             {
                 texture.Add(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H,1f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
             }
-            else if (levelprofile.background_name == "background")
+            else if (levelprofile.background_name == "background")// si c est un jeu perso
             {
+                Sauveguarde save = new Sauveguarde();
                 FileStream file = new FileStream(save._path + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
                 texture.Add(Texture2D.FromStream(graphics, file));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
@@ -57,21 +58,22 @@ namespace Umea_rana
             {
                 texture.Add(Content.Load<Texture2D>("level2\\fond"));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
-         
+
             }
 
             if (levelprofile.second_background != "")
             {
                 texture.Add(Content.Load<Texture2D>("background\\" + levelprofile.second_background));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H,0.9f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
             }
             if (levelprofile.third_bacground != "")
             {
                 texture.Add(Content.Load<Texture2D>("background\\" + levelprofile.third_bacground));
-                scroll.Add(new Scrolling(texture[texture.Count -1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H,1f));
+                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
             }
 
         }
+
 
         public void Update()
         {

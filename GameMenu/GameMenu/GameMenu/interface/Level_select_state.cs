@@ -45,7 +45,7 @@ namespace Umea_rana
         {
 
         }
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content, string level)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             level1 = content.Load<Texture2D>("Menu//LevelSelect//level1");
@@ -99,12 +99,14 @@ namespace Umea_rana
                 game.menu_select.Play();
                 if (select == 0)
                 {
+                    game.level = "SEU1";
                     game.ChangeState(Game1.gameState.level2 );
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence );
                 } // level1
                 else if (select == 1)
                 {
+                   game.level = "level1"; 
                     game.ChangeState(Game1.gameState.Level1_state, Game1.gameState.Level1_state);
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence);

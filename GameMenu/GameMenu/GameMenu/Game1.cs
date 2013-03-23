@@ -23,7 +23,8 @@ namespace Umea_rana
         int height, width;
         Audio audio;
         DisplayMode displaymode;
-        public string path = "test", level = "level3";
+        public string path = "test";
+        public string level=string.Empty ;
         public SoundEffect menu_cursor, menu_select;
         public Game1()
         {
@@ -36,7 +37,7 @@ namespace Umea_rana
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
             graphics.IsFullScreen = false;
-            
+
             //content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
@@ -47,7 +48,7 @@ namespace Umea_rana
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
             StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
-            StateManager.Add(gameState.level2, new level1(this, graphics, Content));
+            StateManager.Add(gameState.level2, new Shoot_Em_Up(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
@@ -75,7 +76,7 @@ namespace Umea_rana
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content);
+            StateManager[_currentState].LoadContent(Content, level);
             base.LoadContent();
         }
 
@@ -98,10 +99,10 @@ namespace Umea_rana
 
         protected override void Draw(GameTime gameTime)
         {
-       /*     if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-            else*/
-                spriteBatch.Begin();
+            /*     if (_currentState != gameState.level2 && _currentState != gameState.Level1_state)
+                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+                 else*/
+            spriteBatch.Begin();
             GraphicsDevice.Clear(Color.Black);
             StateManager[_currentState].Draw(spriteBatch);
             base.Draw(gameTime);

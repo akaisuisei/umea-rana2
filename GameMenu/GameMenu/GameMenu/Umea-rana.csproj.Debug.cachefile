@@ -5,7 +5,6 @@ Content\Menu\selection.xnb
 Content\Menu\LevelSelect\level1.xnb
 Content\Menu\LevelSelect\level2.xnb
 Content\bullet\bullet.xnb
-Content\level1\platform.xnb
 Content\Menu\pause\Menu.xnb
 Content\Menu\pause\continuer.xnb
 Content\Menu\pause\pause.xnb
@@ -24,11 +23,9 @@ Content\hero\vaisseau\sazabiHaman2g.xnb
 Content\bullet\aura.xnb
 Content\bullet\aura2.xnb
 Content\back\fond2.xnb
-Content\level1\fond_niv1.xnb
 Content\IA\asteroid\asteroide-sprite.xnb
 Content\Menu\background menu.xnb
 Content\Menu\logofin.xnb
-Content\level2\fond.xnb
 Content\hero\fiches_sprite_allen.xnb
 Content\IA\asteroid\planet4.xnb
 Content\Moteur à particule\particle2.xnb
@@ -45,13 +42,12 @@ Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
-Content\level3\background.xnb
+Content\level1\fond_niv1.xnb
+Content\level1\platform.xnb
+Content\SEU1\backgroundT.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
-Content\level1\ai_K.xml
-Content\level1\ai_T.xml
-Content\level1\ai_V.xml
-Content\level3\ai_K.xml
-Content\level3\ai_T.xml
-Content\level3\ai_V.xml
-Content\level3\level_profile.xml
+Content\SEU1\ai_K.xml
+Content\SEU1\ai_T.xml
+Content\SEU1\ai_V.xml
+Content\SEU1\level_profile.xml

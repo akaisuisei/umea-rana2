@@ -51,7 +51,7 @@ namespace Umea_rana
             coordonnees_editeur=new Vector2(100, 180);
             coordonnees_quitter = new Vector2(100, 380);
         }
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content,string level)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             jouer = content.Load<Texture2D>("Menu//jouer");

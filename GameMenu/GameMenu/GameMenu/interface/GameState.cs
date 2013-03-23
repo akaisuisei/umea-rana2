@@ -20,7 +20,7 @@ namespace Umea_rana
         protected Vector2 titre_P = new Vector2(width - 200, 0);
 
         public abstract void Initialize(GraphicsDeviceManager graphics);
-        public abstract void LoadContent(ContentManager content);
+        public abstract void LoadContent(ContentManager content, string level);
         public abstract void UnloadContent();
         public abstract void Update(Game1 game, Audio audio);
         public abstract void Draw(SpriteBatch spriteBatch);

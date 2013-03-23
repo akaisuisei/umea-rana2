@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <levelProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <levelname>level3</levelname>
-  <background_name>background.jpg</background_name>
+  <levelname>SEU1</levelname>
+  <background_name>backgroundT</background_name>
   <fc_speed>4</fc_speed>
   <second_background>fond2</second_background>
   <playerLife>10</playerLife>

@@ -44,7 +44,7 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
         }
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content,string level)
         {
             background = content.Load<Texture2D>("Menu//game_over");
             continuer = content.Load<Texture2D>("Menu//pause//rejouer");

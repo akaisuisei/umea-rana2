@@ -171,7 +171,7 @@ namespace Umea_rana
 
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(content.RootDirectory  + level);
+            dir = new DirectoryInfo(content.RootDirectory  +"\\"+ level);
             if (dir.Exists)
             {
                 ia = new List<quaintuplet>();

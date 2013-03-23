@@ -14,13 +14,13 @@ namespace Umea_rana
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class level1 : GameState
+    public class Shoot_Em_Up : GameState
     {
        // Scrolling scrolling1, scrolling2;
         sripte_V vaisseau;
         asteroid aster;
         KeyboardState oldkey;
-        Texture2D aster_t, planet1, star, background1, background2;
+        Texture2D aster_t, planet1, star;
         List<Texture2D> T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -36,7 +36,7 @@ namespace Umea_rana
         Scrolling_ManagerV scroll;
       
 
-        public level1(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, content);       
@@ -60,7 +60,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, string level)
         {
             //charge le fond
    //         background1 = Content.Load<Texture2D>("level2//fond");
@@ -98,8 +98,8 @@ namespace Umea_rana
             _pause.LoadContent(Content);
 
             // ajout IA
-            string level = "level3";
-            save.load_level_SEU(Content, "\\"+level , ref manage_k, ref manage_T, ref manage_V,ref scroll );
+         
+            save.load_level_SEU(Content, level , ref manage_k, ref manage_T, ref manage_V,ref scroll );
            
             
         }

@@ -62,8 +62,9 @@ namespace Umea_rana
            
         }
 
-        public override void LoadContent(ContentManager Content)
-        { Scroll_manager  = new Scrolling_ManagerV(width,height );
+        public override void LoadContent(ContentManager Content,string level)
+        {
+            Scroll_manager  = new Scrolling_ManagerV(width,height );
             //charge le fond
           //  bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite

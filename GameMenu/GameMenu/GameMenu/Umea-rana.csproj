@@ -145,6 +145,7 @@
     <Compile Include="IA\asteroid.cs" />
     <Compile Include="Editeur de map\Editeur_MapVV.cs" />
     <Compile Include="Editeur de map\leveleditor.cs" />
+    <Compile Include="Listbox.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
     <Compile Include="manager\IA_manger_jeuP.cs" />
     <Compile Include="manager\IA_manager.cs" />
@@ -158,7 +159,7 @@
     <Compile Include="moteur_physique\Collision.cs" />
     <Compile Include="moteur_jeu\Background.cs" />
     <Compile Include="jeu\Level2.cs" />
-    <Compile Include="jeu\level1.cs" />
+    <Compile Include="jeu\ShootEmUp.cs" />
     <Compile Include="moteur_jeu\munition.cs" />
     <Compile Include="moteur_jeu\Scrolling-V.cs" />
     <Compile Include="jeu\sripte_V.cs" />
