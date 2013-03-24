@@ -40,7 +40,7 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, content);       
-            scroll = new Scrolling_ManagerV(width, height,game1.GraphicsDevice ); 
+            scroll = new Scrolling_ManagerV(width, height, game1.GraphicsDevice ); 
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -167,7 +167,7 @@ namespace Umea_rana
                     manage_V.bulletL.Clear();
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.Level1_state);//va au level2
+                    game.ChangeState(Game1.gameState.Level2);//va au level2
                 timer--;
             }
             //update interface

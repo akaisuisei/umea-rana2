@@ -15,22 +15,22 @@ namespace Umea_rana
     class Listbox
     {
         Sauveguarde save;
-        Rectangle fond, UP, Down, Top, right, left,Botom;
+        Rectangle fond, UP, Down, Top, right, left, Botom;
         Texture2D fondT, fleche;
         Rectangle[] rectangle;
         Color[] color;
         string[] level;
         SpriteFont font;
-        int selected, oldselected, surlig, oldsur, latence = 0, lat = 10,tab;
+        int selected, oldselected, surlig, oldsur, latence = 0, lat = 10, tab;
         public string selectedItem;
         public bool in_use;
         Color BGcolor;
 
 
-        public Listbox(string type, float x, float y, float  _width, float  _height, int WindoW,int windowH, int tab)
+        public Listbox(string type, float x, float y, float _width, float _height, int WindoW, int windowH, int tab)
         {
-            int X = (int)(x * (float)WindoW );
-            int Y = (int)(y * (float)windowH );
+            int X = (int)(x * (float)WindoW);
+            int Y = (int)(y * (float)windowH);
             int width = (int)(_width * (float)WindoW);
             int height = (int)(_height * (float)windowH);
 
@@ -47,12 +47,12 @@ namespace Umea_rana
             right = new Rectangle(width + X - width / 10, Y, width / 10, height);
             left = new Rectangle(X, Y, right.Width, right.Height);
 
-            fond = new Rectangle(X+right.Width , Y + Top.Height, width-right.Width -left.Width , height -2*height/10);
+            fond = new Rectangle(X + right.Width, Y + Top.Height, width - right.Width - left.Width, height - 2 * height / 10);
             UP = new Rectangle(right.X, Y + 10, width / 10, height / 10);
             Down = new Rectangle(width + X - width / 10, Y + height - height / 10, width / 10, height / 10);
             for (int i = 0; i < level.Length; ++i)
             {
-                rectangle[i] = new Rectangle(X+right.Width , Y +height/10  * (i) + height / 10, width -2*right .Width, height /10);
+                rectangle[i] = new Rectangle(X + right.Width, Y + height / 10 * (i) + height / 10, width - 2 * right.Width, height / 10);
                 color[i] = Color.White;
             }
             BGcolor = Color.DarkSlateGray;
@@ -67,23 +67,22 @@ namespace Umea_rana
 
         }
 
-        public void Update(ref KeyboardState keyboard, ref MouseState mouse,ref int tab)
+        public void Update(ref KeyboardState keyboard, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)
         {
-            Rectangle Mouse_rec;
-            Mouse_rec = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
             if (mouse.LeftButton == ButtonState.Pressed)
             {
-                if (Mouse_rec.Intersects(fond) || Mouse_rec.Intersects(Top) || Mouse_rec.Intersects(Botom)
-                    || Mouse_rec.Intersects(right) || Mouse_rec.Intersects(left))
+                if (mouse_rec.Intersects(fond) || mouse_rec.Intersects(Top) || mouse_rec.Intersects(Botom)
+                    || mouse_rec.Intersects(right) || mouse_rec.Intersects(left))
                 {
-                    in_use = true;
-                    tab = this.tab;
+
+                      tab = this.tab;
                 }
                 else
-                {
-                    in_use = false;
-                    tab = 0;
-                }
+                    if(    tab == this.tab)
+                tab=0;
+                  
+
             }
             else if (this.tab == tab)
             {
@@ -97,7 +96,7 @@ namespace Umea_rana
                 BGcolor = Color.LightSlateGray;
                 for (int i = 0; i < rectangle.Length; ++i)
                 {
-                    if (Mouse_rec.Intersects(rectangle[i]))
+                    if (mouse_rec.Intersects(rectangle[i]))
                     {
                         surlig = i;
                         color[oldsur] = Color.White;// desurligne              
@@ -107,9 +106,9 @@ namespace Umea_rana
                     else
                         color[i] = Color.White;
                 }
-                if (latence > 0)
-                    latence--;
-                else
+
+                latence--;
+                if (latence < 0)
                 {
                     if (keyboard.IsKeyDown(Keys.Down))
                     {
@@ -139,25 +138,32 @@ namespace Umea_rana
                     }
 
                     color[surlig] = Color.Yellow;// surligner
-     
+
                 }
                 // selection
-                if ((mouse.LeftButton == ButtonState.Pressed && Mouse_rec.Intersects(rectangle[surlig]) && Mouse_rec.Intersects(fond ))
-                    ||keyboard.IsKeyDown(Keys.Enter ) )
-                {                  
+                if ((mouse.LeftButton == ButtonState.Pressed))
+                {
+                    if (mouse_rec.Intersects(rectangle[surlig]) )
+                    {
                         selected = surlig;
                         color[oldselected] = Color.White;
                         selectedItem = level[selected];
-                        oldselected = selected;                    
-                    // UP Down
-           
-                }
-                if (mouse.LeftButton == ButtonState.Pressed)
-                {
-                    if (Down.Intersects(Mouse_rec))
+                        oldselected = selected;
+                        // UP Down
+                    }
+
+                    if (Down.Intersects(mouse_rec))
                         Downlist();
-                    if (UP.Intersects(Mouse_rec))
+                    if (UP.Intersects(mouse_rec))
                         Uplist();
+
+                }
+                else if (keyboard.IsKeyDown(Keys.Enter))
+                {
+                    selected = surlig;
+                    color[oldselected] = Color.White;
+                    selectedItem = level[selected];
+                    oldselected = selected;
                 }
                 color[selected] = Color.Azure;
             }
@@ -167,7 +173,7 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritbach)
         {
-            spritbach.Draw(fondT, fond,Color.White );
+            spritbach.Draw(fondT, fond, Color.White);
             for (int i = 0; i < rectangle.Length; ++i)
             {
                 if (fond.Contains(rectangle[i]))
@@ -175,21 +181,21 @@ namespace Umea_rana
                     spritbach.Draw(fondT, rectangle[i], color[i]);
                     spritbach.DrawString(font, level[i], new Vector2(rectangle[i].X, rectangle[i].Y), Color.Black);
                     spritbach.Draw(fondT, new Rectangle(rectangle[i].X, rectangle[i].Top, rectangle[i].Width, 1), Color.Black);
-                    spritbach.Draw(fondT, new Rectangle(rectangle[i].X, rectangle[i].Bottom , rectangle[i].Width, 1), Color.Black);
+                    spritbach.Draw(fondT, new Rectangle(rectangle[i].X, rectangle[i].Bottom, rectangle[i].Width, 1), Color.Black);
                 }
             }
             // vecteur a modif
             spritbach.Draw(fondT, Top, BGcolor);
-            spritbach.Draw(fondT,Botom  , BGcolor);
+            spritbach.Draw(fondT, Botom, BGcolor);
             spritbach.Draw(fondT, right, BGcolor);
             spritbach.Draw(fondT, left, BGcolor);
-            spritbach.Draw(fondT, new Rectangle(fond.Left , fond.Y , 1, fond.Height), Color.Black);
-            spritbach.Draw(fondT, new Rectangle(fond.Right , fond.Y, 1, fond.Height), Color.Black);
-            spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Top , fond.Width  , 1), Color.Black);
+            spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Y, 1, fond.Height), Color.Black);
+            spritbach.Draw(fondT, new Rectangle(fond.Right, fond.Y, 1, fond.Height), Color.Black);
+            spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Top, fond.Width, 1), Color.Black);
             spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Bottom, fond.Width, 1), Color.Black);
             spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
             spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.FlipVertically, 0);
-            spritbach.DrawString(font, "selected Item : " + selectedItem, new Vector2(Top.X+right.Width , Top.Y), Color.Black);
+            spritbach.DrawString(font, "selected Item : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
         }
         private void Uplist()
         {
@@ -198,8 +204,8 @@ namespace Umea_rana
                     rectangle[i].Y += 1;
         }
         private void Downlist()
-        {           
-            if (rectangle[rectangle.Length -2].Bottom >= fond.Bottom )
+        {
+            if (rectangle[rectangle.Length - 2].Bottom >= fond.Bottom)
             {
                 for (int i = 0; i < rectangle.Length; ++i)
                     rectangle[i].Y -= 1;

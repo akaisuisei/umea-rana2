@@ -212,7 +212,8 @@ namespace Umea_rana
         /// <param name="iamanage_K"></param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_leveleditor_SEU(string level, ref IA_manager_K iamanage_K, ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V)
+        public void load_leveleditor_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -254,6 +255,7 @@ namespace Umea_rana
                 for (int j = 0; j < ia_K.Count; ++j)
                     iamanage_K.Add(ia_K[j]);
 
+                scrollM.Load(content, level_profile);
             }
         }
 

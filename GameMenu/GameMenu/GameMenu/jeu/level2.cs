@@ -183,12 +183,12 @@ namespace Umea_rana
             }
 
             //partie perdu
-            fail(game, allen, Game1.gameState.level2);
+            fail(game, allen, Game1.gameState.SEU);
 
             //audio
             
             if (allen.rectangle.Right >= width * 2 - 50)
-                game.ChangeState(Game1.gameState.Pause, Game1.gameState.level2);
+                game.ChangeState(Game1.gameState.Pause, Game1.gameState.SEU);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

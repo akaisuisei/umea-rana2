@@ -117,7 +117,7 @@ namespace Umea_rana
                 }
                 else if (select == 1)// va aux options
                 {
-                    game.ChangeState(Game1.gameState.Editeur_mapVV);
+                    game.ChangeState(Game1.gameState.level_Pselect );
                 }
                 else if (select == 2)
                 {

@@ -38,6 +38,10 @@ namespace Umea_rana
 
         public void Load(ContentManager Content, levelProfile levelprofile)
         {
+            PresentationParameters pp = new PresentationParameters();
+
+          
+            graphics = new GraphicsDevice(GraphicsAdapter.DefaultAdapter, GraphicsProfile.Reach, pp);
             int speed1 = levelprofile.fc_speed / 2;
             int speed2 = levelprofile.fc_speed / 3;
 
@@ -46,11 +50,13 @@ namespace Umea_rana
                 texture.Add(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
             }
-            else if (levelprofile.background_name == "background")// si c est un jeu perso
+            else if (levelprofile.background_name == "background.png")// si c est un jeu perso
             {
                 Sauveguarde save = new Sauveguarde();
-                FileStream file = new FileStream(save._path + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
-                texture.Add(Texture2D.FromStream(graphics, file));
+            //    FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname +"\\"+ levelprofile.background_name, FileMode.Open, FileAccess.Read);
+              //  Texture2D tex = Texture2D.FromStream(graphics, file);
+
+                texture.Add(Content.Load<Texture2D>("SEU1\\backgroundT"));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
 
             }
@@ -72,6 +78,7 @@ namespace Umea_rana
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
             }
 
+            
         }
 
 

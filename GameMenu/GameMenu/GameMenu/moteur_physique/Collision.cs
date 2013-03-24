@@ -162,7 +162,7 @@ namespace Umea_rana
             for (int i = 0; i < ia_manage.bulletL.Count; ++i)
                 if (ia_manage.bulletL[i].rectangle.Intersects(sprite.rectangle))
                 {
-                    game.ChangeState(Game1.gameState.Pause, Game1.gameState.level2);
+                    game.ChangeState(Game1.gameState.Pause, Game1.gameState.SEU);
                 }
 
         }

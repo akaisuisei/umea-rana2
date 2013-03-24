@@ -100,14 +100,14 @@ namespace Umea_rana
                 if (select == 0)
                 {
                     game.level = "SEU1";
-                    game.ChangeState(Game1.gameState.level2 );
+                    game.ChangeState(Game1.gameState.SEU );
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence );
                 } // level1
                 else if (select == 1)
                 {
                    game.level = "level1"; 
-                    game.ChangeState(Game1.gameState.Level1_state, Game1.gameState.Level1_state);
+                    game.ChangeState(Game1.gameState.Level2, Game1.gameState.Level2);
                     MediaPlayer.Stop();
                     System.Threading.Thread.Sleep(G_latence);
                 }

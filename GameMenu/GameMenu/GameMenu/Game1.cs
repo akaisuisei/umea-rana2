@@ -47,13 +47,13 @@ namespace Umea_rana
             StateManager.Add(gameState.PlayingState, new PlayingState());
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
-            StateManager.Add(gameState.Level1_state, new Level2(this, graphics, Content));
-            StateManager.Add(gameState.level2, new Shoot_Em_Up(this, graphics, Content));
+            StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
+            StateManager.Add(gameState.SEU, new Shoot_Em_Up(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
             StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
-
+            StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
         }
 
         protected override void Initialize()
@@ -115,13 +115,14 @@ namespace Umea_rana
             PlayingState,
             OptionsState,
             Level_select_state,
-            Level1_state,
-            level2,
+            Level2,
+            SEU,
             Pause,
             Initialisateur,
             Checkpause,
             Editeur_mapVV,
             leveleditor,
+            level_Pselect,
             Null,
         }
 
