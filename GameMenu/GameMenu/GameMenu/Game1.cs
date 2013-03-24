@@ -131,7 +131,6 @@ namespace Umea_rana
             _currentState = NewState;
             is_fullscreen(false);
             this.Initialize();
-
         }
         public void GetPreviousState()
         {
