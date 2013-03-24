@@ -138,7 +138,7 @@ namespace Umea_rana
             }
             if (latence > 0)
                 --latence;
-            if (_checkpause == false)
+            if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling

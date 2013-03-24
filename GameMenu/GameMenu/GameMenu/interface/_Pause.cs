@@ -121,7 +121,7 @@ namespace Umea_rana
         }
         public void checkpause(KeyboardState keyboard, ref bool _checkpause)
         {
-            if (_checkpause == true)
+            if (_checkpause)
                 _checkpause = false;
             else
                 _checkpause = true;
