@@ -20,7 +20,6 @@ namespace Umea_rana
         {
             spritebatch.Draw(texture, rectangle, new Rectangle(0,0,texture.Width ,texture.Height ), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche);
             spritebatch.Draw(texture, rectangle2, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche);
-
         }
     }
 }

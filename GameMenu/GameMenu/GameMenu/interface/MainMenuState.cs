@@ -39,8 +39,6 @@ namespace Umea_rana
             MediaPlayer.Volume = vol;
             songMenu = content.Load<Song>("Menu//songMenu");
             MediaPlayer.Play(songMenu);
-
-
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)

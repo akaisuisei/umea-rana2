@@ -119,7 +119,7 @@ namespace Umea_rana
             }
             if (latence > 0)
                 --latence;
-            if (_checkpause == false)
+            if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling verticale
@@ -180,7 +180,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (_checkpause==false)
+            if (!_checkpause)
             {        scroll.Draw(spriteBatch);
                 //scrolling
             //    scrolling1.Draw(spriteBatch);

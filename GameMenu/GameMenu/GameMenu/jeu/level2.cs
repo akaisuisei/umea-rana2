@@ -138,7 +138,7 @@ namespace Umea_rana
             }
             if (latence > 0)
                 --latence;
-            if (_checkpause == false)
+            if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling
@@ -194,8 +194,8 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spriteBatch)
         {
             // TODO: Add your drawing code here
-            if (_checkpause == false)
-            {
+            if (!_checkpause)
+            {             
                 scrolling1.Draw(spriteBatch);
                 //scrolling3.Draw(spriteBatch);
                 allen.Draw(spriteBatch);

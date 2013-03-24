@@ -146,6 +146,7 @@
     <Compile Include="IA\asteroid.cs" />
     <Compile Include="Editeur de map\Editeur_MapVV.cs" />
     <Compile Include="Editeur de map\leveleditor.cs" />
+    <Compile Include="interface\OptionState.cs" />
     <Compile Include="Leveleditorselect.cs" />
     <Compile Include="Listbox.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
