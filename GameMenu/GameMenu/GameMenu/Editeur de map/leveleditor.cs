@@ -57,7 +57,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, string level)
+        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
         {
             //charge le fond
             //    bacgkround1 = Content.Load<Texture2D>("level2//fond");
@@ -92,7 +92,7 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
 
             // ajout IA
-            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref sroll);
+            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref sroll, ref graph );
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
         }
@@ -120,8 +120,8 @@ namespace Umea_rana
                 sroll.Update();
 
                 // scrolling verticale
-                scrolling1.Update();
-                scrolling2.Update();
+              //  scrolling1.Update();
+              //  scrolling2.Update();
 
                 //vaisseau
                 vaisseau.Update(keyboard, game, oldkey);
@@ -165,7 +165,7 @@ namespace Umea_rana
             else
             {
                 game.ChangeState2(Game1.gameState.Checkpause);
-                _pause.Update(game, audio, ref _checkpause);
+               // _pause.Update(game, audio, ref _checkpause);
             }
 
 

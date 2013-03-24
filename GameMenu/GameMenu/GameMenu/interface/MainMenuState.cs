@@ -49,15 +49,15 @@ namespace Umea_rana
             coordonnees_editeur=new Vector2(100, 180);
             coordonnees_quitter = new Vector2(100, 380);
         }
-        public override void LoadContent(ContentManager content,string level)
+        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
-            jouer = content.Load<Texture2D>("Menu//jouer");
-            selection = content.Load<Texture2D>("Menu//selection");
-            options = content.Load<Texture2D>("Menu//options");
-            quitter = content.Load<Texture2D>("Menu//quitter");
-            titre = content.Load<Texture2D>("Menu//pause//Menu");
-            editeur_de_map = content.Load<Texture2D>("Menu//editeur_de_map");
+            background = Content.Load<Texture2D>("Menu//background menu");
+            jouer = Content.Load<Texture2D>("Menu//jouer");
+            selection = Content.Load<Texture2D>("Menu//selection");
+            options = Content.Load<Texture2D>("Menu//options");
+            quitter = Content.Load<Texture2D>("Menu//quitter");
+            titre = Content.Load<Texture2D>("Menu//pause//Menu");
+            editeur_de_map = Content.Load<Texture2D>("Menu//editeur_de_map");
         }
         public override void UnloadContent()
         {

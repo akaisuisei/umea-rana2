@@ -62,7 +62,7 @@ namespace Umea_rana
            
         }
 
-        public override void LoadContent(ContentManager Content,string level)
+        public override void LoadContent(ContentManager Content,string level,GraphicsDevice gaphics)
         {
             Scroll_manager  = new Scrolling_ManagerV(width,height );
             //charge le fond

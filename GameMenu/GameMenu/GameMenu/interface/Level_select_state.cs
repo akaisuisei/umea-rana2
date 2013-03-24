@@ -45,7 +45,7 @@ namespace Umea_rana
         {
 
         }
-        public override void LoadContent(ContentManager content, string level)
+        public override void LoadContent(ContentManager content, string level,GraphicsDevice graph)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             level1 = content.Load<Texture2D>("Menu//LevelSelect//level1");

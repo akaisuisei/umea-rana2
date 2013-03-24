@@ -25,7 +25,7 @@ namespace Umea_rana
         {
            
         }
-        public override void LoadContent(ContentManager content,string level)
+        public override void LoadContent(ContentManager content, string level, GraphicsDevice graph)
         {
             test = content.Load<Texture2D>("Untitled");
         }

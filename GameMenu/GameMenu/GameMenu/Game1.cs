@@ -76,7 +76,7 @@ namespace Umea_rana
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content, level);
+            StateManager[_currentState].LoadContent(Content, level,GraphicsDevice );
             base.LoadContent();
         }
 

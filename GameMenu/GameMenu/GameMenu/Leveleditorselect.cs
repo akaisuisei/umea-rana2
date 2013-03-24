@@ -47,7 +47,7 @@ namespace Umea_rana
             latdefault = 10;
         }
 
-        public override void LoadContent(ContentManager content, string level)
+        public override void LoadContent(ContentManager content, string level,GraphicsDevice graph)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             songMenu = content.Load<Song>("Menu//songMenu");

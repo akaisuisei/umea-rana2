@@ -42,7 +42,7 @@ namespace Umea_rana
         }
 
 
-        public override void LoadContent(ContentManager Content,string level)
+        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
         {
             
             //background

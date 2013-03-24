@@ -40,7 +40,7 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, content);       
-            scroll = new Scrolling_ManagerV(width, height, game1.GraphicsDevice ); 
+            scroll = new Scrolling_ManagerV(width, height); 
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -60,7 +60,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, string level)
+        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
         {
             //charge le fond
    //         background1 = Content.Load<Texture2D>("level2//fond");
@@ -99,7 +99,7 @@ namespace Umea_rana
 
             // ajout IA
          
-            save.load_level_SEU(Content, level , ref manage_k, ref manage_T, ref manage_V,ref scroll );
+            save.load_level_SEU(Content, level , ref manage_k, ref manage_T, ref manage_V,ref scroll,ref graph  );
            
             
         }
