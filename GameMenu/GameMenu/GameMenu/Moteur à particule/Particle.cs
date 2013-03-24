@@ -38,7 +38,9 @@ namespace Umea_rana
             if (!Alive)
                 return;
             var pourcentage=(float)((_settings.LifeTime-LifeTime)/_settings.LifeTime);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.Additive);
             sb.Draw(texture, Pos, null,ParticleHelper.Interpolate(_settings.ColorStart,_settings.ColorEnd,pourcentage), 0, Vector2.Zero, MathHelper.Lerp(_settings.scalestart,_settings.scaleend,pourcentage), SpriteEffects.None, 0);
+            sb.End();
         }
 
         public void Update(GameTime gameTime)

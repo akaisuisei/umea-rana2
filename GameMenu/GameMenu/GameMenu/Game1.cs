@@ -105,8 +105,8 @@ namespace Umea_rana
             spriteBatch.Begin();
             GraphicsDevice.Clear(Color.Black);
             StateManager[_currentState].Draw(spriteBatch);
-            base.Draw(gameTime);
             spriteBatch.End();
+            base.Draw(gameTime);
         }
 
         public enum gameState

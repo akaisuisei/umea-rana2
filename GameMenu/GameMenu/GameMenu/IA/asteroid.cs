@@ -68,12 +68,13 @@ namespace Umea_rana
         }
 
 
-        public void Draw(SpriteBatch spritebach)
+        public void Draw(SpriteBatch spritebatch)
         {
-            if (visible) 
-            spritebach.Draw(texture, rectangle, null, Color.White,rot ,new Vector2(rectangle.Width/2,rectangle.Height/2 )  ,SpriteEffects.None,0f);
+            if (visible)
+            {
+                spritebatch.Draw(texture, rectangle, null, Color.White, rot, new Vector2(rectangle.Width / 2, rectangle.Height / 2), SpriteEffects.None, 0f);
+            }
         }
-
         public void toucher()
         {
             this.dirX = -dirX;

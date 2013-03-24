@@ -54,7 +54,7 @@ namespace Umea_rana
 
         }
         public override void Draw(SpriteBatch spriteBatch)
-        {            
+        {
             spriteBatch.Draw(background, rectangle, Color.White );
           //  listbox.Draw(spriteBatch);
         }
