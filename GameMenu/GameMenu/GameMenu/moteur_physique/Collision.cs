@@ -160,7 +160,7 @@ namespace Umea_rana
         {
 
             for (int i = 0; i < ia_manage.bulletL.Count; ++i)
-                if (ia_manage.bulletL[i].rectangle.Intersects(sprite.rectangle))
+                if (ia_manage.bulletL[i].rectangle_C.Intersects(sprite.rectangle_C))
                 {
                     game.ChangeState(Game1.gameState.Pause, Game1.gameState.SEU);
                 }

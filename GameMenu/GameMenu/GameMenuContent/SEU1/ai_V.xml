@@ -6,7 +6,7 @@
     <seconde>162</seconde>
     <nombre>1</nombre>
     <vie>11</vie>
-    <speed>1</speed>
+    <speed>0</speed>
     <color>
       <R>0</R>
       <G>255</G>
@@ -16,6 +16,6 @@
     </color>
     <damage>1</damage>
     <firerate>100</firerate>
-    <bullet_Speed>5</bullet_Speed>
+    <bullet_Speed>0</bullet_Speed>
   </quaintuplet>
 </ArrayOfQuaintuplet>

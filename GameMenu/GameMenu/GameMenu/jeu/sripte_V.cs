@@ -14,7 +14,7 @@ namespace Umea_rana
     public class sripte_V :objet 
     {
         public Texture2D texture;
-
+        Texture2D test;
         public List<munition> bulletL;
         Color color_V;
 
@@ -60,6 +60,7 @@ namespace Umea_rana
             bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
             n = 0;
             type = 1;
+            test = content.Load<Texture2D>("ListBoxBG");
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -142,6 +143,10 @@ namespace Umea_rana
             {
                 FrameColumn = 2;
                 FrameLine = 2;
+                decallageX = (int)(0.33f * (float)rectangle.Width);
+                decallageY = (int)(0.55f * (float)rectangle.Width);
+                hauteurY = (int)(0.33f * (float)rectangle.Width); ;
+                largeurX = (int)(0.33f * (float)rectangle.Width);
             }
             rectangle.X += speed;
 
@@ -158,6 +163,10 @@ namespace Umea_rana
             {
                 FrameColumn = 2;
                 FrameLine = 2;
+                decallageX = (int)(0.33f * (float)rectangle.Width);
+                decallageY = (int)(0.55f * (float)rectangle.Width);
+                hauteurY = (int)(0.33f * (float)rectangle.Width); ;
+                largeurX = (int)(0.33f * (float)rectangle.Width);
             }
             rectangle.X -= speed;
         }
@@ -174,11 +183,19 @@ namespace Umea_rana
             {
                 FrameColumn = 1;
                 FrameLine = 2;
+                decallageX = (int)(0.33f * (float)rectangle.Width);
+                decallageY = (int)(0.55f * (float)rectangle.Width);
+                hauteurY = (int)(0.5f * (float)rectangle.Width); ;
+                largeurX = (int)(0.2f * (float)rectangle.Width);
             }
         }
 
         private void Transform()
         {
+            decallageX = (int)(0.33f * (float)rectangle.Width);
+            decallageY = (int)(0.55f * (float)rectangle.Width);
+            hauteurY = (int)(0.33f * (float)rectangle.Width); ;
+            largeurX = (int)(0.33f * (float)rectangle.Width);
             if (type == 3)
             {
                 this.Timer++;
@@ -194,6 +211,7 @@ namespace Umea_rana
                     FrameLine = 2;
                     type = 1;
                     speed = maxspeed ;
+
                 } else 
                 if (FrameColumn == 1)
                 {
@@ -224,6 +242,10 @@ namespace Umea_rana
                     FrameLine = 1;
                     type = 0;
                     speed = minspeed;
+                    decallageX = (int)(0.33f * (float)rectangle.Width);
+                    decallageY = (int)(0.55f * (float)rectangle.Width);
+                    hauteurY = (int)(0.33f * (float)rectangle.Width); ;
+                    largeurX = (int)(0.33f * (float)rectangle.Width);
                 }else 
                 if (FrameColumn == 4)
                 {
@@ -249,7 +271,9 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebatch)
         {
             bullet.Bullet_draw(spritebatch, ref bulletL);
+
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+                spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
         }
     }
 }
