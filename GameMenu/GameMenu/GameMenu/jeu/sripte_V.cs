@@ -23,7 +23,7 @@ namespace Umea_rana
         int height, width;
         public Bullet_manager bullet;
         public bool automatic_controlled;
-        int speed;
+        int speed, maxspeed, minspeed;
         int n;
         Int16 type;
 
@@ -47,7 +47,10 @@ namespace Umea_rana
             texture = n_texture;
             rectangle = n_rectangle;
             rectangle_C = rectangle;
-            this.height = height; this.width = width;this.speed = speed;
+            this.height = height; this.width = width;
+            this.speed = speed;
+            maxspeed = (int)((float)speed * 1.5f);
+            minspeed = speed;
             change_T = 0;
             
             automatic_controlled = false;
@@ -190,6 +193,7 @@ namespace Umea_rana
                     FrameColumn = 1;
                     FrameLine = 2;
                     type = 1;
+                    speed = maxspeed ;
                 } else 
                 if (FrameColumn == 1)
                 {
@@ -219,6 +223,7 @@ namespace Umea_rana
                     FrameColumn = 2;
                     FrameLine = 1;
                     type = 0;
+                    speed = minspeed;
                 }else 
                 if (FrameColumn == 4)
                 {
