@@ -259,7 +259,7 @@ namespace Umea_rana
                 scrollM.Load(content, level_profile, grap );
             }
         }
-
+      
         public void supp_dir(string filename)
         {
             DirectoryInfo dir = new DirectoryInfo(path + "\\SEU\\" + filename);

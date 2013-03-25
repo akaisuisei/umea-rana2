@@ -14,7 +14,7 @@ namespace Umea_rana
     public class sripte_V :objet 
     {
         public Texture2D texture;
-        List<Texture2D> L_texture;
+
         public List<munition> bulletL;
         Color color_V;
 
@@ -25,21 +25,26 @@ namespace Umea_rana
         public bool automatic_controlled;
         int speed;
         int n;
-        public void Draw(SpriteBatch spritebatch)
-        {
-            bullet.Bullet_draw(spritebatch,ref bulletL );
-            spritebatch.Draw(texture, rectangle, Color.White);
-        }
+        Int16 type;
 
-        public sripte_V(List<Texture2D> n_texture, Rectangle n_rectangle, ContentManager content, int height, int width, Color colo, int speed)
+        int FrameLine;
+        int FrameColumn;
+        SpriteEffects Effects;
+        bool dir = false;
+        int Timer;
+        int AnimationSpeed = 14;
+
+
+
+        public sripte_V(Texture2D n_texture, Rectangle n_rectangle, ContentManager content, int height, int width, Color colo, int speed)
         {
             decallageX = 10;
             decallageY = 10;
             largeurX = n_rectangle.Width - decallageX;
             hauteurY = n_rectangle.Height - decallageY;
 
-            texture = n_texture[0];
-            L_texture = n_texture;
+
+            texture = n_texture;
             rectangle = n_rectangle;
             rectangle_C = rectangle;
             this.height = height; this.width = width;this.speed = speed;
@@ -51,6 +56,7 @@ namespace Umea_rana
             bulletL = new List<munition>();
             bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
             n = 0;
+            type = 1;
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -60,18 +66,27 @@ namespace Umea_rana
                 up();
             else// controlle du vaisseau
             {
-                if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
-                    move();
-                else
+                if(keyboard.IsKeyUp ( Keys.T )&&oldkey.IsKeyDown (Keys.T ))
+                type+=3;
+                if (type < 3)
                 {
-                    if (keyboard.IsKeyDown(Keys.Up) && (rectangle.Y > 0))
-                        up();
-                    if (keyboard.IsKeyDown(Keys.Down) && (rectangle.Bottom < height))
-                        down();
-                    if (keyboard.IsKeyDown(Keys.Right) && (rectangle.X + rectangle.Width < width))
-                        right();
-                    if (keyboard.IsKeyDown(Keys.Left) && (rectangle.X > 0))
-                        left();
+                    if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
+                        move();
+                    else
+                    {
+                        if (keyboard.IsKeyDown(Keys.Up) && (rectangle.Y > 0))
+                            up();
+                        if (keyboard.IsKeyDown(Keys.Down) && (rectangle.Bottom < height))
+                            down();
+                        if (keyboard.IsKeyDown(Keys.Right) && (rectangle.X + rectangle.Width < width))
+                            right();
+                        if (keyboard.IsKeyDown(Keys.Left) && (rectangle.X > 0))
+                            left();
+                    }
+                }
+                else
+                {                   
+                    Transform();
                 }
             }
 
@@ -94,43 +109,142 @@ namespace Umea_rana
         {
             rectangle.Y -= speed;
             move();
+
+               
         }
         private void down()
         {
+            if (type == 0)
+            {
+                FrameColumn = 1;
+                FrameLine = 1;
+            }
+            else
+            {
+                FrameColumn = 1;
+                FrameLine = 2;
+            }
             rectangle.Y += speed;
-            texture = L_texture[0];
+            
         }
         private void right()
         {
-            rectangle.X += speed;
-            if (change_T % 5 == 0)
-                texture = L_texture[1];
+            Effects = SpriteEffects.FlipHorizontally;
+            if (type == 0)
+            {
+                FrameColumn = 4;
+                FrameLine = 1;
+            }
             else
-                texture = L_texture[4];
+            {
+                FrameColumn = 2;
+                FrameLine = 2;
+            }
+            rectangle.X += speed;
+
         }
         private void left()
-        {
-            rectangle.X -= speed;
-            if (change_T % 5 == 0)
-                texture = L_texture[2];
+        {      
+            Effects = SpriteEffects.None;
+            if (type == 0)
+            {
+                FrameColumn = 4;
+                FrameLine = 1;
+            }
             else
-                texture = L_texture[5];
+            {
+                FrameColumn = 2;
+                FrameLine = 2;
+            }
+            rectangle.X -= speed;
         }
 
        // animation
         private void move()
         {
-            if (change_T % 5 == 0)
-                texture = L_texture[0];
+            if (type == 0)
+            {
+                FrameColumn = 1;
+                FrameLine = 1;
+            }
             else
-                texture = L_texture[3];
+            {
+                FrameColumn = 1;
+                FrameLine = 2;
+            }
         }
 
+        private void Transform()
+        {
+            if (type == 3)
+            {
+                this.Timer++;
+                if (FrameLine == 1 && FrameColumn == 1)
+                {
+                    FrameColumn = 4;
+                    FrameLine = 4;
+
+                }else
+                    if (FrameColumn == 1 && FrameLine == 3)
+                {
+                    FrameColumn = 1;
+                    FrameLine = 2;
+                    type = 1;
+                } else 
+                if (FrameColumn == 1)
+                {
+                    FrameColumn = 4;
+                    FrameLine = 3;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn--;
+
+                }
+                 
+                
+            }
+            else
+            {
+                
+                this.Timer++;
+                if (FrameLine == 2 && FrameColumn == 1)
+                    {
+                        FrameColumn = 1;
+                        FrameLine = 3;
+                    }else
+                    if (FrameColumn == 4 && FrameLine == 4)
+                {
+                    FrameColumn = 2;
+                    FrameLine = 1;
+                    type = 0;
+                }else 
+                if (FrameColumn == 4)
+                {
+                    FrameColumn = 1;
+                    FrameLine = 4;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+
+                }
+                 
+                    
+            }
+        }
         // procedure pour indiquer au vaisseau la fin de niveau
         public void gagne()
         {
             automatic_controlled = true;
             this.bullet.enableFire = false;
+        }
+        public void Draw(SpriteBatch spritebatch)
+        {
+            bullet.Bullet_draw(spritebatch, ref bulletL);
+            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
     }
 }

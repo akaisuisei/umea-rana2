@@ -21,7 +21,7 @@ namespace Umea_rana
 
         KeyboardState oldkey;
         Texture2D/* bacgkround1,*/ aster_t, planet1, star;
-        List<Texture2D> T_sprite;
+        Texture2D T_sprite;
         Collision collision;
         IA_manager_T manage_T;
         IA_manager_V manage_V;
@@ -42,7 +42,7 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
-            T_sprite = new List<Texture2D>();
+         
             collision = new Collision();
             _pause = new _Pause(game1, graphics, content);
             
@@ -68,12 +68,8 @@ namespace Umea_rana
             //charge le fond
           //  bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1d"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1g"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2d"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
+            T_sprite=Content.Load<Texture2D>("hero//spriteSheet");
+
 
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");

@@ -21,7 +21,7 @@ namespace Umea_rana
         asteroid aster;
         KeyboardState oldkey;
         Texture2D aster_t, planet1, star;
-        List<Texture2D> T_sprite;
+        Texture2D T_sprite;
         Collision collision;
         IA_manager_T manage_T;
         IA_manager_V manage_V;
@@ -53,7 +53,7 @@ namespace Umea_rana
             
             game_time = 0;   
             oldkey = Keyboard.GetState();
-            T_sprite = new List<Texture2D>();
+  
             collision = new Collision(); 
             save = new Sauveguarde();
 
@@ -66,12 +66,8 @@ namespace Umea_rana
    //         background1 = Content.Load<Texture2D>("level2//fond");
      //       background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1d"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman1g"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2d"));
-            T_sprite.Add(Content.Load<Texture2D>("hero//vaisseau//sazabiHaman2g"));
+            T_sprite=Content.Load<Texture2D>("hero//spriteSheet");
+
 
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
@@ -87,7 +83,7 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt2, taille_sprt2), Content, height, width, Color.Gray, 9);
 
             //instancie l ia
             aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);

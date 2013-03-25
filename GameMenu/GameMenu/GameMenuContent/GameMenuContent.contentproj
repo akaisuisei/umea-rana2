@@ -338,6 +338,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="hero\spriteSheet.png">
+      <Name>spriteSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="SEU1\ai_K.xml">
       <Name>ai_K</Name>
       <Importer>XmlImporter</Importer>

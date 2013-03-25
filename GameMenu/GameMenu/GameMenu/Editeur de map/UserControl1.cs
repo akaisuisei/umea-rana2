@@ -105,6 +105,7 @@ namespace Umea_rana
                     EnableTab(tabPage3, true);
                     EnableTab(tabPage2, false);
                     enableall(false);
+
                     textBox4.Text = "" + savefile.ia_Kamikaze[spawn].vie;
                     textBox5.Text = "" + savefile.ia_Kamikaze[spawn].speed;
                     textBox12.Text = "" + savefile.ia_Kamikaze[spawn].damage;
@@ -114,7 +115,7 @@ namespace Umea_rana
                     EnableTab(tabPage2, true);
                     enableall(false);
                     radioButton1.Enabled = false;
-                    radioButton2.Enabled = false;
+                    radioButton2.Enabled = true;
                     radioButton2.Checked = true;
                     textBox1.Text = "" + savefile.ia_viseur[spawn].vie;
                     textBox2.Text = "" + savefile.ia_viseur[spawn].speed;
@@ -129,7 +130,7 @@ namespace Umea_rana
                     EnableTab(tabPage3, false);
                     EnableTab(tabPage2, true);
                     enableall(false);
-                    radioButton1.Enabled = false;
+                    radioButton1.Enabled = true;
                     radioButton2.Enabled = false;
                     radioButton1.Checked = true;
                     textBox1.Text = "" + savefile.ia_tireur[spawn].vie;
@@ -371,7 +372,7 @@ namespace Umea_rana
             if (textBox10.BackColor == System.Drawing.Color.Green)
             {
                 savefile.levelProfile.levelname = filepath;
-                if (savefile.levelProfile.background_name != string.Empty &&
+                if (savefile.levelProfile.background_name != null &&
                     savefile.levelProfile.playerLife != 0)
                 {
                     savegame();
@@ -398,6 +399,7 @@ namespace Umea_rana
                     quaint.speed = int.Parse(textBox2.Text);
                     quaint.trajectory = (string)comboBox4.SelectedItem;
                     quaint.vie = int.Parse(textBox1.Text);
+                    quaint.bullet_Speed = int.Parse(textBox15.Text);
                     quaint.X = openX;
                     quaint.Y = openY;
 
@@ -748,7 +750,7 @@ namespace Umea_rana
             }
             else
             {
-                sauve.supp_dir(comboBox2.SelectedText);
+                sauve.supp_dir((string)comboBox2.SelectedItem );
             }
 
             hidou();
