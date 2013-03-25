@@ -46,7 +46,7 @@ namespace Umea_rana
                 {
                     case 1:
                 bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Center.X , sprite.rectangle_C.Bottom , sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle.Center.X , sprite.rectangle.Bottom , sprite.rectangle.Width / 4, sprite.rectangle.Height/2), speed, vise, colo));
                         break ;
                     case 2:
                         bullet.Add(
@@ -81,8 +81,10 @@ namespace Umea_rana
 
         }
 
-        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet)
+        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet,ref int sizeX,ref int sizeY,ref int timer)
         {
+            if (timer != time1)
+                time1 = timer;
             if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space) && tem2 <= 0 && enableFire) //autorisation de tire
             {
 
@@ -91,32 +93,34 @@ namespace Umea_rana
                 {
                     case 1:
                         bullet.Add(
-                            new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                            new munition(texture, new Rectangle(sprite.rectangle_C.Center.X  - sizeX/2, sprite.rectangle_C.Center.Y , sizeX, sizeY), speed, vise, colo));
                         break;
                     case 2:
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Left - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Left - sizeX/2 , sprite.rectangle_C.Center.Y , sizeX, sizeY), speed, vise, colo));
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Right, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Right -sizeX/2 , sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, vise, colo));
                         break;
                     case 3:
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Left + sprite.rectangle.Width / 2 - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Center.X -sizeX/2 , sprite.rectangle_C.Center.Y ,  sizeX, sizeY), speed, vise, colo));
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Left, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, new Vector2(1f, 1f), colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Left - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, new Vector2(1f, 1f), colo));
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Right, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, new Vector2(-1f, 1f), colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Right - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, new Vector2(-1f, 1f), colo));
                         break;
-                    default:
+                    default: 
                         bullet.Add(
-                     new munition(texture, new Rectangle(sprite.rectangle.Left - sprite.rectangle.Width / 8, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                     new munition(texture, new Rectangle(sprite.rectangle_C.Left - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, vise, colo));
                         bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Right, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, vise, colo));
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Right - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, vise, colo));
+                     bullet.Add(
+                         new munition(texture, new Rectangle(sprite.rectangle_C.Left - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, new Vector2(1f, 1f), colo));
                         bullet.Add(
-                          new munition(texture, new Rectangle(sprite.rectangle.Left, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, new Vector2(1f, 1f), colo));
-                        bullet.Add(
-                    new munition(texture, new Rectangle(sprite.rectangle.Right, sprite.rectangle.Top - sprite.rectangle.Height / 2, sprite.rectangle.Width / 4, sprite.rectangle.Height), speed, new Vector2(-1f, 1f), colo));
-                        break;
+                    new munition(texture, new Rectangle(sprite.rectangle_C.Right - sizeX / 2, sprite.rectangle_C.Center.Y, sizeX, sizeY), speed, new Vector2(-1f, 1f), colo));
+                    
+
+                          break;
                 }
                 soundeffect.Play(); //lance un son lors du tire
 

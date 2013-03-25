@@ -11,19 +11,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    public class sripte_V :objet 
+    public class sripte_V : objet
     {
         public Texture2D texture;
-        Texture2D test;
+       //  Texture2D test;
         public List<munition> bulletL;
         Color color_V;
 
         int change_T;
-        
+
         int height, width;
         public Bullet_manager bullet;
         public bool automatic_controlled;
         int speed, maxspeed, minspeed;
+        int sizeX, sizeY, timer, sizeX1, sizeX2, sizeY1, sizeY2, timer1, timer2;
         int n;
         Int16 type;
 
@@ -38,65 +39,78 @@ namespace Umea_rana
 
         public sripte_V(Texture2D n_texture, Rectangle n_rectangle, ContentManager content, int height, int width, Color colo, int speed)
         {
-            decallageX = 10;
-            decallageY = 10;
-            largeurX = n_rectangle.Width - decallageX;
-            hauteurY = n_rectangle.Height - decallageY;
+           
 
 
             texture = n_texture;
-            rectangle = n_rectangle;
-            rectangle_C = rectangle;
-            this.height = height; this.width = width;
+            rectangle = n_rectangle; 
+            decallageX = (int)(0.33f * (float)rectangle.Width);
+            decallageY = (int)(0.55f * (float)rectangle.Width);
+            hauteurY = (int)(0.33f * (float)rectangle.Width);
+            largeurX = (int)(0.33f * (float)rectangle.Width);
+            Update_rec_collision();
+            this.height = height;
+            this.width = width;
             this.speed = speed;
             maxspeed = (int)((float)speed * 1.5f);
             minspeed = speed;
             change_T = 0;
-            
+            type = 0;
             automatic_controlled = false;
             color_V = colo;
             // intencie le manager de missille 
             bulletL = new List<munition>();
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10,content.Load<SoundEffect>("hero//vaisseau//tir2"),color_V,width ,30 );
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
             n = 0;
-            type = 1;
-            test = content.Load<Texture2D>("ListBoxBG");
+            sizeX = rectangle.Width / 3;
+            sizeY = rectangle.Height / 2;
+            timer = 30;
+            sizeX1 = rectangle.Width / 8;
+            sizeY1 = rectangle.Height / 6;
+            timer1 = 10;
+            sizeX2 = rectangle.Width / 4;
+            sizeY2 = rectangle.Height / 5;
+            timer2 = 30;
+
+
+         //     test = content.Load<Texture2D>("ListBoxBG");
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
-      
+
             if (automatic_controlled)//movement automatic de fin de jeu
                 up();
             else// controlle du vaisseau
             {
-                if(keyboard.IsKeyUp ( Keys.T )&&oldkey.IsKeyDown (Keys.T ))
-                type+=3;
-                if (type < 3)
+                if (keyboard.IsKeyUp(Keys.T) && oldkey.IsKeyDown(Keys.T))
+                    type += 3;
+                else  if (type < 3)
                 {
                     if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
                         move();
                     else
                     {
-                        if (keyboard.IsKeyDown(Keys.Up) && (rectangle.Y > 0))
+                        if (keyboard.IsKeyDown(Keys.Up) && (rectangle_C.Y > 0))
                             up();
-                        if (keyboard.IsKeyDown(Keys.Down) && (rectangle.Bottom < height))
+                        if (keyboard.IsKeyDown(Keys.Down) && (rectangle_C.Bottom < height))
                             down();
-                        if (keyboard.IsKeyDown(Keys.Right) && (rectangle.X + rectangle.Width < width))
+                        if (keyboard.IsKeyDown(Keys.Right) && (rectangle_C.X + rectangle_C.Width < width))
                             right();
-                        if (keyboard.IsKeyDown(Keys.Left) && (rectangle.X > 0))
+                        if (keyboard.IsKeyDown(Keys.Left) && (rectangle_C.X > 0))
                             left();
                     }
                 }
                 else
-                {                   
+                {
+                    type %= 5;
                     Transform();
                 }
             }
 
             change_T += 1;// timer pour l animation
-            if(keyboard.IsKeyDown(Keys.D1)||keyboard.IsKeyDown(Keys.F1 ))
-                n=1;
+            if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
+                n = 1;
             if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
                 n = 2;
             if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
@@ -104,7 +118,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
                 n = 4;
 
-            bullet.Bullet_Update(keyboard, this, oldkey,new Vector2 (0,1),n,ref bulletL );
+            bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), n, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
         }
 
@@ -114,7 +128,7 @@ namespace Umea_rana
             rectangle.Y -= speed;
             move();
 
-               
+
         }
         private void down()
         {
@@ -129,7 +143,7 @@ namespace Umea_rana
                 FrameLine = 2;
             }
             rectangle.Y += speed;
-            
+
         }
         private void right()
         {
@@ -143,16 +157,13 @@ namespace Umea_rana
             {
                 FrameColumn = 2;
                 FrameLine = 2;
-                decallageX = (int)(0.33f * (float)rectangle.Width);
-                decallageY = (int)(0.55f * (float)rectangle.Width);
-                hauteurY = (int)(0.33f * (float)rectangle.Width); ;
-                largeurX = (int)(0.33f * (float)rectangle.Width);
+                decallageX = (int)(0.467f * (float)rectangle.Width);
             }
             rectangle.X += speed;
 
         }
         private void left()
-        {      
+        {
             Effects = SpriteEffects.None;
             if (type == 0)
             {
@@ -163,17 +174,15 @@ namespace Umea_rana
             {
                 FrameColumn = 2;
                 FrameLine = 2;
-                decallageX = (int)(0.33f * (float)rectangle.Width);
-                decallageY = (int)(0.55f * (float)rectangle.Width);
-                hauteurY = (int)(0.33f * (float)rectangle.Width); ;
-                largeurX = (int)(0.33f * (float)rectangle.Width);
+                decallageX = (int)(0.44f * (float)rectangle.Width);
             }
             rectangle.X -= speed;
         }
 
-       // animation
+        // animation
         private void move()
         {
+            Effects = SpriteEffects.None;
             if (type == 0)
             {
                 FrameColumn = 1;
@@ -183,37 +192,42 @@ namespace Umea_rana
             {
                 FrameColumn = 1;
                 FrameLine = 2;
-                decallageX = (int)(0.33f * (float)rectangle.Width);
-                decallageY = (int)(0.55f * (float)rectangle.Width);
-                hauteurY = (int)(0.5f * (float)rectangle.Width); ;
-                largeurX = (int)(0.2f * (float)rectangle.Width);
+                decallageX = (int)(0.44f * (float)rectangle.Width);
             }
         }
 
         private void Transform()
         {
+            Effects = SpriteEffects.None;
             decallageX = (int)(0.33f * (float)rectangle.Width);
             decallageY = (int)(0.55f * (float)rectangle.Width);
-            hauteurY = (int)(0.33f * (float)rectangle.Width); ;
+            hauteurY = (int)(0.20f * (float)rectangle.Width); ;
             largeurX = (int)(0.33f * (float)rectangle.Width);
+            this.Timer++;
             if (type == 3)
             {
-                this.Timer++;
+
                 if (FrameLine == 1 && FrameColumn == 1)
                 {
                     FrameColumn = 4;
                     FrameLine = 4;
-
-                }else
-                    if (FrameColumn == 1 && FrameLine == 3)
+                    Timer = 0;
+                }
+                else if (FrameColumn == 1 && FrameLine == 3)
                 {
                     FrameColumn = 1;
                     FrameLine = 2;
                     type = 1;
-                    speed = maxspeed ;
-
-                } else 
-                if (FrameColumn == 1)
+                    speed = maxspeed;
+                    decallageX = (int)(0.44f * (float)rectangle.Width);
+                    decallageY = (int)(0.17f * (float)rectangle.Width);
+                    hauteurY = (int)(0.555f * (float)rectangle.Width);
+                    largeurX = (int)(0.12f * (float)rectangle.Width);
+                    sizeX = sizeX1;
+                    sizeY = sizeY1;
+                    timer = timer1;
+                }
+                else if (FrameColumn == 1)
                 {
                     FrameColumn = 4;
                     FrameLine = 3;
@@ -224,19 +238,16 @@ namespace Umea_rana
                     this.FrameColumn--;
 
                 }
-                 
-                
             }
             else
             {
-                
-                this.Timer++;
                 if (FrameLine == 2 && FrameColumn == 1)
-                    {
-                        FrameColumn = 1;
-                        FrameLine = 3;
-                    }else
-                    if (FrameColumn == 4 && FrameLine == 4)
+                {
+                    FrameColumn = 1;
+                    FrameLine = 3;
+                    Timer = 0;
+                }
+                else if (FrameColumn == 4 && FrameLine == 4)
                 {
                     FrameColumn = 2;
                     FrameLine = 1;
@@ -246,8 +257,11 @@ namespace Umea_rana
                     decallageY = (int)(0.55f * (float)rectangle.Width);
                     hauteurY = (int)(0.33f * (float)rectangle.Width); ;
                     largeurX = (int)(0.33f * (float)rectangle.Width);
-                }else 
-                if (FrameColumn == 4)
+                    sizeX = sizeX2;
+                    sizeY = sizeY2;
+                    timer = timer2;
+                }
+                else if (FrameColumn == 4)
                 {
                     FrameColumn = 1;
                     FrameLine = 4;
@@ -256,10 +270,9 @@ namespace Umea_rana
                 {
                     this.Timer = 0;
                     this.FrameColumn++;
-
                 }
-                 
-                    
+
+
             }
         }
         // procedure pour indiquer au vaisseau la fin de niveau
@@ -273,7 +286,7 @@ namespace Umea_rana
             bullet.Bullet_draw(spritebatch, ref bulletL);
 
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
-                spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
+         //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
         }
     }
 }

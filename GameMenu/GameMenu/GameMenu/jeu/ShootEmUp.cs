@@ -83,7 +83,7 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2,250, 250), Content, height, width, Color.Gray, 9);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt2, taille_sprt2), Content, height, width, Color.Gray, 9);
 
             //instancie l ia
             aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
