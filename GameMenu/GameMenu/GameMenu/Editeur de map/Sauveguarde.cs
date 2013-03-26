@@ -35,12 +35,13 @@ namespace Umea_rana
             XmlSerializer f = null, g = null, i = null, h = null;
             string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
-            string ext = "", nam = "" , name="";
+            string ext = "", nam = "", name = "";
+            string[] res = new string[save.levelProfile.musique.Length  ];
             if (!dir.Exists)
                 dir.Create();
-
+            
             for (int j = 0; j < save.levelProfile.background_name.Length; ++j)
-            {      
+            {
                 if (save.levelProfile.background_name[j] == '.')
                     ext = "";
                 nam += save.levelProfile.background_name[j];
@@ -49,13 +50,31 @@ namespace Umea_rana
                 if (save.levelProfile.background_name[j] == '\\')
                     nam = "";
             }
+
+            // copie de backgroung et verif k il n est pas ds le dossier
             for (int j = 0; j < nam.Length && nam[j] != '.'; ++j)
                 name += nam[j];
-                if (name != "background")
+            if (name != "background")
+            {
+                System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
+                save.levelProfile.background_name = "background" + ext;
+            }
+            // copie des musique + verif pas ds le dossier
+            for (int w = 0; w < res.Length; w++)
+            {
+                for (int j = 0; j < save.levelProfile.musique[w].Length; ++j)
                 {
-                    System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
-                    save.levelProfile.background_name = "background" + ext;
+                    res[w] +=   save.levelProfile.musique [w][j];
+                    if (  save.levelProfile.musique [w][j] == '\\')
+                        res[w] = "";
                 }
+                if (save.levelProfile.musique[w]!=null &&save.levelProfile.musique[w]!="")
+                {
+                    System.IO.File.Copy(save.levelProfile.musique[w], sav +"\\"+ res[w], true);
+                    save.levelProfile.musique[w] = res[w];
+                }
+            }
+
 
             file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
             f = new XmlSerializer(typeof(List<quaintuplet>));
@@ -136,13 +155,13 @@ namespace Umea_rana
         public string[] filename(ContentManager content)
         {
             string g;
-            if (!Directory.Exists(Path.GetDirectoryName(  content.RootDirectory ) + "\\back" ))
-                Directory.CreateDirectory(content.RootDirectory  + "\\back"  );
-            string[] hello =System.IO.Directory.GetFiles (content.RootDirectory + "\\back");
+            if (!Directory.Exists(Path.GetDirectoryName(content.RootDirectory) + "\\back"))
+                Directory.CreateDirectory(content.RootDirectory + "\\back");
+            string[] hello = System.IO.Directory.GetFiles(content.RootDirectory + "\\back");
             for (int j = 0; j < hello.Length; ++j)
             {
                 g = string.Empty;
-                for (int i = 0; i < hello[j].Length&&hello[j][i]!='.' ; ++i)
+                for (int i = 0; i < hello[j].Length && hello[j][i] != '.'; ++i)
                 {
                     g += hello[j][i];
                     if (hello[j][i] == '\\')
@@ -161,8 +180,8 @@ namespace Umea_rana
         /// <param name="iamanage_K"></param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K, 
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V,ref Scrolling_ManagerV scrollM,ref GraphicsDevice grash,ref sripte_V sprite)
+        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -171,11 +190,11 @@ namespace Umea_rana
             FileStream file2 = null;
             FileStream file3 = null;
             FileStream file4 = null;
-            XmlSerializer f = null, g = null, i = null,e=null;
+            XmlSerializer f = null, g = null, i = null, e = null;
 
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(content.RootDirectory  +"\\"+ level);
+            dir = new DirectoryInfo(content.RootDirectory + "\\" + level);
             if (dir.Exists)
             {
                 ia = new List<quaintuplet>();
@@ -205,7 +224,7 @@ namespace Umea_rana
                 for (int j = 0; j < ia_K.Count; ++j)
                     iamanage_K.Add(ia_K[j]);
 
-                scrollM.Load(content, levelprof,grash );
+                scrollM.Load(content, levelprof, grash);
                 sprite.parametrage(ref levelprof);
 
             }
@@ -218,7 +237,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM,ref GraphicsDevice grap, ref sripte_V sprite)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref sripte_V sprite)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -260,11 +279,11 @@ namespace Umea_rana
                 for (int j = 0; j < ia_K.Count; ++j)
                     iamanage_K.Add(ia_K[j]);
 
-                scrollM.Load(content, level_profile, grap );
+                scrollM.Load(content, level_profile, grap);
                 sprite.parametrage(ref level_profile);
             }
         }
-      
+
         public void supp_dir(string filename)
         {
             DirectoryInfo dir = new DirectoryInfo(path + "\\SEU\\" + filename);

@@ -780,6 +780,7 @@ namespace Umea_rana
             textBox14.Text = "" + savefile.levelProfile.playerLife;
             textBox16.Text = "" + savefile.levelProfile.bullet_speed;
 
+            listBox1.Items.AddRange ( savefile.levelProfile.musique);
             scrollingLoad();
         }
 
@@ -927,7 +928,7 @@ namespace Umea_rana
         private void suppitem(ListBox  list)
         {
             string[] res = new string[4] {"","","",""};
-            for (int i=0; i<4;i++)
+            for (int i=0; i<res.Length ;i++)
             {
           
                 for (int j = 0; j < playlist[i].Length; ++j)

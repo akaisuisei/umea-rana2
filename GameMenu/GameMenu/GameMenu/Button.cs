@@ -20,6 +20,7 @@ namespace Umea_rana
         SpriteFont font;
         int latence = 0, X, Y, G_latence=200, tab;
         Texture2D selection;
+        Texture2D test;
         Vector2 select;
         bool intecep;
         
@@ -42,6 +43,7 @@ namespace Umea_rana
         {
             this.font = Content.Load<SpriteFont>("FontList");
             selection = Content.Load<Texture2D>("Menu//selection");
+            test = Content.Load<Texture2D>("ListBoxBG");
         }
 
 
@@ -138,7 +140,10 @@ namespace Umea_rana
         {
             for (int i = 0; i < rect.GetLength(0); ++i)
                 for (int j = 0; j < rect.GetLength(1); ++j)
+                {
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black);
+        //            spriteBatch.Draw(test, rect[i,j], Color.BlueViolet);
+                }
 
             spriteBatch.Draw(selection, select, Color.White);
         }

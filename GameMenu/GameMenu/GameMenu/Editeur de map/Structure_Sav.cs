@@ -48,7 +48,7 @@ namespace Umea_rana
         public Color color;
         public int damage;
         public int bullet_speed;
-         string[] musique;
+        public string[] musique;
        
     }
 
