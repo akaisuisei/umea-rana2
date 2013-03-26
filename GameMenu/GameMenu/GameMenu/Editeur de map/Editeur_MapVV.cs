@@ -84,9 +84,10 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), height, width);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt ,taille_sprt ), height, width);
             vaisseau.Load(Content, T_sprite);
 
+            
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager,Content  );
@@ -158,12 +159,12 @@ namespace Umea_rana
             //scrolling
             //scrolling1.Draw(spriteBatch);
             Scroll_manager.Draw(spriteBatch);
-            vaisseau.Draw(spriteBatch);
+      
 
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
-
+      vaisseau.Draw(spriteBatch);
 
             if (_checkpause)
                 _pause.Draw(spriteBatch);

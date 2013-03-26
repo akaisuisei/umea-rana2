@@ -76,7 +76,7 @@ namespace Umea_rana
             textBox10.BackColor = System.Drawing.Color.Red;
             textBox11.BackColor = System.Drawing.Color.Red;
             scrollingM = new Scrolling_ManagerV(width, height);
-                      openF = false;
+            openF = false;
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -125,6 +125,7 @@ namespace Umea_rana
                     textBox15.Text = "" + savefile.ia_viseur[spawn].bullet_Speed;
                     comboBox4.SelectedText = savefile.ia_viseur[spawn].trajectory;
                     button2.BackColor = System.Drawing.Color.FromArgb(savefile.ia_viseur[spawn].color.A, savefile.ia_viseur[spawn].color.R, savefile.ia_viseur[spawn].color.G, savefile.ia_viseur[spawn].color.B);
+                    color2 = button2.BackColor;
                     break;
                 case "IA_T":
                     EnableTab(tabPage3, false);
@@ -140,8 +141,9 @@ namespace Umea_rana
                     textBox13.Text = "" + savefile.ia_tireur[spawn].damage;
                     textBox15.Text = "" + savefile.ia_tireur[spawn].bullet_Speed;
                     comboBox4.SelectedText = savefile.ia_tireur[spawn].trajectory;
+                    
                     button2.BackColor = System.Drawing.Color.FromArgb(savefile.ia_tireur[spawn].color.A, savefile.ia_tireur[spawn].color.R, savefile.ia_tireur[spawn].color.G, savefile.ia_tireur[spawn].color.B);
-
+                    color2 = button2.BackColor;
                     break;
                 default:
                     EnableTab(tabPage2, true);
@@ -204,7 +206,7 @@ namespace Umea_rana
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);
-                comboBox3.Items.Add(item[i]); 
+                comboBox3.Items.Add(item[i]);
             }
         }
 
@@ -359,7 +361,10 @@ namespace Umea_rana
                     this.hidou();
                 }
                 else
+                {
                     modif(spawn, ia_type);
+                    this.hidou();
+                }
 
             }
         }
@@ -405,7 +410,6 @@ namespace Umea_rana
 
                     if (radioButton1.Checked)
                     {
-
                         savefile.ia_tireur.Add(quaint);
                         manage_T.Add(quaint, manage_T.Ia_manage.Count);
                         this.hidou();
@@ -418,8 +422,10 @@ namespace Umea_rana
                     }
                 }
                 else
+                {
                     modif(spawn, ia_type);
-
+                    this.hidou();
+                }
             }
         } // tab1
         private void button4_Click(object sender, EventArgs e) //tab4 bacground
@@ -431,46 +437,46 @@ namespace Umea_rana
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
                 savefile.levelProfile.third_bacground = (string)comboBox3.SelectedItem;
                 scrollingLoad();
-                this.hidou(); 
+                this.hidou();
             }
 
-       
 
-        }   
+
+        }
         private void scrollingLoad()
-            {
-                FileStream file;
-            string name=string.Empty ;
+        {
+            FileStream file;
+            string name = string.Empty;
             for (int i = 0; i < imageB.Length && imageB[i] != '.'; ++i)
                 name += imageB[i];
-                if (name  != "background") 
+            if (name != "background")
                 file = new FileStream(imageB, FileMode.Open, FileAccess.Read);
-                else
-                      file = new FileStream(sauve._path+"\\SEU\\"+savefile.levelProfile.levelname +"\\"+  imageB, FileMode.Open, FileAccess.Read);
-                if (scrollingM.scroll.Count == 0)
-                    scrollingM.scroll.Add(new Scrolling(Texture2D.FromStream(game.GraphicsDevice, file), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.01f));
-                else
-                {
-                    scrollingM.scroll[0].texture = Texture2D.FromStream(game.GraphicsDevice, file);
-                }
-                if (savefile.levelProfile.second_background != null)
-                    if (scrollingM.scroll.Count >= 1)
-                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.5f));
-                    else
-                        scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background);
-                else if (savefile.levelProfile.third_bacground != null)
-                    if (scrollingM.scroll.Count >= 1)
-                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 2, height, 0.5f));
-                    else
-                        scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
-
-                if (savefile.levelProfile.third_bacground != null)
-                    if (scrollingM.scroll.Count >= 2)
-                        scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 1, height, 0.9f));
-                    else
-                        scrollingM.scroll[2].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
-
+            else
+                file = new FileStream(sauve._path + "\\SEU\\" + savefile.levelProfile.levelname + "\\" + imageB, FileMode.Open, FileAccess.Read);
+            if (scrollingM.scroll.Count == 0)
+                scrollingM.scroll.Add(new Scrolling(Texture2D.FromStream(game.GraphicsDevice, file), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.01f));
+            else
+            {
+                scrollingM.scroll[0].texture = Texture2D.FromStream(game.GraphicsDevice, file);
             }
+            if (savefile.levelProfile.second_background != null)
+                if (scrollingM.scroll.Count >= 1)
+                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.5f));
+                else
+                    scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background);
+            else if (savefile.levelProfile.third_bacground != null)
+                if (scrollingM.scroll.Count >= 1)
+                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 2, height, 0.5f));
+                else
+                    scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
+
+            if (savefile.levelProfile.third_bacground != null)
+                if (scrollingM.scroll.Count >= 2)
+                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 1, height, 0.9f));
+                else
+                    scrollingM.scroll[2].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
+
+        }
 
         private void button9_Click(object sender, EventArgs e)// load
         {
@@ -677,7 +683,7 @@ namespace Umea_rana
                 comboBox2.Enabled = true;
                 comboBox2.Text = "dossier existant";
             }
-        } 
+        }
 
         private void savegame()
         {
@@ -729,8 +735,8 @@ namespace Umea_rana
                     var yourForm = new OpenFileDialog();
                     //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
                     yourForm.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
-            
-                
+
+
                     if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         imageB = yourForm.FileName;
@@ -750,7 +756,7 @@ namespace Umea_rana
             }
             else
             {
-                sauve.supp_dir((string)comboBox2.SelectedItem );
+                sauve.supp_dir((string)comboBox2.SelectedItem);
             }
 
             hidou();
@@ -792,6 +798,8 @@ namespace Umea_rana
                 cople.vie = int.Parse(textBox4.Text);
                 cople.speed = int.Parse(textBox5.Text);
                 cople.damage = int.Parse(textBox12.Text);
+                cople.X = savefile.ia_Kamikaze[spawn].X;
+                cople.Y = savefile.ia_Kamikaze[spawn].Y;
                 savefile.ia_Kamikaze[spawn] = cople;
                 manage_k.remove_all();
                 for (int i = 0; i < savefile.ia_Kamikaze.Count; i++)
@@ -808,18 +816,23 @@ namespace Umea_rana
                 quaint.speed = int.Parse(textBox2.Text);
                 quaint.trajectory = (string)comboBox4.SelectedItem;
                 quaint.vie = int.Parse(textBox1.Text);
-                quaint.X = openX;
-                quaint.Y = openY;
+
+
+                quaint.bullet_Speed = int.Parse(textBox15.Text);
 
                 if (type == "IA_V")
                 {
+                    quaint.X = savefile.ia_viseur[spawn].X;
+                    quaint.Y = savefile.ia_viseur[spawn].Y;
                     savefile.ia_viseur[spawn] = quaint;
                     manage_V.remove_all();
                     for (int i = 0; i < savefile.ia_viseur.Count; ++i)
                         manage_V.Add(savefile.ia_viseur[i], i);
                 }
-                if (type == "IA_T")
+                else if (type == "IA_T")
                 {
+                    quaint.X = savefile.ia_tireur[spawn].X;
+                    quaint.Y = savefile.ia_tireur[spawn].Y;
                     savefile.ia_tireur[spawn] = quaint;
                     manage_T.remove_all();
                     for (int i = 0; i < savefile.ia_tireur.Count; ++i)

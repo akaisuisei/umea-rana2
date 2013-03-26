@@ -23,7 +23,7 @@ namespace Umea_rana
         IA_manager_T manage_T;
         IA_manager_V manage_V;
         IA_manager_K manage_k;
-        int taille_sprt, taille_sprt2;
+        int taille_sprt, taille_sprt2, sizeX,sizey;
         int timer;
         int game_time;
         _Pause _pause;
@@ -50,7 +50,8 @@ namespace Umea_rana
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
             taille_sprt2 = (int)(Math.Min(width, height) * 0.1);
-
+            sizeX=(int)(width*0.05);
+            sizey =(int)(height *0.09);
             game_time = 0;
             Scroll = new Scrolling_ManagerV(width, height);
             // ajout IA
@@ -78,7 +79,7 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt),  height, width);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, sizeX , sizey ),  height, width);
 
             //instancie l ia
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);

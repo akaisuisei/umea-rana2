@@ -48,6 +48,8 @@ namespace Umea_rana
             Update_rec_collision();
             this.height = height;
             this.width = width;
+            FrameLine = 1;
+            FrameColumn = 1;
             change_T = 0;
             type = 0;
             automatic_controlled = false;
