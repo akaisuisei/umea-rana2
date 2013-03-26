@@ -35,7 +35,7 @@ namespace Umea_rana
             XmlSerializer f = null, g = null, i = null, h = null;
             string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
-            string ext = "", nam = "" ;
+            string ext = "", nam = "" , name="";
             if (!dir.Exists)
                 dir.Create();
 
@@ -49,11 +49,14 @@ namespace Umea_rana
                 if (save.levelProfile.background_name[j] == '\\')
                     nam = "";
             }
-            if (nam != save.levelProfile.background_name)
-            {
-                System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
-                save.levelProfile.background_name = "background" + ext;
-            }
+            for (int j = 0; j < nam.Length && nam[j] != '.'; ++j)
+                name += nam[j];
+                if (name != "background")
+                {
+                    System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
+                    save.levelProfile.background_name = "background" + ext;
+                }
+
             file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
             f = new XmlSerializer(typeof(List<quaintuplet>));
             f.Serialize(file1, save.ia_tireur);

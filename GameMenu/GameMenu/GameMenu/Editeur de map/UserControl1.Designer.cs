@@ -102,7 +102,16 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button13 = new System.Windows.Forms.Button();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -121,6 +130,9 @@
             this.tabPage5.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -727,6 +739,7 @@
             this.Tabcontrol.Controls.Add(this.tabPage4);
             this.Tabcontrol.Controls.Add(this.tabPage1);
             this.Tabcontrol.Controls.Add(this.tabPage5);
+            this.Tabcontrol.Controls.Add(this.tabPage6);
             this.Tabcontrol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tabcontrol.HotTrack = true;
             this.Tabcontrol.Location = new System.Drawing.Point(0, 0);
@@ -1062,6 +1075,116 @@
             this.textBox16.TabIndex = 11;
             this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.tableLayoutPanel13);
+            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(182, 287);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel14, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.button14, 0, 3);
+            this.tableLayoutPanel13.Controls.Add(this.button15, 0, 4);
+            this.tableLayoutPanel13.Controls.Add(this.listBox1, 0, 2);
+            this.tableLayoutPanel13.Controls.Add(this.button13, 0, 1);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 5;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.46392F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.23711F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.43299F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(176, 281);
+            this.tableLayoutPanel13.TabIndex = 0;
+            // 
+            // tableLayoutPanel14
+            // 
+            this.tableLayoutPanel14.ColumnCount = 2;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.Controls.Add(this.label23, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.button12, 1, 0);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 1;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(170, 37);
+            this.tableLayoutPanel14.TabIndex = 0;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label23.Location = new System.Drawing.Point(3, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(79, 37);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "label23";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button12
+            // 
+            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button12.Location = new System.Drawing.Point(88, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(79, 31);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button14
+            // 
+            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button14.Location = new System.Drawing.Point(3, 201);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(170, 34);
+            this.button14.TabIndex = 3;
+            this.button14.Text = "button14";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button15
+            // 
+            this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button15.Location = new System.Drawing.Point(3, 241);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(170, 37);
+            this.button15.TabIndex = 4;
+            this.button15.Text = "button15";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(3, 86);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(170, 109);
+            this.listBox1.TabIndex = 5;
+            // 
+            // button13
+            // 
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.Location = new System.Drawing.Point(3, 46);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(170, 34);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "button13";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1094,6 +1217,10 @@
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1175,6 +1302,15 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button13;
 
     }
 }

@@ -19,7 +19,8 @@ namespace Umea_rana
     {
         string life, speed, couleur, onglet1, onglet2, onglet3, onglet4, trajectoir, align, OK, firerate, end;
         string imagefond, vitessefond, vitesseV, open, cancel, load, save, filepath, filepathlabel, onglet5;
-        string scrolling, file, damage, bullet_speed, supp;
+        string scrolling, file, damage, bullet_speed, supp, musique, add;
+        string[] playlist;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_firerate = "fire", t_nbr = "nbr";
         // type
@@ -77,6 +78,8 @@ namespace Umea_rana
             textBox11.BackColor = System.Drawing.Color.Red;
             scrollingM = new Scrolling_ManagerV(width, height);
             openF = false;
+
+            playlist = new string[4] { "", "", "", "" };
         }
 
         public void _show(int X, int y, string touch, int spawn)
@@ -141,7 +144,7 @@ namespace Umea_rana
                     textBox13.Text = "" + savefile.ia_tireur[spawn].damage;
                     textBox15.Text = "" + savefile.ia_tireur[spawn].bullet_Speed;
                     comboBox4.SelectedText = savefile.ia_tireur[spawn].trajectory;
-                    
+
                     button2.BackColor = System.Drawing.Color.FromArgb(savefile.ia_tireur[spawn].color.A, savefile.ia_tireur[spawn].color.R, savefile.ia_tireur[spawn].color.G, savefile.ia_tireur[spawn].color.B);
                     color2 = button2.BackColor;
                     break;
@@ -248,10 +251,21 @@ namespace Umea_rana
             }
         }
 
-
-
         #region texbox chek
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox8);
+        }
 
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox9);
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox11);
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -323,7 +337,12 @@ namespace Umea_rana
         #endregion
 
         #region dialogopen
-
+        private void button6_Click(object sender, EventArgs e)// tab 4couleur
+        {
+            colorDialog2.ShowDialog();
+            color4 = colorDialog2.Color;
+            button6.BackColor = color4;
+        }
         private void button2_Click(object sender, EventArgs e)// tab1 color
         {
             colorDialog1.ShowDialog();
@@ -332,15 +351,27 @@ namespace Umea_rana
         }
 
 
-        private void button5_Click(object sender, EventArgs e)// tab4 showfile
+        private void button5_Click(object sender, EventArgs e)// tab4 showfile image
         {
-            open_File_dialogue();
+            open_File_dialogue('i');
         }
 
+        private void button12_Click(object sender, EventArgs e)// tab 6 show file musique
+        {
+            open_File_dialogue('m');
+           // Additem();
+        }
         #endregion
 
         #region validate button
-
+        private void button15_Click(object sender, EventArgs e)
+        {
+            this.hidou();
+        }
+        private void button14_Click(object sender, EventArgs e)
+        {
+            suppitem(listBox1);
+        }
         private void button3_Click(object sender, EventArgs e)// tab2 kamikaze
         {
             if (textBox4.BackColor == System.Drawing.Color.Green &&
@@ -432,6 +463,9 @@ namespace Umea_rana
         {
             if (textBox7.BackColor == System.Drawing.Color.Green && imageB != string.Empty)
             {
+                savefile.ia_Kamikaze.Clear();
+                savefile.ia_tireur.Clear();
+                savefile.ia_viseur.Clear();
                 savefile.levelProfile.background_name = imageB;
                 savefile.levelProfile.fc_speed = int.Parse(textBox7.Text);
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
@@ -447,6 +481,7 @@ namespace Umea_rana
         {
             FileStream file;
             string name = string.Empty;
+            scrollingM.Clear();
             for (int i = 0; i < imageB.Length && imageB[i] != '.'; ++i)
                 name += imageB[i];
             if (name != "background")
@@ -504,7 +539,20 @@ namespace Umea_rana
 
         }// player profile
 
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (spawn != -1)
+            {
+                delete(spawn, ia_type);
+            }
+            else
+            {
+                sauve.supp_dir((string)comboBox2.SelectedItem);
+            }
 
+            hidou();
+
+        }// delete
 
         #endregion
 
@@ -555,6 +603,8 @@ namespace Umea_rana
             damage = "degat infligee";
             bullet_speed = "vitesse de la balle";
             supp = "supprimer";
+            musique = "musique";
+            add = "ajouter";
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -563,6 +613,7 @@ namespace Umea_rana
             tabPage4.Text = onglet4;
             tabPage1.Text = file;
             tabPage5.Text = onglet5;
+            tabPage6.Text = musique;
             //tab1
             radioButton1.Checked = true;
             radioButton2.Checked = false;
@@ -613,6 +664,12 @@ namespace Umea_rana
             button10.Text = OK;
             label17.Text = damage;
             label20.Text = life;
+            //tab6 musique
+            label23.Text = musique;
+            button12.Text = open;
+            button13.Text = add;
+            button14.Text = supp;
+            button15.Text = OK;
             // default 
             button6.BackColor = button1.BackColor;
             button2.BackColor = button1.BackColor;
@@ -687,6 +744,7 @@ namespace Umea_rana
 
         private void savegame()
         {
+            savefile.levelProfile.musique = playlist;
             sauve.save_SEU(ref savefile);
         }
 
@@ -724,44 +782,6 @@ namespace Umea_rana
 
             scrollingLoad();
         }
-
-        private void open_File_dialogue()
-        {
-            if (!openF)
-            {
-                Thread thread = new Thread(() =>
-                {
-                    openF = true;
-                    var yourForm = new OpenFileDialog();
-                    //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-                    yourForm.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
-
-
-                    if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        imageB = yourForm.FileName;
-                        openF = false;
-                    }
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-            }
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            if (spawn != -1)
-            {
-                delete(spawn, ia_type);
-            }
-            else
-            {
-                sauve.supp_dir((string)comboBox2.SelectedItem);
-            }
-
-            hidou();
-
-        }// delete
 
         private void delete(int spawn, string type)
         {
@@ -842,27 +862,100 @@ namespace Umea_rana
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)// tab 4couleur
+        private void open_File_dialogue(char type)
         {
-            colorDialog2.ShowDialog();
-            color4 = colorDialog2.Color;
-            button6.BackColor = color4;
+            if (!openF)
+            {
+                Thread thread = new Thread(() =>
+                {
+                    openF = true;
+                    var yourForm = new OpenFileDialog();
+                    if (type == 'i')
+                    {
+                        //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+                        yourForm.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
+                    }
+                    else if (type == 'm')
+                    {
+                        yourForm.Filter = "Musique Files (*.mp3;*.wave;.*wav)|*.mp3;*.wave;*.wav";
+                    }
+                    if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        if (type == 'i')
+                            imageB = yourForm.FileName;
+                        if (type == 'm')
+                        {
+                            for (int i = 0; i < playlist.Length; ++i)
+                                if (playlist[i] == "")
+                                {
+                                    playlist[i] = yourForm.FileName;
+                                    i = playlist.Length + 1;
+                                }
+
+                        }
+                     
+                    }   openF = false;
+                  
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                
+            }
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
+        private void Additem()
         {
-            intcheck(textBox8);
+            string res = "";
+            listBox1.Items.Clear();
+            foreach (string s in playlist)
+            {
+                res = "";
+                for (int i = 0; i < s.Length; ++i)
+                {
+                    res += s[i];
+                    if (s[i] == '\\')
+                        res = "";
+                }
+                if (res != "")
+                    listBox1.Items.Add(res);
+            }
+            if (listBox1.Items.Count == 4)
+                button12.Enabled = false;
+            else
+                button12.Enabled = true ;
+        }
+        private void suppitem(ListBox  list)
+        {
+            string[] res = new string[4] {"","","",""};
+            for (int i=0; i<4;i++)
+            {
+          
+                for (int j = 0; j < playlist[i].Length; ++j)
+                {
+                    res[i] += playlist[i][j];
+                    if (playlist[i][j] == '\\')
+                        res[i] = "";
+                }
+                if (res[i] ==(string) list.SelectedItem)
+                {
+                    playlist[i] = "";
+                    list.Items.Remove(list.SelectedItem);
+                    if (listBox1.Items.Count == 4)
+                        button12.Enabled = false;
+                    else
+                        button12.Enabled = true;
+                    return;
+                }
+            }
+            
         }
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
+        private void button13_Click(object sender, EventArgs e)
         {
-            intcheck(textBox9);
+            Additem();
         }
 
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-            intcheck(textBox11);
-        }
+
 
 
 

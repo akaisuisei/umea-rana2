@@ -93,5 +93,10 @@ namespace Umea_rana
                 sc.Draw(spritebatch);
 
         }
+
+        public void Clear()
+        {
+            this.scroll.Clear();
+        }
     }
 }

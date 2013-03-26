@@ -136,19 +136,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
-    <Compile Include="Editeur de map\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editeur de map\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
     <Compile Include="Editeur de map\Editeur_MapVV.cs" />
     <Compile Include="Editeur de map\leveleditor.cs" />
     <Compile Include="interface\OptionState.cs" />
-    <Compile Include="Leveleditorselect.cs" />
-    <Compile Include="Listbox.cs" />
+    <Compile Include="Editeur de map\Leveleditorselect.cs" />
+    <Compile Include="moteur_jeu\Listbox.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
     <Compile Include="manager\IA_manger_jeuP.cs" />
     <Compile Include="manager\IA_manager.cs" />
@@ -192,7 +186,7 @@
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="interface\_Pause.cs" />
-    <Compile Include="Scrolling_Manager.cs" />
+    <Compile Include="moteur_jeu\Scrolling_Manager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -241,9 +235,6 @@
     <None Include="Umea-rana_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Editeur de map\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Editeur de map\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
