@@ -77,8 +77,8 @@ namespace Umea_rana
             //  scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,1f);
 
             //intancie le vaisseau
-            vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
+            vaisseau = new sripte_V(
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt),  height, width);
 
             //instancie l ia
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
@@ -87,7 +87,8 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
 
             // ajout IA
-            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref graph );
+            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref graph,ref vaisseau  );
+            vaisseau.Load(Content, T_sprite);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
         }

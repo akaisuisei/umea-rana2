@@ -159,7 +159,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K, 
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V,ref Scrolling_ManagerV scrollM,ref GraphicsDevice grash)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V,ref Scrolling_ManagerV scrollM,ref GraphicsDevice grash,ref sripte_V sprite)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -203,6 +203,7 @@ namespace Umea_rana
                     iamanage_K.Add(ia_K[j]);
 
                 scrollM.Load(content, levelprof,grash );
+                sprite.parametrage(ref levelprof);
 
             }
         }
@@ -214,7 +215,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM,ref GraphicsDevice grap)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM,ref GraphicsDevice grap, ref sripte_V sprite)
         {
             List<quaintuplet> ia, ia_V;
             List<couple> ia_K;
@@ -257,6 +258,7 @@ namespace Umea_rana
                     iamanage_K.Add(ia_K[j]);
 
                 scrollM.Load(content, level_profile, grap );
+                sprite.parametrage(ref level_profile);
             }
         }
       

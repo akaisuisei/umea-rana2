@@ -14,7 +14,7 @@ namespace Umea_rana
     public class sripte_V : objet
     {
         public Texture2D texture;
-       //  Texture2D test;
+        //  Texture2D test;
         public List<munition> bulletL;
         Color color_V;
 
@@ -35,15 +35,12 @@ namespace Umea_rana
         int Timer;
         int AnimationSpeed = 14;
 
+        int speedbullet;
+        int damage;
 
-
-        public sripte_V(Texture2D n_texture, Rectangle n_rectangle, ContentManager content, int height, int width, Color colo, int speed)
+        public sripte_V(Rectangle n_rectangle, int height, int width)
         {
-           
-
-
-            texture = n_texture;
-            rectangle = n_rectangle; 
+            rectangle = n_rectangle;
             decallageX = (int)(0.33f * (float)rectangle.Width);
             decallageY = (int)(0.55f * (float)rectangle.Width);
             hauteurY = (int)(0.33f * (float)rectangle.Width);
@@ -51,29 +48,40 @@ namespace Umea_rana
             Update_rec_collision();
             this.height = height;
             this.width = width;
-            this.speed = speed;
-            maxspeed = (int)((float)speed * 1.5f);
-            minspeed = speed;
             change_T = 0;
             type = 0;
             automatic_controlled = false;
-            color_V = colo;
             // intencie le manager de missille 
             bulletL = new List<munition>();
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
             n = 0;
             sizeX = rectangle.Width / 3;
             sizeY = rectangle.Height / 2;
-            timer = 30;
+
             sizeX1 = rectangle.Width / 8;
             sizeY1 = rectangle.Height / 6;
-            timer1 = 10;
+
             sizeX2 = rectangle.Width / 4;
             sizeY2 = rectangle.Height / 5;
-            timer2 = 30;
 
-
-         //     test = content.Load<Texture2D>("ListBoxBG");
+            //     test = content.Load<Texture2D>("ListBoxBG");
+        }
+        public void parametrage(ref levelProfile level)
+        {
+            this.speed = level.player_speed;
+            speedbullet = level.bullet_speed;
+            this.color_V = level.color;
+            damage = level.damage;
+            this.vie = level.playerLife;
+            timer = level.firerate;
+            timer1 = timer / 2;
+            timer2 = timer;
+            maxspeed = (int)((float)speed * 1.5f);
+            minspeed = speed;
+        }
+        public void Load(ContentManager content, Texture2D n_texture)
+        {
+            texture = n_texture;
+            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -85,7 +93,7 @@ namespace Umea_rana
             {
                 if (keyboard.IsKeyUp(Keys.T) && oldkey.IsKeyDown(Keys.T))
                     type += 3;
-                else  if (type < 3)
+                else if (type < 3)
                 {
                     if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
                         move();
@@ -286,7 +294,7 @@ namespace Umea_rana
             bullet.Bullet_draw(spritebatch, ref bulletL);
 
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
-         //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
+            //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
         }
     }
 }

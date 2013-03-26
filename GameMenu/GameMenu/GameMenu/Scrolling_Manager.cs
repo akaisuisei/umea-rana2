@@ -36,13 +36,15 @@ namespace Umea_rana
         
             int speed1 = levelprofile.fc_speed / 2;
             int speed2 = levelprofile.fc_speed / 3;
-
-            if (levelprofile.background_name == "backgroundT")// si c est un jeu normal
+            string name= string.Empty ;
+            for (int i = 0; i < levelprofile.background_name.Length && levelprofile.background_name[i] != '.'; ++i)
+                name += levelprofile.background_name[i];
+            if (name  == "backgroundT")// si c est un jeu normal
             {
                 texture.Add(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
             }
-            else if (levelprofile.background_name == "background.png")// si c est un jeu perso
+            else if (name  == "background")// si c est un jeu perso
             {
                 Sauveguarde save = new Sauveguarde();
                 FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname +"\\"+ levelprofile.background_name, FileMode.Open, FileAccess.Read);
@@ -59,14 +61,14 @@ namespace Umea_rana
 
             }
 
-            if (levelprofile.second_background != "")
+            if (levelprofile.second_background != null)
             {
-                texture.Add(Content.Load<Texture2D>("background\\" + levelprofile.second_background));
+                texture.Add(Content.Load<Texture2D>("back\\" + levelprofile.second_background));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
             }
-            if (levelprofile.third_bacground != "")
+            if (levelprofile.third_bacground != null)
             {
-                texture.Add(Content.Load<Texture2D>("background\\" + levelprofile.third_bacground));
+                texture.Add(Content.Load<Texture2D>("back\\" + levelprofile.third_bacground));
                 scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
             }
 

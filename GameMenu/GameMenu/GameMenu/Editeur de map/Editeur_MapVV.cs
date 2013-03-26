@@ -83,9 +83,9 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height,width );
 
             //intancie le vaisseau
-            vaisseau = new sripte_V(T_sprite,
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), Content, height, width, Color.Gray, 9);
-
+            vaisseau = new sripte_V(
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), height, width);
+            vaisseau.Load(Content, T_sprite);
 
             //instancie les donnees de la pause
             _pause.LoadContent(Content);

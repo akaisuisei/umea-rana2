@@ -37,6 +37,7 @@ namespace Umea_rana
     public struct levelProfile
     {
         public string levelname;
+        public string next_level;
         public string background_name;
         public int fc_speed;
         public string second_background;
