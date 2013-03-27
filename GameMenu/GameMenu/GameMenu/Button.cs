@@ -99,18 +99,18 @@ namespace Umea_rana
                         game.level = name1;
                     else
                         game.level = name[X, Y];
-                    
+
                     if (gameState[X, Y] == "SEU")
                         game.ChangeState(Game1.gameState.SEU);
-                    else if (gameState[X, Y] == "checkpause")
+                    else if (gameState[X, Y] == "Checkpause")
                         game.ChangeState(Game1.gameState.Checkpause);
                     else if (gameState[X, Y] == "EditSEU")
                         game.ChangeState(Game1.gameState.Editeur_mapVV);
-                    else if (gameState[X, Y] == "init")
+                    else if (gameState[X, Y] == "Init")
                         game.ChangeState(Game1.gameState.Initialisateur);
                     else if (gameState[X, Y] == "LevelSelect")
                         game.ChangeState(Game1.gameState.Level_select_state);
-                    else if (gameState[X, Y] == "level2")
+                    else if (gameState[X, Y] == "Level2")
                         game.ChangeState(Game1.gameState.Level2);
                     else if (gameState[X, Y] == "Main")
                         game.ChangeState(Game1.gameState.MainMenuState);
@@ -120,14 +120,16 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.OptionsState);
                     else if (gameState[X, Y] == "Pause")
                         game.ChangeState(Game1.gameState.Pause);
-                    else if (gameState[X, Y] == "play")
+                    else if (gameState[X, Y] == "Play")
                         game.ChangeState(Game1.gameState.PlayingState);
                     else if (gameState[X, Y] == "LevelEdit")
                     {
-                        if (game.level != "")
-                            game.ChangeState(Game1.gameState.leveleditor);            
+                        if (game.level != "LevelEdit")
+                            game.ChangeState(Game1.gameState.leveleditor);
                     }
-                    else
+                    else if (gameState[X, Y] == "LevelSelect_P")
+                        game.ChangeState(Game1.gameState.level_Pselect); 
+                    else 
                         game.ChangeState(Game1.gameState.MainMenuState);
            
                     System.Threading.Thread.Sleep(G_latence);

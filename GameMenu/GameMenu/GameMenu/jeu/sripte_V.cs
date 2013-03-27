@@ -25,7 +25,8 @@ namespace Umea_rana
         public bool automatic_controlled;
         int speed, maxspeed, minspeed;
         int sizeX, sizeY, timer, sizeX1, sizeX2, sizeY1, sizeY2, timer1, timer2;
-        int n;
+       public int power{get;set;}
+       public int bomb { get; set; }
         Int16 type;
 
         int FrameLine;
@@ -55,7 +56,7 @@ namespace Umea_rana
             automatic_controlled = false;
             // intencie le manager de missille 
             bulletL = new List<munition>();
-            n = 0;
+            power = 0;
             sizeX = rectangle.Width / 3;
             sizeY = rectangle.Height / 2;
 
@@ -120,15 +121,15 @@ namespace Umea_rana
 
             change_T += 1;// timer pour l animation
             if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
-                n = 1;
+                power = 1;
             if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
-                n = 2;
+                power = 2;
             if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
-                n = 3;
+                power = 3;
             if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
-                n = 4;
+                power = 4;
 
-            bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), n, ref bulletL, ref sizeX, ref sizeY, ref timer);
+            bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
         }
 

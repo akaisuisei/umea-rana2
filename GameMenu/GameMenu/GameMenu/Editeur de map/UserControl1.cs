@@ -890,7 +890,7 @@ namespace Umea_rana
                                 if (playlist[i] == "")
                                 {
                                     playlist[i] = yourForm.FileName;
-                                    i = playlist.Length + 1;
+                                    break;
                                 }
 
                         }

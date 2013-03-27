@@ -16,9 +16,9 @@ namespace Umea_rana
     /// </summary>
     public class Shoot_Em_Up : GameState
     {
-       // Scrolling scrolling1, scrolling2;
+        // Scrolling scrolling1, scrolling2;
         sripte_V vaisseau;
-        asteroid aster;
+ 
         KeyboardState oldkey;
         Texture2D aster_t, planet1, star;
         Texture2D T_sprite;
@@ -34,13 +34,13 @@ namespace Umea_rana
         int latence = 0;
         Sauveguarde save;
         Scrolling_ManagerV scroll;
-      
+        Ovni ovini;
 
         public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             game1.IsMouseVisible = false;
-            _pause = new _Pause(game1, graphics, content);       
-            scroll = new Scrolling_ManagerV(width, height); 
+            _pause = new _Pause(game1, graphics, content);
+            scroll = new Scrolling_ManagerV(width, height);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -50,23 +50,23 @@ namespace Umea_rana
             timer = -100;
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
             taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
-            
-            game_time = 0;   
-            oldkey = Keyboard.GetState();
-  
-            collision = new Collision(); 
-            save = new Sauveguarde();
 
+            game_time = 0;
+            oldkey = Keyboard.GetState();
+
+            collision = new Collision();
+            save = new Sauveguarde();
+            ovini = new Ovni(width, height, 4);
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
+        public override void LoadContent(ContentManager Content, string level, GraphicsDevice graph)
         {
             //charge le fond
-   //         background1 = Content.Load<Texture2D>("level2//fond");
-     //       background2 = Content.Load<Texture2D>("back//fond2");
+            //         background1 = Content.Load<Texture2D>("level2//fond");
+            //       background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
-            T_sprite=Content.Load<Texture2D>("hero//spriteSheet");
+            T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
 
 
             //charge l IA
@@ -76,28 +76,31 @@ namespace Umea_rana
 
             //instancie le scolling
 
-         //   scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
+            //   scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
 
-        //    scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,0.5f);
+            //    scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,0.5f);
 
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt2, taille_sprt2),  height, width);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt2, taille_sprt2), height, width);
 
             //instancie l ia
-            aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width); 
+          
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),  height,width );
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-
+           ovini.Load(aster_t);
+     
             // ajout IA
-         
-            save.load_level_SEU(Content, level , ref manage_k, ref manage_T, ref manage_V,ref scroll,ref graph , ref vaisseau  );
-            vaisseau.Load(Content, T_sprite);
-            
+
+            save.load_level_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau);
+            vaisseau.Load(Content, T_sprite); 
+           ovini.Add('v', 0, 0, 0, 300, 0);
+            ovini.Add('a', 4, 4, 45, 0, 0);
+
         }
 
         public override void UnloadContent()
@@ -117,16 +120,17 @@ namespace Umea_rana
                 --latence;
             if (!_checkpause)
             {
+                ovini.Update(ref game_time);
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling verticale
-          //      scrolling1.Update();
-           //     scrolling2.Update();
+                //      scrolling1.Update();
+                //     scrolling2.Update();
                 scroll.Update();
                 //vaisseau
                 vaisseau.Update(keyboard, game, oldkey);
 
                 //update ia jbdcvf
-                aster.update();
+                
 
 
                 manage_T.Update(ref game, ref game_time);
@@ -144,6 +148,8 @@ namespace Umea_rana
                 collision.collision_ai_missile(ref vaisseau, manage_k);
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
+
+                collision.Ovni_vaiss(ref ovini, ref vaisseau);
             }
             else
             {
@@ -157,7 +163,7 @@ namespace Umea_rana
                 {
                     vaisseau.gagne();
                     timer = vaisseau.rectangle.Y / 2;
-                    aster.visible = false;
+                   
                     manage_k.bulletL.Clear();
                     manage_T.bulletL.Clear();
                     manage_V.bulletL.Clear();
@@ -176,29 +182,22 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!_checkpause)
-            {        scroll.Draw(spriteBatch);
-                //scrolling
+
+
+            scroll.Draw(spriteBatch);
+            //scrolling
             //    scrolling1.Draw(spriteBatch);
-                vaisseau.Draw(spriteBatch);
-          //      scrolling2.Draw(spriteBatch);
-                aster.Draw(spriteBatch);
-                manage_T.Draw(spriteBatch);
-                manage_V.Draw(spriteBatch);
-                manage_k.Draw(spriteBatch);
-        
-            }
-            else
-            {
-           //     scrolling1.Draw(spriteBatch);
-                vaisseau.Draw(spriteBatch);
-           //     scrolling2.Draw(spriteBatch);
-                aster.Draw(spriteBatch);
-                manage_T.Draw(spriteBatch);
-                manage_V.Draw(spriteBatch);
-                manage_k.Draw(spriteBatch);
+            vaisseau.Draw(spriteBatch);
+            //      scrolling2.Draw(spriteBatch);
+            
+            manage_T.Draw(spriteBatch);
+            manage_V.Draw(spriteBatch);
+            manage_k.Draw(spriteBatch);
+
+
+            ovini.Draw(spriteBatch);
+            if (_checkpause)
                 _pause.Draw(spriteBatch);
-            }
 
         }
     }

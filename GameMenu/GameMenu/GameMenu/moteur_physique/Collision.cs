@@ -200,16 +200,14 @@ namespace Umea_rana
                     }
                     else
                     {
-                        if (!sprite._dir &&    ia_manage.Ia_manage[i].rectangle_C.Left - sprite.longattaque  < sprite.rectangle_C.Right&&
-                             ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right)  
-                          
-                            
+                        if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - sprite.longattaque < sprite.rectangle_C.Right &&
+                             ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right)
                         {
                             --ia_manage.Ia_manage[i].vie;
                         }
                         else if (sprite._dir &&
-                          ia_manage.Ia_manage[i].rectangle_C.Right + sprite.longattaque  >= sprite.rectangle_C.Left&&
-                                        ia_manage.Ia_manage[i].rectangle_C.Right < sprite.rectangle_C.Left) 
+                          ia_manage.Ia_manage[i].rectangle_C.Right + sprite.longattaque >= sprite.rectangle_C.Left &&
+                                        ia_manage.Ia_manage[i].rectangle_C.Right < sprite.rectangle_C.Left)
                         {
                             --ia_manage.Ia_manage[i].vie;
                         }
@@ -234,6 +232,21 @@ namespace Umea_rana
         }
         #endregion
 
+        public void Ovni_vaiss(ref Ovni  ovnis, ref sripte_V sprite)
+        {
+            for (int i = 0; i < ovnis.ovni.Count ; ++i)
+            {
+                if (ovnis.ovni[i].circle.is_in_bound(sprite.rectangle_C))
+                {
+                    sprite.vie += ovnis.ovni[i].vie;
+                    sprite.vie -= ovnis.ovni[i].damage;
+                    sprite.power += ovnis.ovni[i].power;
+                    sprite.bomb += ovnis.ovni[i].bomb;
+                    ovnis.ovni.RemoveAt(i);
+
+                }
+            }
+        }
 
     }
 }
