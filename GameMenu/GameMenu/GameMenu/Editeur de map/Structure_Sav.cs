@@ -51,12 +51,18 @@ namespace Umea_rana
         public string[] musique;
        
     }
-
+    public struct Bonus
+    {
+        public char type;
+        public int speed,angle,launch;
+        public float X, Y;
+    }
     public struct savefile
     {
         public List<quaintuplet> ia_viseur;
         public List<quaintuplet> ia_tireur;
         public List<couple> ia_Kamikaze;
+        public List<Bonus> bonus;
         public levelProfile levelProfile;
     }
     public struct PlayerProfile

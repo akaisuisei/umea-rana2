@@ -26,6 +26,7 @@ namespace Umea_rana
         IA_manager_T manage_T;
         IA_manager_V manage_V;
         IA_manager_K manage_k;
+        Ovni ovni;
         int taille_sprt;
         Scrolling_ManagerV Scroll_manager;
         _Pause _pause;
@@ -44,9 +45,8 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
          
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);
-            
-
+            _pause = new _Pause(game1, graphics, content);  
+     
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -58,8 +58,7 @@ namespace Umea_rana
             user = new UserControl1();
             Application.Run(user);
             spawn = -1;
-            iaType = "kawabunga";
-           
+            iaType = "kawabunga";          
         }
 
         public override void LoadContent(ContentManager Content,string level,GraphicsDevice gaphics)
@@ -72,7 +71,7 @@ namespace Umea_rana
 
 
             //charge l IA
-            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
+ 
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
@@ -86,17 +85,17 @@ namespace Umea_rana
             vaisseau = new sripte_V(
                 new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt ,taille_sprt ), height, width);
             vaisseau.Load(Content, T_sprite);
-
+            ovni = new Ovni(width, height, 1);
+            ovni.Load(aster_t);
             
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager,Content  );
+            user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager,Content , ovni );
         }
 
         public override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-
             user.destroy();
         }
         public override void Update(Game1 game, Audio audio)
@@ -126,13 +125,14 @@ namespace Umea_rana
                     user.TopMost = true;
                 else
                 {
-                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game,ref Scroll_manager);
+                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game,ref Scroll_manager,ref ovni );
             //        scrolling1.update_ophelia(keyboard);
                     Scroll_manager.Update_ophelia(keyboard);
                 }
                 manage_k.Update_ophelia(keyboard);
                 manage_T.Update_ophelia(keyboard);
                 manage_V.Update_ophelia(keyboard);
+                ovni.Update(keyboard);
             }
             else
             {
@@ -164,6 +164,7 @@ namespace Umea_rana
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
+            ovni.Draw(spriteBatch);
       vaisseau.Draw(spriteBatch);
 
             if (_checkpause)
@@ -192,6 +193,12 @@ namespace Umea_rana
                 {
                     hello = "IA_V";
                     return manage_V.Ia_manage[i].spawn;
+                }
+            for(int i=0;i<ovni.ovni.Count ;++i)
+                if (ovni.ovni[i].circle.is_in_bound(recM))
+                {
+                    hello = "b";
+                    return ovni.ovni[i].launch;
                 }
             hello = "";
             return -1;

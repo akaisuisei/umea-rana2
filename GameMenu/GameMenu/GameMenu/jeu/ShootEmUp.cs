@@ -98,8 +98,7 @@ namespace Umea_rana
 
             save.load_level_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau);
             vaisseau.Load(Content, T_sprite); 
-           ovini.Add('v', 0, 0, 0, 300, 0);
-            ovini.Add('a', 4, 4, 45, 0, 0);
+        
 
         }
 

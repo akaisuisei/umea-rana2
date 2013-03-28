@@ -217,7 +217,7 @@ namespace Umea_rana
             this.Timer++;
             if (type == 3)
             {
-
+                
                 if (FrameLine == 1 && FrameColumn == 1)
                 {
                     FrameColumn = 4;

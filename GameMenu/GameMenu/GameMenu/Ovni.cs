@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Umea_rana
 {
@@ -21,7 +22,7 @@ namespace Umea_rana
                 Math.Pow(rec.Left - x, 2) + Math.Pow(rec.Bottom - Y, 2) <= R);
         }
     }
-
+    
     public class ovnis
     {
         public ovnis()
@@ -59,7 +60,7 @@ namespace Umea_rana
             R2 = 30;
             R3 = 30;
             R4 = 40;
-            fc = fc;
+            this.fc = fc;
             ovni = new List<ovnis>();
         }
         public void Load(Texture2D texture)
@@ -74,6 +75,8 @@ namespace Umea_rana
                 {
                     this.ovni[i].rectangle.X += ovni[i].speedX;
                     this.ovni[i].rectangle.Y -= ovni[i].speedY;
+                    ovni[i].circle.x = ovni[i].rectangle.Center.X;
+                    ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
                     if (ovni[i].type == 'v' || ovni[i].type == 'm' || ovni[i].type == 'p' || ovni[i].type == 'b')
                     {
                         if (ovni[i].rectangle.Left <= 0)
@@ -96,11 +99,28 @@ namespace Umea_rana
                             this.ovni[i].speedY *= -1;
                             this.ovni[i].rectangle.Y = WindowH - this.ovni[i].rectangle.Height - 5;
                         }
-                        ovni[i].circle.x = ovni[i].rectangle.Center.X;
-                        ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
+     
                     }
                 }
             }
+        }
+        public void Update(KeyboardState key)
+        {
+            if (key.IsKeyDown(Keys.Down))
+                for (int i = 0; i < this.ovni.Count; ++i)
+                {
+                    ovni[i].rectangle.Y -= fc;
+                    ovni[i].circle.x = ovni[i].rectangle.Center.X;
+                    ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
+                }
+            else if(key.IsKeyDown(Keys.Up ))
+                for (int i = 0; i < this.ovni.Count; ++i)
+                {
+                    ovni[i].rectangle.Y += fc;
+                    ovni[i].circle.x = ovni[i].rectangle.Center.X;
+                    ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
+                }
+           
         }
         public void Draw(SpriteBatch spritebatch)
         {
@@ -115,18 +135,19 @@ namespace Umea_rana
         /// <param name="speed"></param>
         /// <param name="angle"></param>
         /// <param name="X"></param>
-        public void Add(char type, int time, int speed, int angle, float X)
+        public void Add(Bonus bonus)
         {
             ovnis ov = new ovnis();
-            int x = (int)(X * WindoW);
+            int x = (int)(bonus.X * WindoW);
             Random rnd = new Random();
             int speedx = rnd.Next(1, 11), speedy = rnd.Next(1, 11);
-            int speedx2 = (int)(Math.Cos((angle * Math.PI) / 180) * speed), speedy2 = (int)(Math.Sin(angle * Math.PI / 180) * speed);
+            int speedx2 = (int)(Math.Cos((bonus.angle * Math.PI) / 180) * bonus.speed),
+                speedy2 = (int)(Math.Sin(bonus.angle * Math.PI / 180) * bonus.speed);
             if (speedx2 == 0)
             {
                 speedx2 = fc;
             }
-            switch (type)
+            switch (bonus.type)
             {
                 case 'v':
                     ov.vie = 1;
@@ -178,8 +199,8 @@ namespace Umea_rana
                     ov.speedY = speedy2;
                     break;
             }
-            ov.launch = time;
-            ov.type = type;
+            ov.launch = bonus.launch ;
+            ov.type = bonus.type;
             ovni.Add(ov);
         }
         /// <summary>
@@ -197,30 +218,44 @@ namespace Umea_rana
             switch (type)
             {
                 case 'v':
-                    ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);          
+                    ov.rectangle = new Rectangle(x, y, width1, height1);
+                    ov.circle.R = R1;
                     break;
                 case 'm':
-                    ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);              
+                    ov.rectangle = new Rectangle(x, y, width1, height1);
+                    ov.circle.R = R1;
                     break;
                 case 'p':
-                    ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);               
+                    ov.rectangle = new Rectangle(x,y, width1, height1);
+                    ov.circle.R = R1;
                     break;
                 case 'b':
-                    ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);   
+                    ov.rectangle = new Rectangle(x,y, width1, height1);
+                    ov.circle.R = R1;
                     break ;
                 case 'a':           
-                    ov.rectangle = new Rectangle(x, -height2 - 2, width2, height2);                 
+                    ov.rectangle = new Rectangle(x, y, width2, height2);
+                    ov.circle.R = R2;
                     break;
                 case 'c':       
-                    ov.rectangle = new Rectangle(x, -height3 - 2, width3, height3);            
+                    ov.rectangle = new Rectangle(x,y, width3, height3);
+                    ov.circle.R = R3;
                     break;
                 default:
-                    ov.rectangle = new Rectangle(x, -height3 - 2, width4, height4);      
+                    ov.rectangle = new Rectangle(x, y, width4, height4);
+                    ov.circle.R = R4;
                     break;
             }
+            ov.circle.x = ov.rectangle.Center.X;
+            ov.circle.Y = ov.rectangle.Center.Y;
             ov.type = type;
             ov.launch=spawn ;
             ovni.Add(ov);
+        }
+
+        public void remove_all()
+        {
+            this.ovni.Clear();
         }
     }
 }
