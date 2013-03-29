@@ -67,7 +67,7 @@ namespace Umea_rana
 
         }
 
-        public void Update(ref KeyboardState keyboard, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)
+        public void Update(ref KeyboardState keyboard, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)
         {
 
             if (mouse.LeftButton == ButtonState.Pressed)
@@ -75,14 +75,11 @@ namespace Umea_rana
                 if (mouse_rec.Intersects(fond) || mouse_rec.Intersects(Top) || mouse_rec.Intersects(Botom)
                     || mouse_rec.Intersects(right) || mouse_rec.Intersects(left))
                 {
-
-                      tab = this.tab;
+                    tab = this.tab;
                 }
                 else
-                    if(    tab == this.tab)
-                tab=0;
-                  
-
+                    if (tab == this.tab)
+                        tab = 0;
             }
             else if (this.tab == tab)
             {
@@ -107,43 +104,39 @@ namespace Umea_rana
                         color[i] = Color.White;
                 }
 
-                latence--;
-                if (latence < 0)
+                if (keyboard.IsKeyUp(Keys.Down) && old.IsKeyDown(Keys.Down))
                 {
-                    if (keyboard.IsKeyDown(Keys.Down))
-                    {
-                        if (surlig != level.Length - 1)
-                            surlig = (surlig + 1) % level.Length;
-                        latence = lat;
-                        color[oldsur] = Color.White;
-                        if (!fond.Contains(rectangle[surlig]))
-                            for (int i = 0; i < rectangle.Length; ++i)
-                                rectangle[i].Y -= rectangle[i].Height;
+                    if (surlig != level.Length - 1)
+                        surlig = (surlig + 1) % level.Length;
+
+                    color[oldsur] = Color.White;
+                    if (!fond.Contains(rectangle[surlig]))
+                        for (int i = 0; i < rectangle.Length; ++i)
+                            rectangle[i].Y -= rectangle[i].Height;
 
 
-                        oldsur = surlig;
-
-                    }
-                    else if (keyboard.IsKeyDown(Keys.Up))
-                    {
-                        if (surlig != 0)
-                            surlig = (surlig - 1) % level.Length;
-                        latence = lat;
-                        color[oldsur] = Color.White;
-                        if (!fond.Contains(rectangle[surlig]))
-                            for (int i = 0; i < rectangle.Length; ++i)
-                                rectangle[i].Y += rectangle[i].Height;
-                        oldsur = surlig;
-
-                    }
-
-                    color[surlig] = Color.Yellow;// surligner
+                    oldsur = surlig;
 
                 }
+                else if (keyboard.IsKeyUp(Keys.Up) && old.IsKeyDown(Keys.Up))
+                {
+                    if (surlig != 0)
+                        surlig = (surlig - 1) % level.Length;
+
+                    color[oldsur] = Color.White;
+                    if (!fond.Contains(rectangle[surlig]))
+                        for (int i = 0; i < rectangle.Length; ++i)
+                            rectangle[i].Y += rectangle[i].Height;
+                    oldsur = surlig;
+                }
+
+                color[surlig] = Color.Yellow;// surligner
+
+
                 // selection
                 if ((mouse.LeftButton == ButtonState.Pressed))
                 {
-                    if (mouse_rec.Intersects(rectangle[surlig]) )
+                    if (mouse_rec.Intersects(rectangle[surlig]))
                     {
                         selected = surlig;
                         color[oldselected] = Color.White;
@@ -158,7 +151,7 @@ namespace Umea_rana
                         Uplist();
 
                 }
-                else if (keyboard.IsKeyDown(Keys.Enter))
+                else if (keyboard.IsKeyUp(Keys.Enter) && old.IsKeyDown(Keys.Enter))
                 {
                     selected = surlig;
                     color[oldselected] = Color.White;

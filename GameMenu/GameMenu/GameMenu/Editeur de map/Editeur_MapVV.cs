@@ -85,7 +85,8 @@ namespace Umea_rana
             vaisseau = new sripte_V(
                 new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt ,taille_sprt ), height, width);
             vaisseau.Load(Content, T_sprite);
-            ovni = new Ovni(width, height, 1);
+            ovni = new Ovni(width, height);
+            ovni.param(3);
             ovni.Load(aster_t);
             
             //instancie les donnees de la pause

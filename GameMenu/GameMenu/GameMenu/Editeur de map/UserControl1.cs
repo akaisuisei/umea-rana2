@@ -233,7 +233,8 @@ namespace Umea_rana
                 comboBox1.Items.Add(item[i]);
                 comboBox3.Items.Add(item[i]);
             }
-            ovni = new Ovni(width, height, 1);
+            ovni = new Ovni(width, height);
+            ovni.param(3);
         }
         private void Initialize()
         {
@@ -815,7 +816,7 @@ namespace Umea_rana
             scrollingM.Clear();
             for (int i = 0; i < imageB.Length && imageB[i] != '.'; ++i)
                 name += imageB[i];
-            if (name != "background")
+            if (name != "BackgrounD")
                 file = new FileStream(imageB, FileMode.Open, FileAccess.Read);
             else
                 file = new FileStream(sauve._path + "\\SEU\\" + savefile.levelProfile.levelname + "\\" + imageB, FileMode.Open, FileAccess.Read);
@@ -871,6 +872,10 @@ namespace Umea_rana
         private void loadgame(string file_name)
         {
             sauve.load_SEU(ref file_name, ref savefile);
+            manage_k.remove_all();
+            manage_T.remove_all();
+            manage_V.remove_all();
+            ovni.remove_all();
 
             for (int i = 0; i < savefile.ia_tireur.Count; ++i)
                 manage_T.Add(savefile.ia_tireur[i], i);
@@ -880,7 +885,6 @@ namespace Umea_rana
                 manage_k.Add(savefile.ia_Kamikaze[i], i);
             for (int i = 0; i < savefile.bonus.Count; ++i)
                 ovni.Add(savefile.bonus[i].type, savefile.bonus[i].X, savefile.bonus[i].Y, i);
-
             textBox7.BackColor = System.Drawing.Color.Green;
             textBox8.BackColor = System.Drawing.Color.Green;
             textBox14.BackColor = System.Drawing.Color.Green;

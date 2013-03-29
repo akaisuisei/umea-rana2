@@ -54,7 +54,12 @@ namespace Umea_rana
             this.name[i, j] = name;
 
         }
-        public void Update(ref KeyboardState Key, ref MouseState mouse,ref Rectangle  mouse_rec,   ref Game1  game, ref int tab, string name1)
+        public void disable(int i, int j)
+        {
+            this.rect[i, j] = new Rectangle(0,0,0,0); this.gameState[i, j] = null;
+            this.name[i, j] ="";
+        }
+        public void Update(ref KeyboardState Key,ref KeyboardState old, ref MouseState mouse,ref Rectangle  mouse_rec,   ref Game1  game, ref int tab, string name1)
         {
             if (tab == this.tab)
             {
@@ -71,34 +76,42 @@ namespace Umea_rana
                         }
                     }
 
-                    latence--;    // sinon les changements sont bien trop rapides
-               if (Key.IsKeyDown(Keys.Up))
-                {
-                    Y = (Y + 1) % rect.GetLength(1);
-                    latence = 10;
-                }
-                else if (Key.IsKeyDown(Keys.Down))
-                {
-                    Y = (Y - 1) % rect.GetLength(1);
-                    latence = 10;
-                }
-                else if (Key.IsKeyDown(Keys.Right))
-                {
-                    X = (X + 1) % rect.GetLength(0);
-                    latence = 10;
-                }
-                else if (Key.IsKeyDown(Keys.Left))
-                {
-                    X = (X - 1) % rect.GetLength(0);
-                    latence = 10;
-                }
+                   // sinon les changements sont bien trop rapides
+                  
+                    {
+                        if (old.IsKeyDown(Keys.Up)&& Key.IsKeyUp(Keys.Up ))
+                        {
+                            Y = (Y - 1) % rect.GetLength(1);
+                            if (gameState[X, Y] == null)
+                                Y = (Y - 1) % rect.GetLength(1);
+                        
+                        }
+                        else if (old.IsKeyDown(Keys.Down)&& Key.IsKeyUp(Keys.Down ))
+                        {
+                            Y = (Y + 1) % rect.GetLength(1);
+                        
+                            if (gameState[X, Y] == null)
+                                Y = (Y + 1) % rect.GetLength(1);
+                        }
+                        else if (old.IsKeyDown(Keys.Right)&& Key.IsKeyUp(Keys.Right ))
+                        {
+                            X = (X + 1) % rect.GetLength(0);
+                            if (gameState[X, Y] == null)
+                                X = (X + 1) % rect.GetLength(0);
+                           
+                        }
+                        else if (old.IsKeyDown(Keys.Left)&&Key.IsKeyUp(Keys.Left ))
+                        {
+                            X = (X - 1) % rect.GetLength(0);
+                            if (gameState[X, Y] == null)
+                                X = (X - 1) % rect.GetLength(0);
+                          
+                        }
+                    }
                 select = new Vector2(rect[X, Y].X, rect[X, Y].Y);
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
-                    if (name1 != string.Empty)
-                        game.level = name1;
-                    else
-                        game.level = name[X, Y];
+                
 
                     if (gameState[X, Y] == "SEU")
                         game.ChangeState(Game1.gameState.SEU);
@@ -124,6 +137,10 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.PlayingState);
                     else if (gameState[X, Y] == "LevelEdit")
                     {
+                        if (name1 != string.Empty)
+                            game.level = name1;
+                        else
+                            game.level = name[X, Y];
                         if (game.level != "LevelEdit")
                             game.ChangeState(Game1.gameState.leveleditor);
                     }
@@ -143,8 +160,9 @@ namespace Umea_rana
             for (int i = 0; i < rect.GetLength(0); ++i)
                 for (int j = 0; j < rect.GetLength(1); ++j)
                 {
+                    spriteBatch.Draw(test, rect[i,j], Color.BlueViolet);
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black);
-        //            spriteBatch.Draw(test, rect[i,j], Color.BlueViolet);
+                    
                 }
 
             spriteBatch.Draw(selection, select, Color.White);

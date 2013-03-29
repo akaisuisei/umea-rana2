@@ -51,7 +51,4 @@ Content\Menu\menu_cursor.xnb
 Content\FontList.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
-Content\SEU1\ai_K.xml
-Content\SEU1\ai_T.xml
-Content\SEU1\ai_V.xml
-Content\SEU1\level_profile.xml
+Content\SEU1\level.xml

@@ -30,16 +30,14 @@ namespace Umea_rana
         public void save_SEU(ref savefile save)
         {
             FileStream file1 = null;
-            FileStream file2 = null;
-            FileStream file3 = null, file4 = null;
-            XmlSerializer f = null, g = null, i = null, h = null;
+            XmlSerializer f = null;
             string sav = path + "\\SEU\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
             string ext = "", nam = "", name = "";
-            string[] res = new string[save.levelProfile.musique.Length  ];
+            string[] res = new string[save.levelProfile.musique.Length];
             if (!dir.Exists)
                 dir.Create();
-            
+
             for (int j = 0; j < save.levelProfile.background_name.Length; ++j)
             {
                 if (save.levelProfile.background_name[j] == '.')
@@ -54,81 +52,48 @@ namespace Umea_rana
             // copie de backgroung et verif k il n est pas ds le dossier
             for (int j = 0; j < nam.Length && nam[j] != '.'; ++j)
                 name += nam[j];
-            if (name != "background")
-            {
-                System.IO.File.Copy(save.levelProfile.background_name, sav + "\\background" + ext, true);
-                save.levelProfile.background_name = "background" + ext;
-            }
+            if (name != "BackgrounD")
+                System.IO.File.Copy(save.levelProfile.background_name, sav + "\\BackgrounD" + ext, true);
+
+            save.levelProfile.background_name = "BackgrounD" + ext;
             // copie des musique + verif pas ds le dossier
             for (int w = 0; w < res.Length; w++)
             {
                 for (int j = 0; j < save.levelProfile.musique[w].Length; ++j)
                 {
-                    res[w] +=   save.levelProfile.musique [w][j];
-                    if (  save.levelProfile.musique [w][j] == '\\')
+                    res[w] += save.levelProfile.musique[w][j];
+                    if (save.levelProfile.musique[w][j] == '\\')
                         res[w] = "";
                 }
-                if (save.levelProfile.musique[w]!=null &&save.levelProfile.musique[w]!="")
+                if (save.levelProfile.musique[w] != null && save.levelProfile.musique[w] != "")
                 {
-                    System.IO.File.Copy(save.levelProfile.musique[w], sav +"\\"+ res[w], true);
+                    System.IO.File.Copy(save.levelProfile.musique[w], sav + "\\" + res[w], true);
                     save.levelProfile.musique[w] = res[w];
                 }
             }
-
-
-            file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Create, FileAccess.Write);
-            f = new XmlSerializer(typeof(List<quaintuplet>));
-            f.Serialize(file1, save.ia_tireur);
+            file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Create, FileAccess.Write);
+            f = new XmlSerializer(typeof(savefile));
+            f.Serialize(file1, save);
             file1.Close();
-            file2 = new FileStream(dir.FullName + "\\ai_V" + ".xml", FileMode.Create, FileAccess.Write);
-            g = new XmlSerializer(typeof(List<quaintuplet>));
-            g.Serialize(file2, save.ia_viseur);
-            file2.Close();
-            file3 = new FileStream(dir.FullName + "\\ai_K" + ".xml", FileMode.Create, FileAccess.Write);
-            i = new XmlSerializer(typeof(List<couple>));
-            i.Serialize(file3, save.ia_Kamikaze);
-            file3.Close();
-            file4 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Create, FileAccess.Write);
-            h = new XmlSerializer(typeof(levelProfile));
-            h.Serialize(file4, save.levelProfile);
-            file4.Close();
-
-            // 
-
         }
         /// <summary>
-        /// SEU pour shhot em up a utilier ds l editeur de map non fini manque le recuperation du fond
+        ///  pour shot em up a utilier ds l editeur de map
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="savefile"></param>
         public void load_SEU(ref string filename, ref savefile savefile)
         {
             FileStream file1 = null;
-            FileStream file2 = null;
-            FileStream file3 = null;
-            FileStream file4 = null;
-            XmlSerializer f = null, g = null, i = null, j = null;
+            XmlSerializer f = null;
 
             DirectoryInfo dir = null;
             dir = new DirectoryInfo(path + "\\SEU\\" + filename);
             if (dir.Exists)
             {
-                file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Open, FileAccess.Read);
-                f = new XmlSerializer(typeof(List<quaintuplet>));
-                savefile.ia_tireur = (List<quaintuplet>)f.Deserialize(file1);
+                file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
+                f = new XmlSerializer(typeof(savefile));
+                savefile = (savefile)f.Deserialize(file1);
                 file1.Close();
-                file2 = new FileStream(dir.FullName + "\\ai_V" + ".xml", FileMode.Open, FileAccess.Read);
-                g = new XmlSerializer(typeof(List<quaintuplet>));
-                savefile.ia_viseur = (List<quaintuplet>)g.Deserialize(file2);
-                file2.Close();
-                file3 = new FileStream(dir.FullName + "\\ai_K" + ".xml", FileMode.Open, FileAccess.Read);
-                i = new XmlSerializer(typeof(List<couple>));
-                savefile.ia_Kamikaze = (List<couple>)i.Deserialize(file3);
-                file3.Close();
-                file4 = file2 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Open, FileAccess.Read);
-                j = new XmlSerializer(typeof(levelProfile));
-                savefile.levelProfile = (levelProfile)j.Deserialize(file4);
-                file4.Close();
             }
         }
 
@@ -170,10 +135,9 @@ namespace Umea_rana
                 hello[j] = g;
             }
             return hello;
-
         }
         /// <summary>
-        /// non fini manque le fond pour la phase de jeu normal
+        ///  jeu normal chargement
         /// </summary>
         /// <param name="content"></param>
         /// <param name="level">nom du nivau</param>
@@ -181,116 +145,65 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite, ref Ovni ovni)
         {
-            List<quaintuplet> ia, ia_V;
-            List<couple> ia_K;
-            levelProfile levelprof;
+            savefile savefil = new savefile();
             FileStream file1 = null;
-            FileStream file2 = null;
-            FileStream file3 = null;
-            FileStream file4 = null;
-            XmlSerializer f = null, g = null, i = null, e = null;
-
+            XmlSerializer f = null;
 
             DirectoryInfo dir = null;
             dir = new DirectoryInfo(content.RootDirectory + "\\" + level);
             if (dir.Exists)
             {
-                ia = new List<quaintuplet>();
-                ia_K = new List<couple>();
-                ia_V = new List<quaintuplet>();
-                file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Open, FileAccess.Read);
-                f = new XmlSerializer(typeof(List<quaintuplet>));
-                ia = (List<quaintuplet>)f.Deserialize(file1);
+                file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
+                f = new XmlSerializer(typeof(savefile));
+                savefil = (savefile)f.Deserialize(file1);
                 file1.Close();
-                file2 = new FileStream(dir.FullName + "\\ai_V" + ".xml", FileMode.Open, FileAccess.Read);
-                g = new XmlSerializer(typeof(List<quaintuplet>));
-                ia_V = (List<quaintuplet>)g.Deserialize(file2);
-                file2.Close();
-                file3 = new FileStream(dir.FullName + "\\ai_K" + ".xml", FileMode.Open, FileAccess.Read);
-                i = new XmlSerializer(typeof(List<couple>));
-                ia_K = (List<couple>)i.Deserialize(file3);
-                file3.Close();
-                file4 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Open, FileAccess.Read);
-                e = new XmlSerializer(typeof(levelProfile));
-                levelprof = (levelProfile)e.Deserialize(file4);
-                file4.Close();
-
-                for (int j = 0; j < ia.Count; ++j)
-                    iamanage_T.Add(ia[j]);
-                for (int j = 0; j < ia_V.Count; ++j)
-                    iamanage_V.Add(ia_V[j]);
-                for (int j = 0; j < ia_K.Count; ++j)
-                    iamanage_K.Add(ia_K[j]);
-
-                scrollM.Load(content, levelprof, grash);
-                sprite.parametrage(ref levelprof);
-
             }
+            for (int j = 0; j < savefil.ia_tireur.Count; ++j)
+                iamanage_T.Add(savefil.ia_tireur[j]);
+            for (int j = 0; j < savefil.ia_viseur.Count; ++j)
+                iamanage_V.Add(savefil.ia_viseur[j]);
+            for (int j = 0; j < savefil.ia_Kamikaze.Count; ++j)
+                iamanage_K.Add(savefil.ia_Kamikaze[j]);
+            for (int j = 0; j < savefil.bonus.Count; ++j)
+                ovni.Add(savefil.bonus[j]);
+            scrollM.Load(content, savefil.levelProfile, grash);
+            sprite.parametrage(ref savefil.levelProfile);
+            ovni.param(savefil.levelProfile.fc_speed);
+
         }
         /// <summary>
-        /// non fini manque le fond pour la phase de jeu level perso
+        ///jeu level perso chargement
         /// </summary>
-        /// <param name="level"></param>
-        /// <param name="iamanage_K"></param>
+        /// <param name="level">nom du niveau</param>
+        /// <param name="iamanage_K">manager de ia</param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref sripte_V sprite)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref sripte_V sprite, ref Ovni ovni)
         {
-            List<quaintuplet> ia, ia_V;
-            List<couple> ia_K;
-            levelProfile level_profile;
-            FileStream file1 = null;
-            FileStream file2 = null;
-            FileStream file3 = null;
-            FileStream file4 = null;
-            XmlSerializer f = null, g = null, i = null, h = null;
+            savefile savefile = new savefile();
+            load_SEU(ref level, ref savefile);
+            for (int j = 0; j < savefile.ia_tireur.Count; ++j)
+                iamanage_T.Add(savefile.ia_tireur[j]);
+            for (int j = 0; j < savefile.ia_viseur.Count; ++j)
+                iamanage_V.Add(savefile.ia_viseur[j]);
+            for (int j = 0; j < savefile.ia_Kamikaze.Count; ++j)
+                iamanage_K.Add(savefile.ia_Kamikaze[j]);
+            for (int j = 0; j < savefile.bonus.Count; ++j)
+                ovni.Add(savefile.bonus[j]);
 
-            DirectoryInfo dir = null;
-            dir = new DirectoryInfo(path + "\\SEU\\" + level);
-            if (dir.Exists)
-            {
-                ia = new List<quaintuplet>();
-                ia_K = new List<couple>();
-                ia_V = new List<quaintuplet>();
-                file1 = new FileStream(dir.FullName + "\\ai_T" + ".xml", FileMode.Open, FileAccess.Read);
-                f = new XmlSerializer(typeof(List<quaintuplet>));
-                ia = (List<quaintuplet>)f.Deserialize(file1);
-                file1.Close();
-                file2 = new FileStream(dir.FullName + "\\ai_V" + ".xml", FileMode.Open, FileAccess.Read);
-                g = new XmlSerializer(typeof(List<quaintuplet>));
-                ia_V = (List<quaintuplet>)g.Deserialize(file2);
-                file2.Close();
-                file3 = new FileStream(dir.FullName + "\\ai_K" + ".xml", FileMode.Open, FileAccess.Read);
-                i = new XmlSerializer(typeof(List<couple>));
-                ia_K = (List<couple>)i.Deserialize(file3);
-                file3.Close();
-                file4 = new FileStream(dir.FullName + "\\level_profile" + ".xml", FileMode.Open, FileAccess.Read);
-                h = new XmlSerializer(typeof(levelProfile));
-                level_profile = (levelProfile)h.Deserialize(file4);
-                file4.Close();
-
-                for (int j = 0; j < ia.Count; ++j)
-                    iamanage_T.Add(ia[j]);
-                for (int j = 0; j < ia_V.Count; ++j)
-                    iamanage_V.Add(ia_V[j]);
-                for (int j = 0; j < ia_K.Count; ++j)
-                    iamanage_K.Add(ia_K[j]);
-
-                scrollM.Load(content, level_profile, grap);
-                sprite.parametrage(ref level_profile);
-            }
+            scrollM.Load(content, savefile.levelProfile, grap);
+            sprite.parametrage(ref savefile.levelProfile);
+            ovni.param(savefile.levelProfile.fc_speed);
         }
 
         public void supp_dir(string filename)
         {
             DirectoryInfo dir = new DirectoryInfo(path + "\\SEU\\" + filename);
-
             if (dir.Exists)
                 dir.Delete(true);
-
         }
 
     }

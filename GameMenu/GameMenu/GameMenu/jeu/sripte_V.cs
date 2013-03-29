@@ -32,7 +32,6 @@ namespace Umea_rana
         int FrameLine;
         int FrameColumn;
         SpriteEffects Effects;
-        bool dir = false;
         int Timer;
         int AnimationSpeed = 14;
 
@@ -295,7 +294,6 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebatch)
         {
             bullet.Bullet_draw(spritebatch, ref bulletL);
-
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
         }

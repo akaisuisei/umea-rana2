@@ -56,7 +56,7 @@ namespace Umea_rana
 
             collision = new Collision();
             save = new Sauveguarde();
-            ovini = new Ovni(width, height, 4);
+            ovini = new Ovni(width, height);
             // ajout IA
         }
 
@@ -96,7 +96,7 @@ namespace Umea_rana
      
             // ajout IA
 
-            save.load_level_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau);
+            save.load_level_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau,ref ovini );
             vaisseau.Load(Content, T_sprite); 
         
 

@@ -45,7 +45,7 @@ namespace Umea_rana
         int width1, width2, width3, width4;
         int height1, height2, height3, height4;
         Texture2D texture;
-        public Ovni(int width, int height, int fc)
+        public Ovni(int width, int height)
         {
             WindoW = width; WindowH = height;
             width1 = (int)(WindoW * 0.05);
@@ -60,8 +60,11 @@ namespace Umea_rana
             R2 = 30;
             R3 = 30;
             R4 = 40;
-            this.fc = fc;
             ovni = new List<ovnis>();
+        }
+        public void param(int fc)
+        {
+            this.fc = fc;
         }
         public void Load(Texture2D texture)
         {
