@@ -19,7 +19,7 @@
     <ApplicationIcon>GameThail.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>F:\Dropbox\Dropbox\jeu\Umea-rana_2.0\</PublishUrl>
+    <PublishUrl>F:\Dropbox\Dropbox\jeu\umea rana 2.1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -32,8 +32,8 @@
     <TargetCulture>fr</TargetCulture>
     <ProductName>Umea-rana</ProductName>
     <SuiteName>project-2017</SuiteName>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
