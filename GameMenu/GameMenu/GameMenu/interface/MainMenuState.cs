@@ -18,19 +18,11 @@ namespace Umea_rana
         Song songMenu;
         public static float vol = 1.0f;
         Texture2D background;
-        Texture2D jouer;
-        Texture2D selection;
-        Texture2D options;
-        Texture2D quitter;
-        Texture2D editeur_de_map;
         Rectangle rectangle;
-        Vector2 coordonnees_jouer;
-        Vector2 coordonnees_selection;
-        Vector2 coordonnees_options;
-        Vector2 coordonnees_quitter;
-        Vector2 coordonnees_editeur;
-        int select = 0;
-        int latence = 0;
+        Button button;
+        Rectangle rect;
+        int tab = 0;
+        KeyboardState old;
 
         public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -43,21 +35,21 @@ namespace Umea_rana
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            coordonnees_jouer = new Vector2(100, 80);
-            coordonnees_selection = new Vector2(50, 80);
-            coordonnees_options = new Vector2(100, 280);
-            coordonnees_editeur=new Vector2(100, 180);
-            coordonnees_quitter = new Vector2(100, 380);
+            titre_P = new Vector2(width * 0.8f, height * 0.1f);
+            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
+            old = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
+
+            button.LoadContent(Content);
+            button.activate(0, 0, 0.1f, 0.1f,"LevelSelect", "Jouer");
+            button.activate(0, 1, 0.1f, 0.2f,"LevelSelect_P", "Editeur de Map");
+            button.activate(0, 2, 0.1f, 0.3f,"Option2", "Option");
+            button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
             background = Content.Load<Texture2D>("Menu//background menu");
-            jouer = Content.Load<Texture2D>("Menu//jouer");
-            selection = Content.Load<Texture2D>("Menu//selection");
-            options = Content.Load<Texture2D>("Menu//options");
-            quitter = Content.Load<Texture2D>("Menu//quitter");
-            titre = Content.Load<Texture2D>("Menu//pause//Menu");
-            editeur_de_map = Content.Load<Texture2D>("Menu//editeur_de_map");
+                      titre = Content.Load<Texture2D>("Menu//pause//Menu");
+           
         }
         public override void UnloadContent()
         {
@@ -67,78 +59,19 @@ namespace Umea_rana
             KeyboardState keyboard = Keyboard.GetState();
 
             MouseState mouse = Mouse.GetState();
-
-            if (mouse.X > coordonnees_jouer.X && mouse.X < coordonnees_jouer.X + jouer.Width &&
-                mouse.Y > coordonnees_jouer.Y && mouse.Y < coordonnees_jouer.Y + jouer.Height)
-                select = 0;
-            else if (mouse.X > coordonnees_editeur.X && mouse.X < coordonnees_editeur.X + options.Width &&
-                mouse.Y > coordonnees_editeur.Y && mouse.Y < coordonnees_editeur.Y + editeur_de_map.Height)
-                select = 1;
-            else if (mouse.X > coordonnees_options.X && mouse.X < coordonnees_options.X + quitter.Width &&
-                mouse.Y > coordonnees_options.Y && mouse.Y < coordonnees_options.Y + options.Height)
-                select = 2;
-            else if (mouse.X > coordonnees_quitter.X && mouse.X < coordonnees_quitter.X + quitter.Width &&
-                mouse.Y > coordonnees_quitter.Y && mouse.Y < coordonnees_quitter.Y + quitter.Height)
-                select = 3;
-            if (select == 0)
-                coordonnees_selection = new Vector2(50, 80);
-            else if (select == 1 || select == -3)
-                coordonnees_selection = new Vector2(50, 180);
-            else if (select == 2 || select==-2)
-                coordonnees_selection = new Vector2(50, 280);
-            else if (select == 3 || select==-1)
-                coordonnees_selection = new Vector2(50, 380);
-            if (latence > 0)  // la latence créé un temps d'attente avant de pouvoir changer à nouveau de boutton
-                latence--;    // sinon les changements sont bien trop rapides
-            else
-            {
-                if (keyboard.IsKeyDown(Keys.Down))  //la selection est faite grâce à un modulo égal au nombre total de bouttons
-                {
-                    select = (select + 1) % 4;
-                    game.menu_cursor.Play();
-                    latence = 10;
-                }
-                else if (keyboard.IsKeyDown(Keys.Up))
-                {
-                    select = (select - 1) % 4;
-                    game.menu_cursor.Play();
-                    latence = 10;
-                }
-            }
-            if (keyboard.IsKeyDown(Keys.Enter) || mouse.LeftButton == ButtonState.Pressed)
-            {
-                game.menu_select.Play();
-                if (select == 0)// lance la selecteur partie
-                {
-                    game.ChangeState(Game1.gameState.Level_select_state);
-                    System.Threading.Thread.Sleep(G_latence);
-                }
-                else if (select == 1)// va aux options
-                {
-                    game.ChangeState(Game1.gameState.level_Pselect );
-                }
-                else if (select == 2)
-                {
-                    System.Threading.Thread.Sleep(G_latence);
-                }
-                else// quitte le jeu
-                {
-                    game.Exit();
-                }
-
-            }
+            rect=new Rectangle (mouse.X,mouse.Y,1,1);
+            button.Update(ref keyboard, ref old , ref mouse, ref rect, ref game, ref tab, "");
+                
+            
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, rectangle, Color.White);
-            spriteBatch.Draw(jouer, coordonnees_jouer, Color.White);
-            spriteBatch.Draw(selection, coordonnees_selection, Color.White);
-            spriteBatch.Draw(options, coordonnees_options, Color.White);
-            spriteBatch.Draw(quitter, coordonnees_quitter, Color.White);
+           
+            spriteBatch.Draw(background, rectangle, Color.White); 
+            button.Draw(spriteBatch);        
             spriteBatch.Draw(titre, titre_P, Color.White);
-            spriteBatch.Draw(editeur_de_map, coordonnees_editeur, Color.White);
-        }
+           }
 
     }
 }

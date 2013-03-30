@@ -16,7 +16,7 @@ namespace Umea_rana
 {
     class Editeur_MapVV : GameState
     {
-      //  Scrolling scrolling1;
+        //  Scrolling scrolling1;
         sripte_V vaisseau;
 
         KeyboardState oldkey;
@@ -43,35 +43,36 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
-         
+
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);  
-     
+            _pause = new _Pause(game1, graphics, content);
+
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
             taille_sprt = (int)(Math.Min(width, height) * 0.05);
-        //    backGround = "level2//fond";
+            //    backGround = "level2//fond";
             // ajout IA 
             user = new UserControl1();
             Application.Run(user);
             spawn = -1;
-            iaType = "kawabunga";          
+            iaType = "kawabunga";
         }
 
-        public override void LoadContent(ContentManager Content,string level,GraphicsDevice gaphics)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
-            Scroll_manager  = new Scrolling_ManagerV(width,height );
+            _pause.initbutton(ref level);
+            Scroll_manager = new Scrolling_ManagerV(width, height);
             //charge le fond
-          //  bacgkround1 = Content.Load<Texture2D>(backGround);
+            //  bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite
-            T_sprite=Content.Load<Texture2D>("hero//spriteSheet");
+            T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
 
 
             //charge l IA
- 
+
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
@@ -79,19 +80,19 @@ namespace Umea_rana
 
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height,width );
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt ,taille_sprt ), height, width);
+                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), height, width);
             vaisseau.Load(Content, T_sprite);
             ovni = new Ovni(width, height);
             ovni.param(3);
             ovni.Load(aster_t);
-            
+
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user.LoadContent(manage_T, manage_V, manage_k,Scroll_manager,Content , ovni );
+            user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni);
         }
 
         public override void UnloadContent()
@@ -119,15 +120,15 @@ namespace Umea_rana
                 if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control)
                 {
                     spawn = existcheck(ref iaType, mouse);
-                    
-                    user._show(mouse.X, mouse.Y, iaType , spawn );
+
+                    user._show(mouse.X, mouse.Y, iaType, spawn);
                 }
                 if (user.IHave_control)
                     user.TopMost = true;
                 else
                 {
-                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game,ref Scroll_manager,ref ovni );
-            //        scrolling1.update_ophelia(keyboard);
+                    user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game, ref Scroll_manager, ref ovni);
+                    //        scrolling1.update_ophelia(keyboard);
                     Scroll_manager.Update_ophelia(keyboard);
                 }
                 manage_k.Update_ophelia(keyboard);
@@ -160,13 +161,13 @@ namespace Umea_rana
             //scrolling
             //scrolling1.Draw(spriteBatch);
             Scroll_manager.Draw(spriteBatch);
-      
+
 
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
             ovni.Draw(spriteBatch);
-      vaisseau.Draw(spriteBatch);
+            vaisseau.Draw(spriteBatch);
 
             if (_checkpause)
                 _pause.Draw(spriteBatch);
@@ -195,7 +196,7 @@ namespace Umea_rana
                     hello = "IA_V";
                     return manage_V.Ia_manage[i].spawn;
                 }
-            for(int i=0;i<ovni.ovni.Count ;++i)
+            for (int i = 0; i < ovni.ovni.Count; ++i)
                 if (ovni.ovni[i].circle.is_in_bound(recM))
                 {
                     hello = "b";

@@ -34,7 +34,7 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
         }
-        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
             background = Content.Load<Texture2D>("Menu//logofin");
         //    listbox.LoadContent(content);

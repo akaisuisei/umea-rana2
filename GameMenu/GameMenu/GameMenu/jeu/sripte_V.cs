@@ -214,7 +214,7 @@ namespace Umea_rana
             hauteurY = (int)(0.20f * (float)rectangle.Width); ;
             largeurX = (int)(0.33f * (float)rectangle.Width);
             this.Timer++;
-            if (type == 3)
+            if (type %2==1)
             {
                 
                 if (FrameLine == 1 && FrameColumn == 1)
@@ -281,8 +281,6 @@ namespace Umea_rana
                     this.Timer = 0;
                     this.FrameColumn++;
                 }
-
-
             }
         }
         // procedure pour indiquer au vaisseau la fin de niveau

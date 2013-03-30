@@ -21,7 +21,7 @@ namespace Umea_rana
         Color[] color;
         string[] level;
         SpriteFont font;
-        int selected, oldselected, surlig, oldsur, latence = 0, lat = 10, tab;
+        int selected, oldselected, surlig, oldsur, tab;
         public string selectedItem;
         public bool in_use;
         Color BGcolor;

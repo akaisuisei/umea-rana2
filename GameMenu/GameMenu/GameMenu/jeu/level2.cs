@@ -42,9 +42,9 @@ namespace Umea_rana
         }
 
 
-        public override void LoadContent(ContentManager Content, string level,GraphicsDevice graph)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
-            
+            _pause.initbutton(ref level);
             //background
             backgroundT = Content.Load<Texture2D>("level1//fond_niv1");
             //sprite brouillon
@@ -188,7 +188,7 @@ namespace Umea_rana
             //audio
             
             if (allen.rectangle.Right >= width * 2 - 50)
-                game.ChangeState(Game1.gameState.Pause, Game1.gameState.SEU);
+                game.ChangeState(Game1.gameState.Pause, Game1.gameState.win );
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -144,7 +144,7 @@ namespace Umea_rana
         /// <param name="iamanage_K"></param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_level_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
+        public void load_level_SEU(ContentManager content, ref string level, ref string next, ref IA_manager_K iamanage_K,
             ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite, ref Ovni ovni)
         {
             savefile savefil = new savefile();
@@ -171,6 +171,7 @@ namespace Umea_rana
             scrollM.Load(content, savefil.levelProfile, grash);
             sprite.parametrage(ref savefil.levelProfile);
             ovni.param(savefil.levelProfile.fc_speed);
+            next = savefil.levelProfile.next_level;
 
         }
         /// <summary>

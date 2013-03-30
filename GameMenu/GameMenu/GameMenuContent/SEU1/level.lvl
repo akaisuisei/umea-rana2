@@ -62,6 +62,7 @@
   </bonus>
   <levelProfile>
     <levelname>SEU1</levelname>
+    <next_level>PLA1</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>3</fc_speed>
     <second_background>fond2</second_background>

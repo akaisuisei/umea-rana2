@@ -21,7 +21,7 @@ namespace Umea_rana
         Listbox list1, list2;
         int tab;
         Button butts;
-        int latence, latdefault;
+       
         KeyboardState oldkey;
         public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -38,19 +38,18 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             butts = new Button(2, 3, width, height, 0.1f, 0.1f, 0);
             butts.activate(0, 0, 0.15f, 0.15f, "EditSEU", "Editeur de jeu1");
-            butts.activate(0, 1, 0.15f, 0.5f, "play", "editeur de jeu2");
+            butts.activate(0, 1, 0.15f, 0.5f, "Play", "editeur de jeu2");
             butts.activate(0, 2, 0.15f, 0.85f, "", "retour");
 
    
             butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", "jouer");
             butts.activate(1, 1, 0.85f, 0.5f, "play", "jouer");
             butts.disable(1, 2);
-            latence = 0;
-            latdefault = 10;
+         
             oldkey = Keyboard.GetState();
         }
 
-        public override void LoadContent(ContentManager content, string level,GraphicsDevice graph)
+        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
         {
             background = content.Load<Texture2D>("Menu//background menu");
             songMenu = content.Load<Song>("Menu//songMenu");

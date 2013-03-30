@@ -60,12 +60,13 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, string level, GraphicsDevice graph)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
             //charge le fond
             //         background1 = Content.Load<Texture2D>("level2//fond");
             //       background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
+            _pause.initbutton(ref level);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
 
 
@@ -96,7 +97,7 @@ namespace Umea_rana
      
             // ajout IA
 
-            save.load_level_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau,ref ovini );
+            save.load_level_SEU(Content,ref level,ref next , ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau,ref ovini );
             vaisseau.Load(Content, T_sprite); 
         
 
@@ -162,13 +163,12 @@ namespace Umea_rana
                 {
                     vaisseau.gagne();
                     timer = vaisseau.rectangle.Y / 2;
-                   
-                    manage_k.bulletL.Clear();
+            
                     manage_T.bulletL.Clear();
                     manage_V.bulletL.Clear();
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.Level2);//va au level2
+                    game.ChangeState(Game1.gameState.win );//va au level2
                 timer--;
             }
             //update interface

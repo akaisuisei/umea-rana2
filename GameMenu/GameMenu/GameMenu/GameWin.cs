@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace Umea_rana
 {
-    class Pause : GameState
+    class GameWin:GameState 
     {
         Song songMenu;
         public static float vol = 1.0f;
@@ -25,7 +23,7 @@ namespace Umea_rana
         KeyboardState old;
         int tab;
 
-        public Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public GameWin(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
@@ -36,16 +34,17 @@ namespace Umea_rana
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            button = new Button(1, 3, width, height, 0.07f, 0.1f, 0);
+            button = new Button(1, 4, width, height, 0.07f, 0.1f, 0);
             tab = 0;
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager content,GraphicsDevice graph,ref string level,ref string next)
         {
             
             button.LoadContent(content);
-            button.activate(0, 0, 0.1f, 0.1f, "Last", "rejouer");
-            button.activate(0, 1, 0.1f, 0.2f, "", "Menu");
-            button.activate(0, 2, 0.1f, 0.3f, "Exit", "quitter");
+            button.activate(0, 0, 0.1f, 0.1f, "Next", "suivant");
+              button.activate(0, 1, 0.1f, 0.2f,"Last", "rejouer");
+            button.activate(0, 2, 0.1f, 0.3f, "", "Menu");
+            button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
             background = content.Load<Texture2D>("Menu//game_over");
         }
         public override void UnloadContent()
@@ -68,4 +67,5 @@ namespace Umea_rana
 
 
     }
-}
+    }
+

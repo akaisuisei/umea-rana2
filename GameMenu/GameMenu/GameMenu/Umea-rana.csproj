@@ -135,7 +135,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+    <Compile Include="GameWin.cs" />
+    <Compile Include="moteur_jeu\Button.cs" />
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
     <Compile Include="Editeur de map\Editeur_MapVV.cs" />
@@ -168,7 +169,7 @@
     <Compile Include="moteur_jeu\platform.cs" />
     <Compile Include="jeu\objet.cs" />
     <Compile Include="manager\Platform_manager.cs" />
-    <Compile Include="Ovni.cs" />
+    <Compile Include="IA\Ovni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

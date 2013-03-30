@@ -15,7 +15,7 @@ namespace Umea_rana
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         gameState _checkpause;
-        gameState _currentState;
+        public gameState _currentState { get; private set; }
         public gameState _previousState { get; set; }
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
@@ -24,8 +24,9 @@ namespace Umea_rana
         Audio audio;
         DisplayMode displaymode;
         public string path = "test";
-        public string level=string.Empty ;
+        public string level=string.Empty ,next= string.Empty ;
         public SoundEffect menu_cursor, menu_select;
+        bool fullScreen = false;
         public Game1()
         {
             //display
@@ -36,7 +37,7 @@ namespace Umea_rana
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = fullScreen ;
 
             //content
             Content.RootDirectory = "Content";
@@ -44,7 +45,7 @@ namespace Umea_rana
             //state
             _currentState = gameState.Initialisateur;
             StateManager = new Dictionary<gameState, GameState>();
-            StateManager.Add(gameState.PlayingState, new PlayingState());
+            StateManager.Add(gameState.PlayingState, new PlayingState(this,graphics,Content));
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
             StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
@@ -54,6 +55,7 @@ namespace Umea_rana
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
+            StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
         }
 
         protected override void Initialize()
@@ -76,7 +78,7 @@ namespace Umea_rana
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content, level,GraphicsDevice );
+            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next  );
             base.LoadContent();
         }
 
@@ -123,6 +125,7 @@ namespace Umea_rana
             Editeur_mapVV,
             leveleditor,
             level_Pselect,
+            win,
             Null,
         }
 
@@ -130,12 +133,13 @@ namespace Umea_rana
         {
             _previousState = _currentState;
             _currentState = NewState;
-            is_fullscreen(false);
+            is_fullscreen(fullScreen );
             this.Initialize();
         }
         public void GetPreviousState()
         {
             _currentState = this._previousState;
+            is_fullscreen(fullScreen);
             this.Initialize();
         }
         public void ChangeState2(gameState checkpause)
@@ -153,5 +157,39 @@ namespace Umea_rana
                     graphics.ToggleFullScreen();
             }
         }
+        public void nextgame()
+        {
+            if (next!= null && next.Length > 0)
+            {
+                if (next[0] == 'S' || next[0] == 'S')
+                {
+                    level = next;
+                    ChangeState(gameState.SEU);
+                }
+                else
+                {
+                    level = next;
+                    ChangeState(gameState.Level2);
+                }
+            }
+        }
+
+        public void replay()
+        {
+            if (level != null && level.Length > 0)
+            {
+                if (level[0] == 'S' || level[0] == 'S')
+                {
+             
+                    ChangeState(gameState.SEU);
+                }
+                else
+                {
+              
+                    ChangeState(gameState.Level2);
+                }
+            }
+        }
+
     }
 }
