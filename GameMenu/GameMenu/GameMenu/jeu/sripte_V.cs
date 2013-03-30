@@ -127,6 +127,8 @@ namespace Umea_rana
                 power = 3;
             if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
                 power = 4;
+            if (vie <= 0)
+                game.ChangeState(Game1.gameState.Pause);
 
             bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
