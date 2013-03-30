@@ -121,128 +121,7 @@ namespace Umea_rana
 
             }
         }
-        #endregion
 
-
-        // saut non fini
-        public void jump(sprite_broillon sprite)
-        {
-            int i = 10;
-            if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
-            {
-                sprite.rectangle.Y -= (i + sprite.poid);
-                sprite.jump_off = true;
-
-            }
-            if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
-            {
-                sprite.jump_off = false;
-
-            }
-        }
-        #region collisionshout em up
-        // collision objet missible
-        public bool Collision_as_mis(objet aster, sripte_V sprite)
-        {
-            for (int i = 0; i < sprite.bulletL.Count; ++i)
-                if (aster.rectangle_C.Intersects(sprite.bulletL[i].rectangle_C))
-                {
-                    sprite.bulletL.RemoveAt(i);
-                    sprite.bulletL[i].existe = false;
-                    return true;
-                }
-            return false;
-        }
-        // a finir
-        public void h_M2P(ref IA_manager_AA AA, ref IA_manager_AR AR, ref IA_manager_K K, ref sripte_V pl1, ref sripte_V pl2)
-        {
-            for (int i = 0; i < AA.bulletL.Count; ++i)
-            {
-                if (AA.bulletL[i].rectangle_C.Intersects(pl1.rectangle_C))
-                {
-                    pl1.vie -= AA.bulletL[i].vie;
-                    AA.bulletL.RemoveAt(i);
-                }
-                else if (AA.bulletL[i].rectangle_C.Intersects(pl2.rectangle_C))
-                {
-                    pl2.vie -= AA.bulletL[i].vie;
-                    AA.bulletL.RemoveAt(i);
-                }
-            }
-            for (int i = 0; i < AR.bulletL.Count; ++i)
-            {
-                if (AR.bulletL[i].rectangle_C.Intersects(pl1.rectangle_C))
-                {
-                    pl1.vie -= AR.bulletL[i].vie;
-                    AR.bulletL.RemoveAt(i);
-                }
-                else if (AR.bulletL[i].rectangle_C.Intersects(pl2.rectangle_C))
-                {
-                    pl2.vie -= AR.bulletL[i].vie;
-                    AR.bulletL.RemoveAt(i);
-                }
-            }
-            for (int i = 0; i < AA.Ia_manage.Count; ++i)
-            {
-                if (AA.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
-                {
-                    pl1.vie -= 30;
-                    AA.Ia_manage.RemoveAt(i);
-                }
-                else if (AA.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
-                {
-                    pl2.vie -= 30;
-                    AA.Ia_manage.RemoveAt(i);
-                }
-            }
-            for (int i = 0; i < AR.Ia_manage.Count; ++i)
-            {
-                if (AR.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
-                {
-                    pl1.vie -= 30;
-                    AR.Ia_manage.RemoveAt(i);
-                }
-                else if (AR.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
-                {
-                    pl2.vie -= 30;
-                    AR.Ia_manage.RemoveAt(i);
-                }
-            }
-            for (int i = 0; i < K.Ia_manage.Count; ++i)
-            {
-                if (K.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
-                {
-                    pl1.vie -= K.Ia_manage[i].damage;
-                    AA.Ia_manage.RemoveAt(i);
-                }
-                else if (K.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
-                {
-                    pl2.vie -=K.Ia_manage[i].damage ;
-                    K.Ia_manage.RemoveAt(i);
-                }
-            }
-
-        }
-
-
-        // collision hero avec missille ou ia avetion game over
-        public void hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite)
-        {
-
-            for (int i = 0; i < ia_manage.bulletL.Count; ++i)
-                if (ia_manage.bulletL[i].rectangle_C.Intersects(sprite.rectangle_C))
-                {
-                    --sprite.vie;
-                }
-
-        }
-        //collision IA hero action: vie--
-        public void col_H_IA(IA_Manager_max ia_manage, ref sripte_V sprite)
-        {
-            foreach (vaisseau_IA ia in ia_manage.Ia_manage)
-                if (ia.rectangle_C.Intersects(sprite.rectangle_C))
-                    sprite.vie -= 30;
-        }
         //collision IA allen action vie--
         public void coll_AL_IA(IA_Manager_max ia_manage, ref sprite_broillon sprite)
         {
@@ -289,15 +168,237 @@ namespace Umea_rana
                     ia_manage.Ia_manage[i].attaque = false;
             }
         }
+        #endregion
+
+
+        // saut non fini
+        public void jump(sprite_broillon sprite)
+        {
+            int i = 10;
+            if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
+            {
+                sprite.rectangle.Y -= (i + sprite.poid);
+                sprite.jump_off = true;
+
+            }
+            if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
+            {
+                sprite.jump_off = false;
+
+            }
+        }
+        #region collisionshout em up
+        // collision objet missible
+        public bool Collision_as_mis(objet aster, sripte_V sprite)
+        {
+            for (int i = 0; i < sprite.bulletL.Count; ++i)
+                if (aster.rectangle_C.Intersects(sprite.bulletL[i].rectangle_C))
+                {
+                    sprite.bulletL.RemoveAt(i);
+                    sprite.bulletL[i].existe = false;
+                    return true;
+                }
+            return false;
+        }
+        // a finir
+        public void h_M2P(ref IA_manager_AA AA, ref IA_manager_AR AR, ref IA_manager_K K, ref sripte_V pl1, ref sripte_V pl2)
+        {
+            for (int i = 0; i < AA.bulletL.Count; ++i)
+            {
+                if (AA.bulletL[i].rectangle_C.Intersects(pl1.rectangle_C))
+                {
+                    pl1.vie -= AA.bulletL[i].degat;
+                    AA.bulletL.RemoveAt(i);
+                }
+                else if (AA.bulletL[i].rectangle_C.Intersects(pl2.rectangle_C))
+                {
+                    pl2.vie -= AA.bulletL[i].degat;
+                    AA.bulletL.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < AR.bulletL.Count; ++i)
+            {
+                if (AR.bulletL[i].rectangle_C.Intersects(pl1.rectangle_C))
+                {
+                    pl1.vie -= AR.bulletL[i].degat;
+                    AR.bulletL.RemoveAt(i);
+                }
+                else if (AR.bulletL[i].rectangle_C.Intersects(pl2.rectangle_C))
+                {
+                    pl2.vie -= AR.bulletL[i].degat;
+                    AR.bulletL.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < AA.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl1.bulletL.Count; ++j)
+                {
+                    if (pl1.bulletL[j].rectangle_C.Intersects(AA.Ia_manage[i].rectangle_C))
+                        AA.Ia_manage[i].vie -= pl1.bulletL[i].degat;
+                }
+                for (int j = 0; j < pl2.bulletL.Count; ++j)
+                {
+                    if (pl2.bulletL[j].rectangle_C.Intersects(AA.Ia_manage[i].rectangle_C))
+                        AA.Ia_manage[i].vie -= pl2.bulletL[i].degat;
+                }
+                if (AA.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
+                {
+                    pl1.vie -= 30;
+                    AA.Ia_manage.RemoveAt(i);
+                }
+                else if (AA.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
+                {
+                    pl2.vie -= 30;
+                    AA.Ia_manage.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < AR.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl1.bulletL.Count; ++j)
+                {
+                    if (pl1.bulletL[j].rectangle_C.Intersects(AR.Ia_manage[i].rectangle_C))
+                        AR.Ia_manage[i].vie -= pl1.bulletL[i].degat;
+                }
+                for (int j = 0; j < pl2.bulletL.Count; ++j)
+                {
+                    if (pl2.bulletL[j].rectangle_C.Intersects(AR.Ia_manage[i].rectangle_C))
+                        AR.Ia_manage[i].vie -= pl2.bulletL[i].degat;
+                }
+                if (AR.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
+                {
+                    pl1.vie -= 30;
+                    AR.Ia_manage.RemoveAt(i);
+                }
+                else if (AR.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
+                {
+                    pl2.vie -= 30;
+                    AR.Ia_manage.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < K.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl1.bulletL.Count; ++j)
+                {
+                    if (pl1.bulletL[j].rectangle_C.Intersects(K.Ia_manage[i].rectangle_C))
+                        K.Ia_manage[i].vie -= pl1.bulletL[i].degat;
+                }
+                for (int j = 0; j < pl2.bulletL.Count; ++j)
+                {
+                    if (pl2.bulletL[j].rectangle_C.Intersects(K.Ia_manage[i].rectangle_C))
+                        K.Ia_manage[i].vie -= pl2.bulletL[i].degat;
+                }
+                if (K.Ia_manage[i].rectangle_C.Intersects(pl1.rectangle_C))
+                {
+                    pl1.vie -= K.Ia_manage[i].damage;
+                    AA.Ia_manage.RemoveAt(i);
+                }
+                else if (K.Ia_manage[i].rectangle_C.Intersects(pl2.rectangle_C))
+                {
+                    pl2.vie -= K.Ia_manage[i].damage;
+                    K.Ia_manage.RemoveAt(i);
+                }
+            }
+
+        }
+
+        public void h_M1P(ref IA_manager_V  AA, ref IA_manager_T  AR, ref IA_manager_K K, ref sripte_V pl)
+    {
+        for (int i = 0; i < AA.bulletL.Count; ++i)
+        {
+            if (AA.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
+            {
+                pl.vie -= AA.bulletL[i].degat;
+                AA.bulletL.RemoveAt(i);
+            }
+      
+            
+        }
+        for (int i = 0; i < AR.bulletL.Count; ++i)
+        {
+            if (AR.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
+            {
+                pl.vie -= AR.bulletL[i].degat;
+                AR.bulletL.RemoveAt(i);
+            }
+        
+        }
+        for (int i = 0; i < AA.Ia_manage.Count; ++i)
+        {
+            for (int j = 0; j < pl.bulletL.Count; ++j)
+            {
+                if (pl.bulletL[j].rectangle_C.Intersects(AA.Ia_manage[i].rectangle_C))
+                    AA.Ia_manage[i].vie -= pl.bulletL[i].degat;
+            }
+            if (AA.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+            {
+                pl.vie -= 30;
+                AA.Ia_manage.RemoveAt(i);
+            }
+
+        }
+        for (int i = 0; i < AR.Ia_manage.Count; ++i)
+        {
+            for (int j = 0; j < pl.bulletL.Count; ++j)
+            {
+                if (pl.bulletL[j].rectangle_C.Intersects(AR.Ia_manage[i].rectangle_C))
+                    AR.Ia_manage[i].vie -= pl.bulletL[i].degat;
+            }
+
+            if (AR.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+            {
+                pl.vie -= 30;
+                AR.Ia_manage.RemoveAt(i);
+            }
+
+        }
+        for (int i = 0; i < K.Ia_manage.Count; ++i)
+        {
+            for (int j = 0; j < pl.bulletL.Count; ++j)
+            {
+                if (pl.bulletL[j].rectangle_C.Intersects(K.Ia_manage[i].rectangle_C))
+                    K.Ia_manage[i].vie -= pl.bulletL[i].degat;
+            }
+
+            if (K.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+            {
+                pl.vie -= K.Ia_manage[i].damage;
+                AA.Ia_manage.RemoveAt(i);
+            }
+
+        }
+    }
+        // collision hero avec missille ou ia avetion game over
+        public void hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite)
+        {
+
+            for (int i = 0; i < ia_manage.bulletL.Count; ++i)
+                if (ia_manage.bulletL[i].rectangle_C.Intersects(sprite.rectangle_C))
+                {
+                    sprite.vie -= ia_manage.bulletL[i].degat;
+                    ia_manage.bulletL.RemoveAt(i);
+                }
+
+        }
+        //collision IA hero action: vie--
+        public void col_H_IA(IA_Manager_max ia_manage, ref sripte_V sprite)
+        {
+            foreach (vaisseau_IA ia in ia_manage.Ia_manage)
+                if (ia.rectangle_C.Intersects(sprite.rectangle_C))
+                {
+                    ia.vie = -30;
+                    sprite.vie -= 30;
+                }
+        }
+       
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
         {
             for (int i = 0; i < sprite.bulletL.Count; ++i)
                 foreach (vaisseau_IA ai in iamanage.Ia_manage)
                     if (sprite.bulletL[i].rectangle_C.Intersects(ai.rectangle_C))
-                    {
-                        sprite.bulletL.RemoveAt(i);
-                        ai.vie--;
+                    {  
+                        ai.vie -= sprite.bulletL[i].degat;
+                        sprite.bulletL.RemoveAt(i);                     
                     }
         }
         #endregion
@@ -313,7 +414,6 @@ namespace Umea_rana
                     sprite.power += ovnis.ovni[i].power;
                     sprite.bomb += ovnis.ovni[i].bomb;
                     ovnis.ovni.RemoveAt(i);
-
                 }
             }
         }

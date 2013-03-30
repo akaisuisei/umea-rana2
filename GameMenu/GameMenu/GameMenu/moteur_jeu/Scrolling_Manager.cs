@@ -90,5 +90,11 @@ namespace Umea_rana
         {
             this.scroll.Clear();
         }
+        public void dispose()
+        {
+            scroll = null;
+            foreach (Texture2D t in texture)
+                t.Dispose();
+        }
     }
 }

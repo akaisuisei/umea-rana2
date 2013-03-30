@@ -40,8 +40,7 @@ namespace Umea_rana
             
             _pause = new _Pause(game1, graphics, content);
         }
-
-
+        
         public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
             _pause.initbutton(ref level);
@@ -118,10 +117,16 @@ namespace Umea_rana
             back_sc = 5;
         }
 
-
-
         public override void UnloadContent()
         {
+            scrolling1.texture.Dispose();
+            allen.Dispose();
+            managerAA.Dipose();
+            managerAR.Dipose();
+            manageS.Dipose();
+            _pause.Dispose();
+            aster.Dispose(); alllenT.Dispose(); backgroundT.Dispose();
+            platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose(); 
             // TODO: Unload any non ContentManager content here
         }
 

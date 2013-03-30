@@ -38,7 +38,6 @@ namespace Umea_rana
         int spawn;
         string iaType;
 
-
         public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             game1.IsMouseVisible = false;
@@ -97,8 +96,22 @@ namespace Umea_rana
 
         public override void UnloadContent()
         {
+            vaisseau.Dispose();
+            aster_t.Dispose();
+            planet1.Dispose();
+            star.Dispose();
+            T_sprite.Dispose();
+            manage_k.Dipose();
+            manage_T.Dipose();
+            manage_V.Dipose();
+            ovni.Dispose();
+            Scroll_manager.dispose();
+            _pause.Dispose();
             // TODO: Unload any non ContentManager content here
             user.destroy();
+            user.dispose();
+            user.Dispose();
+            
         }
         public override void Update(Game1 game, Audio audio)
         {
@@ -150,8 +163,6 @@ namespace Umea_rana
             oldkey = keyboard;
 
         }
-
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {

@@ -20,6 +20,7 @@ namespace Umea_rana
 
     public class sprite_broillon : objet
     {
+     
 
         Texture2D texture;
         Collision collision;
@@ -273,7 +274,11 @@ namespace Umea_rana
         {
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 125, (this.FrameLine - 1) * 93, 125, 93), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
-
+        public void Dispose()
+        {
+            texture.Dispose();
+            marchell.Dispose();
+        }
 
     }
 }

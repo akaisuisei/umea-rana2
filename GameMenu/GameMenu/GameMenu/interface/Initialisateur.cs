@@ -33,6 +33,7 @@ namespace Umea_rana
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
+            background.Dispose();
         }
         public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {

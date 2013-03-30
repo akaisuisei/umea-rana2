@@ -325,6 +325,15 @@ namespace Umea_rana
 
             spriteBatch.Draw(selection, select, Color.White);
         }
-
+        public void Dispose()
+        {
+            rect = null;
+            gameState = null;
+            name = null;
+            levelname = null;
+            selection.Dispose();
+            test.Dispose();
+            
+        }
     }
 }

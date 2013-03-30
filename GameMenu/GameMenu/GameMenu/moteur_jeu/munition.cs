@@ -19,9 +19,11 @@ namespace Umea_rana
         int speed;
         public int temps_dexitence = 0;
         Color colo;
+        public int degat { get; private set; }
        
         public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed, Vector2 vect ,Color  colo)
         {
+            degat = 1;
             texture = n_texture;
             rectangle = n_rectangle;
             existe = true;
@@ -41,8 +43,12 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebatch)
         {
-
                 spritebatch.Draw(texture, rectangle, colo );
+        }
+
+        public void dispose()
+        {
+            texture.Dispose();
         }
     }
 }

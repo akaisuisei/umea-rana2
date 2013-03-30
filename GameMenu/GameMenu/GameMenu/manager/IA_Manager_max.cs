@@ -37,7 +37,6 @@ namespace Umea_rana
                 if (ia_manage[i].vie <= 0||ia_manage [i].rectangle .Top >window_H )
                     ia_manage.RemoveAt(i);
             }
-
         }
         public void removed(int i_de_list)// enleve un ia
         {
@@ -46,6 +45,12 @@ namespace Umea_rana
         public void remove_all()
         {            
             this.ia_manage = new List<vaisseau_IA>();
+        }
+        public void Dipose()
+        {
+            for (int i = 0; i < ia_manage.Count; ++i)
+                ia_manage[i].Dipose();
+            _texture.Dispose();
         }
     }
 }

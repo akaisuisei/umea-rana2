@@ -47,6 +47,19 @@ namespace Umea_rana
         string ia_type;
         ContentManager Content;
 
+        public void dispose()
+        {
+            type = null;
+            subdirectory = null;
+            scrollingM = null;
+            ovini = null;
+            ovni = null;
+            ia_type = null;
+            sauve = null;
+            manage_k.Dipose();
+            manage_T.Dipose();
+            manage_V.Dipose();
+        }
         public UserControl1()
         {
             InitializeComponent();

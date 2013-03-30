@@ -42,7 +42,7 @@ namespace Umea_rana
 
         public void initbutton(ref string level)
         {
-            if (level=="edit")
+            if (level == "edit")
             {
                 button.activate(0, 1, 0.1f, 0.3f, "", "Menu");
                 button.activate(0, 2, 0.1f, 0.4f, "Exit", "quitter");
@@ -84,6 +84,13 @@ namespace Umea_rana
                 _checkpause = false;
             else
                 _checkpause = true;
+        }
+
+        public void Dispose()
+        {
+            songMenu.Dispose();
+            background.Dispose();
+            button.Dispose();
         }
     }
 }

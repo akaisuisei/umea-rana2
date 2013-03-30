@@ -105,6 +105,18 @@ namespace Umea_rana
 
         public override void UnloadContent()
         {
+            vaisseau.Dispose();
+            aster_t.Dispose();
+            planet1.Dispose();
+            star.Dispose();
+            T_sprite.Dispose();
+            manage_k.Dipose();
+            manage_T.Dipose();
+            manage_V.Dipose();
+            _pause.Dispose();
+            scroll.dispose();
+            ovini.Dispose();
+
             // TODO: Unload any non ContentManager content here
         }
         public override void Update(Game1 game, Audio audio)
@@ -148,7 +160,8 @@ namespace Umea_rana
                 collision.collision_ai_missile(ref vaisseau, manage_k);
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
-
+                
+             //   collision.h_M1P(ref manage_V, ref manage_T, ref manage_k, ref vaisseau);
                 collision.Ovni_vaiss(ref ovini, ref vaisseau);
             }
             else

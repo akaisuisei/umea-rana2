@@ -77,8 +77,7 @@ namespace Umea_rana
             _vecteur.Normalize();
             return (_vecteur);
         }
-
-
+        
         public virtual void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Ia_color);
@@ -109,6 +108,12 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.Down))
                 --rectangle.Y;
             Update_rec_collision();
+        }
+
+        public void Dipose()
+        {
+            _texture.Dispose();
+            bullet.Dipose();            
         }
     }
 }

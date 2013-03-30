@@ -260,5 +260,10 @@ namespace Umea_rana
         {
             this.ovni.Clear();
         }
+        public void Dispose()
+        {
+            ovni = null;
+            texture.Dispose();
+        }
     }
 }

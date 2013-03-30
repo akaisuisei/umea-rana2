@@ -37,6 +37,8 @@ namespace Umea_rana
         }
         public override void UnloadContent()
         {
+            test.Dispose();
+            _pause.Dispose();
         }
         public override void Update(Game1 game, Audio audio)
         {

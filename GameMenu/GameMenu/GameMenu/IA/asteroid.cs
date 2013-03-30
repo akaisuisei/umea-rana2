@@ -66,8 +66,6 @@ namespace Umea_rana
             rectangle_C = rectangle;
             rot += movrot;
         }
-
-
         public void Draw(SpriteBatch spritebatch)
         {
             if (visible)
@@ -78,6 +76,12 @@ namespace Umea_rana
         public void toucher()
         {
             this.dirX = -dirX;
+        }
+
+        public void Dispose()
+        {
+            texture.Dispose();
+            rnd = null;
         }
     }
 }

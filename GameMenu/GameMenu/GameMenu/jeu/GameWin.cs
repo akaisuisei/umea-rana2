@@ -28,8 +28,7 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("Menu//songMenu");
-   
+            songMenu = content.Load<Song>("Menu//songMenu");   
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -49,6 +48,8 @@ namespace Umea_rana
         }
         public override void UnloadContent()
         {
+            background.Dispose();
+            button.Dispose();
         }
         public override void Update(Game1 game, Audio audio)
         {

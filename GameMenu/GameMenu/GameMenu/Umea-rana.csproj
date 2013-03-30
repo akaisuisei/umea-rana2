@@ -135,7 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameWin.cs" />
+    <Compile Include="jeu\GameWin.cs" />
     <Compile Include="moteur_jeu\Button.cs" />
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />

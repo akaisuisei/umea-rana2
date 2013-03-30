@@ -18,8 +18,6 @@ namespace Umea_rana
         public static float vol = 1.0f;
         Texture2D background;
         Rectangle rectangle;
-
-
         Button button;
         Rectangle rect;
         int tab = 0;
@@ -52,6 +50,10 @@ namespace Umea_rana
         }
         public override void UnloadContent()
         {
+            songMenu.Dispose();
+            background.Dispose();
+            button.Dispose();
+
         }
         public override void Update(Game1 game, Audio audio)
         {

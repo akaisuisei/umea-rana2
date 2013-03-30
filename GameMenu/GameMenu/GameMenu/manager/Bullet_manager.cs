@@ -142,7 +142,11 @@ namespace Umea_rana
                 bullet[i].Draw(spritebach);
         }
 
-        
+        public void Dipose()
+        {
+            texture.Dispose();
+ 
+        }
 
     }
 }

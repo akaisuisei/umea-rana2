@@ -13,6 +13,7 @@ namespace Umea_rana
 {
     public class sripte_V : objet
     {
+
         public Texture2D texture;
         //  Texture2D test;
         public List<munition> bulletL;
@@ -190,7 +191,6 @@ namespace Umea_rana
             }
             rectangle.X -= speed;
         }
-
         // animation
         private void move()
         {
@@ -296,6 +296,12 @@ namespace Umea_rana
             bullet.Bullet_draw(spritebatch, ref bulletL);
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
+        }
+        public void Dispose()
+        {
+            texture.Dispose();
+            bulletL = null;
+            bullet.Dipose();
         }
     }
 }

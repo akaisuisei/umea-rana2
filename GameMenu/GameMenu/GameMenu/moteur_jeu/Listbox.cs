@@ -205,6 +205,16 @@ namespace Umea_rana
 
             }
         }
+        public void Dispose()
+        {
+            save = null;
+            fondT.Dispose();
+            fleche.Dispose();
+            selectedItem = null;
+            color = null;
+            level = null;
+            rectangle = null;
+        }
 
     }
 }

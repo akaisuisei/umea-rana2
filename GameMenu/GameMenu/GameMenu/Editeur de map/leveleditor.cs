@@ -98,7 +98,16 @@ namespace Umea_rana
 
         public override void UnloadContent()
         {
-
+            vaisseau.Dispose();
+            aster_t.Dispose();
+            planet1.Dispose();
+            star.Dispose();
+            T_sprite.Dispose();
+            manage_k.Dipose();
+            manage_T.Dipose();
+            manage_V.Dipose();
+            ovini.Dispose();
+            Scroll.dispose();
             // TODO: Unload any non ContentManager content here
         }
         public override void Update(Game1 game, Audio audio)
@@ -129,11 +138,11 @@ namespace Umea_rana
                 manage_T.Update(ref game, ref game_time);
                 manage_V.Update(ref vaisseau, ref game_time);
                 manage_k.Update(ref vaisseau, ref game_time);
-                collision.hero_missile(manage_T, ref vaisseau, ref  game);
-                collision.hero_missile(manage_V, ref  vaisseau, ref  game);
-                collision.col_H_IA(manage_k, ref vaisseau, ref game);
-                collision.col_H_IA(manage_V, ref vaisseau, ref game);
-                collision.col_H_IA(manage_T, ref vaisseau, ref game);
+                collision.hero_missile(manage_T, ref vaisseau);
+                collision.hero_missile(manage_V, ref  vaisseau);
+                collision.col_H_IA(manage_k, ref vaisseau);
+                collision.col_H_IA(manage_V, ref vaisseau);
+                collision.col_H_IA(manage_T, ref vaisseau);
                 collision.Ovni_vaiss(ref ovini, ref vaisseau);
 
                 //update collision
@@ -169,9 +178,6 @@ namespace Umea_rana
             game_time++;
         }
 
-
-
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             ovini.Draw(spriteBatch);
@@ -187,6 +193,5 @@ namespace Umea_rana
                 _pause.Draw(spriteBatch);
 
         }
-
     }
 }
