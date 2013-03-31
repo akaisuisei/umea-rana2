@@ -26,8 +26,8 @@ namespace Umea_rana
         public bool automatic_controlled;
         int speed, maxspeed, minspeed;
         int sizeX, sizeY, timer, sizeX1, sizeX2, sizeY1, sizeY2, timer1, timer2;
-       public int power{get;set;}
-       public int bomb { get; set; }
+        public int power { get; set; }
+        public int bomb { get; set; }
         Int16 type;
 
         int FrameLine;
@@ -39,9 +39,16 @@ namespace Umea_rana
         int speedbullet;
         int damage;
 
+
+        int FrameColumn2;
+
+
+        Rectangle vect;
+
         public sripte_V(Rectangle n_rectangle, int height, int width)
         {
             rectangle = n_rectangle;
+
             decallageX = (int)(0.33f * (float)rectangle.Width);
             decallageY = (int)(0.55f * (float)rectangle.Width);
             hauteurY = (int)(0.33f * (float)rectangle.Width);
@@ -65,6 +72,9 @@ namespace Umea_rana
 
             sizeX2 = rectangle.Width / 4;
             sizeY2 = rectangle.Height / 5;
+
+            vect = new Rectangle(n_rectangle.X, n_rectangle.Y + (int)(rectangle.Height * 0.29f), rectangle.Height, rectangle.Width);
+            FrameColumn2 = 1;
 
             //     test = content.Load<Texture2D>("ListBoxBG");
         }
@@ -140,39 +150,46 @@ namespace Umea_rana
         {
             rectangle.Y -= speed;
             move();
-
+            vect.Y -= speed;
 
         }
         private void down()
         {
             if (type == 0)
             {
+                FrameColumn2 = 3;
+                FrameLine = 1;
                 FrameColumn = 1;
                 FrameLine = 1;
             }
             else
             {
+                FrameColumn2 = 3;
+
                 FrameColumn = 1;
                 FrameLine = 2;
             }
             rectangle.Y += speed;
-
+            vect.Y += speed;
         }
         private void right()
         {
             Effects = SpriteEffects.FlipHorizontally;
             if (type == 0)
             {
-                FrameColumn = 4;
+                FrameColumn2 = 2;
+                FrameColumn = 2;
                 FrameLine = 1;
             }
             else
             {
+                FrameColumn2 = 2;
                 FrameColumn = 2;
                 FrameLine = 2;
                 decallageX = (int)(0.467f * (float)rectangle.Width);
             }
             rectangle.X += speed;
+            vect.X += speed;
 
         }
         private void left()
@@ -180,16 +197,19 @@ namespace Umea_rana
             Effects = SpriteEffects.None;
             if (type == 0)
             {
-                FrameColumn = 4;
+                FrameColumn2 = 2;
+                FrameColumn = 2;
                 FrameLine = 1;
             }
             else
             {
+                FrameColumn2 = 2;
                 FrameColumn = 2;
                 FrameLine = 2;
                 decallageX = (int)(0.44f * (float)rectangle.Width);
             }
             rectangle.X -= speed;
+            vect.X -= speed;
         }
         // animation
         private void move()
@@ -197,11 +217,13 @@ namespace Umea_rana
             Effects = SpriteEffects.None;
             if (type == 0)
             {
+                FrameColumn2 = 1;
                 FrameColumn = 1;
                 FrameLine = 1;
             }
             else
             {
+                FrameColumn2 = 1;
                 FrameColumn = 1;
                 FrameLine = 2;
                 decallageX = (int)(0.44f * (float)rectangle.Width);
@@ -216,9 +238,9 @@ namespace Umea_rana
             hauteurY = (int)(0.20f * (float)rectangle.Width); ;
             largeurX = (int)(0.33f * (float)rectangle.Width);
             this.Timer++;
-            if (type %2==1)
+            if (type % 2 == 1)
             {
-                
+
                 if (FrameLine == 1 && FrameColumn == 1)
                 {
                     FrameColumn = 4;
@@ -238,6 +260,7 @@ namespace Umea_rana
                     sizeX = sizeX1;
                     sizeY = sizeY1;
                     timer = timer1;
+                    vect.Y -= (int)(vect.Height * 0.263f);
                 }
                 else if (FrameColumn == 1)
                 {
@@ -272,6 +295,7 @@ namespace Umea_rana
                     sizeX = sizeX2;
                     sizeY = sizeY2;
                     timer = timer2;
+                    vect.Y += (int)(vect.Height * 0.267f);
                 }
                 else if (FrameColumn == 4)
                 {
@@ -296,6 +320,8 @@ namespace Umea_rana
             bullet.Bullet_draw(spritebatch, ref bulletL);
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
+            spritebatch.Draw(texture, vect, new Rectangle(600 + (this.FrameColumn2 - 1) * 300, (this.FrameLine - 1) * 200, 300, 200), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
+
         }
         public void Dispose()
         {
