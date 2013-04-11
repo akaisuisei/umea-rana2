@@ -40,7 +40,7 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, content);
-            scroll = new Scrolling_ManagerV(width, height);
+            scroll = new Scrolling_ManagerV(new Rectangle(200,0,width/2,height ));
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)

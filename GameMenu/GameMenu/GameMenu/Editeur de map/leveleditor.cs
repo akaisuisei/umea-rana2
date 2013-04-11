@@ -54,7 +54,7 @@ namespace Umea_rana
             sizeX=(int)(width*0.05);
             sizey =(int)(height *0.09);
             game_time = 0;
-            Scroll = new Scrolling_ManagerV(width, height);
+            Scroll = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
             // ajout IA
         }
 

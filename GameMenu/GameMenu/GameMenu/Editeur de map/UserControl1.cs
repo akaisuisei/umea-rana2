@@ -92,7 +92,7 @@ namespace Umea_rana
             textBox16.BackColor = System.Drawing.Color.Red;
             textBox10.BackColor = System.Drawing.Color.Red;
             textBox11.BackColor = System.Drawing.Color.Red;
-            scrollingM = new Scrolling_ManagerV(width, height);
+            scrollingM = new Scrolling_ManagerV(new Microsoft.Xna.Framework.Rectangle(0, 0, width, height));
             openF = false;
 
             playlist = new string[4] { "", "", "", "" };

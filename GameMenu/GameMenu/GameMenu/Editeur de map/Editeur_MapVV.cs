@@ -63,7 +63,7 @@ namespace Umea_rana
         public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
             _pause.initbutton(ref level);
-            Scroll_manager = new Scrolling_ManagerV(width, height);
+            Scroll_manager = new Scrolling_ManagerV(new Rectangle(0,0,width,height ));
             //charge le fond
             //  bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite

@@ -14,22 +14,35 @@ namespace Umea_rana
 {
     public class Scrolling_ManagerV
     {
-        public List<Scrolling> scroll;
-        public List<Texture2D> texture;
-     
+       public List<Scrolling> scroll;
+        public Texture2D[] texture;
+
+        public Rectangle[] rec1, rec2;
+        public float[] couche;
+        public int[] speed { get; set; }
+       public int count { get; set; }
+
         int windows_W, window_H;
-        public Scrolling_ManagerV(int width, int heiht)
+        Rectangle rectangle;
+        public Scrolling_ManagerV(Rectangle rect)
         {
-            scroll = new List<Scrolling>();
-            texture = new List<Texture2D>();
-            window_H = heiht;
-            windows_W = width;
+   
+            rec1 = new Rectangle[3];
+            rec2 = new Rectangle[3];
+            texture = new Texture2D[3];
+            couche = new float[3];
+            speed = new int[3];
+            rectangle = rect;
+            window_H = rect.Height ;
+            windows_W = rect.Width ;
+            count = 0;
         }
 
         public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice graph)
         {               
-            int speed1 = levelprofile.fc_speed / 2;
-            int speed2 = levelprofile.fc_speed / 3;
+            speed[1]= levelprofile.fc_speed / 2;
+            speed[2] = levelprofile.fc_speed / 3;
+            speed[0] = levelprofile.fc_speed;
             string name= string.Empty ;
             for (int i = 0; i < levelprofile.background_name.Length && levelprofile.background_name[i] != '.'; ++i)
             {
@@ -40,61 +53,127 @@ namespace Umea_rana
             }
             if (name  == "backgroundT")// si c est un jeu normal
             {
-                texture.Add(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 1f));
+              
+                texture[count ]=(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+                couche[count] = 1f;
+                ++count;
             }
             else if (name  == "BackgrounD")// si c est un jeu perso
             {
                 Sauveguarde save = new Sauveguarde();
                 FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname +"\\"+ levelprofile.background_name, FileMode.Open, FileAccess.Read);
-                texture.Add(Texture2D.FromStream(graph, file));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
-
+              texture[count] = (Texture2D.FromStream(graph, file));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+                couche[count] = 0.5f;
+                
+         
+            //    scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                ++count;
             }
             else
             {
-                texture.Add(Content.Load<Texture2D>("level2\\fond"));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                texture[count] = (Content.Load<Texture2D>("level2\\fond"));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+                couche[count] = 0.5f;
+           //     scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                ++count;
             }
 
             if (levelprofile.second_background != null)
             {
-                texture.Add(Content.Load<Texture2D>("back\\" + levelprofile.second_background));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
+                texture[count] = (Content.Load<Texture2D>("back\\" + levelprofile.second_background));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+                couche[count] = 0.9f;
+              //  scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
+                ++count;
             }
             if (levelprofile.third_bacground != null)
             {
-                texture.Add(Content.Load<Texture2D>("back\\" + levelprofile.third_bacground));
-                scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
+                texture[count] = (Content.Load<Texture2D>("back\\" + levelprofile.third_bacground));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+                couche[count] = 0.1f;
+             //   scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
+                ++count;
             }            
         }
         
         public void Update()
         {
-            foreach (Scrolling sc in scroll)
-                sc.Update();
+            for (int i = 0; i < count; ++i)
+            {
+                rec1[i].Y += speed[i];
+                rec2[i].Y += speed[i];
+                if (rec1[i].Y >= window_H)
+                    rec1[i].Y = rec2[i].Y - rec2[i].Height;
+                if (rec2[i].Y >= window_H)
+                    rec2[i].Y = rec1[i].Y - rectangle.Height;
+            }
+
         }
         public void Update_ophelia(KeyboardState keybord)
         {
-            foreach (Scrolling sc in scroll)
-                sc.update_ophelia(keybord);
+            for (int i = 0; i < count; ++i)
+            {
+                if (keybord.IsKeyDown(Keys.Up))
+                {
+                    rec1[i].Y += speed[i];
+                    rec2[i].Y += speed[i];
+                }
+                if (keybord.IsKeyDown(Keys.Down))
+                {
+                    rec1[i].Y -= speed[i];
+                    rec2[i].Y -= speed[i];
+                }
+                if (rec1[i].Y >= window_H)
+                    rec1[i].Y = rec2[i].Y - rec2[i].Height;
+                if (rec2[i].Y >= window_H)
+                    rec2[i].Y = rec1[i].Y - rectangle.Height;
+                if (rectangle.Bottom <= 0)
+                    rec1[i].Y = rec2[i].Bottom;
+                if (rec2[i].Bottom <= 0)
+                    rec2[i].Y = rectangle.Bottom;
+            }
+    
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            foreach (Scrolling sc in scroll)
-                sc.Draw(spritebatch);
+       
+            for (int i = 0; i < count; ++i)
+            {
+                spritebatch.Draw(texture[i], rec1[i], new Rectangle(0, 0, texture[i].Width, texture[i].Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche[i]);
+                spritebatch.Draw(texture[i], rec2[i], new Rectangle(0, 0, texture[i].Width, texture[i].Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche[i]);
+            }
         }
 
         public void Clear()
         {
-            this.scroll.Clear();
+            for (int i = 0; i < count ; ++i)
+            {
+                texture[i]=null;
+            }
+            rec1 = null;
+            rec2 = null;
+            couche = null;
+            speed = null;
         }
         public void dispose()
         {
-            scroll = null;
-            foreach (Texture2D t in texture)
-                t.Dispose();
+            for (int i = 0; i < count; ++i)
+            {
+                texture[i].Dispose();
+
+            }
+            rec1 = null;
+            rec2 = null;
+            couche = null;
+            speed = null;
         }
     }
 }
