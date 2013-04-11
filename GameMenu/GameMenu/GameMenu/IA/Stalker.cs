@@ -24,11 +24,11 @@ namespace Umea_rana
         SpriteEffects Effects2;
         int Timer2;
 
-        int FrameLine3;
-        int FrameColumn3;
-        SpriteEffects Effects3;
-        int Timer3;
-        int window_W, window_H;
+     public    int FrameLine3;
+     public    int FrameColumn3;
+      public   SpriteEffects Effects3;
+       public  int Timer3;
+      public  int window_W, window_H;
 
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, couple couple,int spawn)
         {

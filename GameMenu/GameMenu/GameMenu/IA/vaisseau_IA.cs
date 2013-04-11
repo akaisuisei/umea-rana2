@@ -31,6 +31,11 @@ namespace Umea_rana
         public int damage { get { return _damage; } }
 
         public int spawn;
+        public int FrameLine;
+        public int FrameColumn;
+        public SpriteEffects Effects;
+        public int Timer;
+        public int AnimationSpeed = 10;
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -77,7 +82,7 @@ namespace Umea_rana
             _vecteur.Normalize();
             return (_vecteur);
         }
-        
+
         public virtual void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Ia_color);
@@ -113,7 +118,7 @@ namespace Umea_rana
         public void Dipose()
         {
             _texture.Dispose();
-            bullet.Dipose();            
+            bullet.Dipose();
         }
     }
 }

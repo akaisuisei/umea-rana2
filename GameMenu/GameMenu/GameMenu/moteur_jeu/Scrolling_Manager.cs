@@ -14,63 +14,63 @@ namespace Umea_rana
 {
     public class Scrolling_ManagerV
     {
-       public List<Scrolling> scroll;
+        public List<Scrolling> scroll;
         public Texture2D[] texture;
 
         public Rectangle[] rec1, rec2;
         public float[] couche;
         public int[] speed { get; set; }
-       public int count { get; set; }
+        public int count { get; set; }
 
         int windows_W, window_H;
         Rectangle rectangle;
         public Scrolling_ManagerV(Rectangle rect)
         {
-   
+
             rec1 = new Rectangle[3];
             rec2 = new Rectangle[3];
             texture = new Texture2D[3];
             couche = new float[3];
             speed = new int[3];
             rectangle = rect;
-            window_H = rect.Height ;
-            windows_W = rect.Width ;
+            window_H = rect.Height;
+            windows_W = rect.Width;
             count = 0;
         }
 
         public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice graph)
-        {               
-            speed[1]= levelprofile.fc_speed / 2;
+        {
+            speed[1] = levelprofile.fc_speed / 2;
             speed[2] = levelprofile.fc_speed / 3;
             speed[0] = levelprofile.fc_speed;
-            string name= string.Empty ;
+            string name = string.Empty;
             for (int i = 0; i < levelprofile.background_name.Length && levelprofile.background_name[i] != '.'; ++i)
             {
-                
+
                 name += levelprofile.background_name[i];
                 if (levelprofile.background_name[i] == '\\')
                     name = "";
             }
-            if (name  == "backgroundT")// si c est un jeu normal
+            if (name == "backgroundT")// si c est un jeu normal
             {
-              
-                texture[count ]=(Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
+
+                texture[count] = (Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 1f;
                 ++count;
             }
-            else if (name  == "BackgrounD")// si c est un jeu perso
+            else if (name == "BackgrounD")// si c est un jeu perso
             {
                 Sauveguarde save = new Sauveguarde();
-                FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname +"\\"+ levelprofile.background_name, FileMode.Open, FileAccess.Read);
-              texture[count] = (Texture2D.FromStream(graph, file));
+                FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
+                texture[count] = (Texture2D.FromStream(graph, file));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 0.5f;
-                
-         
-            //    scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+
+
+                //    scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
                 ++count;
             }
             else
@@ -79,7 +79,7 @@ namespace Umea_rana
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 0.5f;
-           //     scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                //     scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
                 ++count;
             }
 
@@ -89,7 +89,7 @@ namespace Umea_rana
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 0.9f;
-              //  scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
+                //  scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
                 ++count;
             }
             if (levelprofile.third_bacground != null)
@@ -98,11 +98,11 @@ namespace Umea_rana
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 0.1f;
-             //   scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
+                //   scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
                 ++count;
-            }            
+            }
         }
-        
+
         public void Update()
         {
             for (int i = 0; i < count; ++i)
@@ -116,6 +116,33 @@ namespace Umea_rana
             }
 
         }
+        public void Update(KeyboardState keyboard)
+        {
+            for (int i = 0; i < count; ++i)
+            {
+                if (keyboard.IsKeyDown(Keys.Right))
+                {
+                    rec1[i].X -= speed[i];
+                    rec2[i].X -= speed[i];
+                }
+                if (keyboard.IsKeyDown(Keys.Left))
+                {
+                    rec1[i].X += speed[i];
+                    rec2[i].X += speed[i];
+                }
+
+                if (rec1[i].X + rec1[i].Width <= 0)
+                    rec1[i].X = rec2[i].X + rec2[i].Width;
+                if (rec2[i].X + rec2[i].Width <= 0)
+                    rec2[i].X = rec1[i].X + rec1[i].Width;
+
+                if (rec1[i].X >= 0)
+                    rec2[i].X = rec1[i].X - rec1[i].Width;
+                if (rec2[i].X >= 0)
+                    rec1[i].X = rec2[i].X - rec2[i].Width;
+            }
+        }
+
         public void Update_ophelia(KeyboardState keybord)
         {
             for (int i = 0; i < count; ++i)
@@ -139,12 +166,12 @@ namespace Umea_rana
                 if (rec2[i].Bottom <= 0)
                     rec2[i].Y = rectangle.Bottom;
             }
-    
+
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-       
+
             for (int i = 0; i < count; ++i)
             {
                 spritebatch.Draw(texture[i], rec1[i], new Rectangle(0, 0, texture[i].Width, texture[i].Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, couche[i]);
@@ -154,9 +181,9 @@ namespace Umea_rana
 
         public void Clear()
         {
-            for (int i = 0; i < count ; ++i)
+            for (int i = 0; i < count; ++i)
             {
-                texture[i]=null;
+                texture[i] = null;
             }
             rec1 = null;
             rec2 = null;
