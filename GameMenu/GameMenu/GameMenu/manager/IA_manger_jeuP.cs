@@ -131,7 +131,7 @@ namespace Umea_rana
                     {
                         if (ia_manage[i].tombe == true)
                         {
-                            ia_manage[i].FrameColumn = 1;
+                            ia_manage[i]. FrameColunm = 1;
                             ia_manage[i].FrameLine = 5;
                         }
                         else if (this.ia_manage[i].attaque == true)
@@ -141,10 +141,10 @@ namespace Umea_rana
                             if (this.ia_manage[i].Timer == this.ia_manage[i].AnimationSpeed)
                             {
                                 this.ia_manage[i].Timer = 0;
-                                this.ia_manage[i].FrameColumn++;
-                                if (ia_manage[i].FrameColumn > 6)
+                                this.ia_manage[i]. FrameColunm++;
+                                if (ia_manage[i]. FrameColunm > 6)
                                 {
-                                    ia_manage[i].FrameColumn = 1;
+                                    ia_manage[i]. FrameColunm = 1;
                                 }
                             }
                         }
@@ -155,10 +155,10 @@ namespace Umea_rana
                             if (this.ia_manage[i].Timer == this.ia_manage[i].AnimationSpeed)
                             {
                                 this.ia_manage[i].Timer = 0;
-                                this.ia_manage[i].FrameColumn++;
-                                if (ia_manage[i].FrameColumn > 4)
+                                this.ia_manage[i]. FrameColunm++;
+                                if (ia_manage[i]. FrameColunm > 4)
                                 {
-                                    ia_manage[i].FrameColumn = 1;
+                                    ia_manage[i]. FrameColunm = 1;
                                 }
                             }
                         }
@@ -167,7 +167,7 @@ namespace Umea_rana
                     else
                     {
                         ia_manage[i].FrameLine = 3;
-                        ia_manage[i].FrameColumn = 4;
+                        ia_manage[i]. FrameColunm = 4;
                         this.ia_manage[i].Timer++;
 
                     }

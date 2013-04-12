@@ -16,10 +16,7 @@ namespace Umea_rana
 
     public class Viseur_aI : vaisseau_IA
     {
-        int FrameLine;
-        int FrameColumn;
-        SpriteEffects Effects;
-        int Timer;
+
         int AnimationSpeed = 10;
 
         public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint,int spawn)
@@ -43,7 +40,7 @@ namespace Umea_rana
 
             this.Effects = SpriteEffects.None;
             this.FrameLine = 1;
-            this.FrameColumn = 1;
+            this. FrameColunm = 1;
             this.Timer = 0;
         }
         /// <summary>
@@ -75,7 +72,7 @@ namespace Umea_rana
 
             this.Effects = SpriteEffects.None;
             this.FrameLine = 1;
-            this.FrameColumn = 1;
+            this. FrameColunm = 1;
             this.Timer = 0;
         }
 
@@ -98,7 +95,7 @@ namespace Umea_rana
             this.timer_lunch = gametime;
             this.Effects = SpriteEffects.None;
             this.FrameLine = 1;
-            this.FrameColumn = 1;
+            this.FrameColunm = 1;
             this.Timer = 0;
 
 
@@ -117,15 +114,15 @@ namespace Umea_rana
             if (this.Timer == this.AnimationSpeed)
             {
                 this.Timer = 0;
-                this.FrameColumn++;
-                if (FrameLine == 1 && FrameColumn > 5)
+                this. FrameColunm++;
+                if (FrameLine == 1 &&  FrameColunm > 5)
                 {
-                    FrameColumn = 1;
+                     FrameColunm = 1;
                     FrameLine = 2;
                 }
-                else if (FrameLine == 2 && FrameColumn > 8)
+                else if (FrameLine == 2 &&  FrameColunm > 8)
                 {
-                    FrameColumn = 1;
+                     FrameColunm = 1;
                     FrameLine = 1;
                 }
 
@@ -134,7 +131,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 42, (this.FrameLine - 1) * 42, 42, 42), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this. FrameColunm - 1) * 42, (this.FrameLine - 1) * 42, 42, 42), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
     }
 }

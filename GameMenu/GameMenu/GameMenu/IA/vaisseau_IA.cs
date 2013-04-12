@@ -32,7 +32,7 @@ namespace Umea_rana
 
         public int spawn;
         public int FrameLine;
-        public int FrameColumn;
+        public int FrameColunm;
         public SpriteEffects Effects;
         public int Timer;
         public int AnimationSpeed = 10;

@@ -13,24 +13,12 @@ namespace Umea_rana
 {
     class Stalker : vaisseau_IA
     {
-        int FrameLine;
-        int FrameColumn;
-        SpriteEffects Effects;
-        int Timer;
-        int AnimationSpeed = 10;
+       
 
-        int FrameLine2;
-        int FrameColumn2;
-        SpriteEffects Effects2;
-        int Timer2;
+ 
+        public int window_W, window_H;
 
-     public    int FrameLine3;
-     public    int FrameColumn3;
-      public   SpriteEffects Effects3;
-       public  int Timer3;
-      public  int window_W, window_H;
-
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle, couple couple,int spawn)
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, couple couple, int spawn)
         {
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
@@ -59,12 +47,12 @@ namespace Umea_rana
         /// <param name="window_W"></param>
         /// <param name="launchTime"></param>
         /// <param name="vie"></param>
-        public Stalker(Texture2D n_textture, Rectangle n_rectangle,couple couple)
+        public Stalker(Texture2D n_textture, Rectangle n_rectangle, couple couple)
         {
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
             this._texture = n_textture;
-           
+
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
             longueur_attaque = 100;
@@ -74,7 +62,7 @@ namespace Umea_rana
             _speed = couple.speed;
             this._damage = couple.damage;
             this.dir = 1;
-            
+
 
         }
         /// <summary>
@@ -90,10 +78,11 @@ namespace Umea_rana
         /// <param name="vie"></param>
         public Stalker(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W, int id, int vie)
         {
+            AnimationSpeed = 10;
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
             this._texture = n_textture;
-           
+
             Ia_color = Color.AliceBlue;
             this.vie = vie;
             this.window_H = window_H;
@@ -105,36 +94,34 @@ namespace Umea_rana
             this.dir = 1;
             this.front_sc = front_sc;
 
-            this.FrameLine = 1;
-            this.FrameColumn = 1;
-            this.Timer = 0;
-
-            this.FrameLine2 = 1;
-            this.FrameColumn2 = 1;
-            this.Timer2 = 0;
-
-            this.FrameLine3 = 1;
-            this.FrameColumn3 = 1;
-            this.Timer3 = 0;
 
             switch (id)
             {
 
                 case 1:// stalker
-                    decallageX =32; decallageY = 36;
+                    decallageX = 32; decallageY = 36;
                     hauteurY = rectangle.Height - decalageY - 13; largeurX = 37;
                     longueur_attaque = 20;
+                    this.FrameLine = 1;
+                    this. FrameColunm = 1;
+                    this.Timer = 0;
                     break;
                 case 2:// ia AR
                     decallageX = 23; decallageY = 9;
-                    hauteurY = rectangle.Height - decalageY +4; largeurX =20;
+                    hauteurY = rectangle.Height - decalageY + 4; largeurX = 20;
                     longueur_attaque = 18;//2;
+                    this.FrameLine = 1;
+                    this. FrameColunm = 1;
+                    this.Timer = 0;
                     break;
                 default:// iaAA
                     decallageX = 21; decallageY = 23;
-                    hauteurY = rectangle.Height - decalageY - 10; largeurX =25;
+                    hauteurY = rectangle.Height - decalageY - 10; largeurX = 25;
                     longueur_attaque = 14;
                     dir = -1;
+                    this.FrameLine = 1;
+                    this. FrameColunm = 1;
+                    this.Timer = 0;
                     break;
 
             }
@@ -143,26 +130,26 @@ namespace Umea_rana
         public void Update(objet sprite, ref KeyboardState keyboard)
         {
             Update_rec_collision();
-            if (vie>=0&&!attaque  && this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie >= 0 && !attaque && this.rectangle_C.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
 
                 if (tombe)
                     rectangle.Y += poid;
 
-                if (rectangle_C.Center.X  - longueur_attaque > sprite.rectangle_C.Center.X )
+                if (rectangle_C.Center.X - longueur_attaque > sprite.rectangle_C.Center.X)
                 {
                     dir = -1;
                     _speed = normalspeed;
                 }
                 else
-                 if (rectangle_C.Center.X  + longueur_attaque< sprite.rectangle_C.Center.X )
-                {
-                    dir = 1;
-                    _speed = normalspeed;
-                }
-                 else
-                     _speed = 0;
-               
+                    if (rectangle_C.Center.X + longueur_attaque < sprite.rectangle_C.Center.X)
+                    {
+                        dir = 1;
+                        _speed = normalspeed;
+                    }
+                    else
+                        _speed = 0;
+
                 rectangle.X += dir * _speed;
 
             }
@@ -179,12 +166,12 @@ namespace Umea_rana
             {
                 decallageX = 43;
                 this.Effects = SpriteEffects.None;
-                
+
                 if (vie >= 0)
                 {
                     if (tombe == true)
                     {
-                        FrameColumn = 1;
+                         FrameColunm = 1;
                         FrameLine = 5;
                     }
                     else if (this.attaque == true)
@@ -194,10 +181,10 @@ namespace Umea_rana
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 6)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 6)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
@@ -208,10 +195,10 @@ namespace Umea_rana
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 4)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 4)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
@@ -222,10 +209,10 @@ namespace Umea_rana
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 4)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 4)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
@@ -235,19 +222,19 @@ namespace Umea_rana
                 {
                     FrameLine = 3;
                     this.Timer++;
-                    if (FrameColumn == 4)
+                    if ( FrameColunm == 4)
                     {
-                        FrameColumn = 1;
+                         FrameColunm = 1;
                         FrameLine = 1;
                     }
-                    else if (FrameColumn > 4)
+                    else if ( FrameColunm > 4)
                     {
-                        FrameColumn = 1;
+                         FrameColunm = 1;
                     }
                     else if (this.Timer == this.AnimationSpeed)
                     {
                         this.Timer = 0;
-                        this.FrameColumn++;
+                        this. FrameColunm++;
 
                     }
                 }
@@ -256,12 +243,12 @@ namespace Umea_rana
             {
                 decallageX = 25;
                 this.Effects = SpriteEffects.FlipHorizontally;
-                
+
                 if (vie >= 0)
                 {
                     if (tombe == true)
                     {
-                        FrameColumn = 1;
+                         FrameColunm = 1;
                         FrameLine = 5;
                     }
                     else if (this.attaque == true)
@@ -271,25 +258,25 @@ namespace Umea_rana
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 6)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 6)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
                     else if (attaque == false && _speed == 0)
                     {
-                        
-                        FrameLine = 1;                        
+
+                        FrameLine = 1;
                         this.Timer++;
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 4)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 4)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
@@ -300,10 +287,10 @@ namespace Umea_rana
                         if (this.Timer == this.AnimationSpeed)
                         {
                             this.Timer = 0;
-                            this.FrameColumn++;
-                            if (FrameColumn > 4)
+                            this. FrameColunm++;
+                            if ( FrameColunm > 4)
                             {
-                                FrameColumn = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
@@ -313,18 +300,18 @@ namespace Umea_rana
                 {
                     FrameLine = 3;
                     this.Timer++;
-                    if (FrameColumn == 4)
+                    if ( FrameColunm == 4)
                     {
 
                     }
-                    else if (FrameColumn > 4)
+                    else if ( FrameColunm > 4)
                     {
-                        FrameColumn = 1;
+                         FrameColunm = 1;
                     }
                     else if (this.Timer == this.AnimationSpeed)
                     {
                         this.Timer = 0;
-                        this.FrameColumn++;
+                        this. FrameColunm++;
 
                     }
                 }
@@ -340,67 +327,67 @@ namespace Umea_rana
                     rectangle.Y += poid;
 
                 }
-                if(!attaque )
-                rectangle.X += dir * _speed;
+                if (!attaque)
+                    rectangle.X += dir * _speed;
             }
             if (keyboard.IsKeyDown(Keys.Right))
                 rectangle.X -= front_sc;
             if (keyboard.IsKeyDown(Keys.Left))
                 rectangle.X += front_sc;
-            
+
             if (dir == 1)
             {
                 decallageX = 54;
-                this.Effects2 = SpriteEffects.None;
+                this.Effects = SpriteEffects.None;
 
                 if (vie >= 0)
                 {
 
                     if (this.attaque == true)
                     {
-                        FrameLine2 = 4;
-                        this.Timer2++;
-                        if (this.Timer2 == this.AnimationSpeed)
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer2 = 0;
-                            this.FrameColumn2++;
-                            if (FrameColumn2 > 10)
+                            this.Timer = 0;
+                            this. FrameColunm++;
+                            if ( FrameColunm > 10)
                             {
-                                FrameColumn2 = 1;
+                                 FrameColunm = 1;
                             }
                         }
                     }
                     else
                     {
-                        FrameLine2 = 2;
-                        this.Timer2++;
-                        if (this.Timer2 == this.AnimationSpeed)
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer2 = 0;
-                            this.FrameColumn2++;
-                            if (FrameColumn2 > 4)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 4)
                             {
-                                FrameColumn2 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
                 }
                 else
                 {
-                    FrameLine2 = 3;
-                    this.Timer2++;
-                    if (FrameColumn2 == 4)
+                    FrameLine = 3;
+                    this.Timer++;
+                    if (FrameColunm == 4)
                     {
 
                     }
-                    else if (FrameColumn2 > 4)
+                    else if (FrameColunm > 4)
                     {
-                        FrameColumn2 = 1;
+                        FrameColunm = 1;
                     }
-                    else if (this.Timer2 == this.AnimationSpeed)
+                    else if (this.Timer == this.AnimationSpeed)
                     {
-                        this.Timer2 = 0;
-                        this.FrameColumn2++;
+                        this.Timer = 0;
+                        this.FrameColunm++;
 
                     }
                 }
@@ -409,56 +396,56 @@ namespace Umea_rana
             else if (dir == -1)
             {
                 decallageX = 23;
-                this.Effects2 = SpriteEffects.FlipHorizontally;
+                this.Effects = SpriteEffects.FlipHorizontally;
 
                 if (vie >= 0)
                 {
 
                     if (this.attaque == true)
                     {
-                        FrameLine2 = 4;
-                        this.Timer2++;
-                        if (this.Timer2 == this.AnimationSpeed)
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer2 = 0;
-                            this.FrameColumn2++;
-                            if (FrameColumn2 > 10)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 10)
                             {
-                                FrameColumn2 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
                     else
                     {
-                        FrameLine2 = 2;
-                        this.Timer2++;
-                        if (this.Timer2 == this.AnimationSpeed)
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer2 = 0;
-                            this.FrameColumn2++;
-                            if (FrameColumn2 > 4)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 4)
                             {
-                                FrameColumn2 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
                 }
                 else
                 {
-                    FrameLine2 = 3;
-                    this.Timer2++;
-                    if (FrameColumn2 == 4)
+                    FrameLine = 3;
+                    this.Timer++;
+                    if (FrameColunm == 4)
                     {
 
                     }
-                    else if (FrameColumn2 > 4)
+                    else if (FrameColunm > 4)
                     {
-                        FrameColumn2 = 1;
+                        FrameColunm = 1;
                     }
-                    else if (this.Timer2 == this.AnimationSpeed)
+                    else if (this.Timer == this.AnimationSpeed)
                     {
-                        this.Timer2 = 0;
-                        this.FrameColumn2++;
+                        this.Timer = 0;
+                        this.FrameColunm++;
 
                     }
                 }
@@ -492,10 +479,10 @@ namespace Umea_rana
         {
             Update_rec_collision();
 
-            if (vie>0&&this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
+            if (vie > 0 && this.rectangle_C.Center.X < 1.2f * window_W && this.rectangle_C.X > -0.2f * window_W)
             {
                 if (attaque == false)
-                rectangle.X +=dir * _speed;
+                    rectangle.X += dir * _speed;
                 if (tombe)
                     rectangle.Y += poid;
             }
@@ -506,39 +493,39 @@ namespace Umea_rana
 
             if (dir == 1)
             {
-                this.Effects3 = SpriteEffects.None;
+                this.Effects = SpriteEffects.None;
                 if (vie >= 0)
                 {
                     if (tombe == true)
                     {
-                        FrameColumn3 = 1;
-                        FrameLine3 = 5;
+                        FrameColunm = 1;
+                        FrameLine = 5;
                     }
                     else if (this.attaque == true)
                     {
-                        FrameLine3 = 4;
-                        this.Timer3++;
-                        if (this.Timer3 == this.AnimationSpeed)
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer3 = 0;
-                            this.FrameColumn3++;
-                            if (FrameColumn3 > 6)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 6)
                             {
-                                FrameColumn3 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
                     else
                     {
-                        FrameLine3 = 2;
-                        this.Timer3++;
-                        if (this.Timer3 == this.AnimationSpeed)
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer3 = 0;
-                            this.FrameColumn3++;
-                            if (FrameColumn3 > 4)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 4)
                             {
-                                FrameColumn3 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
@@ -546,21 +533,21 @@ namespace Umea_rana
 
                 else
                 {
-                    FrameLine3 = 3;
-                    FrameColumn3 = 4;
+                    FrameLine = 3;
+                    FrameColunm = 4;
                     this.Timer++;
-                    /*if (FrameColumn3 == 4)
+                    /*if (FrameColunm == 4)
                     {
 
                     }
-                    else if (FrameColumn3 > 4)
+                    else if (FrameColunm > 4)
                     {
-                        FrameColumn3 = 1;
+                        FrameColunm = 1;
                     }
-                    else if (this.Timer3 == this.AnimationSpeed)
+                    else if (this.Timer == this.AnimationSpeed)
                     {
-                        this.Timer3 = 0;
-                        this.FrameColumn3++;
+                        this.Timer = 0;
+                        this.FrameColunm++;
 
                     }*/
                 }
@@ -568,39 +555,39 @@ namespace Umea_rana
 
             else if (dir == -1)
             {
-                this.Effects3 = SpriteEffects.FlipHorizontally;
+                this.Effects = SpriteEffects.FlipHorizontally;
                 if (vie >= 0)
                 {
                     if (tombe == true)
                     {
-                        FrameColumn3 = 1;
-                        FrameLine3 = 5;
+                        FrameColunm = 1;
+                        FrameLine = 5;
                     }
                     else if (this.attaque == true)
                     {
-                        FrameLine3 = 4;
-                        this.Timer3++;
-                        if (this.Timer3 == this.AnimationSpeed)
+                        FrameLine = 4;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer3 = 0;
-                            this.FrameColumn3++;
-                            if (FrameColumn3 > 6)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 6)
                             {
-                                FrameColumn3 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
                     else
                     {
-                        FrameLine3 = 2;
-                        this.Timer3++;
-                        if (this.Timer3 == this.AnimationSpeed)
+                        FrameLine = 2;
+                        this.Timer++;
+                        if (this.Timer == this.AnimationSpeed)
                         {
-                            this.Timer3 = 0;
-                            this.FrameColumn3++;
-                            if (FrameColumn3 > 4)
+                            this.Timer = 0;
+                            this.FrameColunm++;
+                            if (FrameColunm > 4)
                             {
-                                FrameColumn3 = 1;
+                                FrameColunm = 1;
                             }
                         }
                     }
@@ -608,21 +595,21 @@ namespace Umea_rana
 
                 else
                 {
-                    FrameLine3 = 3;
-                    FrameColumn3 = 4;
+                    FrameLine = 3;
+                    FrameColunm = 4;
                     /*this.Timer++;
-                    if (FrameColumn3 == 4)
+                    if (FrameColunm == 4)
                     {
 
                     }
-                    else if (FrameColumn3 > 4)
+                    else if (FrameColunm > 4)
                     {
-                        FrameColumn3 = 1;
+                        FrameColunm = 1;
                     }
-                    else if (this.Timer3 == this.AnimationSpeed)
+                    else if (this.Timer == this.AnimationSpeed)
                     {
-                        this.Timer3 = 0;
-                        this.FrameColumn3++;
+                        this.Timer = 0;
+                        this.FrameColunm++;
 
                     }*/
                 }
@@ -633,22 +620,23 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spritback)
         {
-            spritback.Draw(_texture, rectangle, Color.White );
+            spritback.Draw(_texture, rectangle, Color.White);
         }
 
         public void Draw_S(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn - 1) * 150, (this.FrameLine - 1) * 72, 150, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this. FrameColunm - 1) * 150, (this.FrameLine - 1) * 72, 150, 72), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
 
         public void Draw_AR(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn2 - 1) * 130, (this.FrameLine2 - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.Effects2, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColunm - 1) * 130, (this.FrameLine - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(_texture, rectangle_C , Color.Yellow);
         }
 
         public void Draw_AA(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColumn3 - 1) * 90, (this.FrameLine3 - 1) * 63, 90, 63), Color.White, 0f, new Vector2(0, 0), this.Effects3, 0f);
+            spritebatch.Draw(_texture, rectangle, new Rectangle((this.FrameColunm - 1) * 90, (this.FrameLine - 1) * 63, 90, 63), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
     }
 }
