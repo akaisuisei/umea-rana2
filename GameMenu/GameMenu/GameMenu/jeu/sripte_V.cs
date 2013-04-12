@@ -14,7 +14,7 @@ namespace Umea_rana
     public class sripte_V : objet
     {
 
-        public Texture2D texture;
+        public Texture2D texture, mtexture;
         //  Texture2D test;
         public List<munition> bulletL;
         Color color_V;
@@ -94,7 +94,8 @@ namespace Umea_rana
         public void Load(ContentManager content, Texture2D n_texture)
         {
             texture = n_texture;
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
+            mtexture = content.Load<Texture2D>("bullet//bullet");
+            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -317,17 +318,21 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            bullet.Bullet_draw(spritebatch, ref bulletL);
+           
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
             spritebatch.Draw(texture, vect, new Rectangle(600 + (this.FrameColumn2 - 1) * 300, (this.FrameLine - 1) * 200, 300, 200), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
-
+            for (int i = 0; i < bulletL.Count; i++)
+            {
+                spritebatch.Draw(mtexture, bulletL[i].rectangle, new Rectangle(0, 0, mtexture.Width, mtexture.Height), bulletL[i].colo);
+            }     
         }
         public void Dispose()
         {
             texture.Dispose();
+            mtexture.Dispose();
             bulletL = null;
-            bullet.Dipose();
+        
         }
     }
 }

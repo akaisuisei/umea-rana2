@@ -13,18 +13,18 @@ namespace Umea_rana
 {
     public class munition :objet 
     {
-        public Texture2D texture;
+
         Vector2 vect;
         public bool existe, bool_dexistence;
         int speed;
         public int temps_dexitence = 0;
-        Color colo;
+        public Color colo { get; private set; }
         public int degat { get; private set; }
        
-        public munition(Texture2D n_texture, Rectangle n_rectangle, int n_speed, Vector2 vect ,Color  colo)
+        public munition( Rectangle n_rectangle, int n_speed, Vector2 vect ,Color  colo)
         {
             degat = 1;
-            texture = n_texture;
+  
             rectangle = n_rectangle;
             existe = true;
             speed = n_speed;
@@ -34,6 +34,7 @@ namespace Umea_rana
         }
 
 
+
         public void update2()
         {
             rectangle.Y -=(int) (speed*vect.Y) ;
@@ -41,14 +42,7 @@ namespace Umea_rana
             rectangle_C = rectangle;
         }
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-                spritebatch.Draw(texture, rectangle, colo );
-        }
 
-        public void dispose()
-        {
-            texture.Dispose();
-        }
+
     }
 }

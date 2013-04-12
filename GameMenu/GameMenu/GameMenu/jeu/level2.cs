@@ -72,14 +72,14 @@ namespace Umea_rana
            
                 // ajout ia aller retour (X,Y)
                 managerAR.Add(1.1f, 0);
-                managerAR.Add(0.5f, 0.5f);
+           /*     managerAR.Add(0.5f, 0.5f);
                 managerAR.Add(2.1f, 0.5f);
                 managerAR.Add(-0.5f, 0f);
                 managerAR.Add(2.1f, 0.45f);
                 managerAR.Add(2.4f, 0.55f);
                 managerAR.Add(3.2f, 0.7f);
                 managerAR.Add(3.6f, 0.7f);
-                // ajout IA qui vont tous droit(X,Y)
+              */  // ajout IA qui vont tous droit(X,Y)
                 managerAA.Add(1.11f, 0);
                 managerAA.Add(0.54f, 0.5f);
                 managerAA.Add(2.14f, 0.5f);
@@ -215,7 +215,7 @@ namespace Umea_rana
                 //scrolling3.Draw(spriteBatch);
                 allen.Draw(spriteBatch);
                 platform_M.Draw(spriteBatch);
-                managerAA.Draw(spriteBatch);
+                managerAA.Draw (spriteBatch);
                 managerAR.Draw(spriteBatch);
                 manageS.Draw(spriteBatch);
                 _pause.Draw(spriteBatch);

@@ -135,7 +135,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="manager\IA_manager_AA.cs" />
+    <Compile Include="manager\IA_manager_AR.cs" />
     <Compile Include="jeu\GameWin.cs" />
+    <Compile Include="manager\IA_manager_K.cs" />
+    <Compile Include="manager\IA_manager_V .cs" />
     <Compile Include="moteur_jeu\Button.cs" />
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
@@ -145,8 +149,8 @@
     <Compile Include="Editeur de map\Leveleditorselect.cs" />
     <Compile Include="moteur_jeu\Listbox.cs" />
     <Compile Include="manager\IA_Manager_max.cs" />
-    <Compile Include="manager\IA_manger_jeuP.cs" />
-    <Compile Include="manager\IA_manager.cs" />
+    <Compile Include="manager\IA_manger_S.cs" />
+    <Compile Include="manager\IA_manager_T.cs" />
     <Compile Include="interface\Initialisateur.cs" />
     <Compile Include="Moteur à particule\Particle.cs" />
     <Compile Include="Moteur à particule\ParticleAdder.cs" />

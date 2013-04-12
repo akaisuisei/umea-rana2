@@ -14,7 +14,7 @@ namespace Umea_rana
 {
     public class Scrolling_ManagerV
     {
-        public List<Scrolling> scroll;
+      
         public Texture2D[] texture;
 
         public Rectangle[] rec1, rec2;
@@ -201,6 +201,23 @@ namespace Umea_rana
             rec2 = null;
             couche = null;
             speed = null;
+        }
+        public void Add(Texture2D tex,float  couches)
+        {
+            if (rec1 == null)
+                rec1 = new Rectangle[3];
+            if (rec2 == null)
+                rec2 = new Rectangle[3];
+            if (speed == null)
+                speed = new  int[3];
+            if (couche  == null)
+                couche = new float[3];
+            texture[count] = tex ;
+            rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+            rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
+            speed[count] = 3;
+           couche[count] = couches;
+            ++count;
         }
     }
 }

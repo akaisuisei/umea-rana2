@@ -33,6 +33,7 @@ namespace Umea_rana
         Sauveguarde save;
         string path;
         Scrolling_ManagerV Scroll;
+        Rectangle fond;
 
         public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
@@ -54,7 +55,7 @@ namespace Umea_rana
             sizeX=(int)(width*0.05);
             sizey =(int)(height *0.09);
             game_time = 0;
-            Scroll = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
+        
             // ajout IA
         }
 
@@ -64,6 +65,8 @@ namespace Umea_rana
             //    bacgkround1 = Content.Load<Texture2D>("level2//fond");
             //  background2 = Content.Load<Texture2D>("level2//fond2");
             //charge le sprite
+            fond = new Rectangle(400, 0, width/2, height);
+            Scroll = new Scrolling_ManagerV(fond);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
 
 
@@ -84,9 +87,9 @@ namespace Umea_rana
 
             //instancie l ia
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content,fond);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content,fond);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),fond);
             ovini = new Ovni(width, height);
             ovini.Load(aster_t);
             // ajout IA

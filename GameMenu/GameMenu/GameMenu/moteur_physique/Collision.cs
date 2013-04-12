@@ -104,12 +104,14 @@ namespace Umea_rana
                             b3 ^= true;
                             pos = plato.rectangle_C.Left + ia.Ia_manage[i].decalageX + ia.Ia_manage[i].Speed + 1;
                         }
+                        break;
                     }
                 }
                 if (b)
                 {
                     ia.Ia_manage[i].tombe = false;
-                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height;
+                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height-15;
+                    
                 }
                 else
                     ia.Ia_manage[i].tombe = true;

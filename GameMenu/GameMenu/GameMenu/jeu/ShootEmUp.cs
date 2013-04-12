@@ -35,12 +35,13 @@ namespace Umea_rana
         Sauveguarde save;
         Scrolling_ManagerV scroll;
         Ovni ovini;
+        Rectangle fond;
 
         public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, content);
-            scroll = new Scrolling_ManagerV(new Rectangle(200,0,width/2,height ));
+
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -68,8 +69,8 @@ namespace Umea_rana
             //charge le sprite
             _pause.initbutton(ref level);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
-
-
+            fond =new  Rectangle(200, 0, width / 2, height);
+            scroll = new Scrolling_ManagerV(fond );
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
@@ -88,9 +89,9 @@ namespace Umea_rana
 
             //instancie l ia
           
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, height, width);
-            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, fond);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, fond);
+            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),fond);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
            ovini.Load(aster_t);

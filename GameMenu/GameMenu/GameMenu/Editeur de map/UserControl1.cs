@@ -781,7 +781,7 @@ namespace Umea_rana
                 }
             }
             else
-                modif(spawn, ia_type );
+                modif(spawn, ia_type);
         }// bonus
         #endregion
 
@@ -833,28 +833,31 @@ namespace Umea_rana
                 file = new FileStream(imageB, FileMode.Open, FileAccess.Read);
             else
                 file = new FileStream(sauve._path + "\\SEU\\" + savefile.levelProfile.levelname + "\\" + imageB, FileMode.Open, FileAccess.Read);
-            if (scrollingM.scroll.Count == 0)
-                scrollingM.scroll.Add(new Scrolling(Texture2D.FromStream(game.GraphicsDevice, file), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.01f));
+            if (scrollingM.count == 0)
+            {
+                scrollingM.Add(Texture2D.FromStream(game.GraphicsDevice, file), 0.5f);
+            }
             else
             {
-                scrollingM.scroll[0].texture = Texture2D.FromStream(game.GraphicsDevice, file);
+                scrollingM.texture[0] = Texture2D.FromStream(game.GraphicsDevice, file);
             }
+
             if (savefile.levelProfile.second_background != null)
-                if (scrollingM.scroll.Count >= 1)
-                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 3, height, 0.5f));
+                if (scrollingM.count >= 1)
+                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), 0.5f);
                 else
-                    scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background);
+                    scrollingM.texture[1] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background);
             else if (savefile.levelProfile.third_bacground != null)
-                if (scrollingM.scroll.Count >= 1)
-                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 2, height, 0.5f));
+                if (scrollingM.count >= 1)
+                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
                 else
-                    scrollingM.scroll[1].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
+                    scrollingM.texture[1] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
 
             if (savefile.levelProfile.third_bacground != null)
-                if (scrollingM.scroll.Count >= 2)
-                    scrollingM.scroll.Add(new Scrolling(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), new Microsoft.Xna.Framework.Rectangle(0, 0, width, height), 1, height, 0.9f));
+                if (scrollingM.count >= 2)
+                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
                 else
-                    scrollingM.scroll[2].texture = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
+                    scrollingM.texture[2] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
 
         }
         private void nameCheck(ref TextBox textbox)

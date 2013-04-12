@@ -19,8 +19,8 @@ namespace Umea_rana
         public  int poid, vie;
         public bool tombe;
 
-        public int decalageX { get { return decallageX; } }
-        public int decalageY { get { return decallageY; } }
+        public int decalageX { get { return decallageX; } set { decallageX = decalageX; } }
+        public int decalageY { get { return decallageY; } set { decallageY = decalageY; } }
 
 
         public void Update_rec_collision()

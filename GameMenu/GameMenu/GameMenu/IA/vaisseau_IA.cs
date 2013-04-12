@@ -16,17 +16,19 @@ namespace Umea_rana
     {
 
         protected Texture2D _texture;
-        protected int _speed, width, front_sc, timer_lunch, normalspeed, _damage;
+        protected int _speed, width, front_sc , _damage;
+        public int normalspeed{get; protected set;}
+        public int  timer_lunch{ get ; protected set;}
         public int dir;
         protected string trajectory;
         public Bullet_manager bullet;
         protected Color Munition_color, Ia_color;
         public bool attaque;
         public bool attaque_ { get { return attaque; } }
-        protected int longueur_attaque;
+        public int longueur_attaque { get; protected set; }
         public int longueur_Attaque { get { return longueur_attaque; } }
 
-        public int Speed { get { return _speed; } }
+        public int Speed { get { return _speed; } set {_speed= Speed ;}}
         public int timer_Lunche { get { return timer_lunch; } }
         public int damage { get { return _damage; } }
 
@@ -35,7 +37,6 @@ namespace Umea_rana
         public int FrameColunm;
         public SpriteEffects Effects;
         public int Timer;
-        public int AnimationSpeed = 10;
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
@@ -118,7 +119,7 @@ namespace Umea_rana
         public void Dipose()
         {
             _texture.Dispose();
-            bullet.Dipose();
+          
         }
     }
 }

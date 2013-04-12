@@ -17,11 +17,10 @@ namespace Umea_rana
     public class Viseur_aI : vaisseau_IA
     {
 
-        int AnimationSpeed = 10;
 
-        public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint,int spawn)
+        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint,int spawn)
         {
-            this._texture = texture;
+       
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
             this.decallageX = 0; decallageY = 0;
@@ -29,7 +28,7 @@ namespace Umea_rana
             this.width = width;
             dir = -1;
 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
+            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
                 content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
@@ -52,9 +51,9 @@ namespace Umea_rana
         /// <param name="height"></param>
         /// <param name="width"></param>
         /// <param name="quaint"></param>
-        public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
+        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
         {
-            this._texture = texture;
+    
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
             this.decallageX = 0; decallageY = 0;
@@ -62,7 +61,7 @@ namespace Umea_rana
             this.width = width;
             dir = -1;
 
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
+            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
                 content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
@@ -76,16 +75,16 @@ namespace Umea_rana
             this.Timer = 0;
         }
 
-        public Viseur_aI(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width, Color colo, int gametime)
+        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, Color colo, int gametime)
         {
-            this._texture = texture;
+
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
             this.decallageX = 0; decallageY = 0;
             largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
 
             Munition_color = colo;
-            bullet = new Bullet_manager(content.Load<Texture2D>("bullet//bullet"), new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 60);
+            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 60);
             this.width = width;
             dir = -1;
             _speed = 6;
@@ -101,37 +100,7 @@ namespace Umea_rana
 
         }
 
-        public void Update(ref sripte_V sprite, ref int game_time, ref List<munition> bulletL)
-        {
-            if (timer_lunch <= game_time)
-            {
-                bullet.Bullet_Update2(this, vise(sprite), 1, ref bulletL);
-                Update_rec_collision();
-                move_H();
-            }
+       
 
-            this.Timer++;
-            if (this.Timer == this.AnimationSpeed)
-            {
-                this.Timer = 0;
-                this. FrameColunm++;
-                if (FrameLine == 1 &&  FrameColunm > 5)
-                {
-                     FrameColunm = 1;
-                    FrameLine = 2;
-                }
-                else if (FrameLine == 2 &&  FrameColunm > 8)
-                {
-                     FrameColunm = 1;
-                    FrameLine = 1;
-                }
-
-            }
-        }
-
-        public override void Draw(SpriteBatch spritebatch)
-        {
-            spritebatch.Draw(_texture, rectangle, new Rectangle((this. FrameColunm - 1) * 42, (this.FrameLine - 1) * 42, 42, 42), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
-        }
     }
 }
