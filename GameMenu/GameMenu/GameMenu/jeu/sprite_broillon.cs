@@ -20,7 +20,7 @@ namespace Umea_rana
 
     public class sprite_broillon : objet
     {
-     
+
 
         Texture2D texture;
         Collision collision;
@@ -39,6 +39,7 @@ namespace Umea_rana
         public bool chute = true;
         int timer_dead;
         public bool _dir { get { return dir; } }
+        int colunm, line;
 
         int prout;
         public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
@@ -72,12 +73,12 @@ namespace Umea_rana
             dead = false;
             timer_dead = 200;
 
+            colunm = 125;
+            line = 93;
         }
 
         public void update(KeyboardState keyboard)
         {
-
-
             if (in_air)
             {
                 rectangle.Y += poid;
@@ -270,9 +271,107 @@ namespace Umea_rana
 
         }
 
+        public void AnimeSPrite(ref KeyboardState keyboard)// line = 151, colunm = 110
+        {
+            if (vie > 0)
+            {
+                if (keyboard.IsKeyDown(Keys.Left)) //court vers la gauche
+                {
+                    dir = true;
+                    if (!in_air)
+                    {
+                        this.FrameLine = 2;
+                        this.Animate();
+                    }
+                    else
+                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                        {
+                            this.FrameColumn = 1;
+                            this.FrameLine = 5;
+                        }
+                        else                              //phase ascendante
+                        {
+                            this.FrameColumn = 1;
+                            this.FrameLine = 3;
+                        }
+
+                }
+                else if (keyboard.IsKeyDown(Keys.Right)) //court vers la droite
+                {
+                    dir = false;
+                    if (!in_air)
+                    {
+                        this.FrameLine = 2;
+                        this.Animate();
+                    }
+                    else
+                        if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
+                        {
+                            this.FrameColumn = 1;
+                            this.FrameLine = 5;
+                        }
+                        else                               //phase ascendante
+                        {
+                            this.FrameColumn = 1;
+                            this.FrameLine = 3;
+                        }
+                }
+                else if (keyboard.IsKeyDown(Keys.X)) //attaque
+                {
+                    this.FrameLine = 8;
+                    this.Animate();
+                }
+                else if (keyboard.IsKeyUp(Keys.Space) && chute ^ jump_off) //saut phase descendante
+                {
+                    this.FrameColumn = 1;
+                    this.FrameLine = 5;
+                }
+                else if (keyboard.IsKeyDown(Keys.Space)) //saut phase ascendante
+                {
+                    if (!chute)
+                    {
+                        this.FrameLine = 3;
+                        this.FrameColumn = 1;
+                    }
+                    else
+                    {
+                        this.FrameLine = 3;
+                        this.FrameColumn = 1;
+                    }
+                }
+
+                if ((keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && !in_air) ||
+                (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
+                {
+                    this.FrameLine = 1;
+                    this.FrameColumn = 1;
+                    this.Animate();
+                    this.Timer = 0;
+                }
+            }
+            else
+            {
+                if (timer_dead == 199)
+                {
+                    FrameColumn = 3;
+                    FrameLine = 3;
+                }
+                if (FrameColumn != 8 && this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+                }
+                this.Timer++;
+            }
+            if (dir)
+                this.Effects = SpriteEffects.FlipHorizontally;
+            else
+                this.Effects = SpriteEffects.None;
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 125, (this.FrameLine - 1) * 93, 125, 93), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
         public void Dispose()
         {
