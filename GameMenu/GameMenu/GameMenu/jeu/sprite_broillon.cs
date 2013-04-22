@@ -20,6 +20,16 @@ namespace Umea_rana
 
     public class sprite_broillon : objet
     {
+        private class pos
+        {
+            public int lstart = 1, cstart = 1, cend = 1;
+            public pos(int ls, int cs, int ce)
+            {
+                lstart = ls;
+                cstart = cs;
+                cend = ce;
+            }
+        }
 
 
         Texture2D texture;
@@ -42,10 +52,18 @@ namespace Umea_rana
         int colunm, line;
 
         int prout;
+
         public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
 
-        public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content)
-        {
+        pos idle, atk, walk, die, jump, fall;
+        pos current, last;
+
+        Texture2D test;
+
+       
+        public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content, char type)
+        { 
+            test = content.Load<Texture2D>("ListBoxBG");
             texture = n_textture;
             rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
@@ -62,10 +80,7 @@ namespace Umea_rana
             this.FrameColumn = 1;
             this.Timer = 0;
             vie = 100;
-            largeurX = 17;
-            hauteurY = 50;
-            decallageX = 55;
-            decallageY = 31;
+
 
             upsidedown = 10;
             atq = false;
@@ -73,8 +88,39 @@ namespace Umea_rana
             dead = false;
             timer_dead = 200;
 
-            colunm = 125;
-            line = 93;
+            if (type == '2')
+            {
+                colunm = 151;
+                line = 110;
+                largeurX = 22;
+                hauteurY = 40;
+                decallageX = 50;
+                decallageY = 34;
+                idle = new pos(1, 1, 4);
+                walk = new pos(1, 5, 10);
+                atk = new pos(9, 5, 10);
+                die = new pos(3, 5, 9);
+                jump = new pos(2, 8, 8);
+                fall = new pos(2, 9, 9);
+
+            }
+            else
+            {
+                colunm = 125;
+                line = 93;
+                largeurX = 17;
+                hauteurY = 50;
+                decallageX = 55;
+                decallageY = 31;
+                idle = new pos(1, 1, 3);
+                walk = new pos(2, 1, 3);
+                atk = new pos(8, 1, 3);
+                die = new pos(6, 1, 5);
+                jump = new pos(3, 1, 2);
+                fall = new pos(5, 1, 3);
+            }
+            current = fall;
+            last = current;
         }
 
         public void update(KeyboardState keyboard)
@@ -103,7 +149,7 @@ namespace Umea_rana
             else
                 atq = false;
 
-            this.AnimSprite(keyboard);
+            this.AnimeSPrite(ref keyboard);
             Update_rec_collision();
             if (vie < 0)
                 --timer_dead;
@@ -271,106 +317,116 @@ namespace Umea_rana
 
         }
 
+        private void Animated()
+        {
+            this.Timer++;
+            if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn++;
+                if (FrameColumn > current.cend)
+                {
+                    FrameColumn = current.cstart;
+                }
+            }
+        }
+
         public void AnimeSPrite(ref KeyboardState keyboard)// line = 151, colunm = 110
         {
             if (vie > 0)
             {
                 if (keyboard.IsKeyDown(Keys.Left)) //court vers la gauche
                 {
+                    this.Effects = SpriteEffects.FlipHorizontally;
                     dir = true;
                     if (!in_air)
                     {
-                        this.FrameLine = 2;
-                        this.Animate();
+                        current = walk;
                     }
                     else
                         if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
                         {
-                            this.FrameColumn = 1;
-                            this.FrameLine = 5;
+                            current = fall;
                         }
                         else                              //phase ascendante
                         {
-                            this.FrameColumn = 1;
-                            this.FrameLine = 3;
+                            current = jump;
                         }
-
                 }
                 else if (keyboard.IsKeyDown(Keys.Right)) //court vers la droite
                 {
                     dir = false;
+                    this.Effects = SpriteEffects.None;
                     if (!in_air)
                     {
-                        this.FrameLine = 2;
-                        this.Animate();
+                        current = walk;
                     }
                     else
-                        if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
+                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
                         {
-                            this.FrameColumn = 1;
-                            this.FrameLine = 5;
+                            current = fall;
                         }
-                        else                               //phase ascendante
+                        else                              //phase ascendante
                         {
-                            this.FrameColumn = 1;
-                            this.FrameLine = 3;
+                            current = jump;
                         }
                 }
                 else if (keyboard.IsKeyDown(Keys.X)) //attaque
                 {
-                    this.FrameLine = 8;
-                    this.Animate();
+                    current = atk;
                 }
                 else if (keyboard.IsKeyUp(Keys.Space) && chute ^ jump_off) //saut phase descendante
                 {
-                    this.FrameColumn = 1;
-                    this.FrameLine = 5;
+                    current = fall;
                 }
-                else if (keyboard.IsKeyDown(Keys.Space)) //saut phase ascendante
-                {
-                    if (!chute)
+                else
+                    if (!in_air)
                     {
-                        this.FrameLine = 3;
-                        this.FrameColumn = 1;
+                        current = walk;
                     }
                     else
-                    {
-                        this.FrameLine = 3;
-                        this.FrameColumn = 1;
-                    }
-                }
+                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                        {
+                            current = fall;
+                        }
+                        else                              //phase ascendante
+                        {
+                            current = jump;
+                        }
+
 
                 if ((keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && !in_air) ||
                 (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
                 {
-                    this.FrameLine = 1;
-                    this.FrameColumn = 1;
-                    this.Animate();
-                    this.Timer = 0;
+                    current = idle;
                 }
+                if (current.lstart != last.lstart || current.cstart != last.cstart || current.cend != last.cend)
+                {
+                    FrameColumn = current.cstart;
+                    FrameLine = current.lstart;
+                }
+                Animated();
             }
             else
             {
                 if (timer_dead == 199)
                 {
-                    FrameColumn = 3;
-                    FrameLine = 3;
+                    FrameColumn = die.cstart;
+                    FrameLine = die.lstart ;
                 }
-                if (FrameColumn != 8 && this.Timer == this.AnimationSpeed)
+                if (FrameColumn != die.cend  && this.Timer == this.AnimationSpeed)
                 {
                     this.Timer = 0;
                     this.FrameColumn++;
                 }
                 this.Timer++;
             }
-            if (dir)
-                this.Effects = SpriteEffects.FlipHorizontally;
-            else
-                this.Effects = SpriteEffects.None;
+            last = current;
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
+            spritebatch.Draw(test, rectangle_C, Color.Pink);
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
         public void Dispose()
