@@ -277,7 +277,7 @@ namespace Umea_rana
             scrolling = LocalizedString.ScrollingVertical ;
             file = LocalizedString.File ;
             damage = LocalizedString.inficted_damage ;
-            bullet_speed = LocalizedString.inficted_damage ;
+            bullet_speed = LocalizedString.Bullet_speed ;
             supp = LocalizedString.delete ;
             musique = LocalizedString.music ;
             add = LocalizedString.Add ;

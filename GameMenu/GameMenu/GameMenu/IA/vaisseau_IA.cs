@@ -39,7 +39,7 @@ namespace Umea_rana
         public int Timer;
         /*
      
-        public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager content, int height, int width, int _speed)
+        public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager Content, int height, int width, int _speed)
         {
             this.rectangle = n_rectangle;
             this._texture = _texture;
@@ -118,7 +118,7 @@ namespace Umea_rana
 
         public void Dipose()
         {
-            _texture.Dispose();
+       
           
         }
     }

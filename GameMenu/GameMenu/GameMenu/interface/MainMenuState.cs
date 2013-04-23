@@ -25,23 +25,26 @@ namespace Umea_rana
         int tab = 0;
         KeyboardState old;
 
-        public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("Menu//songMenu");
+            songMenu = Content.Load<Song>("Menu//songMenu");
             MediaPlayer.Play(songMenu);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            titre_P = new Vector2(width * 0.8f, height * 0.1f);
-            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
+        
             old = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+    titre_P = new Vector2(width * 0.8f, height * 0.1f);
+            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", LocalizedString.Play );
             button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", LocalizedString.Map_Editor );
@@ -63,7 +66,7 @@ namespace Umea_rana
             MouseState mouse = Mouse.GetState();
             rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, "");
-
+            old = keyboard;
 
 
         }

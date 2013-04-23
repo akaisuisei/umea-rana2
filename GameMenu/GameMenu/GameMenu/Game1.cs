@@ -33,14 +33,14 @@ namespace Umea_rana
             //display
             displaymode = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
             graphics = new GraphicsDeviceManager(this);
-            height = displaymode.Height;
-            width = displaymode.Width;
+            height = 400;// displaymode.Height;
+            width = 800; //displaymode.Width;
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
             graphics.IsFullScreen = fullScreen ;
 
-            //content
+            //Content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
             //state
@@ -76,17 +76,18 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
-            LocalizedString.Culture = new System.Globalization.CultureInfo("en-US") ;
+            LocalizedString.Culture = new System.Globalization.CultureInfo("fr-FR") ;
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next  );
+            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next, graphics   );
             base.LoadContent();
         }
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
+            StateManager[_currentState].UnloadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -155,8 +156,7 @@ namespace Umea_rana
             {
                 if (_currentState == gameState.Editeur_mapVV && graphics.IsFullScreen)
                     graphics.ToggleFullScreen();
-                if (_currentState != gameState.Editeur_mapVV && !graphics.IsFullScreen)
-                    graphics.ToggleFullScreen();
+           
             }
         }
         public void nextgame()

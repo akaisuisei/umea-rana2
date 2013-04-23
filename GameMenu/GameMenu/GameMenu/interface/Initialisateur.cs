@@ -20,7 +20,7 @@ namespace Umea_rana
    //     Listbox listbox;
         int timer, taille_logo;
 
-        public Initialisateur(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Initialisateur(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             taille_logo = Math.Min(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             rectangle = new Rectangle(graphics.PreferredBackBufferWidth/2-taille_logo/2,graphics.PreferredBackBufferHeight/2-taille_logo/2 ,
@@ -35,10 +35,12 @@ namespace Umea_rana
         {
             background.Dispose();
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
             background = Content.Load<Texture2D>("Menu//logofin");
-        //    listbox.LoadContent(content);
+        //    listbox.LoadContent(Content);
         }
         public override void UnloadContent()
         {

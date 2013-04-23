@@ -25,7 +25,7 @@ namespace Umea_rana
         Button butts;
        
         KeyboardState oldkey;
-        public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
 
             game1.IsMouseVisible = true;
@@ -44,15 +44,15 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
         }
 
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
-            songMenu = content.Load<Song>("Menu//songMenu");
-            titre = content.Load<Texture2D>("Menu//LevelSelect//niveau");
+            background = Content.Load<Texture2D>("Menu//background menu");
+            songMenu = Content.Load<Song>("Menu//songMenu");
+            titre = Content.Load<Texture2D>("Menu//LevelSelect//niveau");
 
-            list2.LoadContent(content);
-            list1.LoadContent(content);
-            butts.LoadContent(content);
+            list2.LoadContent(Content);
+            list1.LoadContent(Content);
+            butts.LoadContent(Content);
             butts.activate(0, 0, 0.15f, 0.15f, "EditSEU",LocalizedString.Map_Editor +"\n"+LocalizedString.SEU  );
             butts.activate(0, 1, 0.15f, 0.5f, "Play", LocalizedString.Map_Editor + "\n" + LocalizedString.PLA );
             butts.activate(0, 2, 0.15f, 0.85f, "", LocalizedString.Back );

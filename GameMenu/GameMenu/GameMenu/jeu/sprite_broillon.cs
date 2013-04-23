@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Sentius.darkFunction.Core;
+
 
 namespace Umea_rana
 {
@@ -29,9 +31,10 @@ namespace Umea_rana
                 cstart = cs;
                 cend = ce;
             }
+
         }
 
-
+                   
         Texture2D texture;
         Collision collision;
         public bool jump_ok, jump_off, atq, dead;
@@ -61,9 +64,11 @@ namespace Umea_rana
         Texture2D test;
 
        
-        public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager content, char type)
-        { 
-            test = content.Load<Texture2D>("ListBoxBG");
+        public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
+        {
+         
+
+            test = Content.Load<Texture2D>("ListBoxBG");
             texture = n_textture;
             rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
@@ -73,7 +78,7 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            marchell = content.Load<Song>("hero//jogging");
+            marchell = Content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
 
             this.FrameLine = 1;

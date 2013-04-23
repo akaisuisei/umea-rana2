@@ -13,31 +13,31 @@ namespace Umea_rana
 {
     public class IA_manager_T : IA_Manager_max
     {
-        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager content, Rectangle fond)
+        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager Content, Rectangle fond)
         {
             ia_manage = new List<vaisseau_IA>();
             bulletL = new List<munition>();
             this._texture = texture;
             this._rectangle = rectangle;
-            this.content = content;
+            this.Content = Content;
             rectangleF = fond;
             this.window_H = fond.Height;
             this.window_W = fond.Width;
             AnimationSpeed = 10;
-            mtexture = content.Load<Texture2D>("bullet//bullet");
+            mtexture = Content.Load<Texture2D>("bullet//bullet");
         }
-        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager content, int height, int width)
+        public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager Content, int height, int width)
         {
             ia_manage = new List<vaisseau_IA>();
             bulletL = new List<munition>();
             this._texture = texture;
             this._rectangle = rectangle;
-            this.content = content;
+            this.Content = Content;
             this.window_H = height;
             this.window_H = height;
             this.window_W = width;
             AnimationSpeed = 10;
-            mtexture = content.Load<Texture2D>("bullet//bullet");
+            mtexture = Content.Load<Texture2D>("bullet//bullet");
         }
 
         public void Update(ref Game1 game, ref int gametime)
@@ -104,7 +104,7 @@ namespace Umea_rana
         {
             for (int i = 0; i < quaint.nombre; ++i)
                 ia_manage.Add(new Tireur( new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, (int)(quaint.Y * window_H), _rectangle.Width, _rectangle.Height),
-                    content, window_H, window_W, quaint, spawn));
+                    Content, window_H, window_W, quaint, spawn));
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Umea_rana
         {
             for (int i = 0; i < quaint.nombre; ++i)
                 ia_manage.Add(new Tireur( new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
-                    content, window_H, window_W, quaint));
+                    Content, window_H, window_W, quaint));
         }
 
         public void Add(float X, float Y, int seconde, int number, Color colo)
@@ -123,7 +123,7 @@ namespace Umea_rana
             int x = (int)(X * window_W);
             int y = (int)(Y * window_H);
             for (int i = 0; i < number; ++i)
-                ia_manage.Add(new Tireur( new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), content, window_H, window_W, colo, seconde));
+                ia_manage.Add(new Tireur( new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), Content, window_H, window_W, colo, seconde));
         }
 
     }

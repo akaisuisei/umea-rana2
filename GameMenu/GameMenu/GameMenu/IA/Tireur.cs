@@ -16,7 +16,7 @@ namespace Umea_rana
     public class Tireur : vaisseau_IA
     {
 
-        public Tireur(Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint, int spawn)
+        public Tireur(Rectangle rectangle, ContentManager Content, int height, int width, quaintuplet quaint, int spawn)
         {
       
             this.rectangle = rectangle;
@@ -27,7 +27,7 @@ namespace Umea_rana
             dir = -1;
 
             bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
-                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+                Content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
             _speed = quaint.speed;
@@ -39,7 +39,7 @@ namespace Umea_rana
         }
 
 
-        public Tireur(Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
+        public Tireur(Rectangle rectangle, ContentManager Content, int height, int width, quaintuplet quaint)
         {
           
             this.rectangle = rectangle;
@@ -50,7 +50,7 @@ namespace Umea_rana
             dir = -1;
 
             bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
-                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+                Content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
             _speed = quaint.speed;
@@ -61,7 +61,7 @@ namespace Umea_rana
 
         }
 
-        public Tireur( Rectangle rectangle, ContentManager content, int height, int width, Color colo, int time_lunch)
+        public Tireur( Rectangle rectangle, ContentManager Content, int height, int width, Color colo, int time_lunch)
         {
             
             this.rectangle = rectangle;
@@ -71,7 +71,7 @@ namespace Umea_rana
             this.Ia_color = colo;
             this.timer_lunch = time_lunch;
             Munition_color = colo;
-            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 4, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 50);
+            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 4, Content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 50);
             this.width = width;
             dir = -1;
             _speed = 7;

@@ -26,28 +26,30 @@ namespace Umea_rana
         KeyboardState old;
         int tab;
 
-        public Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("Menu//songMenu");
+            songMenu = Content.Load<Song>("Menu//songMenu");
    
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            button = new Button(1, 3, width, height, 0.07f, 0.1f, 0);
+        
             tab = 0;
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            
-            button.LoadContent(content);
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;  
+                  button = new Button(1, 3, width, height, 0.07f, 0.1f, 0);
+            button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "Last", LocalizedString.Replay );
             button.activate(0, 1, 0.1f, 0.2f, "", LocalizedString.Menu );
             button.activate(0, 2, 0.1f, 0.3f, "Exit", LocalizedString.Exit );
-            background = content.Load<Texture2D>("Menu//game_over");
+            background = Content.Load<Texture2D>("Menu//game_over");
         }
         public override void UnloadContent()
         {

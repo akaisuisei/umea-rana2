@@ -23,20 +23,22 @@ namespace Umea_rana
         Rectangle rectangle;
         int select = 0;
         int latence = 0;
-        public OptionState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public OptionState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("Menu//songMenu");
+            songMenu = Content.Load<Song>("Menu//songMenu");
             MediaPlayer.Play(songMenu);
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            background = Content.Load<Texture2D>("Menu//background menu");
         }
         public override void UnloadContent()
         {

@@ -17,7 +17,7 @@ namespace Umea_rana
         protected Texture2D _texture, mtexture;
         protected Rectangle _rectangle, rectangleF;
         protected int front_sc, speed, window_H, window_W, poid, AnimationSpeed;
-        protected ContentManager content;
+        protected ContentManager Content;
         protected Color colo;
 
         public Texture2D _Texture { get { return _texture; } }
@@ -56,7 +56,7 @@ namespace Umea_rana
             for (int i = 0; i < ia_manage.Count; ++i)
                 ia_manage[i].Dipose();
             _texture.Dispose();
-            mtexture.Dispose();
+   
         }
 
         public void Update_ophelia(KeyboardState keyboard)

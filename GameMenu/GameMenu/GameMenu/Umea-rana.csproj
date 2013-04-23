@@ -141,6 +141,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boss.cs" />
+    <Compile Include="bossSeu.cs" />
     <Compile Include="localization\LocalizedString.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
