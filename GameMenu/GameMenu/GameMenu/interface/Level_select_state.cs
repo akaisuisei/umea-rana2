@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.localization;
 
 namespace Umea_rana
 {
@@ -44,7 +45,7 @@ namespace Umea_rana
             button.LoadContent(content);
             button.activate(0, 0, 0.1f, 0.1f,"SEU", "1","SEU1");
             button.activate(0, 1, 0.1f, 0.2f,"Level2" , "2","level1");
-            button.activate(0, 2, 0.1f, 0.3f, "", "retour");
+            button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Back );
             background = content.Load<Texture2D>("Menu//background menu");
             titre = content.Load<Texture2D>("Menu//pause//Menu");
         }

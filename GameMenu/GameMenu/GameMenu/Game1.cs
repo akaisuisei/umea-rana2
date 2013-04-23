@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.localization ;
 
 namespace Umea_rana
 {
@@ -75,6 +76,7 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
+            LocalizedString.Culture = new System.Globalization.CultureInfo("en-US") ;
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");

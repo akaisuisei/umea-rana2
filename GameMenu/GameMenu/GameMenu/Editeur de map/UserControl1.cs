@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Umea_rana;
+using Umea_rana.localization; 
 
 namespace Umea_rana
 {
@@ -24,7 +25,8 @@ namespace Umea_rana
         string aster, comete, sun, angle;
         string[] playlist;
         // tag
-        string t_life = "life", t_speed = "speed", t_damage = "damage", t_firerate = "fire", t_nbr = "nbr", t_angle = "angle";
+        string t_life = LocalizedString.Life ,
+            t_speed = "life", t_damage = "damage", t_firerate = "fire", t_nbr = "nbr", t_angle = "angle";
         // type
         string type;
         System.Drawing.Color color2, color4;
@@ -251,44 +253,44 @@ namespace Umea_rana
         }
         private void Initialize()
         {
-            life = "point de vie";
-            speed = "vitesse";
-            couleur = "couleur de tir";
-            onglet1 = "Tireur";
-            onglet2 = "Viseur";
-            onglet3 = "kamikaze";
-            onglet4 = "fond";
-            onglet5 = "personnage";
-            trajectoir = "trajectoire";
-            align = "alignement enemie";
-            OK = "OK";
-            firerate = "cadence de tir";
-            end = "terminer";
-            imagefond = "image du fond";
-            vitessefond = "vitesse du fond";
-            vitesseV = "vitesse";
-            open = "ouvrir";
-            cancel = "annuler";
-            load = "charger";
-            save = "sauvegarder";
-            filepathlabel = "nom du niveau";
-            scrolling = "defilement vertical";
-            file = "fichier";
-            damage = "degat infligee";
-            bullet_speed = "vitesse de la balle";
-            supp = "supprimer";
-            musique = "musique";
-            add = "ajouter";
-            boss = "Boss";
-            bonus = "Bonus";
-            bomb = "bombe";
-            missile = "missile";
-            power = "puissance";
-            ovini = "ovni";
-            aster = "asteroide";
-            comete = "comete";
-            sun = "soleil";
-            angle = "angle";
+            life = LocalizedString.Life ;
+            speed = LocalizedString.Speed ;
+            couleur = LocalizedString.Bullet_Color ;
+            onglet1 = LocalizedString.Shooter ;
+            onglet2 = LocalizedString.Sniper ;
+            onglet3 = LocalizedString.Kamikaze ;
+            onglet4 = LocalizedString.Background ;
+            onglet5 = LocalizedString.player ;
+            trajectoir = LocalizedString.Trajectory ;
+            align = LocalizedString.AI_align ;
+            OK = LocalizedString.OK ;
+            firerate = LocalizedString.Firerate ;
+            end = LocalizedString.terminated ;
+            imagefond = LocalizedString.Background_image ;
+            vitessefond = LocalizedString.Background_speed ;
+            vitesseV = LocalizedString.Speed ;
+            open = LocalizedString.Open ;
+            cancel = LocalizedString.Cancel;
+            load = LocalizedString.Load ;
+            save = LocalizedString.Save ;
+            filepathlabel = LocalizedString.level_name ;
+            scrolling = LocalizedString.ScrollingVertical ;
+            file = LocalizedString.File ;
+            damage = LocalizedString.inficted_damage ;
+            bullet_speed = LocalizedString.inficted_damage ;
+            supp = LocalizedString.delete ;
+            musique = LocalizedString.music ;
+            add = LocalizedString.Add ;
+            boss = LocalizedString.Boss ;
+            bonus = LocalizedString.bonus ;
+            bomb = LocalizedString.bomb ;
+            missile = LocalizedString.missile ;
+            power = LocalizedString.power ;
+            ovini = LocalizedString.UFO ;
+            aster = LocalizedString.Asteroid ;
+            comete = LocalizedString.Comet ;
+            sun = LocalizedString.Sun ;
+            angle = LocalizedString.angle;
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -436,14 +438,14 @@ namespace Umea_rana
             if (hello.Length == 0)
             {
                 comboBox2.Enabled = false;
-                comboBox2.Text = "vide";
+                comboBox2.Text = LocalizedString.Empty ;
             }
             else
             {
                 foreach (string h in hello)
                     comboBox2.Items.Add(h);
                 comboBox2.Enabled = true;
-                comboBox2.Text = "dossier existant";
+                comboBox2.Text = LocalizedString.existing_directory ;
             }
 
         }
@@ -1049,15 +1051,20 @@ namespace Umea_rana
                 Thread thread = new Thread(() =>
                 {
                     openF = true;
-                    var yourForm = new OpenFileDialog();
+                    var yourForm = new OpenFileDialog(); 
+                    yourForm.Multiselect = false;
                     if (type == 'i')
                     {
                         //yourForm.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-                        yourForm.Filter = "Image Files (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
+                        yourForm.Filter =  LocalizedString.Image_file +" (*.jpeg;*.png;*.jpg;*.gif)|*.jpeg;*.png;*.jpg;*.gif";
+                        yourForm.Title = LocalizedString.Background_image;
+                      
                     }
                     else if (type == 'm')
                     {
-                        yourForm.Filter = "Musique Files (*.mp3;*.wave;.*wav)|*.mp3;*.wave;*.wav";
+                        yourForm.Filter = LocalizedString.Music_file +"(*.mp3;*.wave;.*wav)|*.mp3;*.wave;*.wav";
+                        yourForm.Title = LocalizedString.music;
+                        
                     }
                     if (yourForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.localization;
 
 namespace Umea_rana
 {
@@ -42,10 +43,10 @@ namespace Umea_rana
         public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
         {
             button.LoadContent(Content);
-            button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", "Jouer");
-            button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", "Editeur de Map");
-            button.activate(0, 2, 0.1f, 0.3f, "Option2", "Option");
-            button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
+            button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", LocalizedString.Play );
+            button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", LocalizedString.Map_Editor );
+            button.activate(0, 2, 0.1f, 0.3f, "Option2", LocalizedString.Option );
+            button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit );
             background = Content.Load<Texture2D>("Menu//background menu");
             titre = Content.Load<Texture2D>("Menu//pause//Menu");
         }

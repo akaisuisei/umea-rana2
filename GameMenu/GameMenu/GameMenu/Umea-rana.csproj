@@ -114,6 +114,12 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sentius.darkFunction.Core">
+      <HintPath>..\..\..\..\..\..\Downloads\sentius-darkFunction-1.0.1\Windows\Release\Sentius.darkFunction.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentius.darkFunction.PipelineExtensions">
+      <HintPath>..\..\..\..\..\..\Downloads\sentius-darkFunction-1.0.1\Windows\Release\Sentius.darkFunction.PipelineExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
@@ -135,6 +141,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="localization\LocalizedString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizedString.resx</DependentUpon>
+    </Compile>
     <Compile Include="manager\IA_manager_AA.cs" />
     <Compile Include="manager\IA_manager_AR.cs" />
     <Compile Include="jeu\GameWin.cs" />
@@ -244,7 +255,14 @@
     <EmbeddedResource Include="Editeur de map\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="localization\LocalizedString.en.resx" />
+    <EmbeddedResource Include="localization\LocalizedString.fr.resx" />
+    <EmbeddedResource Include="localization\LocalizedString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedString.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

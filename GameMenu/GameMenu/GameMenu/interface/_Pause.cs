@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.localization;
 
 namespace Umea_rana
 {
@@ -35,7 +36,7 @@ namespace Umea_rana
             MediaPlayer.Volume = vol;
             songMenu = content.Load<Song>("Menu//songMenu");
             button = new Button(1, 4, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0.07f, 0.1f, 0);
-            button.activate(0, 0, 0.1f, 0.1f, "Resume", "continuer");
+            button.activate(0, 0, 0.1f, 0.1f, "Resume", LocalizedString.Resume );
 
             tab = 0;
         }
@@ -44,15 +45,15 @@ namespace Umea_rana
         {
             if (level == "edit")
             {
-                button.activate(0, 1, 0.1f, 0.3f, "", "Menu");
-                button.activate(0, 2, 0.1f, 0.4f, "Exit", "quitter");
+                button.activate(0, 1, 0.1f, 0.3f, "",LocalizedString.Menu );
+                button.activate(0, 2, 0.1f, 0.4f, "Exit", LocalizedString.Exit );
                 button.disable(0, 3);
             }
             else
             {
-                button.activate(0, 1, 0.1f, 0.2f, "Replay", "rejouer");
-                button.activate(0, 2, 0.1f, 0.3f, "", "Menu");
-                button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
+                button.activate(0, 1, 0.1f, 0.2f, "Replay", LocalizedString.Replay );
+                button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Menu);
+                button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit);
             }
         }
 

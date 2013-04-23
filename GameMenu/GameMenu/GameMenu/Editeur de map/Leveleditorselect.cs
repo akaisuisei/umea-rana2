@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
 
+using Umea_rana.localization;
+
 namespace Umea_rana
 {
     class Leveleditorselect : GameState
@@ -37,14 +39,7 @@ namespace Umea_rana
             MediaPlayer.Volume = vol;
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             butts = new Button(2, 3, width, height, 0.1f, 0.1f, 0);
-            butts.activate(0, 0, 0.15f, 0.15f, "EditSEU", "Editeur de jeu1");
-            butts.activate(0, 1, 0.15f, 0.5f, "Play", "editeur de jeu2");
-            butts.activate(0, 2, 0.15f, 0.85f, "", "retour");
-
-   
-            butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", "jouer");
-            butts.activate(1, 1, 0.85f, 0.5f, "play", "jouer");
-            butts.disable(1, 2);
+            
          
             oldkey = Keyboard.GetState();
         }
@@ -58,6 +53,14 @@ namespace Umea_rana
             list2.LoadContent(content);
             list1.LoadContent(content);
             butts.LoadContent(content);
+            butts.activate(0, 0, 0.15f, 0.15f, "EditSEU",LocalizedString.Map_Editor +"\n"+LocalizedString.SEU  );
+            butts.activate(0, 1, 0.15f, 0.5f, "Play", LocalizedString.Map_Editor + "\n" + LocalizedString.PLA );
+            butts.activate(0, 2, 0.15f, 0.85f, "", LocalizedString.Back );
+
+
+            butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", LocalizedString.Play );
+            butts.activate(1, 1, 0.85f, 0.5f, "play", LocalizedString.Play );
+            butts.disable(1, 2);
         }
         public override void UnloadContent()
         {

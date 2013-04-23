@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Umea_rana.localization;
 
 namespace Umea_rana
 {
@@ -40,10 +41,10 @@ namespace Umea_rana
         {
             
             button.LoadContent(content);
-            button.activate(0, 0, 0.1f, 0.1f, "Next", "suivant");
-              button.activate(0, 1, 0.1f, 0.2f,"Last", "rejouer");
-            button.activate(0, 2, 0.1f, 0.3f, "", "Menu");
-            button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
+            button.activate(0, 0, 0.1f, 0.1f, "Next",LocalizedString.Next );
+              button.activate(0, 1, 0.1f, 0.2f,"Last", LocalizedString.Replay );
+            button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Menu );
+            button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit );
             background = content.Load<Texture2D>("Menu//game_over");
         }
         public override void UnloadContent()

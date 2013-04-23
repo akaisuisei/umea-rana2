@@ -188,7 +188,7 @@ namespace Umea_rana
             spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Bottom, fond.Width, 1), Color.Black);
             spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
             spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.FlipVertically, 0);
-            spritbach.DrawString(font, "selected Item : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
+            spritbach.DrawString(font,localization.LocalizedString.Selected_item  +" : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
         }
         private void Uplist()
         {
