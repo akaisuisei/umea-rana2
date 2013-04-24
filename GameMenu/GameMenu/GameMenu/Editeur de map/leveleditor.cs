@@ -71,7 +71,7 @@ namespace Umea_rana
 
 
             //charge l IA
-            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
+            aster_t = Content.Load<Texture2D>("spritesheet");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
 
@@ -146,7 +146,7 @@ namespace Umea_rana
                 collision.col_H_IA(manage_k, ref vaisseau);
                 collision.col_H_IA(manage_V, ref vaisseau);
                 collision.col_H_IA(manage_T, ref vaisseau);
-                collision.Ovni_vaiss(ref ovini, ref vaisseau);
+              //  collision.Ovni_vaiss(ref ovini, ref vaisseau);
 
                 //update collision
 
@@ -183,7 +183,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ovini.Draw(spriteBatch);
+           
             Scroll.Draw(spriteBatch);
             //  scrolling1.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
@@ -192,6 +192,7 @@ namespace Umea_rana
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
+            ovini.Draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 

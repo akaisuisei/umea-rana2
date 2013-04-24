@@ -33,8 +33,8 @@ namespace Umea_rana
             //display
             displaymode = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
             graphics = new GraphicsDeviceManager(this);
-            height = 400;// displaymode.Height;
-            width = 800; //displaymode.Width;
+            height =  displaymode.Height;
+            width = displaymode.Width;
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
@@ -76,7 +76,7 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
-            LocalizedString.Culture = new System.Globalization.CultureInfo("fr-FR") ;
+            LocalizedString.Culture = new System.Globalization.CultureInfo("en-US") ;
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
