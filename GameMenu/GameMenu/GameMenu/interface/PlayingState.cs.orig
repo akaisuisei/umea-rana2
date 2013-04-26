@@ -12,37 +12,74 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    public class PlayingState:GameState
-        //joindre ici le code du jeu
-    {
-        Rectangle rectangle;
-        Texture2D test;
-        public PlayingState()
+    public class PlayingState : GameState
+    //joindre ici le code du jeu
+    {      
+        _Pause _pause;
+        KeyboardState oldkey;
+        bool _checkpause = false;
+<<<<<<< HEAD
+
+        public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        {
+
+            _pause = new _Pause(game1, graphics, content);
+=======
+        public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             rectangle = new Rectangle(0, 0, 30, 30);
+            _pause = new _Pause(game1, graphics, Content);
+>>>>>>> 3893b2ceaa85dfd997ab30b6f34afb259c5a021f
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-           
+            oldkey = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager content,string level)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            test = content.Load<Texture2D>("Untitled");
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            _pause.LoadContent(Content);
+            _pause.initbutton(ref level);
+<<<<<<< HEAD
+         
+=======
+            test = Content.Load<Texture2D>("Untitled");
+>>>>>>> 3893b2ceaa85dfd997ab30b6f34afb259c5a021f
         }
         public override void UnloadContent()
         {
+          
+            _pause.Dispose();
         }
         public override void Update(Game1 game, Audio audio)
         {
+            KeyboardState keyboard = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
+
+            if (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Keys.Escape))
+            {
+                _pause.checkpause(keyboard, ref _checkpause);
+            }
+            if (!_checkpause)
+            {
+                // ici le code de jeu update
+            }
+            else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                MediaPlayer.Stop();
+                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
+                _pause.Update(game, audio, ref _checkpause);
+            }
+            oldkey = keyboard;
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-<<<<<<< HEAD
-     
-     
-=======
-            spriteBatch.Draw(test, rectangle, Color.White);
->>>>>>> origin/master
+            //ici le dessin
+            if (_checkpause)
+                _pause.Draw(spriteBatch);
         }
     }
 }

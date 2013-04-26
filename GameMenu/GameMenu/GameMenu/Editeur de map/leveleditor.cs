@@ -35,12 +35,12 @@ namespace Umea_rana
         Scrolling_ManagerV Scroll;
         Rectangle fond;
 
-        public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
             save = new Sauveguarde();
             path = game1.path;
         }
@@ -59,7 +59,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
             //charge le fond
             //    bacgkround1 = Content.Load<Texture2D>("level2//fond");
@@ -71,7 +71,7 @@ namespace Umea_rana
 
 
             //charge l IA
-            aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
+            aster_t = Content.Load<Texture2D>("spritesheet");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
 
@@ -111,7 +111,7 @@ namespace Umea_rana
             manage_V.Dipose();
             ovini.Dispose();
             Scroll.dispose();
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
         public override void Update(Game1 game, Audio audio)
         {
@@ -146,7 +146,7 @@ namespace Umea_rana
                 collision.col_H_IA(manage_k, ref vaisseau);
                 collision.col_H_IA(manage_V, ref vaisseau);
                 collision.col_H_IA(manage_T, ref vaisseau);
-                collision.Ovni_vaiss(ref ovini, ref vaisseau);
+              //  collision.Ovni_vaiss(ref ovini, ref vaisseau);
 
                 //update collision
 
@@ -183,7 +183,7 @@ namespace Umea_rana
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ovini.Draw(spriteBatch);
+           
             Scroll.Draw(spriteBatch);
             //  scrolling1.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
@@ -192,6 +192,7 @@ namespace Umea_rana
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
+            ovini.Draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 

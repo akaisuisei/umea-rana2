@@ -40,6 +40,12 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sentius.darkFunction.Core">
+      <HintPath>..\..\..\..\..\..\Downloads\sentius-darkFunction-1.0.1\Windows\Release\Sentius.darkFunction.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sentius.darkFunction.PipelineExtensions">
+      <HintPath>..\..\..\..\..\..\Downloads\sentius-darkFunction-1.0.1\Windows\Release\Sentius.darkFunction.PipelineExtensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menu\jouer.png">
@@ -364,6 +370,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="yoh3.png">
+      <Name>yoh3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="sky4.png">
+      <Name>sky4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </SplashScreen>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="spritesheet.png">
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

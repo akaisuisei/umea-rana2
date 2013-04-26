@@ -38,13 +38,13 @@ namespace Umea_rana
         int spawn;
         string iaType;
 
-        public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
 
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
 
         }
 
@@ -60,7 +60,7 @@ namespace Umea_rana
             iaType = "kawabunga";
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
             _pause.initbutton(ref level);
             Scroll_manager = new Scrolling_ManagerV(new Rectangle(0,0,width,height ));
@@ -107,7 +107,7 @@ namespace Umea_rana
             ovni.Dispose();
             Scroll_manager.dispose();
             _pause.Dispose();
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
             user.destroy();
             user.dispose();
             user.Dispose();

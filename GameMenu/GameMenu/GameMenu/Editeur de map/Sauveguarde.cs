@@ -117,12 +117,12 @@ namespace Umea_rana
             return hello;
         }
 
-        public string[] filename(ContentManager content)
+        public string[] filename(ContentManager Content)
         {
             string g;
-            if (!Directory.Exists(Path.GetDirectoryName(content.RootDirectory) + "\\back"))
-                Directory.CreateDirectory(content.RootDirectory + "\\back");
-            string[] hello = System.IO.Directory.GetFiles(content.RootDirectory + "\\back");
+            if (!Directory.Exists(Path.GetDirectoryName(Content.RootDirectory) + "\\back"))
+                Directory.CreateDirectory(Content.RootDirectory + "\\back");
+            string[] hello = System.IO.Directory.GetFiles(Content.RootDirectory + "\\back");
             for (int j = 0; j < hello.Length; ++j)
             {
                 g = string.Empty;
@@ -139,12 +139,12 @@ namespace Umea_rana
         /// <summary>
         ///  jeu normal chargement
         /// </summary>
-        /// <param name="content"></param>
+        /// <param name="Content"></param>
         /// <param name="level">nom du nivau</param>
         /// <param name="iamanage_K"></param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_level_SEU(ContentManager content, ref string level, ref string next, ref IA_manager_K iamanage_K,
+        public void load_level_SEU(ContentManager Content, ref string level, ref string next, ref IA_manager_K iamanage_K,
             ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite, ref Ovni ovni)
         {
             savefile savefil = new savefile();
@@ -152,7 +152,7 @@ namespace Umea_rana
             XmlSerializer f = null;
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(content.RootDirectory + "\\" + level);
+            dir = new DirectoryInfo(Content.RootDirectory + "\\" + level);
             if (dir.Exists)
             {
                 file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
@@ -168,7 +168,7 @@ namespace Umea_rana
                 iamanage_K.Add(savefil.ia_Kamikaze[j]);
             for (int j = 0; j < savefil.bonus.Count; ++j)
                 ovni.Add(savefil.bonus[j]);
-            scrollM.Load(content, savefil.levelProfile, grash);
+            scrollM.Load(Content, savefil.levelProfile, grash);
             sprite.parametrage(ref savefil.levelProfile);
             ovni.param(savefil.levelProfile.fc_speed);
             next = savefil.levelProfile.next_level;
@@ -181,7 +181,7 @@ namespace Umea_rana
         /// <param name="iamanage_K">manager de ia</param>
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
-        public void load_leveleditor_SEU(ContentManager content, string level, ref IA_manager_K iamanage_K,
+        public void load_leveleditor_SEU(ContentManager Content, string level, ref IA_manager_K iamanage_K,
             ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref sripte_V sprite, ref Ovni ovni)
         {
             savefile savefile = new savefile();
@@ -195,7 +195,7 @@ namespace Umea_rana
             for (int j = 0; j < savefile.bonus.Count; ++j)
                 ovni.Add(savefile.bonus[j]);
 
-            scrollM.Load(content, savefile.levelProfile, grap);
+            scrollM.Load(Content, savefile.levelProfile, grap);
             sprite.parametrage(ref savefile.levelProfile);
             ovni.param(savefile.levelProfile.fc_speed);
         }

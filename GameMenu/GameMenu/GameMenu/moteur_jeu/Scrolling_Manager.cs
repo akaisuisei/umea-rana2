@@ -57,7 +57,7 @@ namespace Umea_rana
                 texture[count] = (Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
-                couche[count] = 1f;
+                couche[count] = 0.9f;
                 ++count;
             }
             else if (name == "BackgrounD")// si c est un jeu perso
@@ -88,7 +88,7 @@ namespace Umea_rana
                 texture[count] = (Content.Load<Texture2D>("back\\" + levelprofile.second_background));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
-                couche[count] = 0.9f;
+                couche[count] = 0.7f;
                 //  scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
                 ++count;
             }

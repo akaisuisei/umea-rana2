@@ -22,15 +22,17 @@ namespace Umea_rana
         public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
 
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             oldkey = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            _pause.LoadContent(content);
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            _pause.LoadContent(Content);
             _pause.initbutton(ref level);
          
         }

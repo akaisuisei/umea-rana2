@@ -14,7 +14,7 @@ namespace Umea_rana
 {
     public class Audio
     {
-        public Audio(ContentManager content)
+        public Audio(ContentManager Content)
         {
 
         }

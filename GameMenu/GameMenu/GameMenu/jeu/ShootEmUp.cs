@@ -37,39 +37,44 @@ namespace Umea_rana
         Ovni ovini;
         Rectangle fond;
 
-        public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
 
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-
+            
             timer = -100;
-            taille_sprt = (int)(Math.Min(width, height) * 0.05);
-            taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
+           
 
             game_time = 0;
             oldkey = Keyboard.GetState();
 
             collision = new Collision();
             save = new Sauveguarde();
-            ovini = new Ovni(width, height);
+           
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            
+             ovini = new Ovni(width, height);
+            taille_sprt = (int)(Math.Min(width, height) * 0.05);
+            taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
             //charge le fond
             //         background1 = Content.Load<Texture2D>("level2//fond");
             //       background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
             _pause.initbutton(ref level);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
-            fond =new  Rectangle(200, 0, width / 2, height);
+            fond =new  Rectangle(width/4 , 0, width / 2, height);
             scroll = new Scrolling_ManagerV(fond );
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
@@ -118,7 +123,7 @@ namespace Umea_rana
             scroll.dispose();
             ovini.Dispose();
 
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
         public override void Update(Game1 game, Audio audio)
         {

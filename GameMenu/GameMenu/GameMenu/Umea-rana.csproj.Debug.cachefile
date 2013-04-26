@@ -22,6 +22,7 @@ Content\hero\vaisseau\sazabiHaman2d.xnb
 Content\hero\vaisseau\sazabiHaman2g.xnb
 Content\bullet\aura.xnb
 Content\bullet\aura2.xnb
+Content\back\fond2.xnb
 Content\IA\asteroid\asteroide-sprite.xnb
 Content\Menu\background menu.xnb
 Content\Menu\logofin.xnb
@@ -38,17 +39,18 @@ Content\IA\eve.xnb
 Content\IA\tuc_jaune.xnb
 Content\level1\fond_niv1.xnb
 Content\level1\platform.xnb
+Content\ListBoxBG.xnb
+Content\fleche.xnb
+Content\hero\spriteSheet.xnb
+Content\SEU1\backgroundT.xnb
+Content\yoh3.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
-Content\back\fond2.xnb
-Content\ListBoxBG.xnb
-Content\fleche.xnb
-Content\hero\spriteSheet.xnb
-Content\SEU1\backgroundT.xnb
 Content\FontList.xnb
+Content\spritesheet.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
 Content\SEU1\level.lvl
