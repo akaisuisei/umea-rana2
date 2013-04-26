@@ -171,7 +171,7 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.OptionsState);
                     else if (gameState[X, Y] == "Pause")
                         game.ChangeState(Game1.gameState.Pause);
-                    else if (gameState[X, Y] == "Play")
+                    else if (gameState[X, Y] == "EditPLA")
                     {
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.PlayingState);

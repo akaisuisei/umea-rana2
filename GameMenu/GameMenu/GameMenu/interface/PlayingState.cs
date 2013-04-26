@@ -14,15 +14,14 @@ namespace Umea_rana
 {
     public class PlayingState : GameState
     //joindre ici le code du jeu
-    {
-        Rectangle rectangle;
-        Texture2D test;
+    {      
         _Pause _pause;
         KeyboardState oldkey;
         bool _checkpause = false;
+
         public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
-            rectangle = new Rectangle(0, 0, 30, 30);
+
             _pause = new _Pause(game1, graphics, content);
         }
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -33,11 +32,11 @@ namespace Umea_rana
         {
             _pause.LoadContent(content);
             _pause.initbutton(ref level);
-            test = content.Load<Texture2D>("Untitled");
+         
         }
         public override void UnloadContent()
         {
-            test.Dispose();
+          
             _pause.Dispose();
         }
         public override void Update(Game1 game, Audio audio)
@@ -51,7 +50,7 @@ namespace Umea_rana
             }
             if (!_checkpause)
             {
-                // ici le code de jeu
+                // ici le code de jeu update
             }
             else
             {

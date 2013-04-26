@@ -38,7 +38,7 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             butts = new Button(2, 3, width, height, 0.1f, 0.1f, 0);
             butts.activate(0, 0, 0.15f, 0.15f, "EditSEU", "Editeur de jeu1");
-            butts.activate(0, 1, 0.15f, 0.5f, "Play", "editeur de jeu2");
+            butts.activate(0, 1, 0.15f, 0.5f, "EditPLA", "editeur de jeu2");
             butts.activate(0, 2, 0.15f, 0.85f, "", "retour");
 
    

@@ -57,6 +57,34 @@ namespace Umea_rana
         public int speed,angle,launch;
         public float X, Y;
     }
+
+    public struct Naruto
+    {
+        public float X;
+        public float Y;
+        public int life;
+        public int damage;
+        public int speed;
+    }
+
+    public struct Eve
+    {
+        public float X;
+        public float Y;
+        public int life;
+        public int damage;
+        public int speed;
+    }
+
+    public struct Tuc
+    {
+        public float X;
+        public float Y;
+        public int life;
+        public int damage;
+        public int speed;
+    }
+
     public struct savefile
     {
         public List<quaintuplet> ia_viseur;
@@ -64,6 +92,10 @@ namespace Umea_rana
         public List<couple> ia_Kamikaze;
         public List<Bonus> bonus;
         public levelProfile levelProfile;
+        public List<Naruto> IA_naruto;
+        public List<Eve> IA_eve;
+        public List<Tuc> IA_tuc;
+
     }
     public struct PlayerProfile
     {
@@ -90,4 +122,5 @@ namespace Umea_rana
     public struct OptionProfile
     {
     }
+
 }
