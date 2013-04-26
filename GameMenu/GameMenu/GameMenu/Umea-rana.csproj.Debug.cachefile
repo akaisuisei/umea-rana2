@@ -41,6 +41,7 @@ Content\level1\fond_niv1.xnb
 Content\level1\platform.xnb
 Content\ListBoxBG.xnb
 Content\fleche.xnb
+Content\hero\spriteSheet.xnb
 Content\SEU1\backgroundT.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
@@ -48,9 +49,6 @@ Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
 Content\FontList.xnb
-Content\hero\spriteSheet.xnb
-Content\Menu\test.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
-Content\Menu\test.wma
 Content\SEU1\level.lvl
