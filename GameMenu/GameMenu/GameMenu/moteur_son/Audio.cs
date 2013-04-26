@@ -14,16 +14,56 @@ namespace Umea_rana
 {
     public class Audio
     {
+        static Dictionary<string, Song> playlist;
+        
+
         public Audio(ContentManager content)
         {
-
+            playlist = new Dictionary<string, Song>();
+            playlist.Add("Menu", content.Load<Song>("Menu//songMenu"));
+            playlist.Add("Loading", null);
+            playlist.Add("BGMlevel1", null);
+            playlist.Add("BGMlevel2", null);
+            playlist.Add("extraBGMlevel1", null);
+            playlist.Add("extraBGMlevel2", null);
+            playlist.Add("extraBGM", null);
         }
-        public void testAudio(sprite_broillon sprite, SoundEffect song)
+        public static void play(string level)
         {
-            if ((sprite.jump_ok) && ((Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.Left))))
-
-                song.Play();
+            MediaPlayer.Stop();
+            MediaPlayer.Volume = OptionState._vol;
+            switch (level)
+            {
+                case "Menu":
+                    MediaPlayer.Play(playlist["Menu"]);
+                    break;
+                case "BGMlevel1":
+                    if (playlist["extraBGMlevel1"] == null)
+                        MediaPlayer.Play(playlist["BGMlevel1"]);
+                    else
+                        MediaPlayer.Play(playlist["extraBGMlevel1"]);
+                    break;
+                case "BGMlevel2":
+                    if (playlist["extraBGMlevel2"] == null)
+                        MediaPlayer.Play(playlist["BGMlevel2"]);
+                    else
+                        MediaPlayer.Play(playlist["extraBGMlevel2"]);
+                    break;
+            }
         }
-        
+        public static void addMusic(string level,string path,string name_of_song) //prend en paramètres le niveau, le chemin pour charger la musique dans le répertoire du niveau concerné
+        {
+            MediaPlayer.Stop();
+            Song song = Song.FromUri(name_of_song,new Uri(path));
+            playlist[level] = song;
+        }
+        public static void nextMusic(string current_level)
+        {
+        }
+        public static void changevolume(float volume)
+        {
+            OptionState._vol = volume;
+            MediaPlayer.Volume = OptionState._vol;
+        }
     }
 }

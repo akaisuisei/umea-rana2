@@ -135,6 +135,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Curseur.cs" />
     <Compile Include="manager\IA_manager_AA.cs" />
     <Compile Include="manager\IA_manager_AR.cs" />
     <Compile Include="jeu\GameWin.cs" />

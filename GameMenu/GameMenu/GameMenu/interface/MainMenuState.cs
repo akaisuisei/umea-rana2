@@ -15,8 +15,6 @@ namespace Umea_rana
     public class MainMenuState : GameState
     //code du menu
     {
-        Song songMenu;
-        public static float vol = 1.0f;
         Texture2D background;
         Rectangle rectangle;
         Button button;
@@ -28,9 +26,6 @@ namespace Umea_rana
         {
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
-            MediaPlayer.Volume = vol;
-            songMenu = content.Load<Song>("Menu//songMenu");
-            MediaPlayer.Play(songMenu);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -44,14 +39,13 @@ namespace Umea_rana
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", "Jouer");
             button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", "Editeur de Map");
-            button.activate(0, 2, 0.1f, 0.3f, "Option2", "Option");
+            button.activate(0, 2, 0.1f, 0.3f, "Option", "Option");
             button.activate(0, 3, 0.1f, 0.4f, "Exit", "quitter");
             background = Content.Load<Texture2D>("Menu//background menu");
             titre = Content.Load<Texture2D>("Menu//pause//Menu");
         }
         public override void UnloadContent()
         {
-            songMenu.Dispose();
             background.Dispose();
             button.Dispose();
         }
@@ -62,9 +56,6 @@ namespace Umea_rana
             MouseState mouse = Mouse.GetState();
             rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, "");
-
-
-
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

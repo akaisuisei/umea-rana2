@@ -168,7 +168,7 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Null")
                         game.ChangeState(Game1.gameState.Null);
                     else if (gameState[X, Y] == "Option")
-                        game.ChangeState(Game1.gameState.OptionsState);
+                        game.ChangeState(Game1.gameState.OptionState);
                     else if (gameState[X, Y] == "Pause")
                         game.ChangeState(Game1.gameState.Pause);
                     else if (gameState[X, Y] == "Play")
@@ -278,7 +278,7 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Null")
                         game.ChangeState(Game1.gameState.Null);
                     else if (gameState[X, Y] == "Option")
-                        game.ChangeState(Game1.gameState.OptionsState);
+                        game.ChangeState(Game1.gameState.OptionState);
                     else if (gameState[X, Y] == "Pause")
                         game.ChangeState(Game1.gameState.Pause);
                     else if (gameState[X, Y] == "Play")

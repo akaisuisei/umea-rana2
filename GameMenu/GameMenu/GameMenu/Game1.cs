@@ -27,6 +27,7 @@ namespace Umea_rana
         public string level=string.Empty ,next= string.Empty ;
         public SoundEffect menu_cursor, menu_select;
         bool fullScreen = false;
+
         public Game1()
         {
             //display
@@ -38,7 +39,6 @@ namespace Umea_rana
             graphics.PreferredBackBufferWidth = width;
             graphics.ApplyChanges();
             graphics.IsFullScreen = fullScreen ;
-
             //content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
@@ -55,12 +55,17 @@ namespace Umea_rana
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
+            StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content));
             StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
         }
 
         protected override void Initialize()
         {
             ParticleAdder.adder(this, _currentState, width, height);
+            if (_currentState == gameState.MainMenuState)
+                Audio.play("Menu");
+            if (_currentState == gameState.Level_select_state)
+                Audio.changevolume(0.1f);
             try
             {
                 StateManager[_currentState].Initialize(graphics);
@@ -115,7 +120,7 @@ namespace Umea_rana
         {
             MainMenuState,
             PlayingState,
-            OptionsState,
+            OptionState,
             Level_select_state,
             Level2,
             SEU,
