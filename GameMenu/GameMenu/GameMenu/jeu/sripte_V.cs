@@ -11,8 +11,22 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
+
     public class sripte_V : objet
     {
+        private class pos
+        {
+            public int lstart = 1, cstart = 1;
+            public int Tlstart = 1, Tcstart = 1, Tcend = 1;
+            public pos(int ls, int cs, int tl, int tcs, int tce)
+            {
+                lstart = ls;
+                cstart = cs;
+                Tlstart = tl;
+                Tcstart = tcs;
+                Tcend = tce;
+            }
+        }
 
         public Texture2D texture, mtexture;
         //  Texture2D test;
@@ -38,10 +52,12 @@ namespace Umea_rana
 
         int speedbullet;
         int damage;
+        pos Vturn, Vup, Vdown, Rturn, Rup, Rdown, current, last;
 
 
         int FrameColumn2;
-
+        int frameline2;
+        float colunm, line;
 
         Rectangle vect;
 
@@ -77,6 +93,17 @@ namespace Umea_rana
             FrameColumn2 = 1;
 
             //     test = content.Load<Texture2D>("ListBoxBG");
+            Vturn = new pos(2, 2, 9, 1, 5);
+            Vup = new pos(2, 1, 8, 1, 5);
+            Vdown = new pos(2, 1, 2, 3, 5);
+            Rturn = new pos(1, 2, 6, 1, 5);
+
+            Rup = new pos(1, 1, 5, 1, 5);
+            Rdown = new pos(1, 1, 7, 1, 5);
+            current = Rup;
+            colunm = 150f;
+            line =200f ;
+
         }
         public void parametrage(ref levelProfile level)
         {
@@ -95,7 +122,7 @@ namespace Umea_rana
         {
             texture = n_texture;
             mtexture = content.Load<Texture2D>("bullet//bullet");
-            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
+            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -144,6 +171,8 @@ namespace Umea_rana
 
             bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
+            last = current; 
+            this.Timer++;
         }
 
         // movement et animation
@@ -158,17 +187,36 @@ namespace Umea_rana
         {
             if (type == 0)
             {
-                FrameColumn2 = 3;
-                FrameLine = 1;
-                FrameColumn = 1;
-                FrameLine = 1;
+                current = Rdown;
+                if (current != last)
+                {
+                    FrameLine = Rdown.lstart;
+                    frameline2 = Rdown.Tlstart;
+                    FrameColumn = Rdown.cstart;
+                    FrameColumn2 = Rdown.Tcstart; 
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Rdown.Tcend + 1;
+                }          
+          
             }
             else
             {
-                FrameColumn2 = 3;
-
-                FrameColumn = 1;
-                FrameLine = 2;
+                current = Vdown;
+                if (current != last)
+                {
+                    FrameLine = Vdown.lstart;
+                    frameline2 = Vdown.Tlstart;
+                    FrameColumn = Vdown.cstart;
+                    FrameColumn2 = Vdown.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Vdown.Tcend + 1;
+                }
             }
             rectangle.Y += speed;
             vect.Y += speed;
@@ -178,15 +226,35 @@ namespace Umea_rana
             Effects = SpriteEffects.FlipHorizontally;
             if (type == 0)
             {
-                FrameColumn2 = 2;
-                FrameColumn = 2;
-                FrameLine = 1;
+                current = Rturn;
+                if (current != last)
+                {
+                    FrameLine =  Rturn .lstart; 
+                    frameline2 =Rturn.Tlstart;
+                    FrameColumn = Rturn.cstart;
+                    FrameColumn2 = Rturn.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Rturn.Tcend + 1;
+                }
             }
             else
             {
-                FrameColumn2 = 2;
-                FrameColumn = 2;
-                FrameLine = 2;
+                current = Vturn;
+                if (current != last)
+                {
+                    FrameLine = Vturn.lstart;
+                    frameline2 = Vturn.Tlstart;
+                    FrameColumn = Vturn.cstart;
+                    FrameColumn2 = Vturn.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Vturn.Tcend + 1;
+                }
                 decallageX = (int)(0.467f * (float)rectangle.Width);
             }
             rectangle.X += speed;
@@ -196,17 +264,38 @@ namespace Umea_rana
         private void left()
         {
             Effects = SpriteEffects.None;
+          
             if (type == 0)
             {
-                FrameColumn2 = 2;
-                FrameColumn = 2;
-                FrameLine = 1;
+                current = Rturn;
+                if (current != last)
+                {
+                    FrameLine = Rturn.lstart;
+                    frameline2 = Rturn.Tlstart;
+                    FrameColumn = Rturn.cstart;
+                    FrameColumn2 = Rturn.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Rturn.Tcend + 1;
+                }
             }
             else
             {
-                FrameColumn2 = 2;
-                FrameColumn = 2;
-                FrameLine = 2;
+                current = Vturn;
+                if (current != last)
+                {
+                    FrameLine = Vturn.lstart;
+                    frameline2 = Vturn.Tlstart;
+                    FrameColumn = Vturn.cstart;
+                    FrameColumn2 = Vturn.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Vturn.Tcend + 1;
+                }
                 decallageX = (int)(0.44f * (float)rectangle.Width);
             }
             rectangle.X -= speed;
@@ -218,15 +307,35 @@ namespace Umea_rana
             Effects = SpriteEffects.None;
             if (type == 0)
             {
-                FrameColumn2 = 1;
-                FrameColumn = 1;
-                FrameLine = 1;
+                current = Rup;
+                if (current != last)
+                {
+                    FrameLine = Rup.lstart;
+                    frameline2 = Rup.Tlstart;
+                    FrameColumn = Rup.cstart;
+                    FrameColumn2 = Rup.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Rup.Tcend + 1;
+                }
             }
             else
             {
-                FrameColumn2 = 1;
-                FrameColumn = 1;
-                FrameLine = 2;
+                current = Vup;
+                if (current != last)
+                {
+                    FrameLine = Vup.lstart;
+                    frameline2 = Vup.Tlstart;
+                    FrameColumn = Vup.cstart;
+                    FrameColumn2 = Vup.Tcstart;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn2 = FrameColumn2 % Vup.Tcend + 1;
+                }
                 decallageX = (int)(0.44f * (float)rectangle.Width);
             }
         }
@@ -238,7 +347,8 @@ namespace Umea_rana
             decallageY = (int)(0.55f * (float)rectangle.Width);
             hauteurY = (int)(0.20f * (float)rectangle.Width); ;
             largeurX = (int)(0.33f * (float)rectangle.Width);
-            this.Timer++;
+            frameline2 = 1;
+            FrameColumn2 = 4;
             if (type % 2 == 1)
             {
 
@@ -318,21 +428,21 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spritebatch)
         {
-           
-            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * 300, (this.FrameLine - 1) * 400, 300, 400), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+
+            spritebatch.Draw(texture, rectangle, new Rectangle((int)((this.FrameColumn - 1) * colunm), (int)((this.FrameLine - 1) * line), (int)colunm, (int)line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
-            spritebatch.Draw(texture, vect, new Rectangle(600 + (this.FrameColumn2 - 1) * 300, (this.FrameLine - 1) * 200, 300, 200), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
+            spritebatch.Draw(texture,rectangle , new Rectangle((int)((this.FrameColumn2 - 1) * colunm), (int)((this.frameline2 - 1) * line), (int)colunm, (int)line), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
             for (int i = 0; i < bulletL.Count; i++)
             {
                 spritebatch.Draw(mtexture, bulletL[i].rectangle, new Rectangle(0, 0, mtexture.Width, mtexture.Height), bulletL[i].colo);
-            }     
+            }
         }
         public void Dispose()
         {
             texture.Dispose();
             mtexture.Dispose();
             bulletL = null;
-        
+
         }
     }
 }

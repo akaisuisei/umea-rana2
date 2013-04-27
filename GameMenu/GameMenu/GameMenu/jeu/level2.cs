@@ -60,7 +60,7 @@ namespace Umea_rana
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content);
+            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content,'1');
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia
