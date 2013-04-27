@@ -52,12 +52,12 @@ namespace Umea_rana
 
         int speedbullet;
         int damage;
-        pos Vturn, Vup, Vdown, Rturn, Rup, Rdown, current, last;
+        pos Vturn, Vup, Vdown, Rturn, Rup, Rdown, current, last, xplosion;
 
 
         int FrameColumn2;
         int frameline2;
-        float colunm, line;
+        float colunm, line, xline;
 
         Rectangle vect;
 
@@ -100,10 +100,11 @@ namespace Umea_rana
 
             Rup = new pos(1, 1, 5, 1, 5);
             Rdown = new pos(1, 1, 7, 1, 5);
+            xplosion = new pos(6, 1, 40, 1, 3);
             current = Rup;
             colunm = 150f;
-            line =200f ;
-
+            line = 200f;
+            xline = 45;
         }
         public void parametrage(ref levelProfile level)
         {
@@ -167,11 +168,15 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
                 power = 4;
             if (vie <= 0)
-                game.ChangeState(Game1.gameState.Pause);
+            {
+                Xplode();
+                if (FrameLine == 40)
+                    game.ChangeState(Game1.gameState.Pause);
+            }
 
             bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
-            last = current; 
+            last = current;
             this.Timer++;
         }
 
@@ -193,14 +198,14 @@ namespace Umea_rana
                     FrameLine = Rdown.lstart;
                     frameline2 = Rdown.Tlstart;
                     FrameColumn = Rdown.cstart;
-                    FrameColumn2 = Rdown.Tcstart; 
+                    FrameColumn2 = Rdown.Tcstart;
                 }
                 else if (this.Timer == this.AnimationSpeed)
                 {
                     this.Timer = 0;
                     this.FrameColumn2 = FrameColumn2 % Rdown.Tcend + 1;
-                }          
-          
+                }
+
             }
             else
             {
@@ -229,8 +234,8 @@ namespace Umea_rana
                 current = Rturn;
                 if (current != last)
                 {
-                    FrameLine =  Rturn .lstart; 
-                    frameline2 =Rturn.Tlstart;
+                    FrameLine = Rturn.lstart;
+                    frameline2 = Rturn.Tlstart;
                     FrameColumn = Rturn.cstart;
                     FrameColumn2 = Rturn.Tcstart;
                 }
@@ -264,7 +269,7 @@ namespace Umea_rana
         private void left()
         {
             Effects = SpriteEffects.None;
-          
+
             if (type == 0)
             {
                 current = Rturn;
@@ -420,6 +425,27 @@ namespace Umea_rana
                 }
             }
         }
+        /// <summary>
+        /// animattion de l'explosion
+        /// </summary>
+        private void Xplode()
+        {
+            current = xplosion;
+            if (current != last)
+            {
+                FrameLine = current.cstart;
+                frameline2 = current.Tlstart;
+                FrameColumn = current.lstart;
+                FrameColumn2 = current.Tcstart;
+            }
+            else if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                if (FrameLine != 40)
+                    this.FrameLine++;
+            }
+        }
+
         // procedure pour indiquer au vaisseau la fin de niveau
         public void gagne()
         {
@@ -431,7 +457,7 @@ namespace Umea_rana
 
             spritebatch.Draw(texture, rectangle, new Rectangle((int)((this.FrameColumn - 1) * colunm), (int)((this.FrameLine - 1) * line), (int)colunm, (int)line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
             //       spritebatch.Draw(test ,rectangle_C,Color.Turquoise );  
-            spritebatch.Draw(texture,rectangle , new Rectangle((int)((this.FrameColumn2 - 1) * colunm), (int)((this.frameline2 - 1) * line), (int)colunm, (int)line), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
+            spritebatch.Draw(texture, rectangle, new Rectangle((int)((this.FrameColumn2 - 1) * colunm), (int)((this.frameline2 - 1) * line), (int)colunm, (int)line), color_V, 0f, Vector2.Zero, this.Effects, 0.001f);
             for (int i = 0; i < bulletL.Count; i++)
             {
                 spritebatch.Draw(mtexture, bulletL[i].rectangle, new Rectangle(0, 0, mtexture.Width, mtexture.Height), bulletL[i].colo);
