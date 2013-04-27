@@ -27,7 +27,7 @@ namespace Umea_rana
                 Tcend = tce;
             }
         }
-
+        int perso;
         public Texture2D texture, mtexture;
         //  Texture2D test;
         public List<munition> bulletL;
@@ -57,9 +57,11 @@ namespace Umea_rana
 
         int FrameColumn2;
         int frameline2;
-        float colunm, line, xline,xclunm;
+        float colunm, line, xline, xclunm;
 
-        Rectangle vect;
+        Rectangle fond;
+        Keys Kup, Kdown, Kright, Kleft, Katk, Ktrans;
+       private  bool activate;
 
         public sripte_V(Rectangle n_rectangle, int height, int width)
         {
@@ -89,7 +91,7 @@ namespace Umea_rana
             sizeX2 = rectangle.Width / 4;
             sizeY2 = rectangle.Height / 5;
 
-            vect = new Rectangle(n_rectangle.X, n_rectangle.Y + (int)(rectangle.Height * 0.29f), rectangle.Height, rectangle.Width);
+
             FrameColumn2 = 1;
 
             //     test = content.Load<Texture2D>("ListBoxBG");
@@ -107,6 +109,85 @@ namespace Umea_rana
             line = 200f;
             xline = 45;
             xclunm = 45;
+
+            Katk = Keys.Space;
+            Kdown = Keys.Down;
+            Kup = Keys.Up;
+            Kright = Keys.Right;
+            Kleft = Keys.Left;
+            Ktrans = Keys.T;
+            fond = new Rectangle(0, 0, width, height);
+            perso = 1;
+            activate = true;
+        }
+        public sripte_V(Rectangle n_rectangle, Rectangle fond, int perso)
+        {
+            rectangle = n_rectangle;
+
+            this.fond = fond;
+            rectangle.X = fond.Center.X;
+            rectangle.Y = fond.Bottom - rectangle.Height;
+            decallageX = (int)(0.33f * (float)rectangle.Width);
+            decallageY = (int)(0.55f * (float)rectangle.Width);
+            hauteurY = (int)(0.33f * (float)rectangle.Width);
+            largeurX = (int)(0.33f * (float)rectangle.Width);
+            Update_rec_collision();
+
+            FrameLine = 1;
+            FrameColumn = 1;
+            change_T = 0;
+            type = 0;
+            automatic_controlled = false;
+            // intencie le manager de missille 
+            bulletL = new List<munition>();
+            power = 0;
+            sizeX = rectangle.Width / 3;
+            sizeY = rectangle.Height / 2;
+
+            sizeX1 = rectangle.Width / 8;
+            sizeY1 = rectangle.Height / 6;
+
+            sizeX2 = rectangle.Width / 4;
+            sizeY2 = rectangle.Height / 5;
+            FrameColumn2 = 1;
+
+            //     test = content.Load<Texture2D>("ListBoxBG");
+            Vturn = new pos(2, 2, 9, 1, 5);
+            Vup = new pos(2, 1, 8, 1, 5);
+            Vdown = new pos(2, 1, 2, 3, 5);
+            Rturn = new pos(1, 2, 6, 1, 5);
+
+            Rup = new pos(1, 1, 5, 1, 5);
+            Rdown = new pos(1, 1, 7, 1, 5);
+            // xplode invertion entre truster et image normale
+            xplosion = new pos(1, 8, 1, 18, 40);
+            current = Rup;
+            colunm = 150f;
+            line = 200f;
+            xline = 45;
+            xclunm = 45;
+            if (perso == 1)
+            {
+                Katk = Keys.Space;
+                Kdown = Keys.Down;
+                Kup = Keys.Up;
+                Kright = Keys.Right;
+                Kleft = Keys.Left;
+                Ktrans = Keys.T;
+                activate = true;
+            }
+            else
+            {
+                Katk = Keys.Space;
+                Kdown = Keys.S ;
+                Kup = Keys.W;
+                Kright = Keys.D;
+                Kleft = Keys.A;
+                Ktrans = Keys.Q ;
+                rectangle.X = -300;
+                activate = false;
+            }
+
         }
         public void parametrage(ref levelProfile level)
         {
@@ -130,58 +211,77 @@ namespace Umea_rana
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
-            if (vie <= 0)
+            if (activate)
             {
-                Xplode();
-                if (FrameLine == 45)
-                    game.ChangeState(Game1.gameState.Pause);
+                if (vie <= 0)
+                {
+                    Xplode();
+                    if (FrameLine == 45)
+                        if (perso == 1)
+                            game.ChangeState(Game1.gameState.Pause);
+                        else
+                        {
+                            this.activate = false;
+                            this.rectangle.X = -300;
+                        }
+                }
+                else
+                {
+                    if (automatic_controlled)//movement automatic de fin de jeu
+                        up();
+                    else// controlle du vaisseau
+                    {
+                        if (keyboard.IsKeyUp(Ktrans) && oldkey.IsKeyDown(Ktrans))
+                            type += 3;
+                        else if (type < 3)
+                        {
+                            if ((keyboard.IsKeyUp(Kup) && keyboard.IsKeyUp(Kdown) && keyboard.IsKeyUp(Kright) && keyboard.IsKeyUp(Kleft)) || keyboard.IsKeyDown(Kleft) && keyboard.IsKeyDown(Kright))
+                                move();
+                            else
+                            {
+                                if (keyboard.IsKeyDown(Kup) && (rectangle_C.Y > fond.Top))
+                                    up();
+                                if (keyboard.IsKeyDown(Kdown) && (rectangle_C.Bottom < fond.Bottom))
+                                    down();
+                                if (keyboard.IsKeyDown(Kright) && (rectangle_C.Right < fond.Right))
+                                    right();
+                                if (keyboard.IsKeyDown(Kleft) && (rectangle_C.Left > fond.Left))
+                                    left();
+                            }
+                        }
+                        else
+                        {
+                            type %= 5;
+                            Transform();
+                        }
+                    }
+
+                    change_T += 1;// timer pour l animation
+                    if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
+                        power = 1;
+                    if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
+                        power = 2;
+                    if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
+                        power = 3;
+                    if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
+                        power = 4;
+
+                }
+                bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
+                Update_rec_collision();
+                last = current;
+                this.Timer++;
             }
             else
             {
-                if (automatic_controlled)//movement automatic de fin de jeu
-                    up();
-                else// controlle du vaisseau
+                if (keyboard.IsKeyDown(Ktrans))
                 {
-                    if (keyboard.IsKeyUp(Keys.T) && oldkey.IsKeyDown(Keys.T))
-                        type += 3;
-                    else if (type < 3)
-                    {
-                        if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
-                            move();
-                        else
-                        {
-                            if (keyboard.IsKeyDown(Keys.Up) && (rectangle_C.Y > 0))
-                                up();
-                            if (keyboard.IsKeyDown(Keys.Down) && (rectangle_C.Bottom < height))
-                                down();
-                            if (keyboard.IsKeyDown(Keys.Right) && (rectangle_C.X + rectangle_C.Width < width))
-                                right();
-                            if (keyboard.IsKeyDown(Keys.Left) && (rectangle_C.X > 0))
-                                left();
-                        }
-                    }
-                    else
-                    {
-                        type %= 5;
-                        Transform();
-                    }
+                 
+                    activate = true;
+                    this.rectangle.X = fond.Center.X;
+                    this.rectangle.Y = fond.Center.Y;
                 }
-
-                change_T += 1;// timer pour l animation
-                if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
-                    power = 1;
-                if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
-                    power = 2;
-                if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
-                    power = 3;
-                if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
-                    power = 4;
-
             }
-            bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
-            Update_rec_collision();
-            last = current;
-            this.Timer++;
 
         }
 
@@ -190,7 +290,7 @@ namespace Umea_rana
         {
             rectangle.Y -= speed;
             move();
-            vect.Y -= speed;
+
 
         }
         private void down()
@@ -216,7 +316,7 @@ namespace Umea_rana
                 this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.Y += speed;
-            vect.Y += speed;
+
         }
         private void right()
         {
@@ -243,7 +343,7 @@ namespace Umea_rana
                 this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.X += speed;
-            vect.X += speed;
+
         }
         private void left()
         {
@@ -271,7 +371,7 @@ namespace Umea_rana
                 this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.X -= speed;
-            vect.X -= speed;
+
         }
         // animation
         private void move()
@@ -331,7 +431,7 @@ namespace Umea_rana
                     sizeX = sizeX1;
                     sizeY = sizeY1;
                     timer = timer1;
-                    vect.Y -= (int)(vect.Height * 0.263f);
+
                 }
                 else if (FrameColumn == 1)
                 {
@@ -366,7 +466,7 @@ namespace Umea_rana
                     sizeX = sizeX2;
                     sizeY = sizeY2;
                     timer = timer2;
-                    vect.Y += (int)(vect.Height * 0.267f);
+
                 }
                 else if (FrameColumn == 4)
                 {
@@ -386,7 +486,7 @@ namespace Umea_rana
         private void Xplode()
         {
             current = xplosion;
-            
+
             if (current != last)
             {
                 FrameLine = current.Tlstart;
@@ -397,12 +497,12 @@ namespace Umea_rana
                 Timer = 0;
                 AnimationSpeed = 7;
                 line = xline;
-            colunm = xclunm;
+                colunm = xclunm;
             }
             else if (this.Timer == this.AnimationSpeed)
             {
-                this.Timer = 0;   
-                    this.FrameLine++;
+                this.Timer = 0;
+                this.FrameLine++;
             }
         }
 
