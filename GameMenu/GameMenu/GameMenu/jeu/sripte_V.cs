@@ -57,7 +57,7 @@ namespace Umea_rana
 
         int FrameColumn2;
         int frameline2;
-        float colunm, line, xline;
+        float colunm, line, xline,xclunm;
 
         Rectangle vect;
 
@@ -100,11 +100,13 @@ namespace Umea_rana
 
             Rup = new pos(1, 1, 5, 1, 5);
             Rdown = new pos(1, 1, 7, 1, 5);
-            xplosion = new pos(6, 1, 40, 1, 3);
+            // xplode invertion entre truster et image normale
+            xplosion = new pos(1, 8, 1, 18, 40);
             current = Rup;
             colunm = 150f;
             line = 200f;
             xline = 45;
+            xclunm = 45;
         }
         public void parametrage(ref levelProfile level)
         {
@@ -128,56 +130,59 @@ namespace Umea_rana
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
         {
-
-            if (automatic_controlled)//movement automatic de fin de jeu
-                up();
-            else// controlle du vaisseau
-            {
-                if (keyboard.IsKeyUp(Keys.T) && oldkey.IsKeyDown(Keys.T))
-                    type += 3;
-                else if (type < 3)
-                {
-                    if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
-                        move();
-                    else
-                    {
-                        if (keyboard.IsKeyDown(Keys.Up) && (rectangle_C.Y > 0))
-                            up();
-                        if (keyboard.IsKeyDown(Keys.Down) && (rectangle_C.Bottom < height))
-                            down();
-                        if (keyboard.IsKeyDown(Keys.Right) && (rectangle_C.X + rectangle_C.Width < width))
-                            right();
-                        if (keyboard.IsKeyDown(Keys.Left) && (rectangle_C.X > 0))
-                            left();
-                    }
-                }
-                else
-                {
-                    type %= 5;
-                    Transform();
-                }
-            }
-
-            change_T += 1;// timer pour l animation
-            if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
-                power = 1;
-            if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
-                power = 2;
-            if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
-                power = 3;
-            if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
-                power = 4;
             if (vie <= 0)
             {
                 Xplode();
-                if (FrameLine == 40)
+                if (FrameLine == 45)
                     game.ChangeState(Game1.gameState.Pause);
             }
+            else
+            {
+                if (automatic_controlled)//movement automatic de fin de jeu
+                    up();
+                else// controlle du vaisseau
+                {
+                    if (keyboard.IsKeyUp(Keys.T) && oldkey.IsKeyDown(Keys.T))
+                        type += 3;
+                    else if (type < 3)
+                    {
+                        if ((keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.Left)) || keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))
+                            move();
+                        else
+                        {
+                            if (keyboard.IsKeyDown(Keys.Up) && (rectangle_C.Y > 0))
+                                up();
+                            if (keyboard.IsKeyDown(Keys.Down) && (rectangle_C.Bottom < height))
+                                down();
+                            if (keyboard.IsKeyDown(Keys.Right) && (rectangle_C.X + rectangle_C.Width < width))
+                                right();
+                            if (keyboard.IsKeyDown(Keys.Left) && (rectangle_C.X > 0))
+                                left();
+                        }
+                    }
+                    else
+                    {
+                        type %= 5;
+                        Transform();
+                    }
+                }
 
+                change_T += 1;// timer pour l animation
+                if (keyboard.IsKeyDown(Keys.D1) || keyboard.IsKeyDown(Keys.F1))
+                    power = 1;
+                if (keyboard.IsKeyDown(Keys.D2) || keyboard.IsKeyDown(Keys.F2))
+                    power = 2;
+                if (keyboard.IsKeyDown(Keys.D3) || keyboard.IsKeyDown(Keys.F3))
+                    power = 3;
+                if (keyboard.IsKeyDown(Keys.D4) || keyboard.IsKeyDown(Keys.F4))
+                    power = 4;
+
+            }
             bullet.Bullet_Update(keyboard, this, oldkey, new Vector2(0, 1), power, ref bulletL, ref sizeX, ref sizeY, ref timer);
             Update_rec_collision();
             last = current;
             this.Timer++;
+
         }
 
         // movement et animation
@@ -193,35 +198,22 @@ namespace Umea_rana
             if (type == 0)
             {
                 current = Rdown;
-                if (current != last)
-                {
-                    FrameLine = Rdown.lstart;
-                    frameline2 = Rdown.Tlstart;
-                    FrameColumn = Rdown.cstart;
-                    FrameColumn2 = Rdown.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Rdown.Tcend + 1;
-                }
-
             }
             else
             {
                 current = Vdown;
-                if (current != last)
-                {
-                    FrameLine = Vdown.lstart;
-                    frameline2 = Vdown.Tlstart;
-                    FrameColumn = Vdown.cstart;
-                    FrameColumn2 = Vdown.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Vdown.Tcend + 1;
-                }
+            }
+            if (current != last)
+            {
+                FrameLine = current.lstart;
+                frameline2 = current.Tlstart;
+                FrameColumn = current.cstart;
+                FrameColumn2 = current.Tcstart;
+            }
+            else if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.Y += speed;
             vect.Y += speed;
@@ -232,39 +224,26 @@ namespace Umea_rana
             if (type == 0)
             {
                 current = Rturn;
-                if (current != last)
-                {
-                    FrameLine = Rturn.lstart;
-                    frameline2 = Rturn.Tlstart;
-                    FrameColumn = Rturn.cstart;
-                    FrameColumn2 = Rturn.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Rturn.Tcend + 1;
-                }
             }
             else
             {
                 current = Vturn;
-                if (current != last)
-                {
-                    FrameLine = Vturn.lstart;
-                    frameline2 = Vturn.Tlstart;
-                    FrameColumn = Vturn.cstart;
-                    FrameColumn2 = Vturn.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Vturn.Tcend + 1;
-                }
                 decallageX = (int)(0.467f * (float)rectangle.Width);
+            }
+            if (current != last)
+            {
+                FrameLine = current.lstart;
+                frameline2 = current.Tlstart;
+                FrameColumn = current.cstart;
+                FrameColumn2 = current.Tcstart;
+            }
+            else if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.X += speed;
             vect.X += speed;
-
         }
         private void left()
         {
@@ -273,35 +252,23 @@ namespace Umea_rana
             if (type == 0)
             {
                 current = Rturn;
-                if (current != last)
-                {
-                    FrameLine = Rturn.lstart;
-                    frameline2 = Rturn.Tlstart;
-                    FrameColumn = Rturn.cstart;
-                    FrameColumn2 = Rturn.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Rturn.Tcend + 1;
-                }
             }
             else
             {
                 current = Vturn;
-                if (current != last)
-                {
-                    FrameLine = Vturn.lstart;
-                    frameline2 = Vturn.Tlstart;
-                    FrameColumn = Vturn.cstart;
-                    FrameColumn2 = Vturn.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Vturn.Tcend + 1;
-                }
                 decallageX = (int)(0.44f * (float)rectangle.Width);
+            }
+            if (current != last)
+            {
+                FrameLine = current.lstart;
+                frameline2 = current.Tlstart;
+                FrameColumn = current.cstart;
+                FrameColumn2 = current.Tcstart;
+            }
+            else if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
             rectangle.X -= speed;
             vect.X -= speed;
@@ -313,35 +280,23 @@ namespace Umea_rana
             if (type == 0)
             {
                 current = Rup;
-                if (current != last)
-                {
-                    FrameLine = Rup.lstart;
-                    frameline2 = Rup.Tlstart;
-                    FrameColumn = Rup.cstart;
-                    FrameColumn2 = Rup.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Rup.Tcend + 1;
-                }
             }
             else
             {
                 current = Vup;
-                if (current != last)
-                {
-                    FrameLine = Vup.lstart;
-                    frameline2 = Vup.Tlstart;
-                    FrameColumn = Vup.cstart;
-                    FrameColumn2 = Vup.Tcstart;
-                }
-                else if (this.Timer == this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    this.FrameColumn2 = FrameColumn2 % Vup.Tcend + 1;
-                }
                 decallageX = (int)(0.44f * (float)rectangle.Width);
+            }
+            if (current != last)
+            {
+                FrameLine = current.lstart;
+                frameline2 = current.Tlstart;
+                FrameColumn = current.cstart;
+                FrameColumn2 = current.Tcstart;
+            }
+            else if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn2 = FrameColumn2 % current.Tcend + 1;
             }
         }
 
@@ -431,17 +386,22 @@ namespace Umea_rana
         private void Xplode()
         {
             current = xplosion;
+            
             if (current != last)
             {
-                FrameLine = current.cstart;
-                frameline2 = current.Tlstart;
-                FrameColumn = current.lstart;
-                FrameColumn2 = current.Tcstart;
+                FrameLine = current.Tlstart;
+
+                FrameColumn = current.Tcstart;
+                frameline2 = current.lstart;
+                FrameColumn2 = current.cstart;
+                Timer = 0;
+                AnimationSpeed = 7;
+                line = xline;
+            colunm = xclunm;
             }
             else if (this.Timer == this.AnimationSpeed)
             {
-                this.Timer = 0;
-                if (FrameLine != 40)
+                this.Timer = 0;   
                     this.FrameLine++;
             }
         }
