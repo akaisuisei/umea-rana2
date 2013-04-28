@@ -29,7 +29,7 @@ namespace Umea_rana
         {
             oldkey = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
             _pause.LoadContent(content);
             _pause.initbutton(ref level);
