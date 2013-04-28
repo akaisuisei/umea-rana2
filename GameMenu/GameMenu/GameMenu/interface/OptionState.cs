@@ -22,7 +22,7 @@ namespace Umea_rana
         Color volume_BGM { get; set; }
         Color langue { get; set; }
         int active_item = 0;
-        int transition;
+        state_in_option _current;
         Vector2 Audio;
         Vector2 Langue;
         Rectangle rectangle;
@@ -54,7 +54,7 @@ namespace Umea_rana
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
-            Entry_Select(keyboard, mouse);
+            latence--;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -62,57 +62,21 @@ namespace Umea_rana
             spriteBatch.DrawString(spriteFont, "Volume BGM", Audio, volume_BGM);
             spriteBatch.DrawString(spriteFont, "Langue",Langue , langue);
         }
-        public void Entry_Select(KeyboardState keyboard, MouseState mouse)
+        public void sub_update(KeyboardState keyboard,MouseState mouse,state_in_option current)
         {
-            if (keyboard.IsKeyDown(Keys.Down)&&latence<=0)
+            switch (current)
             {
-                if(active_item>1)
-                    active_item=0;
-                else
-                    active_item++;
-                latence=30;
-            }
-            if (keyboard.IsKeyDown(Keys.Up) && latence <= 0)
-            {
-                if (active_item > 1)
-                    active_item =1 ;
-                else
-                    active_item--;
-                latence = 30;
-            }
-            if (keyboard.IsKeyDown(Keys.Enter) && latence <= 0)
-            {
-                Select_Menu_items(active_item,keyboard,mouse);
-                latence = 30;
+                case (state_in_option.volume_BGM):
+                    Curseur.update(keyboard,mouse);
+                    break;
+                case (state_in_option.langage):
+                    break;
             }
         }
-        public void Select_Menu_items(int active_item,KeyboardState keyboard, MouseState mouse)
+        public enum state_in_option
         {
-            switch (active_item)
-            {
-                case 0:
-                    volume_BGM=Color.Red;
-                    Curseur.update(keyboard, mouse);
-                    break;
-                case 1:
-                    
-                    break;
-                
-            }
-        }
-        public void Highlight(int active_item)
-        {
-            switch (active_item)
-            {
-                case 0:
-                    volume_BGM = Color.White;
-                    langue = Color.Black;
-                    break;
-                case 1:
-                    volume_BGM = Color.Black;
-                    langue = Color.White;
-                    break;
-            }
+            volume_BGM,
+            langage
         }
 	}
 }
