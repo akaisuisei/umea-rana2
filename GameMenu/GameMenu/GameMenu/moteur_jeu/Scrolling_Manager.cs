@@ -38,7 +38,7 @@ namespace Umea_rana
             count = 0;
         }
 
-        public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice graph)
+        public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice Graph)
         {
             speed[1] = levelprofile.fc_speed / 2;
             speed[2] = levelprofile.fc_speed / 3;
@@ -64,7 +64,7 @@ namespace Umea_rana
             {
                 Sauveguarde save = new Sauveguarde();
                 FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
-                texture[count] = (Texture2D.FromStream(graph, file));
+                texture[count] = (Texture2D.FromStream(Graph, file));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
                 couche[count] = 0.5f;

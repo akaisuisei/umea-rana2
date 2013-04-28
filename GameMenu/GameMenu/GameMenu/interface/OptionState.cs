@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
-	public class OptionState:GameState
-	{
+    public class OptionState : GameState
+    {
         Song songMenu;
         public static float _soundeffect_vol = 1.0f;
         public static float _vol = 1.0f;
@@ -29,28 +30,31 @@ namespace Umea_rana
         SpriteFont spriteFont;
         int select = 0;
         int latence = 0;
-        public OptionState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public OptionState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
-            Curseur curseur= new Curseur(new Vector2(200,200),new Vector2(graphics.PreferredBackBufferHeight * 30 / 100),OptionState._vol);
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            Audio = new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight * 30 / 100);
-            Langue = new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight * 40 / 100);
             volume_BGM = Color.White;
             langue = Color.Black;
         }
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
-            spriteFont = content.Load<SpriteFont>("FontList");
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            Curseur curseur = new Curseur(new Vector2(200, 200), new Vector2(graphics.PreferredBackBufferHeight * 30 / 100), OptionState._vol);
+            Audio = new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight * 30 / 100);
+            Langue = new Vector2(graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight * 40 / 100);
+            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            background = Content.Load<Texture2D>("Menu//background menu");
+            spriteFont = Content.Load<SpriteFont>("FontList");
         }
         public override void UnloadContent()
         {
         }
-        public override void Update(Game1 game,Audio audio)
+        public override void Update(Game1 game, Audio audio)
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
@@ -59,15 +63,15 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, rectangle, Color.White);
-            spriteBatch.DrawString(spriteFont, "Volume BGM", Audio, volume_BGM);
-            spriteBatch.DrawString(spriteFont, "Langue",Langue , langue);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Volume_BGM, Audio, volume_BGM);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Language, Langue, langue);
         }
-        public void sub_update(KeyboardState keyboard,MouseState mouse,state_in_option current)
+        public void sub_update(KeyboardState keyboard, MouseState mouse, state_in_option current)
         {
             switch (current)
             {
                 case (state_in_option.volume_BGM):
-                    Curseur.update(keyboard,mouse);
+                    Curseur.update(keyboard, mouse);
                     break;
                 case (state_in_option.langage):
                     break;
@@ -78,5 +82,5 @@ namespace Umea_rana
             volume_BGM,
             langage
         }
-	}
+    }
 }

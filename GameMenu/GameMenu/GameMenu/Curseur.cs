@@ -29,10 +29,10 @@ namespace Umea_rana
         public void Initialize()
         {
         }
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager Content)
         {
-            curseur_rectangle = content.Load<Texture2D>("");
-            ligne = content.Load<Texture2D>("");
+            curseur_rectangle = Content.Load<Texture2D>("");
+            ligne = Content.Load<Texture2D>("");
         }
         public static void update(KeyboardState keyboard,MouseState mouse)
         {

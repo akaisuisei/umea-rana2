@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
@@ -35,11 +36,11 @@ namespace Umea_rana
             graphics = new GraphicsDeviceManager(this);
             height = displaymode.Height;
             width = displaymode.Width;
-            graphics.PreferredBackBufferHeight = height;
-            graphics.PreferredBackBufferWidth = width;
+            graphics.PreferredBackBufferHeight = height/2;
+            graphics.PreferredBackBufferWidth = width/2;
             graphics.ApplyChanges();
             graphics.IsFullScreen = fullScreen ;
-            //content
+            //Content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
             //state
@@ -80,16 +81,18 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
+           LocalizedString.Culture= new System.Globalization.CultureInfo("en-US");
+       
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next  );
+            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next  , graphics );
             base.LoadContent();
         }
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
 
         protected override void Update(GameTime gameTime)

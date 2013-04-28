@@ -35,12 +35,12 @@ namespace Umea_rana
         Scrolling_ManagerV Scroll;
         Rectangle fond;
 
-        public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
             save = new Sauveguarde();
             path = game1.path;
         }
@@ -59,12 +59,15 @@ namespace Umea_rana
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
             //charge le fond
             //    bacgkround1 = Content.Load<Texture2D>("level2//fond");
             //  background2 = Content.Load<Texture2D>("level2//fond2");
             //charge le sprite
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
             fond = new Rectangle(400, 0, width/2, height);
             Scroll = new Scrolling_ManagerV(fond);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
@@ -93,7 +96,7 @@ namespace Umea_rana
             ovini = new Ovni(width, height);
             ovini.Load(aster_t);
             // ajout IA
-            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref graph,ref vaisseau , ref ovini  );
+            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph,ref vaisseau , ref ovini  );
             vaisseau.Load(Content, T_sprite);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
@@ -111,7 +114,7 @@ namespace Umea_rana
             manage_V.Dipose();
             ovini.Dispose();
             Scroll.dispose();
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
         public override void Update(Game1 game, Audio audio)
         {

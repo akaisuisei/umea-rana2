@@ -18,7 +18,7 @@ namespace Umea_rana
     {
 
 
-        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint,int spawn)
+        public Viseur_aI( Rectangle rectangle, ContentManager Content, int height, int width, quaintuplet quaint,int spawn)
         {
        
             this.rectangle = rectangle;
@@ -29,7 +29,7 @@ namespace Umea_rana
             dir = -1;
 
             bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
-                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+                Content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
             _speed = quaint.speed;
@@ -47,11 +47,11 @@ namespace Umea_rana
         /// </summary>
         /// <param name="texture"></param>
         /// <param name="rectangle"></param>
-        /// <param name="content"></param>
+        /// <param name="Content"></param>
         /// <param name="height"></param>
         /// <param name="width"></param>
         /// <param name="quaint"></param>
-        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, quaintuplet quaint)
+        public Viseur_aI( Rectangle rectangle, ContentManager Content, int height, int width, quaintuplet quaint)
         {
     
             this.rectangle = rectangle;
@@ -62,7 +62,7 @@ namespace Umea_rana
             dir = -1;
 
             bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
-                content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
+                Content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
             timer_lunch = quaint.seconde;
             _speed = quaint.speed;
@@ -75,7 +75,7 @@ namespace Umea_rana
             this.Timer = 0;
         }
 
-        public Viseur_aI( Rectangle rectangle, ContentManager content, int height, int width, Color colo, int gametime)
+        public Viseur_aI( Rectangle rectangle, ContentManager Content, int height, int width, Color colo, int gametime)
         {
 
             this.rectangle = rectangle;
@@ -84,7 +84,7 @@ namespace Umea_rana
             largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
 
             Munition_color = colo;
-            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 60);
+            bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 7, Content.Load<SoundEffect>("hero//vaisseau//tir2"), Munition_color, width, 60);
             this.width = width;
             dir = -1;
             _speed = 6;

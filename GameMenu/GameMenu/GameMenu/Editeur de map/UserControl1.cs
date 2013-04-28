@@ -12,7 +12,7 @@ using System.Threading;
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Umea_rana;
+using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
@@ -251,44 +251,44 @@ namespace Umea_rana
         }
         private void Initialize()
         {
-            life = "point de vie";
-            speed = "vitesse";
-            couleur = "couleur de tir";
-            onglet1 = "Tireur";
-            onglet2 = "Viseur";
-            onglet3 = "kamikaze";
-            onglet4 = "fond";
-            onglet5 = "personnage";
-            trajectoir = "trajectoire";
-            align = "alignement enemie";
-            OK = "OK";
-            firerate = "cadence de tir";
-            end = "terminer";
-            imagefond = "image du fond";
-            vitessefond = "vitesse du fond";
-            vitesseV = "vitesse";
-            open = "ouvrir";
-            cancel = "annuler";
-            load = "charger";
-            save = "sauvegarder";
-            filepathlabel = "nom du niveau";
-            scrolling = "defilement vertical";
-            file = "fichier";
-            damage = "degat infligee";
-            bullet_speed = "vitesse de la balle";
-            supp = "supprimer";
-            musique = "musique";
-            add = "ajouter";
-            boss = "Boss";
-            bonus = "Bonus";
-            bomb = "bombe";
-            missile = "missile";
-            power = "puissance";
-            ovini = "ovni";
-            aster = "asteroide";
-            comete = "comete";
-            sun = "soleil";
-            angle = "angle";
+            life = LocalizedString.Life;
+            speed = LocalizedString.Speed;
+            couleur = LocalizedString.Bullet_Color;
+            onglet1 = LocalizedString.Shooter;
+            onglet2 = LocalizedString.Sniper;
+            onglet3 = LocalizedString.Kamikaze;
+            onglet4 = LocalizedString.Background;
+            onglet5 = LocalizedString.player;
+            trajectoir = LocalizedString.Trajectory;
+            align = LocalizedString.AI_align;
+            OK = LocalizedString.OK;
+            firerate = LocalizedString.Firerate;
+            end = LocalizedString.terminated;
+            imagefond = LocalizedString.Background_image;
+            vitessefond = LocalizedString.Background_speed;
+            vitesseV = LocalizedString.Speed;
+            open = LocalizedString.Open;
+            cancel = LocalizedString.Cancel;
+            load = LocalizedString.Load;
+            save = LocalizedString.Save;
+            filepathlabel = LocalizedString.level_name;
+            scrolling = LocalizedString.ScrollingVertical;
+            file = LocalizedString.File;
+            damage = LocalizedString.inficted_damage;
+            bullet_speed = LocalizedString.Bullet_speed;
+            supp = LocalizedString.delete;
+            musique = LocalizedString.music;
+            add = LocalizedString.Add;
+            boss = LocalizedString.Boss;
+            bonus = LocalizedString.bonus;
+            bomb = LocalizedString.bomb;
+            missile = LocalizedString.missile;
+            power = LocalizedString.power;
+            ovini = LocalizedString.UFO;
+            aster = LocalizedString.Asteroid;
+            comete = LocalizedString.Comet;
+            sun = LocalizedString.Sun;
+            angle = LocalizedString.angle;
             color2 = System.Drawing.Color.Black;
             //tap page
 

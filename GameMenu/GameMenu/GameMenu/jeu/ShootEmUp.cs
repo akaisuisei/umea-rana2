@@ -18,9 +18,9 @@ namespace Umea_rana
     {
         // Scrolling scrolling1, scrolling2;
         sripte_V vaisseau;
- 
+
         KeyboardState oldkey;
-        Texture2D aster_t, planet1, star;
+        Texture2D aster_t, planet1, star, stalkert;
         Texture2D T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -37,10 +37,10 @@ namespace Umea_rana
         Ovni ovini;
         Rectangle fond;
 
-        public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
 
         }
 
@@ -49,32 +49,38 @@ namespace Umea_rana
             // TODO: Add your initialization logic here
 
             timer = -100;
-            taille_sprt = (int)(Math.Min(width, height) * 0.05);
-            taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
+
 
             game_time = 0;
             oldkey = Keyboard.GetState();
 
             collision = new Collision();
             save = new Sauveguarde();
-            ovini = new Ovni(width, height);
+
             // ajout IA
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
             //charge le fond
             //         background1 = Content.Load<Texture2D>("level2//fond");
             //       background2 = Content.Load<Texture2D>("back//fond2");
             //charge le sprite
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            taille_sprt = (int)(Math.Min(width, height) * 0.05);
+            taille_sprt2 = (int)(Math.Min(width, height) * 0.08);
+            ovini = new Ovni(width, height);
             _pause.initbutton(ref level);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
-            fond =new  Rectangle(200, 0, width / 2, height);
-            scroll = new Scrolling_ManagerV(fond );
+            fond = new Rectangle(width/2-width/4  , 0, width / 2, height);
+            scroll = new Scrolling_ManagerV(fond);
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
+            stalkert = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2");
 
             //instancie le scolling
 
@@ -85,22 +91,22 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt2, taille_sprt2), height, width);
+                new Rectangle(0,0, taille_sprt2, taille_sprt2), fond,1);
 
             //instancie l ia
-          
+
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, fond);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, fond);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt),fond);
+            manage_k = new IA_manager_K(stalkert , new Rectangle(0, 0, taille_sprt, taille_sprt), fond);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-           ovini.Load(aster_t);
-     
+            ovini.Load(aster_t);
+
             // ajout IA
 
-            save.load_level_SEU(Content,ref level,ref next , ref manage_k, ref manage_T, ref manage_V, ref scroll, ref graph, ref vaisseau,ref ovini );
-            vaisseau.Load(Content, T_sprite); 
-        
+            save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini);
+            vaisseau.Load(Content, T_sprite);
+
 
         }
 
@@ -118,7 +124,7 @@ namespace Umea_rana
             scroll.dispose();
             ovini.Dispose();
 
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
         public override void Update(Game1 game, Audio audio)
         {
@@ -143,7 +149,7 @@ namespace Umea_rana
                 vaisseau.Update(keyboard, game, oldkey);
 
                 //update ia jbdcvf
-                
+
 
 
                 manage_T.Update(ref game, ref game_time);
@@ -161,8 +167,8 @@ namespace Umea_rana
                 collision.collision_ai_missile(ref vaisseau, manage_k);
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
-                
-             //   collision.h_M1P(ref manage_V, ref manage_T, ref manage_k, ref vaisseau);
+
+                //   collision.h_M1P(ref manage_V, ref manage_T, ref manage_k, ref vaisseau);
                 collision.Ovni_vaiss(ref ovini, ref vaisseau);
             }
             else
@@ -177,12 +183,12 @@ namespace Umea_rana
                 {
                     vaisseau.gagne();
                     timer = vaisseau.rectangle.Y / 2;
-            
+
                     manage_T.bulletL.Clear();
                     manage_V.bulletL.Clear();
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.win );//va au level2
+                    game.ChangeState(Game1.gameState.win);//va au level2
                 timer--;
             }
             //update interface
@@ -202,7 +208,7 @@ namespace Umea_rana
             //    scrolling1.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
             //      scrolling2.Draw(spriteBatch);
-            
+
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);

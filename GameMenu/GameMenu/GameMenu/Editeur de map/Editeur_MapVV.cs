@@ -38,20 +38,20 @@ namespace Umea_rana
         int spawn;
         string iaType;
 
-        public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
 
             collision = new Collision();
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
 
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-            taille_sprt = (int)(Math.Min(width, height) * 0.05);
+          
             //    backGround = "level2//fond";
             // ajout IA 
             user = new UserControl1();
@@ -60,8 +60,11 @@ namespace Umea_rana
             iaType = "kawabunga";
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+                  taille_sprt = (int)(Math.Min(width, height) * 0.05);
             _pause.initbutton(ref level);
             Scroll_manager = new Scrolling_ManagerV(new Rectangle(0,0,width,height ));
             //charge le fond
@@ -107,7 +110,7 @@ namespace Umea_rana
             ovni.Dispose();
             Scroll_manager.dispose();
             _pause.Dispose();
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
             user.destroy();
             user.dispose();
             user.Dispose();

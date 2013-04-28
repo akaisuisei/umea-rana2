@@ -94,7 +94,7 @@ namespace Umea_rana
 
             FrameColumn2 = 1;
 
-            //     test = content.Load<Texture2D>("ListBoxBG");
+            //     test = Content.Load<Texture2D>("ListBoxBG");
             Vturn = new pos(2, 2, 9, 1, 5);
             Vup = new pos(2, 1, 8, 1, 5);
             Vdown = new pos(2, 1, 2, 3, 5);
@@ -151,7 +151,7 @@ namespace Umea_rana
             sizeY2 = rectangle.Height / 5;
             FrameColumn2 = 1;
 
-            //     test = content.Load<Texture2D>("ListBoxBG");
+            //     test = Content.Load<Texture2D>("ListBoxBG");
             Vturn = new pos(2, 2, 9, 1, 5);
             Vup = new pos(2, 1, 8, 1, 5);
             Vdown = new pos(2, 1, 2, 3, 5);
@@ -187,6 +187,7 @@ namespace Umea_rana
                 rectangle.X = -300;
                 activate = false;
             }
+            this.perso = perso;
 
         }
         public void parametrage(ref levelProfile level)
@@ -202,11 +203,11 @@ namespace Umea_rana
             maxspeed = (int)((float)speed * 1.5f);
             minspeed = speed;
         }
-        public void Load(ContentManager content, Texture2D n_texture)
+        public void Load(ContentManager Content, Texture2D n_texture)
         {
             texture = n_texture;
-            mtexture = content.Load<Texture2D>("bullet//bullet");
-            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
+            mtexture = Content.Load<Texture2D>("bullet//bullet");
+            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
