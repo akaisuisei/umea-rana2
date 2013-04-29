@@ -35,6 +35,10 @@ namespace Umea_rana
             ia_manage.Add(new Stalker( new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, 3));
         }
 
+        public void Add( IA_AA  hello, int i)
+        {
+            ia_manage.Add(new Stalker(new Rectangle((int)(hello.X * window_W) + 1, (int)(hello.Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, 3));
+        }
         private void mov(ref int i)
         {
             if (ia_manage[i].vie >= 0)

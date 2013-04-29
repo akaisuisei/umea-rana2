@@ -57,8 +57,39 @@ namespace Umea_rana
         public int speed,angle,launch;
         public float X, Y;
     }
+
+    public struct IA_AA
+    {
+        public float X;
+        public float Y;
+        public int Vie;
+        public int Puissance;
+        public int Speed;
+    }
+
+    public struct IA_AR
+    {
+        public float X;
+        public float Y;
+        public int Vie;
+        public int Puissance;
+        public int Speed;
+    }
+
+    public struct IA_S
+    {
+        public float X;
+        public float Y;
+        public int Vie;
+        public int Puissance;
+        public int Speed;
+    }
+
     public struct savefile
     {
+        public List<IA_AA> ia_AA;
+        public List<IA_AR> ia_AR;
+        public List<IA_S> ia_S;
         public List<quaintuplet> ia_viseur;
         public List<quaintuplet> ia_tireur;
         public List<couple> ia_Kamikaze;
