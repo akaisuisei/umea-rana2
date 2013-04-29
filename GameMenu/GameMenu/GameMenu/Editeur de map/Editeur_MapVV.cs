@@ -37,7 +37,8 @@ namespace Umea_rana
         //string backGround;
         int spawn;
         string iaType;
-
+        Rectangle fond, rmouse, fond2;
+        info info;
         public Editeur_MapVV(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
@@ -51,22 +52,27 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             // TODO: Add your initialization logic here
-          
+
             //    backGround = "level2//fond";
             // ajout IA 
             user = new UserControl1();
             Application.Run(user);
             spawn = -1;
             iaType = "kawabunga";
+            rmouse = new Rectangle(0, 0, 1, 1);
+          
         }
 
-              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
-        {
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+        {  info= new info() ;
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
-                  taille_sprt = (int)(Math.Min(width, height) * 0.05);
+            fond = new Rectangle(0, 0, width / 2, height);
+            fond2 = new Rectangle(width / 2, 0, width / 2, height);
+            taille_sprt = (int)(Math.Min(width, height) * 0.05);
             _pause.initbutton(ref level);
-            Scroll_manager = new Scrolling_ManagerV(new Rectangle(0,0,width,height ));
+
+            Scroll_manager = new Scrolling_ManagerV(fond);
             //charge le fond
             //  bacgkround1 = Content.Load<Texture2D>(backGround);
             //charge le sprite
@@ -86,7 +92,7 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(height / 2 + taille_sprt / 2, width / 2 + taille_sprt / 2, taille_sprt, taille_sprt), height, width);
+                new Rectangle(0, 0, taille_sprt, taille_sprt), fond, 1);
             vaisseau.Load(Content, T_sprite);
             ovni = new Ovni(width, height);
             ovni.param(3);
@@ -95,6 +101,8 @@ namespace Umea_rana
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni);
+            info.LoadContent(fond2, Content.Load<SpriteFont>("FontList"));
+
         }
 
         public override void UnloadContent()
@@ -114,7 +122,7 @@ namespace Umea_rana
             user.destroy();
             user.dispose();
             user.Dispose();
-            
+
         }
         public override void Update(Game1 game, Audio audio)
         {
@@ -122,6 +130,8 @@ namespace Umea_rana
             MouseState mouse;
             mouse = Mouse.GetState();
             keyboard = Keyboard.GetState();
+            rmouse.X = mouse.X;
+            rmouse.Y = mouse.Y;
             if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
             {
 
@@ -133,9 +143,9 @@ namespace Umea_rana
                 --latence;
             if (!_checkpause)
             {
-                if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control)
+                if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control && fond.Contains(rmouse))
                 {
-                    spawn = existcheck(ref iaType, mouse);
+                    spawn = existcheck(ref iaType, rmouse);
 
                     user._show(mouse.X, mouse.Y, iaType, spawn);
                 }
@@ -164,6 +174,7 @@ namespace Umea_rana
 
 
             oldkey = keyboard;
+            info.Update(manage_k.Ia_manage.Count, manage_T.Ia_manage.Count, manage_V.Ia_manage.Count , ovni.ovni.Count,user._savefile.levelProfile.playerLife , 0);
 
         }
 
@@ -182,15 +193,15 @@ namespace Umea_rana
             manage_k.Draw(spriteBatch);
             ovni.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
-
+            info.draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 
         }
 
-        private int existcheck(ref string hello, MouseState mouse)
+        private int existcheck(ref string hello, Rectangle recM)
         {
-            Rectangle recM = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
 
             for (int i = 0; i < manage_k.Ia_manage.Count; ++i)
                 if (manage_k.Ia_manage[i].rectangle.Intersects(recM))

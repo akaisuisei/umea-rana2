@@ -160,6 +160,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Boss life.
+        /// </summary>
+        internal static string BossLife {
+            get {
+                return ResourceManager.GetString("BossLife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Bullet&apos;s Color.
         /// </summary>
         internal static string Bullet_Color {
@@ -367,6 +376,42 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à number of Kamikazes.
+        /// </summary>
+        internal static string nb_IAK {
+            get {
+                return ResourceManager.GetString("nb_IAK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à number of tirreur.
+        /// </summary>
+        internal static string nb_iaT {
+            get {
+                return ResourceManager.GetString("nb_iaT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à number of snipers.
+        /// </summary>
+        internal static string nb_iaV {
+            get {
+                return ResourceManager.GetString("nb_iaV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à number of UFO.
+        /// </summary>
+        internal static string nb_objet {
+            get {
+                return ResourceManager.GetString("nb_objet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Next.
         /// </summary>
         internal static string Next {
@@ -426,6 +471,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string player {
             get {
                 return ResourceManager.GetString("player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à player life.
+        /// </summary>
+        internal static string player_life {
+            get {
+                return ResourceManager.GetString("player_life", resourceCulture);
             }
         }
         

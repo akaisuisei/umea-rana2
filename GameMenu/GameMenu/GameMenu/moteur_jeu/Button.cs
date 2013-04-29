@@ -21,7 +21,7 @@ namespace Umea_rana
         int X, Y, G_latence = 200, tab;
         Texture2D selection;
         Texture2D test;
-        Vector2 select;
+        Rectangle  select;
         bool intecep;
         /// <summary>
         /// bouton du jeu 
@@ -45,7 +45,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             X = 0;
             Y = 0;
-            select = Vector2.Zero;
+            select = new Rectangle(-30, 0,(int)this.width, (int)this.height); 
             this.tab = tab;
         }
         public void LoadContent(ContentManager Content)
@@ -138,8 +138,9 @@ namespace Umea_rana
                         X = (X - 1) % rect.GetLength(0);
 
                 }
-
-                select = new Vector2(rect[X, Y].X - selection.Width, rect[X, Y].Y);
+                select.Y = rect[X, Y].Y;
+                select.X = rect[X, Y].X - select.Width;
+           
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     if (gameState[X, Y] == "SEU")
@@ -249,7 +250,9 @@ namespace Umea_rana
 
                 }
 
-                select = new Vector2(rect[X, Y].X - selection.Width, rect[X, Y].Y);
+                select.Y = rect[X, Y].Y;
+                select.X = rect[X, Y].X - select.Width;
+           
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     if (gameState[X, Y] == "SEU")
@@ -318,12 +321,12 @@ namespace Umea_rana
             for (int i = 0; i < rect.GetLength(0); ++i)
                 for (int j = 0; j < rect.GetLength(1); ++j)
                 {
-                    spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
-                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black);
+              //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
+                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black  );
 
                 }
 
-            spriteBatch.Draw(selection, select, Color.White);
+            spriteBatch.Draw(selection, select, Color.White );
         }
         public void Dispose()
         {
@@ -332,7 +335,7 @@ namespace Umea_rana
             name = null;
             levelname = null;
             selection.Dispose();
-            test.Dispose();
+        //   test.Dispose();
             
         }
     }

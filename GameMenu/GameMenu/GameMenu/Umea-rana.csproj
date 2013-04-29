@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Curseur.cs" />
+    <Compile Include="Editeur de map\bossPLAT.cs" />
     <Compile Include="Editeur de map\UserControl2.cs">
       <SubType>Form</SubType>
     </Compile>

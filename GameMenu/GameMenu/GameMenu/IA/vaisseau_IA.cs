@@ -20,7 +20,7 @@ namespace Umea_rana
         public int normalspeed{get; protected set;}
         public int  timer_lunch{ get ; protected set;}
         public int dir;
-        protected string trajectory;
+        public string trajectory { get; set; }
         public Bullet_manager bullet;
         protected Color Munition_color, Ia_color;
         public bool attaque;
@@ -37,6 +37,7 @@ namespace Umea_rana
         public int FrameColunm;
         public SpriteEffects Effects;
         public int Timer;
+        public float shift = 0;
         /*
      
         public vaisseau_IA(Texture2D _texture, Rectangle n_rectangle, ContentManager Content, int height, int width, int _speed)
@@ -91,20 +92,39 @@ namespace Umea_rana
 
         public void move_H()
         {
-            if (rectangle.Right > width + rectangle.Width)
+            switch (trajectory )
             {
-                rectangle.X = width - 1;
-                rectangle.Y += rectangle_C.Height;
-                dir = -dir;
+                case "sinus":
+                    if (shift <= 0f)
+                    {
+                        shift = 100;
+                        dir = -dir;
+                    }
+                    shift--;
+                    rectangle.X += _speed * dir;
+                    rectangle.Y--;
+                    break ;
+                case "exponetielle":
 
-            }
-            if (rectangle.Left < 0)
-            {
-                rectangle.X = 0;
-                rectangle.Y += rectangle_C.Height;
-                dir = -dir;
-            }
-            rectangle.X += _speed * dir;
+                    break;
+                default :
+                if (rectangle.Right > width + rectangle.Width)
+                {
+                    rectangle.X = width - 1;
+                    rectangle.Y += rectangle_C.Height;
+                    dir = -dir;
+
+                }
+                if (rectangle.Left < 0)
+                {
+                    rectangle.X = 0;
+                    rectangle.Y += rectangle_C.Height;
+                    dir = -dir;
+                }
+                rectangle.X += _speed * dir;
+                break;
+        }
+            
         }
 
         public void Update_ophelia(KeyboardState keyboard)

@@ -81,7 +81,40 @@ namespace Umea_rana
 
         protected void moveH(ref int i)
         {
+            switch (ia_manage[i].trajectory)
+            {
+                case "sinus":
+                    if (ia_manage[i].shift <= 0f)
+                    {
+                        ia_manage[i].shift = 30;
+                        ia_manage[i].dir =-ia_manage[i].dir ;
+                    }
+                    ia_manage[i].shift--;
+                    ia_manage[i].rectangle.X += ia_manage[i].Speed  *ia_manage[i]. dir;
+                    ia_manage[i].rectangle.Y++;
+                    break ;
+                case "log":
 
+                    ia_manage[i].shift+=0.1f;
+                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].rectangle.Y += ia_manage[i].Speed; 
+                    break;
+                case "-log":
+                     ia_manage[i].shift-=0.1f;
+                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    break;
+                case "expo":
+                     ia_manage[i].shift+=0.009f;
+                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    break;
+                case "-expo":
+                    ia_manage[i].shift -= 0.009f;
+                    ia_manage[i].rectangle.X += (int)(ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    break;
+                default :
             if (ia_manage[i].rectangle_C.Right > rectangleF.Right )
             {
                 ia_manage[i].rectangle.X = rectangleF.Right  - ia_manage[i].rectangle_C.Width -1 ;
@@ -96,6 +129,8 @@ namespace Umea_rana
                  ia_manage[i]. dir *=-1;
             }
             ia_manage[i].rectangle.X += ia_manage[i].Speed  * ia_manage[i].dir;
+            break;
+        }
         }
     }
 }

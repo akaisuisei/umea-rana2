@@ -27,7 +27,7 @@ namespace Umea_rana
             largeurX = rectangle.Width - decallageX; hauteurY = rectangle.Height - decallageY;
             this.width = width;
             dir = -1;
-
+       
             bullet = new Bullet_manager( new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, quaint.bullet_Speed,
                 Content.Load<SoundEffect>("hero//vaisseau//tir2"), quaint.color, width, quaint.firerate);
 
@@ -72,7 +72,8 @@ namespace Umea_rana
             this.Effects = SpriteEffects.None;
             this.FrameLine = 1;
             this. FrameColunm = 1;
-            this.Timer = 0;
+            this.Timer = 0; 
+            trajectory = "expo";
         }
 
         public Viseur_aI( Rectangle rectangle, ContentManager Content, int height, int width, Color colo, int gametime)

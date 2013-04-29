@@ -285,4 +285,22 @@
   <data name="Volume_BGM" xml:space="preserve">
     <value>Volume BGM</value>
   </data>
+  <data name="BossLife" xml:space="preserve">
+    <value>Boss life</value>
+  </data>
+  <data name="nb_IAK" xml:space="preserve">
+    <value>number of Kamikazes</value>
+  </data>
+  <data name="nb_iaT" xml:space="preserve">
+    <value>number of tirreur</value>
+  </data>
+  <data name="nb_iaV" xml:space="preserve">
+    <value>number of snipers</value>
+  </data>
+  <data name="nb_objet" xml:space="preserve">
+    <value>number of UFO</value>
+  </data>
+  <data name="player_life" xml:space="preserve">
+    <value>player life</value>
+  </data>
 </root>
