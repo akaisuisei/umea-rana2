@@ -12,33 +12,38 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Umea_rana
 {
-    class Initialisateur :GameState 
+    class Initialisateur : GameState
     {
 
         Texture2D background;
         Rectangle rectangle;
-   //     Listbox listbox;
+        //     Listbox listbox;
         int timer, taille_logo;
 
-        public Initialisateur(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Initialisateur(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-            taille_logo = Math.Min(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            rectangle = new Rectangle(graphics.PreferredBackBufferWidth/2-taille_logo/2,graphics.PreferredBackBufferHeight/2-taille_logo/2 ,
-                taille_logo ,taille_logo  );
+
             game1.IsMouseVisible = false;
 
-            timer = 10;//550;
-        //    listbox = new Listbox("SEU", 100, 100, 500, 500);
+
+            //    listbox = new Listbox("SEU", 100, 100, 500, 500);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
+            timer = 10;//550;
             background.Dispose();
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            taille_logo = Math.Min(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            rectangle = new Rectangle(graphics.PreferredBackBufferWidth / 2 - taille_logo / 2, graphics.PreferredBackBufferHeight / 2 - taille_logo / 2,
+                taille_logo, taille_logo);
             background = Content.Load<Texture2D>("Menu//logofin");
-        //    listbox.LoadContent(content);
+            //    listbox.LoadContent(Content);
         }
         public override void UnloadContent()
         {
@@ -48,16 +53,16 @@ namespace Umea_rana
             timer--;
             if (timer <= 0)
                 game.ChangeState(Game1.gameState.MainMenuState);
-            
-     /*                   KeyboardState keyboard = Keyboard.GetState();
-            MouseState mouse = Mouse.GetState();
-            listbox.Update(ref keyboard, ref mouse);*/
+
+            /*                   KeyboardState keyboard = Keyboard.GetState();
+                   MouseState mouse = Mouse.GetState();
+                   listbox.Update(ref keyboard, ref mouse);*/
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, rectangle, Color.White );
-          //  listbox.Draw(spriteBatch);
+            spriteBatch.Draw(background, rectangle, Color.White);
+            //  listbox.Draw(spriteBatch);
         }
 
     }

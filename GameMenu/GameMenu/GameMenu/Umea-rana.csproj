@@ -142,6 +142,11 @@
     <Compile Include="Editeur de map\UserControl2.designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalizedStrings\LocalizedString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizedString.resx</DependentUpon>
+    </Compile>
     <Compile Include="manager\IA_manager_AA.cs" />
     <Compile Include="manager\IA_manager_AR.cs" />
     <Compile Include="jeu\GameWin.cs" />
@@ -253,6 +258,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editeur de map\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.en.resx" />
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.es.resx" />
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.fi.resx" />
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.fr.resx" />
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedString.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

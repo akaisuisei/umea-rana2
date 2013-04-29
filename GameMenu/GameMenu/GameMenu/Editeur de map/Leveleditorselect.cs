@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
+using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
@@ -21,9 +22,9 @@ namespace Umea_rana
         Listbox list1, list2;
         int tab;
         Button butts;
-       
+
         KeyboardState oldkey;
-        public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
 
             game1.IsMouseVisible = true;
@@ -31,33 +32,38 @@ namespace Umea_rana
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            list1 = new Listbox("SEU", 0.4f, 0.1f, 0.4f, 0.3f, width, height, 1);
-            list2 = new Listbox("PLA", 0.4f, 0.5f, 0.4f, 0.3f, width, height, 2);
+
             tab = 0;
             MediaPlayer.Volume = vol;
-            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            butts = new Button(2, 3, width, height, 0.1f, 0.1f, 0);
-            butts.activate(0, 0, 0.15f, 0.15f, "EditSEU", "Editeur de jeu1");
-            butts.activate(0, 1, 0.15f, 0.5f, "Play", "editeur de jeu2");
-            butts.activate(0, 2, 0.15f, 0.85f, "", "retour");
 
-   
-            butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", "jouer");
-            butts.activate(1, 1, 0.85f, 0.5f, "play", "jouer");
-            butts.disable(1, 2);
-         
+
             oldkey = Keyboard.GetState();
         }
 
-        public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-            background = content.Load<Texture2D>("Menu//background menu");
-            songMenu = content.Load<Song>("Menu//songMenu");
-            titre = content.Load<Texture2D>("Menu//LevelSelect//niveau");
 
-            list2.LoadContent(content);
-            list1.LoadContent(content);
-            butts.LoadContent(content);
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            list1 = new Listbox("SEU", 0.4f, 0.1f, 0.4f, 0.3f, width, height, 1);
+            list2 = new Listbox("PLA", 0.4f, 0.5f, 0.4f, 0.3f, width, height, 2);
+            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            butts = new Button(2, 3, width, height, 0.1f, 0.1f, 0);
+            butts.activate(0, 0, 0.15f, 0.15f, "EditSEU", LocalizedString.Map_Editor + "\n" + LocalizedString.SEU);
+            butts.activate(0, 1, 0.15f, 0.5f, "Play", LocalizedString.Map_Editor + "\n" + LocalizedString.PLA);
+            butts.activate(0, 2, 0.15f, 0.85f, "", LocalizedString.Back);
+
+
+            butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", LocalizedString.Play);
+            butts.activate(1, 1, 0.85f, 0.5f, "play", LocalizedString.Play);
+            butts.disable(1, 2);
+            background = Content.Load<Texture2D>("Menu//background menu");
+            songMenu = Content.Load<Song>("Menu//songMenu");
+            titre = Content.Load<Texture2D>("Menu//LevelSelect//niveau");
+
+            list2.LoadContent(Content);
+            list1.LoadContent(Content);
+            butts.LoadContent(Content);
         }
         public override void UnloadContent()
         {
@@ -70,11 +76,11 @@ namespace Umea_rana
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
-            Rectangle mouse_rec = new Rectangle(mouse.X, mouse.Y, 1, 1); 
-        
-            if (keyboard.IsKeyUp (Keys.Tab) && oldkey.IsKeyDown(Keys.Tab))
+            Rectangle mouse_rec = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
+            if (keyboard.IsKeyUp(Keys.Tab) && oldkey.IsKeyDown(Keys.Tab))
             {
-                tab = (tab + 1) % 3; 
+                tab = (tab + 1) % 3;
             }
             if (list1.in_use)
             {
@@ -84,11 +90,11 @@ namespace Umea_rana
             {
                 selected_item = list2.selectedItem;
             }
-            
 
-            butts.Update(ref keyboard,ref oldkey , ref mouse, ref mouse_rec, ref game, ref tab,selected_item );
-            list1.Update(ref keyboard,ref oldkey , ref mouse,ref mouse_rec   ,ref tab);
-            list2.Update(ref keyboard,ref oldkey, ref mouse,ref mouse_rec  ,ref tab);
+
+            butts.Update(ref keyboard, ref oldkey, ref mouse, ref mouse_rec, ref game, ref tab, selected_item);
+            list1.Update(ref keyboard, ref oldkey, ref mouse, ref mouse_rec, ref tab);
+            list2.Update(ref keyboard, ref oldkey, ref mouse, ref mouse_rec, ref tab);
             oldkey = keyboard;
 
         }
@@ -98,10 +104,10 @@ namespace Umea_rana
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.Draw(titre, titre_P, Color.White);
             butts.Draw(spriteBatch);
-        
+
 
             list1.Draw(spriteBatch);
-            list2.Draw(spriteBatch); 
+            list2.Draw(spriteBatch);
         }
     }
 }

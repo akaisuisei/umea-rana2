@@ -17,10 +17,10 @@ namespace Umea_rana
         static Dictionary<string, Song> playlist;
         
 
-        public Audio(ContentManager content)
+        public Audio(ContentManager Content)
         {
             playlist = new Dictionary<string, Song>();
-            playlist.Add("Menu", content.Load<Song>("Menu//songMenu"));
+            playlist.Add("Menu", Content.Load<Song>("Menu//songMenu"));
             playlist.Add("Loading", null);
             playlist.Add("BGMlevel1", null);
             playlist.Add("BGMlevel2", null);

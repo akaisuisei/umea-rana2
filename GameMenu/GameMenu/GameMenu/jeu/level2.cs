@@ -32,17 +32,20 @@ namespace Umea_rana
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
 
-        public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
+        public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             collision = new Collision();
             oldkey = Keyboard.GetState();
             
-            _pause = new _Pause(game1, graphics, content);
+            _pause = new _Pause(game1, graphics, Content);
         }
         
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next)
+              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
             _pause.initbutton(ref level);
             //background
             backgroundT = Content.Load<Texture2D>("level1//fond_niv1");
@@ -60,7 +63,7 @@ namespace Umea_rana
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content);
+            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content,'1');
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia
@@ -127,7 +130,7 @@ namespace Umea_rana
             _pause.Dispose();
             aster.Dispose(); alllenT.Dispose(); backgroundT.Dispose();
             platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose(); 
-            // TODO: Unload any non ContentManager content here
+            // TODO: Unload any non ContentManager Content here
         }
 
         public override void Update(Game1 game, Audio audio)
