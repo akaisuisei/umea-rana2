@@ -17,10 +17,10 @@ namespace Umea_rana
     public class Shoot_Em_Up : GameState
     {
         // Scrolling scrolling1, scrolling2;
-        sripte_V vaisseau;
+        sripte_V vaisseau, perso2;
 
         KeyboardState oldkey;
-        Texture2D aster_t, planet1, star, stalkert;
+        Texture2D aster_t, planet1, star, stalkert, fondt;
         Texture2D T_sprite;
         Collision collision;
         IA_manager_T manage_T;
@@ -35,13 +35,14 @@ namespace Umea_rana
         Sauveguarde save;
         Scrolling_ManagerV scroll;
         Ovni ovini;
-        Rectangle fond;
+        Rectangle fond, fond1, fond2;
+        Score score;
 
         public Shoot_Em_Up(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, Content);
-
+            score = new Score();
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -74,14 +75,16 @@ namespace Umea_rana
             ovini = new Ovni(width, height);
             _pause.initbutton(ref level);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
-            fond = new Rectangle(width/2-width/4  , 0, width / 2, height);
+            fond = new Rectangle(width / 2 - width / 4, 0, width / 2, height);
+            fond1 = new Rectangle(0, 0, width / 4, height);
+            fond2 = new Rectangle(width / 2 + width / 4, 0, width / 4, height);
             scroll = new Scrolling_ManagerV(fond);
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite");
             planet1 = Content.Load<Texture2D>("IA/asteroid/planet4");
             star = Content.Load<Texture2D>("IA/asteroid/star");
             stalkert = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2");
-
+            fondt = Content.Load<Texture2D>("ListBoxBG");
             //instancie le scolling
 
             //   scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
@@ -91,13 +94,14 @@ namespace Umea_rana
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
-                new Rectangle(0,0, taille_sprt2, taille_sprt2), fond,1);
-
+                new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 1);
+            perso2 = new sripte_V(
+        new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 2);
             //instancie l ia
 
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, fond);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, fond);
-            manage_k = new IA_manager_K(stalkert , new Rectangle(0, 0, taille_sprt, taille_sprt), fond);
+            manage_k = new IA_manager_K(stalkert, new Rectangle(0, 0, taille_sprt, taille_sprt), fond);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             ovini.Load(aster_t);
@@ -107,6 +111,10 @@ namespace Umea_rana
             save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini);
             vaisseau.Load(Content, T_sprite);
 
+            perso2.parametrage(ref vaisseau);
+            perso2.Load(Content, Content.Load<Texture2D>("hero//spriteSheet2"));
+            score = new Score();
+            score.LoadContent(fond2, fond1, Content);
 
         }
 
@@ -123,6 +131,7 @@ namespace Umea_rana
             _pause.Dispose();
             scroll.dispose();
             ovini.Dispose();
+            perso2.Dispose();
 
             // TODO: Unload any non ContentManager Content here
         }
@@ -147,7 +156,7 @@ namespace Umea_rana
                 scroll.Update();
                 //vaisseau
                 vaisseau.Update(keyboard, game, oldkey);
-
+                perso2.Update(keyboard, game, oldkey);
                 //update ia jbdcvf
 
 
@@ -160,7 +169,16 @@ namespace Umea_rana
                 collision.col_H_IA(manage_k, ref vaisseau);
                 collision.col_H_IA(manage_V, ref vaisseau);
                 collision.col_H_IA(manage_T, ref vaisseau);
+                if (perso2.activate)
+                {
 
+                    collision.hero_missile(manage_T, ref perso2);
+                    collision.hero_missile(manage_V, ref  perso2);
+                    collision.col_H_IA(manage_k, ref perso2);
+                    collision.col_H_IA(manage_V, ref perso2);
+                    collision.col_H_IA(manage_T, ref perso2);
+                    collision.Ovni_vaiss(ref ovini, ref perso2);
+                }
 
                 //update collision
 
@@ -170,6 +188,7 @@ namespace Umea_rana
 
                 //   collision.h_M1P(ref manage_V, ref manage_T, ref manage_k, ref vaisseau);
                 collision.Ovni_vaiss(ref ovini, ref vaisseau);
+                score.Update(ref vaisseau, ref  perso2);
             }
             else
             {
@@ -208,13 +227,17 @@ namespace Umea_rana
             //    scrolling1.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
             //      scrolling2.Draw(spriteBatch);
-
+            perso2.Draw(spriteBatch);
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
 
 
+
             ovini.Draw(spriteBatch);
+            spriteBatch.Draw(fondt, fond1, Color.Black);
+            spriteBatch.Draw(fondt, fond2, Color.Black);
+            score.Draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 

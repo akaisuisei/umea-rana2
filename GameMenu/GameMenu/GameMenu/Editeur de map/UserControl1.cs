@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Umea_rana.LocalizedStrings;
+using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
@@ -46,7 +47,8 @@ namespace Umea_rana
         int spawn;
         string ia_type;
         ContentManager Content;
-        
+        List<Song> listsong;
+        int song;
         public void dispose()
         {
             type = null;
@@ -220,6 +222,7 @@ namespace Umea_rana
         public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k,
             ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Ovni ovni)
         {
+            MediaPlayer.IsRepeating = false;
             manage_T = this.manage_T;
             manage_V = this.manage_V;
             manage_k = this.manage_k;
@@ -230,6 +233,13 @@ namespace Umea_rana
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
                 --seconde;
+            if( MediaPlayer.State == MediaState.Stopped ){
+                ++song ;
+                if (song < listsong.Count)
+                    MediaPlayer.Play(listsong[song]);
+                else
+                    song = -1;
+            }
         }
 
         public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni)
@@ -1084,6 +1094,7 @@ namespace Umea_rana
         }
         private void Additem()
         {
+            listsong = new List<Song>();
             string res = "";
             listBox1.Items.Clear();
             foreach (string s in playlist)
@@ -1102,6 +1113,16 @@ namespace Umea_rana
                 button12.Enabled = false;
             else
                 button12.Enabled = true;
+            MediaPlayer.Stop();
+            foreach (string s in playlist)
+                if(s!="")
+                 listsong.Add ( Song.FromUri("s",new Uri("file:"+s)));
+            if (listsong.Count > 0)
+            {
+                MediaPlayer.Play(listsong[0]);
+                song = 0;
+            }
+            
         }
         private void suppitem(ListBox list)
         {

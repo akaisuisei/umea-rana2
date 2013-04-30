@@ -106,8 +106,8 @@ namespace Umea_rana
                     this.Timer = 0;
                     break;
                 case 2:// ia AR
-                    decallageX = 23; decallageY = 9;
-                    hauteurY = 0 /*rectangle.Height - decalageY + 4*/; largeurX = 20;
+                    decallageX = 23; decallageY = 40;
+                    hauteurY = rectangle.Height - decalageY ; largeurX = 20;
                     longueur_attaque = 18;//2;
                     this.FrameLine = 1;
                     this.FrameColunm = 1;

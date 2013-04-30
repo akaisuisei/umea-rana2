@@ -25,6 +25,8 @@ namespace Umea_rana
             this.window_W = fond.Width;
             AnimationSpeed = 10;
             mtexture = Content.Load<Texture2D>("bullet//bullet");
+            this.fond = fond;
+            this.screen = new Rectangle(0, 0, fond.Width * 2, fond.Height);
         }
         public IA_manager_T(Texture2D texture, Rectangle rectangle, ContentManager Content, int height, int width)
         {
@@ -81,7 +83,7 @@ namespace Umea_rana
             {
                 bulletL[i].update2();
                 
-                if (bulletL[i].rectangle_C.Top > 1080)
+                if (!bulletL[i].rectangle_C.Intersects (fond) )
                     bulletL.RemoveAt(i);
             }
         }
@@ -114,7 +116,7 @@ namespace Umea_rana
         public void Add(quaintuplet quaint)
         {
             for (int i = 0; i < quaint.nombre; ++i)
-                ia_manage.Add(new Tireur( new Rectangle((int)(quaint.X * window_W) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
+                ia_manage.Add(new Tireur( new Rectangle(fond.X +(int)(quaint.X * fond.Width ) + i * _rectangle.Width, -_rectangle.Height, _rectangle.Width, _rectangle.Height),
                     Content, window_H, window_W, quaint));
         }
 

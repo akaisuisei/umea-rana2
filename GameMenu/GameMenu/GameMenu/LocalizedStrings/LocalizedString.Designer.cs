@@ -268,6 +268,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hight Score.
+        /// </summary>
+        internal static string Hightscore {
+            get {
+                return ResourceManager.GetString("Hightscore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Image Files.
         /// </summary>
         internal static string Image_file {
@@ -376,7 +385,7 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à number of Kamikazes.
+        ///   Recherche une chaîne localisée semblable à Number of Kamikazes.
         /// </summary>
         internal static string nb_IAK {
             get {
@@ -385,7 +394,7 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à number of tirreur.
+        ///   Recherche une chaîne localisée semblable à Number of Shooter.
         /// </summary>
         internal static string nb_iaT {
             get {
@@ -394,7 +403,7 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à number of snipers.
+        ///   Recherche une chaîne localisée semblable à Number of Snipers.
         /// </summary>
         internal static string nb_iaV {
             get {
@@ -403,7 +412,7 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à number of UFO.
+        ///   Recherche une chaîne localisée semblable à Number of U.F.O.
         /// </summary>
         internal static string nb_objet {
             get {
@@ -475,7 +484,7 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à player life.
+        ///   Recherche une chaîne localisée semblable à Player Life.
         /// </summary>
         internal static string player_life {
             get {
@@ -516,6 +525,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Score.
+        /// </summary>
+        internal static string Score {
+            get {
+                return ResourceManager.GetString("Score", resourceCulture);
             }
         }
         

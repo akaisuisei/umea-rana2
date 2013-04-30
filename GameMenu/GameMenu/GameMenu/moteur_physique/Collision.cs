@@ -198,6 +198,7 @@ namespace Umea_rana
                 {
                     sprite.bulletL.RemoveAt(i);
                     sprite.bulletL[i].existe = false;
+                    sprite.scrore += 10;
                     return true;
                 }
             return false;
@@ -389,6 +390,7 @@ namespace Umea_rana
                 {
                     ia.vie = -30;
                     sprite.vie -= 30;
+                    sprite.scrore += 30;
                 }
         }
        
@@ -400,6 +402,7 @@ namespace Umea_rana
                     if (sprite.bulletL[i].rectangle_C.Intersects(ai.rectangle_C))
                     {  
                         ai.vie -= sprite.bulletL[i].degat;
+                        sprite.scrore += 100;
                         sprite.bulletL.RemoveAt(i);                     
                     }
         }
@@ -407,6 +410,7 @@ namespace Umea_rana
 
         public void Ovni_vaiss(ref Ovni ovnis, ref sripte_V sprite)
         {
+            
             for (int i = 0; i < ovnis.ovni.Count; ++i)
             {
                 if (ovnis.ovni[i].circle.is_in_bound(sprite.rectangle_C))
@@ -416,6 +420,14 @@ namespace Umea_rana
                     sprite.power += ovnis.ovni[i].power;
                     sprite.bomb += ovnis.ovni[i].bomb;
                     ovnis.ovni.RemoveAt(i);
+                }
+                for (int j = 0; j < sprite.bulletL.Count; ++j)
+                {
+                    if (ovnis.ovni[i].circle.is_in_bound(sprite.bulletL[i].rectangle_C) && ovnis.ovni[i].damage > 0)
+                    {
+                        ovnis.ovni.RemoveAt(i);
+                    }
+
                 }
             }
         }

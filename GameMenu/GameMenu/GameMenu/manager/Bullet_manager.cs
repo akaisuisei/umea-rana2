@@ -20,7 +20,7 @@ namespace Umea_rana
         int time1, tem2 = 0;
         Color colo;
         int speed;
-
+        Keys keyatq;
         public Bullet_manager(Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo,int width, int timer)
         {
          
@@ -34,6 +34,21 @@ namespace Umea_rana
             enableFire = true;
             this.colo = colo;
         }
+        public Bullet_manager(Rectangle n_rectangle, int nb, int speed, SoundEffect n_soundeffect, Color colo, int width, int timer, Keys atq)
+        {
+
+
+            rectangle = n_rectangle;
+
+            this.width = width;
+            this.speed = speed;
+            soundeffect = n_soundeffect;
+            time1 = timer;
+            enableFire = true;
+            this.colo = colo;
+            keyatq = atq;
+        }
+
 
         public void Bullet_Update2(vaisseau_IA  sprite, Vector2 vise, int nb,ref List<munition > bullet)
         {
@@ -84,7 +99,7 @@ namespace Umea_rana
         {
             if (timer != time1)
                 time1 = timer;
-            if (keyboard.IsKeyDown(Keys.Space) && oldkey.IsKeyDown(Keys.Space) && tem2 <= 0 && enableFire) //autorisation de tire
+            if (keyboard.IsKeyDown(keyatq )  && tem2 <= 0 && enableFire) //autorisation de tire
             {
 
                 tem2 = time1;

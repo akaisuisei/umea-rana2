@@ -73,7 +73,7 @@ namespace Umea_rana
             this.FrameLine = 1;
             this. FrameColunm = 1;
             this.Timer = 0; 
-            trajectory = "expo";
+         
         }
 
         public Viseur_aI( Rectangle rectangle, ContentManager Content, int height, int width, Color colo, int gametime)

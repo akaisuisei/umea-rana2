@@ -431,7 +431,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(test, rectangle_C, Color.Pink);
-            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White  , 0f, new Vector2(0, 0), this.Effects, 0f);
         }
         public void Dispose()
         {

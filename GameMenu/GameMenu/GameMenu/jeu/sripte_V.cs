@@ -40,11 +40,11 @@ namespace Umea_rana
         public Bullet_manager bullet;
         public bool automatic_controlled;
         int speed, maxspeed, minspeed;
-        int sizeX, sizeY, timer, sizeX1, sizeX2, sizeY1, sizeY2, timer1, timer2;
+        int sizeX, sizeY, sizeX1, sizeX2, sizeY1, sizeY2, timer1, timer2;
         public int power { get; set; }
         public int bomb { get; set; }
         Int16 type;
-
+        public int timer;
         int FrameLine;
         int FrameColumn;
         SpriteEffects Effects;
@@ -62,7 +62,8 @@ namespace Umea_rana
 
         Rectangle fond;
         Keys Kup, Kdown, Kright, Kleft, Katk, Ktrans;
-        private bool activate;
+        public bool activate { get; private set; }
+        public int scrore;
 
         public sripte_V(Rectangle n_rectangle, int height, int width)
         {
@@ -127,6 +128,8 @@ namespace Umea_rana
 
             this.fond = fond;
             rectangle.X = fond.Center.X;
+            rectangle.Width = fond.Width / 10;
+            rectangle.Height = fond.Height / 10;
             rectangle.Y = fond.Bottom - rectangle.Height;
             decallageX = (int)(0.33f * (float)rectangle.Width);
             decallageY = (int)(0.55f * (float)rectangle.Width);
@@ -179,7 +182,7 @@ namespace Umea_rana
             }
             else
             {
-                Katk = Keys.Space;
+                Katk = Keys.LeftControl;
                 Kdown = Keys.S;
                 Kup = Keys.W;
                 Kright = Keys.D;
@@ -189,6 +192,7 @@ namespace Umea_rana
                 activate = false;
             }
             this.perso = perso;
+    
 
         }
         public void parametrage(ref levelProfile level)
@@ -208,7 +212,20 @@ namespace Umea_rana
         {
             texture = n_texture;
             mtexture = Content.Load<Texture2D>("bullet//bullet");
-            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30);
+            bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30, Katk);
+        }
+        public void parametrage(ref sripte_V sprite)
+        {
+            this.speed = sprite.speed;
+            speedbullet = sprite.speedbullet;
+            this.color_V = sprite.color_V;
+            damage = sprite.damage;
+            this.vie = sprite.vie; ;
+            timer = sprite.timer;
+            timer1 = sprite.timer / 2;
+            timer2 = sprite.timer;
+            maxspeed = (int)((float)speed * 1.5f);
+            minspeed = speed;
         }
 
         public void Update(KeyboardState keyboard, Game1 game, KeyboardState oldkey)
@@ -217,14 +234,21 @@ namespace Umea_rana
             {
                 if (vie <= 0)
                 {
+                    rectangle.Inflate(2,2);
                     Xplode();
                     if (FrameLine == 45)
                         if (perso == 1)
                             game.ChangeState(Game1.gameState.Pause);
                         else
                         {
+                            rectangle = new Rectangle(-300, 0, fond.Width / 10, fond.Height / 10);
                             this.activate = false;
                             this.rectangle.X = -300;
+                            vie = 5;
+                            colunm = 150f;
+                            line = 200f;
+                            xline = 45;
+                            xclunm = 45;
                         }
                 }
                 else
@@ -548,7 +572,7 @@ namespace Umea_rana
             pVie = 0;
             bvie = 0;
         }
-        public void Update(int iak,int iat,int iav, int ob, int vie,int vieboss)
+        public void Update(int iak, int iat, int iav, int ob, int vie, int vieboss)
         {
             this.nb_iaK = iak;
             this.nb_iaT = iat;
@@ -564,19 +588,93 @@ namespace Umea_rana
         }
         public void draw(SpriteBatch sp)
         {
-            sp.DrawString(font, LocalizedString.player_life +":", new Vector2(fond.X,0* fond .Height/12), Color.White);
-            sp.DrawString(font, "" + pVie, new Vector2(fond.X,1* fond.Height / 12), Color.White);
-            sp.DrawString(font, LocalizedString.nb_IAK + ":", new Vector2(fond.X,2* fond.Height / 12), Color.White);
-            sp.DrawString(font, "" + nb_iaK, new Vector2(fond.X,3* fond.Height / 12), Color.White);
-            sp.DrawString(font, LocalizedString.nb_iaV + ":", new Vector2(fond.X,4* fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.player_life + ":", new Vector2(fond.X, 0 * fond.Height / 12), Color.White);
+            sp.DrawString(font, "" + pVie, new Vector2(fond.X, 1 * fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.nb_IAK + ":", new Vector2(fond.X, 2 * fond.Height / 12), Color.White);
+            sp.DrawString(font, "" + nb_iaK, new Vector2(fond.X, 3 * fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.nb_iaV + ":", new Vector2(fond.X, 4 * fond.Height / 12), Color.White);
             sp.DrawString(font, "" + nbIA_V, new Vector2(fond.X, 5 * fond.Height / 12), Color.White);
-            sp.DrawString(font, LocalizedString.nb_iaT  + ":", new Vector2(fond.X, 6*fond.Height / 12), Color.White);
-            sp.DrawString(font, "" + nb_iaT, new Vector2(fond.X,7* fond.Height / 12), Color.White);
-            sp.DrawString(font, LocalizedString.nb_objet + ":", new Vector2(fond.X,8* fond.Height / 12), Color.White);
-            sp.DrawString(font, "" + nb_objet, new Vector2(fond.X,9* fond.Height / 12), Color.White);
-            sp.DrawString(font, LocalizedString.BossLife + ":", new Vector2(fond.X,12* fond.Height / 12), Color.White);
-            sp.DrawString(font, "" + bvie, new Vector2(fond.X,13* fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.nb_iaT + ":", new Vector2(fond.X, 6 * fond.Height / 12), Color.White);
+            sp.DrawString(font, "" + nb_iaT, new Vector2(fond.X, 7 * fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.nb_objet + ":", new Vector2(fond.X, 8 * fond.Height / 12), Color.White);
+            sp.DrawString(font, "" + nb_objet, new Vector2(fond.X, 9 * fond.Height / 12), Color.White);
+            sp.DrawString(font, LocalizedString.BossLife + ":", new Vector2(fond.X, 12 * fond.Height / 12), Color.White);
+            sp.DrawString(font, "" + bvie, new Vector2(fond.X, 13 * fond.Height / 12), Color.White);
         }
 
     }
+    public class Score
+    {
+        int scoreJ1, scoreJ2;
+        int vieJ1, vieJ2;
+        int bombej1, bombej2;
+        int powerj1, powerj2;
+        bool activate;
+        int highscore;
+        Rectangle fond, fond2, image1, image2;
+        SpriteFont font;
+        Texture2D texturej1, texturej2;
+        public Score()
+        {
+            this.scoreJ1 = 0;
+            this.scoreJ2 = 0;
+            this.vieJ1 = 0;
+            this.vieJ2 = 0;
+            this.bombej1 = 0;
+            this.bombej2 = 0;
+            highscore = 0;
+        }
+        public void LoadContent(Rectangle fond, Rectangle fond2, ContentManager Content)
+        {
+            this.fond = fond;
+            this.fond2 = fond2;
+            this.font = Content.Load<SpriteFont>("FontList");
+            image1 = new Rectangle(fond.X, (int)((float)fond.Height * 7f / 14f), fond.Width, fond.Height - (int)((float)fond.Height * 7f / 14f));
+            image2 = new Rectangle(fond2.X, (int)((float)fond2.Height * 8f / 14f), fond2.Width, fond2.Height - (int)((float)fond2.Height * 7f / 14f));
+            texturej1 = Content.Load<Texture2D>("hero\\image1");
+            texturej2 = Content.Load<Texture2D>("hero\\image2");
+        }
+        public void Update(ref sripte_V perso1,ref sripte_V perso2)
+        {
+            this.scoreJ1 = perso1.scrore;
+            this.vieJ1 = perso1.vie;
+            this.bombej1 = perso1.bomb;
+            this.powerj1 = perso1.power;
+            this.scoreJ2 = perso2.scrore;
+            this.vieJ2 = perso2.vie;
+            this.bombej2 = perso2.bomb;
+            this.powerj2 = perso2.power;
+            activate = perso2.activate;
+            highscore = Math.Max(Math.Max(scoreJ1, scoreJ2), highscore);
+        }
+        public void Draw(SpriteBatch sp)
+        {
+  sp.Draw(texturej1 , image1, Color.White);
+            sp.DrawString(font, LocalizedString.Hightscore , new Vector2(fond2.Left,0f/14f* fond2.Height), Color.White);
+            sp.DrawString(font, "" + highscore, new Vector2(fond2.Left, 1f / 14f * fond2.Height), Color.White);
+            sp.DrawString(font, LocalizedString.player + " 1", new Vector2(fond.Left, 0f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, LocalizedString.Score, new Vector2(fond.Left, 1f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, "" + scoreJ1, new Vector2(fond.Left, 2f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, LocalizedString.Life, new Vector2(fond.Left, 3f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, "" + vieJ1, new Vector2(fond.Left, 4f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, LocalizedString.bomb, new Vector2(fond.Left, 5f / 14f * fond.Height), Color.White);
+            sp.DrawString(font, "" + bombej1, new Vector2(fond.Left, 6f / 14f * fond.Height), Color.White);
+          
+
+            if (activate)
+            { 
+                sp.Draw(texturej2, image2, Color.White);
+                sp.DrawString(font, LocalizedString.player + " 2", new Vector2(fond2.Left,2f/14f* fond2.Height), Color.White);
+                sp.DrawString(font, LocalizedString.Score, new Vector2(fond2.Left, 3f / 14f * fond2.Height), Color.White);
+                sp.DrawString(font, "" + scoreJ2, new Vector2(fond2.Left, 4f / 14f * fond2.Height), Color.White);
+                sp.DrawString(font, LocalizedString.Life, new Vector2(fond2.Left, 5f / 14f * fond2.Height), Color.White);
+                sp.DrawString(font, "" + vieJ2, new Vector2(fond2.Left, 6f / 14f * fond2.Height), Color.White);
+                sp.DrawString(font, LocalizedString.bomb, new Vector2(fond2.Left, 7f / 14f * fond2.Height), Color.White);
+                sp.DrawString(font, "" + bombej2, new Vector2(fond2.Left, 8f / 14f * fond2.Height), Color.White);
+              
+            }
+
+        }
+    }
+
 }

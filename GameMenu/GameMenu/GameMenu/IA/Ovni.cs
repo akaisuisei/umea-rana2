@@ -27,6 +27,7 @@ namespace Umea_rana
     {
         public int FrameLine { get; set; }
         public int maxframecolumn { get; set; }
+        public int minframecolunm { get; set; }
         public int FrameColumn { get; set; }
         public ovnis()
         {
@@ -34,6 +35,7 @@ namespace Umea_rana
             FrameColumn = 1;
             FrameLine = 1;
             timer = 10;
+            minframecolunm = 1;
         }
         public char type;
         public int damage, vie, miss, power, bomb, launch;
@@ -53,6 +55,7 @@ namespace Umea_rana
         int width1, width2, width3, width4;
         int height1, height2, height3, height4;
         Texture2D texture;
+        Rectangle fond;
         public Ovni(int width, int height)
         {
             WindoW = width; WindowH = height;
@@ -72,6 +75,27 @@ namespace Umea_rana
             line = 64;
             colunm = 64;
 
+        }
+        public Ovni(Rectangle fond)
+        {
+           this.fond = fond;
+           WindoW = fond.Width;
+           WindowH = fond.Height;
+            width1 = (int)(WindoW * 0.05);
+            width2 = (int)(WindoW * 0.05);
+            width3 = (int)(WindoW * 0.05);
+            width4 = (int)(WindoW * 0.05);
+            height1 = (int)(WindowH * 0.07);
+            height2 = (int)(WindowH * 0.07);
+            height3 = (int)(WindowH * 0.07);
+            height4 = (int)(WindowH * 0.07);
+            R1 = 30;
+            R2 = 30;
+            R3 = 30;
+            R4 = 40;
+            ovni = new List<ovnis>();
+            line = 64;
+            colunm = 64;
         }
         public void param(int fc)
         {
@@ -95,22 +119,22 @@ namespace Umea_rana
                         ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
                         if (ovni[i].type == 'v' || ovni[i].type == 'm' || ovni[i].type == 'p' || ovni[i].type == 'b')
                         {
-                            if (ovni[i].rectangle.Left <= 0)
+                            if (ovni[i].rectangle.Left <= fond.Left )
                             {
                                 this.ovni[i].speedX *= -1;
                                 this.ovni[i].rectangle.X = 1;
                             }
-                            else if (ovni[i].rectangle.Right >= WindoW)
+                            else if (ovni[i].rectangle.Right >=fond.Left )
                             {
                                 this.ovni[i].speedX *= -1;
                                 this.ovni[i].rectangle.X = WindoW - this.ovni[i].rectangle.Width - 5;
                             }
-                            if (ovni[i].rectangle.Top < 0)
+                            if (ovni[i].rectangle.Top < fond.Top )
                             {
                                 this.ovni[i].speedY *= -1;
                                 this.ovni[i].rectangle.Y = 1;
                             }
-                            else if (ovni[i].rectangle.Bottom > WindowH)
+                            else if (ovni[i].rectangle.Bottom > fond.Bottom )
                             {
                                 this.ovni[i].speedY *= -1;
                                 this.ovni[i].rectangle.Y = WindowH - this.ovni[i].rectangle.Height - 5;
@@ -128,11 +152,11 @@ namespace Umea_rana
 
                 }
                 if (ovni[i].timer == 0)
-                {
+                {ovni[i].FrameColumn++;
                     if (ovni[i].FrameColumn == ovni[i].maxframecolumn)
-                        ovni[i].FrameColumn = 1;
+                        ovni[i].FrameColumn = ovni[i].minframecolunm ;
                     ovni[i].timer = 10;
-                    ovni[i].FrameColumn++;
+                    
                 }
                 ovni[i].timer--;
 
@@ -176,7 +200,7 @@ namespace Umea_rana
         {
             Random rnd = new Random();
             ovnis ov = new ovnis();
-            int x = (int)(bonus.X * WindoW);
+            int x =fond.Right + (int)(bonus.X * fond.Width );
             int speedx = rnd.Next(1, 11), speedy = rnd.Next(1, 11);
             int speedx2 = (int)(Math.Cos((bonus.angle * Math.PI) / 180) * bonus.speed),
                 speedy2 = (int)(Math.Sin(bonus.angle * Math.PI / 180) * bonus.speed);
@@ -192,7 +216,10 @@ namespace Umea_rana
                     ov.circle.R = R1;
                     ov.speedX = speedx;
                     ov.speedY = speedy;
-                    ov.FrameLine = 1;//hharf
+                    ov.FrameColumn = 21;
+                    ov.FrameLine = 5;
+                    ov.maxframecolumn = 25;
+                    ov.minframecolunm = 21;
                     break;
                 case 'm':
                     ov.miss = 1;
@@ -200,7 +227,10 @@ namespace Umea_rana
                     ov.circle.R = R1;
                     ov.speedX = speedx;
                     ov.speedY = speedy;
-                    ov.FrameLine = 1;//harff
+                    ov.FrameColumn = 21;
+                    ov.minframecolunm = 21;
+                    ov.maxframecolumn = 24;
+                    ov.FrameLine = 2;
                     break;
                 case 'p':
                     ov.power = 1;
@@ -208,7 +238,10 @@ namespace Umea_rana
                     ov.circle.R = R1;
                     ov.speedX = speedx;
                     ov.speedY = speedy;
-                    ov.FrameLine = 1;// harf
+                    ov.FrameColumn = 21;
+                    ov.minframecolunm = 21;
+                    ov.maxframecolumn = 24;
+                    ov.FrameLine = 3;
                     break;
                 case 'b':
                     ov.bomb = 1;
@@ -216,7 +249,10 @@ namespace Umea_rana
                     ov.circle.R = R1;
                     ov.speedX = speedx;
                     ov.speedY = speedy;
-                    ov.FrameLine = 1; // harff
+                    ov.FrameColumn = 21;
+                    ov.minframecolunm = 21;
+                    ov.maxframecolumn = 24;
+                    ov.FrameLine =4; 
                     break;
                 case 'a':
                     ov.damage = 30;
@@ -278,22 +314,31 @@ namespace Umea_rana
                 case 'v':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                    ov.FrameLine = 1;
+                 
+                     ov.FrameColumn = 21;
+                    ov.FrameLine = 5;
                     break;
                 case 'm':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                    ov.FrameLine = 1;
+                 
+                       ov.FrameColumn = 21;
+
+                    ov.FrameLine = 2;
                     break;
                 case 'p':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                    ov.FrameLine = 1;
+                   
+                         ov.FrameColumn = 21;
+                    ov.FrameLine = 3;
                     break;
                 case 'b':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
                     ov.FrameLine = 1;
+                      ov.FrameColumn = 21;
+                    ov.FrameLine =4; 
                     break;
                 case 'a':
                     ov.rectangle = new Rectangle(x, y, width2, height2);
