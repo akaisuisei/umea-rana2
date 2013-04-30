@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
-    class IA_manager_S : IA_Manager_max
+   public class IA_manager_S : IA_Manager_max
     {
 
 

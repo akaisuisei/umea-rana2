@@ -64,6 +64,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button13 = new System.Windows.Forms.Button();
             this.Ennemis = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.Valider = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.Naruto = new System.Windows.Forms.RadioButton();
@@ -77,6 +79,8 @@
             this.puissance_p = new System.Windows.Forms.RichTextBox();
             this.vitesse_p = new System.Windows.Forms.RichTextBox();
             this.Plateformes = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.Valider_p = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.Plateforme_Stable = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -87,10 +91,6 @@
             this.haut = new System.Windows.Forms.RadioButton();
             this.bas = new System.Windows.Forms.RadioButton();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
-            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.Valider = new System.Windows.Forms.Button();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.Valider_p = new System.Windows.Forms.Button();
             this.Fond.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -104,15 +104,15 @@
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.Ennemis.SuspendLayout();
+            this.tableLayoutPanel15.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.Plateformes.SuspendLayout();
+            this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel15.SuspendLayout();
-            this.tableLayoutPanel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // Fond
@@ -564,6 +564,27 @@
             this.Ennemis.Text = "Ennemis";
             this.Ennemis.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel15
+            // 
+            this.tableLayoutPanel15.ColumnCount = 1;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel15.Controls.Add(this.Valider, 0, 0);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(13, 241);
+            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
+            this.tableLayoutPanel15.RowCount = 1;
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(194, 45);
+            this.tableLayoutPanel15.TabIndex = 1;
+            // 
+            // Valider
+            // 
+            this.Valider.Location = new System.Drawing.Point(3, 3);
+            this.Valider.Name = "Valider";
+            this.Valider.Size = new System.Drawing.Size(176, 34);
+            this.Valider.TabIndex = 0;
+            this.Valider.Text = "Valider";
+            this.Valider.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -710,6 +731,27 @@
             this.Plateformes.Text = "Plateformes";
             this.Plateformes.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel16
+            // 
+            this.tableLayoutPanel16.ColumnCount = 1;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Controls.Add(this.Valider_p, 0, 0);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(12, 252);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 1;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(195, 34);
+            this.tableLayoutPanel16.TabIndex = 1;
+            // 
+            // Valider_p
+            // 
+            this.Valider_p.Location = new System.Drawing.Point(3, 3);
+            this.Valider_p.Name = "Valider_p";
+            this.Valider_p.Size = new System.Drawing.Size(180, 27);
+            this.Valider_p.TabIndex = 0;
+            this.Valider_p.Text = "Valider";
+            this.Valider_p.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
@@ -765,7 +807,7 @@
             this.tableLayoutPanel12.ColumnCount = 3;
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.48837F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.51163F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
@@ -795,7 +837,7 @@
             // droite
             // 
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(131, 56);
+            this.droite.Location = new System.Drawing.Point(129, 56);
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;
@@ -806,7 +848,7 @@
             // haut
             // 
             this.haut.AutoSize = true;
-            this.haut.Location = new System.Drawing.Point(71, 33);
+            this.haut.Location = new System.Drawing.Point(70, 33);
             this.haut.Name = "haut";
             this.haut.Size = new System.Drawing.Size(46, 17);
             this.haut.TabIndex = 2;
@@ -817,55 +859,13 @@
             // bas
             // 
             this.bas.AutoSize = true;
-            this.bas.Location = new System.Drawing.Point(71, 79);
+            this.bas.Location = new System.Drawing.Point(70, 79);
             this.bas.Name = "bas";
             this.bas.Size = new System.Drawing.Size(42, 17);
             this.bas.TabIndex = 3;
             this.bas.TabStop = true;
             this.bas.Text = "bas";
             this.bas.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel15
-            // 
-            this.tableLayoutPanel15.ColumnCount = 1;
-            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel15.Controls.Add(this.Valider, 0, 0);
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(13, 241);
-            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
-            this.tableLayoutPanel15.RowCount = 1;
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(194, 45);
-            this.tableLayoutPanel15.TabIndex = 1;
-            // 
-            // Valider
-            // 
-            this.Valider.Location = new System.Drawing.Point(3, 3);
-            this.Valider.Name = "Valider";
-            this.Valider.Size = new System.Drawing.Size(176, 34);
-            this.Valider.TabIndex = 0;
-            this.Valider.Text = "Valider";
-            this.Valider.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel16
-            // 
-            this.tableLayoutPanel16.ColumnCount = 1;
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Controls.Add(this.Valider_p, 0, 0);
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(12, 252);
-            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
-            this.tableLayoutPanel16.RowCount = 1;
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(195, 34);
-            this.tableLayoutPanel16.TabIndex = 1;
-            // 
-            // Valider_p
-            // 
-            this.Valider_p.Location = new System.Drawing.Point(3, 3);
-            this.Valider_p.Name = "Valider_p";
-            this.Valider_p.Size = new System.Drawing.Size(180, 27);
-            this.Valider_p.TabIndex = 0;
-            this.Valider_p.Text = "Valider";
-            this.Valider_p.UseVisualStyleBackColor = true;
             // 
             // UserControl2
             // 
@@ -892,20 +892,20 @@
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
             this.Ennemis.ResumeLayout(false);
+            this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.Plateformes.ResumeLayout(false);
+            this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
-            this.tableLayoutPanel15.ResumeLayout(false);
-            this.tableLayoutPanel16.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

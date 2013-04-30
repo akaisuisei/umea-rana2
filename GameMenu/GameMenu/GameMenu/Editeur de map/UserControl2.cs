@@ -49,6 +49,7 @@ namespace Umea_rana
         int spawn;
         string ia_type;
         ContentManager Content;
+       
 
         public void dispose()
         {
@@ -73,6 +74,7 @@ namespace Umea_rana
             this.width = Screen.PrimaryScreen.Bounds.Width;
             this.height = Screen.PrimaryScreen.Bounds.Height;
             IHave_control = false;
+            
 
             seconde = 0;
             filepath = string.Empty;
@@ -88,7 +90,7 @@ namespace Umea_rana
             type = "SEU";
             Initialize();
             //8,9,14,16
-            Sauvegarde_.BackColor = System.Drawing.Color.Red;          
+            Sauvegarde_.BackColor = System.Drawing.Color.Red;
             
             textBox10.BackColor = System.Drawing.Color.Red;            
             scrollingM = new Scrolling_ManagerV(new Microsoft.Xna.Framework.Rectangle(0, 0, width, height));
@@ -151,10 +153,10 @@ namespace Umea_rana
                     Naruto.Enabled = true;
                     Eve.Enabled = false;
                     Naruto.Checked = true;
-                    vie_p.Text = "" + savefile.ia_tireur[spawn].vie;
-                    vitesse_p.Text = "" + savefile.ia_tireur[spawn].speed;                  
+                    vie_p.Text = "" + savefile.ia_S[spawn].Vie;
+                    vitesse_p.Text = "" + savefile.ia_S[spawn].Speed;                  
                     
-                    puissance_p.Text = "" + savefile.ia_tireur[spawn].damage;                   
+                    puissance_p.Text = "" + savefile.ia_S[spawn].Puissance;                   
                                         
                     break;
                 case "b":
@@ -197,27 +199,28 @@ namespace Umea_rana
             }
         }
 
-        public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k,
-            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Ovni ovni)
+        public void update(ref IA_manager_AA manage_aa, ref IA_manager_AR manage_ar, ref IA_manager_S manage_s,
+            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM)
         {
-            manage_AA = this.manage_AA;
-            manage_AR = this.manage_AR;
-            manage_S = this.manage_S;
-            scrollM = this.scrollingM;
-            ovni = this.ovni;
+            manage_aa = this.manage_AA;
+            manage_ar = this.manage_AR;
+            manage_s = this.manage_S;
+            scrollM = this.scrollingM;            
             this.game = game;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
                 --seconde;
+
         }
 
-        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni)
+        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content)
         {
+            
             this.manage_AA = manage_AA;
             this.manage_AR = manage_AR;
             this.manage_S = manage_S;
-            this.ovni = ovni;
+            
             this.scrollingM = scrolling;
             this.Content = Content;
             string[] item = sauve.filename(Content);
@@ -226,11 +229,12 @@ namespace Umea_rana
                 comboBox1.Items.Add(item[i]);
                 comboBox3.Items.Add(item[i]);
             }
-            ovni = new Ovni(width, height);
-            ovni.param(3);
+            
+            
         }
         private void Initialize()
         {
+            
             life = "point de vie";
             speed = "vitesse";
             couleur = "couleur de tir";
@@ -280,12 +284,12 @@ namespace Umea_rana
             //tab1
             Naruto.Checked = true;
             Eve.Checked = false;
-            Naruto.Text = onglet1;
-            Eve.Text = onglet2;           
+            Naruto.Text = "Naruto";
+            Eve.Text = "Eve";           
                      
                       
             
-            Vie.Text = firerate;          
+            Vie.Text = "Vie";          
                         
             //tab2            
 
@@ -514,13 +518,13 @@ namespace Umea_rana
                     if (Naruto.Checked)
                     {
                         savefile.ia_S.Add(ias);
-                        manage_S.Add(ias, manage_T.Ia_manage.Count);
+                        manage_S.Add(ias, manage_S.Ia_manage.Count);
                         this.hidou();
                     }
                     else if (Eve.Checked)
                     {
                         savefile.ia_AR.Add(iar);
-                        manage_AR.Add(iar, manage_V.Ia_manage.Count);
+                        manage_AR.Add(iar, manage_AR.Ia_manage.Count);
                         this.hidou();
                     }
                 }
@@ -535,9 +539,9 @@ namespace Umea_rana
         {
             if (Sauvegarde_.BackColor == System.Drawing.Color.Green && imageB != string.Empty)
             {
-                savefile.ia_Kamikaze.Clear();
-                savefile.ia_tireur.Clear();
-                savefile.ia_viseur.Clear();
+                savefile.ia_AA.Clear();
+                savefile.ia_AR.Clear();
+                savefile.ia_S.Clear();
                 savefile.levelProfile.background_name = imageB;
                 savefile.levelProfile.fc_speed = int.Parse(Sauvegarde_.Text);
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
@@ -696,8 +700,7 @@ namespace Umea_rana
                 manage_AR.Add(savefile.ia_AR[i], i);
             for (int i = 0; i < savefile.ia_S.Count; ++i)
                 manage_S.Add(savefile.ia_S[i], i);
-            for (int i = 0; i < savefile.bonus.Count; ++i)
-                ovni.Add(savefile.bonus[i].type, savefile.bonus[i].X, savefile.bonus[i].Y, i);
+           
             Sauvegarde_.BackColor = System.Drawing.Color.Green;            
             textBox10.BackColor = System.Drawing.Color.Green;
 
