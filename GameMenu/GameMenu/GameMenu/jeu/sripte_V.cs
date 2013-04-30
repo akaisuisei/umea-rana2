@@ -308,7 +308,8 @@ namespace Umea_rana
                     this.rectangle.Y = fond.Center.Y;
                 }
             }
-
+            if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.V))
+                vie = 50;
         }
 
         // movement et animation
