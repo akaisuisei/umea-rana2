@@ -25,25 +25,28 @@ namespace Umea_rana
         IA_manager_S manageS;
         Collision collision;
         KeyboardState oldkey;
-        
+
         _Pause _pause;
         int latence = 0;
         bool _checkpause = false;
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
         scoreplat score;
-
+        bossPLAT boss;
+        Housse housse;
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             collision = new Collision();
             oldkey = Keyboard.GetState();
-            
+
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
+            boss = new bossPLAT();
+            housse = new Housse();
         }
-        
-              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
 
             width = graphics.PreferredBackBufferWidth;
@@ -60,12 +63,12 @@ namespace Umea_rana
             naruto_stalker = Content.Load<Texture2D>("IA//naruto");
             eve = Content.Load<Texture2D>("IA//eve");
             truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
-            
+
 
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content,'1');
+            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia
@@ -74,31 +77,32 @@ namespace Umea_rana
             manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-           
-                // ajout ia aller retour (X,Y)
-                managerAR.Add(1.1f, 0);
-           /*     managerAR.Add(0.5f, 0.5f);
-                managerAR.Add(2.1f, 0.5f);
-                managerAR.Add(-0.5f, 0f);
-                managerAR.Add(2.1f, 0.45f);
-                managerAR.Add(2.4f, 0.55f);
-                managerAR.Add(3.2f, 0.7f);
-                managerAR.Add(3.6f, 0.7f);
-              */  // ajout IA qui vont tous droit(X,Y)
-                managerAA.Add(1.11f, 0);
-                managerAA.Add(0.54f, 0.5f);
-                managerAA.Add(2.14f, 0.5f);
-                managerAA.Add(-0.58f, 0f);
-                managerAA.Add(2.3f, 0.45f);
-                managerAA.Add(2.6f, 0.45f);
-                managerAA.Add(3.2f, 0.7f);
-                // ajout des ia Stalker (X,Y)
-                manageS.Add(1.15f, 0);
-                manageS.Add(2f, 0.7f);
-                manageS.Add(2.1f, 0.45f);
-                manageS.Add(3.2f, 0.7f);
 
-            
+            // ajout ia aller retour (X,Y)
+            managerAR.Add(1.1f, 0);
+            /*     managerAR.Add(0.5f, 0.5f);
+                 managerAR.Add(2.1f, 0.5f);
+                 managerAR.Add(-0.5f, 0f);
+                 managerAR.Add(2.1f, 0.45f);
+                 managerAR.Add(2.4f, 0.55f);
+                 managerAR.Add(3.2f, 0.7f);
+                 managerAR.Add(3.6f, 0.7f);
+               */
+            // ajout IA qui vont tous droit(X,Y)
+            managerAA.Add(1.11f, 0);
+            managerAA.Add(0.54f, 0.5f);
+            managerAA.Add(2.14f, 0.5f);
+            managerAA.Add(-0.58f, 0f);
+            managerAA.Add(2.3f, 0.45f);
+            managerAA.Add(2.6f, 0.45f);
+            managerAA.Add(3.2f, 0.7f);
+            // ajout des ia Stalker (X,Y)
+            manageS.Add(1.15f, 0);
+            manageS.Add(2f, 0.7f);
+            manageS.Add(2.1f, 0.45f);
+            manageS.Add(3.2f, 0.7f);
+
+
 
 
             // ajout platform (position X,position Y, nombre de plateforme juxtaposer)
@@ -106,7 +110,7 @@ namespace Umea_rana
             platform_M.Add(1f, 0.7f, 9);
             platform_M.Add(1.86f, 0.9f, 10);
             platform_M.Add(-0.76f, 0.6f, 10);
-            platform_M.Add(1.9f,0.6f,5);
+            platform_M.Add(1.9f, 0.6f, 5);
             platform_M.Add(2.6f, 0.6f, 2);
             platform_M.Add(2.4f, 0.7f, 1);
             platform_M.Add(2.9f, 0.8f, 1);
@@ -115,6 +119,9 @@ namespace Umea_rana
             platform_M.Add(3.1f, 1f, 1);
 
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
+
+            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height));
+            housse.loadContent(Content, front_sc);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -132,7 +139,7 @@ namespace Umea_rana
             manageS.Dipose();
             _pause.Dispose();
             aster.Dispose(); alllenT.Dispose(); backgroundT.Dispose();
-            platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose(); 
+            platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose();
             // TODO: Unload any non ContentManager Content here
         }
 
@@ -140,8 +147,6 @@ namespace Umea_rana
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.A))
-                game.ChangeState(Game1.gameState.Editeur_mapVV);
             if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
             {
                 _pause.checkpause(keyboard, ref _checkpause);
@@ -176,7 +181,7 @@ namespace Umea_rana
                 collision.collision_ia_sol(managerAA, ref platform_M);
 
                 collision.coll_AL_IA(manageS, ref allen);
-               collision.coll_AL_IA(managerAA , ref allen);
+                collision.coll_AL_IA(managerAA, ref allen);
                 collision.coll_AL_IA(managerAR, ref allen);
                 //manager IA 
                 managerAR.Update(ref keyboard);
@@ -185,12 +190,14 @@ namespace Umea_rana
                 //manager platform
                 platform_M.Update(keyboard);
                 score.Update(ref allen);
+                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
+                boss.Update(ref keyboard);
             }
             else
             {
                 game.ChangeState2(Game1.gameState.Checkpause);
                 MediaPlayer.Stop();
-                ParticleAdder.adder(game, Game1.gameState.Checkpause,height,width);
+                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
                 _pause.Update(game, audio, ref _checkpause);
             }
 
@@ -198,37 +205,34 @@ namespace Umea_rana
             fail(game, allen, Game1.gameState.SEU);
 
             //audio
-            
+
             if (allen.rectangle.Right >= width * 2 - 50)
-                game.ChangeState(Game1.gameState.Pause, Game1.gameState.win );
+                game.ChangeState(Game1.gameState.Pause, Game1.gameState.win);
+            housse.Update(keyboard, game, allen);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             // TODO: Add your drawing code here
-           
-            if (!_checkpause)
-            {             
-                scrolling1.Draw(spriteBatch); 
-                //scrolling3.Draw(spriteBatch);
-                allen.Draw(spriteBatch);
-                platform_M.Draw(spriteBatch);
-                managerAA.Draw(spriteBatch);
-                managerAR.Draw(spriteBatch);
-                manageS.Draw(spriteBatch);
-            }
-            else
-            {
-                scrolling1.Draw(spriteBatch);
-                //scrolling3.Draw(spriteBatch);
-                allen.Draw(spriteBatch);
-                platform_M.Draw(spriteBatch);
-                managerAA.Draw (spriteBatch);
-                managerAR.Draw(spriteBatch);
-                manageS.Draw(spriteBatch);
+
+
+
+            scrolling1.Draw(spriteBatch);
+            //scrolling3.Draw(spriteBatch);
+            allen.Draw(spriteBatch);
+            platform_M.Draw(spriteBatch);
+            managerAA.Draw(spriteBatch);
+            managerAR.Draw(spriteBatch);
+            manageS.Draw(spriteBatch);
+            boss.Draw(spriteBatch);
+            housse.draw(spriteBatch);
+            score.Draw(spriteBatch);
+
+
+            if (_checkpause)
                 _pause.Draw(spriteBatch);
-              
-            }  score.Draw(spriteBatch);
+
+
         }
     }
 }

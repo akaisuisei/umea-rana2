@@ -54,7 +54,7 @@ namespace Umea_rana
         int colunm, line;
 
         int prout;
-
+        public bool block { get; private set; }
         public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
 
         pos idle, atk, walk, die, jump, fall;
@@ -447,7 +447,8 @@ namespace Umea_rana
         Color color;
         Texture2D texture;
         Rectangle fond1, fond2;
-        int viemax, vie, maxwidth, width;
+        int viemax, maxwidth, width;
+        float vie;
         public scoreplat()
         {
         }

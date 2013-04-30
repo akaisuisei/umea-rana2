@@ -607,7 +607,7 @@ namespace Umea_rana
     public class Score
     {
         int scoreJ1, scoreJ2;
-        int vieJ1, vieJ2;
+        float vieJ1, vieJ2;
         int bombej1, bombej2;
         int powerj1, powerj2;
         bool activate;

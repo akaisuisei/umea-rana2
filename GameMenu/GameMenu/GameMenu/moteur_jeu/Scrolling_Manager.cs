@@ -103,6 +103,70 @@ namespace Umea_rana
             }
         }
 
+        public void load(ContentManager Content, levelProfile levelprofile, GraphicsDevice Graph)
+        {
+            speed[1] = levelprofile.fc_speed / 2;
+            speed[2] = levelprofile.fc_speed / 3;
+            speed[0] = levelprofile.fc_speed;
+            string name = string.Empty;
+            for (int i = 0; i < levelprofile.background_name.Length && levelprofile.background_name[i] != '.'; ++i)
+            {
+
+                name += levelprofile.background_name[i];
+                if (levelprofile.background_name[i] == '\\')
+                    name = "";
+            }
+            if (name == "backgroundT")// si c est un jeu normal
+            {
+
+                texture[count] = (Content.Load<Texture2D>(levelprofile.levelname + "\\" + levelprofile.background_name));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);
+                couche[count] = 1f;
+                ++count;
+            }
+            else if (name == "BackgrounD")// si c est un jeu perso
+            {
+                Sauveguarde save = new Sauveguarde();
+                FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
+                texture[count] = (Texture2D.FromStream(Graph, file));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);
+                couche[count] = 0.5f;
+
+
+                //    scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                ++count;
+            }
+            else
+            {
+                texture[count] = (Content.Load<Texture2D>("level2\\fond"));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);
+                couche[count] = 0.5f;
+                //     scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), levelprofile.fc_speed, window_H, 0.5f));
+                ++count;
+            }
+
+            if (levelprofile.second_background != null)
+            {
+                texture[count] = (Content.Load<Texture2D>("back\\" + levelprofile.second_background));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);
+                couche[count] = 0.9f;
+                //  scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed1, window_H, 0.9f));
+                ++count;
+            }
+            if (levelprofile.third_bacground != null)
+            {
+                texture[count] = (Content.Load<Texture2D>("back\\" + levelprofile.third_bacground));
+                rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+                rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);
+                couche[count] = 0.1f;
+                //   scroll.Add(new Scrolling(texture[texture.Count - 1], new Rectangle(0, 0, windows_W, window_H), speed2, window_H, 1f));
+                ++count;
+            }
+        }
         public void Update()
         {
             for (int i = 0; i < count; ++i)
@@ -169,6 +233,7 @@ namespace Umea_rana
 
         }
 
+
         public void Draw(SpriteBatch spritebatch)
         {
 
@@ -217,6 +282,23 @@ namespace Umea_rana
             rec2[count] = new Rectangle(rectangle.X, -rectangle.Height, rectangle.Width, rectangle.Height);
             speed[count] = 3;
            couche[count] = couches;
+            ++count;
+        }
+        public void _Add(Texture2D tex, float couches)
+        {
+            if (rec1 == null)
+                rec1 = new Rectangle[3];
+            if (rec2 == null)
+                rec2 = new Rectangle[3];
+            if (speed == null)
+                speed = new int[3];
+            if (couche == null)
+                couche = new float[3];
+            texture[count] = tex;
+            rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
+            rec2[count] = new Rectangle(rectangle.Width , rectangle.Y , rectangle.Width, rectangle.Height);
+            speed[count] = 3;
+            couche[count] = couches;
             ++count;
         }
     }

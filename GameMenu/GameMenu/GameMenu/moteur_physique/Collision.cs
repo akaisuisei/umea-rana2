@@ -50,7 +50,8 @@ namespace Umea_rana
                         ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
                     {
                         top = plato.rectangle_C.Top;
-                        b |= true;
+                        b = true;
+                        break;
                     }
                 }
                 if (b)
@@ -141,7 +142,10 @@ namespace Umea_rana
                             ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque <= sprite.rectangle_C.Right &&
                             ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right))
                         {
-                            sprite.vie--;
+                            if (sprite.block)
+                                sprite.vie -= 0.5f;
+                            else
+                                sprite.vie--;
                             //bool pr dire qd on attaque
                             ia_manage.Ia_manage[i].attaque = true;
                         }
@@ -432,5 +436,29 @@ namespace Umea_rana
             }
         }
 
+        public void Bossplat_hero(ref bossPLAT boss, ref sprite_broillon sprite,ref Platform_manager platform)
+        {
+
+            foreach (Rectangle rec in boss.ptfort)
+                if (rec.Intersects(sprite.rectangle_C))
+                    if (sprite.block)
+                        sprite.vie -= (float)boss.degat / 2;
+                    else
+                        sprite.vie -= boss.degat;
+            foreach (Rectangle rec in boss.ptfaible)
+                if (sprite.atq && rec.Intersects(sprite.rectangle_C))
+                    boss.vie -= 1;
+            foreach (platform plato in platform.plato)
+                if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&
+                    boss.rectangle_C.Left <= plato.rectangle_C.Right && boss.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)
+                {
+                    boss.rectangle.Y = plato.rectangle_C.Top - boss.decalageY - boss.rectangle_C.Height;
+                    boss.tombe = false;
+                    break;
+                }
+                else
+                    boss.tombe = true;
+         
+        }
     }
 }
