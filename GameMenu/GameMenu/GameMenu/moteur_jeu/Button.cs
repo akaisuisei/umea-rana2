@@ -22,7 +22,7 @@ namespace Umea_rana
         Texture2D selection;
         Texture2D test;
         Rectangle  select;
-        bool intecep;
+        bool intecep, oldintercept;
         /// <summary>
         /// bouton du jeu 
         /// </summary>
@@ -108,13 +108,18 @@ namespace Umea_rana
                             X = i;
                             Y = j;
                             intecep = true;
+                            break; 
                         }
                     }
+                if (intecep != oldintercept)
+                    if(intecep )
+                    game.menu_cursor.Play(); 
                 if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
                 {
                     Y = (Y - 1) % rect.GetLength(1);
                     if (gameState[X, Y] == null)
                         Y = (Y - 1) % rect.GetLength(1);
+                    game.menu_cursor.Play();
 
                 }
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
@@ -123,26 +128,28 @@ namespace Umea_rana
 
                     if (gameState[X, Y] == null)
                         Y = (Y + 1) % rect.GetLength(1);
+                    game.menu_cursor.Play();
                 }
                 else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
                 {
                     X = (X + 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X + 1) % rect.GetLength(0);
-
+                    game.menu_cursor.Play();
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
                     X = (X - 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X - 1) % rect.GetLength(0);
-
+                    game.menu_cursor.Play();
                 }
                 select.Y = rect[X, Y].Y;
                 select.X = rect[X, Y].X - select.Width;
            
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
+                    game.menu_select.Play();
                     if (gameState[X, Y] == "SEU")
                     {
                         game.level = levelname[X, Y];
@@ -203,6 +210,7 @@ namespace Umea_rana
 
                     System.Threading.Thread.Sleep(G_latence);
                 }
+                oldintercept = intecep;
             }
         }
         public void Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1, ref bool pause)
@@ -322,7 +330,7 @@ namespace Umea_rana
                 for (int j = 0; j < rect.GetLength(1); ++j)
                 {
               //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
-                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black  );
+                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White  );
 
                 }
 

@@ -715,6 +715,12 @@
             this.comboBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "expo",
+            "-expo",
+            "log",
+            "-log",
+            "sinus"});
             this.comboBox4.Location = new System.Drawing.Point(104, 78);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(96, 21);

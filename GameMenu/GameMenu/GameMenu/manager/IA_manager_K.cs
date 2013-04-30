@@ -21,6 +21,8 @@ namespace Umea_rana
             rectangleF = fond;
             this.window_H = fond.Height;
             this.window_W = fond.Width;
+            this.fond = fond;
+            this.screen = new Rectangle(0, 0, fond.Width * 2, fond.Height);
         }
         public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int window_H, int window_W)
         {
@@ -71,7 +73,7 @@ namespace Umea_rana
 
         public void Add(couple couple)
         {
-            ia_manage.Add(new Stalker(new Rectangle((int)(couple.X * window_W), -1 * _rectangle.Height, _rectangle.Width, _rectangle.Height), couple));
+            ia_manage.Add(new Stalker(new Rectangle(fond.Right +(int)(couple.X * window_W), -1 * _rectangle.Height, _rectangle.Width, _rectangle.Height), couple));
         }
         public override void Add(float X, float Y, int launch_time)
         {

@@ -40,7 +40,7 @@ namespace Umea_rana
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
             titre_P = new Vector2(width * 0.8f, height * 0.1f);
-            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
+            button = new Button(1, 4, width, height, 0.1f, 0.05f, tab);
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", LocalizedString.Play);
@@ -62,6 +62,7 @@ namespace Umea_rana
             MouseState mouse = Mouse.GetState();
             rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, "");
+            old = keyboard;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

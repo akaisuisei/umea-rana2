@@ -33,37 +33,29 @@ namespace Umea_rana
         {
             if (ia_manage[i].vie >= 0)
             {
-                if (ia_manage[i].tombe == true)
+                if (ia_manage[i].tombe)
                 {
                     ia_manage[i].FrameColunm = 1;
                     ia_manage[i].FrameLine = 5;
                 }
-                else if (this.ia_manage[i].attaque == true)
+                else if (this.ia_manage[i].attaque)
                 {
                     ia_manage[i].FrameLine = 4;
                     this.ia_manage[i].Timer++;
                     if (this.ia_manage[i].Timer == this.AnimationSpeed)
                     {
                         this.ia_manage[i].Timer = 0;
-                        this.ia_manage[i].FrameColunm++;
-                        if (ia_manage[i].FrameColunm > 6)
-                        {
-                            ia_manage[i].FrameColunm = 1;
-                        }
+                        ia_manage[i].FrameColunm = ia_manage[i].FrameColunm % 6 + 1;
                     }
                 }
-                else if (ia_manage[i].attaque == false && ia_manage[i].Speed  == 0)
+                else if (ia_manage[i].Speed  == 0)
                 {
                     ia_manage[i].FrameLine = 1;
                     this.ia_manage[i].Timer++;
                     if (this.ia_manage[i].Timer == this.AnimationSpeed)
                     {
                         this.ia_manage[i].Timer = 0;
-                        this.ia_manage[i].FrameColunm++;
-                        if (ia_manage[i].FrameColunm > 4)
-                        {
-                            ia_manage[i].FrameColunm = 1;
-                        }
+                        ia_manage[i].FrameColunm = ia_manage[i].FrameColunm % 4 + 1;
                     }
                 }
                 else
@@ -73,34 +65,27 @@ namespace Umea_rana
                     if (this.ia_manage[i].Timer == this.AnimationSpeed)
                     {
                         this.ia_manage[i].Timer = 0;
-                        this.ia_manage[i].FrameColunm++;
-                        if (ia_manage[i].FrameColunm > 4)
-                        {
-                            ia_manage[i].FrameColunm = 1;
-                        }
+                        ia_manage[i].FrameColunm = ia_manage[i].FrameColunm % 4 + 1;
                     }
                 }
             }
 
             else
             {
-                ia_manage[i].FrameLine = 3;
-                this.ia_manage[i].Timer++;
-                if (ia_manage[i].FrameColunm == 4)
+                if (ia_manage[i].FrameLine != 3)
                 {
-                    ia_manage[i].FrameColunm = 1;
-                    ia_manage[i].FrameLine = 1;
-                }
-                else if (ia_manage[i].FrameColunm > 4)
-                {
+                    ia_manage[i].FrameLine = 3;
                     ia_manage[i].FrameColunm = 1;
                 }
-                else if (this.ia_manage[i].Timer == this.AnimationSpeed)
+                
+              
+                else if (this.ia_manage[i].Timer == this.AnimationSpeed &&    ia_manage[i].FrameColunm != 4)
                 {
                     this.ia_manage[i].Timer = 0;
                     this.ia_manage[i].FrameColunm++;
 
-                }
+                } 
+                this.ia_manage[i].Timer++;
             }
         }
         public void Update(objet sprite, ref KeyboardState keyboard)
@@ -114,19 +99,21 @@ namespace Umea_rana
                     if (ia_manage[i].tombe)
                         ia_manage[i].rectangle.Y += poid;
 
+                   if(ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque < sprite.rectangle_C.Right  &&ia_manage[i].rectangle_C.Center.X + ia_manage[i].longueur_attaque > sprite.rectangle_C.Left )
+                        ia_manage[i].Speed = 0;
+                   else 
                     if (ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque > sprite.rectangle_C.Center.X)
                     {
                         ia_manage[i].dir = -1;
                         ia_manage[i].Speed = ia_manage[i].normalspeed;
                     }
                     else
-                        if (ia_manage[i].rectangle_C.Center.X + ia_manage[i].longueur_attaque < sprite.rectangle_C.Center.X)
+                        
                         {
                             ia_manage[i].dir = 1;
                             ia_manage[i].Speed  = ia_manage[i].normalspeed;
                         }
-                        else
-                            ia_manage[i].Speed  = 0;
+  
 
                     ia_manage[i].rectangle.X += ia_manage[i].dir * ia_manage[i].Speed ;
 

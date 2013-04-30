@@ -15,7 +15,7 @@ namespace Umea_rana
     {
         protected List<vaisseau_IA> ia_manage;
         protected Texture2D _texture, mtexture;
-        protected Rectangle _rectangle, rectangleF;
+        protected Rectangle _rectangle, rectangleF, screen;
         protected int front_sc, speed, window_H, window_W, poid, AnimationSpeed;
         protected ContentManager Content;
         protected Color colo;
@@ -24,6 +24,7 @@ namespace Umea_rana
         public Rectangle _Rectangle { get { return _rectangle; } }
         public List<vaisseau_IA> Ia_manage { get { return ia_manage; } }
         public List<munition> bulletL;
+        public Rectangle fond;
 
         public virtual void Add(float X, float Y, int id)
         {
@@ -34,7 +35,7 @@ namespace Umea_rana
         {
             for (int i = 0; i < ia_manage.Count; ++i)
             {
-                if (ia_manage[i].vie <= 0 || ia_manage[i].rectangle.Top > window_H)
+                if (ia_manage[i].vie <= 0 || !ia_manage[i].rectangle.Intersects (screen ))
                     ia_manage.RemoveAt(i);
             }
         }

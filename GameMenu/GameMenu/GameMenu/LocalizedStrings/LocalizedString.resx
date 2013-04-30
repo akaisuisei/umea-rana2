@@ -289,18 +289,26 @@
     <value>Boss life</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
-    <value>number of Kamikazes</value>
+    <value>Number of Kamikazes</value>
   </data>
   <data name="nb_iaT" xml:space="preserve">
-    <value>number of tirreur</value>
+    <value>Number of Shooter</value>
   </data>
   <data name="nb_iaV" xml:space="preserve">
-    <value>number of snipers</value>
+    <value>Number of Snipers</value>
   </data>
   <data name="nb_objet" xml:space="preserve">
-    <value>number of UFO</value>
+    <value>Number of U.F.O</value>
   </data>
   <data name="player_life" xml:space="preserve">
-    <value>player life</value>
+    <value>Player Life</value>
+  </data>
+  <data name="Hightscore" xml:space="preserve">
+    <value>Hight Score</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+    <comment>pp</comment>
   </data>
 </root>

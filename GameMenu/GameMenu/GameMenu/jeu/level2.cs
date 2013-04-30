@@ -31,6 +31,7 @@ namespace Umea_rana
         bool _checkpause = false;
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
+        scoreplat score;
 
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -39,6 +40,7 @@ namespace Umea_rana
             oldkey = Keyboard.GetState();
             
             _pause = new _Pause(game1, graphics, Content);
+            score = new scoreplat();
         }
         
               public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
@@ -111,7 +113,8 @@ namespace Umea_rana
             platform_M.Add(3f, 0.9f, 1);
             platform_M.Add(3.2f, 0.9f, 6);
             platform_M.Add(3.1f, 1f, 1);
-            
+
+            score.LoadContent(new Rectangle(0, 0, width, height), Content);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -181,6 +184,7 @@ namespace Umea_rana
 
                 //manager platform
                 platform_M.Update(keyboard);
+                score.Update(ref allen);
             }
             else
             {
@@ -202,9 +206,10 @@ namespace Umea_rana
         public override void Draw(SpriteBatch spriteBatch)
         {
             // TODO: Add your drawing code here
+           
             if (!_checkpause)
             {             
-                scrolling1.Draw(spriteBatch);
+                scrolling1.Draw(spriteBatch); 
                 //scrolling3.Draw(spriteBatch);
                 allen.Draw(spriteBatch);
                 platform_M.Draw(spriteBatch);
@@ -222,7 +227,8 @@ namespace Umea_rana
                 managerAR.Draw(spriteBatch);
                 manageS.Draw(spriteBatch);
                 _pause.Draw(spriteBatch);
-            }
+              
+            }  score.Draw(spriteBatch);
         }
     }
 }
