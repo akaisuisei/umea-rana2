@@ -31,7 +31,6 @@ namespace Umea_rana
 
         public _Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
             songMenu = Content.Load<Song>("Menu//songMenu");
@@ -60,7 +59,7 @@ namespace Umea_rana
         public void LoadContent(ContentManager Content)
         {
             button.LoadContent(Content);
-
+            rectangle = new Rectangle(0, 0, OptionState._width, OptionState._height);
             background = Content.Load<Texture2D>("Menu//pause//fond_pause");
 
         }

@@ -85,11 +85,19 @@ namespace Umea_rana
         public int Speed;
     }
 
+    public struct Plat
+    {
+        public float X;
+        public float Y;
+        public int nbr;
+    }
+
     public struct savefile
     {
         public List<IA_AA> ia_AA;
         public List<IA_AR> ia_AR;
         public List<IA_S> ia_S;
+        public List<Plat> plat_f;
         public List<quaintuplet> ia_viseur;
         public List<quaintuplet> ia_tireur;
         public List<couple> ia_Kamikaze;

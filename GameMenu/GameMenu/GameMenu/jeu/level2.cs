@@ -53,7 +53,7 @@ namespace Umea_rana
             height = graphics.PreferredBackBufferHeight;
             _pause.initbutton(ref level);
             //background
-            backgroundT = Content.Load<Texture2D>("level1//fond_niv1");
+            backgroundT = Content.Load<Texture2D>("level1/fond_niv1");
             //sprite brouillon
             alllenT = Content.Load<Texture2D>("hero//fiches_sprite_allen");
             //platfom

@@ -1,7 +1,6 @@
 Content\Menu\jouer.xnb
 Content\Menu\options.xnb
 Content\Menu\quitter.xnb
-Content\Menu\selection.xnb
 Content\Menu\LevelSelect\level1.xnb
 Content\Menu\LevelSelect\level2.xnb
 Content\bullet\bullet.xnb
@@ -23,7 +22,6 @@ Content\hero\vaisseau\sazabiHaman2g.xnb
 Content\bullet\aura.xnb
 Content\bullet\aura2.xnb
 Content\back\fond2.xnb
-Content\IA\asteroid\asteroide-sprite.xnb
 Content\Menu\background menu.xnb
 Content\Menu\logofin.xnb
 Content\hero\fiches_sprite_allen.xnb
@@ -41,23 +39,30 @@ Content\level1\fond_niv1.xnb
 Content\level1\platform.xnb
 Content\ListBoxBG.xnb
 Content\fleche.xnb
-Content\hero\spriteSheet.xnb
 Content\SEU1\backgroundT.xnb
+Content\hero\yoh.xnb
+Content\hero\spriteSheet2.xnb
+Content\hero\spriteSheet.xnb
+Content\IA\asteroid\asteroide-sprite2.xnb
+Content\Menu\selection.xnb
+Content\IA\asteroid\asteroide-sprite.xnb
+Content\hero\image2.xnb
+Content\hero\image1.xnb
 Content\Menu\songMenu.xnb
 Content\hero\jogging.xnb
 Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
 Content\FontList.xnb
+<<<<<<< HEAD
 Content\hero\yoh.xnb
 Content\hero\spriteSheet2.xnb
 Content\IA\asteroid\asteroide-sprite2.xnb
 Content\hero\image2.xnb
 Content\hero\image1.xnb
 Content\level1\testt_2.xnb
-Content\IA\eve_couleur.xnb
-Content\IA\naruto_couleur.xnb
-Content\IA\tuc_jaune_couleur.xnb
+=======
+>>>>>>> origin/master2
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
 Content\SEU1\level.lvl
