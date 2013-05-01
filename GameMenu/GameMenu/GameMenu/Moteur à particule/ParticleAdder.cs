@@ -16,7 +16,7 @@ namespace Umea_rana
     {
         public static void adder(Game1 game,Game1.gameState _currentState,int width,int height)
         {
-            if (_currentState == Game1.gameState.MainMenuState)
+            if (_currentState == Game1.gameState.MainMenuState || _currentState==Game1.gameState.OptionState)
             {
                 game.Components.Clear();
                 var settingsBlueFire = new ParticleSettings(300, new Color(100, 147, 237, 255), new Color(0, 1f, 1f, 0f), 200, 30, 1,
