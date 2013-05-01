@@ -49,7 +49,7 @@ namespace Umea_rana
             button.activate(0, 0, 0.1f, 0.1f, "Next", LocalizedString.Next);
             button.activate(0, 1, 0.1f, 0.2f, "Last", LocalizedString.Replay);
             button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Menu);
-            button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit); background = Content.Load<Texture2D>("Menu//game_over");
+            button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit); background = Content.Load<Texture2D>("game");
         }
         public override void UnloadContent()
         {

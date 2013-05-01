@@ -47,7 +47,7 @@ namespace Umea_rana
         public int degat { get; private set; }
         float  lastvie;
         char type;
-        Texture2D texture;
+        Texture2D texture, ptforttexture, ptfaible_texture;
         public List<Rectangle> ptfaible { get; private set; }
         public List<Rectangle> ptfort { get; private set; }
         private bool run;
@@ -80,7 +80,7 @@ namespace Umea_rana
             this.type = bp.type;
             this.speed = bp.speed;
         }
-        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond)
+        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, char type)
         {
             this.fond = fond;            
             this.front_sc = fc;
@@ -90,7 +90,7 @@ namespace Umea_rana
             this.degat = 1;
             this.vie = 15;
             this.lastvie = vie;
-            this.type = '2';
+            this.type = type ;
             this.speed = 7;
             ptfaible.Add(rect);
             ptfort.Add(rect);
@@ -110,12 +110,16 @@ namespace Umea_rana
                     ptfort.Add(new Rectangle(400, 200, 50, 50));
                     ptfaible.Add(rect);
                     this.texture = content.Load<Texture2D>("IA/Light");
+                        ptforttexture = content.Load<Texture2D>("pt");
+                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 100;
                     colunm = 100;
                     break;
                 case '2':
                     ptfaible.Add(rect);
                     this.texture = content.Load<Texture2D>("IA/Cascade");
+                    ptforttexture = content.Load<Texture2D>("note");
+                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 150;
                     colunm = 150;
                     break;
@@ -282,11 +286,11 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, rectangle, color);
+         
             foreach (Rectangle r in ptfaible)
-                sp.Draw(texture, r, Color.Gray);
+                sp.Draw(ptfaible_texture , r, Color.Transparent );
             foreach (Rectangle r in ptfort)
-                sp.Draw(texture, r, Color.Indigo);
+                sp.Draw(ptforttexture , r, Color.White );
 
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
 

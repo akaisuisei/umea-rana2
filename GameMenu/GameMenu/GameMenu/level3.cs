@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -14,7 +14,7 @@ namespace Umea_rana
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Level2 : GameState
+    public class Level3 : GameState
     {
 
         Scrolling_H scrolling1;//, scrolling3, scrolling4;
@@ -32,9 +32,9 @@ namespace Umea_rana
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
         scoreplat score;
-        bossPLAT boss;        
+        bossPLAT boss;
         Housse housse;
-        public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
+        public Level3(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
             collision = new Collision();
@@ -43,7 +43,7 @@ namespace Umea_rana
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
             boss = new bossPLAT();
-          
+
             housse = new Housse();
         }
 
@@ -56,7 +56,7 @@ namespace Umea_rana
             //background
             backgroundT = Content.Load<Texture2D>("level1/fond_niv1");
             //sprite brouillon
-            alllenT = Content.Load<Texture2D>("hero//fiches_sprite_allen");
+            alllenT = Content.Load<Texture2D>("hero//yoh");
             //platfom
             platform_t = Content.Load<Texture2D>("level1//platform");
             //ia
@@ -65,13 +65,13 @@ namespace Umea_rana
             eve = Content.Load<Texture2D>("IA//eve");
             truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
             //boss
-            
+
 
 
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
+            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '2');
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia
@@ -81,7 +81,7 @@ namespace Umea_rana
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
 
-           
+
 
             // ajout ia aller retour (X,Y)
             managerAR.Add(1.1f, 0);
@@ -125,8 +125,8 @@ namespace Umea_rana
 
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
-            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),'1');
-            
+            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),'2');
+
             housse.loadContent(Content, front_sc);
         }
 
@@ -196,9 +196,9 @@ namespace Umea_rana
                 //manager platform
                 platform_M.Update(keyboard);
                 score.Update(ref allen);
-                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);                
+                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
                 boss.Update(ref keyboard);
-                
+
             }
             else
             {
@@ -231,7 +231,7 @@ namespace Umea_rana
             managerAA.Draw(spriteBatch);
             managerAR.Draw(spriteBatch);
             manageS.Draw(spriteBatch);
-            boss.Draw(spriteBatch);            
+            boss.Draw(spriteBatch);
             housse.draw(spriteBatch);
             score.Draw(spriteBatch);
 

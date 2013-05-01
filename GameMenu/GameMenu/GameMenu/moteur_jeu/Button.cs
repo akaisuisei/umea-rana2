@@ -206,7 +206,10 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Replay")
                         game.replay();
                     else
-                        game.ChangeState(Game1.gameState.MainMenuState);
+                        if (gameState[X, Y] == "Level3")
+                            game.ChangeState(Game1.gameState.level3);
+                        else
+                            game.ChangeState(Game1.gameState.MainMenuState);
 
                     System.Threading.Thread.Sleep(G_latence);
                 }

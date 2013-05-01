@@ -27,7 +27,6 @@ Content\IA\asteroid\asteroide-sprite.xnb
 Content\Menu\background menu.xnb
 Content\Menu\logofin.xnb
 Content\hero\fiches_sprite_allen.xnb
-Content\IA\asteroid\planet4.xnb
 Content\Moteur à particule\particle2.xnb
 Content\IA\asteroid\star.xnb
 Content\Menu\pause\fond_pause.xnb
@@ -49,9 +48,10 @@ Content\hero\vaisseau\tir2.xnb
 Content\Menu\menu_select.xnb
 Content\Menu\menu_cursor.xnb
 Content\FontList.xnb
-Content\hero\yoh.xnb
 Content\hero\spriteSheet2.xnb
+Content\hero\yoh.xnb
 Content\IA\asteroid\asteroide-sprite2.xnb
+Content\IA\asteroid\planet4.xnb
 Content\hero\image2.xnb
 Content\hero\image1.xnb
 Content\level1\testt_2.xnb
@@ -61,6 +61,9 @@ Content\IA\tuc_jaune_couleur.xnb
 Content\IA\Light.xnb
 Content\IA\Cascade.xnb
 Content\IA\house.xnb
+Content\game.xnb
+Content\note.xnb
+Content\pt.xnb
 Content\Menu\songMenu.wma
 Content\hero\jogging.wma
 Content\SEU1\level.lvl

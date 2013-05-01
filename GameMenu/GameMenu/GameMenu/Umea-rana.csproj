@@ -155,6 +155,7 @@
     <Compile Include="jeu\GameWin.cs" />
     <Compile Include="manager\IA_manager_K.cs" />
     <Compile Include="manager\IA_manager_V .cs" />
+    <Compile Include="level3.cs" />
     <Compile Include="moteur_jeu\Button.cs" />
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />

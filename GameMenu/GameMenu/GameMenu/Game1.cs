@@ -52,7 +52,7 @@ namespace Umea_rana
             StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
             StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content,gameconfiguration));
             StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
-
+            StateManager.Add(gameState.level3 , new Level3(this, graphics, Content));
             graphics.PreferredBackBufferHeight = OptionState._height;
             graphics.PreferredBackBufferWidth = OptionState._width;
             graphics.IsFullScreen = OptionState.fullscreen;
@@ -130,6 +130,7 @@ namespace Umea_rana
             leveleditor,
             level_Pselect,
             win,
+            level3,
             Null,
         }
 
