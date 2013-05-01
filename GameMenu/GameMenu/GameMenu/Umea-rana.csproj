@@ -143,7 +143,8 @@
     <Compile Include="Editeur de map\UserControl2.designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameConfiguration.cs" />
+    <Compile Include="jeu\Gameconfiguration.cs" />
+    <Compile Include="jeu\StorageManager.cs" />
     <Compile Include="LocalizedStrings\LocalizedString.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,7 +208,6 @@
     </Compile>
     <Compile Include="interface\_Pause.cs" />
     <Compile Include="moteur_jeu\Scrolling_Manager.cs" />
-    <Compile Include="StorageManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
