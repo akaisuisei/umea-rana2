@@ -303,20 +303,20 @@
   <data name="player_life" xml:space="preserve">
     <value>Player Life</value>
   </data>
-  <data name="Hightscore" xml:space="preserve">
-    <value>Hight Score</value>
+  <data name="Highscore" xml:space="preserve">
+    <value>High Score</value>
     <comment>pp</comment>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Score</value>
     <comment>pp</comment>
   </data>
-  <data name="china" xml:space="preserve">
-    <value>china</value>
+  <data name="Chinese" xml:space="preserve">
+    <value>Chinese</value>
     <comment>pp</comment>
   </data>
-  <data name="dificulty" xml:space="preserve">
-    <value>dificulty</value>
+  <data name="difficulty" xml:space="preserve">
+    <value>difficulty</value>
     <comment>pp</comment>
   </data>
   <data name="easy" xml:space="preserve">
@@ -332,7 +332,7 @@
     <comment>pp</comment>
   </data>
   <data name="French" xml:space="preserve">
-    <value>french</value>
+    <value>French</value>
     <comment>pp</comment>
   </data>
   <data name="Full_screen" xml:space="preserve">
@@ -359,11 +359,11 @@
     <comment>pp</comment>
   </data>
   <data name="Spanish" xml:space="preserve">
-    <value>Spannish</value>
+    <value>Spanish</value>
     <comment>p</comment>
   </data>
   <data name="Volume_effet_sonore" xml:space="preserve">
-    <value>volume effet sonore</value>
+    <value>BGM volume</value>
     <comment>pp</comment>
   </data>
   <data name="_default" xml:space="preserve">
