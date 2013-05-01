@@ -311,4 +311,63 @@
     <value>Score</value>
     <comment>pp</comment>
   </data>
+  <data name="china" xml:space="preserve">
+    <value>china</value>
+    <comment>pp</comment>
+  </data>
+  <data name="dificulty" xml:space="preserve">
+    <value>dificulty</value>
+    <comment>pp</comment>
+  </data>
+  <data name="easy" xml:space="preserve">
+    <value>Easy</value>
+    <comment>pp</comment>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+    <comment>p</comment>
+  </data>
+  <data name="Extreme" xml:space="preserve">
+    <value>Extreme</value>
+    <comment>pp</comment>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>french</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Full_screen" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>Hard</value>
+    <comment>pp</comment>
+  </data>
+  <data name="japanese" xml:space="preserve">
+    <value>japanese</value>
+    <comment>pp</comment>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value>Medium</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Resolution</value>
+    <comment>pp</comment>
+  </data>
+  <data name="save_apply" xml:space="preserve">
+    <value>Save/apply</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spannish</value>
+    <comment>p</comment>
+  </data>
+  <data name="Volume_effet_sonore" xml:space="preserve">
+    <value>volume effet sonore</value>
+    <comment>pp</comment>
+  </data>
+  <data name="_default" xml:space="preserve">
+    <value>default</value>
+    <comment>pp</comment>
+  </data>
 </root>

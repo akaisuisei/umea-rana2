@@ -321,11 +321,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="fleche.png">
-      <Name>fleche</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="SEU1\backgroundT.jpg">
       <Name>backgroundT</Name>
       <Importer>TextureImporter</Importer>
@@ -428,6 +423,13 @@
   <ItemGroup>
     <Compile Include="IA\tuc_jaune_couleur.png">
       <Name>tuc_jaune_couleur</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fleche.png">
+      <Name>fleche</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

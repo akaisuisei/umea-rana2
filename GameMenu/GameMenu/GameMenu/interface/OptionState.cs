@@ -485,33 +485,33 @@ namespace Umea_rana
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.DrawString(spriteFont, LocalizedString.Volume_BGM, v_volume_BGM, color_volume_BGM);
 
-            spriteBatch.DrawString(spriteFont, "Volume des effets sonores", v_volume_soundeffect, color_volume_SE);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Volume_effet_sonore , v_volume_soundeffect, color_volume_SE);
 
-            spriteBatch.DrawString(spriteFont, "Difficulte", v_difficulté, color_difficulté);
-            spriteBatch.DrawString(spriteFont, "Facile", v_difficulte_facile, color_difficulte_facile);
-            spriteBatch.DrawString(spriteFont, "Normal", v_difficulte_normal, color_difficulte_normal);
-            spriteBatch.DrawString(spriteFont, "Difficile", v_difficulte_difficile, color_difficulte_difficile);
-            spriteBatch.DrawString(spriteFont, "Extreme", v_difficulte_extreme, color_difficulte_extreme);
+            spriteBatch.DrawString(spriteFont, LocalizedString.dificulty , v_difficulté, color_difficulté);
+            spriteBatch.DrawString(spriteFont, LocalizedString.easy , v_difficulte_facile, color_difficulte_facile);
+            spriteBatch.DrawString(spriteFont, LocalizedString.medium , v_difficulte_normal, color_difficulte_normal);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Hard , v_difficulte_difficile, color_difficulte_difficile);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Extreme , v_difficulte_extreme, color_difficulte_extreme);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Language, langage, color_langue);
             spriteBatch.DrawString(spriteFont, "Francais", v_fr, color_français);
-            spriteBatch.DrawString(spriteFont, "Anglais", v_eng, color_anglais);
-            spriteBatch.DrawString(spriteFont, "Espagnol", v_esp, color_espagnol);
-            spriteBatch.DrawString(spriteFont, "Finois", v_fin, color_finois);
-            spriteBatch.DrawString(spriteFont, "Japonais", v_jap, color_japonais);
+            spriteBatch.DrawString(spriteFont, "English", v_eng, color_anglais);
+            spriteBatch.DrawString(spriteFont, "Catalan", v_esp, color_espagnol);
+            spriteBatch.DrawString(spriteFont, "Suomi", v_fin, color_finois);
+            spriteBatch.DrawString(spriteFont, "nihongo", v_jap, color_japonais);
             spriteBatch.DrawString(spriteFont, "Chinois", v_cn, color_chinois);
 
-            spriteBatch.DrawString(spriteFont, "Resolution", resolution, color_resolution);
-            spriteBatch.DrawString(spriteFont, "Plein Ecran", v_fullscreen, color_resolutionfullscreen);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Resolution , resolution, color_resolution);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Full_screen , v_fullscreen, color_resolutionfullscreen);
             spriteBatch.DrawString(spriteFont, "1280 X 768", resolution1280_768, color_resolution1280_768);
             spriteBatch.DrawString(spriteFont, "1024 X 768", resolution1024_768, color_resolution1024_768);
             spriteBatch.DrawString(spriteFont, "960 X 720", resolution960_720, color_resolution960_720);
             spriteBatch.DrawString(spriteFont, "800 X 600", resolution800_600, color_resolution800_600);
 
-            spriteBatch.DrawString(spriteFont, "Enregistre/appliquer", enregistre_appliquer, color_save_apply);
-            spriteBatch.DrawString(spriteFont, "Par defaut", defaut, color_defaut);
+            spriteBatch.DrawString(spriteFont, LocalizedString.save_apply , enregistre_appliquer, color_save_apply);
+            spriteBatch.DrawString(spriteFont, LocalizedString._default , defaut, color_defaut);
 
-            spriteBatch.DrawString(spriteFont, "Retour", retour, color_retour);
+            spriteBatch.DrawString(spriteFont, LocalizedString.Back , retour, color_retour);
         }
 
 

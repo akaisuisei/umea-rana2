@@ -61,6 +61,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à default.
+        /// </summary>
+        internal static string _default {
+            get {
+                return ResourceManager.GetString("_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Add.
         /// </summary>
         internal static string Add {
@@ -196,6 +205,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à china.
+        /// </summary>
+        internal static string china {
+            get {
+                return ResourceManager.GetString("china", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Comet.
         /// </summary>
         internal static string Comet {
@@ -223,11 +241,38 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à dificulty.
+        /// </summary>
+        internal static string dificulty {
+            get {
+                return ResourceManager.GetString("dificulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Easy.
+        /// </summary>
+        internal static string easy {
+            get {
+                return ResourceManager.GetString("easy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Empty.
         /// </summary>
         internal static string Empty {
             get {
                 return ResourceManager.GetString("Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à English.
+        /// </summary>
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -250,6 +295,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extreme.
+        /// </summary>
+        internal static string Extreme {
+            get {
+                return ResourceManager.GetString("Extreme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à File.
         /// </summary>
         internal static string File {
@@ -264,6 +318,33 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Firerate {
             get {
                 return ResourceManager.GetString("Firerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à french.
+        /// </summary>
+        internal static string French {
+            get {
+                return ResourceManager.GetString("French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Full Screen.
+        /// </summary>
+        internal static string Full_screen {
+            get {
+                return ResourceManager.GetString("Full_screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hard.
+        /// </summary>
+        internal static string Hard {
+            get {
+                return ResourceManager.GetString("Hard", resourceCulture);
             }
         }
         
@@ -291,6 +372,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string inficted_damage {
             get {
                 return ResourceManager.GetString("inficted_damage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à japanese.
+        /// </summary>
+        internal static string japanese {
+            get {
+                return ResourceManager.GetString("japanese", resourceCulture);
             }
         }
         
@@ -345,6 +435,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Map_Editor {
             get {
                 return ResourceManager.GetString("Map_Editor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Medium.
+        /// </summary>
+        internal static string medium {
+            get {
+                return ResourceManager.GetString("medium", resourceCulture);
             }
         }
         
@@ -511,6 +610,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Resolution.
+        /// </summary>
+        internal static string Resolution {
+            get {
+                return ResourceManager.GetString("Resolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Resume.
         /// </summary>
         internal static string Resume {
@@ -525,6 +633,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save/apply.
+        /// </summary>
+        internal static string save_apply {
+            get {
+                return ResourceManager.GetString("save_apply", resourceCulture);
             }
         }
         
@@ -583,6 +700,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Spannish.
+        /// </summary>
+        internal static string Spanish {
+            get {
+                return ResourceManager.GetString("Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Speed.
         /// </summary>
         internal static string Speed {
@@ -633,6 +759,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Volume_BGM {
             get {
                 return ResourceManager.GetString("Volume_BGM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à volume effet sonore.
+        /// </summary>
+        internal static string Volume_effet_sonore {
+            get {
+                return ResourceManager.GetString("Volume_effet_sonore", resourceCulture);
             }
         }
     }

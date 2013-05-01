@@ -17,6 +17,7 @@ namespace Umea_rana
         Texture2D curseur_rectangle;
         Rectangle taille_de_la_ligne;
         Vector2 _position_ligne { get; set; }
+
         Texture2D ligne;
         int latence = 5;
         float _volume { get; set; }
@@ -27,14 +28,15 @@ namespace Umea_rana
             _volume = volume;
             taille_du_petit_curseur = _r_curseur_rectangle;
             taille_de_la_ligne = _r_ligne;
+            taille_de_la_ligne.Height = 10;
         }
         public void Initialize()
         {
         }
         public void LoadContent(ContentManager Content)
         {
-            curseur_rectangle = Content.Load<Texture2D>("");
-            ligne = Content.Load<Texture2D>("");
+            curseur_rectangle = Content.Load<Texture2D>("fleche");
+            ligne = Content.Load<Texture2D>("ListBoxBG");
         }
         public void update(KeyboardState keyboard, MouseState mouse)
         {
@@ -77,7 +79,7 @@ namespace Umea_rana
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ligne, _position_ligne, taille_de_la_ligne, Color.White);
+            spriteBatch.Draw(ligne, taille_de_la_ligne, Color.White);
             spriteBatch.Draw(curseur_rectangle, new Vector2(_position_ligne.X + _volume * taille_de_la_ligne.Width - taille_du_petit_curseur.Center.X, _position_ligne.Y - taille_du_petit_curseur.Height / 2), taille_du_petit_curseur, Color.White);
         }
     }
