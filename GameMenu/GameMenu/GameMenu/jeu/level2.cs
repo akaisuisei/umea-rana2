@@ -32,7 +32,7 @@ namespace Umea_rana
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
         scoreplat score;
-        bossPLAT boss;
+        bossPLAT boss;        
         Housse housse;
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -43,6 +43,7 @@ namespace Umea_rana
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
             boss = new bossPLAT();
+          
             housse = new Housse();
         }
 
@@ -63,6 +64,8 @@ namespace Umea_rana
             naruto_stalker = Content.Load<Texture2D>("IA//naruto");
             eve = Content.Load<Texture2D>("IA//eve");
             truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
+            //boss
+            
 
 
             //background
@@ -77,6 +80,8 @@ namespace Umea_rana
             manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
+
+           
 
             // ajout ia aller retour (X,Y)
             managerAR.Add(1.1f, 0);
@@ -121,6 +126,7 @@ namespace Umea_rana
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
             boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height));
+            
             housse.loadContent(Content, front_sc);
         }
 
@@ -190,8 +196,9 @@ namespace Umea_rana
                 //manager platform
                 platform_M.Update(keyboard);
                 score.Update(ref allen);
-                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
+                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);                
                 boss.Update(ref keyboard);
+                
             }
             else
             {
@@ -224,7 +231,7 @@ namespace Umea_rana
             managerAA.Draw(spriteBatch);
             managerAR.Draw(spriteBatch);
             manageS.Draw(spriteBatch);
-            boss.Draw(spriteBatch);
+            boss.Draw(spriteBatch);            
             housse.draw(spriteBatch);
             score.Draw(spriteBatch);
 

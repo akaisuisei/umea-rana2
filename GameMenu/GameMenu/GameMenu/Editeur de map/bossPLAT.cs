@@ -18,9 +18,18 @@ namespace Umea_rana
         public int vie;
         public char type;
         public int speed;
+
     }
     public class bossPLAT : objet
     {
+
+        public int FrameLine;
+        public int FrameColumn;
+        public SpriteEffects effects;
+        public int Timer;
+        public int AnimationSpeed = 10;
+        int colunm, line;
+
         private class pos
         {
             public int lstart = 1, cstart = 1;
@@ -47,6 +56,9 @@ namespace Umea_rana
         Color color;
         private Rectangle rect, atk;
         Rectangle fond;
+
+        
+
         public bossPLAT()
         {
             degat = 1;
@@ -54,6 +66,12 @@ namespace Umea_rana
             ptfaible = new List<Rectangle>();
             ptfort = new List<Rectangle>();
             poid = 10;
+
+            this.FrameLine = 1;
+            this.FrameColumn = 1;
+            this.Timer = 0;
+
+           
         }
         public void parrametrage(bossP bp)
         {
@@ -64,8 +82,7 @@ namespace Umea_rana
         }
         public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond)
         {
-            this.fond = fond;
-            this.texture = texture;
+            this.fond = fond;            
             this.front_sc = fc;
             this.rectangle = new Rectangle(1000, 0, 100, 100);
             this.atk = new Rectangle(1000, 200, 100, 100);
@@ -78,6 +95,12 @@ namespace Umea_rana
             ptfaible.Add(rect);
             ptfort.Add(rect);
             color = Color.Yellow;
+            this.effects = SpriteEffects.FlipHorizontally;
+            
+           
+            
+           
+
             switch (type)
             {
                 case '1':
@@ -86,10 +109,15 @@ namespace Umea_rana
                     ptfort.Add(new Rectangle(500, 400, 50, 50));
                     ptfort.Add(new Rectangle(400, 200, 50, 50));
                     ptfaible.Add(rect);
+                    this.texture = content.Load<Texture2D>("IA/Light");
+                    line = 100;
+                    colunm = 100;
                     break;
                 case '2':
                     ptfaible.Add(rect);
-
+                    this.texture = content.Load<Texture2D>("IA/Cascade");
+                    line = 150;
+                    colunm = 150;
                     break;
                 default:
                     break;
@@ -97,6 +125,7 @@ namespace Umea_rana
         }
         public void Update(ref KeyboardState keyboard)
         {
+            this.Animated();
            // if ( this.rectangle_C.Center.X < 1.2f * fond.Width  && this.rectangle_C.Center.X > -0.2f * fond.Width )
                 if (vie >= 0)
                 {
@@ -222,7 +251,35 @@ namespace Umea_rana
         }
         public void Animated()
         {
+            if (type == '1')
+            {
+                this.Timer++;
+                if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+                    if (FrameColumn > 13)
+                    {
+                        FrameColumn = 1;
+                    }
+                }
+            }
+
+            else if (type == '2')
+            {
+                this.Timer++;
+                if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+                    if (FrameColumn > 8)
+                    {
+                        FrameColumn = 1;
+                    }
+                }
+            }
         }
+
         public void Draw(SpriteBatch sp)
         {
             sp.Draw(texture, rectangle, color);
@@ -230,6 +287,8 @@ namespace Umea_rana
                 sp.Draw(texture, r, Color.Gray);
             foreach (Rectangle r in ptfort)
                 sp.Draw(texture, r, Color.Indigo);
+
+            sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
 
 
         }
