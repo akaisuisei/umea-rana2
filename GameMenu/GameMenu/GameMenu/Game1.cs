@@ -18,28 +18,22 @@ namespace Umea_rana
         gameState _checkpause;
         public gameState _currentState { get; private set; }
         public gameState _previousState { get; set; }
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
+        GameConfiguration gameconfiguration;
+        StorageManager storagemanager;
         Dictionary<gameState, GameState> StateManager;
-        int height, width;
         Audio audio;
-        DisplayMode displaymode;
         public string path = "test";
         public string level=string.Empty ,next= string.Empty ;
         public SoundEffect menu_cursor, menu_select;
-        bool fullScreen = false;
 
         public Game1()
         {
             //display
-            displaymode = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode;
             graphics = new GraphicsDeviceManager(this);
-            height = displaymode.Height;
-            width = displaymode.Width;
-            graphics.PreferredBackBufferHeight = height/2;
-            graphics.PreferredBackBufferWidth = width/2;
-            graphics.ApplyChanges();
-            graphics.IsFullScreen = fullScreen ;
+            storagemanager = new StorageManager();
+            gameconfiguration = storagemanager.LoadGameConfiguration(graphics);
             //Content
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
@@ -56,17 +50,19 @@ namespace Umea_rana
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
-            StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content));
+            StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content,gameconfiguration));
             StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
+
+            graphics.PreferredBackBufferHeight = OptionState._height;
+            graphics.PreferredBackBufferWidth = OptionState._width;
+            graphics.IsFullScreen = OptionState.fullscreen;
         }
 
         protected override void Initialize()
         {
-            ParticleAdder.adder(this, _currentState, width, height);
+            ParticleAdder.adder(this, _currentState, OptionState._width, OptionState._height);
             if (_currentState == gameState.MainMenuState)
                 Audio.play("Menu");
-            if (_currentState == gameState.Level_select_state)
-                Audio.changevolume(0.1f);
             try
             {
                 StateManager[_currentState].Initialize(graphics);
@@ -81,7 +77,7 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
-           LocalizedString.Culture= new System.Globalization.CultureInfo("en-US");
+           LocalizedString.Culture= new System.Globalization.CultureInfo(OptionState.langue);
        
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
@@ -141,13 +137,13 @@ namespace Umea_rana
         {
             _previousState = _currentState;
             _currentState = NewState;
-            is_fullscreen(fullScreen );
+            is_fullscreen(OptionState.fullscreen );
             this.Initialize();
         }
         public void GetPreviousState()
         {
             _currentState = this._previousState;
-            is_fullscreen(fullScreen);
+            is_fullscreen(OptionState.fullscreen);
             this.Initialize();
         }
         public void ChangeState2(gameState checkpause)

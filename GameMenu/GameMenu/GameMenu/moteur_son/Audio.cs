@@ -32,7 +32,7 @@ namespace Umea_rana
         public static void play(string level)
         {
             MediaPlayer.Stop();
-            MediaPlayer.Volume = OptionState._vol;
+            MediaPlayer.Volume = OptionState.volume_BGM;
             switch (level)
             {
                 case "Menu":
@@ -63,8 +63,8 @@ namespace Umea_rana
         }
         public static void changevolume(float volume)
         {
-            OptionState._vol = volume;
-            MediaPlayer.Volume = OptionState._vol;
+            OptionState.volume_BGM = volume;
+            MediaPlayer.Volume = OptionState.volume_BGM;
         }
     }
 }
