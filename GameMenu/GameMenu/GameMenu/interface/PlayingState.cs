@@ -26,15 +26,15 @@ namespace Umea_rana
         IA_manager_S manage_s;
         Platform_manager manage_p;
         Scrolling_ManagerV Scroll_manager;
-       
+
         bool _checkpause = false;
-         int latence = 0;
-         Rectangle fond;
-        
+        int latence = 0;
+        Rectangle fond;
+
         public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
             rectangle = new Rectangle(0, 0, 30, 30);
-            fond = new Rectangle(0, 0, width, height);
+
             _pause = new _Pause(game1, graphics, content);
         }
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -49,13 +49,13 @@ namespace Umea_rana
             _pause.initbutton(ref level);
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
-
+            fond = new Rectangle(0, 0, width, height);
             manage_aa = new IA_manager_AA(content.Load<Texture2D>("IA/tuc_jaune"), rectangle, 3, 0, height, width);
             manage_ar = new IA_manager_AR(content.Load<Texture2D>("IA/eve"), rectangle, 3, 0, height, width);
             manage_s = new IA_manager_S(content.Load<Texture2D>("IA/naruto"), rectangle, 3, 0, height, width);
-            manage_p = new Platform_manager(content.Load<Texture2D>("level1//platform"),0.07f*width, 0.03f*height, 3, width ,height);
+            manage_p = new Platform_manager(content.Load<Texture2D>("level1//platform"), 0.07f * width, 0.03f * height, 3, height, width);
             Scroll_manager = new Scrolling_ManagerV(fond);
-            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, content, manage_p);
+            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, content, manage_p, fond);
         }
         public override void UnloadContent()
         {
@@ -67,49 +67,44 @@ namespace Umea_rana
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
 
-            if (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+
+            // ici le code de jeu
+            if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
             {
+
                 _pause.checkpause(keyboard, ref _checkpause);
+                latence = 30;
+                user.Hide();
             }
+            if (latence > 0)
+                --latence;
             if (!_checkpause)
             {
-                // ici le code de jeu
-                if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
+                if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control && fond.Contains(rmouse))
                 {
+                    //   spawn = existcheck(ref iaType, rmouse);
 
-                    _pause.checkpause(keyboard, ref _checkpause);
-                    latence = 30;
-                    user.Hide();
+                    user._show(mouse.X, mouse.Y, "iaType", -1);
                 }
-                if (latence > 0)
-                    --latence;
-                if (!_checkpause)
-                {
-                    if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control && rectangle.Contains(rmouse))
-                    {
-                        //   spawn = existcheck(ref iaType, rmouse);
-
-                        user._show(mouse.X, mouse.Y, "iaType", -1);
-                    }
-                    if (user.IHave_control)
-                        user.TopMost = true;
-                    else
-                    {
-                      user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p);
-                        //        scrolling1.update_ophelia(keyboard);
-
-                    }
-                }
+                if (user.IHave_control)
+                    user.TopMost = true;
                 else
                 {
-                    game.ChangeState2(Game1.gameState.Checkpause);
-                    MediaPlayer.Stop();
-                    ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
-                    _pause.Update(game, audio, ref _checkpause);
+                    user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p);
+                    //        scrolling1.update_ophelia(keyboard);
+                    Scroll_manager.Update(keyboard);
                 }
-                oldkey = keyboard;
-
             }
+            else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                MediaPlayer.Stop();
+                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
+                _pause.Update(game, audio, ref _checkpause);
+            }
+            oldkey = keyboard;
+
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

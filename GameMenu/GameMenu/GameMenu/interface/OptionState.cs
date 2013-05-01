@@ -435,6 +435,7 @@ namespace Umea_rana
                             game.graphics.IsFullScreen = fullscreen;
                             game.graphics.PreferredBackBufferWidth = _width;
                             game.graphics.PreferredBackBufferHeight = _height;
+                            
                             Audio.changevolume(volume_BGM);
                             SoundEffect.MasterVolume = sound_effect_volume;
                             game.graphics.ApplyChanges();
@@ -487,7 +488,7 @@ namespace Umea_rana
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Volume_effet_sonore , v_volume_soundeffect, color_volume_SE);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.dificulty , v_difficulté, color_difficulté);
+            spriteBatch.DrawString(spriteFont, LocalizedString.difficulty , v_difficulté, color_difficulté);
             spriteBatch.DrawString(spriteFont, LocalizedString.easy , v_difficulte_facile, color_difficulte_facile);
             spriteBatch.DrawString(spriteFont, LocalizedString.medium , v_difficulte_normal, color_difficulte_normal);
             spriteBatch.DrawString(spriteFont, LocalizedString.Hard , v_difficulte_difficile, color_difficulte_difficile);

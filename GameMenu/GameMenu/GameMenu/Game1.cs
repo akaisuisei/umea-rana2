@@ -155,10 +155,11 @@ namespace Umea_rana
         {
             if (full)
             {
-                if (_currentState == gameState.Editeur_mapVV && graphics.IsFullScreen)
+                if (_currentState == gameState.Editeur_mapVV || _currentState == gameState.PlayingState && graphics.IsFullScreen)
                     graphics.ToggleFullScreen();
-                if (_currentState != gameState.Editeur_mapVV && !graphics.IsFullScreen)
+                else if (_currentState != gameState.Editeur_mapVV && _currentState != gameState.PlayingState && !graphics.IsFullScreen)
                     graphics.ToggleFullScreen();
+              
             }
         }
         public void nextgame()

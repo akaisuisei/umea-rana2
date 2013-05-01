@@ -651,7 +651,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch sp)
         {
   sp.Draw(texturej1 , image1, Color.White);
-            sp.DrawString(font, LocalizedString.Hightscore , new Vector2(fond2.Left,0f/14f* fond2.Height), Color.White);
+            sp.DrawString(font, LocalizedString.Highscore , new Vector2(fond2.Left,0f/14f* fond2.Height), Color.White);
             sp.DrawString(font, "" + highscore, new Vector2(fond2.Left, 1f / 14f * fond2.Height), Color.White);
             sp.DrawString(font, LocalizedString.player + " 1", new Vector2(fond.Left, 0f / 14f * fond.Height), Color.White);
             sp.DrawString(font, LocalizedString.Score, new Vector2(fond.Left, 1f / 14f * fond.Height), Color.White);
