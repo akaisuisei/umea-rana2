@@ -435,6 +435,7 @@ namespace Umea_rana
                             game.graphics.IsFullScreen = fullscreen;
                             game.graphics.PreferredBackBufferWidth = _width;
                             game.graphics.PreferredBackBufferHeight = _height;
+                            
                             Audio.changevolume(volume_BGM);
                             SoundEffect.MasterVolume = sound_effect_volume;
                             game.graphics.ApplyChanges();

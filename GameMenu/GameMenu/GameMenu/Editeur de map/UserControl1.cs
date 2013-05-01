@@ -242,7 +242,7 @@ namespace Umea_rana
             }
         }
 
-        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni)
+        public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni, Microsoft.Xna.Framework.Rectangle fond)
         {
             this.manage_T = manage_T;
             this.manage_V = manage_V;
@@ -258,6 +258,8 @@ namespace Umea_rana
             }
             ovni = new Ovni(width, height);
             ovni.param(3);
+            height = fond.Height;
+            width = fond.Width;
         }
         private void Initialize()
         {
