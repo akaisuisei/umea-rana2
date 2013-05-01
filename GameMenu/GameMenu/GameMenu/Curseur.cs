@@ -13,18 +13,20 @@ namespace Umea_rana
 {
     public class Curseur
     {
-        Rectangle r_curseur_rectangle;
+        Rectangle taille_du_petit_curseur;
         Texture2D curseur_rectangle;
-        Rectangle r_ligne;
+        Rectangle taille_de_la_ligne;
         Vector2 _position_ligne { get; set; }
-        Vector2 _position_curseur { get; set; }
         Texture2D ligne;
+        int latence = 5;
         float _volume { get; set; }
-        public Curseur(Vector2 position_ligne, Vector2 position_curseur,float volume)
+
+        public Curseur(Vector2 position_ligne, Rectangle _r_curseur_rectangle, Rectangle _r_ligne, float volume)
         {
-            _position_curseur = position_curseur;
             _position_ligne = position_ligne;
             _volume = volume;
+            taille_du_petit_curseur = _r_curseur_rectangle;
+            taille_de_la_ligne = _r_ligne;
         }
         public void Initialize()
         {
@@ -34,13 +36,49 @@ namespace Umea_rana
             curseur_rectangle = Content.Load<Texture2D>("");
             ligne = Content.Load<Texture2D>("");
         }
-        public static void update(KeyboardState keyboard,MouseState mouse)
+        public void update(KeyboardState keyboard, MouseState mouse)
         {
+            if (latence < 0)
+            {
+                if (_volume > 0f)
+
+                    if (keyboard.IsKeyDown(Keys.Left))
+                    {
+                        _volume -= 0.05f;
+                        latence = 5;
+                    }
+
+                if (_volume < 1.0f)
+                    if (keyboard.IsKeyDown(Keys.Right))
+                    {
+                        _volume += 0.05f;
+                        latence = 5;
+                    }
+                if (taille_du_petit_curseur.Contains(mouse.X, mouse.Y))
+                {
+                    if (mouse.LeftButton == ButtonState.Pressed)
+                    {
+                        MouseState current_mouse = new MouseState();
+                        if (mouse.X.CompareTo(current_mouse.X) > 0)
+                            _volume = (float)((taille_du_petit_curseur.Center.X - _position_ligne.X) - (mouse.X - current_mouse.X)) / (float)(taille_de_la_ligne.Width);
+                        if (mouse.X.CompareTo(current_mouse.X) < 0)
+                            _volume = (float)((taille_du_petit_curseur.Center.X - _position_ligne.X) + (current_mouse.X - mouse.X)) / (float)(taille_de_la_ligne.Width);
+
+                        latence = 2;
+                        if (_volume > 1.0f)
+                            _volume = 1.0f;
+                        if (_volume < 0f)
+                            _volume = 0f;
+                    }
+                }
+            }
+
+            latence--;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(ligne, _position_ligne, r_ligne, Color.White);
-            spriteBatch.Draw(curseur_rectangle, new Vector2(_position_ligne.X * _volume, _position_ligne.Y - r_curseur_rectangle.Height / 2), r_curseur_rectangle, Color.White);
+            spriteBatch.Draw(ligne, _position_ligne, taille_de_la_ligne, Color.White);
+            spriteBatch.Draw(curseur_rectangle, new Vector2(_position_ligne.X + _volume * taille_de_la_ligne.Width - taille_du_petit_curseur.Center.X, _position_ligne.Y - taille_du_petit_curseur.Height / 2), taille_du_petit_curseur, Color.White);
         }
     }
 }
