@@ -88,7 +88,7 @@ namespace Umea_rana
 
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
             manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
+            manage_k = new IA_manager_K(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2"), new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
 
             //intancie le vaisseau
             vaisseau = new sripte_V(
@@ -100,7 +100,7 @@ namespace Umea_rana
 
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni);
+            user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni,fond );
             info.LoadContent(fond2, Content.Load<SpriteFont>("FontList"));
 
         }

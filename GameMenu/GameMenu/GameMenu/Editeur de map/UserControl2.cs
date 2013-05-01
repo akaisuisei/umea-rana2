@@ -227,7 +227,7 @@ namespace Umea_rana
 
         }
 
-        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom)
+        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom, Microsoft.Xna.Framework.Rectangle fond)
         {
             
             this.manage_AA = manage_AA;
@@ -248,7 +248,8 @@ namespace Umea_rana
             puissance_p.Tag = t_damage;
             vitesse_p.Tag = t_speed;
             allasuite.Tag = t_plateforme_nombre;
-            
+            height = fond.Height;
+            width = fond.Width;
             
         }
         private void Initialize()
@@ -627,7 +628,7 @@ namespace Umea_rana
                 file = new FileStream(sauve._path + "\\SEU\\" + savefile.levelProfile.levelname + "\\" + imageB, FileMode.Open, FileAccess.Read);
             if (scrollingM.count == 0)
             {
-                scrollingM.Add(Texture2D.FromStream(game.GraphicsDevice, file), 0.5f);
+                scrollingM._Add(Texture2D.FromStream(game.GraphicsDevice, file), 0.5f);
             }
             else
             {
@@ -636,18 +637,18 @@ namespace Umea_rana
 
             if (savefile.levelProfile.second_background != null)
                 if (scrollingM.count >= 1)
-                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), 0.5f);
+                    scrollingM._Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background), 0.5f);
                 else
                     scrollingM.texture[1] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.second_background);
             else if (savefile.levelProfile.third_bacground != null)
                 if (scrollingM.count >= 1)
-                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
+                    scrollingM._Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
                 else
                     scrollingM.texture[1] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
 
             if (savefile.levelProfile.third_bacground != null)
                 if (scrollingM.count >= 2)
-                    scrollingM.Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
+                    scrollingM._Add(Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground), 0.5f);
                 else
                     scrollingM.texture[2] = Content.Load<Texture2D>("back\\" + savefile.levelProfile.third_bacground);
 
