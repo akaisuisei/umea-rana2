@@ -24,7 +24,7 @@ namespace Umea_rana
         string aster, comete, sun, angle;
         string[] playlist;
         // tag
-        string t_life = "life", t_speed = "speed", t_damage = "damage";
+        string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes";
         // type
         string type;
         System.Drawing.Color color2, color4;
@@ -33,14 +33,12 @@ namespace Umea_rana
         public bool IHave_control;
         bool openF;
         string imageB;
-        float openX, openY;
-        IA_manager_T manage_T;
-        IA_manager_V manage_V;
-        IA_manager_K manage_k;
+        float openX, openY;      
+                
         IA_manager_AA manage_AA;
         IA_manager_AR manage_AR;
         IA_manager_S manage_S;
-        Ovni ovni;
+        Platform_manager plateform;
         Sauveguarde sauve;
         savefile savefile;
         List<string> subdirectory;
@@ -55,9 +53,7 @@ namespace Umea_rana
         {
             type = null;
             subdirectory = null;
-            scrollingM = null;
-            ovini = null;
-            ovni = null;
+            scrollingM = null;                        
             ia_type = null;
             sauve = null;
             manage_AA.Dipose();
@@ -85,6 +81,7 @@ namespace Umea_rana
             savefile.ia_S = new List<IA_S>();
             savefile.levelProfile = new levelProfile();
             savefile.bonus = new List<Bonus>();
+            savefile.plat_f = new List<Plat>();
             subdirectory = new List<string>();
             button9.Enabled = false;
             type = "SEU";
@@ -138,6 +135,7 @@ namespace Umea_rana
                     Naruto.Enabled = false;
                     Eve.Enabled = true;
                     Eve.Checked = true;
+                    Tuc.Enabled = false;
                     vie_p.Text = "" + savefile.ia_viseur[spawn].vie;
                     vitesse_p.Text = "" + savefile.ia_viseur[spawn].speed;                   
                     
@@ -152,13 +150,26 @@ namespace Umea_rana
                     enableall(false);
                     Naruto.Enabled = true;
                     Eve.Enabled = false;
-                    Naruto.Checked = true;
+                    Tuc.Checked = true;
+                    Tuc.Enabled = true;
                     vie_p.Text = "" + savefile.ia_S[spawn].Vie;
                     vitesse_p.Text = "" + savefile.ia_S[spawn].Speed;                  
                     
                     puissance_p.Text = "" + savefile.ia_S[spawn].Puissance;                   
                                         
                     break;
+                case "plateformes":
+                    EnableTab(Plateformes, true);
+                    EnableTab(Ennemis, false);                  
+                    
+                    enableall(false);
+                    Naruto.Enabled = false;
+                    Eve.Enabled = false;
+                    Naruto.Checked = true;
+                    vie_p.Text = "" + savefile.ia_S[spawn].Vie;
+
+                    break;
+
                 case "b":
                     EnableTab(Plateformes, false);
                     EnableTab(Ennemis, false);                    
@@ -200,11 +211,13 @@ namespace Umea_rana
         }
 
         public void update(ref IA_manager_AA manage_aa, ref IA_manager_AR manage_ar, ref IA_manager_S manage_s,
-            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM)
+            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Platform_manager platef)
         {
             manage_aa = this.manage_AA;
             manage_ar = this.manage_AR;
             manage_s = this.manage_S;
+            platef = this.plateform;
+
             scrollM = this.scrollingM;            
             this.game = game;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
@@ -214,12 +227,13 @@ namespace Umea_rana
 
         }
 
-        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content)
+        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom)
         {
             
             this.manage_AA = manage_AA;
             this.manage_AR = manage_AR;
             this.manage_S = manage_S;
+            this.plateform = platefom;
             
             this.scrollingM = scrolling;
             this.Content = Content;
@@ -229,6 +243,11 @@ namespace Umea_rana
                 comboBox1.Items.Add(item[i]);
                 comboBox3.Items.Add(item[i]);
             }
+
+            vie_p.Tag = t_life;
+            puissance_p.Tag = t_damage;
+            vitesse_p.Tag = t_speed;
+            allasuite.Tag = t_plateforme_nombre;
             
             
         }
@@ -311,7 +330,27 @@ namespace Umea_rana
             else
                 textBox10.BackColor = System.Drawing.Color.Green;
 
-            // tab 5
+            // tab Ennemis
+            if (vie_p.Text == string.Empty)
+                vie_p.BackColor = System.Drawing.Color.Red;
+            else
+                vie_p.BackColor = System.Drawing.Color.Green;
+
+            if (puissance_p.Text == string.Empty)
+                puissance_p.BackColor = System.Drawing.Color.Red;
+            else
+                puissance_p.BackColor = System.Drawing.Color.Green;
+
+            if (vitesse_p.Text == string.Empty)
+                vitesse_p.BackColor = System.Drawing.Color.Red;
+            else
+                vitesse_p.BackColor = System.Drawing.Color.Green;
+
+            //tab plateformes
+            if (allasuite.Text == string.Empty)
+                allasuite.BackColor = System.Drawing.Color.Red;
+            else
+                allasuite.BackColor = System.Drawing.Color.Green;
             
             //tab6 musique
             label23.Text = musique;
@@ -483,58 +522,7 @@ namespace Umea_rana
                 }
             }
         }
-        private void Valider_Click(object sender, EventArgs e)// tab viseur et tireur
-        {
-
-            if (vie_p.BackColor == System.Drawing.Color.Green && puissance_p.BackColor == System.Drawing.Color.Green &&
-                vitesse_p.BackColor == System.Drawing.Color.Green && color2 != System.Drawing.Color.Black)//+combobox4 a veriff
-            {
-                if (spawn == -1)
-                {
-                    IA_S ias = new IA_S();                    
-                    ias.Puissance = int.Parse(puissance_p.Text);                                     
-                    
-                    ias.Speed = int.Parse(vitesse_p.Text);                    
-                    ias.Vie = int.Parse(vie_p.Text);                    
-                    ias.X = openX;
-                    ias.Y = openY;
-
-                    IA_AA iaa = new IA_AA();
-                    iaa.Puissance = int.Parse(puissance_p.Text);
-
-                    iaa.Speed = int.Parse(vitesse_p.Text);
-                    iaa.Vie = int.Parse(vie_p.Text);
-                    iaa.X = openX;
-                    iaa.Y = openY;
-
-                    IA_AR iar = new IA_AR();
-                    iar.Puissance = int.Parse(puissance_p.Text);
-
-                    iar.Speed = int.Parse(vitesse_p.Text);
-                    iar.Vie = int.Parse(vie_p.Text);
-                    iar.X = openX;
-                    iar.Y = openY;
-
-                    if (Naruto.Checked)
-                    {
-                        savefile.ia_S.Add(ias);
-                        manage_S.Add(ias, manage_S.Ia_manage.Count);
-                        this.hidou();
-                    }
-                    else if (Eve.Checked)
-                    {
-                        savefile.ia_AR.Add(iar);
-                        manage_AR.Add(iar, manage_AR.Ia_manage.Count);
-                        this.hidou();
-                    }
-                }
-                else
-                {
-                    modif(spawn, ia_type);
-                    this.hidou();
-                }
-            }
-        } // tab1
+        
         private void button4_Click(object sender, EventArgs e) //tab4 bacground
         {
             if (Sauvegarde_.BackColor == System.Drawing.Color.Green && imageB != string.Empty)
@@ -542,6 +530,7 @@ namespace Umea_rana
                 savefile.ia_AA.Clear();
                 savefile.ia_AR.Clear();
                 savefile.ia_S.Clear();
+                savefile.plat_f.Clear();
                 savefile.levelProfile.background_name = imageB;
                 savefile.levelProfile.fc_speed = int.Parse(Sauvegarde_.Text);
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
@@ -589,11 +578,13 @@ namespace Umea_rana
         {
             int res, n = 0;
             if ((string)texbox.Tag == t_damage)
-                n = 3;           
+                n = 3;
             else if ((string)texbox.Tag == t_life)
-                n = 300;            
+                n = 300;
             else if ((string)texbox.Tag == t_speed)
-                n = 10;           
+                n = 10;
+            else if ((string)texbox.Tag == t_plateforme_nombre)
+                n = 30;
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
             {
@@ -692,7 +683,7 @@ namespace Umea_rana
             manage_S.remove_all();
             manage_AA.remove_all();
             manage_AR.remove_all();
-            ovni.remove_all();
+            
 
             for (int i = 0; i < savefile.ia_AA.Count; ++i)
                 manage_AA.Add(savefile.ia_AA[i], i);
@@ -738,12 +729,7 @@ namespace Umea_rana
                     for (int i = 0; i < savefile.ia_S.Count; ++i)
                         manage_S.Add(savefile.ia_S[i], i);
                     break;
-                case "b":
-                    savefile.bonus.RemoveAt(spawn);
-                    ovni.remove_all();
-                    for (int i = 0; i < savefile.bonus.Count; ++i)
-                        ovni.Add(savefile.bonus[i].type, savefile.bonus[i].X, savefile.bonus[i].Y, i);
-                    break;
+               
                 default:
                     break;
             }
@@ -767,13 +753,7 @@ namespace Umea_rana
             
             else
             {
-                quaintuplet quaint = new quaintuplet();
-                quaint.color = new Microsoft.Xna.Framework.Color(color2.R, color2.G, color2.B, color2.A);
-                quaint.damage = int.Parse(puissance_p.Text);            
                 
-                quaint.seconde = seconde;
-                quaint.speed = int.Parse(vitesse_p.Text);                
-                quaint.vie = int.Parse(vie_p.Text);
 
                 IA_AR iar = new IA_AR();                
                 iar.Puissance = int.Parse(puissance_p.Text);               
@@ -904,6 +884,117 @@ namespace Umea_rana
         {
 
         }
+
+        private void vie_p_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(vie_p);
+        }
+
+        private void puissance_p_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(puissance_p);
+        }
+
+        private void vitesse_p_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(vitesse_p);
+        }
+
+        private void Valider_Click_1(object sender, EventArgs e)
+        {
+            if (vie_p.BackColor == System.Drawing.Color.Green && puissance_p.BackColor == System.Drawing.Color.Green &&
+                vitesse_p.BackColor == System.Drawing.Color.Green)//+combobox4 a veriff
+            {
+                if (spawn == -1)
+                {
+                    
+                    
+
+                    IA_S ias = new IA_S();
+                    ias.Puissance = int.Parse(puissance_p.Text);
+                    ias.Speed = int.Parse(vitesse_p.Text);
+                    ias.Vie = int.Parse(vie_p.Text);
+                    ias.X = openX;
+                    ias.Y = openY;
+
+                    IA_AA iaa = new IA_AA();
+                    iaa.Puissance = int.Parse(puissance_p.Text);
+                    iaa.Speed = int.Parse(vitesse_p.Text);
+                    iaa.Vie = int.Parse(vie_p.Text);
+                    iaa.X = openX;
+                    iaa.Y = openY;
+
+                    IA_AR iar = new IA_AR();
+                    iar.Puissance = int.Parse(puissance_p.Text);
+                    iar.Speed = int.Parse(vitesse_p.Text);
+                    iar.Vie = int.Parse(vie_p.Text);
+                    iar.X = openX;
+                    iar.Y = openY;
+
+                    if (Naruto.Checked)
+                    {
+                        savefile.ia_S.Add(ias);
+                        manage_S.Add(ias, manage_S.Ia_manage.Count);
+                        this.hidou();
+                    }
+                    else if (Eve.Checked)
+                    {
+                        savefile.ia_AR.Add(iar);
+                        manage_AR.Add(iar, manage_AR.Ia_manage.Count);
+                        this.hidou();
+                    }
+                    else if (Tuc.Checked)
+                    {
+                        savefile.ia_AA.Add(iaa);
+                        manage_AA.Add(iaa, manage_AA.Ia_manage.Count);
+                        this.hidou();
+                    }
+                    
+                }
+                else
+                {
+                    modif(spawn, ia_type);
+                    this.hidou();
+                }
+            }
+        }
+
+        private void allasuite_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(allasuite);
+        }
+
+        private void Valider_p_Click(object sender, EventArgs e)
+        {
+            if ( allasuite.BackColor == System.Drawing.Color.Green )//+combobox4 a veriff
+            {
+                if (spawn == -1)
+                {
+
+                    Plat platef = new Plat();
+                    platef.X = openX;
+                    platef.Y = openY;
+                    platef.nbr = int.Parse(allasuite.Text);
+
+                    
+
+                     if (Plateforme_Stable.Checked)
+                    {
+                        savefile.plat_f.Add(platef);
+                        plateform.Add(platef);
+                        this.hidou();
+
+                    }
+                }
+                else
+                {
+                    modif(spawn, ia_type);
+                    this.hidou();
+                }
+            }
+        }
+
+        
 
     }
 }
