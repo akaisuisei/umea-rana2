@@ -37,7 +37,7 @@ namespace Umea_rana
                     game.Components.Add(Neige);
                 }
             }
-            if (_currentState == Game1.gameState.SEU||_currentState==Game1.gameState.Editeur_mapVV||_currentState==Game1.gameState.Pause||_currentState==Game1.gameState.level_Pselect )
+            if (_currentState == Game1.gameState.SEU||_currentState==Game1.gameState.Editeur_mapVV||_currentState==Game1.gameState.Pause||_currentState==Game1.gameState.level_Pselect || _currentState==Game1.gameState.level3)
             {
                 game.Components.Clear();
             }
