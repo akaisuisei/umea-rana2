@@ -105,9 +105,14 @@ namespace Umea_rana
             {
                 case '1':
                     ptfort.Add(new Rectangle(0, 200, 50, 50));
-                    ptfort.Add(new Rectangle(800, 400, 50, 50));
-                    ptfort.Add(new Rectangle(500, 400, 50, 50));
-                    ptfort.Add(new Rectangle(400, 200, 50, 50));
+                    ptfort.Add(new Rectangle(800,(int)( fond.Height *0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.6f), 50, 50));
+                    ptfort.Add(new Rectangle(1100, (int)(fond.Height * 0.7f), 50, 50));
+                    ptfort.Add(new Rectangle(1200, (int)(fond.Height * 0.6f), 50, 50));
+                         ptfort.Add(new Rectangle(1300,(int)( fond.Height *0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.6f), 50, 50));
+                    ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
+                    ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
                     ptfaible.Add(rect);
                     this.texture = content.Load<Texture2D>("IA/Light");
                         ptforttexture = content.Load<Texture2D>("pt");
@@ -187,7 +192,7 @@ namespace Umea_rana
                             if (timeatk <= 0)
                             {
                                 timeatk = 60;
-                                ptfort.Add(new Rectangle (rectangle_C.X,rectangle_C.Y ,15,15));
+                                ptfort.Add(new Rectangle (rectangle_C.X,rectangle_C.Center .Y  ,60,60));
                             }
                             timeatk--;
                             for (int i = 0; i < ptfort.Count; ++i)

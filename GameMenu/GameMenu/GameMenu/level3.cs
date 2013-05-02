@@ -54,16 +54,16 @@ namespace Umea_rana
             height = graphics.PreferredBackBufferHeight;
             _pause.initbutton(ref level);
             //background
-            backgroundT = Content.Load<Texture2D>("level1/fond_niv1");
+            backgroundT = Content.Load<Texture2D>("level1/testt_2");
             //sprite brouillon
             alllenT = Content.Load<Texture2D>("hero//yoh");
             //platfom
             platform_t = Content.Load<Texture2D>("level1//platform");
             //ia
             aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
-            naruto_stalker = Content.Load<Texture2D>("IA//naruto");
-            eve = Content.Load<Texture2D>("IA//eve");
-            truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune");
+            naruto_stalker = Content.Load<Texture2D>("IA//naruto_couleur");
+            eve = Content.Load<Texture2D>("IA//eve_couleur");
+            truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune_couleur");
             //boss
 
 
