@@ -121,7 +121,7 @@
     <value>lisaa</value>
   </data>
   <data name="AI_align" xml:space="preserve">
-    <value />
+    <value>rivi vihollisia</value>
   </data>
   <data name="angle" xml:space="preserve">
     <value>kulma</value>
@@ -286,21 +286,69 @@
     <value>Language</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
-    <value>number of Kamikazes</value>
+    <value>kamizazien mÄÄrÄ</value>
   </data>
   <data name="nb_iaT" xml:space="preserve">
-    <value>number of tirreur</value>
+    <value>ampujen mÄärÄ</value>
   </data>
   <data name="nb_iaV" xml:space="preserve">
-    <value>number of snipers</value>
+    <value>Sniperien mÄÄrä</value>
   </data>
   <data name="nb_objet" xml:space="preserve">
-    <value>number of UFO</value>
+    <value>UFOjen mÄÄrÄ</value>
   </data>
   <data name="player_life" xml:space="preserve">
     <value>player life</value>
   </data>
   <data name="Volume_BGM" xml:space="preserve">
     <value>Volume BGM</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>kiina</value>
+  </data>
+  <data name="difficulty" xml:space="preserve">
+    <value>vaikeus</value>
+  </data>
+  <data name="easy" xml:space="preserve">
+    <value>helppo</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>espanja</value>
+  </data>
+  <data name="Extreme" xml:space="preserve">
+    <value>kohtuuton</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>ranska</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>vaikea</value>
+  </data>
+  <data name="Highscore" xml:space="preserve">
+    <value>paras piste</value>
+  </data>
+  <data name="japanese" xml:space="preserve">
+    <value>japani</value>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value>keski taso</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>ratkaisu</value>
+  </data>
+  <data name="save_apply" xml:space="preserve">
+    <value>tallenna/ soveltaa</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>piste</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Volume_effet_sonore" xml:space="preserve">
+    <value>ÄÄnenvoimakkuus</value>
+  </data>
+  <data name="_default" xml:space="preserve">
+    <value>alunperin</value>
   </data>
 </root>

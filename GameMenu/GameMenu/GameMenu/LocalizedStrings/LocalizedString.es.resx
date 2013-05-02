@@ -214,7 +214,7 @@
     <value>música</value>
   </data>
   <data name="Music_file" xml:space="preserve">
-    <value>fichero de música</value>
+    <value>archivo de musica</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>siguiente</value>
@@ -286,21 +286,69 @@
     <value>Language</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
-    <value>number of Kamikazes</value>
+    <value>numero de kamizaze</value>
   </data>
   <data name="nb_iaT" xml:space="preserve">
-    <value>number of tirreur</value>
+    <value>numero de tiradores</value>
   </data>
   <data name="nb_iaV" xml:space="preserve">
-    <value>number of snipers</value>
+    <value>numero de sniper</value>
   </data>
   <data name="nb_objet" xml:space="preserve">
-    <value>number of UFO</value>
+    <value>numero de UFO</value>
   </data>
   <data name="player_life" xml:space="preserve">
     <value>player life</value>
   </data>
   <data name="Volume_BGM" xml:space="preserve">
     <value>Volume BGM</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>chino</value>
+  </data>
+  <data name="difficulty" xml:space="preserve">
+    <value>dificultad</value>
+  </data>
+  <data name="easy" xml:space="preserve">
+    <value>facil</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>ingles</value>
+  </data>
+  <data name="Extreme" xml:space="preserve">
+    <value>extremo</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>frances</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>dificil</value>
+  </data>
+  <data name="Highscore" xml:space="preserve">
+    <value>puntuacion alta</value>
+  </data>
+  <data name="japanese" xml:space="preserve">
+    <value>japones</value>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value>medio</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>resolucion</value>
+  </data>
+  <data name="save_apply" xml:space="preserve">
+    <value>salvaguardar/aplicar</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>puntuacion</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Volume_effet_sonore" xml:space="preserve">
+    <value>volumen</value>
+  </data>
+  <data name="_default" xml:space="preserve">
+    <value>por defecto</value>
   </data>
 </root>
