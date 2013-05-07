@@ -345,9 +345,7 @@ namespace Umea_rana
             gameState = null;
             name = null;
             levelname = null;
-            selection.Dispose();
-        //   test.Dispose();
-            
+            selection.Dispose();           
         }
     }
 }

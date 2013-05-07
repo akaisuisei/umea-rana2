@@ -28,24 +28,24 @@ namespace Umea_rana
 
         public Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-      
+
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
             songMenu = Content.Load<Song>("Menu//songMenu");
-   
+
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            
+
             tab = 0;
         }
-              public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-      rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
-                  button = new Button(1, 3, width, height, 0.07f, 0.1f, 0);
+            button = new Button(1, 3, width, height, 0.07f, 0.1f, 0);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "Last", LocalizedString.Replay);
             button.activate(0, 1, 0.1f, 0.2f, "", LocalizedString.Menu);
@@ -56,16 +56,15 @@ namespace Umea_rana
         {
             songMenu.Dispose();
             button.Dispose();
-
         }
         public override void Update(Game1 game, Audio audio)
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
-            mouserec=new Rectangle (mouse.X,mouse.Y,1,1);
+            mouserec = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref mouserec, ref game, ref tab, "");
-          
-            old=keyboard;
+
+            old = keyboard;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

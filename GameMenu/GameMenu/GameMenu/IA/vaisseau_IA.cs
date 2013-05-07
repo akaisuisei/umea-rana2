@@ -138,7 +138,7 @@ namespace Umea_rana
 
         public void Dipose()
         {
-            _texture.Dispose();
+        
           
         }
     }

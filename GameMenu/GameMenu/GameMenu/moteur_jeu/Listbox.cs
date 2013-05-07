@@ -26,7 +26,6 @@ namespace Umea_rana
         public bool in_use;
         Color BGcolor;
 
-
         public Listbox(string type, float x, float y, float _width, float _height, int WindoW, int windowH, int tab)
         {
             int X = (int)(x * (float)WindoW);
@@ -63,13 +62,11 @@ namespace Umea_rana
         {
             this.font = Content.Load<SpriteFont>("FontList");
             this.fondT = Content.Load<Texture2D>("ListBoxBG");
-            this.fleche = Content.Load<Texture2D>("fleche");
-
+            this.fleche = Content.Load<Texture2D>("fleche")
         }
 
         public void Update(ref KeyboardState keyboard, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)
         {
-
             if (mouse.LeftButton == ButtonState.Pressed)
             {
                 if (mouse_rec.Intersects(fond) || mouse_rec.Intersects(Top) || mouse_rec.Intersects(Botom)
@@ -215,6 +212,5 @@ namespace Umea_rana
             level = null;
             rectangle = null;
         }
-
     }
 }

@@ -73,8 +73,6 @@ namespace Umea_rana
                        ia_manage[i].  FrameColunm = 1;
                        ia_manage[i]. Effects = SpriteEffects.None;
                     }
-
-
                     remove(ref i);
                 }
             }
@@ -127,10 +125,5 @@ namespace Umea_rana
             for (int i = 0; i < number; ++i)
                 ia_manage.Add(new Tireur( new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), Content, window_H, window_W, colo, seconde));
         }
-
     }
-
-
-
-
 }

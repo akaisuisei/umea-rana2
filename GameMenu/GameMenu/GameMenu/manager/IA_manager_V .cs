@@ -116,7 +116,5 @@ namespace Umea_rana
             for (int i = 0; i < number; ++i)
                 ia_manage.Add(new Viseur_aI( new Rectangle(x + i * _rectangle.Width, y, _rectangle.Width, _rectangle.Height), Content, window_H, window_W, colo, lunch_time));
         }
-
-
     }
 }

@@ -10,8 +10,6 @@ namespace Umea_rana
 {
     public class IA_manager_AR : IA_Manager_max
     {
-
-
         public IA_manager_AR(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int speed, int window_H, int window_W)
         {
             ia_manage = new List<vaisseau_IA>();
@@ -24,7 +22,6 @@ namespace Umea_rana
             poid = 10;
             AnimationSpeed = 10;
         }
-
 
         private void mov(ref int i)
         {

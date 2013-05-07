@@ -21,12 +21,8 @@ namespace Umea_rana
 
         Rectangle rectangle;
 
-        int select = 0;
-        int latence = 0;
-
         Button button;
         Rectangle mouserec;
-        KeyboardState old;
         int tab;
 
         public _Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
@@ -64,14 +60,11 @@ namespace Umea_rana
 
         }
 
-        public void Update(Game1 game, Audio audio, ref bool checkpause)
-        {
-            KeyboardState keyboard = Keyboard.GetState();
+        public void Update(Game1 game, Audio audio, ref bool checkpause,ref KeyboardState keyboard,ref KeyboardState old)
+        {            
             MouseState mouse = Mouse.GetState();
             mouserec = new Rectangle(mouse.X, mouse.Y, 1, 1);
-            button.Update(ref keyboard, ref old, ref mouse, ref mouserec, ref game, ref tab, "", ref checkpause);
-
-            old = keyboard;
+            button.Update(ref keyboard, ref old, ref mouse, ref mouserec, ref game, ref tab, "", ref checkpause);    
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -80,10 +73,7 @@ namespace Umea_rana
         }
         public void checkpause(KeyboardState keyboard, ref bool _checkpause)
         {
-            if (_checkpause)
-                _checkpause = false;
-            else
-                _checkpause = true;
+            _checkpause = !_checkpause;
         }
 
         public void Dispose()

@@ -13,7 +13,6 @@ namespace Umea_rana
 {
     public class munition :objet 
     {
-
         Vector2 vect;
         public bool existe, bool_dexistence;
         int speed;
@@ -33,16 +32,11 @@ namespace Umea_rana
             this.colo = colo;
         }
 
-
-
         public void update2()
         {
             rectangle.Y -=(int) (speed*vect.Y) ;
             rectangle.X += (int)(speed * vect.X);
             rectangle_C = rectangle;
         }
-
-
-
     }
 }

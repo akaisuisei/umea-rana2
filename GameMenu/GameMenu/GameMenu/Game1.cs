@@ -89,6 +89,8 @@ namespace Umea_rana
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager Content here
+            StateManager[_currentState].UnloadContent();
+            base.UnloadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -159,8 +161,7 @@ namespace Umea_rana
                 if (_currentState == gameState.Editeur_mapVV || _currentState == gameState.PlayingState && graphics.IsFullScreen)
                     graphics.ToggleFullScreen();
                 else if (_currentState != gameState.Editeur_mapVV && _currentState != gameState.PlayingState && !graphics.IsFullScreen)
-                    graphics.ToggleFullScreen();
-              
+                    graphics.ToggleFullScreen();              
             }
         }
         public void nextgame()
@@ -190,8 +191,7 @@ namespace Umea_rana
                     ChangeState(gameState.SEU);
                 }
                 else
-                {
-              
+                {              
                     ChangeState(gameState.Level2);
                 }
             }

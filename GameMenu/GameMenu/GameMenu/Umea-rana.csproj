@@ -136,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Curseur.cs" />
-    <Compile Include="Editeur de map\bossPLAT.cs" />
+    <Compile Include="IA\bossPLAT.cs" />
     <Compile Include="Editeur de map\UserControl2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +144,9 @@
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
     <Compile Include="jeu\Gameconfiguration.cs" />
+    <Compile Include="jeu\Housse.cs" />
+    <Compile Include="jeu\Score.cs" />
+    <Compile Include="jeu\Score_PLA.cs" />
     <Compile Include="jeu\StorageManager.cs" />
     <Compile Include="LocalizedStrings\LocalizedString.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -155,7 +158,7 @@
     <Compile Include="jeu\GameWin.cs" />
     <Compile Include="manager\IA_manager_K.cs" />
     <Compile Include="manager\IA_manager_V .cs" />
-    <Compile Include="level3.cs" />
+    <Compile Include="jeu\level3.cs" />
     <Compile Include="moteur_jeu\Button.cs" />
     <Compile Include="IA\Tireur.cs" />
     <Compile Include="IA\asteroid.cs" />
@@ -179,12 +182,11 @@
     <Compile Include="jeu\Level2.cs" />
     <Compile Include="jeu\ShootEmUp.cs" />
     <Compile Include="moteur_jeu\munition.cs" />
-    <Compile Include="moteur_jeu\Scrolling-V.cs" />
     <Compile Include="jeu\sripte_V.cs" />
     <Compile Include="interface\Level_select_state.cs" />
     <Compile Include="interface\MainMenuState.cs" />
     <Compile Include="interface\GameState.cs" />
-    <Compile Include="interface\PlayingState.cs" />
+    <Compile Include="Editeur de map\PlayingState.cs" />
     <Compile Include="interface\Pause.cs" />
     <Compile Include="moteur_jeu\platform.cs" />
     <Compile Include="jeu\objet.cs" />

@@ -205,7 +205,7 @@ namespace Umea_rana
                 game.ChangeState2(Game1.gameState.Checkpause);
                 MediaPlayer.Stop();
                 ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
-                _pause.Update(game, audio, ref _checkpause);
+              _pause.Update(game, audio, ref _checkpause, ref keyboard ,ref oldkey );
             }
 
             //partie perdu

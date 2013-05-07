@@ -14,8 +14,7 @@ namespace Umea_rana
    public class platform :objet 
     {
         Texture2D texture;
-        int speed, width, height;
-        
+        int speed, width, height;       
 
 
         public platform(Texture2D n_textture, Rectangle n_rectangle, int n_speed)

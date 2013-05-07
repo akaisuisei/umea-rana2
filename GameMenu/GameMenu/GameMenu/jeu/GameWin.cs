@@ -11,7 +11,7 @@ using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
-    class GameWin:GameState 
+    class GameWin : GameState
     {
         Song songMenu;
         public static float vol = 1.0f;
@@ -26,24 +26,24 @@ namespace Umea_rana
 
         public GameWin(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-           
+
             game1.IsMouseVisible = true;
             MediaPlayer.Volume = vol;
-            songMenu = Content.Load<Song>("Menu//songMenu");   
+            songMenu = Content.Load<Song>("Menu//songMenu");
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-         
+
             tab = 0;
         }
-        public override void LoadContent(ContentManager Content,GraphicsDevice Graph,ref string level,ref string next, GraphicsDeviceManager graphics)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
 
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
- 
-             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);  
+
+            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             button = new Button(1, 4, width, height, 0.07f, 0.1f, 0);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "Next", LocalizedString.Next);
@@ -60,10 +60,10 @@ namespace Umea_rana
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
-            mouserec=new Rectangle (mouse.X,mouse.Y,1,1);
+            mouserec = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref mouserec, ref game, ref tab, "");
-          
-            old=keyboard;
+
+            old = keyboard;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -73,5 +73,5 @@ namespace Umea_rana
 
 
     }
-    }
+}
 

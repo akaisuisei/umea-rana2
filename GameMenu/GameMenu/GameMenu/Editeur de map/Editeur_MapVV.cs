@@ -60,11 +60,12 @@ namespace Umea_rana
             spawn = -1;
             iaType = "kawabunga";
             rmouse = new Rectangle(0, 0, 1, 1);
-          
+
         }
 
         public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
-        {  info= new info() ;
+        {
+            info = new info();
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
             fond = new Rectangle(0, 0, width / 2, height);
@@ -100,7 +101,7 @@ namespace Umea_rana
 
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
-            user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni,fond );
+            user.LoadContent(manage_T, manage_V, manage_k, Scroll_manager, Content, ovni, fond);
             info.LoadContent(fond2, Content.Load<SpriteFont>("FontList"));
 
         }
@@ -132,29 +133,35 @@ namespace Umea_rana
             keyboard = Keyboard.GetState();
             rmouse.X = mouse.X;
             rmouse.Y = mouse.Y;
-            if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
+               (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
             {
-
+                if (_checkpause)
+                {
+                    if (user.IHave_control)
+                        user.Show();
+                }
+                else
+                    if (user.IHave_control)
+                        user.Hide();
                 _pause.checkpause(keyboard, ref _checkpause);
                 latence = 30;
-                user.Hide();
+
             }
-            if (latence > 0)
-                --latence;
+            
             if (!_checkpause)
             {
                 if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control && fond.Contains(rmouse))
                 {
                     spawn = existcheck(ref iaType, rmouse);
 
-                    user._show(mouse.X, mouse.Y, iaType, spawn);
+                    user._show(mouse.X, mouse.Y, iaType, spawn, fond2);
                 }
                 if (user.IHave_control)
                     user.TopMost = true;
                 else
                 {
                     user.update(ref manage_T, ref manage_V, ref manage_k, ref keyboard, game, ref Scroll_manager, ref ovni);
-                    //        scrolling1.update_ophelia(keyboard);
                     Scroll_manager.Update_ophelia(keyboard);
                 }
                 manage_k.Update_ophelia(keyboard);
@@ -166,42 +173,29 @@ namespace Umea_rana
             {
                 game.ChangeState2(Game1.gameState.Checkpause);
                 MediaPlayer.Stop();
-                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
-                _pause.Update(game, audio, ref _checkpause);
+              _pause.Update(game, audio, ref _checkpause, ref keyboard ,ref oldkey );
             }
 
             //update interface
-
-
             oldkey = keyboard;
-            info.Update(manage_k.Ia_manage.Count, manage_T.Ia_manage.Count, manage_V.Ia_manage.Count , ovni.ovni.Count,user._savefile.levelProfile.playerLife , 0);
+            info.Update(manage_k.Ia_manage.Count, manage_T.Ia_manage.Count, manage_V.Ia_manage.Count, ovni.ovni.Count, user._savefile.levelProfile.playerLife, 0);
 
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-
-
-            //scrolling
-            //scrolling1.Draw(spriteBatch);
             Scroll_manager.Draw(spriteBatch);
-
-
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
-            manage_k.Draw(spriteBatch);            
+            manage_k.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
             info.draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
-
         }
 
         private int existcheck(ref string hello, Rectangle recM)
         {
-
-
             for (int i = 0; i < manage_k.Ia_manage.Count; ++i)
                 if (manage_k.Ia_manage[i].rectangle.Intersects(recM))
                 {
@@ -228,7 +222,6 @@ namespace Umea_rana
                 }
             hello = "";
             return -1;
-
         }
     }
 }

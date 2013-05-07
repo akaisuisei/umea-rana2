@@ -28,14 +28,14 @@ namespace Umea_rana
 
         public virtual void Add(float X, float Y, int id)
         {
-            ia_manage.Add(new Stalker( new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, id));
+            ia_manage.Add(new Stalker(new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, id));
         }
 
         public void remove()//enleve ia si pv =0 ou sort de l ecran
         {
             for (int i = 0; i < ia_manage.Count; ++i)
             {
-                if (ia_manage[i].vie <= 0 || !ia_manage[i].rectangle.Intersects (screen ))
+                if (ia_manage[i].vie <= 0 || !ia_manage[i].rectangle.Intersects(screen))
                     ia_manage.RemoveAt(i);
             }
         }
@@ -49,7 +49,7 @@ namespace Umea_rana
             this.ia_manage.RemoveAt(i_de_list);
         }
         public void remove_all()
-        {            
+        {
             this.ia_manage = new List<vaisseau_IA>();
         }
         public void Dipose()
@@ -57,7 +57,7 @@ namespace Umea_rana
             for (int i = 0; i < ia_manage.Count; ++i)
                 ia_manage[i].Dipose();
             _texture.Dispose();
-            mtexture.Dispose();
+
         }
 
         public void Update_ophelia(KeyboardState keyboard)
@@ -71,7 +71,7 @@ namespace Umea_rana
                 ia_manage[i].Update_rec_collision();
             }
         }
-        protected Vector2 vise(objet sprt,ref Rectangle rectangle)
+        protected Vector2 vise(objet sprt, ref Rectangle rectangle)
         {
             Vector2 _vecteur;
             _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
@@ -88,26 +88,26 @@ namespace Umea_rana
                     if (ia_manage[i].shift <= 0f)
                     {
                         ia_manage[i].shift = 30;
-                        ia_manage[i].dir =-ia_manage[i].dir ;
+                        ia_manage[i].dir = -ia_manage[i].dir;
                     }
                     ia_manage[i].shift--;
-                    ia_manage[i].rectangle.X += ia_manage[i].Speed  *ia_manage[i]. dir;
+                    ia_manage[i].rectangle.X += ia_manage[i].Speed * ia_manage[i].dir;
                     ia_manage[i].rectangle.Y++;
-                    break ;
+                    break;
                 case "log":
 
-                    ia_manage[i].shift+=0.1f;
-                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
-                    ia_manage[i].rectangle.Y += ia_manage[i].Speed; 
+                    ia_manage[i].shift += 0.1f;
+                    ia_manage[i].rectangle.X += (int)(ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].rectangle.Y += ia_manage[i].Speed;
                     break;
                 case "-log":
-                     ia_manage[i].shift-=0.1f;
-                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].shift -= 0.1f;
+                    ia_manage[i].rectangle.X += (int)(ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
                     ia_manage[i].rectangle.Y += ia_manage[i].Speed;
                     break;
                 case "expo":
-                     ia_manage[i].shift+=0.009f;
-                    ia_manage[i].rectangle.X +=(int) (ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
+                    ia_manage[i].shift += 0.009f;
+                    ia_manage[i].rectangle.X += (int)(ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
                     ia_manage[i].rectangle.Y += ia_manage[i].Speed;
                     break;
                 case "-expo":
@@ -115,23 +115,23 @@ namespace Umea_rana
                     ia_manage[i].rectangle.X += (int)(ia_manage[i].Speed * ia_manage[i].dir + ia_manage[i].shift);
                     ia_manage[i].rectangle.Y += ia_manage[i].Speed;
                     break;
-                default :
-            if (ia_manage[i].rectangle_C.Right > rectangleF.Right )
-            {
-                ia_manage[i].rectangle.X = rectangleF.Right  - ia_manage[i].rectangle_C.Width -1 ;
-                ia_manage[i].rectangle.Y += ia_manage[i].rectangle_C.Height;
-                ia_manage[i].dir *=-1;
+                default:
+                    if (ia_manage[i].rectangle_C.Right > rectangleF.Right)
+                    {
+                        ia_manage[i].rectangle.X = rectangleF.Right - ia_manage[i].rectangle_C.Width - 1;
+                        ia_manage[i].rectangle.Y += ia_manage[i].rectangle_C.Height;
+                        ia_manage[i].dir *= -1;
 
+                    }
+                    if (ia_manage[i].rectangle_C.Left < rectangleF.Left)
+                    {
+                        ia_manage[i].rectangle.X = rectangleF.Left + 1;
+                        ia_manage[i].rectangle.Y += ia_manage[i].rectangle_C.Height;
+                        ia_manage[i].dir *= -1;
+                    }
+                    ia_manage[i].rectangle.X += ia_manage[i].Speed * ia_manage[i].dir;
+                    break;
             }
-            if (  ia_manage[i].rectangle_C.Left < rectangleF.Left )
-            {
-                 ia_manage[i]. rectangle.X = rectangleF.Left +1;
-                 ia_manage[i].rectangle.Y += ia_manage[i].rectangle_C.Height;
-                 ia_manage[i]. dir *=-1;
-            }
-            ia_manage[i].rectangle.X += ia_manage[i].Speed  * ia_manage[i].dir;
-            break;
-        }
         }
     }
 }

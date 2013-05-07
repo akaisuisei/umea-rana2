@@ -50,11 +50,8 @@ namespace Umea_rana
             // TODO: Add your initialization logic here
 
             timer = -100;
-
-
             game_time = 0;
             oldkey = Keyboard.GetState();
-
             collision = new Collision();
             save = new Sauveguarde();
 
@@ -93,10 +90,8 @@ namespace Umea_rana
 
 
             //intancie le vaisseau
-            vaisseau = new sripte_V(
-                new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 1);
-            perso2 = new sripte_V(
-        new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 2);
+            vaisseau = new sripte_V(new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 1);
+            perso2 = new sripte_V(new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 2);
             //instancie l ia
 
             manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content, fond);
@@ -193,7 +188,7 @@ namespace Umea_rana
             else
             {
                 game.ChangeState2(Game1.gameState.Checkpause);
-                _pause.Update(game, audio, ref _checkpause);
+                _pause.Update(game, audio, ref _checkpause, ref keyboard, ref oldkey);
             }
             // update fin de jeu
             if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)
@@ -216,12 +211,8 @@ namespace Umea_rana
             game_time++;
         }
 
-
-
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-
             scroll.Draw(spriteBatch);
             //scrolling
             //    scrolling1.Draw(spriteBatch);
@@ -231,9 +222,6 @@ namespace Umea_rana
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
-
-
-
             ovini.Draw(spriteBatch);
             spriteBatch.Draw(fondt, fond1, Color.Black);
             spriteBatch.Draw(fondt, fond2, Color.Black);

@@ -147,6 +147,7 @@ namespace Umea_rana
                             else
                                 sprite.vie--;
                             //bool pr dire qd on attaque
+                           
                             ia_manage.Ia_manage[i].attaque = true;
                         }
                         // attaque vers la gauche-

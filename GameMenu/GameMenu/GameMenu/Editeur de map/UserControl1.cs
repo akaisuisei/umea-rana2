@@ -100,23 +100,15 @@ namespace Umea_rana
             playlist = new string[4] { "", "", "", "" };
         }
 
-        public void _show(int X, int y, string touch, int spawn)
+        public void _show(int X, int y, string touch, int spawn, Microsoft.Xna.Framework.Rectangle fond2)
         {
             IHave_control = true;
-            int decal = 100;
             openX = (float)X / (float)width;
             openY = (float)y / (float)height;
 
-            if (X > width / 2)
-                X -= (decal + this.Width);
-            else
-                X += decal;
-            if (y > height / 2)
-                y -= (decal + this.Height);
-            else
-                y += decal;
+           
             EnableTab(tabPage2, false);
-            this.Location = new System.Drawing.Point(X, y);
+            this.Location = new System.Drawing.Point(fond2.X , fond2.Y);
             this.spawn = spawn;
             this.ia_type = touch;
 
@@ -233,13 +225,14 @@ namespace Umea_rana
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
                 --seconde;
-            if( MediaPlayer.State == MediaState.Stopped ){
-                ++song ;
+   /*         if (MediaPlayer.State == MediaState.Stopped)
+            {
+                ++song;
                 if (song < listsong.Count)
                     MediaPlayer.Play(listsong[song]);
                 else
                     song = -1;
-            }
+            }*/
         }
 
         public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni, Microsoft.Xna.Framework.Rectangle fond)
@@ -260,9 +253,6 @@ namespace Umea_rana
             ovni.param(3);
             height = fond.Height;
             width = fond.Width;
-        }
-        private void Initialize()
-        {
             life = LocalizedString.Life;
             speed = LocalizedString.Speed;
             couleur = LocalizedString.Bullet_Color;
@@ -284,7 +274,7 @@ namespace Umea_rana
             load = LocalizedString.Load;
             save = LocalizedString.Save;
             filepathlabel = LocalizedString.level_name;
-            scrolling = LocalizedString.ScrollingVertical;
+            this.scrolling = LocalizedString.ScrollingVertical;
             file = LocalizedString.File;
             damage = LocalizedString.inficted_damage;
             bullet_speed = LocalizedString.Bullet_speed;
@@ -301,6 +291,10 @@ namespace Umea_rana
             comete = LocalizedString.Comet;
             sun = LocalizedString.Sun;
             angle = LocalizedString.angle;
+        }
+        private void Initialize()
+        {
+           
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -384,7 +378,7 @@ namespace Umea_rana
             // default 
             button6.BackColor = button1.BackColor;
             button2.BackColor = button1.BackColor;
-
+            
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
@@ -1117,14 +1111,14 @@ namespace Umea_rana
                 button12.Enabled = true;
             MediaPlayer.Stop();
             foreach (string s in playlist)
-                if(s!="")
-                 listsong.Add ( Song.FromUri("s",new Uri("file:"+s)));
+                if (s != "")
+                    listsong.Add(Song.FromUri("s", new Uri("file:" + s)));
             if (listsong.Count > 0)
             {
                 MediaPlayer.Play(listsong[0]);
                 song = 0;
             }
-            
+
         }
         private void suppitem(ListBox list)
         {
