@@ -22,7 +22,7 @@ namespace Umea_rana
         Listbox list1, list2;
         int tab;
         Button butts;
-
+        SpriteFont font;
         KeyboardState oldkey;
         public Leveleditorselect(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -59,7 +59,7 @@ namespace Umea_rana
             butts.disable(1, 2);
             background = Content.Load<Texture2D>("Menu//background menu");
             songMenu = Content.Load<Song>("Menu//songMenu");
-            titre = Content.Load<Texture2D>("Menu//LevelSelect//niveau");
+            font = Content.Load<SpriteFont>("FontList");
 
             list2.LoadContent(Content);
             list1.LoadContent(Content);
@@ -102,7 +102,7 @@ namespace Umea_rana
         {
 
             spriteBatch.Draw(background, rectangle, Color.White);
-            spriteBatch.Draw(titre, titre_P, Color.White);
+            spriteBatch.DrawString (font,"level select", titre_P, Color.White);
             butts.Draw(spriteBatch);
 
 

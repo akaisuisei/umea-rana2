@@ -22,6 +22,7 @@ namespace Umea_rana
         Rectangle rect;
         int tab = 0;
         KeyboardState old;
+        SpriteFont font;
 
         public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -48,7 +49,7 @@ namespace Umea_rana
             button.activate(0, 2, 0.1f, 0.3f, "Option", LocalizedString.Option);
             button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit);
             background = Content.Load<Texture2D>("Menu//background menu");
-            titre = Content.Load<Texture2D>("Menu//pause//Menu");
+            font = Content.Load<SpriteFont>("FontList");
         }
         public override void UnloadContent()
         {
@@ -69,7 +70,7 @@ namespace Umea_rana
 
             spriteBatch.Draw(background, rectangle, Color.White);
             button.Draw(spriteBatch);
-            spriteBatch.Draw(titre, titre_P, Color.White);
+            spriteBatch.DrawString(font, "Menu", titre_P, Color.White);
         }
 
     }

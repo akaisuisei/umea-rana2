@@ -23,7 +23,7 @@ namespace Umea_rana
         Rectangle rect;
         int tab = 0;
         KeyboardState old;
-
+        SpriteFont font;
 
 
         public Level_select_state(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
@@ -51,7 +51,7 @@ namespace Umea_rana
             button.activate(0, 2, 0.1f, 0.40f, "Level3", "3", "level1");
             button.activate(0, 3, 0.1f, 0.6f, "", LocalizedString.Back);
             background = Content.Load<Texture2D>("Menu//background menu");
-            titre = Content.Load<Texture2D>("Menu//pause//Menu");
+            font = Content.Load<SpriteFont>("FontList");
         }
         public override void UnloadContent()
         {
@@ -73,7 +73,7 @@ namespace Umea_rana
         {
             spriteBatch.Draw(background, rectangle, Color.White);
             button.Draw(spriteBatch);
-            spriteBatch.Draw(titre, titre_P, Color.White);
+            spriteBatch.DrawString(font, "level select", titre_P,Color.White );
         }
     }
 }
