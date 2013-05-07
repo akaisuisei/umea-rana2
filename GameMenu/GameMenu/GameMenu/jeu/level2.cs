@@ -18,7 +18,7 @@ namespace Umea_rana
     {
 
         Scrolling_H scrolling1;//, scrolling3, scrolling4;
-        sprite_broillon allen;
+        Sprite_PLA allen;
         Platform_manager platform_M;
         IA_manager_AA managerAA;
         IA_manager_AR managerAR;
@@ -56,7 +56,7 @@ namespace Umea_rana
             //background
             backgroundT = Content.Load<Texture2D>("level1/fond_niv1");
             //sprite brouillon
-            alllenT = Content.Load<Texture2D>("hero//fiches_sprite_allen");
+            alllenT = Content.Load<Texture2D>("hero/allen1");
             //platfom
             platform_t = Content.Load<Texture2D>("level1//platform");
             //ia
@@ -71,7 +71,7 @@ namespace Umea_rana
             //background
             scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
             //sprite brouillon
-            allen = new sprite_broillon(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
+            allen = new Sprite_PLA(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
             //instanciement du manager d ia
             platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
             //intenciement des 3 ia

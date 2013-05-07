@@ -31,7 +31,7 @@ namespace Umea_rana
             column = 100;
             Effects = SpriteEffects.FlipHorizontally;
         }
-        public void Update(KeyboardState keybord, Game1 game, sprite_broillon sprite)
+        public void Update(KeyboardState keybord, Game1 game, Sprite_PLA sprite)
         {
             if (keybord.IsKeyDown(Keys.Right))
             {

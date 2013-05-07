@@ -62,7 +62,7 @@ namespace Umea_rana
         {
             this.font = Content.Load<SpriteFont>("FontList");
             this.fondT = Content.Load<Texture2D>("ListBoxBG");
-            this.fleche = Content.Load<Texture2D>("fleche")
+            this.fleche = Content.Load<Texture2D>("fleche");
         }
 
         public void Update(ref KeyboardState keyboard, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)

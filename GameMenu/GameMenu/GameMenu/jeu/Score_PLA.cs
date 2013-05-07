@@ -22,7 +22,7 @@ namespace Umea_rana
             texture = content.Load<Texture2D>("ListBoxBG");
             viemax = 300;
         }
-        public void Update(ref sprite_broillon sprite)
+        public void Update(ref Sprite_PLA sprite)
         {
             vie = sprite.vie;
             fond2.Width = (int)((float)vie / (float)viemax * (float)maxwidth);

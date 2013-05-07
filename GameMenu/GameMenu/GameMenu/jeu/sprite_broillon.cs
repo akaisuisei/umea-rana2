@@ -16,7 +16,7 @@ namespace Umea_rana
     {
         Left, Right
     };
-    public class sprite_broillon : objet
+    public class Sprite_PLA : objet
     {
         private class pos
         {
@@ -60,10 +60,8 @@ namespace Umea_rana
         Texture2D test;
 
 
-        public sprite_broillon(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
+        public Sprite_PLA(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
         {
-
-
             test = Content.Load<Texture2D>("ListBoxBG");
             texture = n_textture;
             rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
@@ -82,7 +80,6 @@ namespace Umea_rana
             this.Timer = 0;
             vie = 100;
 
-
             upsidedown = 10;
             atq = false;
             longattaque = 17;
@@ -93,12 +90,12 @@ namespace Umea_rana
             {
                 colunm = 151;
                 line = 110;
-                largeurX = 22;
-                hauteurY = 40;
-                decallageX = 50;
-                decallageY = 34;
+                largeurX = (int)((30f / (float)colunm) * rectangle.Width);
+                hauteurY = (int)((43f / (float)line) * rectangle.Height);
+                decallageX = (int)((46f / (float)colunm) * rectangle.Width);
+                decallageY = (int)((44f / (float)line) * rectangle.Height);
                 idle = new pos(1, 1, 4);
-                walk = new pos(1, 5, 10);
+                walk = new pos(1, 5, 12);
                 atk = new pos(9, 5, 10);
                 die = new pos(3, 5, 9);
                 jump = new pos(2, 8, 8);
@@ -107,21 +104,22 @@ namespace Umea_rana
             }
             else
             {
-                colunm = 125;
-                line = 93;
-                largeurX = 17;
-                hauteurY = 50;
-                decallageX = 55;
-                decallageY = 31;
-                idle = new pos(1, 1, 3);
-                walk = new pos(2, 1, 3);
-                atk = new pos(8, 1, 3);
-                die = new pos(6, 1, 5);
-                jump = new pos(3, 1, 2);
-                fall = new pos(5, 1, 3);
+                colunm = 114;
+                line = 99;
+                largeurX =(int) ((25f/(float) colunm)*rectangle.Width ) ;
+                hauteurY = (int)((51f / (float)line)*rectangle.Height );
+                decallageX = (int)((17f / (float)colunm)*rectangle.Width );
+                decallageY = (int)((30f / (float)line)*rectangle.Height);
+                idle = new pos(1, 1, 4);
+                walk = new pos(1, 5, 12);
+                atk = new pos(8, 5, 10);
+                die = new pos(3, 3, 7);
+                jump = new pos(2, 4, 5);
+                fall = new pos(2, 6, 7);
             }
             current = fall;
             last = current;
+            test = Content.Load<Texture2D>("ListBoxBG");
         }
 
         public void update(KeyboardState keyboard)
@@ -429,13 +427,13 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebatch)
         {
-        //    spritebatch.Draw(test, rectangle_C, Color.Pink);
-            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White  , 0f, new Vector2(0, 0), this.Effects, 0f);
+            spritebatch.Draw(test, rectangle_C, Color.Pink);
+            spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
         public void Dispose()
         {
             texture.Dispose();
             marchell.Dispose();
         }
-    } 
+    }
 }

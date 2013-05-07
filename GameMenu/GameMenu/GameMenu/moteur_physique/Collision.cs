@@ -21,7 +21,7 @@ namespace Umea_rana
         }
         #region collision avec le sol
         // collision sprite sol fini
-        public bool Collision_sp_sol(ref sprite_broillon sprite, ref Platform_manager platform_m)
+        public bool Collision_sp_sol(ref Sprite_PLA sprite, ref Platform_manager platform_m)
         {
             foreach (platform plato in platform_m.plato)
                 if (sprite.rectangle_C.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
@@ -126,7 +126,7 @@ namespace Umea_rana
         }
 
         //collision IA allen action vie--
-        public void coll_AL_IA(IA_Manager_max ia_manage, ref sprite_broillon sprite)
+        public void coll_AL_IA(IA_Manager_max ia_manage, ref Sprite_PLA sprite)
         {
 
             for (int i = 0; i < ia_manage.Ia_manage.Count; ++i)
@@ -179,7 +179,7 @@ namespace Umea_rana
 
 
         // saut non fini
-        public void jump(sprite_broillon sprite)
+        public void jump(Sprite_PLA sprite)
         {
             int i = 10;
             if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
@@ -437,7 +437,7 @@ namespace Umea_rana
             }
         }
 
-        public void Bossplat_hero(ref bossPLAT boss, ref sprite_broillon sprite,ref Platform_manager platform)
+        public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite,ref Platform_manager platform)
         {
 
             foreach (Rectangle rec in boss.ptfort)

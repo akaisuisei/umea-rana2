@@ -91,13 +91,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\fiches_sprite_allen.png">
-      <Name>fiches_sprite_allen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="IA\asteroid\planet4.png">
       <Name>planet4</Name>
       <Importer>TextureImporter</Importer>
@@ -324,6 +317,13 @@
   <ItemGroup>
     <Compile Include="pt.png">
       <Name>pt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="hero\allen1.png">
+      <Name>allen1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
