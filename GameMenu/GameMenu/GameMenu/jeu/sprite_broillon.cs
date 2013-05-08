@@ -88,12 +88,12 @@ namespace Umea_rana
 
             if (type == '2')
             {
-                colunm = 151;
-                line = 110;
-                largeurX = (int)((30f / (float)colunm) * rectangle.Width);
-                hauteurY = (int)((43f / (float)line) * rectangle.Height);
-                decallageX = (int)((46f / (float)colunm) * rectangle.Width);
-                decallageY = (int)((44f / (float)line) * rectangle.Height);
+                colunm = 168;
+                line = 118;
+                largeurX = (int)((33f / (float)colunm) * rectangle.Width);
+                hauteurY = (int)((39f / (float)line) * rectangle.Height);
+                decallageX = (int)((64f / (float)colunm) * rectangle.Width);
+                decallageY = (int)((61f / (float)line) * rectangle.Height);
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);
                 atk = new pos(9, 5, 10);
@@ -104,11 +104,11 @@ namespace Umea_rana
             }
             else
             {
-                colunm = 114;
+                colunm = 128;
                 line = 99;
-                largeurX =(int) ((25f/(float) colunm)*rectangle.Width ) ;
+                largeurX =(int) ((26f/(float) colunm)*rectangle.Width ) ;
                 hauteurY = (int)((51f / (float)line)*rectangle.Height );
-                decallageX = (int)((17f / (float)colunm)*rectangle.Width );
+                decallageX = (int)((51f / (float)colunm)*rectangle.Width );
                 decallageY = (int)((30f / (float)line)*rectangle.Height);
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);

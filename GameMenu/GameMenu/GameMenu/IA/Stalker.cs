@@ -18,11 +18,11 @@ namespace Umea_rana
 
         public int window_W, window_H;
 
-        public Stalker( Rectangle n_rectangle, couple couple, int spawn)
+        public Stalker(Rectangle n_rectangle, couple couple, int spawn)
         {
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
-        
+
 
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
@@ -47,11 +47,11 @@ namespace Umea_rana
         /// <param name="window_W"></param>
         /// <param name="launchTime"></param>
         /// <param name="vie"></param>
-        public Stalker( Rectangle n_rectangle, couple couple)
+        public Stalker(Rectangle n_rectangle, couple couple)
         {
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
-     
+
 
             decallageX = 0; decallageY = 0;
             hauteurY = n_rectangle.Height - decallageX; largeurX = n_rectangle.Width - decallageY;
@@ -76,7 +76,7 @@ namespace Umea_rana
         /// <param name="window_W"></param>
         /// <param name="id"></param>
         /// <param name="vie"></param>
-        public Stalker( Rectangle n_rectangle, int speed, int window_H, int window_W, int id, int vie)
+        public Stalker(Rectangle n_rectangle, int speed, int window_H, int window_W, int id, int vie)
         {
 
             this.rectangle_C = n_rectangle;
@@ -98,24 +98,30 @@ namespace Umea_rana
             {
 
                 case 1:// stalker
-                    decallageX = 32; decallageY = 36;
-                    hauteurY = rectangle.Height - decalageY - 13; largeurX = 37;
+                    largeurX = (int)((40f / 150f) * rectangle.Width);
+                    hauteurY = (int)((22f / 72f) * rectangle.Height);
+                    decallageX = (int)((70f / 150f) * rectangle.Width);
+                    decallageY = (int)((41f / 72f) * rectangle.Height);
                     longueur_attaque = 20;
                     this.FrameLine = 1;
                     this.FrameColunm = 1;
                     this.Timer = 0;
                     break;
                 case 2:// ia AR
-                    decallageX = 23; decallageY = 40;
-                    hauteurY = rectangle.Height - decalageY ; largeurX = 20;
+                    largeurX = (int)((22f / 130f) * rectangle.Width);
+                    hauteurY = (int)((47f / 85f) * rectangle.Height);
+                    decallageX = (int)((73f / 130f) * rectangle.Width);
+                    decallageY = (int)((33f / 85f) * rectangle.Height);
                     longueur_attaque = 18;//2;
                     this.FrameLine = 1;
                     this.FrameColunm = 1;
                     this.Timer = 0;
                     break;
                 default:// iaAA
-                    decallageX = 21; decallageY = 23;
-                    hauteurY = rectangle.Height - decalageY - 10; largeurX = 25;
+                    largeurX = (int)((22f / 90f) * rectangle.Width);
+                    hauteurY = (int)((35f / 63f) * rectangle.Height);
+                    decallageX = (int)((35f / 90f) * rectangle.Width);
+                    decallageY = (int)((23f / 63f) * rectangle.Height);
                     longueur_attaque = 14;
                     dir = -1;
                     this.FrameLine = 1;
@@ -124,21 +130,21 @@ namespace Umea_rana
                     break;
             }
         }
-    
- 
+
+
         // le bon kamikaze
         public void Update_Kamikaze(objet sprite, ref int gameTime)
         {
-           
+
 
 
         }
         // le debile ki va tout droit jusqu a se suicider
-     
+
         public override void Draw(SpriteBatch spritback)
         {
             spritback.Draw(_texture, rectangle, Color.White);
         }
-      
+
     }
 }

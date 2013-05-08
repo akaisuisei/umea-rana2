@@ -38,29 +38,20 @@ namespace Umea_rana
         // collision ia_sprite sol fini
         public void collision_ia_sol(IA_Manager_max ia, ref Platform_manager platform_m) //ia stalker
         {
-            bool b;
-            int top = 0;
             for (int i = 0; i < ia.Ia_manage.Count; ++i)
             {
-                b = false;
+               ia.Ia_manage[i].tombe = true;
                 foreach (platform plato in platform_m.plato)
                 {
 
-                    if (!b && (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
-                        ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - 9 <= plato.rectangle_C.Top))
+                    if ( (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
+                        ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - ia.Ia_manage[i].poid  <= plato.rectangle_C.Top))
                     {
-                        top = plato.rectangle_C.Top;
-                        b = true;
+                        ia.Ia_manage[i].rectangle.Y = plato.rectangle_C.Top - ia.Ia_manage[i].rectangle_C.Height - ia.Ia_manage[i].decalageY;
+                        ia.Ia_manage[i].tombe = false;
                         break;
                     }
-                }
-                if (b)
-                {
-                    ia.Ia_manage[i].tombe = false;
-                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height - ia.Ia_manage[i].decalageY;
-                }
-                else
-                    ia.Ia_manage[i].tombe = true;
+                }                
             }
         }
 
@@ -111,8 +102,8 @@ namespace Umea_rana
                 if (b)
                 {
                     ia.Ia_manage[i].tombe = false;
-                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height-15;
-                    
+                    ia.Ia_manage[i].rectangle.Y = top - ia.Ia_manage[i].rectangle_C.Height - ia.Ia_manage[i].decalageY ;
+
                 }
                 else
                     ia.Ia_manage[i].tombe = true;
@@ -147,7 +138,7 @@ namespace Umea_rana
                             else
                                 sprite.vie--;
                             //bool pr dire qd on attaque
-                           
+
                             ia_manage.Ia_manage[i].attaque = true;
                         }
                         // attaque vers la gauche-
@@ -309,72 +300,72 @@ namespace Umea_rana
 
         }
 
-        public void h_M1P(ref IA_manager_V  AA, ref IA_manager_T  AR, ref IA_manager_K K, ref sripte_V pl)
-    {
-        for (int i = 0; i < AA.bulletL.Count; ++i)
+        public void h_M1P(ref IA_manager_V AA, ref IA_manager_T AR, ref IA_manager_K K, ref sripte_V pl)
         {
-            if (AA.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
+            for (int i = 0; i < AA.bulletL.Count; ++i)
             {
-                pl.vie -= AA.bulletL[i].degat;
-                AA.bulletL.RemoveAt(i);
-            }
-      
-            
-        }
-        for (int i = 0; i < AR.bulletL.Count; ++i)
-        {
-            if (AR.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
-            {
-                pl.vie -= AR.bulletL[i].degat;
-                AR.bulletL.RemoveAt(i);
-            }
-        
-        }
-        for (int i = 0; i < AA.Ia_manage.Count; ++i)
-        {
-            for (int j = 0; j < pl.bulletL.Count; ++j)
-            {
-                if (pl.bulletL[j].rectangle_C.Intersects(AA.Ia_manage[i].rectangle_C))
-                    AA.Ia_manage[i].vie -= pl.bulletL[i].degat;
-            }
-            if (AA.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
-            {
-                pl.vie -= 30;
-                AA.Ia_manage.RemoveAt(i);
-            }
+                if (AA.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
+                {
+                    pl.vie -= AA.bulletL[i].degat;
+                    AA.bulletL.RemoveAt(i);
+                }
 
+
+            }
+            for (int i = 0; i < AR.bulletL.Count; ++i)
+            {
+                if (AR.bulletL[i].rectangle_C.Intersects(pl.rectangle_C))
+                {
+                    pl.vie -= AR.bulletL[i].degat;
+                    AR.bulletL.RemoveAt(i);
+                }
+
+            }
+            for (int i = 0; i < AA.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl.bulletL.Count; ++j)
+                {
+                    if (pl.bulletL[j].rectangle_C.Intersects(AA.Ia_manage[i].rectangle_C))
+                        AA.Ia_manage[i].vie -= pl.bulletL[i].degat;
+                }
+                if (AA.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+                {
+                    pl.vie -= 30;
+                    AA.Ia_manage.RemoveAt(i);
+                }
+
+            }
+            for (int i = 0; i < AR.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl.bulletL.Count; ++j)
+                {
+                    if (pl.bulletL[j].rectangle_C.Intersects(AR.Ia_manage[i].rectangle_C))
+                        AR.Ia_manage[i].vie -= pl.bulletL[i].degat;
+                }
+
+                if (AR.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+                {
+                    pl.vie -= 30;
+                    AR.Ia_manage.RemoveAt(i);
+                }
+
+            }
+            for (int i = 0; i < K.Ia_manage.Count; ++i)
+            {
+                for (int j = 0; j < pl.bulletL.Count; ++j)
+                {
+                    if (pl.bulletL[j].rectangle_C.Intersects(K.Ia_manage[i].rectangle_C))
+                        K.Ia_manage[i].vie -= pl.bulletL[i].degat;
+                }
+
+                if (K.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
+                {
+                    pl.vie -= K.Ia_manage[i].damage;
+                    AA.Ia_manage.RemoveAt(i);
+                }
+
+            }
         }
-        for (int i = 0; i < AR.Ia_manage.Count; ++i)
-        {
-            for (int j = 0; j < pl.bulletL.Count; ++j)
-            {
-                if (pl.bulletL[j].rectangle_C.Intersects(AR.Ia_manage[i].rectangle_C))
-                    AR.Ia_manage[i].vie -= pl.bulletL[i].degat;
-            }
-
-            if (AR.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
-            {
-                pl.vie -= 30;
-                AR.Ia_manage.RemoveAt(i);
-            }
-
-        }
-        for (int i = 0; i < K.Ia_manage.Count; ++i)
-        {
-            for (int j = 0; j < pl.bulletL.Count; ++j)
-            {
-                if (pl.bulletL[j].rectangle_C.Intersects(K.Ia_manage[i].rectangle_C))
-                    K.Ia_manage[i].vie -= pl.bulletL[i].degat;
-            }
-
-            if (K.Ia_manage[i].rectangle_C.Intersects(pl.rectangle_C))
-            {
-                pl.vie -= K.Ia_manage[i].damage;
-                AA.Ia_manage.RemoveAt(i);
-            }
-
-        }
-    }
         // collision hero avec missille ou ia avetion game over
         public void hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite)
         {
@@ -398,24 +389,24 @@ namespace Umea_rana
                     sprite.scrore += 30;
                 }
         }
-       
+
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
         {
             for (int i = 0; i < sprite.bulletL.Count; ++i)
                 foreach (vaisseau_IA ai in iamanage.Ia_manage)
                     if (sprite.bulletL[i].rectangle_C.Intersects(ai.rectangle_C))
-                    {  
+                    {
                         ai.vie -= sprite.bulletL[i].degat;
                         sprite.scrore += 100;
-                        sprite.bulletL.RemoveAt(i);                     
+                        sprite.bulletL.RemoveAt(i);
                     }
         }
         #endregion
 
         public void Ovni_vaiss(ref Ovni ovnis, ref sripte_V sprite)
         {
-            
+
             for (int i = 0; i < ovnis.ovni.Count; ++i)
             {
                 if (ovnis.ovni[i].circle.is_in_bound(sprite.rectangle_C))
@@ -437,7 +428,7 @@ namespace Umea_rana
             }
         }
 
-        public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite,ref Platform_manager platform)
+        public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite, ref Platform_manager platform)
         {
 
             foreach (Rectangle rec in boss.ptfort)
@@ -459,7 +450,7 @@ namespace Umea_rana
                 }
                 else
                     boss.tombe = true;
-         
+
         }
     }
 }
