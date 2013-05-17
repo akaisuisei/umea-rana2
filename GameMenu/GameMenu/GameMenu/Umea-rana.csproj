@@ -265,6 +265,7 @@
     <EmbeddedResource Include="Editeur de map\UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LocalizedStrings\LocalizedString.jp.resx" />
     <EmbeddedResource Include="LocalizedStrings\LocalizedString.en.resx" />
     <EmbeddedResource Include="LocalizedStrings\LocalizedString.es.resx" />
     <EmbeddedResource Include="LocalizedStrings\LocalizedString.fi.resx" />

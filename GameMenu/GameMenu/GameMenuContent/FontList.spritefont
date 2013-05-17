@@ -55,6 +55,26 @@ with.
         <Start>&#32;</Start>
         <End>&#254;</End>
       </CharacterRegion>
+      <CharacterRegion>
+        <Start>&#12353;</Start><!--hiragana-->
+        <End>&#12436;</End>
+      </CharacterRegion>
+     <CharacterRegion>
+        <Start>&#12449;</Start> <!-- katakana -->
+        <End>&#12539;</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>日</Start>
+        <End>日</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>本</Start>
+        <End>本</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>語</Start>
+        <End>語</End>
+      </CharacterRegion>
     </CharacterRegions>
   </Asset>
 </XnaContent>
