@@ -21,7 +21,7 @@ namespace Umea_rana
         int X, Y, G_latence = 200, tab;
         Texture2D selection;
         Texture2D test;
-        Rectangle select;
+        Rectangle  select;
         bool intecep, oldintercept;
         /// <summary>
         /// bouton du jeu 
@@ -45,7 +45,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             X = 0;
             Y = 0;
-            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            select = new Rectangle(-30, 0,(int)this.width, (int)this.height); 
             this.tab = tab;
         }
         public void LoadContent(ContentManager Content)
@@ -108,18 +108,15 @@ namespace Umea_rana
                             X = i;
                             Y = j;
                             intecep = true;
-                            break;
+                            break; 
                         }
                     }
                 if (intecep != oldintercept)
-                    if (intecep)
-                        game.menu_cursor.Play();
+                    if(intecep )
+                    game.menu_cursor.Play(); 
                 if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
                 {
-                    if (Y == 0)
-                        Y = rect.GetLength(1) - 1;
-                    else
-                        Y = (Y - 1) % rect.GetLength(1);
+                    Y = (Y - 1) % rect.GetLength(1);
                     if (gameState[X, Y] == null)
                         Y = (Y - 1) % rect.GetLength(1);
                     game.menu_cursor.Play();
@@ -142,9 +139,6 @@ namespace Umea_rana
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
-                    if (X == 0)
-                        X = rect.GetLength(1)-1;
-                    else
                     X = (X - 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X - 1) % rect.GetLength(0);
@@ -152,7 +146,7 @@ namespace Umea_rana
                 }
                 select.Y = rect[X, Y].Y;
                 select.X = rect[X, Y].X - select.Width;
-
+           
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     game.menu_select.Play();
@@ -240,10 +234,7 @@ namespace Umea_rana
                     }
                 if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
                 {
-                    if (Y == 0)
-                        Y = rect.GetLength(1) - 1;
-                    else
-                        Y = (Y - 1) % rect.GetLength(1);
+                    Y = (Y - 1) % rect.GetLength(1);
                     if (gameState[X, Y] == null)
                         Y = (Y - 1) % rect.GetLength(1);
 
@@ -264,17 +255,15 @@ namespace Umea_rana
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
-                    if (X == 0)
-                        X = rect.GetLength(1) - 1;
-                    else
                     X = (X - 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X - 1) % rect.GetLength(0);
+
                 }
 
                 select.Y = rect[X, Y].Y;
                 select.X = rect[X, Y].X - select.Width;
-
+           
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     if (gameState[X, Y] == "SEU")
@@ -325,14 +314,14 @@ namespace Umea_rana
                         game.GetPreviousState();
                     else if (gameState[X, Y] == "Resume")
                         game.ChangeState2(Game1.gameState.Null);
-                    else if (gameState[X, Y] == "Next")
+                            else if (gameState[X, Y] == "Next")
                         game.nextgame();
                     else if (gameState[X, Y] == "Replay")
                         game.replay();
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
 
-                    pause = false;
+                                       pause = false;
                     System.Threading.Thread.Sleep(G_latence);
                 }
             }
@@ -343,12 +332,12 @@ namespace Umea_rana
             for (int i = 0; i < rect.GetLength(0); ++i)
                 for (int j = 0; j < rect.GetLength(1); ++j)
                 {
-                    //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
-                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
+              //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
+                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White  );
 
                 }
 
-            spriteBatch.Draw(selection, select, Color.White);
+            spriteBatch.Draw(selection, select, Color.White );
         }
         public void Dispose()
         {
@@ -356,7 +345,7 @@ namespace Umea_rana
             gameState = null;
             name = null;
             levelname = null;
-            selection.Dispose();
+            selection.Dispose();           
         }
     }
 }
