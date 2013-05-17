@@ -187,7 +187,7 @@
     <value>Fichier d'Image</value>
   </data>
   <data name="inficted_damage" xml:space="preserve">
-    <value>Degat Inflige</value>
+    <value>Dégat Infligé</value>
   </data>
   <data name="Kamikaze" xml:space="preserve">
     <value>Kamikaze</value>
@@ -214,7 +214,7 @@
     <value>Musique</value>
   </data>
   <data name="Music_file" xml:space="preserve">
-    <value>Fichier d'Image</value>
+    <value>Fichier d'Images</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Suivant</value>
@@ -253,7 +253,7 @@
     <value>Défilement Verticale</value>
   </data>
   <data name="Selected_item" xml:space="preserve">
-    <value>Objet Selectionn2</value>
+    <value>Objet Sélectionné</value>
   </data>
   <data name="SEU" xml:space="preserve">
     <value>Shoot'em Up</value>
@@ -283,7 +283,7 @@
     <value>Vie du Boss</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Langage</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
     <value>Nombre de Kamikazes</value>
@@ -305,66 +305,50 @@
   </data>
   <data name="china" xml:space="preserve">
     <value>Chinois</value>
-    <comment>pp</comment>
   </data>
   <data name="difficulty" xml:space="preserve">
     <value>Difficulté</value>
-    <comment>pp</comment>
   </data>
   <data name="easy" xml:space="preserve">
     <value>Facile</value>
-    <comment>pp</comment>
   </data>
   <data name="English" xml:space="preserve">
     <value>Anglais</value>
-    <comment>p</comment>
   </data>
   <data name="Extreme" xml:space="preserve">
-    <value>Extreme</value>
-    <comment>pp</comment>
+    <value>Extrême</value>
   </data>
   <data name="French" xml:space="preserve">
     <value>Français</value>
-    <comment>pp</comment>
   </data>
   <data name="Hard" xml:space="preserve">
     <value>Difficile</value>
-    <comment>pp</comment>
   </data>
   <data name="Highscore" xml:space="preserve">
-    <value>HighScore</value>
-    <comment>pp</comment>
+    <value>Meilleur Score</value>
   </data>
   <data name="japanese" xml:space="preserve">
     <value>Japonais</value>
-    <comment>pp</comment>
   </data>
   <data name="medium" xml:space="preserve">
     <value>Moyen</value>
-    <comment>pp</comment>
   </data>
   <data name="Resolution" xml:space="preserve">
-    <value>Resolution</value>
-    <comment>pp</comment>
+    <value>Résolution</value>
   </data>
   <data name="save_apply" xml:space="preserve">
     <value>Enregistrer/Appliquer</value>
-    <comment>pp</comment>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Score</value>
-    <comment>pp</comment>
   </data>
   <data name="Spanish" xml:space="preserve">
     <value>Espagnol</value>
-    <comment>p</comment>
   </data>
   <data name="Volume_effet_sonore" xml:space="preserve">
     <value>Volume Effet Sonore</value>
-    <comment>pp</comment>
   </data>
   <data name="_default" xml:space="preserve">
     <value>Par défaut</value>
-    <comment>pp</comment>
   </data>
 </root>

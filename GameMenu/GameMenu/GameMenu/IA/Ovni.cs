@@ -137,7 +137,7 @@ namespace Umea_rana
                             else if (ovni[i].rectangle.Bottom > fond.Bottom )
                             {
                                 this.ovni[i].speedY *= -1;
-                                this.ovni[i].rectangle.Y = WindowH - this.ovni[i].rectangle.Height - 5;
+                                this.ovni[i].rectangle.Y = WindowH - this.ovni[i].rectangle.Height - 10;
                             }
 
                         }

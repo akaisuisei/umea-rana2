@@ -26,6 +26,17 @@ namespace Umea_rana
         public bool in_use;
         Color BGcolor;
 
+        /// <summary>
+        /// list box qui permet d afficher le dossier selectionner
+        /// </summary>
+        /// <param name="type">SEU||PLAT</param>
+        /// <param name="x">position x</param>
+        /// <param name="y">position Y</param>
+        /// <param name="_width"> largeur de la boxe en pourcent</param>
+        /// <param name="_height">hauteur de la box en pourcent</param>
+        /// <param name="WindoW">largeur de la fenetre</param>
+        /// <param name="windowH">hauteur de la fenetre</param>
+        /// <param name="tab"></param>
         public Listbox(string type, float x, float y, float _width, float _height, int WindoW, int windowH, int tab)
         {
             int X = (int)(x * (float)WindoW);
@@ -110,10 +121,7 @@ namespace Umea_rana
                     if (!fond.Contains(rectangle[surlig]))
                         for (int i = 0; i < rectangle.Length; ++i)
                             rectangle[i].Y -= rectangle[i].Height;
-
-
                     oldsur = surlig;
-
                 }
                 else if (keyboard.IsKeyUp(Keys.Up) && old.IsKeyDown(Keys.Up))
                 {
@@ -126,10 +134,7 @@ namespace Umea_rana
                             rectangle[i].Y += rectangle[i].Height;
                     oldsur = surlig;
                 }
-
                 color[surlig] = Color.Yellow;// surligner
-
-
                 // selection
                 if ((mouse.LeftButton == ButtonState.Pressed))
                 {
@@ -185,7 +190,7 @@ namespace Umea_rana
             spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Bottom, fond.Width, 1), Color.Black);
             spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
             spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.FlipVertically, 0);
-            spritbach.DrawString(font, "selected Item : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
+            spritbach.DrawString(font, LocalizedStrings.LocalizedString.Selected_item +" : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
         }
         private void Uplist()
         {
@@ -199,7 +204,6 @@ namespace Umea_rana
             {
                 for (int i = 0; i < rectangle.Length; ++i)
                     rectangle[i].Y -= 1;
-
             }
         }
         public void Dispose()

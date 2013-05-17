@@ -193,7 +193,12 @@ namespace Umea_rana
             if (_checkpause)
                 _pause.Draw(spriteBatch);
         }
-
+        /// <summary>
+        /// verifie que l on clique sur aucun objet sur l ecran
+        /// </summary>
+        /// <param name="hello"></param>
+        /// <param name="recM"></param>
+        /// <returns></returns>
         private int existcheck(ref string hello, Rectangle recM)
         {
             for (int i = 0; i < manage_k.Ia_manage.Count; ++i)

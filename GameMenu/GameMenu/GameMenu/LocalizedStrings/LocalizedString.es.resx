@@ -130,16 +130,16 @@
     <value>Asteroide</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>volver</value>
+    <value>Volver</value>
   </data>
   <data name="Background" xml:space="preserve">
-    <value>fondo</value>
+    <value>Fondo</value>
   </data>
   <data name="Background_image" xml:space="preserve">
-    <value>imagen de fondo</value>
+    <value>Imagen de fondo</value>
   </data>
   <data name="Background_speed" xml:space="preserve">
-    <value>velocidad del fondo</value>
+    <value>Velocidad Del Fondo</value>
   </data>
   <data name="bomb" xml:space="preserve">
     <value>Bomba</value>
@@ -148,207 +148,210 @@
     <value>Bonus</value>
   </data>
   <data name="Boss" xml:space="preserve">
-    <value>jefe</value>
+    <value>Jefe</value>
   </data>
   <data name="Bullet_Color" xml:space="preserve">
-    <value>color de la bala</value>
+    <value>Color de la Bala</value>
   </data>
   <data name="Bullet_speed" xml:space="preserve">
-    <value>velocidad de la bala</value>
+    <value>Velocidad de la Bala</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="Comet" xml:space="preserve">
-    <value>cometa</value>
+    <value>Cometa</value>
   </data>
   <data name="Damage" xml:space="preserve">
-    <value>estrago</value>
+    <value>Estrago</value>
   </data>
   <data name="delete" xml:space="preserve">
-    <value>suprimir</value>
+    <value>Suprimir</value>
   </data>
   <data name="Empty" xml:space="preserve">
     <value>Vacío</value>
   </data>
   <data name="existing_directory" xml:space="preserve">
-    <value> expediente existente</value>
+    <value>Expediente Existente</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>dejar</value>
+    <value>Dejar</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>fichero</value>
+    <value>Fichero</value>
   </data>
   <data name="Firerate" xml:space="preserve">
-    <value>cadencia del fuego</value>
+    <value>Cadencia del Fuego</value>
   </data>
   <data name="Image_file" xml:space="preserve">
-    <value> imagen</value>
+    <value> Imagen</value>
   </data>
   <data name="inficted_damage" xml:space="preserve">
-    <value>estrago causado</value>
+    <value>Estrago Causado</value>
   </data>
   <data name="Kamikaze" xml:space="preserve">
     <value>Kamikaze</value>
   </data>
   <data name="level_name" xml:space="preserve">
-    <value>nombre del nivel</value>
+    <value>Nombre delNivel</value>
   </data>
   <data name="Life" xml:space="preserve">
-    <value>vida</value>
+    <value>Vida</value>
   </data>
   <data name="Load" xml:space="preserve">
-    <value>cargar</value>
+    <value>Cargar</value>
   </data>
   <data name="Map_Editor" xml:space="preserve">
-    <value>mapa de juego</value>
+    <value />
+    <comment>b</comment>
   </data>
   <data name="Menu" xml:space="preserve">
-    <value>menú</value>
+    <value>Menú</value>
   </data>
   <data name="missile" xml:space="preserve">
-    <value>misil</value>
+    <value>Misil</value>
   </data>
   <data name="music" xml:space="preserve">
-    <value>música</value>
+    <value>Música</value>
   </data>
   <data name="Music_file" xml:space="preserve">
-    <value>archivo de musica</value>
+    <value>Archivo de Música</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>siguiente</value>
+    <value>Siguiente</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>abrir</value>
+    <value>Abrir</value>
   </data>
   <data name="Option" xml:space="preserve">
-    <value>opción</value>
+    <value>Opción</value>
   </data>
   <data name="PLA" xml:space="preserve">
-    <value>plataforma</value>
+    <value>Plataforma</value>
   </data>
   <data name="Play" xml:space="preserve">
-    <value>jugar</value>
+    <value>Jugar</value>
   </data>
   <data name="player" xml:space="preserve">
-    <value>jugador</value>
+    <value>Jugador</value>
   </data>
   <data name="power" xml:space="preserve">
-    <value>poder</value>
+    <value>Poder</value>
   </data>
   <data name="Replay" xml:space="preserve">
-    <value>volver a jugar</value>
+    <value>Volver a Jugar</value>
   </data>
   <data name="Resume" xml:space="preserve">
-    <value>volver a coger</value>
+    <value>Volver a Coger</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>salvaguardar</value>
+    <value>Salvaguardar</value>
   </data>
   <data name="ScrollingVertical" xml:space="preserve">
-    <value>navegación vertical</value>
+    <value>Navegación Vertical</value>
   </data>
   <data name="Selected_item" xml:space="preserve">
-    <value>objeto seleccionado</value>
+    <value>Objeto Seleccionado</value>
   </data>
   <data name="SEU" xml:space="preserve">
     <value>Shoot'em Up</value>
+    <comment>b</comment>
   </data>
   <data name="Shooter" xml:space="preserve">
-    <value>tirador</value>
+    <value>Tirador</value>
   </data>
   <data name="Sniper" xml:space="preserve">
     <value>Sniper</value>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>velucidad</value>
+    <value>Velucidad</value>
   </data>
   <data name="Sun" xml:space="preserve">
-    <value>sol</value>
+    <value>Sol</value>
   </data>
   <data name="terminated" xml:space="preserve">
-    <value>terminado</value>
+    <value>Terminado</value>
   </data>
   <data name="Trajectory" xml:space="preserve">
-    <value>trayectoria</value>
+    <value>Trayectoria</value>
   </data>
   <data name="UFO" xml:space="preserve">
-    <value>ovni</value>
+    <value>O.V.N.I</value>
   </data>
   <data name="BossLife" xml:space="preserve">
-    <value>Boss life</value>
+    <value>Vida de Jefe</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Lengua</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
-    <value>numero de kamizaze</value>
+    <value>Número de Kamizaze</value>
   </data>
   <data name="nb_iaT" xml:space="preserve">
-    <value>numero de tiradores</value>
+    <value>Número de Tiradores</value>
   </data>
   <data name="nb_iaV" xml:space="preserve">
-    <value>numero de sniper</value>
+    <value>Número de Sniper</value>
+    <comment>b</comment>
   </data>
   <data name="nb_objet" xml:space="preserve">
-    <value>numero de UFO</value>
+    <value>Número de O.V.N.I</value>
   </data>
   <data name="player_life" xml:space="preserve">
-    <value>player life</value>
+    <value>La Vida del Jugador</value>
   </data>
   <data name="Volume_BGM" xml:space="preserve">
     <value>Volume BGM</value>
   </data>
   <data name="Chinese" xml:space="preserve">
-    <value>chino</value>
+    <value>Chino</value>
   </data>
   <data name="difficulty" xml:space="preserve">
-    <value>dificultad</value>
+    <value>Dificultad</value>
   </data>
   <data name="easy" xml:space="preserve">
-    <value>facil</value>
+    <value>Fácil</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>ingles</value>
+    <value>Ingles</value>
   </data>
   <data name="Extreme" xml:space="preserve">
-    <value>extremo</value>
+    <value>Extremo</value>
   </data>
   <data name="French" xml:space="preserve">
-    <value>frances</value>
+    <value>Francés</value>
   </data>
   <data name="Hard" xml:space="preserve">
-    <value>dificil</value>
+    <value>difícil</value>
   </data>
   <data name="Highscore" xml:space="preserve">
-    <value>puntuacion alta</value>
+    <value>Puntuación Alta</value>
   </data>
   <data name="japanese" xml:space="preserve">
-    <value>japones</value>
+    <value>Japónes</value>
   </data>
   <data name="medium" xml:space="preserve">
-    <value>medio</value>
+    <value>Medio</value>
   </data>
   <data name="Resolution" xml:space="preserve">
-    <value>resolucion</value>
+    <value>Resolución</value>
   </data>
   <data name="save_apply" xml:space="preserve">
-    <value>salvaguardar/aplicar</value>
+    <value>Salvaguardar/Aplicar</value>
   </data>
   <data name="Score" xml:space="preserve">
-    <value>puntuacion</value>
+    <value>Puntuación</value>
   </data>
   <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
+    <value>Español</value>
   </data>
   <data name="Volume_effet_sonore" xml:space="preserve">
-    <value>volumen</value>
+    <value>Volumen</value>
   </data>
   <data name="_default" xml:space="preserve">
-    <value>por defecto</value>
+    <value>Por Defecto</value>
   </data>
 </root>

@@ -495,11 +495,11 @@ namespace Umea_rana
             spriteBatch.DrawString(spriteFont, LocalizedString.Extreme, v_difficulte_extreme, color_difficulte_extreme);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Language, langage, color_langue);
-            spriteBatch.DrawString(spriteFont, "Francais", v_fr, color_français);
+            spriteBatch.DrawString(spriteFont, "Fraçais", v_fr, color_français);
             spriteBatch.DrawString(spriteFont, "English", v_eng, color_anglais);
-            spriteBatch.DrawString(spriteFont, "Catalan", v_esp, color_espagnol);
+            spriteBatch.DrawString(spriteFont, "Catalán", v_esp, color_espagnol);
             spriteBatch.DrawString(spriteFont, "Suomi", v_fin, color_finois);
-            spriteBatch.DrawString(spriteFont, "nihongo", v_jap, color_japonais);
+            spriteBatch.DrawString(spriteFont, "Nihongo", v_jap, color_japonais);
             spriteBatch.DrawString(spriteFont, "Chinois", v_cn, color_chinois);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Resolution, resolution, color_resolution);

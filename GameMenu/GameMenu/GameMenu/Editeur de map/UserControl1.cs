@@ -62,6 +62,9 @@ namespace Umea_rana
             manage_T.Dipose();
             manage_V.Dipose();
         }
+        /// <summary>
+        /// windows form pour le SEU
+        /// </summary>
         public UserControl1()
         {
             InitializeComponent();
@@ -100,6 +103,14 @@ namespace Umea_rana
             playlist = new string[4] { "", "", "", "" };
         }
 
+        /// <summary>
+        /// fonction si l on touche un ojet permet sa modification et sa suppression
+        /// </summary>
+        /// <param name="X">position X de la souris</param>
+        /// <param name="y">position Y de la souris</param>
+        /// <param name="touch">l objet toucher</param>
+        /// <param name="spawn">quel ia</param>
+        /// <param name="fond2">fond du jeu</param>
         public void _show(int X, int y, string touch, int spawn, Microsoft.Xna.Framework.Rectangle fond2)
         {
             IHave_control = true;
@@ -210,7 +221,16 @@ namespace Umea_rana
                 EnableControls(ctl.Controls, enable);
             }
         }
-
+        /// <summary>
+        /// copie les manager 
+        /// </summary>
+        /// <param name="manage_T"></param>
+        /// <param name="manage_V"></param>
+        /// <param name="manage_k"></param>
+        /// <param name="keybord"></param>
+        /// <param name="game"></param>
+        /// <param name="scrollM"></param>
+        /// <param name="ovni"></param>
         public void update(ref IA_manager_T manage_T, ref IA_manager_V manage_V, ref IA_manager_K manage_k,
             ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Ovni ovni)
         {
@@ -253,6 +273,13 @@ namespace Umea_rana
             ovni.param(3);
             height = fond.Height;
             width = fond.Width;
+
+        }
+        /// <summary>
+        /// met a defaut les paarametres
+        /// </summary>
+        private void Initialize()
+        {
             life = LocalizedString.Life;
             speed = LocalizedString.Speed;
             couleur = LocalizedString.Bullet_Color;
@@ -291,10 +318,6 @@ namespace Umea_rana
             comete = LocalizedString.Comet;
             sun = LocalizedString.Sun;
             angle = LocalizedString.angle;
-        }
-        private void Initialize()
-        {
-           
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -801,6 +824,10 @@ namespace Umea_rana
             Initialize();
             IHave_control = false;
         }
+        /// <summary>
+        /// verifie la validite des nombre entrer dans la listbox
+        /// </summary>
+        /// <param name="texbox">textbox a actualiser</param>
         private void intcheck(TextBox texbox)
         {
             int res, n = 0;
@@ -828,6 +855,9 @@ namespace Umea_rana
                 texbox.BackColor = System.Drawing.Color.Red;
             }
         }
+        /// <summary>
+        /// charge le fond des jeu perso
+        /// </summary>
         private void scrollingLoad()
         {
             FileStream file;
@@ -866,6 +896,10 @@ namespace Umea_rana
                     scrollingM.texture[2] = Content.Load<Texture2D>("back\\" + _savefile.levelProfile.third_bacground);
 
         }
+        /// <summary>
+        /// verifie si les nom entrer en parametre est bon
+        /// </summary>
+        /// <param name="textbox"></param>
         private void nameCheck(ref TextBox textbox)
         {
             string text = string.Empty;
@@ -884,13 +918,19 @@ namespace Umea_rana
             textbox.Text = filepath;
 
         }
-
+        /// <summary>
+        /// sauvegade le jeu
+        /// </summary>
         private void savegame()
         {
             _savefile.levelProfile.musique = playlist;
             sauve.save_SEU(ref _savefile);
         }
 
+        /// <summary>
+        /// charge un jeu contenu dans le dossier SEU
+        /// </summary>
+        /// <param name="file_name">nom du fichier a charger</param>
         private void loadgame(string file_name)
         {
             sauve.load_SEU(ref file_name, ref _savefile);
@@ -930,7 +970,11 @@ namespace Umea_rana
             listBox1.Items.AddRange(_savefile.levelProfile.musique);
             scrollingLoad();
         }
-
+        /// <summary>
+        /// spprime un ia de la carte
+        /// </summary>
+        /// <param name="spawn"></param>
+        /// <param name="type"></param>
         private void delete(int spawn, string type)
         {
             switch (type)
@@ -963,7 +1007,11 @@ namespace Umea_rana
                     break;
             }
         }
-
+        /// <summary>
+        /// modifie un ia
+        /// </summary>
+        /// <param name="spawn"></param>
+        /// <param name="type"></param>
         private void modif(int spawn, string type)
         {
             if (type == "IA_K")
@@ -1048,6 +1096,10 @@ namespace Umea_rana
 
             }
         }
+        /// <summary>
+        /// ouvr une fenetre de dilogue avec un thread
+        /// </summary>
+        /// <param name="type">musique ou image (m|i)</param>
         private void open_File_dialogue(char type)
         {
             if (!openF)
@@ -1088,6 +1140,9 @@ namespace Umea_rana
 
             }
         }
+        /// <summary>
+        /// ajoute de la musique de dossier
+        /// </summary>
         private void Additem()
         {
             listsong = new List<Song>();
@@ -1120,6 +1175,10 @@ namespace Umea_rana
             }
 
         }
+        /// <summary>
+        /// suprimer le dossier selectionner ds la listbox
+        /// </summary>
+        /// <param name="list"></param>
         private void suppitem(ListBox list)
         {
             string[] res = new string[4] { "", "", "", "" };

@@ -48,6 +48,10 @@ namespace Umea_rana
             select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
             this.tab = tab;
         }
+        /// <summary>
+        /// charge les font et les image utilise
+        /// </summary>
+        /// <param name="Content"></param>
         public void LoadContent(ContentManager Content)
         {
             this.font = Content.Load<SpriteFont>("FontList");
@@ -89,14 +93,29 @@ namespace Umea_rana
             this.name[i, j] = name;
             this.levelname[i, j] = levelname;
         }
+        /// <summary>
+        /// desactive le button du tableau selectionner
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
         public void disable(int i, int j)
         {
             this.rect[i, j] = new Rectangle(0, 0, 0, 0); this.gameState[i, j] = null;
             this.name[i, j] = "";
         }
+        /// <summary>
+        /// mise a jour des button
+        /// </summary>
+        /// <param name="Key">entree clavier actuelle</param>
+        /// <param name="old">entrer clavier anien</param>
+        /// <param name="mouse">entree souris</param>
+        /// <param name="mouse_rec">rectangle de position de la souris</param>
+        /// <param name="game">jeu</param>
+        /// <param name="tab">le chiffre qui defini sur quel tableau on est </param>
+        /// <param name="name1">nom du niveau a lancer</param>
         public void Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
         {
-            if (tab == this.tab)
+            if (tab == this.tab)//si on est sur le bon tableau
             {
                 intecep = false;
 
@@ -109,11 +128,13 @@ namespace Umea_rana
                             Y = j;
                             intecep = true;
                             break;
+                            /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
                         }
                     }
                 if (intecep != oldintercept)
                     if (intecep)
                         game.menu_cursor.Play();
+                /*si on emet un son kan on change de boutton*/
                 if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
                 {
                     if (Y == 0)
@@ -123,15 +144,15 @@ namespace Umea_rana
                     if (gameState[X, Y] == null)
                         Y = (Y - 1) % rect.GetLength(1);
                     game.menu_cursor.Play();
-
+                    //decal la selection vers le haut
                 }
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
                 {
                     Y = (Y + 1) % rect.GetLength(1);
-
                     if (gameState[X, Y] == null)
                         Y = (Y + 1) % rect.GetLength(1);
                     game.menu_cursor.Play();
+                    //decal la selection vers la gauche
                 }
                 else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
                 {
@@ -139,22 +160,25 @@ namespace Umea_rana
                     if (gameState[X, Y] == null)
                         X = (X + 1) % rect.GetLength(0);
                     game.menu_cursor.Play();
+                    //decal la selection vers la droite
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
                     if (X == 0)
-                        X = rect.GetLength(1)-1;
+                        X = rect.GetLength(1) - 1;
                     else
-                    X = (X - 1) % rect.GetLength(0);
+                        X = (X - 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X - 1) % rect.GetLength(0);
                     game.menu_cursor.Play();
+                    //decal la selection vers la gauche
                 }
                 select.Y = rect[X, Y].Y;
                 select.X = rect[X, Y].X - select.Width;
 
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
+                    /*si on clique sur un button on va voir a quoi il correcpond et le met en action*/
                     game.menu_select.Play();
                     if (gameState[X, Y] == "SEU")
                     {
@@ -192,12 +216,12 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "LevelEdit")
                     {
-                        if (name1 != string.Empty)
-                            game.level = name1;
-                        else
-                            game.level = name[X, Y];
-                        if (game.level != "LevelEdit")
-                            game.ChangeState(Game1.gameState.leveleditor);
+                        if (name1 != string.Empty && name1!= null)
+                            if (game.level != "LevelEdit")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.leveleditor);
+                            }
                     }
                     else if (gameState[X, Y] == "LevelSelect_P")
                         game.ChangeState(Game1.gameState.level_Pselect);
@@ -222,6 +246,19 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
+
+
+        /// <summary>
+        /// mise a jour des button
+        /// </summary>
+        /// <param name="Key">entree clavier actuelle</param>
+        /// <param name="old">entrer clavier anien</param>
+        /// <param name="mouse">entree souris</param>
+        /// <param name="mouse_rec">rectangle de position de la souris</param>
+        /// <param name="game">jeu</param>
+        /// <param name="tab">le chiffre qui defini sur quel tableau on est </param>
+        /// <param name="name1">nom du niveau a lancer</param>
+        /// <param name="pause">pause activee</param>
         public void Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1, ref bool pause)
         {
             if (tab == this.tab)
@@ -267,7 +304,7 @@ namespace Umea_rana
                     if (X == 0)
                         X = rect.GetLength(1) - 1;
                     else
-                    X = (X - 1) % rect.GetLength(0);
+                        X = (X - 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X - 1) % rect.GetLength(0);
                 }
@@ -345,9 +382,7 @@ namespace Umea_rana
                 {
                     //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
-
                 }
-
             spriteBatch.Draw(selection, select, Color.White);
         }
         public void Dispose()

@@ -150,6 +150,9 @@
   <data name="Boss" xml:space="preserve">
     <value>Boss</value>
   </data>
+  <data name="BossLife" xml:space="preserve">
+    <value>Boss life</value>
+  </data>
   <data name="Bullet_Color" xml:space="preserve">
     <value>Bullet's Color</value>
   </data>
@@ -158,6 +161,10 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>Chinese</value>
+    <comment>pp</comment>
   </data>
   <data name="Comet" xml:space="preserve">
     <value>Comet</value>
@@ -168,8 +175,20 @@
   <data name="delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+    <comment>pp</comment>
+  </data>
+  <data name="easy" xml:space="preserve">
+    <value>Easy</value>
+    <comment>pp</comment>
+  </data>
   <data name="Empty" xml:space="preserve">
     <value>Empty</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+    <comment>p</comment>
   </data>
   <data name="existing_directory" xml:space="preserve">
     <value>Existing Directory</value>
@@ -177,11 +196,31 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="Extreme" xml:space="preserve">
+    <value>Extreme</value>
+    <comment>pp</comment>
+  </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
   <data name="Firerate" xml:space="preserve">
-    <value>Fire rate</value>
+    <value>R.P.M</value>
+    <comment>Fire Rate</comment>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value>French</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Full_screen" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>Hard</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Highscore" xml:space="preserve">
+    <value>High Score</value>
+    <comment>pp</comment>
   </data>
   <data name="Image_file" xml:space="preserve">
     <value>Image Files</value>
@@ -189,8 +228,15 @@
   <data name="inficted_damage" xml:space="preserve">
     <value>Inflicted Damage</value>
   </data>
+  <data name="japanese" xml:space="preserve">
+    <value>japanese</value>
+    <comment>pp</comment>
+  </data>
   <data name="Kamikaze" xml:space="preserve">
     <value>Kamikaze</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="level_name" xml:space="preserve">
     <value>Level Name</value>
@@ -204,6 +250,10 @@
   <data name="Map_Editor" xml:space="preserve">
     <value>Map Editor</value>
   </data>
+  <data name="medium" xml:space="preserve">
+    <value>Medium</value>
+    <comment>pp</comment>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
@@ -215,6 +265,18 @@
   </data>
   <data name="Music_file" xml:space="preserve">
     <value>Music Files</value>
+  </data>
+  <data name="nb_IAK" xml:space="preserve">
+    <value>Number of Kamikazes</value>
+  </data>
+  <data name="nb_iaT" xml:space="preserve">
+    <value>Number of Shooters</value>
+  </data>
+  <data name="nb_iaV" xml:space="preserve">
+    <value>Number of Snipers</value>
+  </data>
+  <data name="nb_objet" xml:space="preserve">
+    <value>Number of U.F.O</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
@@ -237,17 +299,32 @@
   <data name="player" xml:space="preserve">
     <value>Player</value>
   </data>
+  <data name="player_life" xml:space="preserve">
+    <value>Player Life</value>
+  </data>
   <data name="power" xml:space="preserve">
     <value>Power</value>
   </data>
   <data name="Replay" xml:space="preserve">
     <value>Replay</value>
   </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Resolution</value>
+    <comment>pp</comment>
+  </data>
   <data name="Resume" xml:space="preserve">
     <value>Resume</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="save_apply" xml:space="preserve">
+    <value>Save/Apply</value>
+    <comment>pp</comment>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+    <comment>pp</comment>
   </data>
   <data name="ScrollingVertical" xml:space="preserve">
     <value>Scrolling</value>
@@ -264,6 +341,10 @@
   <data name="Sniper" xml:space="preserve">
     <value>Sniper</value>
   </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Spanish</value>
+    <comment>p</comment>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
   </data>
@@ -279,95 +360,15 @@
   <data name="UFO" xml:space="preserve">
     <value>U.F.O</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
   <data name="Volume_BGM" xml:space="preserve">
     <value>Volume BGM</value>
-  </data>
-  <data name="BossLife" xml:space="preserve">
-    <value>Boss life</value>
-  </data>
-  <data name="nb_IAK" xml:space="preserve">
-    <value>Number of Kamikazes</value>
-  </data>
-  <data name="nb_iaT" xml:space="preserve">
-    <value>Number of Shooter</value>
-  </data>
-  <data name="nb_iaV" xml:space="preserve">
-    <value>Number of Snipers</value>
-  </data>
-  <data name="nb_objet" xml:space="preserve">
-    <value>Number of U.F.O</value>
-  </data>
-  <data name="player_life" xml:space="preserve">
-    <value>Player Life</value>
-  </data>
-  <data name="Highscore" xml:space="preserve">
-    <value>High Score</value>
-    <comment>pp</comment>
-  </data>
-  <data name="Score" xml:space="preserve">
-    <value>Score</value>
-    <comment>pp</comment>
-  </data>
-  <data name="Chinese" xml:space="preserve">
-    <value>Chinese</value>
-    <comment>pp</comment>
-  </data>
-  <data name="difficulty" xml:space="preserve">
-    <value>difficulty</value>
-    <comment>pp</comment>
-  </data>
-  <data name="easy" xml:space="preserve">
-    <value>Easy</value>
-    <comment>pp</comment>
-  </data>
-  <data name="English" xml:space="preserve">
-    <value>English</value>
-    <comment>p</comment>
-  </data>
-  <data name="Extreme" xml:space="preserve">
-    <value>Extreme</value>
-    <comment>pp</comment>
-  </data>
-  <data name="French" xml:space="preserve">
-    <value>French</value>
-    <comment>pp</comment>
-  </data>
-  <data name="Full_screen" xml:space="preserve">
-    <value>Full Screen</value>
-  </data>
-  <data name="Hard" xml:space="preserve">
-    <value>Hard</value>
-    <comment>pp</comment>
-  </data>
-  <data name="japanese" xml:space="preserve">
-    <value>japanese</value>
-    <comment>pp</comment>
-  </data>
-  <data name="medium" xml:space="preserve">
-    <value>Medium</value>
-    <comment>pp</comment>
-  </data>
-  <data name="Resolution" xml:space="preserve">
-    <value>Resolution</value>
-    <comment>pp</comment>
-  </data>
-  <data name="save_apply" xml:space="preserve">
-    <value>Save/apply</value>
-    <comment>pp</comment>
-  </data>
-  <data name="Spanish" xml:space="preserve">
-    <value>Spanish</value>
-    <comment>p</comment>
   </data>
   <data name="Volume_effet_sonore" xml:space="preserve">
     <value>BGM volume</value>
     <comment>pp</comment>
   </data>
   <data name="_default" xml:space="preserve">
-    <value>default</value>
+    <value>Default</value>
     <comment>pp</comment>
   </data>
 </root>
