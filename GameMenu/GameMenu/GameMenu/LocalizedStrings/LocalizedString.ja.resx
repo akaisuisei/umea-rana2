@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>くわえる</value>
+  </data>
+  <data name="AI_align" xml:space="preserve">
+    <value />
+  </data>
+  <data name="angle" xml:space="preserve">
+    <value>かくど</value>
+  </data>
+  <data name="Asteroid" xml:space="preserve">
+    <value>しょうわくせい</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>もどる</value>
+  </data>
+  <data name="Background" xml:space="preserve">
+    <value>はいけい</value>
+  </data>
+  <data name="Background_image" xml:space="preserve">
+    <value>はいけいのimage</value>
+  </data>
+  <data name="Background_speed" xml:space="preserve">
+    <value>はいけいのそくど</value>
+  </data>
+  <data name="bomb" xml:space="preserve">
+    <value>ばくだん</value>
+  </data>
+  <data name="bonus" xml:space="preserve">
+    <value>ボーナス</value>
+  </data>
+  <data name="Boss" xml:space="preserve">
+    <value>ボス</value>
+  </data>
+  <data name="Bullet_Color" xml:space="preserve">
+    <value>じつだんのいろ</value>
+  </data>
+  <data name="Bullet_speed" xml:space="preserve">
+    <value>じつだんのそくど</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>とりけす</value>
+  </data>
+  <data name="Comet" xml:space="preserve">
+    <value>すいせい</value>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>そんがい</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>しょうきょ</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>なかみのない</value>
+  </data>
+  <data name="existing_directory" xml:space="preserve">
+    <value>あるディレクトリー</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>でぐち</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="Firerate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image_file" xml:space="preserve">
+    <value>imageのファイル</value>
+  </data>
+  <data name="inficted_damage" xml:space="preserve">
+    <value>そんがいを加える</value>
+  </data>
+  <data name="Kamikaze" xml:space="preserve">
+    <value>かみかぜ</value>
+  </data>
+  <data name="level_name" xml:space="preserve">
+    <value>レベルのんまえ</value>
+  </data>
+  <data name="Life" xml:space="preserve">
+    <value>いのち</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>ロード</value>
+  </data>
+  <data name="Map_Editor" xml:space="preserve">
+    <value>ちずのへんしゅう</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>メニュー</value>
+  </data>
+  <data name="missile" xml:space="preserve">
+    <value>ミサイル</value>
+  </data>
+  <data name="music" xml:space="preserve">
+    <value>おんがく</value>
+  </data>
+  <data name="Music_file" xml:space="preserve">
+    <value>おんがのファイルく</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>つぎ</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>あける</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="PLA" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>する</value>
+  </data>
+  <data name="player" xml:space="preserve">
+    <value>ひと</value>
+  </data>
+  <data name="power" xml:space="preserve">
+    <value>ちから</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>もいかいするか？</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>つづく</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>セーブする</value>
+  </data>
+  <data name="ScrollingVertical" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Selected_item" xml:space="preserve">
+    <value>えらぶこうもく</value>
+  </data>
+  <data name="SEU" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Shooter" xml:space="preserve">
+    <value>いるひと</value>
+  </data>
+  <data name="Sniper" xml:space="preserve">
+    <value>そげき</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>はやさ</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="terminated" xml:space="preserve">
+    <value>おわり</value>
+  </data>
+  <data name="Trajectory" xml:space="preserve">
+    <value>きどう</value>
+  </data>
+  <data name="UFO" xml:space="preserve">
+    <value>みかくにんひこうもの</value>
+  </data>
+  <data name="BossLife" xml:space="preserve">
+    <value>ボスのいのち</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>げんご</value>
+  </data>
+  <data name="nb_IAK" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nb_iaT" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nb_iaV" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nb_objet" xml:space="preserve">
+    <value />
+  </data>
+  <data name="player_life" xml:space="preserve">
+    <value>ひとのいのち</value>
+  </data>
+  <data name="Volume_BGM" xml:space="preserve">
+    <value />
+  </data>
+  <data name="china" xml:space="preserve">
+    <value>ペキンかんわ</value>
+  </data>
+  <data name="difficulty" xml:space="preserve">
+    <value>こんなん</value>
+  </data>
+  <data name="easy" xml:space="preserve">
+    <value>らく</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Extreme" xml:space="preserve">
+    <value>しょたけん</value>
+  </data>
+  <data name="French" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Hard" xml:space="preserve">
+    <value>たけん</value>
+  </data>
+  <data name="Highscore" xml:space="preserve">
+    <value />
+  </data>
+  <data name="japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>かいぞうど</value>
+  </data>
+  <data name="save_apply" xml:space="preserve">
+    <value>セーブする/</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>スコア</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>スペイン</value>
+  </data>
+  <data name="Volume_effet_sonore" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_default" xml:space="preserve">
+    <value>きてい</value>
+  </data>
+</root>

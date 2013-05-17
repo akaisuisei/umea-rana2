@@ -175,7 +175,7 @@ namespace Umea_rana
                     color_finois = Color.White;
                     select_langue = 3;
                     break;
-                case "_jap":
+                case "ja-JP":
                     color_japonais = Color.White;
                     select_langue = 4;
                     break;
@@ -355,6 +355,7 @@ namespace Umea_rana
                                 color_japonais = Color.White;
                                 color_chinois = Color.BlueViolet;
                                 color_finois = Color.BlueViolet;
+                                langue = "ja-JP";
                                 break;
                             case 5:
                                 color_japonais = Color.BlueViolet;

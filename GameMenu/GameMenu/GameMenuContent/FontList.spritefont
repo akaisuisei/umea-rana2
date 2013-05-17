@@ -75,6 +75,14 @@ with.
         <Start>語</Start>
         <End>語</End>
       </CharacterRegion>
+      <CharacterRegion>
+        <Start>英</Start>
+        <End>英</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ー</Start>
+        <End>ー</End>
+      </CharacterRegion>
     </CharacterRegions>
   </Asset>
 </XnaContent>
