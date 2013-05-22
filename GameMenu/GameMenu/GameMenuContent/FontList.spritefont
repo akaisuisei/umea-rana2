@@ -83,6 +83,26 @@ with.
         <Start>ー</Start>
         <End>ー</End>
       </CharacterRegion>
+      <CharacterRegion>
+        <Start>番</Start>
+        <End>番</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>一</Start>
+        <End>一</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>数</Start>
+        <End>数</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>物</Start>
+        <End>物</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>音</Start>
+        <End>音</End>
+      </CharacterRegion>
     </CharacterRegions>
   </Asset>
 </XnaContent>

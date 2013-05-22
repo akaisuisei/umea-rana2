@@ -496,7 +496,7 @@ namespace Umea_rana
             spriteBatch.DrawString(spriteFont, LocalizedString.Extreme, v_difficulte_extreme, color_difficulte_extreme);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Language, langage, color_langue);
-            spriteBatch.DrawString(spriteFont, "Fraçais", v_fr, color_français);
+            spriteBatch.DrawString(spriteFont, "Français", v_fr, color_français);
             spriteBatch.DrawString(spriteFont, "English", v_eng, color_anglais);
             spriteBatch.DrawString(spriteFont, "Catalán", v_esp, color_espagnol);
             spriteBatch.DrawString(spriteFont, "Suomi", v_fin, color_finois);

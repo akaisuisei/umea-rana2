@@ -121,7 +121,7 @@
     <value>くわえる</value>
   </data>
   <data name="AI_align" xml:space="preserve">
-    <value />
+    <value>てきのせいれつ</value>
   </data>
   <data name="angle" xml:space="preserve">
     <value>かくど</value>
@@ -136,7 +136,7 @@
     <value>はいけい</value>
   </data>
   <data name="Background_image" xml:space="preserve">
-    <value>はいけいのimage</value>
+    <value>はいけいのしゃぞう</value>
   </data>
   <data name="Background_speed" xml:space="preserve">
     <value>はいけいのそくど</value>
@@ -181,10 +181,10 @@
     <value>ファイル</value>
   </data>
   <data name="Firerate" xml:space="preserve">
-    <value />
+    <value>ほうかのわりあい</value>
   </data>
   <data name="Image_file" xml:space="preserve">
-    <value>imageのファイル</value>
+    <value>しゃぞうのファイル</value>
   </data>
   <data name="inficted_damage" xml:space="preserve">
     <value>そんがいを加える</value>
@@ -241,7 +241,7 @@
     <value>ちから</value>
   </data>
   <data name="Replay" xml:space="preserve">
-    <value>もいかいするか？</value>
+    <value>もいかいするか?</value>
   </data>
   <data name="Resume" xml:space="preserve">
     <value>つづく</value>
@@ -250,13 +250,13 @@
     <value>セーブする</value>
   </data>
   <data name="ScrollingVertical" xml:space="preserve">
-    <value />
+    <value>すいちょくスクロール</value>
   </data>
   <data name="Selected_item" xml:space="preserve">
     <value>えらぶこうもく</value>
   </data>
   <data name="SEU" xml:space="preserve">
-    <value />
+    <value>かれらをうつのガム</value>
   </data>
   <data name="Shooter" xml:space="preserve">
     <value>いるひと</value>
@@ -286,22 +286,22 @@
     <value>げんご</value>
   </data>
   <data name="nb_IAK" xml:space="preserve">
-    <value />
+    <value>かみかぜの数の数</value>
   </data>
   <data name="nb_iaT" xml:space="preserve">
-    <value />
+    <value>シューターの数</value>
   </data>
   <data name="nb_iaV" xml:space="preserve">
-    <value />
+    <value>そげきへいの数</value>
   </data>
   <data name="nb_objet" xml:space="preserve">
-    <value />
+    <value>物の数</value>
   </data>
   <data name="player_life" xml:space="preserve">
     <value>ひとのいのち</value>
   </data>
   <data name="Volume_BGM" xml:space="preserve">
-    <value />
+    <value>はいけいのボリューム</value>
   </data>
   <data name="china" xml:space="preserve">
     <value>ペキンかんわ</value>
@@ -313,31 +313,31 @@
     <value>らく</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value />
+    <value>英語</value>
   </data>
   <data name="Extreme" xml:space="preserve">
     <value>しょたけん</value>
   </data>
   <data name="French" xml:space="preserve">
-    <value />
+    <value>フランス語</value>
   </data>
   <data name="Hard" xml:space="preserve">
     <value>たけん</value>
   </data>
   <data name="Highscore" xml:space="preserve">
-    <value />
+    <value>一番スコア</value>
   </data>
   <data name="japanese" xml:space="preserve">
     <value>日本語</value>
   </data>
   <data name="medium" xml:space="preserve">
-    <value />
+    <value>へいきん</value>
   </data>
   <data name="Resolution" xml:space="preserve">
     <value>かいぞうど</value>
   </data>
   <data name="save_apply" xml:space="preserve">
-    <value>セーブする/</value>
+    <value>セーブする/あてる</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>スコア</value>
@@ -345,10 +345,10 @@
   <data name="Spanish" xml:space="preserve">
     <value>スペイン</value>
   </data>
-  <data name="Volume_effet_sonore" xml:space="preserve">
-    <value />
-  </data>
   <data name="_default" xml:space="preserve">
     <value>きてい</value>
+  </data>
+  <data name="Volume_effet_sonore" xml:space="preserve">
+    <value>こうか音のボリューム</value>
   </data>
 </root>
