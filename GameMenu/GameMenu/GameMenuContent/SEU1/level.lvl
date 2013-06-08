@@ -65,7 +65,7 @@
     <next_level>PLA1</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>3</fc_speed>
-    <second_background>fond2</second_background>
+    <second_background>cloud</second_background>
     <playerLife>30</playerLife>
     <player_speed>3</player_speed>
     <firerate>30</firerate>

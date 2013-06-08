@@ -79,6 +79,23 @@ namespace Umea_rana
             _vecteur.Normalize();
             return (_vecteur);
         }
+        protected Vector2 vise(objet sprt,objet perso2, ref Rectangle rectangle)
+        {
+            Vector2 _vecteur;
+            int distance1= sprt.rectangle_C.Center .Y-rectangle.Center.Y +sprt.rectangle_C.Center .X-rectangle.Center.X ;
+            int dis2= perso2.rectangle_C.Center .Y-rectangle.Center.Y +perso2.rectangle_C.Center .X-rectangle.Center.X ;
+            if(Math.Min (distance1,dis2 )==distance1 )
+            {
+            _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
+            _vecteur.Y = rectangle.Center.Y - sprt.rectangle.Center.Y;
+            }
+            else{
+                    _vecteur.X = -rectangle.Center.X + perso2.rectangle.Center.X;
+            _vecteur.Y = rectangle.Center.Y - perso2.rectangle.Center.Y;
+            }
+            _vecteur.Normalize();
+            return (_vecteur);
+        }
 
         protected void moveH(ref int i)
         {

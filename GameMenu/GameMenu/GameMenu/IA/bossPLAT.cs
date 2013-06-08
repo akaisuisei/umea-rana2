@@ -114,16 +114,16 @@ namespace Umea_rana
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
                     ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("IA/Light");
-                        ptforttexture = content.Load<Texture2D>("pt");
+                    this.texture = content.Load<Texture2D>("Boss/Light");
+                    ptforttexture = content.Load<Texture2D>("Boss/pt");
                     ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 100;
                     colunm = 100;
                     break;
                 case '2':
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("IA/Cascade");
-                    ptforttexture = content.Load<Texture2D>("note");
+                    this.texture = content.Load<Texture2D>("Boss/Cascade");
+                    ptforttexture = content.Load<Texture2D>("Boss/note");
                     ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 150;
                     colunm = 150;
@@ -298,8 +298,6 @@ namespace Umea_rana
                 sp.Draw(ptforttexture , r, Color.White );
 
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
-
-
         }
 
     }

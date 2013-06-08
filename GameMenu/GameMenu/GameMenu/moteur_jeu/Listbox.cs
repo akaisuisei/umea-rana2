@@ -24,7 +24,7 @@ namespace Umea_rana
         int selected, oldselected, surlig, oldsur, tab;
         public string selectedItem;
         public bool in_use;
-        Color BGcolor;
+        Color BGcolor, enablecolor, disablecolor;
 
         /// <summary>
         /// list box qui permet d afficher le dossier selectionner
@@ -58,14 +58,15 @@ namespace Umea_rana
             left = new Rectangle(X, Y, right.Width, right.Height);
 
             fond = new Rectangle(X + right.Width, Y + Top.Height, width - right.Width - left.Width, height - 2 * height / 10);
-            UP = new Rectangle(right.X, Y + 10, width / 10, height / 10);
+            UP = new Rectangle(right.X, Y + 2, width / 10, height / 10);
             Down = new Rectangle(width + X - width / 10, Y + height - height / 10, width / 10, height / 10);
             for (int i = 0; i < level.Length; ++i)
             {
                 rectangle[i] = new Rectangle(X + right.Width, Y + height / 10 * (i) + height / 10, width - 2 * right.Width, height / 10);
                 color[i] = Color.White;
             }
-            BGcolor = Color.DarkSlateGray;
+            disablecolor  = new Color(103,103,103,125);
+            enablecolor = Color.AliceBlue;
             this.tab = tab;
         }
 
@@ -73,7 +74,7 @@ namespace Umea_rana
         {
             this.font = Content.Load<SpriteFont>("FontList");
             this.fondT = Content.Load<Texture2D>("ListBoxBG");
-            this.fleche = Content.Load<Texture2D>("fleche");
+            this.fleche = Content.Load<Texture2D>("Menu/fleche");
         }
 
         public void Update(ref KeyboardState keyboard, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref int tab)
@@ -98,7 +99,7 @@ namespace Umea_rana
 
             if (in_use)
             {
-                BGcolor = Color.LightSlateGray;
+                BGcolor = enablecolor;
                 for (int i = 0; i < rectangle.Length; ++i)
                 {
                     if (mouse_rec.Intersects(rectangle[i]))
@@ -163,12 +164,12 @@ namespace Umea_rana
                 color[selected] = Color.Azure;
             }
             else
-                BGcolor = Color.DarkSlateGray;
+                BGcolor = disablecolor ;
         }
 
         public void Draw(SpriteBatch spritbach)
         {
-            spritbach.Draw(fondT, fond, Color.White);
+            spritbach.Draw(fondT, fond, new Color (255,255,255,50));
             for (int i = 0; i < rectangle.Length; ++i)
             {
                 if (fond.Contains(rectangle[i]))
@@ -189,8 +190,8 @@ namespace Umea_rana
             spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Top, fond.Width, 1), Color.Black);
             spritbach.Draw(fondT, new Rectangle(fond.Left, fond.Bottom, fond.Width, 1), Color.Black);
             spritbach.Draw(fleche, UP, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
-            spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.FlipVertically, 0);
-            spritbach.DrawString(font, LocalizedStrings.LocalizedString.Selected_item +" : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
+            spritbach.Draw(fleche, Down, new Rectangle(0, 0, fleche.Width, fleche.Height), Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+            spritbach.DrawString(font, LocalizedStrings.LocalizedString.Selected_item + " : " + selectedItem, new Vector2(Top.X + right.Width, Top.Y), Color.Black);
         }
         private void Uplist()
         {

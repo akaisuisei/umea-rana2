@@ -63,8 +63,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="back\fond2.png">
-      <Name>fond2</Name>
+    <Compile Include="back\cloud.png">
+      <Name>cloud</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -119,17 +119,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\naruto.png">
+    <Compile Include="IA\BandW\naruto.png">
       <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="IA\eve.png">
+    <Compile Include="IA\BandW\eve.png">
       <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="IA\tuc_jaune.png">
+    <Compile Include="IA\BandW\tuc_jaune.png">
       <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -144,13 +144,13 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
-    <Compile Include="level1\fond_niv1.jpg">
-      <Name>fond_niv1</Name>
+    <Compile Include="PLA1\fond.jpg">
+      <Name>fond</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="level1\platform.png">
-      <Name>platform</Name>
+    <Compile Include="platform\black.png">
+      <Name>black</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -239,77 +239,77 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="level1\testt_2.png">
-      <Name>testt_2</Name>
+    <Compile Include="PLA2\fond.png">
+      <Name>fond</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\eve_couleur.png">
-      <Name>eve_couleur</Name>
+    <Compile Include="IA\color\eve.png">
+      <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\naruto_couleur.png">
-      <Name>naruto_couleur</Name>
+    <Compile Include="IA\color\naruto.png">
+      <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\tuc_jaune_couleur.png">
-      <Name>tuc_jaune_couleur</Name>
+    <Compile Include="IA\color\tuc_jaune.png">
+      <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fleche.png">
+    <Compile Include="Menu\fleche.png">
       <Name>fleche</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\Light.PNG">
+    <Compile Include="Boss\Light.PNG">
       <Name>Light</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\Cascade.png">
+    <Compile Include="Boss\Cascade.png">
       <Name>Cascade</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\house.png">
+    <Compile Include="IA\color\house.png">
       <Name>house</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="game.jpg">
-      <Name>game</Name>
+    <Compile Include="Menu\gamewin.jpg">
+      <Name>gamewin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="note.png">
+    <Compile Include="Boss\note.png">
       <Name>note</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pt.png">
+    <Compile Include="Boss\pt.png">
       <Name>pt</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -329,6 +329,7 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

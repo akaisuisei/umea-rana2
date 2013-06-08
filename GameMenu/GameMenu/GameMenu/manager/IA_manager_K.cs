@@ -35,21 +35,38 @@ namespace Umea_rana
             this.window_W = window_W;
         }
 
-        public void Update(ref sripte_V sprite, ref int gametime)
+        public void Update(ref spripte_V sprite,ref spripte_V perso2, ref int gametime)
         {
+            int dis1, dis2;
             for (int i = 0; i < ia_manage.Count; ++i)
             {
                 if (ia_manage[i]. timer_lunch <= gametime)
                 {
                     ia_manage[i].Update_rec_collision();
-                    if (ia_manage[i].rectangle_C.Center.X > sprite.rectangle_C.Center.X + 9)
-                        ia_manage[i].rectangle.X -= ia_manage[i].Speed ;
+                    dis2 = perso2.rectangle_C.Center.Y -ia_manage[i]. rectangle.Center.Y + perso2.rectangle_C.Center.X -ia_manage[i]. rectangle.Center.X;
+                    dis1 = sprite.rectangle_C.Center.Y - ia_manage[i].rectangle.Center.Y + sprite.rectangle_C.Center.X - ia_manage[i].rectangle.Center.X;
+                if (Math.Min (dis1,dis2 )==dis1 )
+                    {
+                        if (ia_manage[i].rectangle_C.Center.X > sprite.rectangle_C.Center.X + 9)
+                            ia_manage[i].rectangle.X -= ia_manage[i].Speed;
+                        else
+                            ia_manage[i].rectangle.X += ia_manage[i].Speed;
+                        if (ia_manage[i].rectangle_C.Center.Y > sprite.rectangle_C.Center.Y + 9)
+                            ia_manage[i].rectangle.Y -= ia_manage[i].Speed;
+                        else
+                            ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    }
                     else
-                        ia_manage[i].rectangle.X += ia_manage[i].Speed ;
-                    if (ia_manage[i].rectangle_C.Center.Y > sprite.rectangle_C.Center.Y + 9)
-                        ia_manage[i].rectangle.Y -= ia_manage[i].Speed;
-                    else
-                        ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    {
+                        if (ia_manage[i].rectangle_C.Center.X > perso2.rectangle_C.Center.X + 9)
+                            ia_manage[i].rectangle.X -= ia_manage[i].Speed;
+                        else
+                            ia_manage[i].rectangle.X += ia_manage[i].Speed;
+                        if (ia_manage[i].rectangle_C.Center.Y > perso2.rectangle_C.Center.Y + 9)
+                            ia_manage[i].rectangle.Y -= ia_manage[i].Speed;
+                        else
+                            ia_manage[i].rectangle.Y += ia_manage[i].Speed;
+                    }
                 }
                 remove(ref i);
             }

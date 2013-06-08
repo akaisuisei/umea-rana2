@@ -17,7 +17,7 @@ namespace Umea_rana
     class Editeur_MapVV : GameState
     {
         //  Scrolling scrolling1;
-        sripte_V vaisseau;
+        spripte_V vaisseau;
 
         KeyboardState oldkey;
         Texture2D/* bacgkround1,*/ aster_t, planet1, star;
@@ -92,7 +92,7 @@ namespace Umea_rana
             manage_k = new IA_manager_K(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2"), new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
 
             //intancie le vaisseau
-            vaisseau = new sripte_V(
+            vaisseau = new spripte_V(
                 new Rectangle(0, 0, taille_sprt, taille_sprt), fond, 1);
             vaisseau.Load(Content, T_sprite);
             ovni = new Ovni(width, height);
@@ -145,7 +145,7 @@ namespace Umea_rana
                     if (user.IHave_control)
                         user.Hide();
                 _pause.checkpause(keyboard, ref _checkpause);
-                latence = 30;
+           
 
             }
             

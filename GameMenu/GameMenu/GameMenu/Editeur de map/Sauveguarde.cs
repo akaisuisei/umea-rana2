@@ -145,7 +145,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_level_SEU(ContentManager Content, ref string level, ref string next, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref sripte_V sprite, ref Ovni ovni)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref spripte_V sprite, ref Ovni ovni)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -182,7 +182,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager Content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref sripte_V sprite, ref Ovni ovni)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni)
         {
             savefile savefile = new savefile();
             load_SEU(ref level, ref savefile);

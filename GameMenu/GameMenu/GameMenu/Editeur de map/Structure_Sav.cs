@@ -49,7 +49,7 @@ namespace Umea_rana
         public int damage;
         public int bullet_speed;
         public string[] musique;
-       
+        public string IAcolor;       
     }
     public struct Bonus
     {

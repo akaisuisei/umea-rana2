@@ -27,7 +27,6 @@ namespace Umea_rana
         KeyboardState oldkey;
 
         _Pause _pause;
-        int latence = 0;
         bool _checkpause = false;
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
@@ -54,16 +53,16 @@ namespace Umea_rana
             height = graphics.PreferredBackBufferHeight;
             _pause.initbutton(ref level);
             //background
-            backgroundT = Content.Load<Texture2D>("level1/testt_2");
+            backgroundT = Content.Load<Texture2D>("PLA2/fond");
             //sprite brouillon
             alllenT = Content.Load<Texture2D>("hero//yoh");
             //platfom
-            platform_t = Content.Load<Texture2D>("level1//platform");
+            platform_t = Content.Load<Texture2D>("platform//black");
             //ia
             aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
-            naruto_stalker = Content.Load<Texture2D>("IA//naruto_couleur");
-            eve = Content.Load<Texture2D>("IA//eve_couleur");
-            truc_jaune = Content.Load<Texture2D>("IA//tuc_jaune_couleur");
+            naruto_stalker = Content.Load<Texture2D>("IA//" + "color" + "//" + "naruto");
+            eve = Content.Load<Texture2D>("IA//"+"color"+"//"+"eve");
+            truc_jaune = Content.Load<Texture2D>("IA//" + "color" + "//" + "tuc_jaune");
             //boss
 
 
@@ -127,7 +126,7 @@ namespace Umea_rana
 
             boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),'2');
 
-            housse.loadContent(Content, front_sc);
+            housse.loadContent(Content, front_sc, "IA/color/house");
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -153,13 +152,13 @@ namespace Umea_rana
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
+              (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
             {
                 _pause.checkpause(keyboard, ref _checkpause);
-                latence = 30;
+            
             }
-            if (latence > 0)
-                --latence;
+   
             if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
@@ -216,6 +215,7 @@ namespace Umea_rana
             if (allen.rectangle.Right >= width * 2 - 50)
                 game.ChangeState(Game1.gameState.Pause, Game1.gameState.win);
             housse.Update(keyboard, game, allen);
+            oldkey = keyboard;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

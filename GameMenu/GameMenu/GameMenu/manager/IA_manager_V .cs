@@ -41,7 +41,7 @@ namespace Umea_rana
              mtexture = Content.Load<Texture2D>("bullet//bullet");
         }
 
-        public void Update(ref sripte_V sprite, ref int gameTime)
+        public void Update(ref spripte_V sprite, ref spripte_V perso2, ref int gameTime)
         {
             //update che chaque missile
             for (int i = 0; i < bulletL.Count; i++)
@@ -54,7 +54,7 @@ namespace Umea_rana
             {
                 if (ia_manage[i].timer_lunch <= gameTime)
                 {
-                    ia_manage[i].bullet.Bullet_Update2(this . ia_manage[i], vise(sprite, ref ia_manage[i].rectangle_C ), 1, ref bulletL);
+                    ia_manage[i].bullet.Bullet_Update2(this . ia_manage[i], vise(sprite,perso2 , ref ia_manage[i].rectangle_C ), 1, ref bulletL);
                     ia_manage[i].Update_rec_collision();
                     moveH(ref i);
                 }

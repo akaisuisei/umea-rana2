@@ -14,7 +14,7 @@ namespace Umea_rana
     class leveleditor : GameState
     {
 
-        sripte_V vaisseau, perso2;
+        spripte_V vaisseau, perso2;
 
         KeyboardState oldkey;
         Texture2D aster_t, planet1, star;
@@ -29,7 +29,7 @@ namespace Umea_rana
         int game_time;
         _Pause _pause;
         bool _checkpause = false;
-        int latence = 0;
+
         Sauveguarde save;
         string path;
         Scrolling_ManagerV Scroll;
@@ -88,9 +88,9 @@ namespace Umea_rana
             //  scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,1f);
 
             //intancie le vaisseau
-            vaisseau = new sripte_V(
+            vaisseau = new spripte_V(
                 new Rectangle(0, 0, sizeX, sizey), fond, 1);
-            perso2 = new sripte_V(
+            perso2 = new spripte_V(
           new Rectangle(0, 0, sizeX, sizey), fond, 2);
             //instancie l ia
             //     aster = new asteroid(aster_t, new Rectangle(100, 75, taille_sprt, taille_sprt), 0.01f, width, height);
@@ -129,13 +129,13 @@ namespace Umea_rana
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.Escape) && latence <= 0)
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
+               (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
             {
                 _pause.checkpause(keyboard, ref _checkpause);
-                latence = 30;
+   
             }
-            if (latence > 0)
-                --latence;
+    
             if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
@@ -151,8 +151,8 @@ namespace Umea_rana
 
                 ovini.Update(ref game_time);
                 manage_T.Update(ref game, ref game_time);
-                manage_V.Update(ref vaisseau, ref game_time);
-                manage_k.Update(ref vaisseau, ref game_time);
+                manage_V.Update(ref vaisseau,ref perso2 , ref game_time);
+                manage_k.Update(ref vaisseau,ref perso2 , ref game_time);
                 collision.hero_missile(manage_T, ref vaisseau);
                 collision.hero_missile(manage_V, ref  vaisseau);
                 collision.col_H_IA(manage_k, ref vaisseau);

@@ -37,7 +37,7 @@ namespace Umea_rana
             texturej1 = Content.Load<Texture2D>("hero\\image1");
             texturej2 = Content.Load<Texture2D>("hero\\image2");
         }
-        public void Update(ref sripte_V perso1, ref sripte_V perso2)
+        public void Update(ref spripte_V perso1, ref spripte_V perso2)
         {
             this.scoreJ1 = perso1.scrore;
             this.vieJ1 = perso1.vie;

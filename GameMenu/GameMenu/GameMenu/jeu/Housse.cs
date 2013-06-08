@@ -20,12 +20,12 @@ namespace Umea_rana
         {
 
         }
-        public void loadContent(ContentManager content, int fcspeed)
+        public void loadContent(ContentManager content, int fcspeed, string filepath)
         {
             this.Frameline = 1;
             this.FrameColumn = 1;
             this.fcspeed = fcspeed;
-            texture = content.Load<Texture2D>("IA/house");
+            texture = content.Load<Texture2D>(filepath );
             rect = new Rectangle(2000, 200, 100, 100);
             line = 100;
             column = 100;

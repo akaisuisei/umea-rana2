@@ -95,7 +95,7 @@ namespace Umea_rana
 
         }
 
-        public void Bullet_Update(KeyboardState keyboard, sripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet,ref int sizeX,ref int sizeY,ref int timer)
+        public void Bullet_Update(KeyboardState keyboard, spripte_V sprite, KeyboardState oldkey, Vector2 vise, int nb, ref List<munition> bullet,ref int sizeX,ref int sizeY,ref int timer)
         {
             if (timer != time1)
                 time1 = timer;

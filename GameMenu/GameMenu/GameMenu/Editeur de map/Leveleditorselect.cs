@@ -54,8 +54,8 @@ namespace Umea_rana
             butts.activate(0, 2, 0.15f, 0.85f, "", LocalizedString.Back);
 
 
-            butts.activate(1, 0, 0.85f, 0.15f, "LevelEdit", LocalizedString.Play);
-            butts.activate(1, 1, 0.85f, 0.5f, "play", LocalizedString.Play);
+            butts.activate(1, 0, 0.8f, 0.4f, "LevelEdit", LocalizedString.Play);
+            butts.activate(1, 1, 0.7f, 0.9f, "play", LocalizedString.Play);
             butts.disable(1, 2);
             background = Content.Load<Texture2D>("Menu//background menu");
             songMenu = Content.Load<Song>("Menu//songMenu");

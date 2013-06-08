@@ -187,7 +187,7 @@ namespace Umea_rana
         }
         #region collisionshout em up
         // collision objet missible
-        public bool Collision_as_mis(objet aster, sripte_V sprite)
+        public bool Collision_as_mis(objet aster, spripte_V sprite)
         {
             for (int i = 0; i < sprite.bulletL.Count; ++i)
                 if (aster.rectangle_C.Intersects(sprite.bulletL[i].rectangle_C))
@@ -200,7 +200,7 @@ namespace Umea_rana
             return false;
         }
         // a finir
-        public void h_M2P(ref IA_manager_AA AA, ref IA_manager_AR AR, ref IA_manager_K K, ref sripte_V pl1, ref sripte_V pl2)
+        public void h_M2P(ref IA_manager_AA AA, ref IA_manager_AR AR, ref IA_manager_K K, ref spripte_V pl1, ref spripte_V pl2)
         {
             for (int i = 0; i < AA.bulletL.Count; ++i)
             {
@@ -300,7 +300,7 @@ namespace Umea_rana
 
         }
 
-        public void h_M1P(ref IA_manager_V AA, ref IA_manager_T AR, ref IA_manager_K K, ref sripte_V pl)
+        public void h_M1P(ref IA_manager_V AA, ref IA_manager_T AR, ref IA_manager_K K, ref spripte_V pl)
         {
             for (int i = 0; i < AA.bulletL.Count; ++i)
             {
@@ -367,7 +367,7 @@ namespace Umea_rana
             }
         }
         // collision hero avec missille ou ia avetion game over
-        public void hero_missile(IA_Manager_max ia_manage, ref sripte_V sprite)
+        public void hero_missile(IA_Manager_max ia_manage, ref spripte_V sprite)
         {
 
             for (int i = 0; i < ia_manage.bulletL.Count; ++i)
@@ -379,7 +379,7 @@ namespace Umea_rana
 
         }
         //collision IA hero action: vie--
-        public void col_H_IA(IA_Manager_max ia_manage, ref sripte_V sprite)
+        public void col_H_IA(IA_Manager_max ia_manage, ref spripte_V sprite)
         {
             foreach (vaisseau_IA ia in ia_manage.Ia_manage)
                 if (ia.rectangle_C.Intersects(sprite.rectangle_C))
@@ -391,7 +391,7 @@ namespace Umea_rana
         }
 
         //collision IA missile action ia.vie --
-        public void collision_ai_missile(ref sripte_V sprite, IA_Manager_max iamanage)
+        public void collision_ai_missile(ref spripte_V sprite, IA_Manager_max iamanage)
         {
             for (int i = 0; i < sprite.bulletL.Count; ++i)
                 foreach (vaisseau_IA ai in iamanage.Ia_manage)
@@ -404,7 +404,7 @@ namespace Umea_rana
         }
         #endregion
 
-        public void Ovni_vaiss(ref Ovni ovnis, ref sripte_V sprite)
+        public void Ovni_vaiss(ref Ovni ovnis, ref spripte_V sprite)
         {
 
             for (int i = 0; i < ovnis.ovni.Count; ++i)

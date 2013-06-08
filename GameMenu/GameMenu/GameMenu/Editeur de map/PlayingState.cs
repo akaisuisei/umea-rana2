@@ -28,7 +28,6 @@ namespace Umea_rana
         Scrolling_ManagerV Scroll_manager;
 
         bool _checkpause = false;
-        int latence = 0;
         Rectangle fond;
 
         public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
@@ -69,15 +68,15 @@ namespace Umea_rana
 
 
             // ici le code de jeu
-            if (keyboard.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape) && latence <= 0)
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
+              (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
             {
 
                 _pause.checkpause(keyboard, ref _checkpause);
-                latence = 30;
+           
                 user.Hide();
             }
-            if (latence > 0)
-                --latence;
+   
             if (!_checkpause)
             {
                 if (mouse.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed && !user.IHave_control && fond.Contains(rmouse))

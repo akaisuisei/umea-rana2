@@ -10,7 +10,7 @@ using Umea_rana.LocalizedStrings;
 namespace Umea_rana
 {
 
-    public class sripte_V : objet
+    public class spripte_V : objet
     {
         private class pos
         {
@@ -62,7 +62,7 @@ namespace Umea_rana
         public bool activate { get; private set; }
         public int scrore;
 
-        public sripte_V(Rectangle n_rectangle, int height, int width)
+        public spripte_V(Rectangle n_rectangle, int height, int width)
         {
             rectangle = n_rectangle;
 
@@ -119,7 +119,7 @@ namespace Umea_rana
             perso = 1;
             activate = true;
         }
-        public sripte_V(Rectangle n_rectangle, Rectangle fond, int perso)
+        public spripte_V(Rectangle n_rectangle, Rectangle fond, int perso)
         {
             rectangle = n_rectangle;
 
@@ -211,7 +211,7 @@ namespace Umea_rana
             mtexture = Content.Load<Texture2D>("bullet//bullet");
             bullet = new Bullet_manager(new Rectangle(rectangle.X, rectangle.Y, 10, 50), 15, 10, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color_V, width, 30, Katk);
         }
-        public void parametrage(ref sripte_V sprite)
+        public void parametrage(ref spripte_V sprite)
         {
             this.speed = sprite.speed;
             speedbullet = sprite.speedbullet;
@@ -232,6 +232,7 @@ namespace Umea_rana
                 if (vie <= 0)
                 {
                     rectangle.Inflate(2, 2);
+                    rectangle_C.Inflate(2, 2);
                     Xplode();
                     if (FrameLine == 45)
                         if (perso == 1)
@@ -240,7 +241,7 @@ namespace Umea_rana
                         {
                             rectangle = new Rectangle(-300, 0, fond.Width / 10, fond.Height / 10);
                             this.activate = false;
-                            this.rectangle.X = -300;
+                            this.rectangle.Y  = 2000;
                             vie = 5;
                             colunm = 150f;
                             line = 200f;
