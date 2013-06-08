@@ -390,6 +390,7 @@ namespace Umea_rana
                 }
         }
 
+
         //collision IA missile action ia.vie --
         public void collision_ai_missile(ref spripte_V sprite, IA_Manager_max iamanage)
         {

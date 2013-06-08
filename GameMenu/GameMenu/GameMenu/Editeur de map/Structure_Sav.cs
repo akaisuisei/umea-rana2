@@ -89,7 +89,10 @@ namespace Umea_rana
     {
         public float X;
         public float Y;
-        public int nbr;
+        public int nbr, speed;
+        public float distance;
+        public char type;
+
     }
 
     public struct savefile
