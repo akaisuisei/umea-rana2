@@ -26,6 +26,8 @@ namespace Umea_rana
             playlist.Add("BGMlevel2", null);
             playlist.Add("extraBGMlevel1", null);
             playlist.Add("extraBGMlevel2", null);
+            playlist.Add("BGMlevel3", null);
+            playlist.Add("extraBGMlevel3", null);
             playlist.Add("extraBGM", null);
         }
        
@@ -49,6 +51,12 @@ namespace Umea_rana
                         MediaPlayer.Play(playlist["BGMlevel2"]);
                     else
                         MediaPlayer.Play(playlist["extraBGMlevel2"]);
+                    break;
+                case "BGMlevel3":
+                    if (playlist["extraBGMlevel2"] == null)
+                        MediaPlayer.Play(playlist["BGMlevel3"]);
+                    else
+                        MediaPlayer.Play(playlist["extraBGMlevel3"]);
                     break;
             }
         }
