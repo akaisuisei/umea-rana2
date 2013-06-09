@@ -62,7 +62,6 @@ namespace Umea_rana
             MouseState mouse = Mouse.GetState();
             mouserec = new Rectangle(mouse.X, mouse.Y, 1, 1);
             button.Update(ref keyboard, ref old, ref mouse, ref mouserec, ref game, ref tab, "");
-
             old = keyboard;
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -70,8 +69,6 @@ namespace Umea_rana
             spriteBatch.Draw(background, rectangle, Color.White);
             button.Draw(spriteBatch);
         }
-
-
     }
 }
 

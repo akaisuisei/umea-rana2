@@ -40,7 +40,7 @@ namespace Umea_rana
         {
             game1.IsMouseVisible = false;
             oldkey = Keyboard.GetState();
-            collision = new Collision();
+            collision = new Collision(Content);
             _pause = new _Pause(game1, graphics, Content);
             save = new Sauveguarde();
             path = game1.path;

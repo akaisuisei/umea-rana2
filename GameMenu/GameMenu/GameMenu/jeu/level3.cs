@@ -36,7 +36,7 @@ namespace Umea_rana
         public Level3(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
-            collision = new Collision();
+            collision = new Collision(Content);
             oldkey = Keyboard.GetState();
 
             _pause = new _Pause(game1, graphics, Content);

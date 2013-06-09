@@ -15,9 +15,10 @@ namespace Umea_rana
 {
     public class Collision
     {
-
-        public Collision()
+        SoundEffect sbire, normal, boss, hit;
+        public Collision(ContentManager content)
         {
+            sbire = content.Load<SoundEffect>("explosionsbire");
         }
         #region collision avec le sol
         // collision sprite sol fini
@@ -401,6 +402,7 @@ namespace Umea_rana
                         ai.vie -= sprite.bulletL[i].degat;
                         sprite.scrore += 100;
                         sprite.bulletL.RemoveAt(i);
+                        
                     }
         }
         #endregion

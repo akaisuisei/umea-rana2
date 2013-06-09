@@ -43,6 +43,7 @@ namespace Umea_rana
             game1.IsMouseVisible = false;
             _pause = new _Pause(game1, graphics, Content);
             score = new Score();
+            collision = new Collision(Content);
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -52,7 +53,6 @@ namespace Umea_rana
             timer = -100;
             game_time = 0;
             oldkey = Keyboard.GetState();
-            collision = new Collision();
             save = new Sauveguarde();
 
             // ajout IA
