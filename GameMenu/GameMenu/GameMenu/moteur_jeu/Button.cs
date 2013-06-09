@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Umea_rana;
 
 namespace Umea_rana
@@ -183,6 +185,7 @@ namespace Umea_rana
                     if (gameState[X, Y] == "SEU")
                     {
                         game.level = levelname[X, Y];
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.SEU);
                     }
                     else if (gameState[X, Y] == "Checkpause")
@@ -199,6 +202,7 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Level2")
                     {
                         game.level = levelname[X, Y];
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.Level2);
                     }
                     else if (gameState[X, Y] == "Main")
@@ -237,7 +241,10 @@ namespace Umea_rana
                         game.replay();
                     else
                         if (gameState[X, Y] == "Level3")
+                        {
+                            Audio.play("BGMlevel3");
                             game.ChangeState(Game1.gameState.level3);
+                        }
                         else
                             game.ChangeState(Game1.gameState.MainMenuState);
 
