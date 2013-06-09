@@ -37,7 +37,12 @@ namespace Umea_rana
             windows_W = rect.Width;
             count = 0;
         }
-
+        /// <summary>
+        /// load pour sEU
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="levelprofile"></param>
+        /// <param name="Graph"></param>
         public void Load(ContentManager Content, levelProfile levelprofile, GraphicsDevice Graph)
         {
             speed[1] = levelprofile.fc_speed / 2;
@@ -102,7 +107,12 @@ namespace Umea_rana
                 ++count;
             }
         }
-
+        /// <summary>
+        /// load pour scrolling platforme
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="levelprofile"></param>
+        /// <param name="Graph"></param>
         public void load(ContentManager Content, levelProfile levelprofile, GraphicsDevice Graph)
         {
             speed[1] = levelprofile.fc_speed / 2;

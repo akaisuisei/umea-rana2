@@ -58,7 +58,7 @@ namespace Umea_rana
         pos current, last;
 
         Texture2D test;
-
+        public int damage { get; set; }
 
         public Sprite_PLA(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
         {
@@ -106,10 +106,10 @@ namespace Umea_rana
             {
                 colunm = 128;
                 line = 99;
-                largeurX =(int) ((26f/(float) colunm)*rectangle.Width ) ;
-                hauteurY = (int)((51f / (float)line)*rectangle.Height );
-                decallageX = (int)((51f / (float)colunm)*rectangle.Width );
-                decallageY = (int)((30f / (float)line)*rectangle.Height);
+                largeurX = (int)((26f / (float)colunm) * rectangle.Width);
+                hauteurY = (int)((51f / (float)line) * rectangle.Height);
+                decallageX = (int)((51f / (float)colunm) * rectangle.Width);
+                decallageY = (int)((30f / (float)line) * rectangle.Height);
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);
                 atk = new pos(8, 5, 10);
@@ -120,6 +120,43 @@ namespace Umea_rana
             current = fall;
             last = current;
             test = Content.Load<Texture2D>("ListBoxBG");
+        }
+        public void parametrage(levelProfile levelprofile, ref ContentManager Content)
+        {
+            vie = levelprofile.playerLife;
+            damage = levelprofile.damage;
+            if (levelprofile.image_sprite)
+            {
+                colunm = 128;
+                line = 99;
+                largeurX = (int)((26f / (float)colunm) * rectangle.Width);
+                hauteurY = (int)((51f / (float)line) * rectangle.Height);
+                decallageX = (int)((51f / (float)colunm) * rectangle.Width);
+                decallageY = (int)((30f / (float)line) * rectangle.Height);
+                idle = new pos(1, 1, 4);
+                walk = new pos(1, 5, 12);
+                atk = new pos(8, 5, 10);
+                die = new pos(3, 3, 7);
+                jump = new pos(2, 4, 5);
+                fall = new pos(2, 6, 7);
+                texture = Content.Load<Texture2D>("hero/allen1");
+            }
+            else
+            {
+                colunm = 168;
+                line = 118;
+                largeurX = (int)((33f / (float)colunm) * rectangle.Width);
+                hauteurY = (int)((39f / (float)line) * rectangle.Height);
+                decallageX = (int)((64f / (float)colunm) * rectangle.Width);
+                decallageY = (int)((61f / (float)line) * rectangle.Height);
+                idle = new pos(1, 1, 4);
+                walk = new pos(1, 5, 12);
+                atk = new pos(9, 5, 10);
+                die = new pos(3, 5, 9);
+                jump = new pos(2, 8, 8);
+                fall = new pos(2, 9, 9);
+                texture = Content.Load<Texture2D>("hero//yoh");
+                            }
         }
 
         public void update(KeyboardState keyboard)

@@ -27,11 +27,11 @@ namespace Umea_rana
         /// save sEU pour editeur de map pas fini manque la copie du fond ds le dossier
         /// </summary>
         /// <param name="save"></param>
-        public void save_SEU(ref savefile save)
+        public void save_SEU(ref savefile save, string type)
         {
             FileStream file1 = null;
             XmlSerializer f = null;
-            string sav = path + "\\SEU\\" + save.levelProfile.levelname;
+            string sav = path + "\\"+type+"\\" + save.levelProfile.levelname;
             DirectoryInfo dir = new DirectoryInfo(sav);
             string ext = "", nam = "", name = "";
             string[] res = new string[save.levelProfile.musique.Length];
@@ -205,6 +205,150 @@ namespace Umea_rana
             DirectoryInfo dir = new DirectoryInfo(path + "\\SEU\\" + filename);
             if (dir.Exists)
                 dir.Delete(true);
+        }
+        /// <summary>
+        /// level pour 1 joueur 
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="Level"></param>
+        /// <param name="next_level"></param>
+        /// <param name="color"></param>
+        /// <param name="manageAA"></param>
+        /// <param name="managerAR"></param>
+        /// <param name="manageS"></param>
+        /// <param name="scrolling"></param>
+        /// <param name="graph"></param>
+        /// <param name="sprite"></param>
+        public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
+        {
+            savefile savefil = new savefile();
+            FileStream file1 = null;
+            XmlSerializer f = null;
+
+            DirectoryInfo dir = null;
+            dir = new DirectoryInfo(Content.RootDirectory + "\\" + Level);
+            if (dir.Exists)
+            {
+                file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
+                f = new XmlSerializer(typeof(savefile));
+                savefil = (savefile)f.Deserialize(file1);
+                file1.Close();
+            }
+            next_level = savefil.levelProfile.next_level;
+            color = savefil.levelProfile.IAcolor;
+            scrolling.load(Content, savefil.levelProfile, graph);
+            sprite.parametrage(savefil.levelProfile, ref  Content);
+            foreach (IA_AA ia in savefil.ia_AA)
+                manageAA.Add(ia);
+            foreach (IA_AR  ia in savefil.ia_AR )
+                managerAR.Add(ia);
+            foreach (IA_S ia in savefil.ia_S )
+                manageS.Add(ia);
+        }
+        /// <summary>
+        /// level pour 2 joueur
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="Level"></param>
+        /// <param name="next_level"></param>
+        /// <param name="color"></param>
+        /// <param name="manageAA"></param>
+        /// <param name="managerAR"></param>
+        /// <param name="manageS"></param>
+        /// <param name="scrolling"></param>
+        /// <param name="graph"></param>
+        /// <param name="sprite"></param>
+        /// <param name="p2"></param>
+        public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite,ref Sprite_PLA p2)
+        {
+            savefile savefil = new savefile();
+            FileStream file1 = null;
+            XmlSerializer f = null;
+
+            DirectoryInfo dir = null;
+            dir = new DirectoryInfo(Content.RootDirectory + "\\" + Level);
+            if (dir.Exists)
+            {
+                file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
+                f = new XmlSerializer(typeof(savefile));
+                savefil = (savefile)f.Deserialize(file1);
+                file1.Close();
+            }
+            next_level = savefil.levelProfile.next_level;
+            color = savefil.levelProfile.IAcolor;
+            scrolling.load(Content, savefil.levelProfile, graph);
+            sprite.parametrage(savefil.levelProfile, ref  Content);
+            savefil.levelProfile.image_sprite = !savefil.levelProfile.image_sprite;
+            p2.parametrage(savefil.levelProfile, ref Content);
+            foreach (IA_AA ia in savefil.ia_AA)
+                manageAA.Add(ia);
+            foreach (IA_AR ia in savefil.ia_AR)
+                managerAR.Add(ia);
+            foreach (IA_S ia in savefil.ia_S)
+                manageS.Add(ia);
+        }
+        /// <summary>
+        /// level perso pour 1 joueur 
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="Level"></param>
+        /// <param name="next_level"></param>
+        /// <param name="color"></param>
+        /// <param name="manageAA"></param>
+        /// <param name="managerAR"></param>
+        /// <param name="manageS"></param>
+        /// <param name="scrolling"></param>
+        /// <param name="graph"></param>
+        /// <param name="sprite"></param>
+        public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
+        {
+            savefile savefil = new savefile();
+            load_SEU(ref Level, ref savefil);
+            next_level = savefil.levelProfile.next_level;
+            color = savefil.levelProfile.IAcolor;
+            scrolling.load(Content, savefil.levelProfile, graph);
+            sprite.parametrage(savefil.levelProfile, ref  Content);
+            foreach (IA_AA ia in savefil.ia_AA)
+                manageAA.Add(ia);
+            foreach (IA_AR ia in savefil.ia_AR)
+                managerAR.Add(ia);
+            foreach (IA_S ia in savefil.ia_S)
+                manageS.Add(ia);
+        }
+        /// <summary>
+        /// level perso pour 2 joueur
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="Level"></param>
+        /// <param name="next_level"></param>
+        /// <param name="color"></param>
+        /// <param name="manageAA"></param>
+        /// <param name="managerAR"></param>
+        /// <param name="manageS"></param>
+        /// <param name="scrolling"></param>
+        /// <param name="graph"></param>
+        /// <param name="sprite"></param>
+        /// <param name="p2"></param>
+        public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
+        {
+            savefile savefil = new savefile();
+            load_SEU(ref Level, ref savefil); 
+            next_level = savefil.levelProfile.next_level;
+            color = savefil.levelProfile.IAcolor;
+            scrolling.load(Content, savefil.levelProfile, graph);
+            sprite.parametrage(savefil.levelProfile, ref  Content);
+            savefil.levelProfile.image_sprite = !savefil.levelProfile.image_sprite;
+            p2.parametrage(savefil.levelProfile, ref Content);
+            foreach (IA_AA ia in savefil.ia_AA)
+                manageAA.Add(ia);
+            foreach (IA_AR ia in savefil.ia_AR)
+                managerAR.Add(ia);
+            foreach (IA_S ia in savefil.ia_S)
+                manageS.Add(ia);
         }
 
     }

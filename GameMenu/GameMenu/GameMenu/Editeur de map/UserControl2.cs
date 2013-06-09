@@ -675,7 +675,7 @@ namespace Umea_rana
         private void savegame()
         {
             savefile.levelProfile.musique = playlist;
-            sauve.save_SEU(ref savefile);
+            sauve.save_SEU(ref savefile,"PLA");
         }
 
         private void loadgame(string file_name)

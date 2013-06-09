@@ -119,15 +119,20 @@ namespace Umea_rana
                 spritebatch.Draw(_texture, ia_manage[i].rectangle, new Rectangle((this.ia_manage[i].FrameColunm - 1) * 130, (this.ia_manage[i].FrameLine - 1) * 85, 130, 85), Color.White, 0f, new Vector2(0, 0), this.ia_manage[i].Effects, 0f);
             }
         }
-
+        #region ADD
         public void Add(float X, float Y)
         {
             ia_manage.Add(new Stalker( new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height),  speed, window_H, window_W, 0, 2));
         }
 
-        public void Add(IA_AR hello, int i)
-        {
-            ia_manage.Add(new Stalker(new Rectangle((int)(hello.X * window_W) + 1, (int)(hello.Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, 3));
-        }
+            public void Add(IA_AR hello, int i)
+            {
+                ia_manage.Add(new Stalker(new Rectangle((int)(hello.X * window_W) + 1, (int)(hello.Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, 3));
+            }
+            public void Add(IA_AR hello)
+            {
+                ia_manage.Add(new Stalker(new Rectangle((int)(hello.X * window_W) + 1, (int)(hello.Y * window_H) - 1, _rectangle.Width, _rectangle.Height), hello ));
+            }
+        #endregion
     }
 }

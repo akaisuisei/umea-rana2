@@ -49,7 +49,8 @@ namespace Umea_rana
         public int damage;
         public int bullet_speed;
         public string[] musique;
-        public string IAcolor;       
+        public string IAcolor;
+        public bool image_sprite { get; set; }//vrai= allem, faux = yoh
     }
     public struct Bonus
     {

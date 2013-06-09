@@ -924,7 +924,7 @@ namespace Umea_rana
         private void savegame()
         {
             _savefile.levelProfile.musique = playlist;
-            sauve.save_SEU(ref _savefile);
+            sauve.save_SEU(ref _savefile,"SEU");
         }
 
         /// <summary>

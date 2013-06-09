@@ -242,4 +242,208 @@ namespace Umea_rana
 
         }
     }
+
+    public class Levelbis : GameState
+    {
+
+        Scrolling_H scrolling1;//, scrolling3, scrolling4;
+        Sprite_PLA allen;
+        Platform_manager platform_M;
+        IA_manager_AA managerAA;
+        IA_manager_AR managerAR;
+        IA_manager_S manageS;
+        Collision collision;
+        KeyboardState oldkey;
+
+        _Pause _pause;
+        bool _checkpause = false;
+        Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
+        int front_sc, back_sc;
+        scoreplat score;
+        bossPLAT boss;
+        Housse housse;
+        string sprite_color;
+
+        public Levelbis(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
+        {
+            game1.IsMouseVisible = false;
+            collision = new Collision(Content);
+            oldkey = Keyboard.GetState();
+
+            _pause = new _Pause(game1, graphics, Content);
+            score = new scoreplat();
+            boss = new bossPLAT();
+
+            housse = new Housse();
+        }
+
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+        {
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            _pause.initbutton(ref level);
+            //background
+            backgroundT = Content.Load<Texture2D>("PLA1/fond");
+            //sprite brouillon
+            alllenT = Content.Load<Texture2D>("hero/allen1");
+            //platfom
+            platform_t = Content.Load<Texture2D>("platform/black");
+            //ia
+            aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
+            naruto_stalker = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "naruto");
+            eve = Content.Load<Texture2D>("IA//" + sprite_color  + "//" + "eve");
+            truc_jaune = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "tuc_jaune");
+            //boss
+
+
+
+            //background
+            scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
+            //sprite brouillon
+            allen = new Sprite_PLA(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
+            //instanciement du manager d ia
+            platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
+            //intenciement des 3 ia
+            managerAA = new IA_manager_AA(truc_jaune, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
+            managerAR = new IA_manager_AR(eve, new Rectangle(0, 0, 100, 100), front_sc, 4, height, width);
+            manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
+            //instancie les donnees de la pause
+            _pause.LoadContent(Content);
+
+
+
+            // ajout ia aller retour (X,Y)
+           
+            // ajout IA qui vont tous droit(X,Y)
+          
+            // ajout des ia Stalker (X,Y)
+           
+
+
+
+
+            // ajout platform (position X,position Y, nombre de plateforme juxtaposer)
+          
+
+            score.LoadContent(new Rectangle(0, 0, width, height), Content);
+
+            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
+
+            housse.loadContent(Content, front_sc, "IA/color/house");
+        }
+
+        public override void Initialize(GraphicsDeviceManager graphics)
+        {
+            front_sc = 4;
+            back_sc = 5;
+        }
+
+        public override void UnloadContent()
+        {
+            scrolling1.texture.Dispose();
+            allen.Dispose();
+            managerAA.Dipose();
+            managerAR.Dipose();
+            manageS.Dipose();
+            _pause.Dispose();
+            aster.Dispose(); alllenT.Dispose(); backgroundT.Dispose();
+            platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose();
+            // TODO: Unload any non ContentManager Content here
+        }
+
+        public override void Update(Game1 game, Audio audio)
+        {
+            KeyboardState keyboard;
+            keyboard = Keyboard.GetState();
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
+               (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
+            {
+                _pause.checkpause(keyboard, ref _checkpause);
+
+            }
+
+            if (!_checkpause)
+            {
+                game.ChangeState2(Game1.gameState.Null);
+                // scrolling
+                scrolling1.Update(keyboard);
+
+                // collision Allen
+                if (collision.Collision_sp_sol(ref allen, ref platform_M))
+                {
+                    allen.marche();
+                    allen.jump_off = true;
+                    allen.chute = false;
+                }
+                else
+                {
+                    allen.air();
+                }
+                allen.update(keyboard);
+
+                //collision ia
+                collision.collision_ia_sol(manageS, ref platform_M);
+                manageS.Update(allen, ref keyboard);
+                collision.collision_ia_AR_sol(managerAR, ref platform_M);
+                managerAA.Update(ref keyboard);
+                collision.collision_ia_sol(managerAA, ref platform_M);
+
+                collision.coll_AL_IA(manageS, ref allen);
+                collision.coll_AL_IA(managerAA, ref allen);
+                collision.coll_AL_IA(managerAR, ref allen);
+                //manager IA 
+                managerAR.Update(ref keyboard);
+
+
+                //manager platform
+                platform_M.Update(keyboard);
+                score.Update(ref allen);
+                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
+                boss.Update(ref keyboard);
+
+            }
+            else
+            {
+                game.ChangeState2(Game1.gameState.Checkpause);
+                MediaPlayer.Stop();
+                ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
+                _pause.Update(game, audio, ref _checkpause, ref keyboard, ref oldkey);
+            }
+
+            //partie perdu
+            fail(game, allen, Game1.gameState.SEU);
+
+            //audio
+
+            if (allen.rectangle.Right >= width * 2 - 50)
+                game.ChangeState(Game1.gameState.Pause, Game1.gameState.win);
+            housse.Update(keyboard, game, allen);
+            oldkey = keyboard;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            // TODO: Add your drawing code here
+
+
+
+            scrolling1.Draw(spriteBatch);
+            //scrolling3.Draw(spriteBatch);
+            allen.Draw(spriteBatch);
+            platform_M.Draw(spriteBatch);
+            managerAA.Draw(spriteBatch);
+            managerAR.Draw(spriteBatch);
+            manageS.Draw(spriteBatch);
+            boss.Draw(spriteBatch);
+            housse.draw(spriteBatch);
+            score.Draw(spriteBatch);
+
+
+            if (_checkpause)
+                _pause.Draw(spriteBatch);
+
+
+        }
+    }
 }
