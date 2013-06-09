@@ -179,10 +179,6 @@ namespace Umea_rana
                     color_japonais = Color.White;
                     select_langue = 4;
                     break;
-                case "_cn":
-                    color_chinois = Color.White;
-                    select_langue = 5;
-                    break;
             }
         }
         public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
@@ -209,7 +205,6 @@ namespace Umea_rana
             v_esp = new Vector2(graphics.PreferredBackBufferWidth * 40 / 100, graphics.PreferredBackBufferHeight * 50 / 100);
             v_fin = new Vector2(graphics.PreferredBackBufferWidth * 50 / 100, graphics.PreferredBackBufferHeight * 50 / 100);
             v_jap = new Vector2(graphics.PreferredBackBufferWidth * 60 / 100, graphics.PreferredBackBufferHeight * 50 / 100);
-            v_cn = new Vector2(graphics.PreferredBackBufferWidth * 70 / 100, graphics.PreferredBackBufferHeight * 50 / 100);
 
             resolution = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
             v_fullscreen = new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
@@ -357,11 +352,6 @@ namespace Umea_rana
                                 color_finois = Color.BlueViolet;
                                 langue = "ja-JP";
                                 break;
-                            case 5:
-                                color_japonais = Color.BlueViolet;
-                                color_français = Color.BlueViolet;
-                                color_chinois = Color.White;
-                                break;
                         }
                         break;
                     case 4://selection sur résolution
@@ -501,7 +491,6 @@ namespace Umea_rana
             spriteBatch.DrawString(spriteFont, "Catalán", v_esp, color_espagnol);
             spriteBatch.DrawString(spriteFont, "Suomi", v_fin, color_finois);
             spriteBatch.DrawString(spriteFont, "日本語", v_jap, color_japonais);
-            spriteBatch.DrawString(spriteFont, "Chinois", v_cn, color_chinois);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.Resolution, resolution, color_resolution);
             spriteBatch.DrawString(spriteFont, LocalizedString.Full_screen, v_fullscreen, color_resolutionfullscreen);
