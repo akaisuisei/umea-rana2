@@ -16,7 +16,7 @@ namespace Umea_rana
 
         public int degat;
         public int vie;
-        public char type;
+        public string  type;
         public int speed;
 
     }
@@ -47,7 +47,7 @@ namespace Umea_rana
 
         public int degat { get; private set; }
         float  lastvie;
-        char type;
+        string  type;
         Texture2D texture, ptforttexture, ptfaible_texture;
         public List<Rectangle> ptfaible { get; private set; }
         public List<Rectangle> ptfort { get; private set; }
@@ -82,7 +82,18 @@ namespace Umea_rana
             this.speed = levelprofile.bossPlatforme.speed;
             front_sc = levelprofile.fc_speed;
             // truc
-            type = '1';
+            type = "Light";
+            
+        }
+        public void parrame(bossP  bossPlatforme, ContentManager content,int fc_speed)
+        {
+            this.degat = bossPlatforme.degat;
+            this.vie =bossPlatforme.vie;
+            this.type = bossPlatforme.type;
+            this.speed = bossPlatforme.speed;
+            front_sc = fc_speed;
+            // truc
+            this.texture = content.Load<Texture2D>("Boss/"+bossPlatforme.type );
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {
@@ -100,7 +111,7 @@ namespace Umea_rana
             this.effects = SpriteEffects.FlipHorizontally;
             switch (type)
             {
-                case '1':
+                case "Light":
                     ptfort.Add(new Rectangle(0, 200, 50, 50));
                     ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.8f), 50, 50));
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.6f), 50, 50));
@@ -117,7 +128,7 @@ namespace Umea_rana
                     line = 100;
                     colunm = 100;
                     break;
-                case '2':
+                case "Cascade":
                     ptfaible.Add(rect);
                     this.texture = content.Load<Texture2D>("Boss/Cascade");
                     ptforttexture = content.Load<Texture2D>("Boss/note");
@@ -129,7 +140,7 @@ namespace Umea_rana
                     break;
             }
         }
-        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, char type)
+        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, string  type)
         {
             this.fond = fond;            
             this.front_sc = fc;
@@ -145,20 +156,20 @@ namespace Umea_rana
             ptfort.Add(rect);
             color = Color.Yellow;
             this.effects = SpriteEffects.FlipHorizontally;
-            
-           
-            
-           
+
+
+
+
 
             switch (type)
             {
-                case '1':
+                case "Light":
                     ptfort.Add(new Rectangle(0, 200, 50, 50));
-                    ptfort.Add(new Rectangle(800,(int)( fond.Height *0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.8f), 50, 50));
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.6f), 50, 50));
                     ptfort.Add(new Rectangle(1100, (int)(fond.Height * 0.7f), 50, 50));
                     ptfort.Add(new Rectangle(1200, (int)(fond.Height * 0.6f), 50, 50));
-                         ptfort.Add(new Rectangle(1300,(int)( fond.Height *0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(1300, (int)(fond.Height * 0.8f), 50, 50));
                     ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.6f), 50, 50));
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
                     ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
@@ -169,7 +180,7 @@ namespace Umea_rana
                     line = 100;
                     colunm = 100;
                     break;
-                case '2':
+                case "Cascade":
                     ptfaible.Add(rect);
                     this.texture = content.Load<Texture2D>("Boss/Cascade");
                     ptforttexture = content.Load<Texture2D>("Boss/note");
@@ -190,7 +201,7 @@ namespace Umea_rana
 
                     switch (type)
                     {
-                        case '1':
+                        case "Light":
                             if (vie <= 10)
                             {
                                 for (int i = 0; i < ptfort.Count; ++i)
@@ -229,7 +240,7 @@ namespace Umea_rana
                                     ptfaible[i] = rectangle;
                             
                             break;
-                        case '2':
+                        case "Cascade":
                             if (lastvie != vie)
                             {
                                 timerrun = 100;
@@ -309,7 +320,7 @@ namespace Umea_rana
         }
         public void Animated()
         {
-            if (type == '1')
+            if (type =="Light")
             {
                 this.Timer++;
                 if (this.Timer == this.AnimationSpeed)
@@ -323,7 +334,7 @@ namespace Umea_rana
                 }
             }
 
-            else if (type == '2')
+            else if (type == "Cascade")
             {
                 this.Timer++;
                 if (this.Timer == this.AnimationSpeed)
@@ -346,6 +357,11 @@ namespace Umea_rana
             foreach (Rectangle r in ptfort)
                 sp.Draw(ptforttexture , r, Color.White );
 
+            sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
+        }
+        public void DrawEDIT(SpriteBatch sp)
+        {
+            if(texture!=null )
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
         }
 

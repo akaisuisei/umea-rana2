@@ -24,6 +24,7 @@ namespace Umea_rana
         IA_manager_AA manage_aa;
         IA_manager_AR manage_ar;
         IA_manager_S manage_s;
+        bossPLAT boss;
         Platform_manager manage_p;
         Scrolling_ManagerV Scroll_manager;
 
@@ -44,6 +45,7 @@ namespace Umea_rana
         }
         public override void LoadContent(ContentManager content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            boss= new bossPLAT ();
             _pause.LoadContent(content);
             _pause.initbutton(ref level);
             width = graphics.PreferredBackBufferWidth;
@@ -54,7 +56,8 @@ namespace Umea_rana
             manage_s = new IA_manager_S(content.Load<Texture2D>("IA/color/naruto"), rectangle, 3, 0, height, width);
             manage_p = new Platform_manager(content.Load<Texture2D>("platform/black"), 0.07f * width, 0.03f * height, 3, height, width);
             Scroll_manager = new Scrolling_ManagerV(fond);
-            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, content, manage_p, fond);
+            boss.loadContent (content,new Rectangle(0,0,width ,height ));
+            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, content, manage_p, fond,boss );
         }
         public override void UnloadContent()
         {
@@ -89,7 +92,7 @@ namespace Umea_rana
                     user.TopMost = true;
                 else
                 {
-                    user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p);
+                    user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p,ref boss );
                     //        scrolling1.update_ophelia(keyboard);
                     Scroll_manager.Update(keyboard);
                 }
@@ -112,6 +115,8 @@ namespace Umea_rana
             manage_aa.Draw(spriteBatch);
             manage_ar.Draw(spriteBatch);
             manage_s.Draw(spriteBatch);
+    
+            boss.DrawEDIT (spriteBatch);
             //ici le dessin
             if (_checkpause)
                 _pause.Draw(spriteBatch);
