@@ -26,7 +26,7 @@ namespace Umea_rana
 
         public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-
+            Audio.play("Menu");
             game1.IsMouseVisible = true;
         }
 

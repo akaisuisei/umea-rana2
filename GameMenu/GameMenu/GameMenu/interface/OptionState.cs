@@ -48,6 +48,8 @@ namespace Umea_rana
         Vector2 v_volume_BGM, v_volume_soundeffect, v_difficulté, defaut, langage, resolution, retour,
             v_difficulte_facile, v_difficulte_normal, v_difficulte_difficile, v_difficulte_extreme, v_fr, v_eng, v_fin, v_esp, v_jap, v_cn, enregistre_appliquer,
             v_fullscreen, resolution1280_768, resolution1024_768, resolution960_720, resolution800_600;
+        Vector2 _position_ligne;
+        Rectangle _r_curseur, r_ligne;
         SpriteFont spriteFont;
         int latence = 0;
         public OptionState(Game1 game1, GraphicsDeviceManager _graphics, ContentManager Content, GameConfiguration _gameconfiguration)
@@ -63,6 +65,8 @@ namespace Umea_rana
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
+            curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/38, graphics.PreferredBackBufferHeight/26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/4, graphics.PreferredBackBufferHeight/100), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
+            curseur_SE = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.sound_effect_volume);
             color_volume_BGM = Color.Black;
             color_volume_SE = Color.Black;
             color_difficulté = Color.Black;
@@ -188,10 +192,10 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, _width, _height);
 
             v_volume_BGM = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 20 / 100);
-            curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 20 / 100), new Rectangle(), new Rectangle(), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
+            curseur_BGM.LoadContent(Content);
 
             v_volume_soundeffect = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 30 / 100);
-            curseur_SE = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 20 / 100), new Rectangle(), new Rectangle(), OptionState.sound_effect_volume); //idem
+            curseur_SE.LoadContent(Content);
 
             v_difficulté = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 40 / 100);
             v_difficulte_facile = new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 40 / 100);
@@ -248,12 +252,14 @@ namespace Umea_rana
                         color_volume_SE = Color.Black;
                         color_retour = Color.Black;
                         curseur_BGM.update(keyboard, mouse);
+                        Audio.changevolume_temp(curseur_BGM._volume);
                         break;
                     case 1://selection sur volume_SE
                         color_volume_BGM = Color.Black;
                         color_volume_SE = Color.White;
                         color_difficulté = Color.Black;
                         curseur_SE.update(keyboard, mouse);
+                        Audio.change_soundeffect_volume_temp(curseur_SE._volume);
                         break;
                     case 2://selection sur difficulté
                         color_volume_SE = Color.Black;
@@ -426,9 +432,8 @@ namespace Umea_rana
                             game.graphics.IsFullScreen = fullscreen;
                             game.graphics.PreferredBackBufferWidth = _width;
                             game.graphics.PreferredBackBufferHeight = _height;
-
-                            Audio.changevolume(volume_BGM);
-                            SoundEffect.MasterVolume = sound_effect_volume;
+                            Audio.changevolume(curseur_BGM._volume);
+                            Audio.change_soundeffect_volume(curseur_SE._volume);
                             game.graphics.ApplyChanges();
                             storage.SaveGameConfiguration(new GameConfiguration(_width, _height, fullscreen, volume_BGM, sound_effect_volume, langue, difficulté));
                             game.ChangeState(Game1.gameState.OptionState);
@@ -464,6 +469,8 @@ namespace Umea_rana
                         color_retour = Color.White;
                         if (keyboard.IsKeyDown(Keys.Enter))
                         {
+                            Audio.changevolume(volume_BGM);
+                            Audio.change_soundeffect_volume(sound_effect_volume);
                             game.ChangeState(Game1.gameState.MainMenuState);
                         }
                         break;
@@ -476,7 +483,8 @@ namespace Umea_rana
         {
             spriteBatch.Draw(background, rectangle, Color.White);
             spriteBatch.DrawString(spriteFont, LocalizedString.Volume_BGM, v_volume_BGM, color_volume_BGM);
-
+            curseur_BGM.Draw(spriteBatch);
+            curseur_SE.Draw(spriteBatch);
             spriteBatch.DrawString(spriteFont, LocalizedString.Volume_effet_sonore, v_volume_soundeffect, color_volume_SE);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.difficulty, v_difficulté, color_difficulté);

@@ -62,8 +62,8 @@ namespace Umea_rana
         protected override void Initialize()
         {
             ParticleAdder.adder(this, _currentState, OptionState._width, OptionState._height);
-            if (_currentState == gameState.MainMenuState)
-                Audio.play("Menu");
+            
+                
             try
             {
                 StateManager[_currentState].Initialize(graphics);
@@ -78,8 +78,7 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
-           LocalizedString.Culture= new System.Globalization.CultureInfo(OptionState.langue);
-           MediaPlayer.Volume = 0f;
+            LocalizedString.Culture= new System.Globalization.CultureInfo(OptionState.langue);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");

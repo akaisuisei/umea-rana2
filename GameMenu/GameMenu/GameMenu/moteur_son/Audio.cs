@@ -74,5 +74,18 @@ namespace Umea_rana
             OptionState.volume_BGM = volume;
             MediaPlayer.Volume = OptionState.volume_BGM;
         }
+        public static void changevolume_temp(float volume)
+        {
+            MediaPlayer.Volume = volume;
+        }
+        public static void change_soundeffect_volume(float soundeffect_volume)
+        {
+            OptionState.sound_effect_volume = soundeffect_volume;
+            SoundEffect.MasterVolume = OptionState.sound_effect_volume;
+        }
+        public static void change_soundeffect_volume_temp(float soundeffect_volume)
+        {
+            SoundEffect.MasterVolume = soundeffect_volume;
+        }
     }
 }

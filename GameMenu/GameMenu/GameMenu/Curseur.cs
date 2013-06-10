@@ -17,11 +17,10 @@ namespace Umea_rana
         Texture2D curseur_rectangle;
         Rectangle taille_de_la_ligne;
         Vector2 _position_ligne { get; set; }
-
         Texture2D ligne;
         int latence = 5;
-        float _volume { get; set; }
-
+        public float _volume;
+        private float __volume { get { return _volume; } set { value = _volume; } }
         public Curseur(Vector2 position_ligne, Rectangle _r_curseur_rectangle, Rectangle _r_ligne, float volume)
         {
             _position_ligne = position_ligne;
@@ -35,8 +34,8 @@ namespace Umea_rana
         }
         public void LoadContent(ContentManager Content)
         {
-            curseur_rectangle = Content.Load<Texture2D>("fleche");
-            ligne = Content.Load<Texture2D>("ListBoxBG");
+            curseur_rectangle = Content.Load<Texture2D>("Menu//Timcampy");
+            ligne = Content.Load<Texture2D>("Menu//jauge");
         }
         public void update(KeyboardState keyboard, MouseState mouse)
         {
@@ -80,7 +79,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(ligne, taille_de_la_ligne, Color.White);
-            spriteBatch.Draw(curseur_rectangle, new Vector2(_position_ligne.X + _volume * taille_de_la_ligne.Width - taille_du_petit_curseur.Center.X, _position_ligne.Y - taille_du_petit_curseur.Height / 2), taille_du_petit_curseur, Color.White);
+            spriteBatch.Draw(curseur_rectangle, new Vector2((_position_ligne.X + _volume*taille_de_la_ligne.Width )- taille_du_petit_curseur.Width/2, _position_ligne.Y - taille_du_petit_curseur.Height / 2), taille_du_petit_curseur, Color.White);
         }
     }
 }

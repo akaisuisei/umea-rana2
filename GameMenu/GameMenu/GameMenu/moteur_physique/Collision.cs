@@ -402,7 +402,7 @@ namespace Umea_rana
                         ai.vie -= sprite.bulletL[i].degat;
                         sprite.scrore += 100;
                         sprite.bulletL.RemoveAt(i);
-                        
+                        sbire.Play();
                     }
         }
         #endregion
