@@ -145,6 +145,11 @@
     </Compile>
     <Compile Include="jeu\Gameconfiguration.cs" />
     <Compile Include="jeu\Housse.cs" />
+    <Compile Include="jeu\Info.cs" />
+    <Compile Include="jeu\PLA1j.cs" />
+    <Compile Include="jeu\PLA1jperso.cs" />
+    <Compile Include="jeu\PLA2j.cs" />
+    <Compile Include="jeu\PLA2jperso.cs" />
     <Compile Include="jeu\Score.cs" />
     <Compile Include="jeu\Score_PLA.cs" />
     <Compile Include="jeu\StorageManager.cs" />

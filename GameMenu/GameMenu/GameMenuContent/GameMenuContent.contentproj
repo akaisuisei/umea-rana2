@@ -91,7 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\asteroid\planet4.png">
+    <Compile Include="hero\IA\asteroid\planet4.png">
       <Name>planet4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -105,7 +105,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\asteroid\star.png">
+    <Compile Include="hero\IA\asteroid\star.png">
       <Name>star</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -119,17 +119,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\BandW\naruto.png">
+    <Compile Include="hero\IA\BandW\naruto.png">
       <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="IA\BandW\eve.png">
+    <Compile Include="hero\IA\BandW\eve.png">
       <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="IA\BandW\tuc_jaune.png">
+    <Compile Include="hero\IA\BandW\tuc_jaune.png">
       <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -204,7 +204,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\asteroid\asteroide-sprite2.png">
+    <Compile Include="hero\IA\asteroid\asteroide-sprite2.png">
       <Name>asteroide-sprite2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -218,7 +218,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\asteroid\asteroide-sprite.png">
+    <Compile Include="hero\IA\asteroid\asteroide-sprite.png">
       <Name>asteroide-sprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -246,21 +246,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\color\eve.png">
+    <Compile Include="hero\IA\color\eve.png">
       <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\color\naruto.png">
+    <Compile Include="hero\IA\color\naruto.png">
       <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\color\tuc_jaune.png">
+    <Compile Include="hero\IA\color\tuc_jaune.png">
       <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -288,7 +288,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IA\color\house.png">
+    <Compile Include="hero\IA\color\house.png">
       <Name>house</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -302,14 +302,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boss\note.png">
+    <Compile Include="pointfort\note.png">
       <Name>note</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boss\pt.png">
+    <Compile Include="pointfort\pt.png">
       <Name>pt</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
