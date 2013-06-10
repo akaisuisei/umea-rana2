@@ -19,6 +19,7 @@ namespace Umea_rana
         public float Y { get; set; }
         public int parcouru { get { return _parcouru; } set { _parcouru = parcouru; } }
         public int dir { get; set; }
+        public string name { get; set; }
         public platform(Texture2D n_textture, Rectangle n_rectangle, int n_speed)
         {
             texture = n_textture;
@@ -27,35 +28,34 @@ namespace Umea_rana
             width = rectangle.Width;
             height = rectangle.Height;
         }
-        public  platform(Texture2D n_textture, Rectangle n_rectangle, int distance, int speed, char type)
+        public  platform( Rectangle n_rectangle,int distance, Plat plat)
         {
-            texture = n_textture;
             rectangle = n_rectangle;
-            this.speed = speed;
+            this.speed = plat.speed;
             width = rectangle.Width;
             height = rectangle.Height;
-            this.distance = distance;
+            this.distance =distance  ;
             _parcouru = 0;
             dir = 1;
-            switch (type)
+            switch (plat.type)
             {
-                case ('0'):
+                case ('0')://bouge pas
                     break;
-                case ('R'):
+                case ('R'):// va vers la droite par rapport a son point de depart
                     break;
-                case ('L'):
+                case ('L')://  vers la gauche par rapport a son point de depart
                     break;
-                case ('U'):
+                case ('U'):// vers le haut par rapport a sont pt de depart
                     break;
-                case ('D'):
+                case ('D'):// vers le bas par rapport a sont pt de depart
                     break;
-                case ('1'):
+                case ('1'):// vers 3pi/4 par rapport a sont pt de depart
                     break;
-                case ('2'):
+                case ('2'):// vers pi/4le bas par rapport a sont pt de depart
                     break;
-                case ('3'):
+                case ('3'):// vers -pi/4le bas par rapport a sont pt de depart
                     break;
-                case ('4'):
+                case ('4'):// vers -3pi/4le bas par rapport a sont pt de depart
                     break;
 
                 default:

@@ -263,7 +263,7 @@ namespace Umea_rana
             this.ovni = ovni;
             this.scrollingM = scrolling;
             this.Content = Content;
-            string[] item = sauve.filename(Content);
+            string[] item = sauve.filename(Content,"back");
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);

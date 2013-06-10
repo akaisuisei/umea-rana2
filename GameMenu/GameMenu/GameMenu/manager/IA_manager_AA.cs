@@ -23,16 +23,18 @@ namespace Umea_rana
             AnimationSpeed = 10;
             poid = 10;
         }
-        public IA_manager_AA(Texture2D n_textture, Rectangle n_rectangle, int front_sc, int window_H, int window_W)
+        public IA_manager_AA( Rectangle n_rectangle, int window_H, int window_W)
         {
             ia_manage = new List<vaisseau_IA>();
-            this._texture = n_textture;
             this._rectangle = n_rectangle;
-            this.front_sc = front_sc;
             this.window_H = window_H;
             this.window_W = window_W;
             AnimationSpeed = 10;
             poid = 10;
+        }
+        public void LoadContent(Texture2D texture)
+        {
+            this._texture = texture;
         }
 
         public void Draw(SpriteBatch spritebatch)

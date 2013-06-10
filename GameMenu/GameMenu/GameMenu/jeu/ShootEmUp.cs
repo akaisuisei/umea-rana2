@@ -83,12 +83,6 @@ namespace Umea_rana
             stalkert = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2");
             fondt = Content.Load<Texture2D>("ListBoxBG");
             //instancie le scolling
-
-            //   scrolling1 = new Scrolling(bacgkround1, new Rectangle(0, 0, width, height), 2, height,1f);
-
-            //    scrolling2 = new Scrolling(background2, new Rectangle(0, 0, width, height), 3, height,0.5f);
-
-
             //intancie le vaisseau
             vaisseau = new spripte_V(new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 1);
             perso2 = new spripte_V(new Rectangle(0, 0, taille_sprt2, taille_sprt2), fond, 2);

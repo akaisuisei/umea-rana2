@@ -246,7 +246,9 @@ namespace Umea_rana
     public class Levelbis : GameState
     {
 
-        Scrolling_H scrolling1;//, scrolling3, scrolling4;
+        Scrolling_ManagerV srollingM;
+        Sauveguarde sauvegarde;
+        Dictionary<string, Texture2D> T_platform;
         Sprite_PLA allen;
         Platform_manager platform_M;
         IA_manager_AA managerAA;
@@ -257,12 +259,12 @@ namespace Umea_rana
 
         _Pause _pause;
         bool _checkpause = false;
-        Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
+        Texture2D alllenT, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
         scoreplat score;
         bossPLAT boss;
         Housse housse;
-        string sprite_color;
+        string sprite_color="";
 
         public Levelbis(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -275,57 +277,40 @@ namespace Umea_rana
             boss = new bossPLAT();
 
             housse = new Housse();
+            sauvegarde = new Sauveguarde();
         }
 
         public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
-
+            string[] platstring = sauvegarde.filename(Content, "platform");
+            foreach (string p in platstring)
+                T_platform.Add(p, Content.Load<Texture2D>("platform//"+p));
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
-            _pause.initbutton(ref level);
+            _pause.initbutton(ref level);  
+            managerAA = new IA_manager_AA( new Rectangle(0, 0, 100, 100), height, width);
+            managerAR = new IA_manager_AR( new Rectangle(0, 0, 100, 100), height, width);
+            manageS = new IA_manager_S( new Rectangle(0, 0, 100, 100), height, width);
+            srollingM= new Scrolling_ManagerV(new Rectangle(0,0,width ,height ));
             //background
-            backgroundT = Content.Load<Texture2D>("PLA1/fond");
-            //sprite brouillon
-            alllenT = Content.Load<Texture2D>("hero/allen1");
+            //sprite brouillon    
+
+            platform_M = new Platform_manager(T_platform , width * 0.1f, height * 0.1f, height, width);
             //platfom
-            platform_t = Content.Load<Texture2D>("platform/black");
+            sauvegarde.Load_Level_PLA(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR, 
+                ref manageS, ref srollingM, ref platform_M, ref Graph, ref allen);
+       
             //ia
-            aster = Content.Load<Texture2D>("IA//asteroid//asteroide-sprite");
             naruto_stalker = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "naruto");
             eve = Content.Load<Texture2D>("IA//" + sprite_color  + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "tuc_jaune");
-            //boss
 
-
-
-            //background
-            scrolling1 = new Scrolling_H(backgroundT, new Rectangle(0, 0, width, height), back_sc);
-            //sprite brouillon
-            allen = new Sprite_PLA(alllenT, new Rectangle(width / 2, 0, 125, 93), collision, Content, '1');
-            //instanciement du manager d ia
-            platform_M = new Platform_manager(platform_t, width * 0.1f, height * 0.1f, front_sc, height, width);
-            //intenciement des 3 ia
-            managerAA = new IA_manager_AA(truc_jaune, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
-            managerAR = new IA_manager_AR(eve, new Rectangle(0, 0, 100, 100), front_sc, 4, height, width);
-            manageS = new IA_manager_S(naruto_stalker, new Rectangle(0, 0, 100, 100), front_sc, 3, height, width);
-            //instancie les donnees de la pause
             _pause.LoadContent(Content);
 
 
-
-            // ajout ia aller retour (X,Y)
-           
-            // ajout IA qui vont tous droit(X,Y)
-          
-            // ajout des ia Stalker (X,Y)
-           
-
-
-
-
-            // ajout platform (position X,position Y, nombre de plateforme juxtaposer)
-          
-
+            managerAA.LoadContent(truc_jaune);
+            managerAR.LoadContent(eve);
+            manageS.LoadContent(naruto_stalker);
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
             boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
@@ -335,20 +320,18 @@ namespace Umea_rana
 
         public override void Initialize(GraphicsDeviceManager graphics)
         {
-            front_sc = 4;
-            back_sc = 5;
         }
 
         public override void UnloadContent()
         {
-            scrolling1.texture.Dispose();
+            srollingM.dispose();
             allen.Dispose();
             managerAA.Dipose();
             managerAR.Dipose();
             manageS.Dipose();
             _pause.Dispose();
-            aster.Dispose(); alllenT.Dispose(); backgroundT.Dispose();
-            platform_t.Dispose(); naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose();
+         alllenT.Dispose(); 
+            naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose();
             // TODO: Unload any non ContentManager Content here
         }
 
@@ -367,7 +350,7 @@ namespace Umea_rana
             {
                 game.ChangeState2(Game1.gameState.Null);
                 // scrolling
-                scrolling1.Update(keyboard);
+                srollingM.Update(keyboard);
 
                 // collision Allen
                 if (collision.Collision_sp_sol(ref allen, ref platform_M))
@@ -427,8 +410,7 @@ namespace Umea_rana
             // TODO: Add your drawing code here
 
 
-
-            scrolling1.Draw(spriteBatch);
+            srollingM.Draw(spriteBatch);
             //scrolling3.Draw(spriteBatch);
             allen.Draw(spriteBatch);
             platform_M.Draw(spriteBatch);

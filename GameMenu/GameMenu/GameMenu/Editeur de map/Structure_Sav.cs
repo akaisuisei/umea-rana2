@@ -93,6 +93,7 @@ namespace Umea_rana
         public int nbr, speed;
         public float distance;
         public char type;
+        public string name { get; set; }
 
     }
 

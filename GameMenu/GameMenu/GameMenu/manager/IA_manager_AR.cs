@@ -22,7 +22,20 @@ namespace Umea_rana
             poid = 10;
             AnimationSpeed = 10;
         }
-
+        public IA_manager_AR(Rectangle n_rectangle,  int window_H, int window_W)
+        {
+            ia_manage = new List<vaisseau_IA>();
+            this._rectangle = n_rectangle;
+            this.speed = speed;
+            this.window_H = window_H;
+            this.window_W = window_W;
+            poid = 10;
+            AnimationSpeed = 10;
+        }
+        public void LoadContent(Texture2D texture)
+        {
+            this._texture = texture;
+        }
         private void mov(ref int i)
         {
             if (ia_manage[i].vie >= 0)

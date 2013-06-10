@@ -26,6 +26,11 @@ namespace Umea_rana
         public List<munition> bulletL;
         public Rectangle fond;
 
+        public void parrametrage(savefile savefile)
+        {
+            front_sc = savefile.levelProfile.fc_speed;
+        }
+
         public virtual void Add(float X, float Y, int id)
         {
             ia_manage.Add(new Stalker(new Rectangle((int)(X * window_W) + 1, (int)(Y * window_H) - 1, _rectangle.Width, _rectangle.Height), speed, window_H, window_W, 0, id));

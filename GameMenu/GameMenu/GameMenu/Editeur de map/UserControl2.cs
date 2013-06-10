@@ -237,7 +237,7 @@ namespace Umea_rana
             
             this.scrollingM = scrolling;
             this.Content = Content;
-            string[] item = sauve.filename(Content);
+            string[] item = sauve.filename(Content,"back");
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);
@@ -975,6 +975,7 @@ namespace Umea_rana
                     Plat platef = new Plat();
                     platef.X = openX;
                     platef.Y = openY;
+                    platef.name = "black";// se qui est selectionner par la combobox des plateforme
                     platef.nbr = int.Parse(allasuite.Text);
 
                     
@@ -983,15 +984,16 @@ namespace Umea_rana
                     {
                         savefile.plat_f.Add(platef);
                         plateform.Add(platef);
-                        this.hidou();
+                 
 
                     }
                 }
                 else
                 {
                     modif(spawn, ia_type);
-                    this.hidou();
-                }
+              
+                }   
+                this.hidou();
             }
         }
 

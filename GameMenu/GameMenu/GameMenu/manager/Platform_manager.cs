@@ -16,7 +16,7 @@ namespace Umea_rana
         Texture2D texture;
         int backgeoundspeed, width_pla, heith_pla, window_H, window_W;
         public List<platform> plato;
-
+        Dictionary<string, Texture2D> texture2;
         public Platform_manager(Texture2D n_texture, float width_pla, float heith_pla, int backgroundspeed, int window_H, int window_W)
         {
             this.texture = n_texture;
@@ -27,6 +27,21 @@ namespace Umea_rana
             this.window_W = window_W;
             plato = new List<platform>();
         }
+        public Platform_manager(Dictionary<string, Texture2D>texture, float width_pla, float heith_pla,  int window_H, int window_W)
+        {
+            this.texture2 = texture;
+            this.width_pla = (int)width_pla;
+            this.heith_pla = (int)heith_pla;
+            this.window_H = window_H;
+            this.window_W = window_W;
+            plato = new List<platform>();
+        }
+
+        public void parrametrage(savefile save)
+        {
+            backgeoundspeed = save.levelProfile.fc_speed;
+        }
+
 
         public void Update(KeyboardState keyboard)
         {
@@ -51,6 +66,14 @@ namespace Umea_rana
                 spritebatch.Draw(texture, patate.rectangle, Color.White);
             }
         }
+        public void Draw2(SpriteBatch spritebatch)
+        {
+            foreach (platform patate in plato)
+            {
+                spritebatch.Draw(texture2[patate.name], patate.rectangle, Color.White);
+            }
+        }
+
 
         public void Add(float X, float Y, int number)
         {
@@ -68,7 +91,7 @@ namespace Umea_rana
 
             for (int i = 0; i < platform.nbr; ++i)
             {
-                plato.Add(new platform(texture, new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla),(int)( window_W *platform.distance),platform.speed , platform.type));
+                plato.Add(new platform( new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla),(int)(platform.distance *window_W ),platform ));
             }
         }
 

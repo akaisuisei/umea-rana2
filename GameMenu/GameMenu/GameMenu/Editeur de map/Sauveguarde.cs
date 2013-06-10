@@ -116,13 +116,18 @@ namespace Umea_rana
             }
             return hello;
         }
-
-        public string[] filename(ContentManager Content)
+        /// <summary>
+        /// charge les nom des images ki sont du type type
+        /// </summary>
+        /// <param name="Content"></param>
+        /// <param name="type">"back"||"platform"</param>
+        /// <returns></returns>
+        public string[] filename(ContentManager Content, string type)
         {
             string g;
-            if (!Directory.Exists(Path.GetDirectoryName(Content.RootDirectory) + "\\back"))
-                Directory.CreateDirectory(Content.RootDirectory + "\\back");
-            string[] hello = System.IO.Directory.GetFiles(Content.RootDirectory + "\\back");
+            if (!Directory.Exists(Path.GetDirectoryName(Content.RootDirectory) + "\\"+type ))
+                Directory.CreateDirectory(Content.RootDirectory + "\\"+type);
+            string[] hello = System.IO.Directory.GetFiles(Content.RootDirectory + "\\"+type);
             for (int j = 0; j < hello.Length; ++j)
             {
                 g = string.Empty;
@@ -220,7 +225,8 @@ namespace Umea_rana
         /// <param name="graph"></param>
         /// <param name="sprite"></param>
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
-            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling,
+           ref Platform_manager platform, ref GraphicsDevice graph, ref Sprite_PLA sprite)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -239,12 +245,17 @@ namespace Umea_rana
             color = savefil.levelProfile.IAcolor;
             scrolling.load(Content, savefil.levelProfile, graph);
             sprite.parametrage(savefil.levelProfile, ref  Content);
+            platform.parrametrage(savefil);
+            manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
+
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR  ia in savefil.ia_AR )
                 managerAR.Add(ia);
             foreach (IA_S ia in savefil.ia_S )
                 manageS.Add(ia);
+            foreach (Plat plat in savefil.plat_f)
+                platform.Add(plat);
         }
         /// <summary>
         /// level pour 2 joueur
@@ -261,7 +272,8 @@ namespace Umea_rana
         /// <param name="sprite"></param>
         /// <param name="p2"></param>
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
-            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite,ref Sprite_PLA p2)
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling,
+              ref Platform_manager platform, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -282,12 +294,16 @@ namespace Umea_rana
             sprite.parametrage(savefil.levelProfile, ref  Content);
             savefil.levelProfile.image_sprite = !savefil.levelProfile.image_sprite;
             p2.parametrage(savefil.levelProfile, ref Content);
+            platform.parrametrage(savefil);
+            manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
                 managerAR.Add(ia);
             foreach (IA_S ia in savefil.ia_S)
                 manageS.Add(ia);
+            foreach (Plat plat in savefil.plat_f)
+                platform.Add(plat);
         }
         /// <summary>
         /// level perso pour 1 joueur 
@@ -303,7 +319,8 @@ namespace Umea_rana
         /// <param name="graph"></param>
         /// <param name="sprite"></param>
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
-            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
+              ref Platform_manager platform, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
         {
             savefile savefil = new savefile();
             load_SEU(ref Level, ref savefil);
@@ -311,12 +328,16 @@ namespace Umea_rana
             color = savefil.levelProfile.IAcolor;
             scrolling.load(Content, savefil.levelProfile, graph);
             sprite.parametrage(savefil.levelProfile, ref  Content);
+            platform.parrametrage(savefil);
+            manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
                 managerAR.Add(ia);
             foreach (IA_S ia in savefil.ia_S)
                 manageS.Add(ia);
+            foreach (Plat plat in savefil.plat_f)
+                platform.Add(plat);
         }
         /// <summary>
         /// level perso pour 2 joueur
@@ -333,7 +354,8 @@ namespace Umea_rana
         /// <param name="sprite"></param>
         /// <param name="p2"></param>
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
-            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
+            ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
+              ref Platform_manager platform, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
         {
             savefile savefil = new savefile();
             load_SEU(ref Level, ref savefil); 
@@ -343,12 +365,16 @@ namespace Umea_rana
             sprite.parametrage(savefil.levelProfile, ref  Content);
             savefil.levelProfile.image_sprite = !savefil.levelProfile.image_sprite;
             p2.parametrage(savefil.levelProfile, ref Content);
+            platform.parrametrage(savefil);
+            manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
                 managerAR.Add(ia);
             foreach (IA_S ia in savefil.ia_S)
                 manageS.Add(ia);
+            foreach (Plat plat in savefil.plat_f)
+                platform.Add(plat);
         }
 
     }
