@@ -76,7 +76,7 @@ namespace Umea_rana
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
             Ia_color = Color.AliceBlue;
-            this.vie = vie;
+            this.vie = iaAA.Vie ;
             tombe = true;
             _speed = iaAA.Speed;
             normalspeed = iaAA.Speed;
@@ -97,7 +97,7 @@ namespace Umea_rana
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
             Ia_color = Color.AliceBlue;
-            this.vie = vie;
+            this.vie = iaS.Vie ;
             tombe = true;
             _speed = iaS.Speed;
             normalspeed = iaS.Speed;
@@ -118,7 +118,7 @@ namespace Umea_rana
             this.rectangle_C = n_rectangle;
             this.rectangle = n_rectangle;
             Ia_color = Color.AliceBlue;
-            this.vie = vie;
+            this.vie = iaAR.Vie ;
             tombe = true;
             _speed = iaAR.Speed;
             normalspeed = iaAR.Speed;

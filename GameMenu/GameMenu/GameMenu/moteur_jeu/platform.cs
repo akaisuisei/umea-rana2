@@ -14,10 +14,13 @@ namespace Umea_rana
     public class platform : objet
     {
         Texture2D texture;
-        int speed, width, height, distance, _parcouru;
+        int  width, height, _distance, _parcouru;
+        public int speed { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
+        public Vector2 direction { get; set; }
         public int parcouru { get { return _parcouru; } set { _parcouru = parcouru; } }
+        public int distance { get { return _distance; } }
         public int dir { get; set; }
         public string name { get; set; }
         public platform(Texture2D n_textture, Rectangle n_rectangle, int n_speed)
@@ -27,6 +30,8 @@ namespace Umea_rana
             speed = n_speed;
             width = rectangle.Width;
             height = rectangle.Height;
+            this.X = rectangle.X;
+            this.Y = rectangle.Y;
         }
         public  platform( Rectangle n_rectangle,int distance, Plat plat)
         {
@@ -35,28 +40,39 @@ namespace Umea_rana
             this.speed = plat.speed;
             width = rectangle.Width;
             height = rectangle.Height;
-            this.distance =distance  ;
+            this._distance =distance  ;
             _parcouru = 0;
             dir = 1;
+            this.X = rectangle.X;
+            this.Y = rectangle.Y;
             switch (plat.type)
             {
                 case ('0')://bouge pas
+                    direction = Vector2.Zero;
                     break;
                 case ('R'):// va vers la droite par rapport a son point de depart
+                    direction = new Vector2(1, 0);
                     break;
                 case ('L')://  vers la gauche par rapport a son point de depart
-                    break;
+                    direction = new Vector2(-1, 0);
+                    break;                    
                 case ('U'):// vers le haut par rapport a sont pt de depart
+                    direction = new Vector2(0, 1);
                     break;
                 case ('D'):// vers le bas par rapport a sont pt de depart
+                    direction = new Vector2(0, -1);
                     break;
                 case ('1'):// vers 3pi/4 par rapport a sont pt de depart
+                    direction = new Vector2(-0.7071067812f, 0.7071067812f);
                     break;
                 case ('2'):// vers pi/4le bas par rapport a sont pt de depart
+                    direction =new Vector2 (0.7071067812f,0.7071067812f);
                     break;
                 case ('3'):// vers -pi/4le bas par rapport a sont pt de depart
+                    direction = new Vector2(0.7071067812f, -0.7071067812f);
                     break;
                 case ('4'):// vers -3pi/4le bas par rapport a sont pt de depart
+                    direction = new Vector2(-0.7071067812f, -0.7071067812f);
                     break;
 
                 default:
