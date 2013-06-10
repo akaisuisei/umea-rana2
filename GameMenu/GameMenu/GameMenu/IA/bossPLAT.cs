@@ -44,6 +44,7 @@ namespace Umea_rana
             }
         }
 
+
         public int degat { get; private set; }
         float  lastvie;
         char type;
@@ -73,12 +74,58 @@ namespace Umea_rana
 
            
         }
-        public void parrametrage(bossP bp)
+        public void parrametrage(levelProfile  levelprofile)
         {
-            this.degat = bp.degat;
-            this.vie = bp.vie;
-            this.type = bp.type;
-            this.speed = bp.speed;
+            this.degat =levelprofile.bossPlatforme .degat;
+            this.vie = levelprofile.bossPlatforme.vie;
+            this.type = levelprofile.bossPlatforme.type;
+            this.speed = levelprofile.bossPlatforme.speed;
+            front_sc = levelprofile.fc_speed;
+        }
+        public void loadContent(ContentManager content, Rectangle fond)
+        {
+            this.fond = fond;
+            this.rectangle = new Rectangle(1000, 0, 100, 100);
+            this.atk = new Rectangle(1000, 200, 100, 100);
+            this.rectangle_C = rect;
+            this.degat = 1;
+            this.vie = 15;
+            this.lastvie = vie;
+            this.speed = 7;
+            ptfaible.Add(rect);
+            ptfort.Add(rect);
+            color = Color.Yellow;
+            this.effects = SpriteEffects.FlipHorizontally;
+            switch (type)
+            {
+                case '1':
+                    ptfort.Add(new Rectangle(0, 200, 50, 50));
+                    ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.6f), 50, 50));
+                    ptfort.Add(new Rectangle(1100, (int)(fond.Height * 0.7f), 50, 50));
+                    ptfort.Add(new Rectangle(1200, (int)(fond.Height * 0.6f), 50, 50));
+                    ptfort.Add(new Rectangle(1300, (int)(fond.Height * 0.8f), 50, 50));
+                    ptfort.Add(new Rectangle(800, (int)(fond.Height * 0.6f), 50, 50));
+                    ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
+                    ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
+                    ptfaible.Add(rect);
+                    this.texture = content.Load<Texture2D>("Boss/Light");
+                    ptforttexture = content.Load<Texture2D>("Boss/pt");
+                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
+                    line = 100;
+                    colunm = 100;
+                    break;
+                case '2':
+                    ptfaible.Add(rect);
+                    this.texture = content.Load<Texture2D>("Boss/Cascade");
+                    ptforttexture = content.Load<Texture2D>("Boss/note");
+                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
+                    line = 150;
+                    colunm = 150;
+                    break;
+                default:
+                    break;
+            }
         }
         public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, char type)
         {

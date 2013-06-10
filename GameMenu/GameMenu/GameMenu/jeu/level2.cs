@@ -31,7 +31,7 @@ namespace Umea_rana
         Texture2D aster, alllenT, backgroundT, platform_t, naruto_stalker, eve, truc_jaune;
         int front_sc, back_sc;
         scoreplat score;
-        bossPLAT boss;        
+        bossPLAT boss;
         Housse housse;
         public Level2(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -42,7 +42,7 @@ namespace Umea_rana
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
             boss = new bossPLAT();
-          
+
             housse = new Housse();
         }
 
@@ -64,7 +64,7 @@ namespace Umea_rana
             eve = Content.Load<Texture2D>("IA//" + "BandW" + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + "BandW" + "//" + "tuc_jaune");
             //boss
-            
+
 
 
             //background
@@ -80,7 +80,7 @@ namespace Umea_rana
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
 
-           
+
 
             // ajout ia aller retour (X,Y)
             managerAR.Add(1.1f, 0);
@@ -124,7 +124,7 @@ namespace Umea_rana
 
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
-            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),'1');
+            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
 
             housse.loadContent(Content, front_sc, "IA/color/house");
         }
@@ -158,7 +158,7 @@ namespace Umea_rana
                 _pause.checkpause(keyboard, ref _checkpause);
 
             }
-      
+
             if (!_checkpause)
             {
                 game.ChangeState2(Game1.gameState.Null);
@@ -195,16 +195,16 @@ namespace Umea_rana
                 //manager platform
                 platform_M.Update(keyboard);
                 score.Update(ref allen);
-                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);                
+                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
                 boss.Update(ref keyboard);
-                
+
             }
             else
             {
                 game.ChangeState2(Game1.gameState.Checkpause);
                 MediaPlayer.Stop();
                 ParticleAdder.adder(game, Game1.gameState.Checkpause, height, width);
-              _pause.Update(game, audio, ref _checkpause, ref keyboard ,ref oldkey );
+                _pause.Update(game, audio, ref _checkpause, ref keyboard, ref oldkey);
             }
 
             //partie perdu
@@ -231,7 +231,7 @@ namespace Umea_rana
             managerAA.Draw(spriteBatch);
             managerAR.Draw(spriteBatch);
             manageS.Draw(spriteBatch);
-            boss.Draw(spriteBatch);            
+            boss.Draw(spriteBatch);
             housse.draw(spriteBatch);
             score.Draw(spriteBatch);
 
@@ -264,7 +264,7 @@ namespace Umea_rana
         scoreplat score;
         bossPLAT boss;
         Housse housse;
-        string sprite_color="";
+        string sprite_color = "";
 
         public Levelbis(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
@@ -285,27 +285,27 @@ namespace Umea_rana
             T_platform = new Dictionary<string, Texture2D>();
             string[] platstring = sauvegarde.filename(Content, "platform");
             foreach (string p in platstring)
-                T_platform.Add(p, Content.Load<Texture2D>("platform//"+p));
+                T_platform.Add(p, Content.Load<Texture2D>("platform//" + p));
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
-            _pause.initbutton(ref level);  
-            managerAA = new IA_manager_AA( new Rectangle(0, 0, 100, 100), height, width);
-            managerAR = new IA_manager_AR( new Rectangle(0, 0, 100, 100), height, width);
-            manageS = new IA_manager_S( new Rectangle(0, 0, 100, 100), height, width);
-            srollingM= new Scrolling_ManagerV(new Rectangle(0,0,width ,height ));
+            _pause.initbutton(ref level);
+            managerAA = new IA_manager_AA(new Rectangle(0, 0, 100, 100), height, width);
+            managerAR = new IA_manager_AR(new Rectangle(0, 0, 100, 100), height, width);
+            manageS = new IA_manager_S(new Rectangle(0, 0, 100, 100), height, width);
+            srollingM = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
             allen = new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content);
             //background
             //sprite brouillon    
 
-            platform_M = new Platform_manager(T_platform , width * 0.1f, height * 0.1f, height, width);
+            platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
             //platfom
-            sauvegarde.Load_Level_PLAperso (Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR, 
-                ref manageS, ref platform_M,ref srollingM,  ref Graph, ref allen);
-       
+            sauvegarde.Load_Level_PLAperso(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR,
+                ref manageS, ref platform_M, ref housse, ref srollingM, ref Graph, ref allen);
+
             //ia
             sprite_color = "color";
             naruto_stalker = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "naruto");
-            eve = Content.Load<Texture2D>("IA//" + sprite_color  + "//" + "eve");
+            eve = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "tuc_jaune");
 
             _pause.LoadContent(Content);
@@ -316,9 +316,9 @@ namespace Umea_rana
             manageS.LoadContent(naruto_stalker);
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
-           boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
+            boss.loadContent(Content, new Rectangle(0, 0, width, height));
 
-            housse.loadContent(Content, front_sc, "IA/color/house");
+            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
             allen.vie = 10;
         }
 

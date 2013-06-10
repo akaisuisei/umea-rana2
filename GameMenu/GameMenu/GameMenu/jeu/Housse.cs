@@ -15,27 +15,47 @@ namespace Umea_rana
         int FrameColumn;
         int AnimationSpeed = 10;
         SpriteEffects Effects;
-
+        int windowH { get; set; }
+        int WindowW { get; set; }
         public Housse()
         {
 
+        }
+        public void loadContent(ContentManager content,  string filepath, Rectangle rectangle, int heightW, int widthW)
+        {
+            this.Frameline = 1;
+            this.FrameColumn = 1;
+            texture = content.Load<Texture2D>(filepath);
+            this.rect = rectangle;
+            line = 100;
+            column = 100;
+            Effects = SpriteEffects.FlipHorizontally;
+            windowH = heightW;
+            WindowW = widthW;
         }
         public void loadContent(ContentManager content, int fcspeed, string filepath)
         {
             this.Frameline = 1;
             this.FrameColumn = 1;
             this.fcspeed = fcspeed;
-            texture = content.Load<Texture2D>(filepath );
-            rect = new Rectangle(2000, 200, 100, 100);
+            texture = content.Load<Texture2D>(filepath);
+            this.rect = new Rectangle(2000, 500, 100, 100);
             line = 100;
             column = 100;
             Effects = SpriteEffects.FlipHorizontally;
+
+        }
+        public void parrametrage(levelProfile levelprofile)
+        {
+            rect.X = (int)(levelprofile.house.X * windowH);
+            rect.Y = (int)(levelprofile.house.Y * WindowW);
+            fcspeed = levelprofile.fc_speed;
         }
         public void Update(KeyboardState keybord, Game1 game, Sprite_PLA sprite)
         {
             if (keybord.IsKeyDown(Keys.Right))
             {
-                rect.X -= fcspeed;
+                 rect.X -= fcspeed;
             }
             if (keybord.IsKeyDown(Keys.Left))
             {

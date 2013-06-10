@@ -51,6 +51,8 @@ namespace Umea_rana
         public string[] musique;
         public string IAcolor;
         public bool image_sprite { get; set; }//vrai= allem, faux = yoh
+        public housesafe house { get; set; }
+        public bossP bossPlatforme { get; set; }
     }
     public struct Bonus
     {
@@ -108,6 +110,7 @@ namespace Umea_rana
         public List<couple> ia_Kamikaze;
         public List<Bonus> bonus;
         public levelProfile levelProfile;
+
     }
     public struct PlayerProfile
     {
@@ -130,6 +133,11 @@ namespace Umea_rana
             get { return playername; }
             set { if (_playername != string.Empty) playername = _playername; }
         }
+    }
+    public struct housesafe
+    {
+       public float X { get; set; }
+       public float Y { get; set; }
     }
     public struct OptionProfile
     {

@@ -239,21 +239,18 @@ namespace Umea_rana
                         game.nextgame();
                     else if (gameState[X, Y] == "Replay")
                         game.replay();
+                    else if (gameState[X, Y] == "Level3")
+                    {
+                        game.ChangeState(Game1.gameState.level3);
+                    }
+                    else if (gameState[X, Y] == "bis")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.levelpersoPLA);
+                    }
                     else
-                        if (gameState[X, Y] == "Level3")
-                        {
-                            Audio.play("BGMlevel3");
-                            game.ChangeState(Game1.gameState.level3);
-                        }
-                        else
-                            if (gameState[X, Y] == "bis")
-                            {
-                                game.level = name1;
-                                game.ChangeState(Game1.gameState.levelpersoPLA);
-                            }
-                            else
-                                game.ChangeState(Game1.gameState.MainMenuState);
-                    
+                        game.ChangeState(Game1.gameState.MainMenuState);
+
                     System.Threading.Thread.Sleep(G_latence);
                 }
                 oldintercept = intecep;
