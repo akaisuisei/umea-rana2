@@ -84,7 +84,7 @@ namespace Umea_rana
             savefile.plat_f = new List<Plat>();
             subdirectory = new List<string>();
             button9.Enabled = false;
-            type = "SEU";
+            type = "PLA";
             Initialize();
             //8,9,14,16
             Sauvegarde_.BackColor = System.Drawing.Color.Red;
@@ -515,8 +515,8 @@ namespace Umea_rana
             if (textBox10.BackColor == System.Drawing.Color.Green)
             {
                 savefile.levelProfile.levelname = filepath;
-                if (savefile.levelProfile.background_name != null &&
-                    savefile.levelProfile.playerLife != 0)
+                if (savefile.levelProfile.background_name != null )/*&&
+                    savefile.levelProfile.playerLife != 0)*/
                 {
                     savegame();
                     this.hidou();
@@ -680,7 +680,7 @@ namespace Umea_rana
 
         private void loadgame(string file_name)
         {
-            sauve.load_SEU(ref file_name, ref savefile);
+            sauve.load_SEU(ref file_name, ref savefile,"SEU");
             manage_S.remove_all();
             manage_AA.remove_all();
             manage_AR.remove_all();

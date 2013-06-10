@@ -282,6 +282,7 @@ namespace Umea_rana
 
         public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
         {
+            T_platform = new Dictionary<string, Texture2D>();
             string[] platstring = sauvegarde.filename(Content, "platform");
             foreach (string p in platstring)
                 T_platform.Add(p, Content.Load<Texture2D>("platform//"+p));
@@ -292,15 +293,17 @@ namespace Umea_rana
             managerAR = new IA_manager_AR( new Rectangle(0, 0, 100, 100), height, width);
             manageS = new IA_manager_S( new Rectangle(0, 0, 100, 100), height, width);
             srollingM= new Scrolling_ManagerV(new Rectangle(0,0,width ,height ));
+            allen = new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content);
             //background
             //sprite brouillon    
 
             platform_M = new Platform_manager(T_platform , width * 0.1f, height * 0.1f, height, width);
             //platfom
-            sauvegarde.Load_Level_PLA(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR, 
-                ref manageS, ref srollingM, ref platform_M, ref Graph, ref allen);
+            sauvegarde.Load_Level_PLAperso (Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR, 
+                ref manageS, ref platform_M,ref srollingM,  ref Graph, ref allen);
        
             //ia
+            sprite_color = "color";
             naruto_stalker = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "naruto");
             eve = Content.Load<Texture2D>("IA//" + sprite_color  + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "tuc_jaune");
@@ -313,9 +316,10 @@ namespace Umea_rana
             manageS.LoadContent(naruto_stalker);
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
-            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
+           boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height), '1');
 
             housse.loadContent(Content, front_sc, "IA/color/house");
+            allen.vie = 10;
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
@@ -330,7 +334,6 @@ namespace Umea_rana
             managerAR.Dipose();
             manageS.Dipose();
             _pause.Dispose();
-         alllenT.Dispose(); 
             naruto_stalker.Dispose(); eve.Dispose(); truc_jaune.Dispose();
             // TODO: Unload any non ContentManager Content here
         }
@@ -413,7 +416,7 @@ namespace Umea_rana
             srollingM.Draw(spriteBatch);
             //scrolling3.Draw(spriteBatch);
             allen.Draw(spriteBatch);
-            platform_M.Draw(spriteBatch);
+            platform_M.Draw2(spriteBatch);
             managerAA.Draw(spriteBatch);
             managerAR.Draw(spriteBatch);
             manageS.Draw(spriteBatch);

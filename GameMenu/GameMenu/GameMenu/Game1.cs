@@ -53,6 +53,7 @@ namespace Umea_rana
             StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content,gameconfiguration));
             StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
             StateManager.Add(gameState.level3 , new Level3(this, graphics, Content));
+            StateManager.Add(gameState.levelpersoPLA , new Levelbis (this, graphics, Content));
             graphics.PreferredBackBufferHeight = OptionState._height;
             graphics.PreferredBackBufferWidth = OptionState._width;
             graphics.IsFullScreen = OptionState.fullscreen;
@@ -78,7 +79,7 @@ namespace Umea_rana
         protected override void LoadContent()
         {
            LocalizedString.Culture= new System.Globalization.CultureInfo(OptionState.langue);
-       
+           MediaPlayer.Volume = 0f;
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
@@ -133,6 +134,7 @@ namespace Umea_rana
             level_Pselect,
             win,
             level3,
+            levelpersoPLA,
             Null,
         }
 

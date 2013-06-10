@@ -220,7 +220,7 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "LevelEdit")
                     {
-                        if (name1 != string.Empty && name1!= null)
+                        if (name1 != string.Empty && name1 != null)
                             if (game.level != "LevelEdit")
                             {
                                 game.level = name1;
@@ -246,8 +246,14 @@ namespace Umea_rana
                             game.ChangeState(Game1.gameState.level3);
                         }
                         else
-                            game.ChangeState(Game1.gameState.MainMenuState);
-
+                            if (gameState[X, Y] == "bis")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.levelpersoPLA);
+                            }
+                            else
+                                game.ChangeState(Game1.gameState.MainMenuState);
+                    
                     System.Threading.Thread.Sleep(G_latence);
                 }
                 oldintercept = intecep;

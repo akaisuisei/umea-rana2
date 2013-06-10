@@ -81,13 +81,13 @@ namespace Umea_rana
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="savefile"></param>
-        public void load_SEU(ref string filename, ref savefile savefile)
+        public void load_SEU(ref string filename, ref savefile savefile,string type)
         {
             FileStream file1 = null;
             XmlSerializer f = null;
 
             DirectoryInfo dir = null;
-            dir = new DirectoryInfo(path + "\\SEU\\" + filename);
+            dir = new DirectoryInfo(path + "\\"+type+"\\" + filename);
             if (dir.Exists)
             {
                 file1 = new FileStream(dir.FullName + "\\level.lvl", FileMode.Open, FileAccess.Read);
@@ -190,7 +190,7 @@ namespace Umea_rana
             ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni)
         {
             savefile savefile = new savefile();
-            load_SEU(ref level, ref savefile);
+            load_SEU(ref level, ref savefile,"SEU");
             for (int j = 0; j < savefile.ia_tireur.Count; ++j)
                 iamanage_T.Add(savefile.ia_tireur[j]);
             for (int j = 0; j < savefile.ia_viseur.Count; ++j)
@@ -323,7 +323,7 @@ namespace Umea_rana
               ref Platform_manager platform, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
         {
             savefile savefil = new savefile();
-            load_SEU(ref Level, ref savefil);
+            load_SEU(ref Level, ref savefil,"PLA");
             next_level = savefil.levelProfile.next_level;
             color = savefil.levelProfile.IAcolor;
             scrolling.load(Content, savefil.levelProfile, graph);
@@ -358,7 +358,7 @@ namespace Umea_rana
               ref Platform_manager platform, ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
         {
             savefile savefil = new savefile();
-            load_SEU(ref Level, ref savefil); 
+            load_SEU(ref Level, ref savefil,"PLA"); 
             next_level = savefil.levelProfile.next_level;
             color = savefil.levelProfile.IAcolor;
             scrolling.load(Content, savefil.levelProfile, graph);

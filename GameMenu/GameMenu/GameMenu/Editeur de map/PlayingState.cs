@@ -49,16 +49,16 @@ namespace Umea_rana
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
             fond = new Rectangle(0, 0, width, height);
-            manage_aa = new IA_manager_AA(content.Load<Texture2D>("IA/tuc_jaune"), rectangle, 3, 0, height, width);
-            manage_ar = new IA_manager_AR(content.Load<Texture2D>("IA/eve"), rectangle, 3, 0, height, width);
-            manage_s = new IA_manager_S(content.Load<Texture2D>("IA/naruto"), rectangle, 3, 0, height, width);
-            manage_p = new Platform_manager(content.Load<Texture2D>("level1//platform"), 0.07f * width, 0.03f * height, 3, height, width);
+            manage_aa = new IA_manager_AA(content.Load<Texture2D>("IA/color/tuc_jaune"), rectangle, 3, 0, height, width);
+            manage_ar = new IA_manager_AR(content.Load<Texture2D>("IA/color/eve"), rectangle, 3, 0, height, width);
+            manage_s = new IA_manager_S(content.Load<Texture2D>("IA/color/naruto"), rectangle, 3, 0, height, width);
+            manage_p = new Platform_manager(content.Load<Texture2D>("platform/black"), 0.07f * width, 0.03f * height, 3, height, width);
             Scroll_manager = new Scrolling_ManagerV(fond);
             user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, content, manage_p, fond);
         }
         public override void UnloadContent()
         {
-            test.Dispose();
+         
             _pause.Dispose();
         }
         public override void Update(Game1 game, Audio audio)

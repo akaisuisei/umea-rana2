@@ -121,6 +121,35 @@ namespace Umea_rana
             last = current;
             test = Content.Load<Texture2D>("ListBoxBG");
         }
+        public Sprite_PLA( Rectangle n_rectangle, Collision n_collision, ContentManager Content)
+        {
+            test = Content.Load<Texture2D>("ListBoxBG");
+       
+            rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
+            rectangle = n_rectangle;
+            poid = 10;
+            in_air = false;
+            jump_off = false;
+            collision = n_collision;
+            impulse = 150;
+            pos_marche = rectangle.Y;
+            marchell = Content.Load<Song>("hero//jogging");
+            MediaPlayer.Play(marchell);
+
+            this.FrameLine = 1;
+            this.FrameColumn = 1;
+            this.Timer = 0;
+            vie = 100;
+
+            upsidedown = 10;
+            atq = false;
+            longattaque = 17;
+            dead = false;
+            timer_dead = 200;
+
+           
+            test = Content.Load<Texture2D>("ListBoxBG");
+        }
         public void parametrage(levelProfile levelprofile, ref ContentManager Content)
         {
             vie = levelprofile.playerLife;
@@ -139,7 +168,7 @@ namespace Umea_rana
                 die = new pos(3, 3, 7);
                 jump = new pos(2, 4, 5);
                 fall = new pos(2, 6, 7);
-                texture = Content.Load<Texture2D>("hero/allen1");
+                         texture = Content.Load<Texture2D>("hero/allen1");  
             }
             else
             {
@@ -155,8 +184,10 @@ namespace Umea_rana
                 die = new pos(3, 5, 9);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
-                texture = Content.Load<Texture2D>("hero//yoh");
+    texture = Content.Load<Texture2D>("hero//yoh"); 
                             }
+            current = fall;
+            last = current;
         }
 
         public void update(KeyboardState keyboard)

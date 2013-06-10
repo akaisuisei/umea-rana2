@@ -30,6 +30,7 @@ namespace Umea_rana
         }
         public  platform( Rectangle n_rectangle,int distance, Plat plat)
         {
+            name = plat.name;
             rectangle = n_rectangle;
             this.speed = plat.speed;
             width = rectangle.Width;

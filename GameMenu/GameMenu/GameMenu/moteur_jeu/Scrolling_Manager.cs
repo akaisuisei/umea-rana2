@@ -138,7 +138,7 @@ namespace Umea_rana
             else if (name == "BackgrounD")// si c est un jeu perso
             {
                 Sauveguarde save = new Sauveguarde();
-                FileStream file = new FileStream(save._path + "\\SEU\\" + levelprofile.levelname + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
+                FileStream file = new FileStream(save._path + "\\PLA\\" + levelprofile.levelname + "\\" + levelprofile.background_name, FileMode.Open, FileAccess.Read);
                 texture[count] = (Texture2D.FromStream(Graph, file));
                 rec1[count] = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
                 rec2[count] = new Rectangle(rectangle.Width, rectangle.Y, rectangle.Width, rectangle.Height);

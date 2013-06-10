@@ -933,7 +933,7 @@ namespace Umea_rana
         /// <param name="file_name">nom du fichier a charger</param>
         private void loadgame(string file_name)
         {
-            sauve.load_SEU(ref file_name, ref _savefile);
+            sauve.load_SEU(ref file_name, ref _savefile,"PLA");
             manage_k.remove_all();
             manage_T.remove_all();
             manage_V.remove_all();
