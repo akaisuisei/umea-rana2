@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Umea_rana;
+using Umea_rana.LocalizedStrings;
 
 namespace Umea_rana
 {
@@ -24,7 +25,7 @@ namespace Umea_rana
         string aster, comete, sun, angle;
         string[] playlist;
         // tag
-        string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes";
+        string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance";
         // type
         string type;
         System.Drawing.Color color2, color4;
@@ -33,8 +34,9 @@ namespace Umea_rana
         public bool IHave_control;
         bool openF;
         string imageB;
-        float openX, openY;      
-                
+        float openX, openY;
+
+        string file_bosspath;
         IA_manager_AA manage_AA;
         IA_manager_AR manage_AR;
         IA_manager_S manage_S;
@@ -47,7 +49,7 @@ namespace Umea_rana
         int spawn;
         string ia_type;
         ContentManager Content;
-       
+        bossPLAT bossfuck;
 
         public void dispose()
         {
@@ -70,8 +72,8 @@ namespace Umea_rana
             this.width = Screen.PrimaryScreen.Bounds.Width;
             this.height = Screen.PrimaryScreen.Bounds.Height;
             IHave_control = false;
-            
 
+            file_bosspath = "";
             seconde = 0;
             filepath = string.Empty;
             sauve = new Sauveguarde();
@@ -211,13 +213,13 @@ namespace Umea_rana
         }
 
         public void update(ref IA_manager_AA manage_aa, ref IA_manager_AR manage_ar, ref IA_manager_S manage_s,
-            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Platform_manager platef)
+            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Platform_manager platef, ref bossPLAT bossyeah)
         {
             manage_aa = this.manage_AA;
             manage_ar = this.manage_AR;
             manage_s = this.manage_S;
             platef = this.plateform;
-
+            bossyeah = this.bossfuck;
             scrollM = this.scrollingM;            
             this.game = game;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
@@ -227,7 +229,7 @@ namespace Umea_rana
 
         }
 
-        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom, Microsoft.Xna.Framework.Rectangle fond)
+        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom, Microsoft.Xna.Framework.Rectangle fond, bossPLAT boss)
         {
             
             this.manage_AA = manage_AA;
@@ -238,61 +240,71 @@ namespace Umea_rana
             this.scrollingM = scrolling;
             this.Content = Content;
             string[] item = sauve.filename(Content,"back");
+            string[] item2 = sauve.filename(Content, "Boss");
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);
                 comboBox3.Items.Add(item[i]);
+                
             }
 
+            for (int i = 0; i < item2.Length; i++)
+            {
+                choix_boss.Items.Add(item2[i]);
+            }
+
+            textBox1_v.Tag = t_boss_vie;
+            textBox2_p.Tag = t_boss_puiss;
             vie_p.Tag = t_life;
             puissance_p.Tag = t_damage;
             vitesse_p.Tag = t_speed;
             allasuite.Tag = t_plateforme_nombre;
             height = fond.Height;
             width = fond.Width;
+            this.bossfuck = boss;
             
         }
         private void Initialize()
         {
             
-            life = "point de vie";
-            speed = "vitesse";
-            couleur = "couleur de tir";
-            onglet1 = "Tireur";
-            onglet2 = "Viseur";
-            onglet3 = "kamikaze";
-            onglet4 = "fond";
-            onglet5 = "personnage";
-            trajectoir = "trajectoire";
-            align = "alignement enemie";
-            OK = "OK";
-            firerate = "cadence de tir";
-            end = "terminer";
-            imagefond = "image du fond";
-            vitessefond = "vitesse du fond";
-            vitesseV = "vitesse";
-            open = "ouvrir";
-            cancel = "annuler";
-            load = "charger";
-            save = "sauvegarder";
-            filepathlabel = "nom du niveau";
-            scrolling = "defilement vertical";
-            file = "fichier";
-            damage = "degat infligee";
-            bullet_speed = "vitesse de la balle";
-            supp = "supprimer";
-            musique = "musique";
-            add = "ajouter";
-            boss = "Boss";
-            bonus = "Bonus";
-            bomb = "bombe";
-            missile = "missile";
-            power = "puissance";
-            ovini = "ovni";
-            aster = "asteroide";
-            comete = "comete";
-            sun = "soleil";
-            angle = "angle";
+            life = LocalizedString.Life;
+            speed = LocalizedString.Speed;
+            couleur = LocalizedString.Bullet_Color;
+            onglet1 = LocalizedString.Shooter;
+            onglet2 = LocalizedString.Sniper;
+            onglet3 = LocalizedString.Kamikaze;
+            onglet4 = LocalizedString.Background;
+            onglet5 = LocalizedString.player;
+            trajectoir = LocalizedString.Trajectory;
+            align = LocalizedString.AI_align;
+            OK = LocalizedString.OK;
+            firerate = LocalizedString.Firerate;
+            end = LocalizedString.terminated;
+            imagefond = LocalizedString.Background_image;
+            vitessefond = LocalizedString.Background_speed;
+            vitesseV = LocalizedString.Speed;
+            open = LocalizedString.Open;
+            cancel = LocalizedString.Cancel;
+            load = LocalizedString.Load;
+            save = LocalizedString.Save;
+            filepathlabel = LocalizedString.level_name;
+            scrolling = LocalizedString.ScrollingVertical;
+            file = LocalizedString.File;
+            damage = LocalizedString.Damage;
+            bullet_speed = LocalizedString.Bullet_speed;
+            supp = LocalizedString.delete;
+            musique = LocalizedString.music;
+            add = LocalizedString.Add;
+            boss = LocalizedString.Boss;
+            bonus = LocalizedString.bonus;
+            bomb = LocalizedString.bomb;
+            missile = LocalizedString.missile;
+            power = LocalizedString.power;
+            ovini = LocalizedString.UFO;
+            aster = LocalizedString.Asteroid;
+            comete = LocalizedString.Comet;
+            sun = LocalizedString.Sun;
+            angle = LocalizedString.angle;
             color2 = System.Drawing.Color.Black;
             //tap page
 
@@ -372,7 +384,9 @@ namespace Umea_rana
             puissance_p.Text = string.Empty; //garder         
                         
             //tag           
-                   
+
+            textBox2_p.Tag = t_boss_puiss;
+            textBox1_v.Tag = t_boss_vie;
             vie_p.Tag = t_life; //garder
             vitesse_p.Tag = t_speed;  //garder          
             Sauvegarde_.Tag = t_speed;                       
@@ -586,6 +600,10 @@ namespace Umea_rana
                 n = 10;
             else if ((string)texbox.Tag == t_plateforme_nombre)
                 n = 30;
+            else if ((string)texbox.Tag == t_boss_vie)
+                n = 1000;
+            else if ((string)texbox.Tag == t_boss_puiss)
+                n = 50;
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
             {
@@ -605,6 +623,7 @@ namespace Umea_rana
                 n = 300;
             else if ((string)texbox.Tag == t_speed)
                 n = 10;
+            
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
             {
@@ -997,7 +1016,35 @@ namespace Umea_rana
             }
         }
 
-        
+        private void textBox1_v_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox1_v);
+        }
+
+        private void textBox2_p_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox2_p);
+        }
+
+        private void choix_boss_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            file_bosspath =(string) choix_boss.SelectedItem;
+        }
+
+        private void button1_ok_Click(object sender, EventArgs e)
+        {
+            if ((file_bosspath != "") && (textBox1_v.BackColor == System.Drawing.Color.Green && textBox2_p.BackColor == System.Drawing.Color.Green))
+            {bossP busyguy;
+            busyguy.degat =int.Parse ( textBox2_p.Text);
+            busyguy.speed = 6;
+            busyguy.type = file_bosspath;
+            busyguy.vie = int.Parse(textBox1_v.Text);
+            bossfuck.parrame(busyguy, Content, 3);
+                hidou();
+            }
+        }
+
+      
 
     }
 }

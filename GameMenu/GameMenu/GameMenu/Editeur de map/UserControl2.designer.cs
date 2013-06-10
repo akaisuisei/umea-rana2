@@ -43,7 +43,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.Tabcontrol = new System.Windows.Forms.TabControl();
+            this.Boss_plat = new System.Windows.Forms.TabControl();
             this.Sauvegarde_Chargement = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.button7 = new System.Windows.Forms.Button();
@@ -91,13 +91,24 @@
             this.bas = new System.Windows.Forms.RadioButton();
             this.Plateforme_Stable = new System.Windows.Forms.RadioButton();
             this.allasuite = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.choix_boss = new System.Windows.Forms.ComboBox();
+            this.Type_boss = new System.Windows.Forms.Label();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.Vie_b = new System.Windows.Forms.Label();
+            this.puissance_b = new System.Windows.Forms.Label();
+            this.textBox1_v = new System.Windows.Forms.TextBox();
+            this.textBox2_p = new System.Windows.Forms.TextBox();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.button1_ok = new System.Windows.Forms.Button();
             this.Fond.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            this.Tabcontrol.SuspendLayout();
+            this.Boss_plat.SuspendLayout();
             this.Sauvegarde_Chargement.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -114,6 +125,10 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel18.SuspendLayout();
+            this.tableLayoutPanel19.SuspendLayout();
             this.SuspendLayout();
             // 
             // Fond
@@ -296,21 +311,22 @@
             this.comboBox3.Size = new System.Drawing.Size(191, 21);
             this.comboBox3.TabIndex = 3;
             // 
-            // Tabcontrol
+            // Boss_plat
             // 
-            this.Tabcontrol.Controls.Add(this.Fond);
-            this.Tabcontrol.Controls.Add(this.Sauvegarde_Chargement);
-            this.Tabcontrol.Controls.Add(this.Music);
-            this.Tabcontrol.Controls.Add(this.Ennemis);
-            this.Tabcontrol.Controls.Add(this.Plateformes);
-            this.Tabcontrol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tabcontrol.HotTrack = true;
-            this.Tabcontrol.Location = new System.Drawing.Point(0, 0);
-            this.Tabcontrol.Multiline = true;
-            this.Tabcontrol.Name = "Tabcontrol";
-            this.Tabcontrol.SelectedIndex = 0;
-            this.Tabcontrol.Size = new System.Drawing.Size(223, 331);
-            this.Tabcontrol.TabIndex = 0;
+            this.Boss_plat.Controls.Add(this.Fond);
+            this.Boss_plat.Controls.Add(this.Sauvegarde_Chargement);
+            this.Boss_plat.Controls.Add(this.Music);
+            this.Boss_plat.Controls.Add(this.Ennemis);
+            this.Boss_plat.Controls.Add(this.Plateformes);
+            this.Boss_plat.Controls.Add(this.tabPage1);
+            this.Boss_plat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Boss_plat.HotTrack = true;
+            this.Boss_plat.Location = new System.Drawing.Point(0, 0);
+            this.Boss_plat.Multiline = true;
+            this.Boss_plat.Name = "Boss_plat";
+            this.Boss_plat.SelectedIndex = 0;
+            this.Boss_plat.Size = new System.Drawing.Size(223, 331);
+            this.Boss_plat.TabIndex = 0;
             // 
             // Sauvegarde_Chargement
             // 
@@ -803,9 +819,9 @@
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.48837F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.51163F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.77966F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.22034F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
@@ -826,7 +842,7 @@
             this.gauche.AutoSize = true;
             this.gauche.Location = new System.Drawing.Point(3, 56);
             this.gauche.Name = "gauche";
-            this.gauche.Size = new System.Drawing.Size(59, 17);
+            this.gauche.Size = new System.Drawing.Size(61, 17);
             this.gauche.TabIndex = 0;
             this.gauche.TabStop = true;
             this.gauche.Text = "gauche";
@@ -835,7 +851,7 @@
             // droite
             // 
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(124, 56);
+            this.droite.Location = new System.Drawing.Point(127, 56);
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;
@@ -846,7 +862,7 @@
             // haut
             // 
             this.haut.AutoSize = true;
-            this.haut.Location = new System.Drawing.Point(68, 33);
+            this.haut.Location = new System.Drawing.Point(73, 33);
             this.haut.Name = "haut";
             this.haut.Size = new System.Drawing.Size(46, 17);
             this.haut.TabIndex = 2;
@@ -857,7 +873,7 @@
             // bas
             // 
             this.bas.AutoSize = true;
-            this.bas.Location = new System.Drawing.Point(68, 79);
+            this.bas.Location = new System.Drawing.Point(73, 79);
             this.bas.Name = "bas";
             this.bas.Size = new System.Drawing.Size(42, 17);
             this.bas.TabIndex = 3;
@@ -884,12 +900,136 @@
             this.allasuite.TabIndex = 2;
             this.allasuite.TextChanged += new System.EventHandler(this.allasuite_TextChanged);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tableLayoutPanel17);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(215, 287);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "Boss";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel17
+            // 
+            this.tableLayoutPanel17.ColumnCount = 1;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel18, 0, 0);
+            this.tableLayoutPanel17.Controls.Add(this.tableLayoutPanel19, 0, 1);
+            this.tableLayoutPanel17.Controls.Add(this.button1_ok, 0, 2);
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(4, 7);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.RowCount = 3;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.90614F));
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.09386F));
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(210, 277);
+            this.tableLayoutPanel17.TabIndex = 0;
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 1;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel18.Controls.Add(this.choix_boss, 0, 1);
+            this.tableLayoutPanel18.Controls.Add(this.Type_boss, 0, 0);
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 2;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(200, 70);
+            this.tableLayoutPanel18.TabIndex = 0;
+            // 
+            // choix_boss
+            // 
+            this.choix_boss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.choix_boss.FormattingEnabled = true;
+            this.choix_boss.Location = new System.Drawing.Point(10, 42);
+            this.choix_boss.Name = "choix_boss";
+            this.choix_boss.Size = new System.Drawing.Size(180, 21);
+            this.choix_boss.TabIndex = 0;
+            this.choix_boss.SelectedIndexChanged += new System.EventHandler(this.choix_boss_SelectedIndexChanged);
+            // 
+            // Type_boss
+            // 
+            this.Type_boss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Type_boss.AutoSize = true;
+            this.Type_boss.Location = new System.Drawing.Point(83, 11);
+            this.Type_boss.Name = "Type_boss";
+            this.Type_boss.Size = new System.Drawing.Size(34, 13);
+            this.Type_boss.TabIndex = 1;
+            this.Type_boss.Text = "Type ";
+            // 
+            // tableLayoutPanel19
+            // 
+            this.tableLayoutPanel19.ColumnCount = 2;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel19.Controls.Add(this.Vie_b, 0, 0);
+            this.tableLayoutPanel19.Controls.Add(this.puissance_b, 0, 1);
+            this.tableLayoutPanel19.Controls.Add(this.textBox1_v, 1, 0);
+            this.tableLayoutPanel19.Controls.Add(this.textBox2_p, 1, 1);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(3, 79);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 3;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.4375F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.5625F));
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(204, 107);
+            this.tableLayoutPanel19.TabIndex = 1;
+            // 
+            // Vie_b
+            // 
+            this.Vie_b.AutoSize = true;
+            this.Vie_b.Location = new System.Drawing.Point(3, 0);
+            this.Vie_b.Name = "Vie_b";
+            this.Vie_b.Size = new System.Drawing.Size(22, 13);
+            this.Vie_b.TabIndex = 0;
+            this.Vie_b.Text = "Vie";
+            // 
+            // puissance_b
+            // 
+            this.puissance_b.AutoSize = true;
+            this.puissance_b.Location = new System.Drawing.Point(3, 40);
+            this.puissance_b.Name = "puissance_b";
+            this.puissance_b.Size = new System.Drawing.Size(56, 13);
+            this.puissance_b.TabIndex = 1;
+            this.puissance_b.Text = "Puissance";
+            // 
+            // textBox1_v
+            // 
+            this.textBox1_v.Location = new System.Drawing.Point(105, 3);
+            this.textBox1_v.Name = "textBox1_v";
+            this.textBox1_v.Size = new System.Drawing.Size(95, 20);
+            this.textBox1_v.TabIndex = 2;
+            this.textBox1_v.TextChanged += new System.EventHandler(this.textBox1_v_TextChanged);
+            // 
+            // textBox2_p
+            // 
+            this.textBox2_p.Location = new System.Drawing.Point(105, 43);
+            this.textBox2_p.Name = "textBox2_p";
+            this.textBox2_p.Size = new System.Drawing.Size(95, 20);
+            this.textBox2_p.TabIndex = 3;
+            this.textBox2_p.TextChanged += new System.EventHandler(this.textBox2_p_TextChanged);
+            // 
+            // button1_ok
+            // 
+            this.button1_ok.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1_ok.Location = new System.Drawing.Point(23, 223);
+            this.button1_ok.Name = "button1_ok";
+            this.button1_ok.Size = new System.Drawing.Size(163, 31);
+            this.button1_ok.TabIndex = 2;
+            this.button1_ok.Text = "OK";
+            this.button1_ok.UseVisualStyleBackColor = true;
+            this.button1_ok.Click += new System.EventHandler(this.button1_ok_Click);
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(223, 331);
-            this.Controls.Add(this.Tabcontrol);
+            this.Controls.Add(this.Boss_plat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserControl2";
             this.Fond.ResumeLayout(false);
@@ -899,7 +1039,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
-            this.Tabcontrol.ResumeLayout(false);
+            this.Boss_plat.ResumeLayout(false);
             this.Sauvegarde_Chargement.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -922,6 +1062,12 @@
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel17.ResumeLayout(false);
+            this.tableLayoutPanel18.ResumeLayout(false);
+            this.tableLayoutPanel18.PerformLayout();
+            this.tableLayoutPanel19.ResumeLayout(false);
+            this.tableLayoutPanel19.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -930,7 +1076,7 @@
 
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TabPage Fond;
-        private System.Windows.Forms.TabControl Tabcontrol;
+        private System.Windows.Forms.TabControl Boss_plat;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -992,6 +1138,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.Button Valider_p;
         private System.Windows.Forms.TextBox allasuite;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private System.Windows.Forms.ComboBox choix_boss;
+        private System.Windows.Forms.Label Type_boss;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
+        private System.Windows.Forms.Label Vie_b;
+        private System.Windows.Forms.Label puissance_b;
+        private System.Windows.Forms.TextBox textBox1_v;
+        private System.Windows.Forms.TextBox textBox2_p;
+        private System.Windows.Forms.Button button1_ok;
 
     }
 }

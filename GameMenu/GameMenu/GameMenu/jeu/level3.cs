@@ -124,7 +124,7 @@ namespace Umea_rana
 
             score.LoadContent(new Rectangle(0, 0, width, height), Content);
 
-            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),'2');
+            boss.loadContent(Content, Content.Load<Texture2D>("ListBoxBG"), front_sc, new Rectangle(0, 0, width, height),"Cascade");
 
             housse.loadContent(Content, front_sc, "IA/color/house");
         }
