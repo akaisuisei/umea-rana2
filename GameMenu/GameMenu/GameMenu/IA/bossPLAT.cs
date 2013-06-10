@@ -81,6 +81,8 @@ namespace Umea_rana
             this.type = levelprofile.bossPlatforme.type;
             this.speed = levelprofile.bossPlatforme.speed;
             front_sc = levelprofile.fc_speed;
+            // truc
+            type = '1';
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {

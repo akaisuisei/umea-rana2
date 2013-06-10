@@ -300,7 +300,7 @@ namespace Umea_rana
             platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
             //platfom
             sauvegarde.Load_Level_PLAperso(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR,
-                ref manageS, ref platform_M, ref housse, ref srollingM, ref Graph, ref allen);
+                ref manageS, ref platform_M, ref housse,ref boss, ref srollingM, ref Graph, ref allen);
 
             //ia
             sprite_color = "color";

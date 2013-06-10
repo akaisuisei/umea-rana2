@@ -226,7 +226,7 @@ namespace Umea_rana
         /// <param name="sprite"></param>
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
-          ref Platform_manager platform, ref Housse housse, ref Scrolling_ManagerV scrolling,
+          ref Platform_manager platform, ref Housse housse, ref bossPLAT boss, ref Scrolling_ManagerV scrolling,
            ref GraphicsDevice graph, ref Sprite_PLA sprite)
         {
             savefile savefil = new savefile();
@@ -249,6 +249,7 @@ namespace Umea_rana
             platform.parrametrage(savefil);
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
+            boss.parrametrage(savefil.levelProfile);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR  ia in savefil.ia_AR )
@@ -274,7 +275,7 @@ namespace Umea_rana
         /// <param name="p2"></param>
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
-           ref Platform_manager platform, ref Housse housse, ref Scrolling_ManagerV scrolling,
+           ref Platform_manager platform, ref Housse housse, ref bossPLAT boss, ref Scrolling_ManagerV scrolling,
                ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
         {
             savefile savefil = new savefile();
@@ -298,7 +299,9 @@ namespace Umea_rana
             p2.parametrage(savefil.levelProfile, ref Content);
             platform.parrametrage(savefil);
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
+
                   housse.parrametrage(savefil.levelProfile);
+                  boss.parrametrage(savefil.levelProfile);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
@@ -323,7 +326,7 @@ namespace Umea_rana
         /// <param name="sprite"></param>
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
-              ref Platform_manager platform,ref Housse housse,
+              ref Platform_manager platform,ref Housse housse,ref bossPLAT boss,
             ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
         {
             savefile savefil = new savefile();
@@ -335,6 +338,7 @@ namespace Umea_rana
             platform.parrametrage(savefil);
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
+            boss.parrametrage(savefil.levelProfile);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
@@ -360,7 +364,7 @@ namespace Umea_rana
         /// <param name="p2"></param>
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
-              ref Platform_manager platform, ref Housse housse,
+              ref Platform_manager platform, ref Housse housse, ref bossPLAT boss,
             ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
         {
             savefile savefil = new savefile();
@@ -374,6 +378,7 @@ namespace Umea_rana
             platform.parrametrage(savefil);
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
+            boss.parrametrage(savefil.levelProfile);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
