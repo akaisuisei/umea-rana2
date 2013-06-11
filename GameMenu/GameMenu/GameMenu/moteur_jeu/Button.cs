@@ -16,6 +16,8 @@ namespace Umea_rana
     {
         Rectangle[,] rect;
         string[,] gameState;
+        Point[,] resolution;
+        Point depart;
         string[,] name, levelname;
         int WindowH, WindowW;
         float height, width;
@@ -76,6 +78,13 @@ namespace Umea_rana
             this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
             this.gameState[i, j] = gameState;
             this.name[i, j] = name;
+        }
+        public void activate(int i, int j, float X, float Y, Point  gameState, string name,Point depart)
+        {
+            this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
+            this.resolution [i, j] = gameState;
+            this.name[i, j] = name;
+            this.depart = depart;
         }
         /// <summary>
         /// 
@@ -256,7 +265,80 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
+        public Point  Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
+        {
+            if (tab == this.tab)//si on est sur le bon tableau
+            {
+                intecep = false;
 
+                for (int i = 0; i < rect.GetLength(0); ++i)
+                    for (int j = 0; j < rect.GetLength(1); ++j)
+                    {
+                        if (mouse_rec.Intersects(rect[i, j]))
+                        {
+                            X = i;
+                            Y = j;
+                            intecep = true;
+                            break;
+                            /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
+                        }
+                    }
+                if (intecep != oldintercept)
+                    if (intecep)
+                        game.menu_cursor.Play();
+                /*si on emet un son kan on change de boutton*/
+                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+                {
+                    if (Y == 0)
+                        Y = rect.GetLength(1) - 1;
+                    else
+                        Y = (Y - 1) % rect.GetLength(1);
+                    if (gameState[X, Y] == null)
+                        Y = (Y - 1) % rect.GetLength(1);
+                    game.menu_cursor.Play();
+                    //decal la selection vers le haut
+                }
+                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+                {
+                    Y = (Y + 1) % rect.GetLength(1);
+                    if (gameState[X, Y] == null)
+                        Y = (Y + 1) % rect.GetLength(1);
+                    game.menu_cursor.Play();
+                    //decal la selection vers la gauche
+                }
+                else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+                {
+                    X = (X + 1) % rect.GetLength(0);
+                    if (gameState[X, Y] == null)
+                        X = (X + 1) % rect.GetLength(0);
+                    game.menu_cursor.Play();
+                    //decal la selection vers la droite
+                }
+                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+                {
+                    if (X == 0)
+                        X = rect.GetLength(1) - 1;
+                    else
+                        X = (X - 1) % rect.GetLength(0);
+                    if (gameState[X, Y] == null)
+                        X = (X - 1) % rect.GetLength(0);
+                    game.menu_cursor.Play();
+                    //decal la selection vers la gauche
+                }
+                select.Y = rect[X, Y].Y;
+                select.X = rect[X, Y].X - select.Width;
+
+                if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
+                {
+                    /*si on clique sur un button on va voir a quoi il correcpond et le met en action*/
+                    game.menu_select.Play();
+                    return resolution[X, Y];
+                }
+                    oldintercept = intecep;
+                    return depart;
+            }
+            return depart;
+        }
 
         /// <summary>
         /// mise a jour des button
