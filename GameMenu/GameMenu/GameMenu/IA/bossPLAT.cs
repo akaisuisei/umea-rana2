@@ -49,7 +49,7 @@ namespace Umea_rana
 
         public int degat { get; private set; }
         float lastvie;
-        string type;
+        string type="";
         Texture2D texture, ptforttexture, ptfaible_texture;
         public List<Rectangle> ptfaible { get; private set; }
         public List<Rectangle> ptfort { get; private set; }
@@ -96,8 +96,25 @@ namespace Umea_rana
             this.type = bossPlatforme.type;
             this.speed = bossPlatforme.speed;
             front_sc = fc_speed;
+            rectangle.X = (int)(bossPlatforme.X * fond.Width);
+            rectangle.Y = (int)(bossPlatforme.Y * fond.Height);
             // truc
             this.texture = content.Load<Texture2D>("Boss/" + bossPlatforme.type);
+            switch (type)
+            {
+                case "Light":
+                        line = 100;
+                    colunm = 100;
+                    break;
+                case "Cascade":
+                       line = 150;
+                    colunm = 150;
+                    break;
+                default :
+                        line = 100;
+                    colunm = 100;
+                    break;
+            }
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {
@@ -140,9 +157,12 @@ namespace Umea_rana
                 default:
                     break;
             }
-            this.texture = content.Load<Texture2D>("Boss/" + type);
-            ptforttexture = content.Load<Texture2D>("pointfort/" + type);
-            ptfaible_texture = content.Load<Texture2D>("pointfaible/" + type);
+            if (type != "")
+            {
+                this.texture = content.Load<Texture2D>("Boss/" + type);
+                ptforttexture = content.Load<Texture2D>("pointfort/" + type);
+                ptfaible_texture = content.Load<Texture2D>("pointfaible/" + type);
+            }
         }
         public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, string type)
         {
