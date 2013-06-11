@@ -39,5 +39,10 @@ namespace Umea_rana
             if (sprite.rectangle.Bottom > 2 * height||sprite.dead )
                 game.ChangeState(Game1.gameState.Pause, _currentState);
         }
+        protected void fail(Game1 game, Sprite_PLA sprite,Sprite_PLA p2, Game1.gameState _currentState)
+        {
+            if (sprite.rectangle.Bottom > 2 * height || sprite.dead || p2.rectangle.Bottom > 2 * height || p2.dead)
+                game.ChangeState(Game1.gameState.Pause, _currentState);
+        }
     }
 }

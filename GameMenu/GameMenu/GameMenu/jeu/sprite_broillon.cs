@@ -59,7 +59,8 @@ namespace Umea_rana
 
         Texture2D test;
         public int damage { get; set; }
-
+        Keys K_atq, K_right, K_left, K_jump, K_block;
+        private int Speed { get; set; }
         public Sprite_PLA(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
         {
             test = Content.Load<Texture2D>("ListBoxBG");
@@ -121,10 +122,10 @@ namespace Umea_rana
             last = current;
             test = Content.Load<Texture2D>("ListBoxBG");
         }
-        public Sprite_PLA( Rectangle n_rectangle, Collision n_collision, ContentManager Content)
+        public Sprite_PLA(Rectangle n_rectangle, Collision n_collision, ContentManager Content, string player)
         {
             test = Content.Load<Texture2D>("ListBoxBG");
-       
+
             rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
             poid = 10;
@@ -147,8 +148,27 @@ namespace Umea_rana
             dead = false;
             timer_dead = 200;
 
-           
+
             test = Content.Load<Texture2D>("ListBoxBG");
+            switch (player)
+            {
+                case "P1":
+                    K_atq = Keys.X;
+                    K_right = Keys.Right;
+                    K_left = Keys.Left;
+                    K_jump = Keys.Space;
+                    K_block = Keys.B ;
+                    break;
+                case "P2":
+                      K_atq = Keys.E;
+                    K_right = Keys.D;
+                    K_left = Keys.A;
+                    K_jump = Keys.W;
+                    K_block = Keys.R ;
+                    break;
+                default:
+                    break;
+            }
         }
         public void parametrage(levelProfile levelprofile, ref ContentManager Content)
         {
@@ -168,7 +188,7 @@ namespace Umea_rana
                 die = new pos(3, 3, 7);
                 jump = new pos(2, 4, 5);
                 fall = new pos(2, 6, 7);
-                         texture = Content.Load<Texture2D>("hero/allen1");  
+                texture = Content.Load<Texture2D>("hero/allen1");
             }
             else
             {
@@ -184,10 +204,11 @@ namespace Umea_rana
                 die = new pos(3, 5, 9);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
-    texture = Content.Load<Texture2D>("hero//yoh"); 
-                            }
+                texture = Content.Load<Texture2D>("hero//yoh");
+            }
             current = fall;
             last = current;
+            Speed = 4;
         }
 
         public void update(KeyboardState keyboard)
@@ -201,17 +222,17 @@ namespace Umea_rana
             else
             {
                 pos_marche = rectangle.Y;
-                if (keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.Right))
+                if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
                     MediaPlayer.Resume();
                 else
                     MediaPlayer.Pause();
             }
 
-            if (keyboard.IsKeyDown(Keys.Space) && jump_off)
+            if (keyboard.IsKeyDown(K_jump) && jump_off)
             {
                 collision.jump(this);
             }
-            if (keyboard.IsKeyDown(Keys.X))
+            if (keyboard.IsKeyDown(K_atq))
                 atq = true;
             else
                 atq = false;
@@ -222,7 +243,45 @@ namespace Umea_rana
                 --timer_dead;
             if (timer_dead < 0)
                 dead = true;
-            if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.V))
+            if (keyboard.IsKeyDown(Keys.LeftControl ) && keyboard.IsKeyDown(Keys.V))
+                vie = 300;
+        }
+        public void Update(KeyboardState keyboard)
+        {
+            if (in_air)
+            {
+                rectangle.Y += poid;
+                MediaPlayer.Pause();
+                rectangle_C.Y = rectangle.Y;
+            }
+            else
+            {
+                pos_marche = rectangle.Y;
+                if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
+                    MediaPlayer.Resume();
+                else
+                    MediaPlayer.Pause();
+            }
+
+            if (keyboard.IsKeyDown(K_jump ) && jump_off)
+            {
+                collision.jump(this);
+            }
+            if (keyboard.IsKeyDown(K_atq ))
+                atq = true;
+            else
+                atq = false;
+            if (keyboard.IsKeyDown(K_right))
+                this.rectangle.X += Speed;
+            if (keyboard.IsKeyDown(K_left ))
+                this.rectangle.X -= Speed;
+            this.AnimeSPrite(ref keyboard);
+            Update_rec_collision();
+            if (vie < 0)
+                --timer_dead;
+            if (timer_dead < 0)
+                dead = true;
+            if (keyboard.IsKeyDown(Keys.LeftControl ) && keyboard.IsKeyDown(Keys.V))
                 vie = 300;
         }
 
@@ -249,7 +308,7 @@ namespace Umea_rana
             this.Effects = SpriteEffects.None;
             if (vie > 0)
             {
-                if (keyboard.IsKeyDown(Keys.Left) && in_air == false) //court vers la gauche
+                if (keyboard.IsKeyDown(K_left) && in_air == false) //court vers la gauche
                 {
 
                     dir = true;
@@ -259,11 +318,11 @@ namespace Umea_rana
 
 
                 }
-                else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la gauche
+                else if (keyboard.IsKeyDown(K_left) && in_air == true) //saute vers la gauche
                 {
 
                     dir = true;
-                    if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                    if (keyboard.IsKeyUp(K_jump)) //phase descendante
                     {
                         this.FrameColumn = 1;
                         this.FrameLine = 5;
@@ -277,7 +336,7 @@ namespace Umea_rana
 
                 }
 
-                else if (keyboard.IsKeyDown(Keys.Right) && in_air == false) //court vers la droite
+                else if (keyboard.IsKeyDown(K_right) && in_air == false) //court vers la droite
                 {
 
                     dir = false;
@@ -287,11 +346,11 @@ namespace Umea_rana
 
 
                 }
-                else if (keyboard.IsKeyDown(Keys.Left) && in_air == true) //saute vers la droite
+                else if (keyboard.IsKeyDown(K_left) && in_air == true) //saute vers la droite
                 {
 
                     dir = false;
-                    if (keyboard.IsKeyUp(Keys.Space))  //phase descendante
+                    if (keyboard.IsKeyUp(K_jump))  //phase descendante
                     {
                         this.FrameColumn = 1;
                         this.FrameLine = 5;
@@ -305,23 +364,23 @@ namespace Umea_rana
 
                 }
 
-                else if (keyboard.IsKeyDown(Keys.X)) //attaque
+                else if (keyboard.IsKeyDown(K_atq)) //attaque
                 {
                     this.FrameLine = 8;
                     this.Animate();
                 }
-                else if (keyboard.IsKeyUp(Keys.Space) && chute == true ^ jump_off) //saut phase descendante
+                else if (keyboard.IsKeyUp(K_jump) && chute == true ^ jump_off) //saut phase descendante
                 {
                     this.FrameColumn = 1;
                     this.FrameLine = 5;
 
                 }
-                else if (keyboard.IsKeyDown(Keys.Space) && chute == false) //saut phase ascendante
+                else if (keyboard.IsKeyDown(K_jump) && chute == false) //saut phase ascendante
                 {
                     this.FrameLine = 3;
                     this.FrameColumn = 1;
                 }
-                else if (keyboard.IsKeyDown(Keys.Space) && chute == true) //saut phase ascendante complément ?
+                else if (keyboard.IsKeyDown(K_jump) && chute == true) //saut phase ascendante complément ?
                 {
                     this.FrameLine = 3;
                     this.FrameColumn = 1;
@@ -362,8 +421,8 @@ namespace Umea_rana
                     this.Effects = SpriteEffects.None;
                 }
 
-            if ((vie > 0) && (keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && in_air == false) ||
-                (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
+            if ((vie > 0) && (keyboard.IsKeyUp(K_left) && keyboard.IsKeyUp(K_right) && keyboard.IsKeyUp(K_atq) && in_air == false) ||
+                (keyboard.IsKeyDown(K_left) && keyboard.IsKeyDown(K_right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
             {
                 this.FrameLine = 1;
                 this.FrameColumn = 1;
@@ -404,7 +463,7 @@ namespace Umea_rana
         {
             if (vie > 0)
             {
-                if (keyboard.IsKeyDown(Keys.Left)) //court vers la gauche
+                if (keyboard.IsKeyDown(K_left)) //court vers la gauche
                 {
                     this.Effects = SpriteEffects.FlipHorizontally;
                     dir = true;
@@ -413,7 +472,7 @@ namespace Umea_rana
                         current = walk;
                     }
                     else
-                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
                         {
                             current = fall;
                         }
@@ -422,7 +481,7 @@ namespace Umea_rana
                             current = jump;
                         }
                 }
-                else if (keyboard.IsKeyDown(Keys.Right)) //court vers la droite
+                else if (keyboard.IsKeyDown(K_right)) //court vers la droite
                 {
                     dir = false;
                     this.Effects = SpriteEffects.None;
@@ -431,7 +490,7 @@ namespace Umea_rana
                         current = walk;
                     }
                     else
-                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
                         {
                             current = fall;
                         }
@@ -440,11 +499,11 @@ namespace Umea_rana
                             current = jump;
                         }
                 }
-                else if (keyboard.IsKeyDown(Keys.X)) //attaque
+                else if (keyboard.IsKeyDown(K_atq)) //attaque
                 {
                     current = atk;
                 }
-                else if (keyboard.IsKeyUp(Keys.Space) && chute ^ jump_off) //saut phase descendante
+                else if (keyboard.IsKeyUp(K_jump) && chute ^ jump_off) //saut phase descendante
                 {
                     current = fall;
                 }
@@ -454,7 +513,7 @@ namespace Umea_rana
                         current = walk;
                     }
                     else
-                        if (keyboard.IsKeyUp(Keys.Space)) //phase descendante
+                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
                         {
                             current = fall;
                         }
@@ -464,8 +523,8 @@ namespace Umea_rana
                         }
 
 
-                if ((keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right) && keyboard.IsKeyUp(Keys.X) && !in_air) ||
-                (keyboard.IsKeyDown(Keys.Left) && keyboard.IsKeyDown(Keys.Right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
+                if ((keyboard.IsKeyUp(K_left) && keyboard.IsKeyUp(K_right) && keyboard.IsKeyUp(K_atq) && !in_air) ||
+                (keyboard.IsKeyDown(K_left) && keyboard.IsKeyDown(K_right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
                 {
                     current = idle;
                 }

@@ -60,7 +60,7 @@ namespace Umea_rana.jeu
             managerAR = new IA_manager_AR(new Rectangle(0, 0, 100, 100), height, width);
             manageS = new IA_manager_S(new Rectangle(0, 0, 100, 100), height, width);
             srollingM = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
-            allen = new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content);
+            allen = new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content,"P1");
             //background
             //sprite brouillon    
 

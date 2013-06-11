@@ -167,6 +167,98 @@ namespace Umea_rana
                     ia_manage.Ia_manage[i].attaque = false;
             }
         }
+        public void coll_AL_IA(IA_Manager_max ia_manage, ref Sprite_PLA sprite,ref Sprite_PLA p2)
+        {
+
+            for (int i = 0; i < ia_manage.Ia_manage.Count; ++i)
+            {
+                if (ia_manage.Ia_manage[i].rectangle_C.Bottom > sprite.rectangle_C.Top && sprite.rectangle_C.Bottom > ia_manage.Ia_manage[i].rectangle_C.Top)
+                {// attaque vers droite
+                    if (!sprite.atq)
+                    {
+                        if ((ia_manage.Ia_manage[i].dir == 1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque >= sprite.rectangle_C.Left &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right < sprite.rectangle_C.Left) ||
+                            (ia_manage.Ia_manage[i].dir == -1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque <= sprite.rectangle_C.Right &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right))
+                        {
+                            if (sprite.block)
+                                sprite.vie -= 0.5f;
+                            else
+                                sprite.vie--;
+                            //bool pr dire qd on attaque
+
+                            ia_manage.Ia_manage[i].attaque = true;
+                        }
+                        // attaque vers la gauche-
+                        else
+                            ia_manage.Ia_manage[i].attaque = false;
+                    }
+                    else
+                    {
+                        if (!sprite._dir && ia_manage.Ia_manage[i].rectangle_C.Left - sprite.longattaque < sprite.rectangle_C.Right &&
+                             ia_manage.Ia_manage[i].rectangle_C.Left > sprite.rectangle_C.Right)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+                        else if (sprite._dir &&
+                          ia_manage.Ia_manage[i].rectangle_C.Right + sprite.longattaque >= sprite.rectangle_C.Left &&
+                                        ia_manage.Ia_manage[i].rectangle_C.Right < sprite.rectangle_C.Left)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+
+
+                    }
+                }
+                else
+                    ia_manage.Ia_manage[i].attaque = false;
+                //p2
+                if (ia_manage.Ia_manage[i].rectangle_C.Bottom > p2.rectangle_C.Top && p2.rectangle_C.Bottom > ia_manage.Ia_manage[i].rectangle_C.Top)
+                {// attaque vers droite
+                    if (!p2.atq)
+                    {
+                        if ((ia_manage.Ia_manage[i].dir == 1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right + ia_manage.Ia_manage[i].longueur_Attaque >= p2.rectangle_C.Left &&
+                            ia_manage.Ia_manage[i].rectangle_C.Right < p2.rectangle_C.Left) ||
+                            (ia_manage.Ia_manage[i].dir == -1 &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left - ia_manage.Ia_manage[i].longueur_Attaque <= p2.rectangle_C.Right &&
+                            ia_manage.Ia_manage[i].rectangle_C.Left > p2.rectangle_C.Right))
+                        {
+                            if (p2.block)
+                                p2.vie -= 0.5f;
+                            else
+                                p2.vie--;
+                            //bool pr dire qd on attaque
+
+                            ia_manage.Ia_manage[i].attaque = true;
+                        }
+                        // attaque vers la gauche-
+                        else
+                            ia_manage.Ia_manage[i].attaque = false;
+                    }
+                    else
+                    {
+                        if (!p2._dir && ia_manage.Ia_manage[i].rectangle_C.Left - p2.longattaque < p2.rectangle_C.Right &&
+                             ia_manage.Ia_manage[i].rectangle_C.Left > p2.rectangle_C.Right)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+                        else if (p2._dir &&
+                          ia_manage.Ia_manage[i].rectangle_C.Right + p2.longattaque >= p2.rectangle_C.Left &&
+                                        ia_manage.Ia_manage[i].rectangle_C.Right < p2.rectangle_C.Left)
+                        {
+                            --ia_manage.Ia_manage[i].vie;
+                        }
+
+
+                    }
+                }
+                else
+                    ia_manage.Ia_manage[i].attaque = false;
+            }
+        }
         #endregion
 
 
@@ -442,6 +534,37 @@ namespace Umea_rana
                         sprite.vie -= boss.degat;
             foreach (Rectangle rec in boss.ptfaible)
                 if (sprite.atq && rec.Intersects(sprite.rectangle_C))
+                    boss.vie -= 1;
+            foreach (platform plato in platform.plato)
+                if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&
+                    boss.rectangle_C.Left <= plato.rectangle_C.Right && boss.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)
+                {
+                    boss.rectangle.Y = plato.rectangle_C.Top - boss.decalageY - boss.rectangle_C.Height;
+                    boss.tombe = false;
+                    break;
+                }
+                else
+                    boss.tombe = true;
+
+        }
+        public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite,ref Sprite_PLA p2, ref Platform_manager platform)
+        {
+
+            foreach (Rectangle rec in boss.ptfort)
+            {
+                if (rec.Intersects(sprite.rectangle_C))
+                    if (sprite.block)
+                        sprite.vie -= (float)boss.degat / 2;
+                    else
+                        sprite.vie -= boss.degat;
+                if (rec.Intersects(p2.rectangle_C))
+                    if (p2.block)
+                        p2.vie -= (float)boss.degat / 2;
+                    else
+                        p2.vie -= boss.degat;
+            }
+            foreach (Rectangle rec in boss.ptfaible)
+                if ((sprite.atq && rec.Intersects(sprite.rectangle_C)) || (p2.atq && rec.Intersects(p2.rectangle_C)))
                     boss.vie -= 1;
             foreach (platform plato in platform.plato)
                 if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&

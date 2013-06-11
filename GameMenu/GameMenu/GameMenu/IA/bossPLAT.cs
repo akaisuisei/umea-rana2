@@ -18,6 +18,8 @@ namespace Umea_rana
         public int vie;
         public string  type;
         public int speed;
+        float X { get; set; }
+        float Y { get; set; }
 
     }
     public class bossPLAT : objet

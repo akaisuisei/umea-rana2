@@ -155,6 +155,75 @@ namespace Umea_rana
                 
             }
         }
+        public void Update(objet sprite, ref KeyboardState keyboard, ref Sprite_PLA p2)
+        {
+            for (int i = 0; i < ia_manage.Count; ++i)
+            {
+                ia_manage[i].Update_rec_collision();
+                if (ia_manage[i].vie >= 0 && !ia_manage[i].attaque && this.ia_manage[i].rectangle_C.X < 1.2f * window_W && this.ia_manage[i].rectangle_C.X > -0.2f * window_W)
+                {
+                    if (ia_manage[i].tombe)
+                        ia_manage[i].rectangle.Y += poid;
+                    if (Math.Min(sprite.rectangle.X + sprite.rectangle.Y - ia_manage[i].rectangle.X - ia_manage[i].rectangle.Y, p2.rectangle.X + p2.rectangle.Y - ia_manage[i].rectangle.X - ia_manage[i].rectangle.Y) == sprite.rectangle.X + sprite.rectangle.Y - ia_manage[i].rectangle.X - ia_manage[i].rectangle.Y)
+                    {
+                        if (ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque < sprite.rectangle_C.Right && ia_manage[i].rectangle_C.Center.X + ia_manage[i].longueur_attaque > sprite.rectangle_C.Left)
+                            ia_manage[i].Speed = 0;
+                        else
+                            if (ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque > sprite.rectangle_C.Center.X)
+                            {
+                                ia_manage[i].dir = -1;
+                                ia_manage[i].Speed = ia_manage[i].normalspeed;
+                            }
+                            else
+                            {
+                                ia_manage[i].dir = 1;
+                                ia_manage[i].Speed = ia_manage[i].normalspeed;
+                            }
+                    }
+                    else
+                    {
+                        //p2
+                        if (ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque < p2.rectangle_C.Right && ia_manage[i].rectangle_C.Center.X + ia_manage[i].longueur_attaque > p2.rectangle_C.Left)
+                            ia_manage[i].Speed = 0;
+                        else
+                            if (ia_manage[i].rectangle_C.Center.X - ia_manage[i].longueur_attaque > p2.rectangle_C.Center.X)
+                            {
+                                ia_manage[i].dir = -1;
+                                ia_manage[i].Speed = ia_manage[i].normalspeed;
+                            }
+                            else
+                            {
+                                ia_manage[i].dir = 1;
+                                ia_manage[i].Speed = ia_manage[i].normalspeed;
+                            }
+                    }
+                    ia_manage[i].rectangle.X += ia_manage[i].dir * ia_manage[i].Speed;
+                }
+                if (keyboard.IsKeyDown(Keys.Right))
+                    ia_manage[i].rectangle.X -= front_sc;
+                if (keyboard.IsKeyDown(Keys.Left))
+                    ia_manage[i].rectangle.X += front_sc;
+
+                //  if (rectangle.Center.Y  < sprite.rectangle.Center.Y)
+                //    rectangle.Y += 1;
+                //else
+                //  rectangle.Y -= 1;
+                if (ia_manage[i].dir == 1)
+                {
+                    ia_manage[i].decalageX = 43;
+                    this.ia_manage[i].Effects = SpriteEffects.None;
+                    mov(ref i);
+
+                }
+                else
+                {
+                    ia_manage[i].decalageX = 25;
+                    ia_manage[i].Effects = SpriteEffects.FlipHorizontally;
+                    mov(ref i);
+                }
+
+            }
+        }
         public void Draw(SpriteBatch spritebatch)
         {
             for (int i = 0; i < ia_manage.Count; ++i)

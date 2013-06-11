@@ -65,6 +65,20 @@ namespace Umea_rana
                 game.ChangeState(Game1.gameState.win);
             Animated();
         }
+        public void Update(KeyboardState keybord, Game1 game, Sprite_PLA sprite,Sprite_PLA p2)
+        {
+            if (keybord.IsKeyDown(Keys.Right))
+            {
+                rect.X -= fcspeed;
+            }
+            if (keybord.IsKeyDown(Keys.Left))
+            {
+                rect.X += fcspeed;
+            }
+            if (rect.Intersects(sprite.rectangle_C) || rect.Intersects(p2.rectangle_C))
+                game.ChangeState(Game1.gameState.win);
+            Animated();
+        }
 
         private void Animated()
         {
