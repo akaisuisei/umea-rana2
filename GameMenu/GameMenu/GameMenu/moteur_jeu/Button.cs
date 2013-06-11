@@ -85,6 +85,9 @@ namespace Umea_rana
             this.resolution [i, j] = gameState;
             this.name[i, j] = name;
             this.depart = depart;
+            if (depart == resolution[i, j]){
+                this.X = i; this.Y = j;
+            }
         }
         /// <summary>
         /// 
