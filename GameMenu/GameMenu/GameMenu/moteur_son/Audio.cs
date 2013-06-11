@@ -15,8 +15,9 @@ namespace Umea_rana
     public class Audio
     {
         static Dictionary<string, Song> playlist;
-        
-
+        List<Song> playlist2;
+        private uint _playing;
+        public uint playing { get { return _playing; } set { if (playing < playlist2.Count) _playing = playing; else _playing = 0; } }
         public Audio(ContentManager Content)
         {
             playlist = new Dictionary<string, Song>();
@@ -30,7 +31,37 @@ namespace Umea_rana
             playlist.Add("extraBGMlevel3", null);
             playlist.Add("extraBGM", null);
         }
-       
+        public void parrametrage(savefile savefile, ContentManager Content)
+        {
+            foreach (string st in savefile.levelProfile.musique)
+                if (st != "" && st != null)
+                    playlist2.Add(Content.Load<Song>(savefile.levelProfile.levelname + "//" + st));
+            playing = 0;
+        }
+        public void parrametrage(string path,savefile savefile, string type)
+        {
+            foreach (string st in savefile.levelProfile.musique)
+                if (st != "" && st != null)
+                    playlist2.Add(Song.FromUri("s", new Uri("file:" +"//"+path +"//"+type +"//" + st)));
+            playing = 0;
+        }
+        public void Play()
+        {
+    
+            playing = 0;
+            MediaPlayer.Play(playlist2[(int)playing]);
+        }
+        public void Newplaylist()
+        {
+            MediaPlayer.Stop();
+            playing = 0;
+            playlist2.Clear();
+            
+        }
+        public void Update()
+        {
+           
+        }
         public static void play(string level)
         {
             MediaPlayer.Stop();
@@ -60,10 +91,10 @@ namespace Umea_rana
                     break;
             }
         }
-        public static void addMusic(string level,string path,string name_of_song) //prend en paramètres le niveau, le chemin pour charger la musique dans le répertoire du niveau concerné
+        public static void addMusic(string level, string path, string name_of_song) //prend en paramètres le niveau, le chemin pour charger la musique dans le répertoire du niveau concerné
         {
             MediaPlayer.Stop();
-            Song song = Song.FromUri(name_of_song,new Uri(path));
+            Song song = Song.FromUri(name_of_song, new Uri(path));
             playlist[level] = song;
         }
         public static void nextMusic(string current_level)
