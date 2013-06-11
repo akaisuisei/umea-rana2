@@ -821,7 +821,7 @@
             this.tableLayoutPanel12.ColumnCount = 3;
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.77966F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.22034F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
@@ -851,7 +851,7 @@
             // droite
             // 
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(126, 56);
+            this.droite.Location = new System.Drawing.Point(125, 56);
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;
@@ -862,7 +862,7 @@
             // haut
             // 
             this.haut.AutoSize = true;
-            this.haut.Location = new System.Drawing.Point(73, 33);
+            this.haut.Location = new System.Drawing.Point(72, 33);
             this.haut.Name = "haut";
             this.haut.Size = new System.Drawing.Size(46, 17);
             this.haut.TabIndex = 2;
@@ -873,7 +873,7 @@
             // bas
             // 
             this.bas.AutoSize = true;
-            this.bas.Location = new System.Drawing.Point(73, 79);
+            this.bas.Location = new System.Drawing.Point(72, 79);
             this.bas.Name = "bas";
             this.bas.Size = new System.Drawing.Size(42, 17);
             this.bas.TabIndex = 3;
