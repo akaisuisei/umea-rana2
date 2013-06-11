@@ -62,7 +62,7 @@ namespace Umea_rana
             manage_aa = new IA_manager_AA(Content.Load<Texture2D>("IA/color/tuc_jaune"), rectangle, 3, 0, height, width);
             manage_ar = new IA_manager_AR(Content.Load<Texture2D>("IA/color/eve"), rectangle, 3, 0, height, width);
             manage_s = new IA_manager_S(Content.Load<Texture2D>("IA/color/naruto"), rectangle, 3, 0, height, width);
-            manage_p = new Platform_manager(T_platform, 0.07f, 0.03f, height, width);
+            manage_p = new Platform_manager(T_platform,width * 0.07f,height* 0.03f, height, width);
             Scroll_manager = new Scrolling_ManagerV(fond);
             boss.loadContent (Content,new Rectangle(0,0,width ,height ));
             user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, Content, manage_p, fond,boss );
