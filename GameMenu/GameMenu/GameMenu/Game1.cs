@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Umea_rana.LocalizedStrings;
+using Umea_rana.jeu;
 
 namespace Umea_rana
 {
@@ -53,7 +54,7 @@ namespace Umea_rana
             StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content,gameconfiguration));
             StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
             StateManager.Add(gameState.level3 , new Level3(this, graphics, Content));
-            StateManager.Add(gameState.levelpersoPLA , new Levelbis (this, graphics, Content));
+            StateManager.Add(gameState.levelpersoPLA , new PLA1jperso  (this, graphics, Content));
             graphics.PreferredBackBufferHeight = OptionState._height;
             graphics.PreferredBackBufferWidth = OptionState._width;
             graphics.IsFullScreen = OptionState.fullscreen;

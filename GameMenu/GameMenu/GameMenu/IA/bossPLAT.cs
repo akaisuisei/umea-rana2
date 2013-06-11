@@ -16,10 +16,10 @@ namespace Umea_rana
 
         public int degat;
         public int vie;
-        public string  type;
+        public string type;
         public int speed;
-        float X { get; set; }
-        float Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
 
     }
     public class bossPLAT : objet
@@ -48,8 +48,8 @@ namespace Umea_rana
 
 
         public int degat { get; private set; }
-        float  lastvie;
-        string  type;
+        float lastvie;
+        string type;
         Texture2D texture, ptforttexture, ptfaible_texture;
         public List<Rectangle> ptfaible { get; private set; }
         public List<Rectangle> ptfort { get; private set; }
@@ -60,7 +60,7 @@ namespace Umea_rana
         private Rectangle rect, atk;
         Rectangle fond;
 
-        
+
 
         public bossPLAT()
         {
@@ -74,28 +74,30 @@ namespace Umea_rana
             this.FrameColumn = 1;
             this.Timer = 0;
 
-           
+
         }
-        public void parrametrage(levelProfile  levelprofile)
+        public void parrametrage(levelProfile levelprofile)
         {
-            this.degat =levelprofile.bossPlatforme .degat;
+            this.degat = levelprofile.bossPlatforme.degat;
             this.vie = levelprofile.bossPlatforme.vie;
             this.type = levelprofile.bossPlatforme.type;
             this.speed = levelprofile.bossPlatforme.speed;
             front_sc = levelprofile.fc_speed;
             // truc
+            rectangle.X = (int)(levelprofile.bossPlatforme.X * fond.Width);
+            rectangle.Y = (int)(levelprofile.bossPlatforme.Y * fond.Height);
             type = "Light";
-            
+
         }
-        public void parrame(bossP  bossPlatforme, ContentManager content,int fc_speed)
+        public void parrame(bossP bossPlatforme, ContentManager content, int fc_speed)
         {
             this.degat = bossPlatforme.degat;
-            this.vie =bossPlatforme.vie;
+            this.vie = bossPlatforme.vie;
             this.type = bossPlatforme.type;
             this.speed = bossPlatforme.speed;
             front_sc = fc_speed;
             // truc
-            this.texture = content.Load<Texture2D>("Boss/"+bossPlatforme.type );
+            this.texture = content.Load<Texture2D>("Boss/" + bossPlatforme.type);
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {
@@ -124,27 +126,27 @@ namespace Umea_rana
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
                     ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("Boss/Light");
-                    ptforttexture = content.Load<Texture2D>("Boss/pt");
-                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
+         
+           
                     line = 100;
                     colunm = 100;
                     break;
                 case "Cascade":
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("Boss/Cascade");
-                    ptforttexture = content.Load<Texture2D>("Boss/note");
-                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
+
                     line = 150;
                     colunm = 150;
                     break;
                 default:
                     break;
             }
+            this.texture = content.Load<Texture2D>("Boss/" + type);
+            ptforttexture = content.Load<Texture2D>("pointfort/" + type);
+            ptfaible_texture = content.Load<Texture2D>("pointfaible/" + type);
         }
-        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, string  type)
+        public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, string type)
         {
-            this.fond = fond;            
+            this.fond = fond;
             this.front_sc = fc;
             this.rectangle = new Rectangle(1000, 0, 100, 100);
             this.atk = new Rectangle(1000, 200, 100, 100);
@@ -152,7 +154,7 @@ namespace Umea_rana
             this.degat = 1;
             this.vie = 15;
             this.lastvie = vie;
-            this.type = type ;
+            this.type = type;
             this.speed = 7;
             ptfaible.Add(rect);
             ptfort.Add(rect);
@@ -176,112 +178,109 @@ namespace Umea_rana
                     ptfort.Add(new Rectangle(1000, (int)(fond.Height * 0.7f), 50, 50));
                     ptfort.Add(new Rectangle(900, (int)(fond.Height * 0.8f), 50, 50));
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("Boss/Light");
-                    ptforttexture = content.Load<Texture2D>("Boss/pt");
-                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 100;
                     colunm = 100;
                     break;
                 case "Cascade":
                     ptfaible.Add(rect);
-                    this.texture = content.Load<Texture2D>("Boss/Cascade");
-                    ptforttexture = content.Load<Texture2D>("Boss/note");
-                    ptfaible_texture = content.Load<Texture2D>("ListBoxBG");
                     line = 150;
                     colunm = 150;
                     break;
                 default:
                     break;
             }
+            this.texture = content.Load<Texture2D>("Boss/"+type);
+            ptforttexture = content.Load<Texture2D>("pointfort/"+type );
+            ptfaible_texture = content.Load<Texture2D>("pointfaible/"+type );
         }
         public void Update(ref KeyboardState keyboard)
         {
             this.Animated();
-           // if ( this.rectangle_C.Center.X < 1.2f * fond.Width  && this.rectangle_C.Center.X > -0.2f * fond.Width )
-                if (vie >= 0)
-                {
+            // if ( this.rectangle_C.Center.X < 1.2f * fond.Width  && this.rectangle_C.Center.X > -0.2f * fond.Width )
+            if (vie >= 0)
+            {
 
-                    switch (type)
-                    {
-                        case "Light":
-                            if (vie <= 10)
-                            {
-                                for (int i = 0; i < ptfort.Count; ++i)
-                                {
-                                    rect = ptfort[i];
-                                    
-                                    //update poit fort
-                                    if (rect.X > this.rectangle_C.X)
-                                        rect.X -= speed;
-                                    else
-                                        rect.X += speed;
-                                    if (rect.Y > this.rectangle_C.Y)
-                                        rect.Y -= speed;
-                                    else
-                                        rect.Y += speed;
-                                    ptfort[i] = rect;
-                                }
-                                for (int i = 0; i < ptfaible.Count; ++i)
-                                {
-                                    rect = ptfaible[i];
-                                    // update pt faible
-                                    if (rect.X > this.rectangle_C.X)
-                                        rect.X -= speed;
-                                    else
-                                        rect.X += speed;
-                                    if (rect.Y  > this.rectangle_C.Y)
-                                        rect.Y -= speed;
-                                    else
-                                        rect.Y += speed;
-                                    ptfaible[i] = rect;
-                                }
-                               
-                            }
-                            else
-                                for (int i = 0; i < ptfaible.Count; ++i)
-                                    ptfaible[i] = rectangle;
-                            
-                            break;
-                        case "Cascade":
-                            if (lastvie != vie)
-                            {
-                                timerrun = 100;
-                            }
-                            if (timerrun >= 0)
-                                rectangle.X += speed;
-                            for (int i = 0; i < ptfaible.Count; ++i)
-                                ptfaible[i] = rectangle;
-                            if (timeatk <= 0)
-                            {
-                                timeatk = 60;
-                                ptfort.Add(new Rectangle (rectangle_C.X,rectangle_C.Center .Y  ,60,60));
-                            }
-                            timeatk--;
+                switch (type)
+                {
+                    case "Light":
+                        if (vie <= 10)
+                        {
                             for (int i = 0; i < ptfort.Count; ++i)
                             {
                                 rect = ptfort[i];
-                                rect.X -= speed ;
+
+                                //update poit fort
+                                if (rect.X > this.rectangle_C.X)
+                                    rect.X -= speed;
+                                else
+                                    rect.X += speed;
+                                if (rect.Y > this.rectangle_C.Y)
+                                    rect.Y -= speed;
+                                else
+                                    rect.Y += speed;
                                 ptfort[i] = rect;
-                                if (!ptfort[i].Intersects(fond))
-                                    ptfort.RemoveAt(i);
                             }
-                            break;
-                        default:
-                            break;
-                    }
+                            for (int i = 0; i < ptfaible.Count; ++i)
+                            {
+                                rect = ptfaible[i];
+                                // update pt faible
+                                if (rect.X > this.rectangle_C.X)
+                                    rect.X -= speed;
+                                else
+                                    rect.X += speed;
+                                if (rect.Y > this.rectangle_C.Y)
+                                    rect.Y -= speed;
+                                else
+                                    rect.Y += speed;
+                                ptfaible[i] = rect;
+                            }
 
+                        }
+                        else
+                            for (int i = 0; i < ptfaible.Count; ++i)
+                                ptfaible[i] = rectangle;
 
-
-
-                    lastvie = vie;
-                    timerrun--;
+                        break;
+                    case "Cascade":
+                        if (lastvie != vie)
+                        {
+                            timerrun = 100;
+                        }
+                        if (timerrun >= 0)
+                            rectangle.X += speed;
+                        for (int i = 0; i < ptfaible.Count; ++i)
+                            ptfaible[i] = rectangle;
+                        if (timeatk <= 0)
+                        {
+                            timeatk = 60;
+                            ptfort.Add(new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60));
+                        }
+                        timeatk--;
+                        for (int i = 0; i < ptfort.Count; ++i)
+                        {
+                            rect = ptfort[i];
+                            rect.X -= speed;
+                            ptfort[i] = rect;
+                            if (!ptfort[i].Intersects(fond))
+                                ptfort.RemoveAt(i);
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    color = Color.Pink;
-                    ptfaible.Clear();
-                    ptfort.Clear();
-                }
+
+
+
+
+                lastvie = vie;
+                timerrun--;
+            }
+            else
+            {
+                color = Color.Pink;
+                ptfaible.Clear();
+                ptfort.Clear();
+            }
 
 
             if (keyboard.IsKeyDown(Keys.Right))
@@ -322,7 +321,7 @@ namespace Umea_rana
         }
         public void Animated()
         {
-            if (type =="Light")
+            if (type == "Light")
             {
                 this.Timer++;
                 if (this.Timer == this.AnimationSpeed)
@@ -353,18 +352,18 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch sp)
         {
-         
+
             foreach (Rectangle r in ptfaible)
-                sp.Draw(ptfaible_texture , r, Color.Transparent );
+                sp.Draw(ptfaible_texture, r, Color.Transparent);
             foreach (Rectangle r in ptfort)
-                sp.Draw(ptforttexture , r, Color.White );
+                sp.Draw(ptforttexture, r, Color.White);
 
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
         }
         public void DrawEDIT(SpriteBatch sp)
         {
-            if(texture!=null )
-            sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
+            if (texture != null)
+                sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
         }
 
     }

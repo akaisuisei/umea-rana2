@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Forms;
 using System.Threading;
+using Umea_rana.jeu;
 
 namespace Umea_rana
 {

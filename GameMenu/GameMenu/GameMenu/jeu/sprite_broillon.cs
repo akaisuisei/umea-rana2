@@ -135,7 +135,7 @@ namespace Umea_rana
             impulse = 150;
             pos_marche = rectangle.Y;
             marchell = Content.Load<Song>("hero//jogging");
-            MediaPlayer.Play(marchell);
+    
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -201,7 +201,7 @@ namespace Umea_rana
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);
                 atk = new pos(9, 5, 10);
-                die = new pos(3, 5, 9);
+                die = new pos(3, 3, 7);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
                 texture = Content.Load<Texture2D>("hero//yoh");

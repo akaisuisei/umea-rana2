@@ -91,7 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\asteroid\planet4.png">
+    <Compile Include="IA\asteroid\planet4.png">
       <Name>planet4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -105,7 +105,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\asteroid\star.png">
+    <Compile Include="IA\asteroid\star.png">
       <Name>star</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -119,17 +119,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\BandW\naruto.png">
+    <Compile Include="IA\BandW\naruto.png">
       <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="hero\IA\BandW\eve.png">
+    <Compile Include="IA\BandW\eve.png">
       <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="hero\IA\BandW\tuc_jaune.png">
+    <Compile Include="IA\BandW\tuc_jaune.png">
       <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -204,7 +204,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\asteroid\asteroide-sprite2.png">
+    <Compile Include="IA\asteroid\asteroide-sprite2.png">
       <Name>asteroide-sprite2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -218,7 +218,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\asteroid\asteroide-sprite.png">
+    <Compile Include="IA\asteroid\asteroide-sprite.png">
       <Name>asteroide-sprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -246,21 +246,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\color\eve.png">
+    <Compile Include="IA\color\eve.png">
       <Name>eve</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\color\naruto.png">
+    <Compile Include="IA\color\naruto.png">
       <Name>naruto</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\color\tuc_jaune.png">
+    <Compile Include="IA\color\tuc_jaune.png">
       <Name>tuc_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -288,7 +288,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hero\IA\color\house.png">
+    <Compile Include="IA\color\house.png">
       <Name>house</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -302,15 +302,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pointfort\note.png">
-      <Name>note</Name>
+    <Compile Include="pointfaible\Cascade.png">
+      <Name>Cascade</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pointfort\pt.png">
-      <Name>pt</Name>
+    <Compile Include="pointfaible\Light.png">
+      <Name>Light</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -346,6 +346,20 @@
   <ItemGroup>
     <Compile Include="Menu\jauge.png">
       <Name>jauge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfort\Cascade.png">
+      <Name>Cascade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfort\Light.png">
+      <Name>Light</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

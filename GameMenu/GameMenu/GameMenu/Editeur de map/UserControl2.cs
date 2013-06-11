@@ -1034,11 +1034,14 @@ namespace Umea_rana
         private void button1_ok_Click(object sender, EventArgs e)
         {
             if ((file_bosspath != "") && (textBox1_v.BackColor == System.Drawing.Color.Green && textBox2_p.BackColor == System.Drawing.Color.Green))
-            {bossP busyguy;
+            {
+                bossP busyguy = new bossP();
             busyguy.degat =int.Parse ( textBox2_p.Text);
             busyguy.speed = 6;
             busyguy.type = file_bosspath;
             busyguy.vie = int.Parse(textBox1_v.Text);
+            busyguy.X = openX;
+            busyguy.Y = openY;
             bossfuck.parrame(busyguy, Content, 3);
                 hidou();
             }
