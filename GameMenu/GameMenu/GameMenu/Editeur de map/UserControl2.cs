@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Umea_rana;
 using Umea_rana.LocalizedStrings;
+using Microsoft.Xna.Framework.Media;
 
 namespace Umea_rana
 {
@@ -50,8 +51,8 @@ namespace Umea_rana
         string ia_type;
         ContentManager Content;
         bossPLAT bossfuck;
-        
-
+        List<Song> listsong;
+        int song;
         public void dispose()
         {
             type = null;
@@ -65,6 +66,7 @@ namespace Umea_rana
         }
         public UserControl2()
         {
+            song = 0;
             InitializeComponent();
 
             this.Hide();
@@ -870,6 +872,7 @@ namespace Umea_rana
         }
         private void Additem()
         {
+            listsong = new List<Song>();
             string res = "";
             listBox1.Items.Clear();
             foreach (string s in playlist)
@@ -888,6 +891,16 @@ namespace Umea_rana
                 button12.Enabled = false;
             else
                 button12.Enabled = true;
+            MediaPlayer.Stop();
+            foreach (string s in playlist)
+                if (s != "")
+                    listsong.Add(Song.FromUri("s", new Uri("file:" + s)));
+            if (listsong.Count > 0)
+            {
+                MediaPlayer.Play(listsong[0]);
+                song = 0;
+            }
+
         }
         private void suppitem(ListBox list)
         {
