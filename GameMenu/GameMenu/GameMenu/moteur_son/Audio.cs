@@ -31,6 +31,11 @@ namespace Umea_rana
             playlist.Add("extraBGMlevel3", null);
             playlist.Add("extraBGM", null);
         }
+        public void PlayMenu()
+        {
+            MediaPlayer.Stop();
+            MediaPlayer.Play(playlist["Menu"]);
+        }
         public void parrametrage(savefile savefile, ContentManager Content)
         {
             foreach (string st in savefile.levelProfile.musique)
