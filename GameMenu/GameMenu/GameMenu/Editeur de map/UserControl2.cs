@@ -1064,6 +1064,14 @@ namespace Umea_rana
 
 
                     }
+
+                    if (Plateforme_Mobile.Checked)
+                    {
+                        savefile.plat_f.Add(platef);
+                        plateform.Add(platef, savefile.plat_f.Count - 1);
+
+
+                    }
                 }
                 else
                 {
