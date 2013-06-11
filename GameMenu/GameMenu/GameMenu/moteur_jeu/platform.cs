@@ -80,6 +80,54 @@ namespace Umea_rana
             }
             Update_rec_collision();
         }
+        public platform(Rectangle n_rectangle, int distance, Plat plat, int spawn)
+        {
+            vie = spawn;
+            name = plat.name;
+            rectangle = n_rectangle;
+            this.speed = plat.speed;
+            width = rectangle.Width;
+            height = rectangle.Height;
+            this._distance = distance;
+            _parcouru = 0;
+            dir = 1;
+            this.X = rectangle.X;
+            this.Y = rectangle.Y;
+            switch (plat.type)
+            {
+                case ('0')://bouge pas
+                    direction = Vector2.Zero;
+                    break;
+                case ('R'):// va vers la droite par rapport a son point de depart
+                    direction = new Vector2(1, 0);
+                    break;
+                case ('L')://  vers la gauche par rapport a son point de depart
+                    direction = new Vector2(-1, 0);
+                    break;
+                case ('U'):// vers le haut par rapport a sont pt de depart
+                    direction = new Vector2(0, 1);
+                    break;
+                case ('D'):// vers le bas par rapport a sont pt de depart
+                    direction = new Vector2(0, -1);
+                    break;
+                case ('1'):// vers 3pi/4 par rapport a sont pt de depart
+                    direction = new Vector2(-0.7071067812f, 0.7071067812f);
+                    break;
+                case ('2'):// vers pi/4le bas par rapport a sont pt de depart
+                    direction = new Vector2(0.7071067812f, 0.7071067812f);
+                    break;
+                case ('3'):// vers -pi/4le bas par rapport a sont pt de depart
+                    direction = new Vector2(0.7071067812f, -0.7071067812f);
+                    break;
+                case ('4'):// vers -3pi/4le bas par rapport a sont pt de depart
+                    direction = new Vector2(-0.7071067812f, -0.7071067812f);
+                    break;
+
+                default:
+                    break;
+            }
+            Update_rec_collision();
+        }
 
         public void update(KeyboardState keyboard)
         {

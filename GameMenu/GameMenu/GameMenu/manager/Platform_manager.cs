@@ -107,6 +107,19 @@ namespace Umea_rana
                 plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * window_W), platform));
             }
         }
+        public void Add(Plat platform, int spawn)
+        {
+            int x2 = (int)(platform.X * window_W), y2 = (int)(platform.Y * window_H);
+
+            for (int i = 0; i < platform.nbr; ++i)
+            {
+                plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * window_W), platform,spawn ));
+            }
+        }
+        public void remove_all()
+        {
+            this.plato.Clear();
+        }
 
     }
 }

@@ -88,9 +88,9 @@ namespace Umea_rana
             star = Content.Load<Texture2D>("IA/asteroid/star");
             //instancie le scolling
 
-            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width);
-            manage_k = new IA_manager_K(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2"), new Rectangle(0, 0, taille_sprt, taille_sprt), height, width);
+            manage_T = new IA_manager_T(planet1, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width,3);
+            manage_V = new IA_manager_V(star, new Rectangle(0, 0, taille_sprt, taille_sprt), Content, height, width,3);
+            manage_k = new IA_manager_K(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2"), new Rectangle(0, 0, taille_sprt, taille_sprt), height, width,3);
 
             //intancie le vaisseau
             vaisseau = new spripte_V(
@@ -134,8 +134,7 @@ namespace Umea_rana
             keyboard = Keyboard.GetState();
             rmouse.X = mouse.X;
             rmouse.Y = mouse.Y;
-            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
-               (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
+            if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) )
             {
                 if (_checkpause)
                 {

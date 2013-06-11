@@ -34,6 +34,17 @@ namespace Umea_rana
             this.window_H = window_H;
             this.window_W = window_W;
         }
+        public IA_manager_K(Texture2D n_textture, Rectangle n_rectangle, int window_H, int window_W,int fc_speed)
+        {
+
+            ia_manage = new List<vaisseau_IA>();
+
+            this._texture = n_textture;
+            this._rectangle = n_rectangle;
+            this.window_H = window_H;
+            this.window_W = window_W;
+            this.front_sc = fc_speed;
+        }
 
         public void Update(ref spripte_V sprite,ref spripte_V perso2, ref int gametime)
         {

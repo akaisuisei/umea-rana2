@@ -101,8 +101,8 @@
             this.puissance_b = new System.Windows.Forms.Label();
             this.textBox1_v = new System.Windows.Forms.TextBox();
             this.textBox2_p = new System.Windows.Forms.TextBox();
-            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.button1_ok = new System.Windows.Forms.Button();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.Fond.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -821,7 +821,7 @@
             this.tableLayoutPanel12.ColumnCount = 3;
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.77966F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.22034F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
@@ -851,7 +851,7 @@
             // droite
             // 
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(127, 56);
+            this.droite.Location = new System.Drawing.Point(126, 56);
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;

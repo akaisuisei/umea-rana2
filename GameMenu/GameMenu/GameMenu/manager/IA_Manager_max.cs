@@ -70,9 +70,20 @@ namespace Umea_rana
             for (int i = 0; i < ia_manage.Count; ++i)
             {
                 if (keyboard.IsKeyDown(Keys.Up))
-                    ++ia_manage[i].rectangle.Y;
+                    ia_manage[i].rectangle.Y += front_sc;
                 if (keyboard.IsKeyDown(Keys.Down))
-                    --ia_manage[i].rectangle.Y;
+                    ia_manage[i].rectangle.Y -= front_sc;
+                ia_manage[i].Update_rec_collision();
+            }
+        }
+        public void UpdateEDIT(KeyboardState keyboard)
+        {
+            for (int i = 0; i < ia_manage.Count; ++i)
+            {
+                if (keyboard.IsKeyDown(Keys.Right ))
+                    ia_manage[i].rectangle.X -= front_sc;
+                if (keyboard.IsKeyDown(Keys.Left ))
+                    ia_manage[i].rectangle.X += front_sc;
                 ia_manage[i].Update_rec_collision();
             }
         }
@@ -84,19 +95,20 @@ namespace Umea_rana
             _vecteur.Normalize();
             return (_vecteur);
         }
-        protected Vector2 vise(objet sprt,objet perso2, ref Rectangle rectangle)
+        protected Vector2 vise(objet sprt, objet perso2, ref Rectangle rectangle)
         {
             Vector2 _vecteur;
-            int distance1= sprt.rectangle_C.Center .Y-rectangle.Center.Y +sprt.rectangle_C.Center .X-rectangle.Center.X ;
-            int dis2= perso2.rectangle_C.Center .Y-rectangle.Center.Y +perso2.rectangle_C.Center .X-rectangle.Center.X ;
-            if(Math.Min (distance1,dis2 )==distance1 )
+            int distance1 = sprt.rectangle_C.Center.Y - rectangle.Center.Y + sprt.rectangle_C.Center.X - rectangle.Center.X;
+            int dis2 = perso2.rectangle_C.Center.Y - rectangle.Center.Y + perso2.rectangle_C.Center.X - rectangle.Center.X;
+            if (Math.Min(distance1, dis2) == distance1)
             {
-            _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
-            _vecteur.Y = rectangle.Center.Y - sprt.rectangle.Center.Y;
+                _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
+                _vecteur.Y = rectangle.Center.Y - sprt.rectangle.Center.Y;
             }
-            else{
-                    _vecteur.X = -rectangle.Center.X + perso2.rectangle.Center.X;
-            _vecteur.Y = rectangle.Center.Y - perso2.rectangle.Center.Y;
+            else
+            {
+                _vecteur.X = -rectangle.Center.X + perso2.rectangle.Center.X;
+                _vecteur.Y = rectangle.Center.Y - perso2.rectangle.Center.Y;
             }
             _vecteur.Normalize();
             return (_vecteur);

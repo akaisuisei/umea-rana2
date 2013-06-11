@@ -40,6 +40,20 @@ namespace Umea_rana
             AnimationSpeed = 10;
              mtexture = Content.Load<Texture2D>("bullet//bullet");
         }
+        public IA_manager_V(Texture2D texture, Rectangle rectangle, ContentManager Content, int height, int width, int fcspeed)
+        {
+            ia_manage = new List<vaisseau_IA>();
+            bulletL = new List<munition>();
+            this._texture = texture;
+            this._rectangle = rectangle;
+            this.Content = Content;
+            this.window_H = height;
+            this.window_H = height;
+            this.window_W = width;
+            AnimationSpeed = 10;
+            mtexture = Content.Load<Texture2D>("bullet//bullet");
+            this.front_sc = fcspeed;
+        }
 
         public void Update(ref spripte_V sprite, ref spripte_V perso2, ref int gameTime)
         {

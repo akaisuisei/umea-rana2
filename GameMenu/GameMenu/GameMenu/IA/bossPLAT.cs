@@ -213,6 +213,44 @@ namespace Umea_rana
             ptforttexture = content.Load<Texture2D>("pointfort/"+type );
             ptfaible_texture = content.Load<Texture2D>("pointfaible/"+type );
         }
+        public void UpdateEDIT(ref KeyboardState keyboard)
+        {
+
+
+            if (keyboard.IsKeyDown(Keys.Right))
+            {
+                this.rectangle.X -= front_sc;
+                for (int i = 0; i < ptfort.Count; ++i)
+                {
+                    rect = ptfort[i];
+                    rect.X -= front_sc;
+                    ptfort[i] = rect;
+                }
+                for (int i = 0; i < ptfaible.Count; ++i)
+                {
+                    rect = ptfaible[i];
+                    rect.X -= front_sc;
+                    ptfaible[i] = rect;
+                }
+            }
+            if (keyboard.IsKeyDown(Keys.Left))
+            {
+                this.rectangle.X += front_sc;
+                for (int i = 0; i < ptfort.Count; ++i)
+                {
+                    rect = ptfort[i];
+                    rect.X += front_sc;
+                    ptfort[i] = rect;
+                }
+                for (int i = 0; i < ptfaible.Count; ++i)
+                {
+                    rect = ptfaible[i];
+                    rect.X += front_sc;
+                    ptfaible[i] = rect;
+                }
+            }
+            Update_rec_collision();
+        }
         public void Update(ref KeyboardState keyboard)
         {
             this.Animated();
