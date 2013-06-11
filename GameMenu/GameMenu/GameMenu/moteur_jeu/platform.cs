@@ -56,22 +56,22 @@ namespace Umea_rana
                 case ('L')://  vers la gauche par rapport a son point de depart
                     direction = new Vector2(-1, 0);
                     break;                    
-                case ('U'):// vers le haut par rapport a sont pt de depart
+                case ('U'):// vers le haut par rapport a son pt de depart
                     direction = new Vector2(0, 1);
                     break;
-                case ('D'):// vers le bas par rapport a sont pt de depart
+                case ('D'):// vers le bas par rapport a son pt de depart
                     direction = new Vector2(0, -1);
                     break;
-                case ('1'):// vers 3pi/4 par rapport a sont pt de depart
+                case ('1'):// vers 3pi/4 par rapport a son pt de depart
                     direction = new Vector2(-0.7071067812f, 0.7071067812f);
                     break;
-                case ('2'):// vers pi/4le bas par rapport a sont pt de depart
+                case ('2'):// vers pi/4le bas par rapport a son pt de depart
                     direction =new Vector2 (0.7071067812f,0.7071067812f);
                     break;
-                case ('3'):// vers -pi/4le bas par rapport a sont pt de depart
+                case ('3'):// vers -pi/4le bas par rapport a son pt de depart
                     direction = new Vector2(0.7071067812f, -0.7071067812f);
                     break;
-                case ('4'):// vers -3pi/4le bas par rapport a sont pt de depart
+                case ('4'):// vers -3pi/4le bas par rapport a son pt de depart
                     direction = new Vector2(-0.7071067812f, -0.7071067812f);
                     break;
 

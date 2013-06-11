@@ -827,9 +827,15 @@
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 3;
+<<<<<<< HEAD
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.48837F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.51163F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+=======
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.77966F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.22034F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+>>>>>>> origin/master2
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
@@ -869,7 +875,11 @@
             // 
             this.droite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.droite.AutoSize = true;
+<<<<<<< HEAD
             this.droite.Location = new System.Drawing.Point(141, 38);
+=======
+            this.droite.Location = new System.Drawing.Point(125, 56);
+>>>>>>> origin/master2
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;
@@ -880,7 +890,11 @@
             // haut
             // 
             this.haut.AutoSize = true;
+<<<<<<< HEAD
             this.haut.Location = new System.Drawing.Point(72, 11);
+=======
+            this.haut.Location = new System.Drawing.Point(72, 33);
+>>>>>>> origin/master2
             this.haut.Name = "haut";
             this.haut.Size = new System.Drawing.Size(46, 17);
             this.haut.TabIndex = 2;
@@ -891,7 +905,11 @@
             // bas
             // 
             this.bas.AutoSize = true;
+<<<<<<< HEAD
             this.bas.Location = new System.Drawing.Point(72, 61);
+=======
+            this.bas.Location = new System.Drawing.Point(72, 79);
+>>>>>>> origin/master2
             this.bas.Name = "bas";
             this.bas.Size = new System.Drawing.Size(42, 17);
             this.bas.TabIndex = 3;

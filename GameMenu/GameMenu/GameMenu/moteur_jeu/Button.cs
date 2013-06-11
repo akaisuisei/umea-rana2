@@ -384,7 +384,76 @@ namespace Umea_rana
                 }
             }
         }
+        public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref bool canchange)
+        {
+            if (canchange)
+            {
+                if (tab == this.tab)
+                {
+                    intecep = false;
 
+                    for (int j = 0; j < rect.GetLength(1); ++j)
+                    {
+                        if (mouse_rec.Intersects(rect[0, j]))
+                        {
+                            X = 0;
+                            Y = j;
+                            intecep = true;
+                        }
+                    }
+                    if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+                    {
+                        if (Y == 0)
+                        {
+                            Y = rect.GetLength(1) - 1;
+                            active_item = 7;
+                        }
+                        else
+                        {
+                            Y = (Y - 1) % rect.GetLength(1);
+                            active_item--;
+                        }
+
+                    }
+                    else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+                    {
+                        Y = (Y + 1) % rect.GetLength(1);
+                        active_item++;
+                    }
+
+
+                    select.Y = rect[X, Y].Y;
+                    select.X = rect[X, Y].X - select.Width;
+
+                    if (intecep && mouse.LeftButton == ButtonState.Pressed)
+                    {
+                        if (gameState[X, Y] == "Volume_BGM")
+                        {
+                            active_item = 0;
+                        }
+                        else if (gameState[X, Y] == "Volume_SE")
+                            active_item = 1;
+                        else if (gameState[X, Y] == "Difficulte")
+                        {
+                            active_item = 2;
+                        }
+                        else if (gameState[X, Y] == "Langage")
+                            active_item = 3;
+                        else if (gameState[X, Y] == "Resolution")
+                            active_item = 4;
+                        else if (gameState[X, Y] == "Appliquer")
+                        {
+                            active_item = 5;
+                        }
+                        else if (gameState[X, Y] == "Defaut")
+                            active_item = 6;
+                        else if (gameState[X, Y] == "Retour")
+                            active_item = 7;
+                        System.Threading.Thread.Sleep(G_latence);
+                    }
+                }
+            }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < rect.GetLength(0); ++i)
@@ -392,6 +461,19 @@ namespace Umea_rana
                 {
                     //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
+                }
+            spriteBatch.Draw(selection, select, Color.White);
+        }
+        public void Draw(SpriteBatch spriteBatch,int active_item)
+        {
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
+                    if(j==active_item)
+                        spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
+                    else
+                        spriteBatch.DrawString(font, name[i,j],new Vector2(rect[i,j].X,rect[i,j].Y),Color.Black);
                 }
             spriteBatch.Draw(selection, select, Color.White);
         }

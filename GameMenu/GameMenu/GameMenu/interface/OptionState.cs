@@ -16,6 +16,10 @@ namespace Umea_rana
     public class OptionState : GameState
     {
         Texture2D background;
+        Button button;
+        Rectangle rect;
+        KeyboardState old;
+        int tab = 0;
         Color color_volume_BGM { get; set; }
         Color color_langue { get; set; }
         Color color_resolution { get; set; }
@@ -48,8 +52,7 @@ namespace Umea_rana
         Vector2 v_volume_BGM, v_volume_soundeffect, v_difficulté, defaut, langage, resolution, retour,
             v_difficulte_facile, v_difficulte_normal, v_difficulte_difficile, v_difficulte_extreme, v_fr, v_eng, v_fin, v_esp, v_jap, v_cn, enregistre_appliquer,
             v_fullscreen, resolution1280_768, resolution1024_768, resolution960_720, resolution800_600;
-        Vector2 _position_ligne;
-        Rectangle _r_curseur, r_ligne;
+        bool canchange = true;
         SpriteFont spriteFont;
         int latence = 0;
         public OptionState(Game1 game1, GraphicsDeviceManager _graphics, ContentManager Content, GameConfiguration _gameconfiguration)
@@ -65,6 +68,7 @@ namespace Umea_rana
         }
         public override void Initialize(GraphicsDeviceManager graphics)
         {
+            old = Keyboard.GetState();
             curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/38, graphics.PreferredBackBufferHeight/26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/4, graphics.PreferredBackBufferHeight/100), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
             curseur_SE = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.sound_effect_volume);
             color_volume_BGM = Color.Black;
@@ -191,6 +195,17 @@ namespace Umea_rana
             background = Content.Load<Texture2D>("Menu//background menu");
             rectangle = new Rectangle(0, 0, _width, _height);
 
+            button = new Button(1, 8, _width, _height, 0.1f, 0.05f, tab);
+            button.LoadContent(Content);
+            button.activate(0, 0, 0.08f, 0.2f, "Volume_BGM", LocalizedString.Volume_BGM);
+            button.activate(0, 1, 0.08f, 0.3f, "Volume_SE", LocalizedString.Volume_effet_sonore);
+            button.activate(0, 2, 0.08f, 0.4f, "Difficulte", LocalizedString.difficulty);
+            button.activate(0, 3, 0.08f, 0.5f, "Langage", LocalizedString.Language);
+            button.activate(0, 4, 0.08f, 0.6f, "Resolution", LocalizedString.Resolution);
+            button.activate(0, 5, 0.08f, 0.7f, "Appliquer", LocalizedString.save_apply);
+            button.activate(0, 6, 0.08f, 0.8f, "Defaut", LocalizedString._default);
+            button.activate(0, 7, 0.08f, 0.9f, "Retour", LocalizedString.Back);
+
             v_volume_BGM = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 20 / 100);
             curseur_BGM.LoadContent(Content);
 
@@ -229,22 +244,8 @@ namespace Umea_rana
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
             StorageManager storage = new StorageManager();
-            if (latence <= 0)
-            {
-                if (keyboard.IsKeyDown(Keys.Down))
-                {
-                    active_item++;
-                    if (active_item > 7)
-                        active_item = 0;
-                    latence = 20;
-                }
-                if (keyboard.IsKeyDown(Keys.Up))
-                {
-                    active_item--;
-                    if (active_item < 0)
-                        active_item = 7;
-                    latence = 20;
-                }
+            rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
+            button.update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, ref active_item,ref canchange);
                 switch (active_item)
                 {
                     case 0://selection sur volume_BGM
@@ -475,42 +476,32 @@ namespace Umea_rana
                         }
                         break;
                 }
-            }
-
-            latence--;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, rectangle, Color.White);
-            spriteBatch.DrawString(spriteFont, LocalizedString.Volume_BGM, v_volume_BGM, color_volume_BGM);
             curseur_BGM.Draw(spriteBatch);
             curseur_SE.Draw(spriteBatch);
-            spriteBatch.DrawString(spriteFont, LocalizedString.Volume_effet_sonore, v_volume_soundeffect, color_volume_SE);
+            button.Draw(spriteBatch,active_item);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.difficulty, v_difficulté, color_difficulté);
             spriteBatch.DrawString(spriteFont, LocalizedString.easy, v_difficulte_facile, color_difficulte_facile);
             spriteBatch.DrawString(spriteFont, LocalizedString.medium, v_difficulte_normal, color_difficulte_normal);
             spriteBatch.DrawString(spriteFont, LocalizedString.Hard, v_difficulte_difficile, color_difficulte_difficile);
             spriteBatch.DrawString(spriteFont, LocalizedString.Extreme, v_difficulte_extreme, color_difficulte_extreme);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.Language, langage, color_langue);
             spriteBatch.DrawString(spriteFont, "Français", v_fr, color_français);
             spriteBatch.DrawString(spriteFont, "English", v_eng, color_anglais);
             spriteBatch.DrawString(spriteFont, "Catalán", v_esp, color_espagnol);
             spriteBatch.DrawString(spriteFont, "Suomi", v_fin, color_finois);
             spriteBatch.DrawString(spriteFont, "日本語", v_jap, color_japonais);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.Resolution, resolution, color_resolution);
             spriteBatch.DrawString(spriteFont, LocalizedString.Full_screen, v_fullscreen, color_resolutionfullscreen);
             spriteBatch.DrawString(spriteFont, "1280 X 768", resolution1280_768, color_resolution1280_768);
             spriteBatch.DrawString(spriteFont, "1024 X 768", resolution1024_768, color_resolution1024_768);
             spriteBatch.DrawString(spriteFont, "960 X 720", resolution960_720, color_resolution960_720);
             spriteBatch.DrawString(spriteFont, "800 X 600", resolution800_600, color_resolution800_600);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.save_apply, enregistre_appliquer, color_save_apply);
-            spriteBatch.DrawString(spriteFont, LocalizedString._default, defaut, color_defaut);
 
-            spriteBatch.DrawString(spriteFont, LocalizedString.Back, retour, color_retour);
         }
 
 
