@@ -268,7 +268,7 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
-        public Point  Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
+        public Point  Update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {
@@ -383,7 +383,6 @@ namespace Umea_rana
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
                 {
                     Y = (Y + 1) % rect.GetLength(1);
-
                     if (gameState[X, Y] == null)
                         Y = (Y + 1) % rect.GetLength(1);
                 }
@@ -392,7 +391,6 @@ namespace Umea_rana
                     X = (X + 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X + 1) % rect.GetLength(0);
-
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {

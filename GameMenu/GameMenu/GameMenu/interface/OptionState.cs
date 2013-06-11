@@ -392,8 +392,6 @@ namespace Umea_rana
                         }
                         break;
                     case 5://selection sur enregistrer/appliquer
-                        latence = 20;
-                        active_item = 0;
                         if (keyboard.IsKeyDown(Keys.Enter))
                         {
                             game.graphics.IsFullScreen = fullscreen;
@@ -407,10 +405,6 @@ namespace Umea_rana
                         }
                         break;
                     case 6://selection sur paramètre par défaut
-                        color_defaut = Color.White;
-                        color_save_apply = Color.Black;
-                        color_retour = Color.Black;
-                        latence = 20;
                         if (keyboard.IsKeyDown(Keys.Enter))
                         {
                             _height = game.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
@@ -431,10 +425,6 @@ namespace Umea_rana
                         }
                         break;
                     case 7://selection sur retour
-                        color_volume_BGM = Color.Black;
-                        color_defaut = Color.Black;
-                        color_retour = Color.White;
-
                         if (keyboard.IsKeyDown(Keys.Enter))
                         {
                             Audio.changevolume(volume_BGM);
@@ -445,6 +435,7 @@ namespace Umea_rana
                 }
             }
             latence--;
+            old = keyboard;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
