@@ -100,7 +100,7 @@ namespace Umea_rana
             ovini = new Ovni(fond);
             ovini.Load(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite"));
             // ajout IA
-            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph, ref vaisseau, ref ovini);
+            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph, ref vaisseau, ref ovini, ref audio );
             vaisseau.Load(Content, T_sprite);
            
             perso2.parametrage(ref vaisseau);
@@ -108,6 +108,7 @@ namespace Umea_rana
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             scrore.LoadContent (fond1,fond2 ,Content );
+            audio.Play();
         }
 
         public override void UnloadContent()

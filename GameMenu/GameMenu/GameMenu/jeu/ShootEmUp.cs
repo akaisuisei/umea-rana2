@@ -58,7 +58,7 @@ namespace Umea_rana
             // ajout IA
         }
 
-                public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
+                public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics,  Audio audio)
         {
             //charge le fond
             //         background1 = Content.Load<Texture2D>("level2//fond");
@@ -97,14 +97,14 @@ namespace Umea_rana
 
             // ajout IA
 
-            save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini);
+            save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini, ref audio );
             vaisseau.Load(Content, T_sprite);
 
             perso2.parametrage(ref vaisseau);
             perso2.Load(Content, Content.Load<Texture2D>("hero//spriteSheet2"));
             score = new Score();
             score.LoadContent(fond2, fond1, Content);
-
+            audio.Play();
         }
 
         public override void UnloadContent()

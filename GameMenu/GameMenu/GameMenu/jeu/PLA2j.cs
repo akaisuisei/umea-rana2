@@ -66,7 +66,7 @@ namespace Umea_rana.jeu
             platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
             //platfom
             sauvegarde.Load_Level_PLA(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR,
-                ref manageS, ref platform_M, ref housse, ref boss, ref srollingM, ref Graph, ref P1,ref P2);
+                ref manageS, ref platform_M, ref housse, ref boss, ref srollingM, ref Graph, ref P1,ref P2,ref audio );
             
             //ia
             sprite_color = "color";

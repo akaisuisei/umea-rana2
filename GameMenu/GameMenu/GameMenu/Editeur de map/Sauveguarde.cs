@@ -150,7 +150,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_level_SEU(ContentManager Content, ref string level, ref string next, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref spripte_V sprite, ref Ovni ovni)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref spripte_V sprite, ref Ovni ovni,ref Audio audio)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -177,6 +177,7 @@ namespace Umea_rana
             sprite.parametrage(ref savefil.levelProfile);
             ovni.param(savefil.levelProfile.fc_speed);
             next = savefil.levelProfile.next_level;
+            audio.parrametrage(savefil, Content);
 
         }
         /// <summary>
@@ -187,7 +188,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager Content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni, ref Audio audio)
         {
             savefile savefile = new savefile();
             load_SEU(ref level, ref savefile,"SEU");
@@ -203,6 +204,8 @@ namespace Umea_rana
             scrollM.Load(Content, savefile.levelProfile, grap);
             sprite.parametrage(ref savefile.levelProfile);
             ovni.param(savefile.levelProfile.fc_speed);
+            audio.parrametrage (path ,savefile,"SEU");
+
         }
 
         public void supp_dir(string filename)
@@ -227,7 +230,7 @@ namespace Umea_rana
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
           ref Platform_manager platform, ref Housse housse, ref bossPLAT boss, ref Scrolling_ManagerV scrolling,
-           ref GraphicsDevice graph, ref Sprite_PLA sprite)
+           ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Audio audio)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -250,6 +253,7 @@ namespace Umea_rana
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
             boss.parrametrage(savefil.levelProfile);
+            audio.parrametrage(savefil, Content);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR  ia in savefil.ia_AR )
@@ -276,7 +280,7 @@ namespace Umea_rana
         public void Load_Level_PLA(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
            ref Platform_manager platform, ref Housse housse, ref bossPLAT boss, ref Scrolling_ManagerV scrolling,
-               ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
+               ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2, ref Audio audio)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -299,8 +303,9 @@ namespace Umea_rana
             p2.parametrage(savefil.levelProfile, ref Content);
             platform.parrametrage(savefil);
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
-
+            audio.parrametrage(savefil, Content);
                   housse.parrametrage(savefil.levelProfile);
+         
                   boss.parrametrage(savefil.levelProfile);
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
@@ -327,7 +332,7 @@ namespace Umea_rana
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
               ref Platform_manager platform,ref Housse housse,ref bossPLAT boss,
-            ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite)
+            ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Audio audio)
         {
             savefile savefil = new savefile();
             load_SEU(ref Level, ref savefil,"PLA");
@@ -339,6 +344,7 @@ namespace Umea_rana
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
             boss.parrametrage(savefil.levelProfile);
+            audio.parrametrage(path, savefil, "PLA");
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)
@@ -365,7 +371,7 @@ namespace Umea_rana
         public void Load_Level_PLAperso(ContentManager Content, ref string Level, ref string next_level, ref string color,
             ref IA_manager_AA manageAA, ref IA_manager_AR managerAR, ref IA_manager_S manageS,
               ref Platform_manager platform, ref Housse housse, ref bossPLAT boss,
-            ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2)
+            ref Scrolling_ManagerV scrolling, ref GraphicsDevice graph, ref Sprite_PLA sprite, ref Sprite_PLA p2, ref Audio audio)
         {
             savefile savefil = new savefile();
             load_SEU(ref Level, ref savefil,"PLA"); 
@@ -379,6 +385,7 @@ namespace Umea_rana
             manageAA.parrametrage(savefil); managerAR.parrametrage(savefil); manageS.parrametrage(savefil);
             housse.parrametrage(savefil.levelProfile);
             boss.parrametrage(savefil.levelProfile);
+            audio.parrametrage(path, savefil, "PLA");
             foreach (IA_AA ia in savefil.ia_AA)
                 manageAA.Add(ia);
             foreach (IA_AR ia in savefil.ia_AR)

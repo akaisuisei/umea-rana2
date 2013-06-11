@@ -268,7 +268,7 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
-        public Point  Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
+        public Point  Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref float tab, string name1)
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {

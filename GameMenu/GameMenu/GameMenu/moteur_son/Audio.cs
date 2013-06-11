@@ -21,6 +21,7 @@ namespace Umea_rana
         public Audio(ContentManager Content)
         {
             playlist = new Dictionary<string, Song>();
+            playlist2 = new List<Song>();
             playlist.Add("Menu", Content.Load<Song>("Menu//songMenu"));
             playlist.Add("Loading", null);
             playlist.Add("BGMlevel1", null);
@@ -40,20 +41,22 @@ namespace Umea_rana
         {
             foreach (string st in savefile.levelProfile.musique)
                 if (st != "" && st != null)
-                    playlist2.Add(Content.Load<Song>(savefile.levelProfile.levelname + "//" + st));
+                    playlist2.Add(Content.Load<Song>(savefile.levelProfile.levelname + "\\" + st));
             playing = 0;
         }
         public void parrametrage(string path,savefile savefile, string type)
         {
+        
             foreach (string st in savefile.levelProfile.musique)
                 if (st != "" && st != null)
-                    playlist2.Add(Song.FromUri("s", new Uri("file:" +"//"+path +"//"+type +"//" + st)));
+                    playlist2.Add(Song.FromUri("s", new Uri("file:" + "" + path + "\\" + type + "\\" + savefile.levelProfile.levelname + "\\" + st)));
             playing = 0;
         }
         public void Play()
         {
     
             playing = 0;
+            if (playlist2.Count > 0) 
             MediaPlayer.Play(playlist2[(int)playing]);
         }
         public void Newplaylist()
