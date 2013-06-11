@@ -44,9 +44,9 @@ namespace Umea_rana
                     playlist2.Add(Content.Load<Song>(savefile.levelProfile.levelname + "\\" + st));
             playing = 0;
         }
-        public void parrametrage(string path,savefile savefile, string type)
+        public void parrametrage(string path, savefile savefile, string type)
         {
-        
+
             foreach (string st in savefile.levelProfile.musique)
                 if (st != "" && st != null)
                     playlist2.Add(Song.FromUri("s", new Uri("file:" + "" + path + "\\" + type + "\\" + savefile.levelProfile.levelname + "\\" + st)));
@@ -54,21 +54,21 @@ namespace Umea_rana
         }
         public void Play()
         {
-    
+
             playing = 0;
-            if (playlist2.Count > 0) 
-            MediaPlayer.Play(playlist2[(int)playing]);
+            if (playlist2.Count > 0)
+                MediaPlayer.Play(playlist2[(int)playing]);
         }
         public void Newplaylist()
         {
             MediaPlayer.Stop();
             playing = 0;
             playlist2.Clear();
-            
+
         }
         public void Update()
         {
-           
+
         }
         public static void play(string level)
         {

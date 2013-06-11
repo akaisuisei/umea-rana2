@@ -56,7 +56,7 @@ namespace Umea_rana
                     platoo.X += backgeoundspeed;
                 }
                 platoo.X += platoo.dir * platoo.direction.X * platoo.speed;
-                platoo.X += platoo.dir * platoo.direction.Y * platoo.speed;
+                platoo.Y += platoo.dir * platoo.direction.Y * platoo.speed;
                 platoo.rectangle.X = (int)platoo.X;
                 platoo.rectangle.Y = (int)platoo.Y;
 
@@ -104,6 +104,7 @@ namespace Umea_rana
 
             for (int i = 0; i < platform.nbr; ++i)
             {
+                platform.type ='1';
                 plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * window_W), platform));
             }
         }

@@ -19,7 +19,7 @@ namespace Umea_rana
         public float X { get; set; }
         public float Y { get; set; }
         public Vector2 direction { get; set; }
-        public int parcouru { get { return _parcouru; } set { _parcouru = parcouru; } }
+        public int parcouru { get; set; }
         public int distance { get { return _distance; } }
         public int dir { get; set; }
         public string name { get; set; }
