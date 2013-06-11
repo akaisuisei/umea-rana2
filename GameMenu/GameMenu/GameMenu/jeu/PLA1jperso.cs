@@ -47,7 +47,7 @@ namespace Umea_rana.jeu
             sauvegarde = new Sauveguarde();
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
         {
             T_platform = new Dictionary<string, Texture2D>();
             string[] platstring = sauvegarde.filename(Content, "platform");

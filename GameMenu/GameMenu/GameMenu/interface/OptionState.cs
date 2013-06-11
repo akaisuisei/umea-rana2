@@ -69,7 +69,7 @@ namespace Umea_rana
         public override void Initialize(GraphicsDeviceManager graphics)
         {
             old = Keyboard.GetState();
-            curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/38, graphics.PreferredBackBufferHeight/26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth/4, graphics.PreferredBackBufferHeight/100), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
+            curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
             curseur_SE = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.sound_effect_volume);
             color_volume_BGM = Color.Black;
             color_volume_SE = Color.Black;
@@ -189,7 +189,7 @@ namespace Umea_rana
                     break;
             }
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
         {
             spriteFont = Content.Load<SpriteFont>("FontList");
             background = Content.Load<Texture2D>("Menu//background menu");
@@ -245,244 +245,244 @@ namespace Umea_rana
             MouseState mouse = Mouse.GetState();
             StorageManager storage = new StorageManager();
             rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
-            button.update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, ref active_item,ref canchange);
-                switch (active_item)
-                {
-                    case 0://selection sur volume_BGM
-                        color_volume_BGM = Color.White;
-                        color_volume_SE = Color.Black;
-                        color_retour = Color.Black;
-                        curseur_BGM.update(keyboard, mouse);
-                        Audio.changevolume_temp(curseur_BGM._volume);
-                        break;
-                    case 1://selection sur volume_SE
-                        color_volume_BGM = Color.Black;
-                        color_volume_SE = Color.White;
-                        color_difficulté = Color.Black;
-                        curseur_SE.update(keyboard, mouse);
-                        Audio.change_soundeffect_volume_temp(curseur_SE._volume);
-                        break;
-                    case 2://selection sur difficulté
-                        color_volume_SE = Color.Black;
-                        color_difficulté = Color.White;
-                        color_langue = Color.Black;
+            button.update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, ref active_item, ref canchange);
+            switch (active_item)
+            {
+                case 0://selection sur volume_BGM
+                    color_volume_BGM = Color.White;
+                    color_volume_SE = Color.Black;
+                    color_retour = Color.Black;
+                    curseur_BGM.update(keyboard, mouse);
+                    Audio.changevolume_temp(curseur_BGM._volume);
+                    break;
+                case 1://selection sur volume_SE
+                    color_volume_BGM = Color.Black;
+                    color_volume_SE = Color.White;
+                    color_difficulté = Color.Black;
+                    curseur_SE.update(keyboard, mouse);
+                    Audio.change_soundeffect_volume_temp(curseur_SE._volume);
+                    break;
+                case 2://selection sur difficulté
+                    color_volume_SE = Color.Black;
+                    color_difficulté = Color.White;
+                    color_langue = Color.Black;
 
-                        if (keyboard.IsKeyDown(Keys.Left))
-                        {
-                            select_difficulte--;
-                            if (select_difficulte < 0)
-                                select_difficulte = 3;
-                            latence = 20;
-                        }
-                        if (keyboard.IsKeyDown(Keys.Right))
-                        {
-                            select_difficulte++;
-                            if (select_difficulte > 3)
-                                select_difficulte = 0;
-                            latence = 20;
-                        }
-                        switch (select_difficulte)
-                        {
-                            case 0:
-                                color_difficulte_extreme = Color.BlueViolet;
-                                color_difficulte_normal = Color.BlueViolet;
-                                color_difficulte_facile = Color.White;
-                                difficulté = "facile";
-                                break;
-                            case 1:
-                                color_difficulte_facile = Color.BlueViolet;
-                                color_difficulte_normal = Color.White;
-                                color_difficulte_difficile = Color.BlueViolet;
-                                difficulté = "normal";
-                                break;
-                            case 2:
-                                color_difficulte_normal = Color.BlueViolet;
-                                color_difficulte_difficile = Color.White;
-                                color_difficulte_extreme = Color.BlueViolet;
-                                difficulté = "difficile";
-                                break;
-                            case 3:
-                                color_difficulte_facile = Color.BlueViolet;
-                                color_difficulte_difficile = Color.BlueViolet;
-                                color_difficulte_extreme = Color.White;
-                                difficulté = "extreme";
-                                break;
-                        }
-                        break;
-                    case 3://selection sur langage                   
-                        color_difficulté = Color.Black;
-                        color_langue = Color.White;
-                        color_resolution = Color.Black;
-                        if (keyboard.IsKeyDown(Keys.Left))
-                        {
-                            select_langue--;
-                            if (select_langue < 0)
-                                select_langue = 5;
-                            latence = 20;
-                        }
-                        if (keyboard.IsKeyDown(Keys.Right))
-                        {
-                            select_langue++;
-                            if (select_langue > 5)
-                                select_langue = 0;
-                            latence = 20;
-                        }
-                        switch (select_langue) //à changer j'ai oublié les string qu'il faut mettre
-                        {
-                            case 0:
-                                color_chinois = Color.BlueViolet;
-                                color_anglais = Color.BlueViolet;
-                                color_français = Color.White;
-                                langue = "fr-FR";
-                                break;
-                            case 1:
-                                color_français = Color.BlueViolet;
-                                color_anglais = Color.White;
-                                color_espagnol = Color.BlueViolet;
-                                langue = "en-US";
-                                break;
-                            case 2:
-                                color_anglais = Color.BlueViolet;
-                                color_finois = Color.BlueViolet;
-                                color_espagnol = Color.White;
-                                langue = "es-ES";
-                                break;
-                            case 3:
-                                color_espagnol = Color.BlueViolet;
-                                color_japonais = Color.BlueViolet;
-                                color_finois = Color.White;
-                                langue = "fi-FI";
-                                break;
-                            case 4:
-                                color_japonais = Color.White;
-                                color_chinois = Color.BlueViolet;
-                                color_finois = Color.BlueViolet;
-                                langue = "ja-JP";
-                                break;
-                        }
-                        break;
-                    case 4://selection sur résolution
-                        color_langue = Color.Black;
-                        color_resolution = Color.White;
-                        color_save_apply = Color.Black;
-                        if (keyboard.IsKeyDown(Keys.Left))
-                        {
-                            select_resolution--;
-                            if (select_resolution < 0)
-                                select_resolution = 4;
-                            latence = 20;
-                        }
-                        if (keyboard.IsKeyDown(Keys.Right))
-                        {
-                            select_resolution++;
-                            if (select_resolution > 4)
-                                select_resolution = 0;
-                            latence = 20;
-                        }
-                        switch (select_resolution)
-                        {
-                            case 0://fix
-                                color_resolutionfullscreen = Color.White;
-                                color_resolution800_600 = Color.BlueViolet;
-                                color_resolution1280_768 = Color.BlueViolet;
-                                _width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                                _height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-                                fullscreen = true;
-                                break;
-                            case 1://fix
-                                color_resolution1280_768 = Color.White;
-                                color_resolution1024_768 = Color.BlueViolet;
-                                color_resolutionfullscreen = Color.BlueViolet;
-                                fullscreen = false;
-                                _width = 1280;
-                                _height = 768;
-                                break;
-                            case 2:
-                                color_resolution1280_768 = Color.BlueViolet;
-                                color_resolution1024_768 = Color.White;
-                                color_resolution960_720 = Color.BlueViolet;
-                                fullscreen = false;
-                                _width = 1024;
-                                _height = 768;
-                                break;
-                            case 3:
-                                color_resolution1024_768 = Color.BlueViolet;
-                                color_resolution960_720 = Color.White;
-                                color_resolution800_600 = Color.BlueViolet;
-                                fullscreen = false;
-                                _width = 960;
-                                _height = 720;
-                                break;
-                            case 4:
-                                color_resolution800_600 = Color.White;
-                                color_resolutionfullscreen = Color.BlueViolet;
-                                color_resolution960_720 = Color.BlueViolet;
-                                fullscreen = false;
-                                _width = 800;
-                                _height = 600;
-                                break;
-                        }
-                        break;
-                    case 5://selection sur enregistrer/appliquer
-                        color_resolution = Color.Black;
-                        color_defaut = Color.Black;
-                        color_save_apply = Color.White;
-                        if (keyboard.IsKeyDown(Keys.Enter))
-                        {
-                            latence = 20;
-                            game.graphics.IsFullScreen = fullscreen;
-                            game.graphics.PreferredBackBufferWidth = _width;
-                            game.graphics.PreferredBackBufferHeight = _height;
-                            Audio.changevolume(curseur_BGM._volume);
-                            Audio.change_soundeffect_volume(curseur_SE._volume);
-                            game.graphics.ApplyChanges();
-                            storage.SaveGameConfiguration(new GameConfiguration(_width, _height, fullscreen, volume_BGM, sound_effect_volume, langue, difficulté));
-                            game.ChangeState(Game1.gameState.OptionState);
-                        }
-                        break;
-                    case 6://selection sur paramètre par défaut
-                        color_defaut = Color.White;
-                        color_save_apply = Color.Black;
-                        color_retour = Color.Black;
-                        if (keyboard.IsKeyDown(Keys.Enter))
-                        {
-                            latence = 20;
-                            _height = game.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
-                            _width = game.GraphicsDevice.Adapter.CurrentDisplayMode.Width;
-                            fullscreen = true;
-                            volume_BGM = 1.0f;
-                            sound_effect_volume = 0.5f;
-                            langue = "fr-FR";
+                    if (keyboard.IsKeyDown(Keys.Left))
+                    {
+                        select_difficulte--;
+                        if (select_difficulte < 0)
+                            select_difficulte = 3;
+                        latence = 20;
+                    }
+                    if (keyboard.IsKeyDown(Keys.Right))
+                    {
+                        select_difficulte++;
+                        if (select_difficulte > 3)
+                            select_difficulte = 0;
+                        latence = 20;
+                    }
+                    switch (select_difficulte)
+                    {
+                        case 0:
+                            color_difficulte_extreme = Color.BlueViolet;
+                            color_difficulte_normal = Color.BlueViolet;
+                            color_difficulte_facile = Color.White;
+                            difficulté = "facile";
+                            break;
+                        case 1:
+                            color_difficulte_facile = Color.BlueViolet;
+                            color_difficulte_normal = Color.White;
+                            color_difficulte_difficile = Color.BlueViolet;
                             difficulté = "normal";
-                            Audio.changevolume(volume_BGM);
-                            SoundEffect.MasterVolume = sound_effect_volume;
-                            game.graphics.PreferredBackBufferHeight = _height;
-                            game.graphics.PreferredBackBufferWidth = _width;
-                            game.graphics.IsFullScreen = fullscreen;
-                            game.graphics.ApplyChanges();
-                            storage.SaveGameConfiguration(new GameConfiguration(_width, _height, fullscreen, volume_BGM, sound_effect_volume, langue, difficulté));
-                            game.ChangeState(Game1.gameState.OptionState);
-                        }
-                        break;
-                    case 7://selection sur retour
-                        color_volume_BGM = Color.Black;
-                        color_defaut = Color.Black;
-                        color_retour = Color.White;
-                        if (keyboard.IsKeyDown(Keys.Enter))
-                        {
-                            Audio.changevolume(volume_BGM);
-                            Audio.change_soundeffect_volume(sound_effect_volume);
-                            game.ChangeState(Game1.gameState.MainMenuState);
-                        }
-                        break;
-                }
+                            break;
+                        case 2:
+                            color_difficulte_normal = Color.BlueViolet;
+                            color_difficulte_difficile = Color.White;
+                            color_difficulte_extreme = Color.BlueViolet;
+                            difficulté = "difficile";
+                            break;
+                        case 3:
+                            color_difficulte_facile = Color.BlueViolet;
+                            color_difficulte_difficile = Color.BlueViolet;
+                            color_difficulte_extreme = Color.White;
+                            difficulté = "extreme";
+                            break;
+                    }
+                    break;
+                case 3://selection sur langage                   
+                    color_difficulté = Color.Black;
+                    color_langue = Color.White;
+                    color_resolution = Color.Black;
+                    if (keyboard.IsKeyDown(Keys.Left))
+                    {
+                        select_langue--;
+                        if (select_langue < 0)
+                            select_langue = 5;
+                        latence = 20;
+                    }
+                    if (keyboard.IsKeyDown(Keys.Right))
+                    {
+                        select_langue++;
+                        if (select_langue > 5)
+                            select_langue = 0;
+                        latence = 20;
+                    }
+                    switch (select_langue) //à changer j'ai oublié les string qu'il faut mettre
+                    {
+                        case 0:
+                            color_chinois = Color.BlueViolet;
+                            color_anglais = Color.BlueViolet;
+                            color_français = Color.White;
+                            langue = "fr-FR";
+                            break;
+                        case 1:
+                            color_français = Color.BlueViolet;
+                            color_anglais = Color.White;
+                            color_espagnol = Color.BlueViolet;
+                            langue = "en-US";
+                            break;
+                        case 2:
+                            color_anglais = Color.BlueViolet;
+                            color_finois = Color.BlueViolet;
+                            color_espagnol = Color.White;
+                            langue = "es-ES";
+                            break;
+                        case 3:
+                            color_espagnol = Color.BlueViolet;
+                            color_japonais = Color.BlueViolet;
+                            color_finois = Color.White;
+                            langue = "fi-FI";
+                            break;
+                        case 4:
+                            color_japonais = Color.White;
+                            color_chinois = Color.BlueViolet;
+                            color_finois = Color.BlueViolet;
+                            langue = "ja-JP";
+                            break;
+                    }
+                    break;
+                case 4://selection sur résolution
+                    color_langue = Color.Black;
+                    color_resolution = Color.White;
+                    color_save_apply = Color.Black;
+                    if (keyboard.IsKeyDown(Keys.Left))
+                    {
+                        select_resolution--;
+                        if (select_resolution < 0)
+                            select_resolution = 4;
+                        latence = 20;
+                    }
+                    if (keyboard.IsKeyDown(Keys.Right))
+                    {
+                        select_resolution++;
+                        if (select_resolution > 4)
+                            select_resolution = 0;
+                        latence = 20;
+                    }
+                    switch (select_resolution)
+                    {
+                        case 0://fix
+                            color_resolutionfullscreen = Color.White;
+                            color_resolution800_600 = Color.BlueViolet;
+                            color_resolution1280_768 = Color.BlueViolet;
+                            _width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                            _height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                            fullscreen = true;
+                            break;
+                        case 1://fix
+                            color_resolution1280_768 = Color.White;
+                            color_resolution1024_768 = Color.BlueViolet;
+                            color_resolutionfullscreen = Color.BlueViolet;
+                            fullscreen = false;
+                            _width = 1280;
+                            _height = 768;
+                            break;
+                        case 2:
+                            color_resolution1280_768 = Color.BlueViolet;
+                            color_resolution1024_768 = Color.White;
+                            color_resolution960_720 = Color.BlueViolet;
+                            fullscreen = false;
+                            _width = 1024;
+                            _height = 768;
+                            break;
+                        case 3:
+                            color_resolution1024_768 = Color.BlueViolet;
+                            color_resolution960_720 = Color.White;
+                            color_resolution800_600 = Color.BlueViolet;
+                            fullscreen = false;
+                            _width = 960;
+                            _height = 720;
+                            break;
+                        case 4:
+                            color_resolution800_600 = Color.White;
+                            color_resolutionfullscreen = Color.BlueViolet;
+                            color_resolution960_720 = Color.BlueViolet;
+                            fullscreen = false;
+                            _width = 800;
+                            _height = 600;
+                            break;
+                    }
+                    break;
+                case 5://selection sur enregistrer/appliquer
+                    color_resolution = Color.Black;
+                    color_defaut = Color.Black;
+                    color_save_apply = Color.White;
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        latence = 20;
+                        game.graphics.IsFullScreen = fullscreen;
+                        game.graphics.PreferredBackBufferWidth = _width;
+                        game.graphics.PreferredBackBufferHeight = _height;
+                        Audio.changevolume(curseur_BGM._volume);
+                        Audio.change_soundeffect_volume(curseur_SE._volume);
+                        game.graphics.ApplyChanges();
+                        storage.SaveGameConfiguration(new GameConfiguration(_width, _height, fullscreen, volume_BGM, sound_effect_volume, langue, difficulté));
+                        game.ChangeState(Game1.gameState.OptionState);
+                    }
+                    break;
+                case 6://selection sur paramètre par défaut
+                    color_defaut = Color.White;
+                    color_save_apply = Color.Black;
+                    color_retour = Color.Black;
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        latence = 20;
+                        _height = game.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+                        _width = game.GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+                        fullscreen = true;
+                        volume_BGM = 1.0f;
+                        sound_effect_volume = 0.5f;
+                        langue = "fr-FR";
+                        difficulté = "normal";
+                        Audio.changevolume(volume_BGM);
+                        SoundEffect.MasterVolume = sound_effect_volume;
+                        game.graphics.PreferredBackBufferHeight = _height;
+                        game.graphics.PreferredBackBufferWidth = _width;
+                        game.graphics.IsFullScreen = fullscreen;
+                        game.graphics.ApplyChanges();
+                        storage.SaveGameConfiguration(new GameConfiguration(_width, _height, fullscreen, volume_BGM, sound_effect_volume, langue, difficulté));
+                        game.ChangeState(Game1.gameState.OptionState);
+                    }
+                    break;
+                case 7://selection sur retour
+                    color_volume_BGM = Color.Black;
+                    color_defaut = Color.Black;
+                    color_retour = Color.White;
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        Audio.changevolume(volume_BGM);
+                        Audio.change_soundeffect_volume(sound_effect_volume);
+                        game.ChangeState(Game1.gameState.MainMenuState);
+                    }
+                    break;
+            }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, rectangle, Color.White);
             curseur_BGM.Draw(spriteBatch);
             curseur_SE.Draw(spriteBatch);
-            button.Draw(spriteBatch,active_item);
+            button.Draw(spriteBatch, active_item);
 
             spriteBatch.DrawString(spriteFont, LocalizedString.easy, v_difficulte_facile, color_difficulte_facile);
             spriteBatch.DrawString(spriteFont, LocalizedString.medium, v_difficulte_normal, color_difficulte_normal);

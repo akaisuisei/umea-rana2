@@ -35,7 +35,7 @@ namespace Umea_rana
 
             old = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+                public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
         {
 
             width = graphics.PreferredBackBufferWidth;

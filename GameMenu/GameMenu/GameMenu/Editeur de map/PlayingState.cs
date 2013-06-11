@@ -46,7 +46,7 @@ namespace Umea_rana
             Application.Run(user);
             oldkey = Keyboard.GetState();
         }
-        public override void LoadContent(ContentManager Content, GraphicsDevice graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+                public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
         {
             sauveguarde = new Sauveguarde();
             T_platform = new Dictionary<string, Texture2D>();

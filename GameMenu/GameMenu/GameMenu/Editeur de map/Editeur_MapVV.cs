@@ -64,7 +64,7 @@ namespace Umea_rana
 
         }
 
-        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics)
+                public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
         {
             info = new info();
             width = graphics.PreferredBackBufferWidth;
