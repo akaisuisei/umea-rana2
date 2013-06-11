@@ -142,4 +142,14 @@ namespace Umea_rana
           
         }
     }
+
+    public struct BossSEUstruct
+    {
+        public int life { get; set; }
+        public int damage { get; set; }
+        public float speed { get; set; }
+        public Color bulletcolor { get; set; }
+        public float speedball { get; set; }
+    }
+
 }

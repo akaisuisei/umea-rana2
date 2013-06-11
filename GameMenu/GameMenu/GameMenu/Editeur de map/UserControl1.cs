@@ -28,7 +28,7 @@ namespace Umea_rana
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_firerate = "fire", t_nbr = "nbr", t_angle = "angle";
         // type
         string type;
-        System.Drawing.Color color2, color4;
+        System.Drawing.Color color2, color4, color5;
         int width, height;
         int seconde;
         public bool IHave_control;
@@ -45,10 +45,11 @@ namespace Umea_rana
         Scrolling_ManagerV scrollingM;
         Game1 game;
         int spawn;
-        string ia_type;
+        string ia_type, selectedbos;
         ContentManager Content;
         List<Song> listsong;
         int song;
+
         public void dispose()
         {
             type = null;
@@ -67,6 +68,7 @@ namespace Umea_rana
         /// </summary>
         public UserControl1()
         {
+            selectedbos = "";
             InitializeComponent();
 
             this.Hide();
@@ -117,9 +119,9 @@ namespace Umea_rana
             openX = (float)X / (float)width;
             openY = (float)y / (float)height;
 
-           
+
             EnableTab(tabPage2, false);
-            this.Location = new System.Drawing.Point(fond2.X , fond2.Y);
+            this.Location = new System.Drawing.Point(fond2.X, fond2.Y);
             this.spawn = spawn;
             this.ia_type = touch;
 
@@ -245,14 +247,14 @@ namespace Umea_rana
                 ++seconde;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
                 --seconde;
-   /*         if (MediaPlayer.State == MediaState.Stopped)
-            {
-                ++song;
-                if (song < listsong.Count)
-                    MediaPlayer.Play(listsong[song]);
-                else
-                    song = -1;
-            }*/
+            /*         if (MediaPlayer.State == MediaState.Stopped)
+                     {
+                         ++song;
+                         if (song < listsong.Count)
+                             MediaPlayer.Play(listsong[song]);
+                         else
+                             song = -1;
+                     }*/
         }
 
         public void LoadContent(IA_manager_T manage_T, IA_manager_V manage_V, IA_manager_K manage_k, Scrolling_ManagerV scrolling, ContentManager Content, Ovni ovni, Microsoft.Xna.Framework.Rectangle fond)
@@ -263,7 +265,7 @@ namespace Umea_rana
             this.ovni = ovni;
             this.scrollingM = scrolling;
             this.Content = Content;
-            string[] item = sauve.filename(Content,"back");
+            string[] item = sauve.filename(Content, "back");
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);
@@ -273,6 +275,9 @@ namespace Umea_rana
             ovni.param(3);
             height = fond.Height;
             width = fond.Width;
+            string[] item2 = sauve.filename(Content, "Boss");
+            foreach (string st in item2)
+                listBox2.Items.Add(st);
 
         }
         /// <summary>
@@ -385,7 +390,7 @@ namespace Umea_rana
             button13.Text = add;
             button14.Text = supp;
             button15.Text = OK;
-            //tab7 boss
+            //tab8 OVNI
             radioButton3.Text = life;
             radioButton4.Text = bomb;
             radioButton5.Text = missile;
@@ -398,10 +403,22 @@ namespace Umea_rana
             label24.Text = speed;
             label25.Text = angle;
             radioButton1.Enabled = true;
+            //tab7 boss
+            textBox19.Tag = t_life;
+            textBox20.Tag = t_damage;
+            textBox21.Tag = t_speed;
+            textBox22.Tag = t_speed;
+            label26.Text = life;
+            label27.Text = damage;
+            label28.Text = speed;
+            label29.Text = couleur;
+            label30.Text = firerate;
+            button17.Text = couleur;
+
             // default 
             button6.BackColor = button1.BackColor;
             button2.BackColor = button1.BackColor;
-            
+
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
             textBox3.Text = string.Empty;
@@ -586,6 +603,26 @@ namespace Umea_rana
         {
             nameCheck(ref textBox10);
         }
+        private void textBox19_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox19);
+        }
+
+        private void textBox20_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox20);
+        }
+
+        private void textBox21_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox21);
+        }
+
+        private void textBox22_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox22);
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             button9.Enabled = true;
@@ -620,6 +657,13 @@ namespace Umea_rana
         {
             open_File_dialogue('m');
             // Additem();
+        }
+        private void button17_Click(object sender, EventArgs e)
+        {
+            colorDialog3.ShowDialog();
+            color5 = colorDialog3.Color;
+            button17.BackColor = color5;
+
         }
         #endregion
         #region validate button
@@ -924,7 +968,7 @@ namespace Umea_rana
         private void savegame()
         {
             _savefile.levelProfile.musique = playlist;
-            sauve.save_SEU(ref _savefile,"SEU");
+            sauve.save_SEU(ref _savefile, "SEU");
         }
 
         /// <summary>
@@ -933,7 +977,7 @@ namespace Umea_rana
         /// <param name="file_name">nom du fichier a charger</param>
         private void loadgame(string file_name)
         {
-            sauve.load_SEU(ref file_name, ref _savefile,"PLA");
+            sauve.load_SEU(ref file_name, ref _savefile, "PLA");
             manage_k.remove_all();
             manage_T.remove_all();
             manage_V.remove_all();
@@ -1212,6 +1256,30 @@ namespace Umea_rana
             textBox17.Enabled = b;
             textBox18.Enabled = b;
         }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedbos =(string) listBox2.SelectedItem;
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (selectedbos != "" && textBox19.BackColor == System.Drawing.Color.Green && textBox20.BackColor == System.Drawing.Color.Green &&
+                textBox21.BackColor == System.Drawing.Color.Green && textBox22.BackColor == System.Drawing.Color.Green&& color5!= System.Drawing.Color.Black )
+            {
+                BossSEUstruct boss2 = new BossSEUstruct();
+                boss2.bulletcolor = new Microsoft.Xna.Framework.Color (color5.R,color5.G,color5.B,color5.A) ;
+                boss2.damage = int.Parse (textBox20.Text );
+                boss2.speed = int.Parse (textBox21 .Text );
+                boss2.life= int.Parse (textBox19.Text );
+                boss2.speedball = int.Parse (textBox22.Text );
+                _savefile.bossSEU = boss2 ;
+                hidou ();
+            }
+        }
+
+
+
 
     }
 }

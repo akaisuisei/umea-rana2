@@ -109,13 +109,13 @@ namespace Umea_rana
             openY = (float)y / (float)height;
 
             if (X > width / 2)
-                X -= (decal + this.Width);
+                X = 0;
             else
-                X += decal;
+                X = width/2;
             if (y > height / 2)
-                y -= (decal + this.Height);
+                y = 0;
             else
-                y += decal;
+                y = height/2;
             EnableTab(Ennemis, false);
             this.Location = new System.Drawing.Point(X, y);
             this.spawn = spawn;
@@ -1060,7 +1060,7 @@ namespace Umea_rana
                     if (Plateforme_Stable.Checked)
                     {
                         savefile.plat_f.Add(platef);
-                        plateform.Add(platef);
+                        plateform.Add(platef,savefile.plat_f.Count -1);
 
 
                     }
