@@ -89,6 +89,10 @@
             this.droite = new System.Windows.Forms.RadioButton();
             this.haut = new System.Windows.Forms.RadioButton();
             this.bas = new System.Windows.Forms.RadioButton();
+            this.GaucheHaut = new System.Windows.Forms.RadioButton();
+            this.DroitHaut = new System.Windows.Forms.RadioButton();
+            this.DroitBas = new System.Windows.Forms.RadioButton();
+            this.GaucheBas = new System.Windows.Forms.RadioButton();
             this.Plateforme_Stable = new System.Windows.Forms.RadioButton();
             this.allasuite = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -103,6 +107,10 @@
             this.textBox2_p = new System.Windows.Forms.TextBox();
             this.button1_ok = new System.Windows.Forms.Button();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.vitesse_plat = new System.Windows.Forms.Label();
+            this.distance_plat = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.Fond.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -819,28 +827,37 @@
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.77966F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.22034F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.48837F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.51163F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
             this.tableLayoutPanel12.Controls.Add(this.bas, 1, 3);
+            this.tableLayoutPanel12.Controls.Add(this.GaucheHaut, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.DroitHaut, 2, 1);
+            this.tableLayoutPanel12.Controls.Add(this.DroitBas, 2, 3);
+            this.tableLayoutPanel12.Controls.Add(this.GaucheBas, 0, 3);
+            this.tableLayoutPanel12.Controls.Add(this.vitesse_plat, 0, 4);
+            this.tableLayoutPanel12.Controls.Add(this.distance_plat, 0, 5);
+            this.tableLayoutPanel12.Controls.Add(this.textBox1, 1, 4);
+            this.tableLayoutPanel12.Controls.Add(this.textBox2, 1, 5);
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 5;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.66667F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.33333F));
+            this.tableLayoutPanel12.RowCount = 6;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.64151F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.35849F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(195, 142);
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(195, 160);
             this.tableLayoutPanel12.TabIndex = 1;
             // 
             // gauche
             // 
             this.gauche.AutoSize = true;
-            this.gauche.Location = new System.Drawing.Point(3, 56);
+            this.gauche.Location = new System.Drawing.Point(3, 38);
             this.gauche.Name = "gauche";
             this.gauche.Size = new System.Drawing.Size(61, 17);
             this.gauche.TabIndex = 0;
@@ -850,8 +867,9 @@
             // 
             // droite
             // 
+            this.droite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(126, 56);
+            this.droite.Location = new System.Drawing.Point(141, 38);
             this.droite.Name = "droite";
             this.droite.Size = new System.Drawing.Size(51, 17);
             this.droite.TabIndex = 1;
@@ -862,7 +880,7 @@
             // haut
             // 
             this.haut.AutoSize = true;
-            this.haut.Location = new System.Drawing.Point(73, 33);
+            this.haut.Location = new System.Drawing.Point(72, 11);
             this.haut.Name = "haut";
             this.haut.Size = new System.Drawing.Size(46, 17);
             this.haut.TabIndex = 2;
@@ -873,13 +891,57 @@
             // bas
             // 
             this.bas.AutoSize = true;
-            this.bas.Location = new System.Drawing.Point(73, 79);
+            this.bas.Location = new System.Drawing.Point(72, 61);
             this.bas.Name = "bas";
             this.bas.Size = new System.Drawing.Size(42, 17);
             this.bas.TabIndex = 3;
             this.bas.TabStop = true;
             this.bas.Text = "bas";
             this.bas.UseVisualStyleBackColor = true;
+            // 
+            // GaucheHaut
+            // 
+            this.GaucheHaut.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.GaucheHaut.AutoSize = true;
+            this.GaucheHaut.Location = new System.Drawing.Point(27, 11);
+            this.GaucheHaut.Name = "GaucheHaut";
+            this.GaucheHaut.Size = new System.Drawing.Size(14, 13);
+            this.GaucheHaut.TabIndex = 4;
+            this.GaucheHaut.TabStop = true;
+            this.GaucheHaut.UseVisualStyleBackColor = true;
+            // 
+            // DroitHaut
+            // 
+            this.DroitHaut.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.DroitHaut.AutoSize = true;
+            this.DroitHaut.Location = new System.Drawing.Point(155, 11);
+            this.DroitHaut.Name = "DroitHaut";
+            this.DroitHaut.Size = new System.Drawing.Size(14, 13);
+            this.DroitHaut.TabIndex = 5;
+            this.DroitHaut.TabStop = true;
+            this.DroitHaut.UseVisualStyleBackColor = true;
+            // 
+            // DroitBas
+            // 
+            this.DroitBas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.DroitBas.AutoSize = true;
+            this.DroitBas.Location = new System.Drawing.Point(155, 61);
+            this.DroitBas.Name = "DroitBas";
+            this.DroitBas.Size = new System.Drawing.Size(14, 13);
+            this.DroitBas.TabIndex = 6;
+            this.DroitBas.TabStop = true;
+            this.DroitBas.UseVisualStyleBackColor = true;
+            // 
+            // GaucheBas
+            // 
+            this.GaucheBas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.GaucheBas.AutoSize = true;
+            this.GaucheBas.Location = new System.Drawing.Point(27, 61);
+            this.GaucheBas.Name = "GaucheBas";
+            this.GaucheBas.Size = new System.Drawing.Size(14, 13);
+            this.GaucheBas.TabIndex = 7;
+            this.GaucheBas.TabStop = true;
+            this.GaucheBas.UseVisualStyleBackColor = true;
             // 
             // Plateforme_Stable
             // 
@@ -1024,6 +1086,38 @@
             this.button1_ok.UseVisualStyleBackColor = true;
             this.button1_ok.Click += new System.EventHandler(this.button1_ok_Click);
             // 
+            // vitesse_plat
+            // 
+            this.vitesse_plat.AutoSize = true;
+            this.vitesse_plat.Location = new System.Drawing.Point(3, 88);
+            this.vitesse_plat.Name = "vitesse_plat";
+            this.vitesse_plat.Size = new System.Drawing.Size(40, 13);
+            this.vitesse_plat.TabIndex = 8;
+            this.vitesse_plat.Text = "vitesse";
+            // 
+            // distance_plat
+            // 
+            this.distance_plat.AutoSize = true;
+            this.distance_plat.Location = new System.Drawing.Point(3, 123);
+            this.distance_plat.Name = "distance_plat";
+            this.distance_plat.Size = new System.Drawing.Size(47, 13);
+            this.distance_plat.TabIndex = 9;
+            this.distance_plat.Text = "distance";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(72, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(46, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(72, 126);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(46, 20);
+            this.textBox2.TabIndex = 11;
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1149,6 +1243,14 @@
         private System.Windows.Forms.TextBox textBox1_v;
         private System.Windows.Forms.TextBox textBox2_p;
         private System.Windows.Forms.Button button1_ok;
+        private System.Windows.Forms.RadioButton GaucheHaut;
+        private System.Windows.Forms.RadioButton DroitHaut;
+        private System.Windows.Forms.RadioButton DroitBas;
+        private System.Windows.Forms.RadioButton GaucheBas;
+        private System.Windows.Forms.Label vitesse_plat;
+        private System.Windows.Forms.Label distance_plat;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
 
     }
 }

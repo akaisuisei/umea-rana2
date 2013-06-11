@@ -607,6 +607,7 @@ namespace Umea_rana
                 n = 1000;
             else if ((string)texbox.Tag == t_boss_puiss)
                 n = 50;
+            
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
             {
@@ -785,6 +786,29 @@ namespace Umea_rana
                 if (type == "plateformes")
                 {
                     Plat modifier = new Plat();
+                    if (Plateforme_Stable.Checked)
+                    {
+                        modifier.type = '0';
+                    }
+                    else if (Plateforme_Mobile.Checked)
+                    {
+                        if (haut.Checked)
+                            modifier.type = 'U';
+                        else if (bas.Checked)
+                            modifier.type = 'D';
+                        else if (droite.Checked)
+                            modifier.type = 'R';
+                        else if (gauche.Checked)
+                            modifier.type = 'L';
+                        else if (GaucheHaut.Checked)
+                            modifier.type = '1';
+                        else if (DroitHaut.Checked)
+                            modifier.type = '2';
+                        else if (DroitBas.Checked)
+                            modifier.type = '3';
+                        else if (GaucheBas.Checked)
+                            modifier.type = '4';
+                    }
                     // modifier.type 
                     //  modifier.speed 
                     // il faut ajouter la distance et tout c es truc
@@ -1080,6 +1104,7 @@ namespace Umea_rana
                 hidou();
             }
         }
+
 
 
 
