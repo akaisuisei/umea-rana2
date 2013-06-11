@@ -268,7 +268,7 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
-        public Point  Update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref float tab, string name1)
+        public Point  Update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {
@@ -383,7 +383,6 @@ namespace Umea_rana
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
                 {
                     Y = (Y + 1) % rect.GetLength(1);
-
                     if (gameState[X, Y] == null)
                         Y = (Y + 1) % rect.GetLength(1);
                 }
@@ -392,7 +391,6 @@ namespace Umea_rana
                     X = (X + 1) % rect.GetLength(0);
                     if (gameState[X, Y] == null)
                         X = (X + 1) % rect.GetLength(0);
-
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
@@ -469,73 +467,105 @@ namespace Umea_rana
                 }
             }
         }
-        public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref bool canchange)
+        public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref int active_item2)
         {
-            if (canchange)
+
+            if (tab == this.tab)
             {
-                if (tab == this.tab)
+                intecep = false;
+
+                for (int j = 0; j < rect.GetLength(1); ++j)
                 {
-                    intecep = false;
-
-                    for (int j = 0; j < rect.GetLength(1); ++j)
+                    if (mouse_rec.Intersects(rect[0, j]))
                     {
-                        if (mouse_rec.Intersects(rect[0, j]))
-                        {
-                            X = 0;
-                            Y = j;
-                            intecep = true;
-                        }
+                        X = 0;
+                        Y = j;
+                        intecep = true;
                     }
-                    if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+                }
+                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+                {
+                    if (Y == 0)
                     {
-                        if (Y == 0)
-                        {
-                            Y = rect.GetLength(1) - 1;
-                            active_item = 7;
-                        }
-                        else
-                        {
-                            Y = (Y - 1) % rect.GetLength(1);
-                            active_item--;
-                        }
-
+                        Y = rect.GetLength(1) - 1;
+                        active_item = 7;
                     }
-                    else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+                    else
                     {
-                        Y = (Y + 1) % rect.GetLength(1);
-                        active_item++;
+                        Y = (Y - 1) % rect.GetLength(1);
+                        active_item--;
                     }
 
+                }
+                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+                {
+                    Y = (Y + 1) % rect.GetLength(1);
+                    active_item++;
+                }
 
-                    select.Y = rect[X, Y].Y;
-                    select.X = rect[X, Y].X - select.Width;
 
-                    if (intecep && mouse.LeftButton == ButtonState.Pressed)
+                select.Y = rect[X, Y].Y;
+                select.X = rect[X, Y].X - select.Width;
+
+                if (intecep && mouse.LeftButton == ButtonState.Pressed)
+                {
+                    if (gameState[X, Y] == "Volume_BGM")
                     {
-                        if (gameState[X, Y] == "Volume_BGM")
-                        {
-                            active_item = 0;
-                        }
-                        else if (gameState[X, Y] == "Volume_SE")
-                            active_item = 1;
-                        else if (gameState[X, Y] == "Difficulte")
-                        {
-                            active_item = 2;
-                        }
-                        else if (gameState[X, Y] == "Langage")
-                            active_item = 3;
-                        else if (gameState[X, Y] == "Resolution")
-                            active_item = 4;
-                        else if (gameState[X, Y] == "Appliquer")
-                        {
-                            active_item = 5;
-                        }
-                        else if (gameState[X, Y] == "Defaut")
-                            active_item = 6;
-                        else if (gameState[X, Y] == "Retour")
-                            active_item = 7;
-                        System.Threading.Thread.Sleep(G_latence);
+                        active_item = 0;
                     }
+                    else if (gameState[X, Y] == "Volume_SE")
+                        active_item = 1;
+                    else if (gameState[X, Y] == "Difficulte")
+                    {
+                        active_item = 2;
+                    }
+                    else if (gameState[X, Y] == "Langage")
+                        active_item = 3;
+                    else if (gameState[X, Y] == "Resolution")
+                        active_item = 4;
+                    else if (gameState[X, Y] == "Appliquer")
+                    {
+                        active_item2 = 5;
+                    }
+                    else if (gameState[X, Y] == "Defaut")
+                        active_item2 = 6;
+                    else if (gameState[X, Y] == "Retour")
+                        active_item2 = 7;
+                    System.Threading.Thread.Sleep(G_latence);
+                }
+            }
+        }
+        public void update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item,ref string difficulté_langage)
+        {
+            if (tab == this.tab)
+            {
+                intecep = false;
+
+                for (int i = 0; i < rect.GetLength(0); ++i)
+                    if (mouse_rec.Intersects(rect[i, 0]))
+                    {
+                        X = i;
+                        Y = 0;
+                        intecep = true;
+                    }
+                if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+                {
+                    X = (X + 1) % rect.GetLength(0);
+                    active_item = X;
+                    difficulté_langage = gameState[X, Y];
+                }
+                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+                {
+                    if (X == 0)
+                        X = rect.GetLength(1) - 1;
+                    else
+                        X = (X - 1) % rect.GetLength(0);
+                    difficulté_langage = gameState[X, Y];
+                }
+                if (intecep && mouse.LeftButton == ButtonState.Pressed)
+                {
+                    difficulté_langage = gameState[X, Y];
+                    active_item = X;
                 }
             }
         }
@@ -561,6 +591,18 @@ namespace Umea_rana
                         spriteBatch.DrawString(font, name[i,j],new Vector2(rect[i,j].X,rect[i,j].Y),Color.Black);
                 }
             spriteBatch.Draw(selection, select, Color.White);
+        }
+        public void Draw2(SpriteBatch spriteBatch, int active_item)
+        {
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
+                    if (i == active_item)
+                        spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
+                    else
+                        spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black);
+                }
         }
         public void Dispose()
         {
