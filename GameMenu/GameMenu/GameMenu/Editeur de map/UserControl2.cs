@@ -26,7 +26,8 @@ namespace Umea_rana
         string aster, comete, sun, angle;
         string[] playlist;
         // tag
-        string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance";
+        string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance",
+            t_plat_vit = "vitesse", t_plat_dist = "distance";
         // type
         string type;
         System.Drawing.Color color2, color4;
@@ -38,6 +39,7 @@ namespace Umea_rana
         float openX, openY;
 
         string file_bosspath;
+        string file_platpath;
         IA_manager_AA manage_AA;
         IA_manager_AR manage_AR;
         IA_manager_S manage_S;
@@ -77,6 +79,7 @@ namespace Umea_rana
             IHave_control = false;
 
             file_bosspath = "";
+            file_platpath = "";
             seconde = 0;
             filepath = string.Empty;
             sauve = new Sauveguarde();
@@ -244,6 +247,7 @@ namespace Umea_rana
             this.Content = Content;
             string[] item = sauve.filename(Content, "back");
             string[] item2 = sauve.filename(Content, "Boss");
+            string[] item3 = sauve.filename(Content, "platform");
             for (int i = 0; i < item.Length; ++i)
             {
                 comboBox1.Items.Add(item[i]);
@@ -256,8 +260,15 @@ namespace Umea_rana
                 choix_boss.Items.Add(item2[i]);
             }
 
+            for (int i = 0; i < item3.Length; i++)
+            {
+                typePlat.Items.Add(item3[i]);
+            }
+
             textBox1_v.Tag = t_boss_vie;
             textBox2_p.Tag = t_boss_puiss;
+            textBox1.Tag = t_plat_vit;
+            textBox2.Tag = t_plat_dist;
             vie_p.Tag = t_life;
             puissance_p.Tag = t_damage;
             vitesse_p.Tag = t_speed;
@@ -390,6 +401,8 @@ namespace Umea_rana
 
             textBox2_p.Tag = t_boss_puiss;
             textBox1_v.Tag = t_boss_vie;
+            textBox1.Tag = t_plat_vit;
+            textBox2.Tag = t_plat_dist;
             vie_p.Tag = t_life; //garder
             vitesse_p.Tag = t_speed;  //garder          
             Sauvegarde_.Tag = t_speed;
@@ -607,6 +620,10 @@ namespace Umea_rana
                 n = 1000;
             else if ((string)texbox.Tag == t_boss_puiss)
                 n = 50;
+            else if ((string)texbox.Tag == t_plat_vit)
+                n = 10;
+            else if ((string)texbox.Tag == t_plat_dist)
+                n = 100;
             
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
@@ -1052,9 +1069,9 @@ namespace Umea_rana
                     Plat platef = new Plat();
                     platef.X = openX;
                     platef.Y = openY;
-                    platef.name = "black";// se qui est selectionner par la combobox des plateforme
+                    platef.name = (string)typePlat.SelectedItem;// se qui est selectionner par la combobox des plateforme
                     platef.nbr = int.Parse(allasuite.Text);
-                  //  platef.speed =
+                  
 
 
                     if (Plateforme_Stable.Checked)
@@ -1069,7 +1086,8 @@ namespace Umea_rana
                     {
                         savefile.plat_f.Add(platef);
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-
+                        platef.speed = int.Parse(textBox1.Text);
+                        platef.distance = int.Parse(textBox2.Text) ; 
 
                     }
                 }
@@ -1111,6 +1129,21 @@ namespace Umea_rana
                 bossfuck.parrame(busyguy, Content, 3);
                 hidou();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox1);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            intcheck(textBox2);
+        }
+
+        private void typePlat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            file_platpath = (string)typePlat.SelectedItem;
         }
 
 
