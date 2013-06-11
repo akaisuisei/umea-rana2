@@ -16,8 +16,11 @@ namespace Umea_rana
     {
         Rectangle[,] rect;
         string[,] gameState;
+        string Label = "";
+        Vector2 v_label = Vector2.Zero;
         Point[,] resolution;
         Point depart;
+        string departt;
         string[,] name, levelname;
         int WindowH, WindowW;
         float height, width;
@@ -52,6 +55,55 @@ namespace Umea_rana
             select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
             this.tab = tab;
         }
+        public Button(int lenghtX, int lengthY, int Wwidt, int Wheigth, float height, float width, int tab, char nul)
+        {
+            rect = new Rectangle[lenghtX, lengthY];
+            resolution = new Point[lenghtX, lengthY];
+            name = new string[lenghtX, lengthY];
+            levelname = new string[lenghtX, lengthY];
+            this.WindowH = Wheigth;
+            this.WindowW = Wwidt;
+            this.height = height * (float)Wheigth;
+            this.width = width * (float)Wwidt;
+            X = 0;
+            Y = 0;
+            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            this.tab = tab;
+        }
+        public Button(int lenghtX, int lengthY, int Wwidt, int Wheigth, float height, float width, int tab, string label, float X, float Y)
+        {
+            rect = new Rectangle[lenghtX, lengthY];
+            gameState = new string[lenghtX, lengthY];
+            name = new string[lenghtX, lengthY];
+            levelname = new string[lenghtX, lengthY];
+            this.WindowH = Wheigth;
+            this.WindowW = Wwidt;
+            this.height = height * (float)Wheigth;
+            this.width = width * (float)Wwidt;
+            this.X = 0;
+            this.Y = 0;
+            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            this.tab = tab;
+            Label = label;
+            v_label = new Vector2(X * Wwidt, Wheigth * Y);
+        }
+        public Button(int lenghtX, int lengthY, int Wwidt, int Wheigth, float height, float width, int tab, string label, float X, float Y, char nul)
+        {
+            rect = new Rectangle[lenghtX, lengthY];
+            resolution = new Point[lenghtX, lengthY];
+            name = new string[lenghtX, lengthY];
+            levelname = new string[lenghtX, lengthY];
+            this.WindowH = Wheigth;
+            this.WindowW = Wwidt;
+            this.height = height * (float)Wheigth;
+            this.width = width * (float)Wwidt;
+            this.X = 0;
+            this.Y = 0;
+            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            this.tab = tab;
+            Label = label;
+            v_label = new Vector2(X * Wwidt, Wheigth  * Y);
+        }
         /// <summary>
         /// charge les font et les image utilise
         /// </summary>
@@ -79,15 +131,31 @@ namespace Umea_rana
             this.gameState[i, j] = gameState;
             this.name[i, j] = name;
         }
-        public void activate(int i, int j, float X, float Y, Point  gameState, string name,Point depart)
+        public void activateoption(int i, int j, float X, float Y, string gameState, string name, string depart)
         {
             this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
-            this.resolution [i, j] = gameState;
+            this.gameState[i, j] = gameState;
             this.name[i, j] = name;
-            this.depart = depart;
-            if (depart == resolution[i, j]){
+            departt = depart;
+            if (depart == gameState)
+            {
                 this.X = i; this.Y = j;
             }
+            select.Y = rect[this.X, this.Y].Y;
+            select.X = rect[this.X, this.Y].X - select.Width;
+        }
+        public void activate(int i, int j, float X, float Y, Point gameState, string name, Point depart)
+        {
+            this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
+            this.resolution[i, j] = gameState;
+            this.name[i, j] = name;
+            this.depart = depart;
+            if (depart == gameState )
+            {
+                this.X = i; this.Y = j;
+            }
+            select.Y = rect[this.X, this.Y].Y;
+            select.X = rect[this.X, this.Y].X - select.Width;
         }
         /// <summary>
         /// 
@@ -114,8 +182,12 @@ namespace Umea_rana
         /// <param name="j"></param>
         public void disable(int i, int j)
         {
-            this.rect[i, j] = new Rectangle(0, 0, 0, 0); this.gameState[i, j] = null;
+            this.rect[i, j] = new Rectangle(0, 0, 0, 0);
             this.name[i, j] = "";
+            if (gameState != null)
+                this.gameState[i, j] = null;
+            else
+                this.resolution[i, j] = Point.Zero;
         }
         /// <summary>
         /// mise a jour des button
@@ -131,64 +203,7 @@ namespace Umea_rana
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {
-                intecep = false;
-
-                for (int i = 0; i < rect.GetLength(0); ++i)
-                    for (int j = 0; j < rect.GetLength(1); ++j)
-                    {
-                        if (mouse_rec.Intersects(rect[i, j]))
-                        {
-                            X = i;
-                            Y = j;
-                            intecep = true;
-                            break;
-                            /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
-                        }
-                    }
-                if (intecep != oldintercept)
-                    if (intecep)
-                        game.menu_cursor.Play();
-                /*si on emet un son kan on change de boutton*/
-                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
-                {
-                    if (Y == 0)
-                        Y = rect.GetLength(1) - 1;
-                    else
-                        Y = (Y - 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y - 1) % rect.GetLength(1);
-                    game.menu_cursor.Play();
-                    //decal la selection vers le haut
-                }
-                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
-                {
-                    Y = (Y + 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y + 1) % rect.GetLength(1);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la gauche
-                }
-                else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
-                {
-                    X = (X + 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X + 1) % rect.GetLength(0);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la droite
-                }
-                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
-                {
-                    if (X == 0)
-                        X = rect.GetLength(1) - 1;
-                    else
-                        X = (X - 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X - 1) % rect.GetLength(0);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la gauche
-                }
-                select.Y = rect[X, Y].Y;
-                select.X = rect[X, Y].X - select.Width;
+                deplacement(ref game, ref Key, ref  old, ref mouse_rec);
 
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
@@ -268,81 +283,230 @@ namespace Umea_rana
                 oldintercept = intecep;
             }
         }
-        public Point  Update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, string name1)
+        public Point Update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab)
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {
-                intecep = false;
 
-                for (int i = 0; i < rect.GetLength(0); ++i)
-                    for (int j = 0; j < rect.GetLength(1); ++j)
-                    {
-                        if (mouse_rec.Intersects(rect[i, j]))
-                        {
-                            X = i;
-                            Y = j;
-                            intecep = true;
-                            break;
-                            /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
-                        }
-                    }
-                if (intecep != oldintercept)
-                    if (intecep)
-                        game.menu_cursor.Play();
-                /*si on emet un son kan on change de boutton*/
-                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
-                {
-                    if (Y == 0)
-                        Y = rect.GetLength(1) - 1;
-                    else
-                        Y = (Y - 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y - 1) % rect.GetLength(1);
-                    game.menu_cursor.Play();
-                    //decal la selection vers le haut
-                }
-                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
-                {
-                    Y = (Y + 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y + 1) % rect.GetLength(1);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la gauche
-                }
-                else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
-                {
-                    X = (X + 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X + 1) % rect.GetLength(0);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la droite
-                }
-                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
-                {
-                    if (X == 0)
-                        X = rect.GetLength(1) - 1;
-                    else
-                        X = (X - 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X - 1) % rect.GetLength(0);
-                    game.menu_cursor.Play();
-                    //decal la selection vers la gauche
-                }
-                select.Y = rect[X, Y].Y;
-                select.X = rect[X, Y].X - select.Width;
-
+                deplacementresolutionV(ref game, ref Key, ref  old, ref mouse_rec);
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     /*si on clique sur un button on va voir a quoi il correcpond et le met en action*/
                     game.menu_select.Play();
                     return resolution[X, Y];
                 }
-                    oldintercept = intecep;
-                    return depart;
+                oldintercept = intecep;
+                return depart;
             }
             return depart;
         }
+        private void deplacement(ref Game1 game, ref KeyboardState Key, ref KeyboardState old, ref Rectangle mouse_rec)
+        {
+            intecep = false;
 
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    if (mouse_rec.Intersects(rect[i, j]))
+                    {
+                        X = i;
+                        Y = j;
+                        intecep = true;
+                        break;
+                        /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
+                    }
+                }
+            if (intecep != oldintercept)
+                if (intecep)
+                    game.menu_cursor.Play();
+            /*si on emet un son kan on change de boutton*/
+            if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+            {
+                if (Y == 0)
+                    Y = rect.GetLength(1) - 1;
+                else
+                    Y = (Y - 1) % rect.GetLength(1);
+                if (gameState[X, Y] == null)
+                    Y = (Y - 1) % rect.GetLength(1);
+                game.menu_cursor.Play();
+                //decal la selection vers le haut
+            }
+            else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+            {
+                Y = (Y + 1) % rect.GetLength(1);
+                if (gameState[X, Y] == null)
+                    Y = (Y + 1) % rect.GetLength(1);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+            {
+                X = (X + 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X + 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la droite
+            }
+            else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+            {
+                if (X == 0)
+                    X = rect.GetLength(1) - 1;
+                else
+                    X = (X - 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X - 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            select.Y = rect[X, Y].Y;
+            select.X = rect[X, Y].X - select.Width;
+        }
+        private void deplacementV(ref Game1 game, ref KeyboardState Key, ref KeyboardState old, ref Rectangle mouse_rec)
+        {
+            intecep = false;
+
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    if (mouse_rec.Intersects(rect[i, j]))
+                    {
+                        X = i;
+                        Y = j;
+                        intecep = true;
+                        break;
+                        /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
+                    }
+                }
+            if (intecep != oldintercept)
+                if (intecep)
+                    game.menu_cursor.Play();
+            /*si on emet un son kan on change de boutton*/
+           
+             if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+            {
+                X = (X + 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X + 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la droite
+            }
+            else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+            {
+                if (X == 0)
+                    X = rect.GetLength(1) - 1;
+                else
+                    X = (X - 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X - 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            select.Y = rect[X, Y].Y;
+            select.X = rect[X, Y].X - select.Width;
+        }
+        private void deplacementresolution(ref Game1 game, ref KeyboardState Key, ref KeyboardState old, ref Rectangle mouse_rec)
+        {
+            intecep = false;
+
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    if (mouse_rec.Intersects(rect[i, j]))
+                    {
+                        X = i;
+                        Y = j;
+                        intecep = true;
+                        break;
+                        /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
+                    }
+                }
+            if (intecep != oldintercept)
+                if (intecep)
+                    game.menu_cursor.Play();
+            /*si on emet un son kan on change de boutton*/
+            if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
+            {
+                if (Y == 0)
+                    Y = rect.GetLength(1) - 1;
+                else
+                    Y = (Y - 1) % rect.GetLength(1);
+                if (resolution[X, Y] == null)
+                    Y = (Y - 1) % rect.GetLength(1);
+                game.menu_cursor.Play();
+                //decal la selection vers le haut
+            }
+            else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
+            {
+                Y = (Y + 1) % rect.GetLength(1);
+                if (resolution[X, Y] == null)
+                    Y = (Y + 1) % rect.GetLength(1);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+            {
+                X = (X + 1) % rect.GetLength(0);
+                if (resolution[X, Y] == null)
+                    X = (X + 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la droite
+            }
+            else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+            {
+                if (X == 0)
+                    X = rect.GetLength(1) - 1;
+                else
+                    X = (X - 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X - 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            select.Y = rect[X, Y].Y;
+            select.X = rect[X, Y].X - select.Width;
+        }
+        private void deplacementresolutionV(ref Game1 game, ref KeyboardState Key, ref KeyboardState old, ref Rectangle mouse_rec)
+        {
+            intecep = false;
+
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    if (mouse_rec.Intersects(rect[i, j]))
+                    {
+                        X = i;
+                        Y = j;
+                        intecep = true;
+                        break;
+                        /*ici on va voir ou est la souris et s il est sur un bouton on le selectionne*/
+                    }
+                }
+            if (intecep != oldintercept)
+                if (intecep)
+                    game.menu_cursor.Play();
+            /*si on emet un son kan on change de boutton*/
+           if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+            {
+                X = (X + 1) % rect.GetLength(0);
+                if (resolution[X, Y] == null)
+                    X = (X + 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la droite
+            }
+            else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+            {
+                if (X == 0)
+                    X = rect.GetLength(1) - 1;
+                else
+                    X = (X - 1) % rect.GetLength(0);
+                if (gameState[X, Y] == null)
+                    X = (X - 1) % rect.GetLength(0);
+                game.menu_cursor.Play();
+                //decal la selection vers la gauche
+            }
+            select.Y = rect[X, Y].Y;
+            select.X = rect[X, Y].X - select.Width;
+        }
         /// <summary>
         /// mise a jour des button
         /// </summary>
@@ -358,52 +522,7 @@ namespace Umea_rana
         {
             if (tab == this.tab)
             {
-                intecep = false;
-
-                for (int i = 0; i < rect.GetLength(0); ++i)
-                    for (int j = 0; j < rect.GetLength(1); ++j)
-                    {
-                        if (mouse_rec.Intersects(rect[i, j]))
-                        {
-                            X = i;
-                            Y = j;
-                            intecep = true;
-                        }
-                    }
-                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
-                {
-                    if (Y == 0)
-                        Y = rect.GetLength(1) - 1;
-                    else
-                        Y = (Y - 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y - 1) % rect.GetLength(1);
-
-                }
-                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
-                {
-                    Y = (Y + 1) % rect.GetLength(1);
-                    if (gameState[X, Y] == null)
-                        Y = (Y + 1) % rect.GetLength(1);
-                }
-                else if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
-                {
-                    X = (X + 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X + 1) % rect.GetLength(0);
-                }
-                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
-                {
-                    if (X == 0)
-                        X = rect.GetLength(1) - 1;
-                    else
-                        X = (X - 1) % rect.GetLength(0);
-                    if (gameState[X, Y] == null)
-                        X = (X - 1) % rect.GetLength(0);
-                }
-
-                select.Y = rect[X, Y].Y;
-                select.X = rect[X, Y].X - select.Width;
+                deplacement(ref game, ref Key, ref  old, ref mouse_rec);
 
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
@@ -467,45 +586,13 @@ namespace Umea_rana
                 }
             }
         }
+        //pas a utiliser
         public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref int active_item2)
         {
 
             if (tab == this.tab)
             {
-                intecep = false;
-
-                for (int j = 0; j < rect.GetLength(1); ++j)
-                {
-                    if (mouse_rec.Intersects(rect[0, j]))
-                    {
-                        X = 0;
-                        Y = j;
-                        intecep = true;
-                    }
-                }
-                if (old.IsKeyDown(Keys.Up) && Key.IsKeyUp(Keys.Up))
-                {
-                    if (Y == 0)
-                    {
-                        Y = rect.GetLength(1) - 1;
-                        active_item = 7;
-                    }
-                    else
-                    {
-                        Y = (Y - 1) % rect.GetLength(1);
-                        active_item--;
-                    }
-
-                }
-                else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
-                {
-                    Y = (Y + 1) % rect.GetLength(1);
-                    active_item++;
-                }
-
-
-                select.Y = rect[X, Y].Y;
-                select.X = rect[X, Y].X - select.Width;
+                deplacement(ref game, ref Key, ref  old, ref mouse_rec);
 
                 if (intecep && mouse.LeftButton == ButtonState.Pressed)
                 {
@@ -535,40 +622,33 @@ namespace Umea_rana
                 }
             }
         }
-        public void update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item,ref string difficulté_langage)
+
+        public string update2(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab)
         {
             if (tab == this.tab)
             {
-                intecep = false;
+                deplacementV(ref game, ref Key, ref  old, ref mouse_rec);
+                if ((intecep && mouse.LeftButton == ButtonState.Pressed )|| Key.IsKeyDown(Keys.Enter))
+                {
+                    departt = gameState[X, Y];
+                }
+            }
+            return departt;
+        }
 
-                for (int i = 0; i < rect.GetLength(0); ++i)
-                    if (mouse_rec.Intersects(rect[i, 0]))
-                    {
-                        X = i;
-                        Y = 0;
-                        intecep = true;
-                    }
-                if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+        public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref string fonction)
+        {
+            if (tab == this.tab)
+            {
+                deplacementV(ref game, ref Key, ref  old, ref mouse_rec);
+
+                if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
-                    X = (X + 1) % rect.GetLength(0);
-                    active_item = X;
-                    difficulté_langage = gameState[X, Y];
-                }
-                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
-                {
-                    if (X == 0)
-                        X = rect.GetLength(1) - 1;
-                    else
-                        X = (X - 1) % rect.GetLength(0);
-                    difficulté_langage = gameState[X, Y];
-                }
-                if (intecep && mouse.LeftButton == ButtonState.Pressed)
-                {
-                    difficulté_langage = gameState[X, Y];
-                    active_item = X;
+                    fonction = gameState[X, Y];
                 }
             }
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < rect.GetLength(0); ++i)
@@ -577,18 +657,19 @@ namespace Umea_rana
                     //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
                 }
+            spriteBatch.DrawString(font, Label, v_label, Color.White);
             spriteBatch.Draw(selection, select, Color.White);
         }
-        public void Draw(SpriteBatch spriteBatch,int active_item)
+        public void Draw(SpriteBatch spriteBatch, int active_item)
         {
             for (int i = 0; i < rect.GetLength(0); ++i)
                 for (int j = 0; j < rect.GetLength(1); ++j)
                 {
                     //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
-                    if(j==active_item)
+                    if (j == active_item)
                         spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
                     else
-                        spriteBatch.DrawString(font, name[i,j],new Vector2(rect[i,j].X,rect[i,j].Y),Color.Black);
+                        spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.Black);
                 }
             spriteBatch.Draw(selection, select, Color.White);
         }
