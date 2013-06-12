@@ -67,7 +67,7 @@ namespace Umea_rana
             manage_p = new Platform_manager(T_platform,width * 0.07f,height* 0.03f, height, width,3);
             Scroll_manager = new Scrolling_ManagerV(fond);
             boss.loadContent (Content,new Rectangle(0,0,width ,height ));
-            safe_home.loadContent(Content, 0,"IA/color/house");
+            safe_home.loadContent(Content,"IA/color/house",new Rectangle(0, 0, 100,100),height, width);
             user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, Content, manage_p, fond,boss, safe_home);
             iaType = "Kawabunga";
         }
