@@ -528,6 +528,7 @@ namespace Umea_rana
         public static string difficulté;
         Vector2 v_volume_BGM, v_volume_soundeffect;
         SpriteFont spriteFont;
+        Rectangle[] fond;
         public OptionState(Game1 game1, GraphicsDeviceManager _graphics, ContentManager Content, GameConfiguration _gameconfiguration)
         {
             gameconfiguration = _gameconfiguration;
@@ -558,14 +559,14 @@ namespace Umea_rana
 
             button_dificulte = new Button(4, 1, width, height, 0.1f, 0.1f, 2, "dificulty", 0f, 0.45f);
             button_dificulte.LoadContent(Content);
-            button_dificulte.activateoption(0, 0, 0.1f, 0.45f, "facile", "easy", OptionState.difficulté );
+            button_dificulte.activateoption(0, 0, 0.1f, 0.45f, "facile", "easy", OptionState.difficulté);
             button_dificulte.activateoption(1, 0, 0.3f, 0.45f, "normal", "moyen", OptionState.difficulté);
             button_dificulte.activateoption(2, 0, 0.5f, 0.45f, "difficile", "hard", OptionState.difficulté);
             button_dificulte.activateoption(3, 0, 0.7f, 0.45f, "extreme", "extrem", OptionState.difficulté);
 
             button_langue = new Button(5, 1, width, height, 0.1f, 0.1f, 3, "Langue", 0f, 0.55f);
             button_langue.LoadContent(Content);
-            button_langue.activateoption(0, 0, 0.1f, 0.55f, "fr-FR", "Francais", OptionState.langue );
+            button_langue.activateoption(0, 0, 0.1f, 0.55f, "fr-FR", "Francais", OptionState.langue);
             button_langue.activateoption(1, 0, 0.3f, 0.55f, "en-US", "English", OptionState.langue);
             button_langue.activateoption(2, 0, 0.5f, 0.55f, "es-ES", "Catalán", OptionState.langue);
             button_langue.activateoption(3, 0, 0.7f, 0.55f, "fi-FI", "Suomi", OptionState.langue);
@@ -575,10 +576,10 @@ namespace Umea_rana
             button_resolution = new Button(5, 1, width, height, 0.1f, 0.1f, 4, "resolution", 0f, 0.65f, 'j');
             button_resolution.LoadContent(Content);
             button_resolution.activate(0, 0, 0.1f, 0.65f, new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height), "Full screen", new Point(0, 0));
-            button_resolution.activate(1, 0, 0.3f, 0.65f, new Point(1280, 768), "1280 X 768", new Point(width , height ));
-            button_resolution.activate(2, 0, 0.5f, 0.65f, new Point(1024, 768), "1024 X 768", new Point(width , height ));
-            button_resolution.activate(3, 0, 0.7f, 0.65f, new Point(960, 720), "960 X 720", new Point(width , height ));
-            button_resolution.activate(4, 0, 0.9f, 0.65f, new Point(800, 600), "800 X 600", new Point(width , height ));
+            button_resolution.activate(1, 0, 0.3f, 0.65f, new Point(1280, 768), "1280 X 768", new Point(width, height));
+            button_resolution.activate(2, 0, 0.5f, 0.65f, new Point(1024, 768), "1024 X 768", new Point(width, height));
+            button_resolution.activate(3, 0, 0.7f, 0.65f, new Point(960, 720), "960 X 720", new Point(width, height));
+            button_resolution.activate(4, 0, 0.9f, 0.65f, new Point(800, 600), "800 X 600", new Point(width, height));
 
             button_apply = new Button(1, 1, width, height, 0.1f, 0.1f, 5);
             button_apply.LoadContent(Content);
@@ -594,7 +595,16 @@ namespace Umea_rana
 
             v_volume_soundeffect = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 30 / 100);
             curseur_SE.LoadContent(Content);
+            rect = new Rectangle(0, 0, 1, 1);
 
+            fond = new Rectangle[7] {
+                new Rectangle (0,(int)(height*0.21 ),width ,4 ),
+                new Rectangle (0,(int)(height*0.31 ) ,width ,4),
+                new Rectangle (0,(int)(height*0.45 ),width ,4 ),
+                new Rectangle (0,(int)(height*0.55 ) ,width ,4 ),
+                new Rectangle (0,(int)(height*0.65 ) ,width ,4),
+                new Rectangle (0,(int)(height*0.75 ),width ,4 ),
+                new Rectangle (0,(int)(height*0.85 ),width ,4 )};
         }
         public override void UnloadContent()
         {
@@ -603,8 +613,9 @@ namespace Umea_rana
         {
             KeyboardState keyboard = Keyboard.GetState();
             MouseState mouse = Mouse.GetState();
-            StorageManager storage = new StorageManager();
-            rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
+            rect.X = mouse.X;
+            rect.Y = mouse.Y;
             //  button.update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, ref active_item, ref canchange);
             if (old.IsKeyDown(Keys.Up) && keyboard.IsKeyUp(Keys.Up))
             {
@@ -617,6 +628,9 @@ namespace Umea_rana
             {
                 tab = (tab + 1) % 7;
             }
+            for (int i = 0; i < fond.GetLength(0); i++)
+                if (fond[i].Intersects(rect))
+                    tab = i;
             switch (tab)
             {
                 case 0://selection sur volume_BGM
@@ -640,6 +654,7 @@ namespace Umea_rana
 
                     if (apply != apply_default)
                     {
+                        StorageManager storage = new StorageManager();
                         _width = resolution.X; _height = resolution.Y;
                         switch (apply)
                         {
@@ -693,11 +708,11 @@ namespace Umea_rana
             curseur_BGM.Draw(spriteBatch);
             curseur_SE.Draw(spriteBatch);
             //  button_apply.Draw(spriteBatch);
-            button_dificulte.Draw(spriteBatch);
-            button_langue.Draw(spriteBatch);
-            button_resolution.Draw(spriteBatch);
-            button_apply.Draw(spriteBatch);
-            button_action.Draw(spriteBatch);
+            button_dificulte.draw(spriteBatch);
+            button_langue.draw(spriteBatch);
+            button_resolution.draw(spriteBatch);
+            button_apply.draw(spriteBatch);
+            button_action.draw(spriteBatch);
             spriteBatch.DrawString(spriteFont, "volume bac", v_volume_BGM, Color.White);
             spriteBatch.DrawString(spriteFont, "volume bgm", v_volume_soundeffect, Color.White);
 

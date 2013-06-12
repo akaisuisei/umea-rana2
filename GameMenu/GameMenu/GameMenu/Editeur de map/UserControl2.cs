@@ -114,11 +114,11 @@ namespace Umea_rana
             if (X > width / 2)
                 X = 0;
             else
-                X = width/2;
+                X = width / 2;
             if (y > height / 2)
                 y = 0;
             else
-                y = height/2;
+                y = height / 2;
             EnableTab(Ennemis, false);
             this.Location = new System.Drawing.Point(X, y);
             this.spawn = spawn;
@@ -173,8 +173,8 @@ namespace Umea_rana
                     enableall(false);
                     Naruto.Enabled = false;
                     Eve.Enabled = false;
-                    Naruto.Checked =false ;
-                    
+                    Naruto.Checked = false;
+
 
                     break;
 
@@ -262,7 +262,7 @@ namespace Umea_rana
 
             for (int i = 0; i < item3.Length; i++)
             {
-                typePlat.Items.Add(item3[i]);
+                listBox2 .Items.Add(item3[i]);
             }
 
             textBox1_v.Tag = t_boss_vie;
@@ -624,7 +624,7 @@ namespace Umea_rana
                 n = 10;
             else if ((string)texbox.Tag == t_plat_dist)
                 n = 100;
-            
+
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
             {
@@ -1069,25 +1069,41 @@ namespace Umea_rana
                     Plat platef = new Plat();
                     platef.X = openX;
                     platef.Y = openY;
-                    platef.name = (string)typePlat.SelectedItem;// se qui est selectionner par la combobox des plateforme
+                    platef.name = (string)listBox2  .SelectedItem;// se qui est selectionner par la combobox des plateforme
                     platef.nbr = int.Parse(allasuite.Text);
-                  
+                    if (DroitBas.Checked)
+                        platef.type = '3';
+                    else if (droite.Checked)
+                        platef.type = 'R';
+                    else if (DroitHaut.Checked)
+                        platef.type = '2';
+                    else if (haut.Checked)
+                        platef.type = 'U';
+                    else if (bas.Checked)
+                        platef.type = 'D';
+                    else if (gauche.Checked)
+                        platef.type = 'L';
+                    else if (GaucheBas.Checked)
+                        platef.type = '4';
+                    else if (GaucheHaut.Checked)
+                        platef.type = '1';
 
 
                     if (Plateforme_Stable.Checked)
                     {
                         savefile.plat_f.Add(platef);
-                        plateform.Add(platef,savefile.plat_f.Count -1);
+                        plateform.Add(platef, savefile.plat_f.Count - 1);
 
 
                     }
 
                     if (Plateforme_Mobile.Checked)
                     {
+                        platef.speed = int.Parse(textBox1.Text);
+                        platef.distance = float.Parse(textBox2.Text);
                         savefile.plat_f.Add(platef);
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-                        platef.speed = int.Parse(textBox1.Text);
-                        platef.distance = int.Parse(textBox2.Text) ; 
+
 
                     }
                 }
@@ -1141,10 +1157,14 @@ namespace Umea_rana
             intcheck(textBox2);
         }
 
-        private void typePlat_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            file_platpath = (string)typePlat.SelectedItem;
+            file_platpath =(string) listBox2.SelectedItem;
         }
+
+
+
+
 
 
 

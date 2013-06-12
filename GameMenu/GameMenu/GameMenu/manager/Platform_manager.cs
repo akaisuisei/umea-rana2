@@ -36,6 +36,16 @@ namespace Umea_rana
             this.window_W = window_W;
             plato = new List<platform>();
         }
+        public Platform_manager(Dictionary<string, Texture2D> texture, float width_pla, float heith_pla, int window_H, int window_W, int fcspeed)
+        {
+            this.texture2 = texture;
+            this.width_pla = (int)width_pla;
+            this.heith_pla = (int)heith_pla;
+            this.window_H = window_H;
+            this.window_W = window_W;
+            plato = new List<platform>();
+            backgeoundspeed = fcspeed;
+        }
 
         public void parrametrage(savefile save)
         {

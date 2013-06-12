@@ -18,6 +18,7 @@ namespace Umea_rana
         string[,] gameState;
         string Label = "";
         Vector2 v_label = Vector2.Zero;
+        Color C_label = Color.White;
         Point[,] resolution;
         Point depart;
         string departt;
@@ -52,7 +53,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             X = 0;
             Y = 0;
-            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            select = new Rectangle(-200, 0, (int)this.width, (int)this.height);
             this.tab = tab;
         }
         public Button(int lenghtX, int lengthY, int Wwidt, int Wheigth, float height, float width, int tab, char nul)
@@ -67,7 +68,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             X = 0;
             Y = 0;
-            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            select = new Rectangle(-200, 0, (int)this.width, (int)this.height);
             this.tab = tab;
         }
         public Button(int lenghtX, int lengthY, int Wwidt, int Wheigth, float height, float width, int tab, string label, float X, float Y)
@@ -82,7 +83,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             this.X = 0;
             this.Y = 0;
-            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            select = new Rectangle(-200, 0, (int)this.width, (int)this.height);
             this.tab = tab;
             Label = label;
             v_label = new Vector2(X * Wwidt, Wheigth * Y);
@@ -99,7 +100,7 @@ namespace Umea_rana
             this.width = width * (float)Wwidt;
             this.X = 0;
             this.Y = 0;
-            select = new Rectangle(-30, 0, (int)this.width, (int)this.height);
+            select = new Rectangle(-200, 0, (int)this.width, (int)this.height);
             this.tab = tab;
             Label = label;
             v_label = new Vector2(X * Wwidt, Wheigth  * Y);
@@ -287,7 +288,7 @@ namespace Umea_rana
         {
             if (tab == this.tab)//si on est sur le bon tableau
             {
-
+                C_label = Color.Purple;
                 deplacementresolutionV(ref game, ref Key, ref  old, ref mouse_rec);
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
@@ -296,8 +297,12 @@ namespace Umea_rana
                     return resolution[X, Y];
                 }
                 oldintercept = intecep;
+                 
+                C_label = Color.Purple ;
                 return depart;
             }
+            else
+                C_label = Color.White;
             return depart;
         }
         private void deplacement(ref Game1 game, ref KeyboardState Key, ref KeyboardState old, ref Rectangle mouse_rec)
@@ -627,12 +632,15 @@ namespace Umea_rana
         {
             if (tab == this.tab)
             {
+                C_label = Color.Purple;
                 deplacementV(ref game, ref Key, ref  old, ref mouse_rec);
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed )|| Key.IsKeyDown(Keys.Enter))
                 {
                     departt = gameState[X, Y];
                 }
             }
+            else
+                C_label = Color.White;
             return departt;
         }
 
@@ -640,6 +648,7 @@ namespace Umea_rana
         {
             if (tab == this.tab)
             {
+                C_label = Color.Purple;
                 deplacementV(ref game, ref Key, ref  old, ref mouse_rec);
 
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
@@ -647,6 +656,8 @@ namespace Umea_rana
                     fonction = gameState[X, Y];
                 }
             }
+            else
+                C_label = Color.White;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -657,8 +668,19 @@ namespace Umea_rana
                     //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
                     spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
                 }
-            spriteBatch.DrawString(font, Label, v_label, Color.White);
+
             spriteBatch.Draw(selection, select, Color.White);
+        }
+        public void draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < rect.GetLength(0); ++i)
+                for (int j = 0; j < rect.GetLength(1); ++j)
+                {
+                    //      spriteBatch.Draw(test, rect[i, j], Color.BlueViolet);
+                    spriteBatch.DrawString(font, name[i, j], new Vector2(rect[i, j].X, rect[i, j].Y), Color.White);
+                }
+            spriteBatch.DrawString(font, Label, v_label, C_label );
+            spriteBatch.Draw(selection, select, C_label );
         }
         public void Draw(SpriteBatch spriteBatch, int active_item)
         {

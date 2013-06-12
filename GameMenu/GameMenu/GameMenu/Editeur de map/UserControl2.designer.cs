@@ -79,11 +79,7 @@
             this.puissance_p = new System.Windows.Forms.RichTextBox();
             this.vitesse_p = new System.Windows.Forms.RichTextBox();
             this.Plateformes = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
-            this.Valider_p = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.Plateforme_Mobile = new System.Windows.Forms.RadioButton();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.gauche = new System.Windows.Forms.RadioButton();
             this.droite = new System.Windows.Forms.RadioButton();
@@ -95,11 +91,12 @@
             this.GaucheBas = new System.Windows.Forms.RadioButton();
             this.vitesse_plat = new System.Windows.Forms.Label();
             this.distance_plat = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Valider_p = new System.Windows.Forms.Button();
+            this.Plateforme_Mobile = new System.Windows.Forms.RadioButton();
             this.Plateforme_Stable = new System.Windows.Forms.RadioButton();
             this.allasuite = new System.Windows.Forms.TextBox();
-            this.typePlat = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
@@ -112,6 +109,7 @@
             this.textBox2_p = new System.Windows.Forms.TextBox();
             this.button1_ok = new System.Windows.Forms.Button();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.Fond.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
@@ -130,9 +128,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.Plateformes.SuspendLayout();
-            this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
@@ -751,7 +747,6 @@
             // 
             // Plateformes
             // 
-            this.Plateformes.Controls.Add(this.tableLayoutPanel16);
             this.Plateformes.Controls.Add(this.tableLayoutPanel6);
             this.Plateformes.Location = new System.Drawing.Point(4, 40);
             this.Plateformes.Name = "Plateformes";
@@ -761,108 +756,66 @@
             this.Plateformes.Text = "Plateformes";
             this.Plateformes.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel16
-            // 
-            this.tableLayoutPanel16.ColumnCount = 1;
-            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Controls.Add(this.Valider_p, 0, 0);
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(12, 252);
-            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
-            this.tableLayoutPanel16.RowCount = 1;
-            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(195, 34);
-            this.tableLayoutPanel16.TabIndex = 1;
-            // 
-            // Valider_p
-            // 
-            this.Valider_p.Location = new System.Drawing.Point(3, 3);
-            this.Valider_p.Name = "Valider_p";
-            this.Valider_p.Size = new System.Drawing.Size(180, 27);
-            this.Valider_p.TabIndex = 0;
-            this.Valider_p.Text = "Valider";
-            this.Valider_p.UseVisualStyleBackColor = true;
-            this.Valider_p.Click += new System.EventHandler(this.Valider_p_Click);
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel12, 0, 4);
+            this.tableLayoutPanel6.Controls.Add(this.Valider_p, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.Plateforme_Mobile, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel9, 0, 4);
             this.tableLayoutPanel6.Controls.Add(this.Plateforme_Stable, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.allasuite, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.typePlat, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 5);
+            this.tableLayoutPanel6.Controls.Add(this.listBox2, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 5;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.71429F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.2782F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.00751F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(214, 239);
+            this.tableLayoutPanel6.RowCount = 6;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.28983F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.738995F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.738995F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.738995F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.75419F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.738995F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(209, 281);
             this.tableLayoutPanel6.TabIndex = 0;
-            // 
-            // Plateforme_Mobile
-            // 
-            this.Plateforme_Mobile.AutoSize = true;
-            this.Plateforme_Mobile.Location = new System.Drawing.Point(3, 67);
-            this.Plateforme_Mobile.Name = "Plateforme_Mobile";
-            this.Plateforme_Mobile.Size = new System.Drawing.Size(109, 16);
-            this.Plateforme_Mobile.TabIndex = 0;
-            this.Plateforme_Mobile.TabStop = true;
-            this.Plateforme_Mobile.Text = "Plateforme Mobile";
-            this.Plateforme_Mobile.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel12, 0, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 89);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(201, 147);
-            this.tableLayoutPanel9.TabIndex = 1;
             // 
             // tableLayoutPanel12
             // 
             this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.48837F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.51163F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 2);
-            this.tableLayoutPanel12.Controls.Add(this.droite, 2, 2);
-            this.tableLayoutPanel12.Controls.Add(this.haut, 1, 1);
-            this.tableLayoutPanel12.Controls.Add(this.bas, 1, 3);
-            this.tableLayoutPanel12.Controls.Add(this.GaucheHaut, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.DroitHaut, 2, 1);
-            this.tableLayoutPanel12.Controls.Add(this.DroitBas, 2, 3);
-            this.tableLayoutPanel12.Controls.Add(this.GaucheBas, 0, 3);
-            this.tableLayoutPanel12.Controls.Add(this.vitesse_plat, 0, 4);
-            this.tableLayoutPanel12.Controls.Add(this.distance_plat, 0, 5);
-            this.tableLayoutPanel12.Controls.Add(this.textBox2, 1, 5);
-            this.tableLayoutPanel12.Controls.Add(this.textBox1, 1, 4);
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel12.Controls.Add(this.gauche, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.droite, 2, 1);
+            this.tableLayoutPanel12.Controls.Add(this.haut, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.bas, 1, 2);
+            this.tableLayoutPanel12.Controls.Add(this.GaucheHaut, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.DroitHaut, 2, 0);
+            this.tableLayoutPanel12.Controls.Add(this.DroitBas, 2, 2);
+            this.tableLayoutPanel12.Controls.Add(this.GaucheBas, 0, 2);
+            this.tableLayoutPanel12.Controls.Add(this.vitesse_plat, 0, 3);
+            this.tableLayoutPanel12.Controls.Add(this.distance_plat, 0, 4);
+            this.tableLayoutPanel12.Controls.Add(this.textBox2, 1, 4);
+            this.tableLayoutPanel12.Controls.Add(this.textBox1, 1, 3);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 135);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 6;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.64151F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.35849F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(195, 160);
+            this.tableLayoutPanel12.RowCount = 5;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(203, 114);
             this.tableLayoutPanel12.TabIndex = 1;
             // 
             // gauche
             // 
             this.gauche.AutoSize = true;
-            this.gauche.Location = new System.Drawing.Point(3, 38);
+            this.gauche.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gauche.Location = new System.Drawing.Point(3, 25);
             this.gauche.Name = "gauche";
-            this.gauche.Size = new System.Drawing.Size(61, 17);
+            this.gauche.Size = new System.Drawing.Size(61, 16);
             this.gauche.TabIndex = 0;
             this.gauche.TabStop = true;
             this.gauche.Text = "gauche";
@@ -870,11 +823,11 @@
             // 
             // droite
             // 
-            this.droite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.droite.AutoSize = true;
-            this.droite.Location = new System.Drawing.Point(141, 38);
+            this.droite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.droite.Location = new System.Drawing.Point(137, 25);
             this.droite.Name = "droite";
-            this.droite.Size = new System.Drawing.Size(51, 17);
+            this.droite.Size = new System.Drawing.Size(63, 16);
             this.droite.TabIndex = 1;
             this.droite.TabStop = true;
             this.droite.Text = "droite";
@@ -883,20 +836,23 @@
             // haut
             // 
             this.haut.AutoSize = true;
-            this.haut.Location = new System.Drawing.Point(70, 11);
+            this.haut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.haut.Location = new System.Drawing.Point(70, 3);
             this.haut.Name = "haut";
-            this.haut.Size = new System.Drawing.Size(46, 17);
+            this.haut.Size = new System.Drawing.Size(61, 16);
             this.haut.TabIndex = 2;
             this.haut.TabStop = true;
             this.haut.Text = "haut";
+            this.haut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.haut.UseVisualStyleBackColor = true;
             // 
             // bas
             // 
             this.bas.AutoSize = true;
-            this.bas.Location = new System.Drawing.Point(70, 61);
+            this.bas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bas.Location = new System.Drawing.Point(70, 47);
             this.bas.Name = "bas";
-            this.bas.Size = new System.Drawing.Size(42, 17);
+            this.bas.Size = new System.Drawing.Size(61, 16);
             this.bas.TabIndex = 3;
             this.bas.TabStop = true;
             this.bas.Text = "bas";
@@ -904,44 +860,44 @@
             // 
             // GaucheHaut
             // 
-            this.GaucheHaut.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GaucheHaut.AutoSize = true;
-            this.GaucheHaut.Location = new System.Drawing.Point(26, 11);
+            this.GaucheHaut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GaucheHaut.Location = new System.Drawing.Point(3, 3);
             this.GaucheHaut.Name = "GaucheHaut";
-            this.GaucheHaut.Size = new System.Drawing.Size(14, 13);
+            this.GaucheHaut.Size = new System.Drawing.Size(61, 16);
             this.GaucheHaut.TabIndex = 4;
             this.GaucheHaut.TabStop = true;
             this.GaucheHaut.UseVisualStyleBackColor = true;
             // 
             // DroitHaut
             // 
-            this.DroitHaut.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DroitHaut.AutoSize = true;
-            this.DroitHaut.Location = new System.Drawing.Point(153, 11);
+            this.DroitHaut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DroitHaut.Location = new System.Drawing.Point(137, 3);
             this.DroitHaut.Name = "DroitHaut";
-            this.DroitHaut.Size = new System.Drawing.Size(14, 13);
+            this.DroitHaut.Size = new System.Drawing.Size(63, 16);
             this.DroitHaut.TabIndex = 5;
             this.DroitHaut.TabStop = true;
             this.DroitHaut.UseVisualStyleBackColor = true;
             // 
             // DroitBas
             // 
-            this.DroitBas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.DroitBas.AutoSize = true;
-            this.DroitBas.Location = new System.Drawing.Point(153, 61);
+            this.DroitBas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DroitBas.Location = new System.Drawing.Point(137, 47);
             this.DroitBas.Name = "DroitBas";
-            this.DroitBas.Size = new System.Drawing.Size(14, 13);
+            this.DroitBas.Size = new System.Drawing.Size(63, 16);
             this.DroitBas.TabIndex = 6;
             this.DroitBas.TabStop = true;
             this.DroitBas.UseVisualStyleBackColor = true;
             // 
             // GaucheBas
             // 
-            this.GaucheBas.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GaucheBas.AutoSize = true;
-            this.GaucheBas.Location = new System.Drawing.Point(26, 61);
+            this.GaucheBas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GaucheBas.Location = new System.Drawing.Point(3, 47);
             this.GaucheBas.Name = "GaucheBas";
-            this.GaucheBas.Size = new System.Drawing.Size(14, 13);
+            this.GaucheBas.Size = new System.Drawing.Size(61, 16);
             this.GaucheBas.TabIndex = 7;
             this.GaucheBas.TabStop = true;
             this.GaucheBas.UseVisualStyleBackColor = true;
@@ -949,7 +905,7 @@
             // vitesse_plat
             // 
             this.vitesse_plat.AutoSize = true;
-            this.vitesse_plat.Location = new System.Drawing.Point(3, 88);
+            this.vitesse_plat.Location = new System.Drawing.Point(3, 66);
             this.vitesse_plat.Name = "vitesse_plat";
             this.vitesse_plat.Size = new System.Drawing.Size(40, 13);
             this.vitesse_plat.TabIndex = 8;
@@ -958,32 +914,54 @@
             // distance_plat
             // 
             this.distance_plat.AutoSize = true;
-            this.distance_plat.Location = new System.Drawing.Point(3, 123);
+            this.distance_plat.Location = new System.Drawing.Point(3, 88);
             this.distance_plat.Name = "distance_plat";
             this.distance_plat.Size = new System.Drawing.Size(47, 13);
             this.distance_plat.TabIndex = 9;
             this.distance_plat.Text = "distance";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(70, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 20);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 126);
+            this.textBox2.Location = new System.Drawing.Point(70, 91);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(46, 20);
             this.textBox2.TabIndex = 11;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(70, 69);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(46, 20);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // Valider_p
+            // 
+            this.Valider_p.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Valider_p.Location = new System.Drawing.Point(3, 255);
+            this.Valider_p.Name = "Valider_p";
+            this.Valider_p.Size = new System.Drawing.Size(203, 23);
+            this.Valider_p.TabIndex = 0;
+            this.Valider_p.Text = "Valider";
+            this.Valider_p.UseVisualStyleBackColor = true;
+            this.Valider_p.Click += new System.EventHandler(this.Valider_p_Click);
+            // 
+            // Plateforme_Mobile
+            // 
+            this.Plateforme_Mobile.AutoSize = true;
+            this.Plateforme_Mobile.Location = new System.Drawing.Point(3, 108);
+            this.Plateforme_Mobile.Name = "Plateforme_Mobile";
+            this.Plateforme_Mobile.Size = new System.Drawing.Size(109, 17);
+            this.Plateforme_Mobile.TabIndex = 0;
+            this.Plateforme_Mobile.TabStop = true;
+            this.Plateforme_Mobile.Text = "Plateforme Mobile";
+            this.Plateforme_Mobile.UseVisualStyleBackColor = true;
+            // 
             // Plateforme_Stable
             // 
             this.Plateforme_Stable.AutoSize = true;
-            this.Plateforme_Stable.Location = new System.Drawing.Point(3, 44);
+            this.Plateforme_Stable.Location = new System.Drawing.Point(3, 81);
             this.Plateforme_Stable.Name = "Plateforme_Stable";
             this.Plateforme_Stable.Size = new System.Drawing.Size(108, 17);
             this.Plateforme_Stable.TabIndex = 0;
@@ -993,20 +971,11 @@
             // 
             // allasuite
             // 
-            this.allasuite.Location = new System.Drawing.Point(3, 23);
+            this.allasuite.Location = new System.Drawing.Point(3, 54);
             this.allasuite.Name = "allasuite";
             this.allasuite.Size = new System.Drawing.Size(100, 20);
             this.allasuite.TabIndex = 2;
             this.allasuite.TextChanged += new System.EventHandler(this.allasuite_TextChanged);
-            // 
-            // typePlat
-            // 
-            this.typePlat.FormattingEnabled = true;
-            this.typePlat.Location = new System.Drawing.Point(3, 3);
-            this.typePlat.Name = "typePlat";
-            this.typePlat.Size = new System.Drawing.Size(208, 21);
-            this.typePlat.TabIndex = 3;
-            this.typePlat.SelectedIndexChanged += new System.EventHandler(this.typePlat_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -1132,6 +1101,16 @@
             this.button1_ok.UseVisualStyleBackColor = true;
             this.button1_ok.Click += new System.EventHandler(this.button1_ok_Click);
             // 
+            // listBox2
+            // 
+            this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(3, 3);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(203, 45);
+            this.listBox2.TabIndex = 4;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1164,10 +1143,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.Plateformes.ResumeLayout(false);
-            this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -1234,7 +1211,6 @@
         private System.Windows.Forms.RichTextBox vitesse_p;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.RadioButton Plateforme_Stable;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.RadioButton Plateforme_Mobile;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.RadioButton gauche;
@@ -1243,7 +1219,6 @@
         private System.Windows.Forms.RadioButton bas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private System.Windows.Forms.Button Valider;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.Button Valider_p;
         private System.Windows.Forms.TextBox allasuite;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1265,7 +1240,7 @@
         private System.Windows.Forms.Label distance_plat;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox typePlat;
+        private System.Windows.Forms.ListBox listBox2;
 
     }
 }
