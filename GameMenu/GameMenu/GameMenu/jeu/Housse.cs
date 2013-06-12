@@ -17,6 +17,7 @@ namespace Umea_rana
         SpriteEffects Effects;
         int windowH { get; set; }
         int WindowW { get; set; }
+       
         public Housse()
         {
 
@@ -50,6 +51,7 @@ namespace Umea_rana
             rect.X = (int)(levelprofile.house.X * windowH);
             rect.Y = (int)(levelprofile.house.Y * WindowW);
             fcspeed = levelprofile.fc_speed;
+           
         }
         public void Update(KeyboardState keybord, Game1 game, Sprite_PLA sprite)
         {
@@ -63,6 +65,20 @@ namespace Umea_rana
             }
             if (rect.Intersects(sprite.rectangle_C))
                 game.ChangeState(Game1.gameState.win);
+            Animated();
+        }
+
+        public void Update(KeyboardState keybord)
+        {
+            if (keybord.IsKeyDown(Keys.Right))
+            {
+                rect.X -= fcspeed;
+            }
+            if (keybord.IsKeyDown(Keys.Left))
+            {
+                rect.X += fcspeed;
+            }
+           
             Animated();
         }
         public void Update(KeyboardState keybord, Game1 game, Sprite_PLA sprite,Sprite_PLA p2)
@@ -98,6 +114,13 @@ namespace Umea_rana
         {
 
             sp.Draw(texture, rect, new Rectangle((this.FrameColumn - 1) * column, (this.Frameline - 1) * line, column, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
+        }
+
+        public void parrametrage(housesafe house)
+        {
+            fcspeed = 3;
+            rect.X = (int)(house.X * windowH);
+            rect.Y = (int)(house.Y * WindowW);
         }
     }
 }

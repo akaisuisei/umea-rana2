@@ -25,6 +25,7 @@ namespace Umea_rana
         IA_manager_AR manage_ar;
         IA_manager_S manage_s;
         bossPLAT boss;
+        Housse safe_home;
         Platform_manager manage_p;
         Scrolling_ManagerV Scroll_manager;
         Dictionary<string, Texture2D> T_platform;
@@ -54,6 +55,7 @@ namespace Umea_rana
             foreach (string p in platstring)
                 T_platform.Add(p, Content.Load<Texture2D>("platform//" + p));
             boss= new bossPLAT ();
+            safe_home = new Housse();
             _pause.LoadContent(Content);
             _pause.initbutton(ref level);
             width = graphics.PreferredBackBufferWidth;
@@ -65,7 +67,8 @@ namespace Umea_rana
             manage_p = new Platform_manager(T_platform,width * 0.07f,height* 0.03f, height, width,3);
             Scroll_manager = new Scrolling_ManagerV(fond);
             boss.loadContent (Content,new Rectangle(0,0,width ,height ));
-            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, Content, manage_p, fond,boss );
+            safe_home.loadContent(Content, 0,"IA/color/house");
+            user.LoadContent(manage_s, manage_ar, manage_aa, Scroll_manager, Content, manage_p, fond,boss, safe_home);
             iaType = "Kawabunga";
         }
         public override void UnloadContent()
@@ -111,7 +114,8 @@ namespace Umea_rana
                     manage_s.UpdateEDIT(keyboard);
                     manage_p.Update(keyboard);
                     boss.UpdateEDIT (ref keyboard);
-                    user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p,ref boss );
+                    safe_home.Update(keyboard);
+                    user.update(ref manage_aa, ref manage_ar, ref manage_s, ref keyboard, game, ref Scroll_manager, ref manage_p,ref boss, ref safe_home );
                  
                     Scroll_manager.Update(keyboard);
                 }
@@ -136,6 +140,7 @@ namespace Umea_rana
             manage_s.Draw(spriteBatch);
     
             boss.DrawEDIT (spriteBatch);
+            safe_home.draw(spriteBatch);
             //ici le dessin
             if (_checkpause)
                 _pause.Draw(spriteBatch);

@@ -43,6 +43,7 @@ namespace Umea_rana
         IA_manager_AA manage_AA;
         IA_manager_AR manage_AR;
         IA_manager_S manage_S;
+        Housse safe_home;
         Platform_manager plateform;
         Sauveguarde sauve;
         savefile savefile;
@@ -219,13 +220,14 @@ namespace Umea_rana
         }
 
         public void update(ref IA_manager_AA manage_aa, ref IA_manager_AR manage_ar, ref IA_manager_S manage_s,
-            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Platform_manager platef, ref bossPLAT bossyeah)
+            ref KeyboardState keybord, Game1 game, ref Scrolling_ManagerV scrollM, ref Platform_manager platef, ref bossPLAT bossyeah, ref Housse finally_home)
         {
             manage_aa = this.manage_AA;
             manage_ar = this.manage_AR;
             manage_s = this.manage_S;
             platef = this.plateform;
             bossyeah = this.bossfuck;
+            finally_home = safe_home;
             scrollM = this.scrollingM;
             this.game = game;
             if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
@@ -235,13 +237,14 @@ namespace Umea_rana
 
         }
 
-        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom, Microsoft.Xna.Framework.Rectangle fond, bossPLAT boss)
+        public void LoadContent(IA_manager_S manage_S, IA_manager_AR manage_AR, IA_manager_AA manage_AA, Scrolling_ManagerV scrolling, ContentManager Content, Platform_manager platefom, Microsoft.Xna.Framework.Rectangle fond, bossPLAT boss, Housse safe_house)
         {
 
             this.manage_AA = manage_AA;
             this.manage_AR = manage_AR;
             this.manage_S = manage_S;
             this.plateform = platefom;
+            this.safe_home = safe_house;
 
             this.scrollingM = scrolling;
             this.Content = Content;
@@ -725,6 +728,7 @@ namespace Umea_rana
             manage_AA.remove_all();
             manage_AR.remove_all();
             plateform.remove_all();
+            
 
             for (int i = 0; i < savefile.ia_AA.Count; ++i)
                 manage_AA.Add(savefile.ia_AA[i], i);
@@ -1160,6 +1164,18 @@ namespace Umea_rana
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             file_platpath =(string) listBox2.SelectedItem;
+        }
+
+        private void valid_maison_Click(object sender, EventArgs e)
+        {
+            
+            housesafe house = new housesafe();
+            house.X = openX;
+            house.Y = openY;
+            savefile.levelProfile.house = house;
+            safe_home.parrametrage(house);
+
+            hidou();
         }
 
 
