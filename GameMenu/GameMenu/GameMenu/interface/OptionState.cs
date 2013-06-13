@@ -228,12 +228,17 @@ namespace Umea_rana
             button_langage.activate(3, 0, 0.5f, 0.5f, "fi-FI", LocalizedString.Firerate);
             button_langage.activate(4, 0, 0.6f, 0.5f, "ja-JP", LocalizedString.japanese);
 
-            v_volume_BGM = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 20 / 100);
             curseur_BGM.LoadContent(Content);
-
-            v_volume_soundeffect = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 30 / 100);
+            
             curseur_SE.LoadContent(Content);
 
+            button_resolution = new Button(5, 1, _width, _height, 0.2f, 0.6f, tab3);
+            button_resolution.LoadContent(Content);
+            button_resolution.activate(0, 0, 0.2f, 0.6f, "fullscreen", LocalizedString.Full_screen);
+            button_resolution.activate(1, 0, 0.3f, 0.6f, new Point(1280,768), "1280X768",new Point(_width,_height));
+            button_resolution.activate(2, 0, 0.4f, 0.6f, new Point(1027,768), "1027X768", new Point(_width, _height));
+            button_resolution.activate(3, 0, 0.5f, 0.6f, new Point(960, 720), "960X720", new Point(_width, _height));
+            button_resolution.activate(4, 0, 0.6f, 0.6f, new Point(800, 600), "800X600", new Point(_width, _height));
 
             resolution = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
             v_fullscreen = new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
@@ -320,14 +325,14 @@ namespace Umea_rana
                             color_difficulté = Color.White;
                             color_langue = Color.Black;
 
-                            button_difficulté.update3(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab1, ref select_difficulte, ref difficulté);
+                            button_difficulté.update2(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab1, ref select_difficulte, ref difficulté);
 
                             break;
                         case 3://selection sur langage                   
                             color_difficulté = Color.Black;
                             color_langue = Color.White;
                             color_resolution = Color.Black;
-                            button_langage.update3(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab2, ref select_langue, ref langue);
+                            button_langage.update2(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab2, ref select_langue, ref langue);
                             break;
                         case 4://selection sur résolution
                             color_langue = Color.Black;
@@ -347,6 +352,7 @@ namespace Umea_rana
                                     select_resolution = 0;
                                 latence = 20;
                             }
+                            
                             switch (select_resolution)
                             {
                                 case 0://fix
