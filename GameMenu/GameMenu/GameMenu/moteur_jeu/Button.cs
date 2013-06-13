@@ -468,6 +468,7 @@ namespace Umea_rana
                 }
             }
         }
+
         public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref int active_item2)
         {
 
@@ -570,7 +571,7 @@ namespace Umea_rana
                 }
             }
         }
-        public void update3(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref int _width,ref int _height, ref bool fullscreen)
+        public void update3(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item)
         {
             if (tab == this.tab)
             {

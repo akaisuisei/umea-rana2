@@ -22,6 +22,7 @@ namespace Umea_rana
         Button button_resolution;
         Rectangle rect;
         KeyboardState old;
+        Point _resolution;
         int tab = 0;
         int tab1 = 1;
         int tab2 = 2;
@@ -235,10 +236,10 @@ namespace Umea_rana
             button_resolution = new Button(5, 1, _width, _height, 0.2f, 0.6f, tab3);
             button_resolution.LoadContent(Content);
             button_resolution.activate(0, 0, 0.2f, 0.6f, "fullscreen", LocalizedString.Full_screen);
-            button_resolution.activate(1, 0, 0.3f, 0.6f, new Point(1280,768), "1280X768",new Point(_width,_height));
-            button_resolution.activate(2, 0, 0.4f, 0.6f, new Point(1027,768), "1027X768", new Point(_width, _height));
-            button_resolution.activate(3, 0, 0.5f, 0.6f, new Point(960, 720), "960X720", new Point(_width, _height));
-            button_resolution.activate(4, 0, 0.6f, 0.6f, new Point(800, 600), "800X600", new Point(_width, _height));
+            button_resolution.activate(1, 0, 0.3f, 0.6f,  "1280X768","1280X768");
+            button_resolution.activate(2, 0, 0.4f, 0.6f, "1027X768", "1027X768");
+            button_resolution.activate(3, 0, 0.5f, 0.6f,  "960X720", "960X720");
+            button_resolution.activate(4, 0, 0.6f, 0.6f,  "800X600","800X600");
 
             resolution = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
             v_fullscreen = new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
@@ -338,21 +339,7 @@ namespace Umea_rana
                             color_langue = Color.Black;
                             color_resolution = Color.White;
                             color_save_apply = Color.Black;
-                            if (keyboard.IsKeyDown(Keys.Left))
-                            {
-                                select_resolution--;
-                                if (select_resolution < 0)
-                                    select_resolution = 4;
-                                latence = 20;
-                            }
-                            if (keyboard.IsKeyDown(Keys.Right))
-                            {
-                                select_resolution++;
-                                if (select_resolution > 4)
-                                    select_resolution = 0;
-                                latence = 20;
-                            }
-                            
+                            button_resolution.update3(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab3, ref select_resolution);
                             switch (select_resolution)
                             {
                                 case 0://fix
@@ -451,14 +438,7 @@ namespace Umea_rana
             button.Draw(spriteBatch, active_item);
             button_difficulté.Draw2(spriteBatch, select_difficulte);
             button_langage.Draw2(spriteBatch, select_langue);
-
-            spriteBatch.DrawString(spriteFont, LocalizedString.Full_screen, v_fullscreen, color_resolutionfullscreen);
-            spriteBatch.DrawString(spriteFont, "1280 X 768", resolution1280_768, color_resolution1280_768);
-            spriteBatch.DrawString(spriteFont, "1024 X 768", resolution1024_768, color_resolution1024_768);
-            spriteBatch.DrawString(spriteFont, "960 X 720", resolution960_720, color_resolution960_720);
-            spriteBatch.DrawString(spriteFont, "800 X 600", resolution800_600, color_resolution800_600);
-
-
+            button_resolution.Draw2(spriteBatch, select_resolution);
         }
 
 
