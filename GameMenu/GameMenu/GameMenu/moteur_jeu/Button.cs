@@ -643,7 +643,40 @@ namespace Umea_rana
                 C_label = Color.White;
             return departt;
         }
+        public void update3(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref int active_item, ref string difficulté_langage)
+        {
+            if (tab == this.tab)
+            {
+                intecep = false;
 
+                for (int i = 0; i < rect.GetLength(0); ++i)
+                    if (mouse_rec.Intersects(rect[i, 0]))
+                    {
+                        X = i;
+                        Y = 0;
+                        intecep = true;
+                    }
+                if (old.IsKeyDown(Keys.Right) && Key.IsKeyUp(Keys.Right))
+                {
+                    X = (X + 1) % rect.GetLength(0);
+                    active_item = X;
+                    difficulté_langage = gameState[X, Y];
+                }
+                else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
+                {
+                    if (X == 0)
+                        X = rect.GetLength(1) - 1;
+                    else
+                        X = (X - 1) % rect.GetLength(0);
+                    difficulté_langage = gameState[X, Y];
+                }
+                if (intecep && mouse.LeftButton == ButtonState.Pressed)
+                {
+                    difficulté_langage = gameState[X, Y];
+                    active_item = X;
+                }
+            }
+        }
         public void update(ref KeyboardState Key, ref KeyboardState old, ref MouseState mouse, ref Rectangle mouse_rec, ref Game1 game, ref int tab, ref string fonction)
         {
             if (tab == this.tab)
