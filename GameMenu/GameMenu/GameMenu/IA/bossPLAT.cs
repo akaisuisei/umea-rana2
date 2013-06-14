@@ -159,10 +159,10 @@ namespace Umea_rana
                     ptfort.Add(rectangle_C);
                     ptfaible.Add(this.rectangle_C);
                     break;
-                case "Bou":
+                case "Boubou":
                     ptfaible.Add(this.rectangle_C );
                     break;
-                case "KickAss":
+                case "Taizon":
                     ptfaible.Add(this.rectangle_C);
                     break;
                 default:
@@ -347,7 +347,7 @@ namespace Umea_rana
                                 ptfort.RemoveAt(i);
                         }
                         break;
-                    case "Bou":
+                    case "Boubou":
                         if (rectangle.Center.X > fond.Width / 2)
                         {
                             dir = -1;
@@ -370,7 +370,7 @@ namespace Umea_rana
                         }
                         ptfaible[0] = this.rectangle_C;
                         break;
-                    case "KickAss":
+                    case "Taizon":
                         if (rectangle.Center.X > fond.Width / 2)
                         {
                             dir = -1;
