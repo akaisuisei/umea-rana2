@@ -24,15 +24,7 @@ namespace Umea_rana
     }
     public class bossPLAT : objet
     {
-
-        public int FrameLine;
-        public int FrameColumn;
-        public SpriteEffects effects;
-        public int Timer;
-        public int AnimationSpeed = 10;
-        int colunm, line;
-
-        private class pos
+      private class pos
         {
             public int lstart = 1, cstart = 1;
             public int Tlstart = 1, Tcstart = 1, Tcend = 1;
@@ -45,8 +37,13 @@ namespace Umea_rana
                 Tcend = tce;
             }
         }
-
-
+        public int FrameLine;
+        public int FrameColumn;
+        public SpriteEffects effects;
+        public int Timer;
+        public int AnimationSpeed = 10;
+        int colunm, line, dir;
+  
         public int degat { get; private set; }
         float lastvie;
         string type="";
@@ -73,7 +70,7 @@ namespace Umea_rana
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
-
+            dir = 1;
 
         }
         public void parrametrage(levelProfile levelprofile)
@@ -86,8 +83,7 @@ namespace Umea_rana
             // truc
             rectangle.X = (int)(levelprofile.bossPlatforme.X * fond.Width);
             rectangle.Y = (int)(levelprofile.bossPlatforme.Y * fond.Height);
-            type = "Light";
-
+            dir = 1;
         }
         public void parrame(bossP bossPlatforme, ContentManager content, int fc_speed)
         {
@@ -115,6 +111,7 @@ namespace Umea_rana
                     colunm = 100;
                     break;
             }
+            dir=1;
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {
@@ -154,6 +151,20 @@ namespace Umea_rana
                     line = 150;
                     colunm = 150;
                     break;
+                case "":
+                    type = "null";
+                    this.rectangle = new Rectangle(0, 0, 0, 0);
+                    break;
+                case "Kinukuman":
+                    ptfort.Add(rectangle_C);
+                    ptfaible.Add(this.rectangle_C);
+                    break;
+                case "Bou":
+                    ptfaible.Add(this.rectangle_C );
+                    break;
+                case "KickAss":
+                    ptfaible.Add(this.rectangle_C);
+                    break;
                 default:
                     break;
             }
@@ -163,6 +174,7 @@ namespace Umea_rana
                 ptforttexture = content.Load<Texture2D>("pointfort/" + type);
                 ptfaible_texture = content.Load<Texture2D>("pointfaible/" + type);
             }
+            dir = 1;
         }
         public void loadContent(ContentManager content, Texture2D texture, int fc, Rectangle fond, string type)
         {
@@ -261,6 +273,12 @@ namespace Umea_rana
                 switch (type)
                 {
                     case "Light":
+                        if (rectangle.Center.X > fond.Width / 2)
+                        {
+                            dir = -1;
+                        }
+                        else
+                            dir = 1;
                         if (vie <= 10)
                         {
                             for (int i = 0; i < ptfort.Count; ++i)
@@ -300,6 +318,12 @@ namespace Umea_rana
 
                         break;
                     case "Cascade":
+                        if (rectangle.Center.X > fond.Width / 2)
+                        {
+                            dir = -1;
+                        }
+                        else
+                            dir = 1;
                         if (lastvie != vie)
                         {
                             timerrun = 100;
@@ -313,7 +337,7 @@ namespace Umea_rana
                             timeatk = 60;
                             ptfort.Add(new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60));
                         }
-                        timeatk--;
+
                         for (int i = 0; i < ptfort.Count; ++i)
                         {
                             rect = ptfort[i];
@@ -323,13 +347,80 @@ namespace Umea_rana
                                 ptfort.RemoveAt(i);
                         }
                         break;
+                    case "Bou":
+                        if (rectangle.Center.X > fond.Width / 2)
+                        {
+                            dir = -1;
+                        }
+                        else
+                            dir = 1;
+                        if (timeatk < 0)
+                        {
+                            ptfort.Add(new Rectangle(fond.Width / 2, 0, 100, 50));
+                            timeatk = 60;
+                        }
+                    
+                        for (int i = 0; i < ptfort.Count; ++i)
+                        {
+                            rect = ptfort[i];
+                            rect.Y  -= speed;
+                            ptfort[i] = rect;
+                            if (!ptfort[i].Intersects(fond))
+                                ptfort.RemoveAt(i);
+                        }
+                        ptfaible[0] = this.rectangle_C;
+                        break;
+                    case "KickAss":
+                        if (rectangle.Center.X > fond.Width / 2)
+                        {
+                            dir = -1;
+                        }
+                        else
+                            dir = 1;
+                        if (timeatk < 0)
+                        {
+                            ptfort.Add(new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60));
+                            timeatk = 60;
+                        }
+                        for (int i = 0; i < ptfort.Count; ++i)
+                        {
+                            rect = ptfort[i];
+                            rect.X -= speed;
+                            ptfort[i] = rect;
+                            if (!ptfort[i].Intersects(fond))
+                                ptfort.RemoveAt(i);
+                        }
+                        ptfaible[0] = this.rectangle_C;
+
+                        break; 
+                    case "Kinukuman":
+                        if (timeatk < 0)
+                        {
+                            timeatk = 60;
+                            timerrun = 50;
+                        }
+                        if (timerrun > 0)
+                        {
+                               rectangle.X +=dir * speed;
+                        }
+                        else
+                            if (rectangle.Center.X > fond.Width / 2)
+                            {
+                                dir = -1;
+                            }
+                            else
+                                dir = 1;
+                     
+                        ptfort[0] = rectangle_C;
+                        ptfaible[0] = rectangle_C;
+                        break;
                     default:
                         break;
                 }
 
 
 
-
+                        timeatk--;
                 lastvie = vie;
                 timerrun--;
             }
@@ -339,7 +430,12 @@ namespace Umea_rana
                 ptfaible.Clear();
                 ptfort.Clear();
             }
-
+            if (rectangle.Center.X > fond.Width / 2)
+            {
+                dir = -1;
+            }
+            else
+                dir = 1;
 
             if (keyboard.IsKeyDown(Keys.Right))
             {
