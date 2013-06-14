@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace Umea_rana
 {
@@ -371,6 +372,86 @@ namespace Umea_rana
         {
             ovni = null;
             texture.Dispose();
+        }
+    }
+    public class Boss
+    {
+        Pattern pattern{get;set;}
+        Boss_setting boss_setting;
+        Texture boss;
+        private double elapsed { get; set; }
+        public Boss(Pattern _pattern,Boss_setting _boss_setting
+            )
+        {
+            pattern=_pattern;
+            boss_setting = _boss_setting;
+        }
+        public void update(GameTime gameTime)
+        {
+            elapsed += gameTime.ElapsedGameTime.Milliseconds;
+
+        }
+    }
+    public struct Boss_setting
+    {
+        public Vector2 pos{get;set;} //spawning point
+        public Boss_setting(Vector2 _pos):this()
+        {
+            pos = _pos;
+        }
+    }
+    public class Pattern
+    {
+        Boss_setting boss_setting;
+        PatternMgr mgr;
+        PatternSettings setting;
+        public Pattern(PatternMgr _mgr)
+        {
+            mgr = _mgr;
+            setting=mgr.Setting;
+        }
+        
+        public void update(GameTime gameTime)
+        {
+        }
+        public void draw(SpriteBatch spriteBatch)
+        {
+        }
+    }
+    public class PatternMgr
+    {
+        private readonly List<Pattern> _pattern;
+        public PatternSettings Setting { get { return setting; } }
+        private readonly PatternSettings setting;
+        public PatternMgr(PatternSettings _setting)
+        {
+            setting = _setting;
+            _pattern = new List<Pattern>();
+            for (int i = 0; i < setting.max; i++)
+                _pattern.Add(new Pattern(this));
+        }
+    }
+    public struct PatternSettings
+    {
+        public Vector2 point_départ { get; set; } //point de départ du pattern
+        public Color couleur { get; set; } //couleur des missiles
+        public int max { get; set; } //maximum de missile présent
+        public double frequence { get; set; }
+        public Vector2 direction { get; set; }
+        public float scalestart { get; set; }
+        public float scaleend { get; set; }
+        public Func<Vector2, Vector2> Pos { get; set; }
+        public Func<Vector2, double, Vector2> Velocity { get; set; }
+
+        public PatternSettings(Vector2 _point_départ,Vector2 _direction, Color _couleur,double _frequence,int _max=200,float _scalestart=1.0f,float _scaleend=1.0f):this()
+        {
+            point_départ = _point_départ;
+            couleur = _couleur;
+            max = _max;
+            frequence = _frequence;
+            direction = _direction;
+            scalestart = _scalestart;
+            scaleend = _scaleend;
         }
     }
 }
