@@ -1147,6 +1147,7 @@ namespace Umea_rana
                 busyguy.X = openX;
                 busyguy.Y = openY;
                 bossfuck.parrame(busyguy, Content, 3);
+                savefile.levelProfile.bossPlatforme = busyguy;
                 hidou();
             }
         }

@@ -113,12 +113,12 @@ namespace Umea_rana
             }
             dir=1;
         }
-        public void loadContent(ContentManager content, Rectangle fond)
+        public void  loadContent(ContentManager content, Rectangle fond)
         {
             this.fond = fond;
             this.rectangle = new Rectangle(1000, 0, 100, 100);
             this.atk = new Rectangle(1000, 200, 100, 100);
-            this.rectangle_C = rect;
+            this.rectangle_C =rectangle ;
             this.degat = 1;
             this.vie = 15;
             this.lastvie = vie;
@@ -144,26 +144,42 @@ namespace Umea_rana
            
                     line = 100;
                     colunm = 100;
+                         hauteurY = 100;
+                    largeurX = 100;
                     break;
                 case "Cascade":
                     ptfaible.Add(rect);
 
                     line = 150;
                     colunm = 150;
+                    hauteurY = 150;
+                    largeurX = 150;
                     break;
                 case "":
                     type = "null";
-                    this.rectangle = new Rectangle(0, 0, 0, 0);
+          
                     break;
                 case "Kinukuman":
                     ptfort.Add(rectangle_C);
                     ptfaible.Add(this.rectangle_C);
+                         line = 100;
+                    colunm = 100;
+                         hauteurY = 100;
+                    largeurX = 100;
                     break;
                 case "Boubou":
                     ptfaible.Add(this.rectangle_C );
+                         line = 150;
+                    colunm = 150;
+                         hauteurY = 150;
+                    largeurX = 150;
                     break;
                 case "Taizon":
                     ptfaible.Add(this.rectangle_C);
+                         line = 75;
+                    colunm = 75;
+                         hauteurY = 100;
+                    largeurX = 100;
                     break;
                 default:
                     break;
@@ -182,7 +198,7 @@ namespace Umea_rana
             this.front_sc = fc;
             this.rectangle = new Rectangle(1000, 0, 100, 100);
             this.atk = new Rectangle(1000, 200, 100, 100);
-            this.rectangle_C = rect;
+            this.rectangle_C = rectangle ;
             this.degat = 1;
             this.vie = 15;
             this.lastvie = vie;
