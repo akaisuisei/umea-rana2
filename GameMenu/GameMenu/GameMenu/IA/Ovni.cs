@@ -376,20 +376,21 @@ namespace Umea_rana
     }
     public class Boss
     {
-        Pattern pattern{get;set;}
+        PatternMgr pattern{get;set;}
         Boss_setting boss_setting;
         Texture boss;
-        private double elapsed { get; set; }
-        public Boss(Pattern _pattern,Boss_setting _boss_setting
-            )
+        public Boss(PatternMgr _pattern,Boss_setting _boss_setting)
         {
             pattern=_pattern;
             boss_setting = _boss_setting;
         }
         public void update(GameTime gameTime)
         {
-            elapsed += gameTime.ElapsedGameTime.Milliseconds;
-
+            pattern.Update(gameTime);
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            pattern.Draw(spriteBatch);
         }
     }
     public struct Boss_setting
@@ -405,17 +406,46 @@ namespace Umea_rana
         Boss_setting boss_setting;
         PatternMgr mgr;
         PatternSettings setting;
+        public Vector2 direction { get; set; }
+        public bool exist;
+        public double LifeTime { get; set; }
+        public Rectangle taille_missile { get; set; }
+        public Vector2 Pos { get; set; }
+        public Vector2 speed { get; set; }
+        public int r_height { get; set; }
+        public int r_width { get; set; }
+
         public Pattern(PatternMgr _mgr)
         {
             mgr = _mgr;
             setting=mgr.Setting;
+            r_height = setting.height;
+            r_width = setting.width;
         }
-        
+        public void reset()
+        {
+            Pos = setting.pos == null ? mgr.Pos : setting.pos(mgr.Pos);
+            exist = true;
+            LifeTime = setting.LifeTime;
+        }
         public void update(GameTime gameTime)
         {
+            if (!exist)
+                return;
+            Pos += setting.direction * speed;
+            taille_missile = new Rectangle((int)Pos.X, (int)Pos.Y, r_width, r_height);
+            LifeTime -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (LifeTime < 0 || Pos.Y>OptionState._height)
+                exist = false;
         }
-        public void draw(SpriteBatch spriteBatch)
+    
+        public void draw(SpriteBatch spriteBatch,Texture2D texture,Color color)
         {
+            if (!exist)
+                return;
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, taille_missile, color);
+            spriteBatch.End();
         }
     }
     public class PatternMgr
@@ -423,6 +453,9 @@ namespace Umea_rana
         private readonly List<Pattern> _pattern;
         public PatternSettings Setting { get { return setting; } }
         private readonly PatternSettings setting;
+        private double _elapsed;
+        private Texture2D missile;
+        public Vector2 Pos { get; set; }
         public PatternMgr(PatternSettings _setting)
         {
             setting = _setting;
@@ -430,28 +463,53 @@ namespace Umea_rana
             for (int i = 0; i < setting.max; i++)
                 _pattern.Add(new Pattern(this));
         }
+        public void LoadContent(ContentManager Content)
+        {
+            Content.Load<Texture2D>("Moteur à particule//particle2");
+        }
+        public void Update(GameTime gameTime)
+        {
+            _elapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            foreach (var pattern in _pattern)
+                pattern.update(gameTime);
+            foreach(var pattern in _pattern.Where(p => !p.exist))
+                pattern.reset();
+            //gérer la collision ici
+            if (_elapsed >= 30)
+                return;
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (_elapsed >= 30)
+                return;
+            foreach (Pattern p in _pattern)
+                p.draw(spriteBatch, missile, setting.couleur);
+        }
     }
     public struct PatternSettings
     {
-        public Vector2 point_départ { get; set; } //point de départ du pattern
         public Color couleur { get; set; } //couleur des missiles
         public int max { get; set; } //maximum de missile présent
         public double frequence { get; set; }
-        public Vector2 direction { get; set; }
-        public float scalestart { get; set; }
-        public float scaleend { get; set; }
-        public Func<Vector2, Vector2> Pos { get; set; }
-        public Func<Vector2, double, Vector2> Velocity { get; set; }
+        public Vector2 direction { get; set; }//direction
+        public int speed { get; set; }//vitesse du missile
+        public double LifeTime { get; set; }//durée de vie du missile
+        public Func<Vector2, Vector2> pos { get; set; }//position du missile
+        public int width { get; set; }//longueur du rectangle de collision
+        public int height { get; set; }//largeur du rectangle de collision
 
-        public PatternSettings(Vector2 _point_départ,Vector2 _direction, Color _couleur,double _frequence,int _max=200,float _scalestart=1.0f,float _scaleend=1.0f):this()
+        public PatternSettings(double _Lifetime,Vector2 _direction, int _speed, Color _couleur, double _frequence, int _max = 200, Func<Vector2, Vector2> _pos=null,int _width=5,int _height=5)
+            : this()
         {
-            point_départ = _point_départ;
+            LifeTime = _Lifetime;
+            speed = _speed;
+            pos=_pos;
             couleur = _couleur;
             max = _max;
             frequence = _frequence;
             direction = _direction;
-            scalestart = _scalestart;
-            scaleend = _scaleend;
+            width = _width;
+            height = _height;
         }
     }
 }
