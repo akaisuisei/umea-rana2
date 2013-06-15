@@ -374,15 +374,17 @@ namespace Umea_rana
             texture.Dispose();
         }
     }
-    public class Boss
+    public class Boss : objet 
     {
         PatternMgr pattern{get;set;}
         Boss_setting boss_setting;
-        Texture boss;
         public Boss(PatternMgr _pattern,Boss_setting _boss_setting)
         {
             pattern=_pattern;
             boss_setting = _boss_setting;
+        }
+        public void LoadContent()
+        {
         }
         public void update(GameTime gameTime)
         {
