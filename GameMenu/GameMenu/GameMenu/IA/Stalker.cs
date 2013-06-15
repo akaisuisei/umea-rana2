@@ -166,10 +166,10 @@ namespace Umea_rana
             tombe = true;
             _speed = iaAR.Speed;
             normalspeed = iaAR.Speed;
-            largeurX = (int)((22f / 130f) * rectangle.Width);
+            largeurX = (int)((18f / 130f) * rectangle.Width);
             hauteurY = (int)((47f / 85f) * rectangle.Height);
             decallageX = (int)((73f / 130f) * rectangle.Width);
-            decallageY = (int)((33f / 85f) * rectangle.Height);
+            decallageY = (int)((34f / 85f) * rectangle.Height);
             longueur_attaque = 18;//2;
             this.FrameLine = 1;
             this.FrameColunm = 1;
@@ -186,10 +186,10 @@ namespace Umea_rana
             tombe = true;
             _speed = iaAR.Speed;
             normalspeed = iaAR.Speed;
-            largeurX = (int)((22f / 130f) * rectangle.Width);
+            largeurX = (int)((18f / 130f) * rectangle.Width);
             hauteurY = (int)((47f / 85f) * rectangle.Height);
             decallageX = (int)((73f / 130f) * rectangle.Width);
-            decallageY = (int)((33f / 85f) * rectangle.Height);
+            decallageY = (int)((34f / 85f) * rectangle.Height);
             longueur_attaque = 18;//2;
             this.FrameLine = 1;
             this.FrameColunm = 1;

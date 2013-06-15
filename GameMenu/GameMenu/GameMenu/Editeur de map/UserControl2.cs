@@ -27,7 +27,7 @@ namespace Umea_rana
         string[] playlist;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance",
-            t_plat_vit = "vitesse", t_plat_dist = "distance";
+            t_plat_vit = "vitesse", t_plat_dist = "distance", t_viedep = "vie";
         // type
         string type;
         System.Drawing.Color color2, color4;
@@ -272,6 +272,7 @@ namespace Umea_rana
             textBox2_p.Tag = t_boss_puiss;
             textBox1.Tag = t_plat_vit;
             textBox2.Tag = t_plat_dist;
+            vie_dep.Tag = t_viedep;
             vie_p.Tag = t_life;
             puissance_p.Tag = t_damage;
             vitesse_p.Tag = t_speed;
@@ -406,6 +407,7 @@ namespace Umea_rana
             textBox1_v.Tag = t_boss_vie;
             textBox1.Tag = t_plat_vit;
             textBox2.Tag = t_plat_dist;
+            vie_dep.Tag = t_viedep;
             vie_p.Tag = t_life; //garder
             vitesse_p.Tag = t_speed;  //garder          
             Sauvegarde_.Tag = t_speed;
@@ -627,6 +629,8 @@ namespace Umea_rana
                 n = 10;
             else if ((string)texbox.Tag == t_plat_dist)
                 n = 100;
+            else if ((string)texbox.Tag == t_viedep)
+                n = 300;
 
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
@@ -1203,6 +1207,50 @@ namespace Umea_rana
 
             hidou();
         }
+
+        private void vie_dep_TextChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.playerLife = int.Parse(vie_dep.Text);
+            intcheck(vie_dep);
+        }
+
+        private void Allen_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.image_sprite = true;
+        }
+
+        private void Yoh_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.image_sprite = false;
+        }
+
+        private void valid_hero_Click(object sender, EventArgs e)
+        {
+            if (vie_dep.BackColor == System.Drawing.Color.Green && (Allen.Checked || Yoh.Checked ))
+            {
+                hidou();
+            }
+        }
+
+        private void incolore_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.IAcolor = "BandW";
+        }
+
+        private void color_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.IAcolor = "color";
+        }
+
+        private void valid_couleur_Click(object sender, EventArgs e)
+        {
+            if (incolore.Checked || color.Checked)
+            {
+                hidou();
+            }
+        }
+
+       
 
 
 

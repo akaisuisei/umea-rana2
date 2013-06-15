@@ -180,16 +180,20 @@ namespace Umea_rana
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 100;
                     colunm = 100;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    hauteurY = (int)((53f / (float)line) * rectangle.Height);
+                    largeurX = (int)((16f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((41f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((28f / (float)line) * rectangle.Height);
                     break;
                 case "Cascade":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 150;
                     colunm = 180;
-                    hauteurY = 150;
-                    largeurX = 150;
+                    hauteurY = (int)((68f / (float)line) * rectangle.Height);
+                    largeurX = (int)((70f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((46f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((44f / (float)line) * rectangle.Height);
                     break;
                 case "":
                     type = "null";
@@ -203,24 +207,30 @@ namespace Umea_rana
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 93;
                     colunm = 125;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    hauteurY = (int)((55f / (float)line) * rectangle.Height);
+                    largeurX = (int)((36f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((35f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((25f / (float)line) * rectangle.Height);
                     break;
                 case "Boubou":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 93;
                     colunm = 125;
-                    hauteurY = 150;
-                    largeurX = 150;
+                    hauteurY = (int)((45f / (float)line) * rectangle.Height);
+                    largeurX = (int)((33f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((32f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((35f / (float)line) * rectangle.Height);
                     break;
                 case "Taizo":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 93;
                     colunm = 125;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    hauteurY = (int)((45f / (float)line) * rectangle.Height);
+                    largeurX = (int)((29f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((47f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((36f / (float)line) * rectangle.Height);
                     break;
                 default:
                     break;
