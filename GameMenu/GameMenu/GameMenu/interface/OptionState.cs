@@ -79,100 +79,41 @@ namespace Umea_rana
             old = Keyboard.GetState();
             curseur_BGM = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 21 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.volume_BGM); //ajouter les dimensions du curseur et de la ligne
             curseur_SE = new Curseur(new Vector2(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100), new Rectangle(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 38, graphics.PreferredBackBufferHeight / 26), new Rectangle(graphics.PreferredBackBufferWidth * 30 / 100, graphics.PreferredBackBufferHeight * 31 / 100, graphics.PreferredBackBufferWidth / 4, graphics.PreferredBackBufferHeight / 100), OptionState.sound_effect_volume);
-            color_volume_BGM = Color.Black;
-            color_volume_SE = Color.Black;
-            color_difficulté = Color.Black;
-            color_langue = Color.Black;
-            color_resolution = Color.Black;
-            color_resolutionfullscreen = Color.BlueViolet;
-            color_resolution1024_768 = Color.BlueViolet;
-            color_resolution1280_768 = Color.BlueViolet;
-            color_resolution960_720 = Color.BlueViolet;
-            color_resolution800_600 = Color.BlueViolet;
-            color_retour = Color.Black;
-            color_defaut = Color.Black;
-            color_save_apply = Color.Black;
-            color_difficulte_facile = Color.BlueViolet;
-            color_difficulte_normal = Color.BlueViolet;
-            color_difficulte_difficile = Color.BlueViolet;
-            color_difficulte_extreme = Color.BlueViolet;
-            color_français = Color.BlueViolet;
-            color_anglais = Color.BlueViolet;
-            color_finois = Color.BlueViolet;
-            color_espagnol = Color.BlueViolet;
-            color_japonais = Color.BlueViolet;
-            color_chinois = Color.BlueViolet;
             if (fullscreen == true)
             {
-                color_resolutionfullscreen = Color.White;
                 select_resolution = 0;
             }
             else
                 if (_width == 1280 && _height == 768)
                 {
-                    color_resolution1280_768 = Color.White;
                     select_resolution = 1;
                 }
                 else
                     if (_width == 1024 && _height == 768)
                     {
-                        color_resolution1024_768 = Color.White;
                         select_resolution = 2;
                     }
                     else
                         if (_width == 960 && _height == 720)
                         {
-                            color_resolution960_720 = Color.White;
                             select_resolution = 3;
                         }
                         else
                         {
-                            color_resolution800_600 = Color.White;
                             select_resolution = 4;
                         }
-            switch (active_item)
-            {
-                case 0:
-                    color_volume_BGM = Color.White;
-                    break;
-                case 1:
-                    color_volume_SE = Color.White;
-                    break;
-                case 2:
-                    color_difficulté = Color.White;
-                    break;
-                case 3:
-                    color_langue = Color.White;
-                    break;
-                case 4:
-                    color_resolution = Color.White;
-                    break;
-                case 5:
-                    color_save_apply = Color.White;
-                    break;
-                case 6:
-                    color_defaut = Color.White;
-                    break;
-                case 7:
-                    color_retour = Color.White;
-                    break;
-            }
             switch (difficulté)
             {
-                case "facile":
-                    color_difficulte_facile = Color.White;
+                case "Facile":
                     select_difficulte = 0;
                     break;
-                case "normal":
-                    color_difficulte_normal = Color.White;
+                case "Normal":
                     select_difficulte = 1;
                     break;
-                case "difficile":
-                    color_difficulte_difficile = Color.White;
+                case "Difficile":
                     select_difficulte = 2;
                     break;
-                case "extreme":
-                    color_difficulte_extreme = Color.White;
+                case "Extreme":
                     select_difficulte = 3;
                     break;
             }
