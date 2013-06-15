@@ -134,12 +134,12 @@ namespace Umea_rana
                                 this.ovni[i].dirX  = -1;
                                 this.ovni[i].rectangle.X = fond.Right   - this.ovni[i].rectangle.Width - 5;
                             }
-                            if (ovni[i].rectangle.Top > fond.Top )
+                            if (ovni[i].rectangle.Top < fond.Top )
                             {
                                 this.ovni[i].dirY  = 1;
-                                this.ovni[i].rectangle.Y = fond.Top +1;
+                                this.ovni[i].rectangle.Y = fond.Top ;
                             }
-                            else if (ovni[i].rectangle.Bottom < fond.Bottom )
+                            else if (ovni[i].rectangle.Bottom > fond.Bottom )
                             {
                                 this.ovni[i].dirY  = -1;
                                 this.ovni[i].rectangle.Y = fond.Bottom  - this.ovni[i].rectangle.Height - 10;

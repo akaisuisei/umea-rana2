@@ -819,7 +819,7 @@ namespace Umea_rana
         {
             if (spawn == -1)
             {
-                Bonus bonus;
+                Bonus bonus = new Bonus();
                 char type = '\0';
                 if (radioButton3.Checked)
                     type = 'v';
@@ -844,7 +844,7 @@ namespace Umea_rana
                 if (type != '\0')
                 {
                     ovni.Add(type, openX, openY, ovni.ovni.Count);
-                    bonus = new Bonus();
+               
                     bonus.type = type;
                     bonus.launch = seconde;
                     bonus.X = openX;
@@ -1010,7 +1010,7 @@ namespace Umea_rana
             textBox11.Text = "" + _savefile.levelProfile.damage;
             textBox14.Text = "" + _savefile.levelProfile.playerLife;
             textBox16.Text = "" + _savefile.levelProfile.bullet_speed;
-
+            if(_savefile.levelProfile.musique != null)
             listBox1.Items.AddRange(_savefile.levelProfile.musique);
             scrollingLoad();
         }

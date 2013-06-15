@@ -257,7 +257,7 @@ namespace Umea_rana
                     colunm = 100;
                     break;
                 case "Cascade":
-
+                    
                     line = 150;
                     colunm = 180;
                     break;
