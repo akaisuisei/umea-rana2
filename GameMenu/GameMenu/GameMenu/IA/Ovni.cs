@@ -213,7 +213,7 @@ namespace Umea_rana
             if (bonus.speed != 0)
                 ov.speed = bonus.speed;
             else
-                ov.speed = rnd.Next(4,20);
+                ov.speed = rnd.Next(2,10);
             ov.launch = bonus.launch;
        
             ov.type = bonus.type;
