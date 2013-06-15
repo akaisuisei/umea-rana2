@@ -274,20 +274,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boss\Light.PNG">
-      <Name>Light</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Boss\Cascade.png">
-      <Name>Cascade</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="IA\color\house.png">
       <Name>house</Name>
       <Importer>TextureImporter</Importer>
@@ -450,6 +436,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BossSEU\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Boss\Cascade.png">
+      <Name>Cascade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Boss\Light.png">
+      <Name>Light</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

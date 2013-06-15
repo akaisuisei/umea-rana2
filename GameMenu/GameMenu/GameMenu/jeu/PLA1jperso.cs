@@ -60,7 +60,7 @@ namespace Umea_rana.jeu
             managerAR = new IA_manager_AR(new Rectangle(0, 0, 100, 100), height, width);
             manageS = new IA_manager_S(new Rectangle(0, 0, 100, 100), height, width);
             srollingM = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
-            allen = new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content,"P1");
+            allen = new Sprite_PLA(new Rectangle(width/2-50, 0, 100, 100), collision, Content,"P1");
             //background
             //sprite brouillon    
 
@@ -148,13 +148,14 @@ namespace Umea_rana.jeu
                 collision.coll_AL_IA(managerAR, ref allen);
                 //manager IA 
                 managerAR.Update(ref keyboard);
-
-
+  collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
+  boss.Update(ref keyboard);
+              
                 //manager platform
                 platform_M.Update(keyboard);
-                score.Update(ref allen);
-                collision.Bossplat_hero(ref boss, ref allen, ref platform_M);
-                boss.Update(ref keyboard);
+                score.Update(ref allen); 
+              
+               
 
             }
             else
