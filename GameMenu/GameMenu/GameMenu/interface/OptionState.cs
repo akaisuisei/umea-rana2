@@ -153,6 +153,9 @@ namespace Umea_rana
                 case 6:
                     color_defaut = Color.White;
                     break;
+                case 7:
+                    color_retour = Color.White;
+                    break;
             }
             switch (difficulté)
             {
@@ -308,76 +311,45 @@ namespace Umea_rana
                     switch (active_item)
                     {
                         case 0://selection sur volume_BGM
-                            color_volume_BGM = Color.White;
-                            color_volume_SE = Color.Black;
-                            color_retour = Color.Black;
                             curseur_BGM.update(keyboard, mouse);
                             Audio.changevolume_temp(curseur_BGM._volume);
                             break;
                         case 1://selection sur volume_SE
-                            color_volume_BGM = Color.Black;
-                            color_volume_SE = Color.White;
-                            color_difficulté = Color.Black;
                             curseur_SE.update(keyboard, mouse);
                             Audio.change_soundeffect_volume_temp(curseur_SE._volume);
                             break;
                         case 2://selection sur difficulté
-                            color_volume_SE = Color.Black;
-                            color_difficulté = Color.White;
-                            color_langue = Color.Black;
-
                             button_difficulté.update2(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab1, ref select_difficulte, ref difficulté);
 
                             break;
                         case 3://selection sur langage                   
-                            color_difficulté = Color.Black;
-                            color_langue = Color.White;
-                            color_resolution = Color.Black;
                             button_langage.update2(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab2, ref select_langue, ref langue);
                             break;
                         case 4://selection sur résolution
-                            color_langue = Color.Black;
-                            color_resolution = Color.White;
-                            color_save_apply = Color.Black;
                             button_resolution.update3(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab3, ref select_resolution);
                             switch (select_resolution)
                             {
                                 case 0://fix
-                                    color_resolutionfullscreen = Color.White;
-                                    color_resolution800_600 = Color.BlueViolet;
-                                    color_resolution1280_768 = Color.BlueViolet;
                                     _width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                                     _height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                                     fullscreen = true;
                                     break;
                                 case 1://fix
-                                    color_resolution1280_768 = Color.White;
-                                    color_resolution1024_768 = Color.BlueViolet;
-                                    color_resolutionfullscreen = Color.BlueViolet;
                                     fullscreen = false;
                                     _width = 1280;
                                     _height = 768;
                                     break;
                                 case 2:
-                                    color_resolution1280_768 = Color.BlueViolet;
-                                    color_resolution1024_768 = Color.White;
-                                    color_resolution960_720 = Color.BlueViolet;
                                     fullscreen = false;
                                     _width = 1024;
                                     _height = 768;
                                     break;
                                 case 3:
-                                    color_resolution1024_768 = Color.BlueViolet;
-                                    color_resolution960_720 = Color.White;
-                                    color_resolution800_600 = Color.BlueViolet;
                                     fullscreen = false;
                                     _width = 960;
                                     _height = 720;
                                     break;
                                 case 4:
-                                    color_resolution800_600 = Color.White;
-                                    color_resolutionfullscreen = Color.BlueViolet;
-                                    color_resolution960_720 = Color.BlueViolet;
                                     fullscreen = false;
                                     _width = 800;
                                     _height = 600;

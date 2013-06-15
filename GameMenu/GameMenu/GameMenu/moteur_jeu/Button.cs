@@ -490,19 +490,19 @@ namespace Umea_rana
                     if (Y == 0)
                     {
                         Y = rect.GetLength(1) - 1;
-                        active_item = 7;
+                        active_item = Y;
                     }
                     else
                     {
                         Y = (Y - 1) % rect.GetLength(1);
-                        active_item--;
+                        active_item = Y;
                     }
 
                 }
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
                 {
                     Y = (Y + 1) % rect.GetLength(1);
-                    active_item++;
+                    active_item = Y;
                 }
 
 
