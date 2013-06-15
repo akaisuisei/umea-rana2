@@ -46,5 +46,20 @@ namespace Umea_rana
             _vecteur.Normalize();
             return (_vecteur);
         }
+        protected void vise(objet j1, objet j2,ref  Rectangle cible,ref Vector2 cibleV)
+        {
+            int distance_j1 = j1.rectangle_C.X + j1.rectangle_C.Y - rectangle_C.Center.X - rectangle_C.Center.Y;
+
+            if (Math.Min(distance_j1, j2.rectangle_C.X + j2.rectangle_C.Y - rectangle_C.Center.X - rectangle_C.Center.Y) == distance_j1)
+            {
+                cibleV = vise(j1);
+                cible = j1.rectangle_C;
+            }
+            else
+            {
+                cibleV = vise(j2);
+                cible = j2.rectangle_C;
+            }
+        }
     }  
 }

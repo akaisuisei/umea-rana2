@@ -419,14 +419,17 @@ namespace Umea_rana
             lastvie = vie;
             timerrun--;
         }
-        public void Update(ref KeyboardState keyboard, Sprite_PLA p2)
+        public void Update(ref KeyboardState keyboard,Sprite_PLA p1, Sprite_PLA p2)
         {
+            Rectangle cible= Rectangle.Empty ;
+            Vector2 cibleV= Vector2.Zero ;
+            this.vise(p1, p2, ref cible,ref cibleV);
             int bouge = 0;
             this.Animated();
-            if (rectangle.Center.X > fond.Width / 2)
-                dir = -1;
-            else
+            if (cibleV.X > 0)
                 dir = 1;
+            else
+                dir = -1;
             // if ( this.rectangle_C.Center.X < 1.2f * fond.Width  && this.rectangle_C.Center.X > -0.2f * fond.Width )
             if (vie >= 0)
             {
@@ -450,7 +453,7 @@ namespace Umea_rana
                             if (timeatk <= 0)// lance son attaque
                             {
                                 timeatk = 60;
-                                ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
+                                ptfort_.Add(new Pointaction(dir, cibleV , new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
 
                             }
                             foreach (Pointaction pt in ptfaible_)
@@ -462,7 +465,7 @@ namespace Umea_rana
                         case "Boubou":
                             if (timeatk < 0)// lance son attaque
                             {
-                                ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(fond.Width / 2, 0, 100, 50), new Rectangle(fond.Width / 2, 0, 100, 50)));
+                                ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(cible.X , 0, 100, 50), new Rectangle(cible.X, 0, 100, 50)));
                                 timeatk = 60;
                             }
 
@@ -472,7 +475,7 @@ namespace Umea_rana
                         case "Taizon":
                             if (timeatk < 0)
                             {
-                                ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
+                                ptfort_.Add(new Pointaction(dir, cibleV , new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
                                 timeatk = 60;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
@@ -488,7 +491,9 @@ namespace Umea_rana
                             if (timeatk < 0)
                             {
                                 ptfort_.Clear();
+                               
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), rectangle_C, rectangle_C));// cree un pt fort pour garder la diretion
+                              
                                 timeatk = 120;
                                 timerrun = 50;
                             }
