@@ -526,14 +526,14 @@ namespace Umea_rana
         public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite, ref Platform_manager platform)
         {
 
-            foreach (Rectangle rec in boss.ptfort)
-                if (rec.Intersects(sprite.rectangle_C))
+            foreach (bossPLAT.Pointaction  pt in boss.ptfort_ )
+                if (pt.hitbox.Intersects(sprite.rectangle_C))
                     if (sprite.block)
                         sprite.vie -= (float)boss.degat / 2;
                     else
                         sprite.vie -= boss.degat;
-            foreach (Rectangle rec in boss.ptfaible)
-                if (sprite.atq && rec.Intersects(sprite.rectangle_C))
+            foreach (bossPLAT.Pointaction pt in boss.ptfaible_ )
+                if (sprite.atq && pt.hitbox .Intersects(sprite.rectangle_C))
                     boss.vie -= 1;
             foreach (platform plato in platform.plato)
                 if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&
@@ -550,21 +550,21 @@ namespace Umea_rana
         public void Bossplat_hero(ref bossPLAT boss, ref Sprite_PLA sprite,ref Sprite_PLA p2, ref Platform_manager platform)
         {
 
-            foreach (Rectangle rec in boss.ptfort)
+            foreach (bossPLAT.Pointaction pt in boss.ptfort_ )
             {
-                if (rec.Intersects(sprite.rectangle_C))
+                if (pt.hitbox .Intersects(sprite.rectangle_C))
                     if (sprite.block)
                         sprite.vie -= (float)boss.degat / 2;
                     else
                         sprite.vie -= boss.degat;
-                if (rec.Intersects(p2.rectangle_C))
+                if (pt.hitbox .Intersects(p2.rectangle_C))
                     if (p2.block)
                         p2.vie -= (float)boss.degat / 2;
                     else
                         p2.vie -= boss.degat;
             }
-            foreach (Rectangle rec in boss.ptfaible)
-                if ((sprite.atq && rec.Intersects(sprite.rectangle_C)) || (p2.atq && rec.Intersects(p2.rectangle_C)))
+            foreach (bossPLAT.Pointaction pt in boss.ptfaible_)
+                if ((sprite.atq && pt.hitbox .Intersects(sprite.rectangle_C)) || (p2.atq && pt.hitbox .Intersects(p2.rectangle_C)))
                     boss.vie -= 1;
             foreach (platform plato in platform.plato)
                 if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&

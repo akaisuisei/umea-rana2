@@ -30,5 +30,21 @@ namespace Umea_rana
             rectangle_C.Height = hauteurY;
             rectangle_C.Width = largeurX;
         }
-    }   
+        protected Vector2 vise(objet sprt)
+        {
+            Vector2 _vecteur;
+            _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;
+            _vecteur.Y = rectangle.Center.Y - sprt.rectangle.Center.Y;
+            _vecteur.Normalize();
+            return (_vecteur);
+        }
+        protected Vector2 vise(Rectangle rect)
+        {
+            Vector2 _vecteur;
+            _vecteur.X = -rectangle_C.Center.X + rect.Center.X;
+            _vecteur.Y = rectangle_C.Center.Y - rect.Center.Y;
+            _vecteur.Normalize();
+            return (_vecteur);
+        }
+    }  
 }
