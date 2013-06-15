@@ -490,19 +490,19 @@ namespace Umea_rana
                     if (Y == 0)
                     {
                         Y = rect.GetLength(1) - 1;
-                        active_item = 7;
+                        active_item = Y;
                     }
                     else
                     {
                         Y = (Y - 1) % rect.GetLength(1);
-                        active_item--;
+                        active_item = Y;
                     }
 
                 }
                 else if (old.IsKeyDown(Keys.Down) && Key.IsKeyUp(Keys.Down))
                 {
                     Y = (Y + 1) % rect.GetLength(1);
-                    active_item++;
+                    active_item = Y;
                 }
 
 
@@ -558,10 +558,12 @@ namespace Umea_rana
                 }
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
+
                     if (X == 0)
-                        X = rect.GetLength(1) - 1;
+                        X = rect.GetLength(0) - 1;
                     else
                         X = (X - 1) % rect.GetLength(0);
+                    active_item = X;
                     difficulté_langage = gameState[X, Y];
                 }
                 if (intecep && mouse.LeftButton == ButtonState.Pressed)
@@ -592,9 +594,10 @@ namespace Umea_rana
                 else if (old.IsKeyDown(Keys.Left) && Key.IsKeyUp(Keys.Left))
                 {
                     if (X == 0)
-                        X = rect.GetLength(1) - 1;
+                        X = rect.GetLength(0) - 1;
                     else
                         X = (X - 1) % rect.GetLength(0);
+                    active_item = X;
                     
                 }
                 if (intecep && mouse.LeftButton == ButtonState.Pressed)

@@ -132,7 +132,19 @@ namespace Umea_rana
                     break;
                 case "Cascade":
                     line = 150;
-                    colunm = 150;
+                    colunm = 180;
+                    break;
+                case "Boubou":
+                    line = 93;
+                    colunm = 125;
+                    break;
+                case "Taizo":
+                    line = 93;
+                    colunm = 125;
+                    break;
+                case "Kinukuman":
+                    line = 93;
+                    colunm = 125;
                     break;
                 default:
                     line = 100;
@@ -175,7 +187,7 @@ namespace Umea_rana
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 150;
-                    colunm = 150;
+                    colunm = 180;
                     hauteurY = 150;
                     largeurX = 150;
                     break;
@@ -185,24 +197,24 @@ namespace Umea_rana
                     break;
                 case "Kinukuman":
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 100;
-                    colunm = 100;
+                    line = 93;
+                    colunm = 125;
                     hauteurY = 100;
                     largeurX = 100;
                     break;
                 case "Boubou":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 150;
-                    colunm = 150;
+                    line = 93;
+                    colunm = 125;
                     hauteurY = 150;
                     largeurX = 150;
                     break;
-                case "Taizon":
+                case "Taizo":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 75;
-                    colunm = 75;
+                    line = 93;
+                    colunm = 125;
                     hauteurY = 100;
                     largeurX = 100;
                     break;
@@ -247,7 +259,20 @@ namespace Umea_rana
                 case "Cascade":
 
                     line = 150;
-                    colunm = 150;
+                    colunm = 180;
+                    break;
+
+                case "Boubou" :
+                    line = 93;
+                    FrameColumn = 125;
+                    break;
+                case "Taizo":
+                    line = 93;
+                    FrameColumn = 125;
+                    break;
+                case "Kinukuman":
+                    line = 93;
+                    FrameColumn = 125;
                     break;
                 default:
                     break;
@@ -572,34 +597,200 @@ namespace Umea_rana
             lastvie = vie;
             timerrun--;
         }
+
+        public void Animation(int n)
+        {
+            this.Timer++;
+            if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn++;
+                if (FrameColumn > n)
+                    FrameColumn = 1;
+            }
+        }
+
         public void Animated()
         {
             if (type == "Light")
             {
-                this.Timer++;
-                if (this.Timer == this.AnimationSpeed)
+                if (vie > 0)
                 {
-                    this.Timer = 0;
-                    this.FrameColumn++;
-                    if (FrameColumn > 13)
+                    FrameLine = 1;
+                    Animation(13);
+                }
+                else
+                {
+                    FrameLine = 2;
+
+                    this.Timer++;
+                    if (FrameColumn == 7)
+                    {
+
+                    }
+                    else if (FrameColumn > 7)
                     {
                         FrameColumn = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
                 }
             }
 
             else if (type == "Cascade")
             {
-                this.Timer++;
-                if (this.Timer == this.AnimationSpeed)
+                if (vie > 0)
                 {
-                    this.Timer = 0;
-                    this.FrameColumn++;
-                    if (FrameColumn > 8)
+                    FrameLine = 1;
+                    Animation(8);
+                }
+                else
+                {
+                    FrameLine = 4;
+
+                    this.Timer++;
+                    if (FrameColumn == 10)
+                    {
+
+                    }
+                    else if (FrameColumn > 10)
                     {
                         FrameColumn = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
                 }
+            }
+
+            else if (type == "Boubou")
+            {
+                if (vie > 0)
+                {
+                    FrameLine = 1;
+                    Animation(4);
+                }
+                else
+                {
+                    FrameLine = 3;
+
+                    this.Timer++;
+                    if (FrameColumn == 5)
+                    {
+
+                    }
+                    else if (FrameColumn > 5)
+                    {
+                        FrameColumn = 1;
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
+                }
+            }
+
+            else if (type == "Kinukuman")
+            {
+                if (vie > 0)
+                {
+                    FrameLine = 1;
+                    Animation(4);
+                }
+                else
+                {
+                    FrameLine = 3;
+
+                    this.Timer++;
+                    if (FrameColumn == 6)
+                    {
+
+                    }
+                    else if (FrameColumn > 6)
+                    {
+                        FrameColumn = 1;
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
+                }
+            }
+
+            else if (type == "Taizo")
+            {
+               
+                if (vie > 0)
+                {
+                    FrameLine = 1;
+                    Animation(3);
+                }
+                else
+                {
+                    if (FrameLine != 5 && FrameLine != 6)
+                    {
+                        FrameLine = 5;
+                        FrameColumn = 1;
+                    }
+                    else if (FrameLine == 5)
+                    {
+                        this.Timer++;
+                        if (FrameColumn == 16)
+                        {
+                            FrameLine = 6;
+                            FrameColumn = 1;
+                        }
+                        else if (FrameColumn > 5)
+                        {
+                            FrameLine = 6;
+                            FrameColumn = 1;
+                        }
+                        else if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+
+                        }
+
+                    }
+
+                    else if (FrameLine == 6)
+                    {
+                        this.Timer++;
+                        if (FrameColumn == 13)
+                        {
+
+                        }
+                        else if (FrameColumn > 13)
+                        {
+                            
+                        }
+                        else if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+
+                        }
+                    }
+                   
+
+                }
+
             }
         }
 
