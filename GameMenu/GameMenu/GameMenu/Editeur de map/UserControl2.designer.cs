@@ -125,9 +125,9 @@
             this.couleur2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.incolore = new System.Windows.Forms.RadioButton();
             this.color = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
             this.valid_couleur = new System.Windows.Forms.Button();
             this.choix_hero.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
@@ -1319,19 +1319,6 @@
             this.tableLayoutPanel23.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanel23.TabIndex = 0;
             // 
-            // tableLayoutPanel24
-            // 
-            this.tableLayoutPanel24.ColumnCount = 1;
-            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel24.Controls.Add(this.valid_couleur, 0, 1);
-            this.tableLayoutPanel24.Location = new System.Drawing.Point(3, 113);
-            this.tableLayoutPanel24.Name = "tableLayoutPanel24";
-            this.tableLayoutPanel24.RowCount = 2;
-            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.38028F));
-            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.61972F));
-            this.tableLayoutPanel24.Size = new System.Drawing.Size(199, 142);
-            this.tableLayoutPanel24.TabIndex = 1;
-            // 
             // incolore
             // 
             this.incolore.AutoSize = true;
@@ -1356,9 +1343,22 @@
             this.color.UseVisualStyleBackColor = true;
             this.color.CheckedChanged += new System.EventHandler(this.color_CheckedChanged);
             // 
+            // tableLayoutPanel24
+            // 
+            this.tableLayoutPanel24.ColumnCount = 1;
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel24.Controls.Add(this.valid_couleur, 0, 1);
+            this.tableLayoutPanel24.Location = new System.Drawing.Point(3, 113);
+            this.tableLayoutPanel24.Name = "tableLayoutPanel24";
+            this.tableLayoutPanel24.RowCount = 2;
+            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.38028F));
+            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.61972F));
+            this.tableLayoutPanel24.Size = new System.Drawing.Size(199, 142);
+            this.tableLayoutPanel24.TabIndex = 1;
+            // 
             // valid_couleur
             // 
-            this.valid_couleur.Location = new System.Drawing.Point(3, 93);
+            this.valid_couleur.Location = new System.Drawing.Point(3, 92);
             this.valid_couleur.Name = "valid_couleur";
             this.valid_couleur.Size = new System.Drawing.Size(190, 46);
             this.valid_couleur.TabIndex = 0;
