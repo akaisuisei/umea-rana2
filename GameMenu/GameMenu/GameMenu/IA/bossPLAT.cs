@@ -536,7 +536,7 @@ namespace Umea_rana
                                 timeatk = 60;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
-                                timerrun = 50;
+                                timerrun = 5;
                             if (timerrun >= 0)// se deplace
                             {
                                 rectangle.X += speed;

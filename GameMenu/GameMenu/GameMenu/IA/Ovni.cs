@@ -83,9 +83,9 @@ namespace Umea_rana
         }
         public Ovni(Rectangle fond)
         {
-           this.fond = fond;
-           WindoW = fond.Width;
-           WindowH = fond.Height;
+            this.fond = fond;
+            WindoW = fond.Width;
+            WindowH = fond.Height;
             width1 = (int)(WindoW * 0.05);
             width2 = (int)(WindoW * 0.05);
             width3 = (int)(WindoW * 0.05);
@@ -102,7 +102,7 @@ namespace Umea_rana
             line = 64;
             colunm = 64;
         }
-        public void param( int fc)
+        public void param(int fc)
         {
             this.fc = fc;
         }
@@ -118,31 +118,31 @@ namespace Umea_rana
                 {
                     if (ovni[i].launch < time)
                     {
-                        this.ovni[i].rectangle.X +=(int)( ovni[i].dirX * ovni[i].dir.X * ovni[i].speed );
+                        this.ovni[i].rectangle.X += (int)(ovni[i].dirX * ovni[i].dir.X * ovni[i].speed);
                         this.ovni[i].rectangle.Y += (int)(ovni[i].dirY * ovni[i].dir.Y * ovni[i].speed);
                         ovni[i].circle.x = ovni[i].rectangle.Center.X;
                         ovni[i].circle.Y = ovni[i].rectangle.Center.Y;
                         if (ovni[i].type == 'v' || ovni[i].type == 'm' || ovni[i].type == 'p' || ovni[i].type == 'b')
                         {
-                            if (ovni[i].rectangle.Left < fond.Left )
+                            if (ovni[i].rectangle.Left < fond.Left)
                             {
-                                this.ovni[i].dirX  = 1;
-                                this.ovni[i].rectangle.X = fond.Left +1;
+                                this.ovni[i].dirX = 1;
+                                this.ovni[i].rectangle.X = fond.Left + 1;
                             }
-                            else if (ovni[i].rectangle.Right >fond.Right  )
+                            else if (ovni[i].rectangle.Right > fond.Right)
                             {
-                                this.ovni[i].dirX  = -1;
-                                this.ovni[i].rectangle.X = fond.Right   - this.ovni[i].rectangle.Width - 5;
+                                this.ovni[i].dirX = -1;
+                                this.ovni[i].rectangle.X = fond.Right - this.ovni[i].rectangle.Width - 5;
                             }
-                            if (ovni[i].rectangle.Top < fond.Top )
+                            if (ovni[i].rectangle.Top < fond.Top)
                             {
-                                this.ovni[i].dirY  = 1;
-                                this.ovni[i].rectangle.Y = fond.Top ;
+                                this.ovni[i].dirY = 1;
+                                this.ovni[i].rectangle.Y = fond.Top;
                             }
-                            else if (ovni[i].rectangle.Bottom > fond.Bottom )
+                            else if (ovni[i].rectangle.Bottom > fond.Bottom)
                             {
-                                this.ovni[i].dirY  = -1;
-                                this.ovni[i].rectangle.Y = fond.Bottom  - this.ovni[i].rectangle.Height - 10;
+                                this.ovni[i].dirY = -1;
+                                this.ovni[i].rectangle.Y = fond.Bottom - this.ovni[i].rectangle.Height - 10;
                             }
 
                         }
@@ -159,8 +159,8 @@ namespace Umea_rana
                 {
                     ovni[i].FrameColumn++;
                     if (ovni[i].FrameColumn == ovni[i].maxframecolumn)
-                        ovni[i].FrameColumn = ovni[i].minframecolunm ;
-                    ovni[i].timer = 10;                    
+                        ovni[i].FrameColumn = ovni[i].minframecolunm;
+                    ovni[i].timer = 10;
                 }
                 ovni[i].timer--;
             }
@@ -201,21 +201,21 @@ namespace Umea_rana
         {
             Random rnd = new Random();
             ovnis ov = new ovnis();
-            Vector2 dir ;
+            Vector2 dir;
             if (bonus.angle != 0)
                 dir = new Vector2((float)Math.Cos((bonus.angle * Math.PI) / 180), (float)Math.Sin(bonus.angle * Math.PI / 180));
             else
                 dir = new Vector2(rnd.Next(), rnd.Next());
-            int x =fond.Left  + (int)(bonus.X * fond.Width );
+            int x = fond.Left + (int)(bonus.X * fond.Width);
             dir.Normalize();
-       
-            ov.dir = dir ;
+
+            ov.dir = dir;
             if (bonus.speed != 0)
                 ov.speed = bonus.speed;
             else
-                ov.speed = rnd.Next(2,10);
+                ov.speed = rnd.Next(2, 10);
             ov.launch = bonus.launch;
-       
+
             ov.type = bonus.type;
             switch (bonus.type)
             {
@@ -223,7 +223,7 @@ namespace Umea_rana
                     ov.vie = 1;
                     ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);
                     ov.circle.R = R1;
-         
+
                     ov.FrameColumn = 21;
                     ov.FrameLine = 5;
                     ov.maxframecolumn = 25;
@@ -243,7 +243,7 @@ namespace Umea_rana
                     ov.power = 1;
                     ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);
                     ov.circle.R = R1;
-                
+
                     ov.FrameColumn = 21;
                     ov.minframecolunm = 21;
                     ov.maxframecolumn = 24;
@@ -253,11 +253,11 @@ namespace Umea_rana
                     ov.bomb = 1;
                     ov.rectangle = new Rectangle(x, -height1 - 2, width1, height1);
                     ov.circle.R = R1;
-               
+
                     ov.FrameColumn = 21;
                     ov.minframecolunm = 21;
                     ov.maxframecolumn = 24;
-                    ov.FrameLine =4; 
+                    ov.FrameLine = 4;
                     break;
                 case 'a':
                     ov.damage = 30;
@@ -290,12 +290,12 @@ namespace Umea_rana
                     ov.damage = 100;
                     ov.circle.R = R4;
                     ov.rectangle = new Rectangle(x, -height3 - 2, width4, height4);
-        
+
                     ov.FrameLine = rnd.Next(6, 8);
                     ov.maxframecolumn = 30;
                     break;
             }
-     
+
             ovni.Add(ov);
         }
         /// <summary>
@@ -315,31 +315,31 @@ namespace Umea_rana
                 case 'v':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                 
-                     ov.FrameColumn = 21;
+
+                    ov.FrameColumn = 21;
                     ov.FrameLine = 5;
                     break;
                 case 'm':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                 
-                       ov.FrameColumn = 21;
+
+                    ov.FrameColumn = 21;
 
                     ov.FrameLine = 2;
                     break;
                 case 'p':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
-                   
-                         ov.FrameColumn = 21;
+
+                    ov.FrameColumn = 21;
                     ov.FrameLine = 3;
                     break;
                 case 'b':
                     ov.rectangle = new Rectangle(x, y, width1, height1);
                     ov.circle.R = R1;
                     ov.FrameLine = 1;
-                      ov.FrameColumn = 21;
-                    ov.FrameLine =4; 
+                    ov.FrameColumn = 21;
+                    ov.FrameLine = 4;
                     break;
                 case 'a':
                     ov.rectangle = new Rectangle(x, y, width2, height2);
@@ -374,34 +374,91 @@ namespace Umea_rana
             texture.Dispose();
         }
     }
-    public class Boss : objet 
+    public class Boss : objet
     {
-        PatternMgr pattern{get;set;}
-        Boss_setting boss_setting;
-        public Boss(PatternMgr _pattern,Boss_setting _boss_setting)
+        PatternMgr pattern { get; set; }
+        int lauchtime;
+        Rectangle fond;
+        Texture2D texture;
+        string type;
+        int damage;
+        int speed;
+        int RPM;
+
+        Color color;
+        public Boss(PatternMgr _pattern)
         {
-            pattern=_pattern;
-            boss_setting = _boss_setting;
+            pattern = _pattern;
         }
-        public void LoadContent()
+        public void LoadContent(Rectangle fond, Rectangle rectangle)
         {
+            this.fond = fond;
+            this.rectangle = rectangle;
+            this.rectangle_C = rectangle;
+
         }
-        public void update(GameTime gameTime)
+        public void update(GameTime gameTime, int time)
         {
+
             pattern.Update(gameTime);
+            if (this.lauchtime < time)
+            {
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(texture, rectangle, Color.White);
             pattern.Draw(spriteBatch);
+        }
+        public void parametrage(ContentManager Content, Boss_setting boss)
+        {
+            rectangle.X = (int)(boss.pos.X * fond.Width + fond.Right);
+            rectangle.Y = fond.Top - rectangle.Height;
+            lauchtime = boss.timer;
+            this.type = boss.type;
+            this.texture = Content.Load<Texture2D>("bossSEU//" + this.type);
+            vie = boss.life;
+            this.speed = boss.speed;
+            this.color = boss.color;
+            this.RPM = boss.RPM;
+            this.damage = boss.damage;
         }
     }
     public struct Boss_setting
     {
-        public Vector2 pos{get;set;} //spawning point
-        public Boss_setting(Vector2 _pos):this()
+        public int damage { get; set; }
+        public Color color { get; set; }
+        public int RPM { get; set; }
+        public int life { get; set; }
+        public int speed { get; set; }
+        public int timer { get; set; }
+        public Vector2 pos { get; set; } //spawning point
+        public string type { get; set; }
+        public Boss_setting(Vector2 pos, int timer, int damage, int rpm, int life, int speed, System.Drawing.Color color)
+            : this()
         {
-            pos = _pos;
+            this.pos = pos;
+            this.timer = timer;
+            this.damage = damage;
+            this.color = new Color(color.R, color.G, color.B, color.A);
+            this.RPM = rpm;
+            this.life = life;
+            this.speed = speed;
+
         }
+        public Boss_setting(Vector2 pos, int timer, int damage, int rpm, int life, int speed, Color color, string type)
+            : this()
+        {
+            this.pos = pos;
+            this.timer = timer;
+            this.damage = damage;
+            this.color = color;
+            this.RPM = rpm;
+            this.life = life;
+            this.speed = speed;
+            this.type = type;
+        }
+
     }
     public class Pattern
     {
@@ -420,7 +477,7 @@ namespace Umea_rana
         public Pattern(PatternMgr _mgr)
         {
             mgr = _mgr;
-            setting=mgr.Setting;
+            setting = mgr.Setting;
             r_height = setting.height;
             r_width = setting.width;
         }
@@ -437,11 +494,11 @@ namespace Umea_rana
             Pos += setting.direction * speed;
             taille_missile = new Rectangle((int)Pos.X, (int)Pos.Y, r_width, r_height);
             LifeTime -= gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (LifeTime < 0 || Pos.Y>OptionState._height)
+            if (LifeTime < 0 || Pos.Y > OptionState._height)
                 exist = false;
         }
-    
-        public void draw(SpriteBatch spriteBatch,Texture2D texture,Color color)
+
+        public void draw(SpriteBatch spriteBatch, Texture2D texture, Color color)
         {
             if (!exist)
                 return;
@@ -474,7 +531,7 @@ namespace Umea_rana
             _elapsed += gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var pattern in _pattern)
                 pattern.update(gameTime);
-            foreach(var pattern in _pattern.Where(p => !p.exist))
+            foreach (var pattern in _pattern.Where(p => !p.exist))
                 pattern.reset();
             //gérer la collision ici
             if (_elapsed >= 30)
@@ -500,12 +557,12 @@ namespace Umea_rana
         public int width { get; set; }//longueur du rectangle de collision
         public int height { get; set; }//largeur du rectangle de collision
 
-        public PatternSettings(double _Lifetime,Vector2 _direction, int _speed, Color _couleur, double _frequence, int _max = 200, Func<Vector2, Vector2> _pos=null,int _width=5,int _height=5)
+        public PatternSettings(double _Lifetime, Vector2 _direction, int _speed, Color _couleur, double _frequence, int _max = 200, Func<Vector2, Vector2> _pos = null, int _width = 5, int _height = 5)
             : this()
         {
             LifeTime = _Lifetime;
             speed = _speed;
-            pos=_pos;
+            pos = _pos;
             couleur = _couleur;
             max = _max;
             frequence = _frequence;

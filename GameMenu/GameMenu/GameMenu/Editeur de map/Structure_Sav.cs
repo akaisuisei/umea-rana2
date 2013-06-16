@@ -110,7 +110,8 @@ namespace Umea_rana
         public List<couple> ia_Kamikaze;
         public List<Bonus> bonus;
         public levelProfile levelProfile;
-        public BossSEUstruct bossSEU { get; set; }
+
+        public Boss_setting bossSEU { get; set; }
 
     }
     public struct PlayerProfile
