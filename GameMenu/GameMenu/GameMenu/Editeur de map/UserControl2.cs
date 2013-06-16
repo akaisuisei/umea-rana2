@@ -27,12 +27,12 @@ namespace Umea_rana
         string[] playlist;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance",
-            t_plat_vit = "vitesse", t_plat_dist = "distance";
+            t_plat_vit = "vitesse", t_plat_dist = "distance", t_viedep = "vie";
         // type
         string type;
         System.Drawing.Color color2, color4;
         int width, height;
-        int seconde;
+        float X0;
         public bool IHave_control;
         bool openF;
         string imageB;
@@ -81,7 +81,7 @@ namespace Umea_rana
 
             file_bosspath = "";
             file_platpath = "";
-            seconde = 0;
+            X0 = 0f;
             filepath = string.Empty;
             sauve = new Sauveguarde();
             savefile = new savefile();
@@ -108,7 +108,7 @@ namespace Umea_rana
         public void _show(int X, int y, string touch, int spawn)
         {
             IHave_control = true;
-            int decal = 100;
+
             openX = (float)X / (float)width;
             openY = (float)y / (float)height;
 
@@ -230,10 +230,10 @@ namespace Umea_rana
             finally_home = safe_home;
             scrollM = this.scrollingM;
             this.game = game;
-            if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Up))
-                ++seconde;
-            if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Down))
-                --seconde;
+            if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Right))
+                X0 += 3;
+            if (keybord.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Left))
+                X0 -= 3;
 
         }
 
@@ -265,13 +265,14 @@ namespace Umea_rana
 
             for (int i = 0; i < item3.Length; i++)
             {
-                listBox2 .Items.Add(item3[i]);
+                listBox2.Items.Add(item3[i]);
             }
 
             textBox1_v.Tag = t_boss_vie;
             textBox2_p.Tag = t_boss_puiss;
             textBox1.Tag = t_plat_vit;
             textBox2.Tag = t_plat_dist;
+            vie_dep.Tag = t_viedep;
             vie_p.Tag = t_life;
             puissance_p.Tag = t_damage;
             vitesse_p.Tag = t_speed;
@@ -406,6 +407,7 @@ namespace Umea_rana
             textBox1_v.Tag = t_boss_vie;
             textBox1.Tag = t_plat_vit;
             textBox2.Tag = t_plat_dist;
+            vie_dep.Tag = t_viedep;
             vie_p.Tag = t_life; //garder
             vitesse_p.Tag = t_speed;  //garder          
             Sauvegarde_.Tag = t_speed;
@@ -627,6 +629,8 @@ namespace Umea_rana
                 n = 10;
             else if ((string)texbox.Tag == t_plat_dist)
                 n = 100;
+            else if ((string)texbox.Tag == t_viedep)
+                n = 300;
 
 
             if (texbox.Text != string.Empty && int.TryParse(texbox.Text, out res) && res <= n && res > 0)
@@ -728,7 +732,7 @@ namespace Umea_rana
             manage_AA.remove_all();
             manage_AR.remove_all();
             plateform.remove_all();
-            
+
 
             for (int i = 0; i < savefile.ia_AA.Count; ++i)
                 manage_AA.Add(savefile.ia_AA[i], i);
@@ -755,6 +759,7 @@ namespace Umea_rana
 
         private void delete(int spawn, string type)
         {
+           
             switch (type)
             {
                 case "IA_AA":
@@ -762,24 +767,32 @@ namespace Umea_rana
                     manage_AA.remove_all();
                     for (int i = 0; i < savefile.ia_AA.Count; ++i)
                         manage_AA.Add(savefile.ia_AA[i], i);
+                    foreach (Stalker st in manage_AA.Ia_manage)
+                        st.rectangle.X -=(int) X0 ;
                     break;
                 case "IA_AR":
                     savefile.ia_AR.RemoveAt(spawn);
                     manage_AR.remove_all();
                     for (int i = 0; i < savefile.ia_AR.Count; ++i)
                         manage_AR.Add(savefile.ia_AR[i], i);
+                    foreach (Stalker st in manage_AR.Ia_manage)
+                        st.rectangle.X -= (int)X0;
                     break;
                 case "IA_S":
                     savefile.ia_S.RemoveAt(spawn);
                     manage_S.remove_all();
                     for (int i = 0; i < savefile.ia_S.Count; ++i)
                         manage_S.Add(savefile.ia_S[i], i);
+                    foreach (Stalker st in manage_S.Ia_manage)
+                        st.rectangle.X -= (int)X0;
                     break;
                 case "plateformes":
                     savefile.plat_f.RemoveAt(spawn);
                     plateform.remove_all();
                     for (int i = 0; i < savefile.plat_f.Count; ++i)
                         plateform.Add(savefile.plat_f[i], i);
+                    foreach (platform p in plateform.plato)
+                        p.X -= X0;
                     break;
                 default:
                     break;
@@ -800,6 +813,8 @@ namespace Umea_rana
                 manage_AA.remove_all();
                 for (int i = 0; i < savefile.ia_AA.Count; i++)
                     manage_AA.Add(iaa, i);
+                foreach (Stalker st in manage_AA.Ia_manage)
+                    st.rectangle.X -= (int)X0;
             }
 
             else
@@ -840,6 +855,8 @@ namespace Umea_rana
                     plateform.remove_all();
                     for (int i = 0; i < savefile.plat_f.Count; ++i)
                         plateform.Add(savefile.plat_f[i], i);
+                    foreach (platform p in plateform.plato)
+                        p.X -= X0;
                 }
                 else
                 {
@@ -861,6 +878,8 @@ namespace Umea_rana
                         manage_AR.remove_all();
                         for (int i = 0; i < savefile.ia_AR.Count; ++i)
                             manage_AR.Add(savefile.ia_AR[i], i);
+                        foreach (Stalker st in manage_AR.Ia_manage)
+                            st.rectangle.X -= (int)X0;
                     }
                     else if (type == "IA_S")
                     {
@@ -870,6 +889,8 @@ namespace Umea_rana
                         manage_S.remove_all();
                         for (int i = 0; i < savefile.ia_S.Count; ++i)
                             manage_S.Add(savefile.ia_S[i], i);
+                        foreach (Stalker st in manage_S.Ia_manage)
+                            st.rectangle.X -= (int)X0;
                     }
                 }
 
@@ -1032,20 +1053,26 @@ namespace Umea_rana
 
                     if (Naruto.Checked)
                     {
-                        savefile.ia_S.Add(ias);
+
                         manage_S.Add(ias, manage_S.Ia_manage.Count);
+                        iar.X = openX + X0/ width ;
+                        savefile.ia_S.Add(ias);
                         this.hidou();
                     }
                     else if (Eve.Checked)
                     {
-                        savefile.ia_AR.Add(iar);
+
                         manage_AR.Add(iar, manage_AR.Ia_manage.Count);
+                        iar.X = openX + X0/ width ;
+                        savefile.ia_AR.Add(iar);
                         this.hidou();
                     }
                     else if (Tuc.Checked)
                     {
-                        savefile.ia_AA.Add(iaa);
+
                         manage_AA.Add(iaa, manage_AA.Ia_manage.Count);
+                        iar.X = openX + X0/width ;
+                        savefile.ia_AA.Add(iaa);
                         this.hidou();
                     }
 
@@ -1065,7 +1092,8 @@ namespace Umea_rana
 
         private void Valider_p_Click(object sender, EventArgs e)
         {
-            if (allasuite.BackColor == System.Drawing.Color.Green)//+combobox4 a veriff
+           
+            if (allasuite.BackColor == System.Drawing.Color.Green &&  listBox2.SelectedItem != null  )//+combobox4 a veriff
             {
                 if (spawn == -1)
                 {
@@ -1073,7 +1101,7 @@ namespace Umea_rana
                     Plat platef = new Plat();
                     platef.X = openX;
                     platef.Y = openY;
-                    platef.name = (string)listBox2  .SelectedItem;// se qui est selectionner par la combobox des plateforme
+                    platef.name = (string)listBox2.SelectedItem;// se qui est selectionner par la combobox des plateforme
                     platef.nbr = int.Parse(allasuite.Text);
                     if (DroitBas.Checked)
                         platef.type = '3';
@@ -1095,20 +1123,19 @@ namespace Umea_rana
 
                     if (Plateforme_Stable.Checked)
                     {
-                        savefile.plat_f.Add(platef);
+
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-
-
+                        platef.X = openX + X0/width ;
+                        savefile.plat_f.Add(platef);
                     }
 
                     if (Plateforme_Mobile.Checked)
                     {
                         platef.speed = int.Parse(textBox1.Text);
                         platef.distance = float.Parse(textBox2.Text);
-                        savefile.plat_f.Add(platef);
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-
-
+                        platef.X = openX + X0/ width ;
+                        savefile.plat_f.Add(platef);
                     }
                 }
                 else
@@ -1147,6 +1174,7 @@ namespace Umea_rana
                 busyguy.X = openX;
                 busyguy.Y = openY;
                 bossfuck.parrame(busyguy, Content, 3);
+                busyguy.X = X0/ width  + openX;
                 savefile.levelProfile.bossPlatforme = busyguy;
                 hidou();
             }
@@ -1164,20 +1192,66 @@ namespace Umea_rana
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            file_platpath =(string) listBox2.SelectedItem;
+            file_platpath = (string)listBox2.SelectedItem;
         }
 
         private void valid_maison_Click(object sender, EventArgs e)
         {
-            
+
             housesafe house = new housesafe();
             house.X = openX;
             house.Y = openY;
-            savefile.levelProfile.house = house;
             safe_home.parrametrage(house);
+            house.X = X0/width  + openX;
+            savefile.levelProfile.house = house;
+
 
             hidou();
         }
+
+        private void vie_dep_TextChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.playerLife = int.Parse(vie_dep.Text);
+            intcheck(vie_dep);
+        }
+
+        private void Allen_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.image_sprite = true;
+        }
+
+        private void Yoh_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.image_sprite = false;
+        }
+
+        private void valid_hero_Click(object sender, EventArgs e)
+        {
+            if (vie_dep.BackColor == System.Drawing.Color.Green && (Allen.Checked || Yoh.Checked ))
+            {
+                hidou();
+            }
+        }
+
+        private void incolore_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.IAcolor = "BandW";
+        }
+
+        private void color_CheckedChanged(object sender, EventArgs e)
+        {
+            savefile.levelProfile.IAcolor = "color";
+        }
+
+        private void valid_couleur_Click(object sender, EventArgs e)
+        {
+            if (incolore.Checked || color.Checked)
+            {
+                hidou();
+            }
+        }
+
+       
 
 
 

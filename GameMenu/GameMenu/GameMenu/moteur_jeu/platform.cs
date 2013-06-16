@@ -41,7 +41,7 @@ namespace Umea_rana
             width = rectangle.Width;
             height = rectangle.Height;
             this._distance =distance  ;
-            _parcouru = 0;
+            _parcouru = distance ;
             dir = 1;
             this.X = rectangle.X;
             this.Y = rectangle.Y;
@@ -89,7 +89,7 @@ namespace Umea_rana
             width = rectangle.Width;
             height = rectangle.Height;
             this._distance = distance;
-            _parcouru = 0;
+            _parcouru = distance ;
             dir = 1;
             this.X = rectangle.X;
             this.Y = rectangle.Y;

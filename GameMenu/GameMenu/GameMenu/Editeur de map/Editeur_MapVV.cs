@@ -188,6 +188,7 @@ namespace Umea_rana
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
+            ovni.Draw(spriteBatch);
             vaisseau.Draw(spriteBatch);
             info.draw(spriteBatch);
             if (_checkpause)

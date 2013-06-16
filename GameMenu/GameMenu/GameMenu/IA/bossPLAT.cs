@@ -20,6 +20,7 @@ namespace Umea_rana
         public int speed;
         public float X { get; set; }
         public float Y { get; set; }
+        
 
     }
     public class bossPLAT : objet
@@ -29,6 +30,7 @@ namespace Umea_rana
             public int lstart = 1, cstart = 1;
             public int Tlstart = 1, Tcstart = 1, Tcend = 1;
             public pos(int ls, int cs, int tl, int tcs, int tce)
+
             {
                 lstart = ls;
                 cstart = cs;
@@ -71,7 +73,7 @@ namespace Umea_rana
         public int Timer;
         public int AnimationSpeed = 10;
         int colunm, line, dir;
-        int timerdead=-1;
+        int timerdead = -1;
         public int degat { get; private set; }
         float lastvie;
         string type = "";
@@ -84,7 +86,8 @@ namespace Umea_rana
         Color color;
         private Rectangle rect, atk;
         Rectangle fond;
-
+        bool attaque = false;
+        bool deplace = false;
 
 
         public bossPLAT()
@@ -94,6 +97,7 @@ namespace Umea_rana
             ptfaible_ = new List<Pointaction>();
             ptfort_ = new List<Pointaction>();
             poid = 10;
+
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -132,7 +136,19 @@ namespace Umea_rana
                     break;
                 case "Cascade":
                     line = 150;
-                    colunm = 150;
+                    colunm = 180;
+                    break;
+                case "Boubou":
+                    line = 93;
+                    colunm = 125;
+                    break;
+                case "Taizo":
+                    line = 93;
+                    colunm = 125;
+                    break;
+                case "Kinukuman":
+                    line = 93;
+                    colunm = 125;
                     break;
                 default:
                     line = 100;
@@ -168,43 +184,57 @@ namespace Umea_rana
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 100;
                     colunm = 100;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    hauteurY = (int)((53f / (float)line) * rectangle.Height);
+                    largeurX = (int)((16f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((41f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((28f / (float)line) * rectangle.Height);
                     break;
                 case "Cascade":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
                     line = 150;
-                    colunm = 150;
-                    hauteurY = 150;
-                    largeurX = 150;
+                    colunm = 180;
+                    hauteurY = (int)((68f / (float)line) * rectangle.Height);
+                    largeurX = (int)((70f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((46f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((44f / (float)line) * rectangle.Height);
                     break;
                 case "":
                     type = "null";
-
                     break;
+                case null:
+                    type = "null";
+                    break;
+
+
                 case "Kinukuman":
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 100;
-                    colunm = 100;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    line = 93;
+                    colunm = 125;
+                    hauteurY = (int)((55f / (float)line) * rectangle.Height);
+                    largeurX = (int)((36f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((35f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((25f / (float)line) * rectangle.Height);
                     break;
                 case "Boubou":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 150;
-                    colunm = 150;
-                    hauteurY = 150;
-                    largeurX = 150;
+                    line = 93;
+                    colunm = 125;
+                    hauteurY = (int)((45f / (float)line) * rectangle.Height);
+                    largeurX = (int)((33f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((32f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((35f / (float)line) * rectangle.Height);
                     break;
-                case "Taizon":
+                case "Taizo":
 
                     ptfaible_.Add(new Pointaction(dir, Vector2.Zero, rectangle_C, rectangle));
-                    line = 75;
-                    colunm = 75;
-                    hauteurY = 100;
-                    largeurX = 100;
+                    line = 93;
+                    colunm = 125;
+                    hauteurY = (int)((45f / (float)line) * rectangle.Height);
+                    largeurX = (int)((29f / (float)colunm) * rectangle.Width);
+                    decallageX = (int)((47f / (float)colunm) * rectangle.Width);
+                    decallageY = (int)((36f / (float)line) * rectangle.Height);
                     break;
                 default:
                     break;
@@ -247,7 +277,20 @@ namespace Umea_rana
                 case "Cascade":
 
                     line = 150;
-                    colunm = 150;
+                    colunm = 180;
+                    break;
+
+                case "Boubou":
+                    line = 93;
+                    FrameColumn = 125;
+                    break;
+                case "Taizo":
+                    line = 93;
+                    FrameColumn = 125;
+                    break;
+                case "Kinukuman":
+                    line = 93;
+                    FrameColumn = 125;
                     break;
                 default:
                     break;
@@ -316,6 +359,7 @@ namespace Umea_rana
                             {
                                 ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(fond.Width / 2, 0, 100, 50), new Rectangle(fond.Width / 2, 0, 100, 50)));
                                 timeatk = 60;
+                                
                             }
 
                             foreach (Pointaction pt in ptfaible_)
@@ -326,12 +370,16 @@ namespace Umea_rana
                             {
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
                                 timeatk = 60;
+                                attaque = true;
+                                deplace = false;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
                                 timerrun = 50;
                             if (timerrun >= 0)// se deplace
                             {
                                 rectangle.X += speed;
+                                attaque = false;
+                                deplace = true;
                             }
                             foreach (Pointaction pt in ptfaible_)
                                 pt.affichage = rectangle;
@@ -348,6 +396,7 @@ namespace Umea_rana
                             {
                                 // direction du dernier pt fort
                                 rectangle.X += ptfort_[ptfort_.Count - 1].dir * speed;
+                                dir = ptfort_[ptfort_.Count - 1].dir;
                             }
                             else
                                 ptfort_.Clear();
@@ -373,8 +422,8 @@ namespace Umea_rana
                             pt.dir = 1;
                         }
                         break;
-                    default :
-                        timerdead =1;
+                    default:
+                        timerdead = 1;
                         break;
                 }
                 if (timerdead == 0)
@@ -384,7 +433,7 @@ namespace Umea_rana
                 }
                 timerdead--;
             }
-       
+
             if (keyboard.IsKeyDown(Keys.Right) != keyboard.IsKeyDown(Keys.Left))
                 if (keyboard.IsKeyDown(Keys.Right))
                 {
@@ -419,11 +468,11 @@ namespace Umea_rana
             lastvie = vie;
             timerrun--;
         }
-        public void Update(ref KeyboardState keyboard,Sprite_PLA p1, Sprite_PLA p2)
+        public void Update(ref KeyboardState keyboard, Sprite_PLA p1, Sprite_PLA p2)
         {
-            Rectangle cible= Rectangle.Empty ;
-            Vector2 cibleV= Vector2.Zero ;
-            this.vise(p1, p2, ref cible,ref cibleV);
+            Rectangle cible = Rectangle.Empty;
+            Vector2 cibleV = Vector2.Zero;
+            this.vise(p1, p2, ref cible, ref cibleV);
             int bouge = 0;
             this.Animated();
             if (cibleV.X > 0)
@@ -453,7 +502,7 @@ namespace Umea_rana
                             if (timeatk <= 0)// lance son attaque
                             {
                                 timeatk = 60;
-                                ptfort_.Add(new Pointaction(dir, cibleV , new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
+                                ptfort_.Add(new Pointaction(dir, cibleV, new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
 
                             }
                             foreach (Pointaction pt in ptfaible_)
@@ -465,7 +514,7 @@ namespace Umea_rana
                         case "Boubou":
                             if (timeatk < 0)// lance son attaque
                             {
-                                ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(cible.X , 0, 100, 50), new Rectangle(cible.X, 0, 100, 50)));
+                                ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(cible.X, 0, 100, 50), new Rectangle(cible.X, 0, 100, 50)));
                                 timeatk = 60;
                             }
 
@@ -475,7 +524,7 @@ namespace Umea_rana
                         case "Taizon":
                             if (timeatk < 0)
                             {
-                                ptfort_.Add(new Pointaction(dir, cibleV , new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
+                                ptfort_.Add(new Pointaction(dir, cibleV, new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
                                 timeatk = 60;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
@@ -491,9 +540,9 @@ namespace Umea_rana
                             if (timeatk < 0)
                             {
                                 ptfort_.Clear();
-                               
+
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), rectangle_C, rectangle_C));// cree un pt fort pour garder la diretion
-                              
+
                                 timeatk = 120;
                                 timerrun = 50;
                             }
@@ -572,34 +621,216 @@ namespace Umea_rana
             lastvie = vie;
             timerrun--;
         }
+
+        public void Animation(int n)
+        {
+            this.Timer++;
+            if (this.Timer == this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                this.FrameColumn++;
+                if (FrameColumn > n)
+                    FrameColumn = 1;
+            }
+        }
+
+
+
         public void Animated()
         {
             if (type == "Light")
             {
-                this.Timer++;
-                if (this.Timer == this.AnimationSpeed)
+                if (vie > 0)
                 {
-                    this.Timer = 0;
-                    this.FrameColumn++;
-                    if (FrameColumn > 13)
+                    FrameLine = 1;
+                    Animation(13);
+                }
+                else
+                {
+                    FrameLine = 2;
+
+                    this.Timer++;
+                    if (FrameColumn == 7)
+                    {
+
+                    }
+                    else if (FrameColumn > 7)
                     {
                         FrameColumn = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
                 }
             }
 
             else if (type == "Cascade")
             {
-                this.Timer++;
-                if (this.Timer == this.AnimationSpeed)
+                if (vie > 0)
                 {
-                    this.Timer = 0;
-                    this.FrameColumn++;
-                    if (FrameColumn > 8)
+                    FrameLine = 1;
+                    Animation(8);
+                }
+                else
+                {
+                    FrameLine = 4;
+
+                    this.Timer++;
+                    if (FrameColumn == 10)
+                    {
+
+                    }
+                    else if (FrameColumn > 10)
                     {
                         FrameColumn = 1;
                     }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
                 }
+            }
+
+            else if (type == "Boubou")
+            {
+                if (vie > 0)
+                {
+                    FrameLine = 2;
+                    Animation(14);
+                }
+                else
+                {
+                    FrameLine = 3;
+
+                    this.Timer++;
+                    if (FrameColumn == 5)
+                    {
+
+                    }
+                    else if (FrameColumn > 5)
+                    {
+                        FrameColumn = 1;
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
+                }
+            }
+
+            else if (type == "Kinukuman")
+            {
+                if (vie > 0)
+                {
+                    FrameLine = 1;
+                    Animation(4);
+                }
+                else
+                {
+                    FrameLine = 3;
+
+                    this.Timer++;
+                    if (FrameColumn == 6)
+                    {
+
+                    }
+                    else if (FrameColumn > 6)
+                    {
+                        FrameColumn = 1;
+                    }
+                    else if (this.Timer == this.AnimationSpeed)
+                    {
+                        this.Timer = 0;
+                        this.FrameColumn++;
+
+                    }
+
+                }
+            }
+
+            else if (type == "Taizo")
+            {
+
+                if (vie > 0)
+                {
+                    if (deplace)
+                    {
+                        FrameLine = 2;
+                        Animation(4);
+                    }
+                    else if (attaque)
+                    {
+                        FrameLine = 3;
+                        Animation(10);
+                    }
+
+                    else
+                    {
+                        FrameLine = 1;
+                        Animation(3);
+                    }
+                }
+                else
+                {
+                    if (FrameLine != 5 && FrameLine != 6)
+                    {
+                        FrameLine = 5;
+                        FrameColumn = 1;
+                    }
+                    else if (FrameLine == 5)
+                    {
+                        this.Timer++;
+                        if (FrameColumn == 16)
+                        {
+                            FrameLine = 6;
+                            FrameColumn = 1;
+                        }
+                        else if (FrameColumn > 5)
+                        {
+                            FrameLine = 6;
+                            FrameColumn = 1;
+                        }
+                        else if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+
+                        }
+
+                    }
+
+                    else if (FrameLine == 6)
+                    {
+                        this.Timer++;
+                        if (FrameColumn == 13)
+                        {
+
+                        }
+                        else if (FrameColumn > 13)
+                        {
+
+                        }
+                        else if (this.Timer == this.AnimationSpeed)
+                        {
+                            this.Timer = 0;
+                            this.FrameColumn++;
+
+                        }
+                    }
+
+
+                }
+
             }
         }
 

@@ -61,6 +61,8 @@ namespace Umea_rana
             playing = 0;
             if (playlist2.Count > 0)
                 MediaPlayer.Play(playlist2[(int)playing]);
+            else
+                MediaPlayer.Pause();
         }
         public void Newplaylist()
         {

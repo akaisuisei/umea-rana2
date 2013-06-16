@@ -114,8 +114,7 @@ namespace Umea_rana
 
             for (int i = 0; i < platform.nbr; ++i)
             {
-                platform.type ='1';
-                plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * window_W), platform));
+                plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * width_pla ), platform));
             }
         }
         public void Add(Plat platform, int spawn)
@@ -124,7 +123,7 @@ namespace Umea_rana
 
             for (int i = 0; i < platform.nbr; ++i)
             {
-                plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * window_W), platform,spawn ));
+                plato.Add(new platform(new Rectangle(x2 + i * width_pla, y2, width_pla, heith_pla), (int)(platform.distance * width_pla ), platform,spawn ));
             }
         }
         public void remove_all()

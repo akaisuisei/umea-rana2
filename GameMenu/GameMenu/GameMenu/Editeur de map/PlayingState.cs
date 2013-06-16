@@ -37,7 +37,7 @@ namespace Umea_rana
         Sauveguarde sauveguarde;
         public PlayingState(Game1 game1, GraphicsDeviceManager graphics, ContentManager content)
         {
-            rectangle = new Rectangle(0, 0, 30, 30);
+            rectangle = new Rectangle(0, 0, 100, 100);
 
             _pause = new _Pause(game1, graphics, content);
         }

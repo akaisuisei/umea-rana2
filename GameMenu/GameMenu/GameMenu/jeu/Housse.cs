@@ -48,8 +48,8 @@ namespace Umea_rana
         }
         public void parrametrage(levelProfile levelprofile)
         {
-            rect.X = (int)(levelprofile.house.X * windowH);
-            rect.Y = (int)(levelprofile.house.Y * WindowW);
+            rect.X = (int)(levelprofile.house.X * WindowW );
+            rect.Y = (int)(levelprofile.house.Y * windowH );
             fcspeed = levelprofile.fc_speed;
            
         }
@@ -119,8 +119,8 @@ namespace Umea_rana
         public void parrametrage(housesafe house)
         {
             fcspeed = 3;
-            rect.X = (int)(house.X * windowH);
-            rect.Y = (int)(house.Y * WindowW);
+            rect.X = (int)(house.X * WindowW );
+            rect.Y = (int)(house.Y * windowH );
         }
     }
 }
