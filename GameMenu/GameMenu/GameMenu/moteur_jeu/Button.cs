@@ -108,6 +108,24 @@ namespace Umea_rana
             this.name[i, j] = name;
             this.levelname[i, j] = levelname;
         }
+        public void activate(int i, int j, float X, float Y, string gameState, string name, string levelname, List <string > unblocklist)
+        {
+            bool block= false;
+            foreach (string st in unblocklist)
+            {
+                if (st == levelname)
+                    block = true;
+            }
+            if (block)
+            {
+                this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
+                this.gameState[i, j] = gameState;
+                this.name[i, j] = name;
+                this.levelname[i, j] = levelname;
+            }
+            else
+                disable(i, j);
+        }
         /// <summary>
         /// desactive le button du tableau selectionner
         /// </summary>
@@ -118,7 +136,7 @@ namespace Umea_rana
             this.rect[i, j] = new Rectangle(0, 0, 0, 0); this.gameState[i, j] = null;
             this.name[i, j] = "";
         }
-        /// <summary>
+        /// <summary>1
         /// mise a jour des button
         /// </summary>
         /// <param name="Key">entree clavier actuelle</param>
