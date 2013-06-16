@@ -65,17 +65,17 @@ namespace Umea_rana
         {
             WindoW = width; WindowH = height;
             width1 = (int)(WindoW * 0.05);
-            width2 = (int)(WindoW * 0.05);
-            width3 = (int)(WindoW * 0.05);
-            width4 = (int)(WindoW * 0.05);
-            height1 = (int)(WindowH * 0.07);
+            width2 = (int)(WindoW * 0.07);
+            width3 = (int)(WindoW * 0.09);
+            width4 = (int)(WindoW * 0.13);
+            height1 = (int)(WindowH * 0.05);
             height2 = (int)(WindowH * 0.07);
-            height3 = (int)(WindowH * 0.07);
-            height4 = (int)(WindowH * 0.07);
-            R1 = 30;
-            R2 = 30;
-            R3 = 30;
-            R4 = 40;
+            height3 = (int)(WindowH * 0.09);
+            height4 = (int)(WindowH * 0.13);
+            R1 = width1 / 2;
+            R2 = width2 / 2;
+            R3 = width3 / 2;
+            R4 = width4 / 2;
             ovni = new List<ovnis>();
             line = 64;
             colunm = 64;
@@ -87,17 +87,17 @@ namespace Umea_rana
             WindoW = fond.Width;
             WindowH = fond.Height;
             width1 = (int)(WindoW * 0.05);
-            width2 = (int)(WindoW * 0.05);
-            width3 = (int)(WindoW * 0.05);
-            width4 = (int)(WindoW * 0.05);
-            height1 = (int)(WindowH * 0.07);
+            width2 = (int)(WindoW * 0.07);
+            width3 = (int)(WindoW * 0.09);
+            width4 = (int)(WindoW * 0.13);
+            height1 = (int)(WindowH * 0.05);
             height2 = (int)(WindowH * 0.07);
-            height3 = (int)(WindowH * 0.07);
-            height4 = (int)(WindowH * 0.07);
-            R1 = 30;
-            R2 = 30;
-            R3 = 30;
-            R4 = 40;
+            height3 = (int)(WindowH * 0.09);
+            height4 = (int)(WindowH * 0.13);
+            R1 = width1/2;
+            R2 = width2/2;
+            R3 = width3/2;
+            R4 = width4/2;
             ovni = new List<ovnis>();
             line = 64;
             colunm = 64;
@@ -376,52 +376,120 @@ namespace Umea_rana
     }
     public class Boss : objet
     {
-        PatternMgr pattern { get; set; }
-        int lauchtime;
-        Rectangle fond;
-        Texture2D texture;
-        string type;
-        int damage;
-        int speed;
-        int RPM;
-
+        List<PatternMgr> pattern { get; set; }
+        Boss_setting boss_setting { get; set; }
+        int lauchtime { get; set; }
+        Rectangle fond { get; set; }
+        Texture2D texture { get; set; }
+        string type { get; set; }
+        int damage { get; set; }
+        int speed { get; set; }
+        int RPM { get; set; }
+        Vector2 dir { get; set; }
+        Point sens { get; set; }
+        int colunm, line;
         Color color;
-        public Boss(PatternMgr _pattern)
+        bool avance;
+        int timeAvance;
+        Double angle;
+        public Boss(List<PatternMgr> _pattern)
         {
             pattern = _pattern;
+
         }
         public void LoadContent(Rectangle fond, Rectangle rectangle)
         {
             this.fond = fond;
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
-
+            dir = new Vector2(0, 1);
+            sens = new Point (1, 1);
+            avance = true;
+            timeAvance = 200;
+            angle = 0;
         }
         public void update(GameTime gameTime, int time)
         {
-
-            pattern.Update(gameTime);
+            if(type != "")
+                foreach(PatternMgr _pattern in pattern)
+                    _pattern.Update(gameTime);
             if (this.lauchtime < time)
             {
+                if (avance)
+                {
+                    dir = new Vector2(0, 1);
+                    if (timeAvance < 0)
+                        avance = false;
+                    else
+                        timeAvance -= speed;
+                }
+                else
+                {
+                    dir = new Vector2((float)Math.Sin(angle), 1);
+               
+                    angle = (angle + 0.05) % (2 * Math.PI);
+                    if(rectangle_C.Left < fond.Left )
+                    {
+                        sens = new Point(1, sens.Y );
+                        rectangle.X = fond.Left;
+                    }
+                    else if (rectangle_C.Right > fond.Right)
+                    {
+                           sens = new Point(-1, sens.Y);
+                           rectangle.X = fond.Right - rectangle_C.Width - 5;
+                    }
+                    
+                    else if (rectangle_C.Top < fond.Top)
+                    {
+                           sens = new Point(sens.X, 1);
+                           rectangle.Y = fond.Top;
+                    }
+                    
+                    else if (rectangle_C.Bottom > fond.Bottom)
+                    {
+                           sens = new Point(sens.X , -1);
+                        rectangle.Y = fond.Bottom - rectangle_C.Height - 10;
+                    }
+                    
+                }
+
+                this.rectangle.X +=(int)( sens.X *dir.X * speed);
+                this.rectangle.Y += (int)(sens.Y *dir.Y * speed);
+                Update_rec_collision();
             }
+            // sinon rien ps da nimation
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, rectangle, Color.White);
-            pattern.Draw(spriteBatch);
+            foreach(PatternMgr _pattern in pattern)
+                _pattern.Draw(spriteBatch);
         }
         public void parametrage(ContentManager Content, Boss_setting boss)
         {
+            this.boss_setting = boss;
             rectangle.X = (int)(boss.pos.X * fond.Width + fond.Right);
             rectangle.Y = fond.Top - rectangle.Height;
             lauchtime = boss.timer;
             this.type = boss.type;
-            this.texture = Content.Load<Texture2D>("bossSEU//" + this.type);
+            if (type != null && type != "")
+                this.texture = Content.Load<Texture2D>("bossSEU//" + this.type);
+            else
+            {
+                this.texture = Content.Load<Texture2D>("bossSEU//null");
+                type = ""; 
+            }
             vie = boss.life;
             this.speed = boss.speed;
             this.color = boss.color;
             this.RPM = boss.RPM;
             this.damage = boss.damage;
+
+            this.hauteurY = rectangle_C.Height;
+            this.largeurX = rectangle_C.Width;
+            decalageX = 0;
+            decalageY = 0;
+            
         }
     }
     public struct Boss_setting

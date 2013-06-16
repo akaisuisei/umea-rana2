@@ -188,7 +188,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_leveleditor_SEU(ContentManager Content, string level, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni, ref Audio audio)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grap, ref spripte_V sprite, ref Ovni ovni, ref Audio audio, ref Boss boss)
         {
             savefile savefile = new savefile();
             load_SEU(ref level, ref savefile,"SEU");
@@ -205,7 +205,7 @@ namespace Umea_rana
             sprite.parametrage(ref savefile.levelProfile);
             ovni.param(savefile.levelProfile.fc_speed);
             audio.parrametrage (path ,savefile,"SEU");
-
+            boss.parametrage(Content, savefile.bossSEU);
         }
 
         public void supp_dir(string filename)

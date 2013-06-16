@@ -108,6 +108,24 @@ namespace Umea_rana
             this.name[i, j] = name;
             this.levelname[i, j] = levelname;
         }
+        public void activate(int i, int j, float X, float Y, string gameState, string name, string levelname, List<string> unblocklist)
+        {
+            bool block = false;
+            foreach (string st in unblocklist)
+            {
+                if (st == levelname)
+                    block = true;
+            }
+            if (block)
+            {
+                this.rect[i, j] = new Rectangle((int)(WindowW * X), (int)(WindowH * Y), (int)width, (int)height);
+                this.gameState[i, j] = gameState;
+                this.name[i, j] = name;
+                this.levelname[i, j] = levelname;
+            }
+            else
+                disable(i, j);
+        }
         /// <summary>
         /// desactive le button du tableau selectionner
         /// </summary>
@@ -118,7 +136,7 @@ namespace Umea_rana
             this.rect[i, j] = new Rectangle(0, 0, 0, 0); this.gameState[i, j] = null;
             this.name[i, j] = "";
         }
-        /// <summary>
+        /// <summary>1
         /// mise a jour des button
         /// </summary>
         /// <param name="Key">entree clavier actuelle</param>
@@ -194,8 +212,16 @@ namespace Umea_rana
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     /*si on clique sur un button on va voir a quoi il correcpond et le met en action*/
-                    game.menu_select.Play();
-                    if (gameState[X, Y] == "SEU")
+                    game.menu_select.Play(); 
+                    if (gameState[X, Y] == "Init")
+                        game.ChangeState(Game1.gameState.Initialisateur);
+                    else if (gameState[X, Y] == "LevelSelect")
+                        game.ChangeState(Game1.gameState.Level_select_state);
+                    else if (gameState[X, Y] == "LevelSelect_P")
+                        game.ChangeState(Game1.gameState.level_Pselect);
+                    else if (gameState[X, Y] == "LevelSelect2J")
+                        game.ChangeState(Game1.gameState.Level_select_state2J);
+                    else if (gameState[X, Y] == "SEU")
                     {
                         game.level = levelname[X, Y];
                         MediaPlayer.Stop();
@@ -208,10 +234,7 @@ namespace Umea_rana
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.Editeur_mapVV);
                     }
-                    else if (gameState[X, Y] == "Init")
-                        game.ChangeState(Game1.gameState.Initialisateur);
-                    else if (gameState[X, Y] == "LevelSelect")
-                        game.ChangeState(Game1.gameState.Level_select_state);
+
                     else if (gameState[X, Y] == "Level2")
                     {
                         game.level = levelname[X, Y];
@@ -240,8 +263,6 @@ namespace Umea_rana
                                 game.ChangeState(Game1.gameState.leveleditor);
                             }
                     }
-                    else if (gameState[X, Y] == "LevelSelect_P")
-                        game.ChangeState(Game1.gameState.level_Pselect);
                     else if (gameState[X, Y] == "Exit")
                         game.Exit();
                     else if (gameState[X, Y] == "Last")
@@ -261,6 +282,25 @@ namespace Umea_rana
                         game.level = name1;
                         game.ChangeState(Game1.gameState.levelpersoPLA);
                     }
+
+                    else if (gameState[X, Y] == "PLAPerso2J")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.LevelPersoPLA2J );
+                    }
+
+                    else if (gameState[X, Y] == "PLA")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.levelPLA );
+                    }
+
+                    else if (gameState[X, Y] == "PLA2J")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.LevelPLA2J );
+                    }
+
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
 
@@ -408,9 +448,20 @@ namespace Umea_rana
 
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
-                    if (gameState[X, Y] == "SEU")
+                
+                    game.menu_select.Play();
+                    if (gameState[X, Y] == "Init")
+                        game.ChangeState(Game1.gameState.Initialisateur);
+                    else if (gameState[X, Y] == "LevelSelect")
+                        game.ChangeState(Game1.gameState.Level_select_state);
+                    else if (gameState[X, Y] == "LevelSelect_P")
+                        game.ChangeState(Game1.gameState.level_Pselect);
+                    else if (gameState[X, Y] == "LevelSelect2J")
+                        game.ChangeState(Game1.gameState.Level_select_state2J);
+                    else if (gameState[X, Y] == "SEU")
                     {
                         game.level = levelname[X, Y];
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.SEU);
                     }
                     else if (gameState[X, Y] == "Checkpause")
@@ -420,13 +471,11 @@ namespace Umea_rana
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.Editeur_mapVV);
                     }
-                    else if (gameState[X, Y] == "Init")
-                        game.ChangeState(Game1.gameState.Initialisateur);
-                    else if (gameState[X, Y] == "LevelSelect")
-                        game.ChangeState(Game1.gameState.Level_select_state);
+
                     else if (gameState[X, Y] == "Level2")
                     {
                         game.level = levelname[X, Y];
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.Level2);
                     }
                     else if (gameState[X, Y] == "Main")
@@ -438,18 +487,19 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Pause")
                         game.ChangeState(Game1.gameState.Pause);
                     else if (gameState[X, Y] == "Play")
+                    {
+                        game.level = "edit";
                         game.ChangeState(Game1.gameState.PlayingState);
+                    }
                     else if (gameState[X, Y] == "LevelEdit")
                     {
-                        if (name1 != string.Empty)
-                            game.level = name1;
-                        else
-                            game.level = name[X, Y];
-                        if (game.level != "LevelEdit")
-                            game.ChangeState(Game1.gameState.leveleditor);
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "LevelEdit")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.leveleditor);
+                            }
                     }
-                    else if (gameState[X, Y] == "LevelSelect_P")
-                        game.ChangeState(Game1.gameState.level_Pselect);
                     else if (gameState[X, Y] == "Exit")
                         game.Exit();
                     else if (gameState[X, Y] == "Last")
@@ -460,8 +510,38 @@ namespace Umea_rana
                         game.nextgame();
                     else if (gameState[X, Y] == "Replay")
                         game.replay();
+                    else if (gameState[X, Y] == "Level3")
+                    {
+                        game.ChangeState(Game1.gameState.level3);
+                    }
+                    else if (gameState[X, Y] == "bis")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.levelpersoPLA);
+                    }
+
+                    else if (gameState[X, Y] == "PLAPerso2J")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                    }
+
+                    else if (gameState[X, Y] == "PLA")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.levelPLA);
+                    }
+
+                    else if (gameState[X, Y] == "PLA2J")
+                    {
+                        game.level = name1;
+                        game.ChangeState(Game1.gameState.LevelPLA2J);
+                    }
+
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
+
+               
 
                     pause = false;
                     System.Threading.Thread.Sleep(G_latence);
@@ -598,7 +678,7 @@ namespace Umea_rana
                     else
                         X = (X - 1) % rect.GetLength(0);
                     active_item = X;
-                    
+
                 }
                 if (intecep && mouse.LeftButton == ButtonState.Pressed)
                 {

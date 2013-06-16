@@ -195,7 +195,7 @@ namespace Umea_rana
                     manage_V.bulletL.Clear();
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.win);//va au level2
+                    game.ChangeState(Game1.gameState.win,game.level,vaisseau.scrore ,perso2.scrore );//va au level2
                 timer--;
             }
             //update interface
