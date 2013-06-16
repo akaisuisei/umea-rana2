@@ -26,9 +26,11 @@ namespace Umea_rana
         Dictionary<gameState, GameState> StateManager;
         Audio audio;
         public string path = "test";
-        public string level=string.Empty ,next= string.Empty ;
+        public string level = string.Empty, next = string.Empty;
         public SoundEffect menu_cursor, menu_select;
-
+        public string endlevel { get; set; }
+        public Point score { get; set; }
+        public int highscor;
         public Game1()
         {
             //display
@@ -41,7 +43,7 @@ namespace Umea_rana
             //state
             _currentState = gameState.Initialisateur;
             StateManager = new Dictionary<gameState, GameState>();
-            StateManager.Add(gameState.PlayingState, new PlayingState(this,graphics,Content));
+            StateManager.Add(gameState.PlayingState, new PlayingState(this, graphics, Content));
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
             StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
@@ -50,11 +52,11 @@ namespace Umea_rana
             StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
-            StateManager.Add(gameState.level_Pselect, new Leveleditorselect (this,graphics ,Content ));
-            StateManager.Add(gameState.OptionState,new OptionState(this,graphics,Content,gameconfiguration));
-            StateManager.Add(gameState.win ,new GameWin(this,graphics,Content ));
-            StateManager.Add(gameState.level3 , new Level3(this, graphics, Content));
-            StateManager.Add(gameState.levelpersoPLA , new PLA1jperso  (this, graphics, Content));
+            StateManager.Add(gameState.level_Pselect, new Leveleditorselect(this, graphics, Content));
+            StateManager.Add(gameState.OptionState, new OptionState(this, graphics, Content, gameconfiguration));
+            StateManager.Add(gameState.win, new GameWin(this, graphics, Content));
+            StateManager.Add(gameState.level3, new Level3(this, graphics, Content));
+            StateManager.Add(gameState.levelpersoPLA, new PLA1jperso(this, graphics, Content));
             graphics.PreferredBackBufferHeight = OptionState._height;
             graphics.PreferredBackBufferWidth = OptionState._width;
             graphics.IsFullScreen = OptionState.fullscreen;
@@ -63,8 +65,8 @@ namespace Umea_rana
         protected override void Initialize()
         {
             ParticleAdder.adder(this, _currentState, OptionState._width, OptionState._height);
-            
-                
+
+
             try
             {
                 StateManager[_currentState].Initialize(graphics);
@@ -79,11 +81,11 @@ namespace Umea_rana
 
         protected override void LoadContent()
         {
-            LocalizedString.Culture= new System.Globalization.CultureInfo(OptionState.langue);
+            LocalizedString.Culture = new System.Globalization.CultureInfo(OptionState.langue);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
-            StateManager[_currentState].LoadContent(Content,GraphicsDevice, ref level ,ref next  , graphics, audio  );
+            StateManager[_currentState].LoadContent(Content, GraphicsDevice, ref level, ref next, graphics, audio);
             base.LoadContent();
         }
 
@@ -142,18 +144,64 @@ namespace Umea_rana
         {
             _previousState = _currentState;
             _currentState = NewState;
-            is_fullscreen(OptionState.fullscreen );
+            is_fullscreen(OptionState.fullscreen);
             this.Initialize();
+            endlevel = "";
+        }
+        public void ChangeState(gameState NewState, string level, gameState previousState = gameState.Null)
+        {
+            _previousState = _currentState;
+            _currentState = NewState;
+            is_fullscreen(OptionState.fullscreen);
+            this.Initialize();
+            unlocklevel unloak = new unlocklevel();
+            unloak.endlevel(level);
+            endlevel = "";
+        }
+        public void ChangeState(gameState NewState, string level, int P1, int P2, gameState previousState = gameState.Null)
+        {
+            int pmax;
+            _previousState = _currentState;
+            _currentState = NewState;
+            is_fullscreen(OptionState.fullscreen);
+            this.Initialize();
+            unlocklevel unloak = new unlocklevel();
+            unloak.endlevel(level);
+            Highscore hgh = new Highscore();
+            pmax = hgh.endlevel(level, P1, P2);
+            if (P2 != 0)
+                if (pmax == P1 && pmax == P2)
+                    endlevel = "highscore: your are very good gamer";
+                else if (pmax == P1)
+                    endlevel = "highscore: P1 is the best, p2 is a looser";
+                else if (pmax == P2)
+                    endlevel = "highscore: P2 is the best, p1 is a looser";
+                else if (P1 == P2)
+                    endlevel = "Your are friend";
+                else if (P1 > P2)
+                    endlevel = "P1 Win";
+                else
+                    endlevel = "P2 Win";
+            else
+                if (P1 == pmax)
+                    endlevel = "highscore: your are very good gamer";
+                else
+                    endlevel = " your are very good gamer";
+            score = new Point(P1, P2);
+            highscor= pmax ;
+
         }
         public void GetPreviousState()
         {
             _currentState = this._previousState;
             is_fullscreen(OptionState.fullscreen);
             this.Initialize();
+            endlevel = "";
         }
         public void ChangeState2(gameState checkpause)
         {
             _checkpause = checkpause;
+            endlevel = "";
         }
 
         private void is_fullscreen(bool full)
@@ -163,12 +211,12 @@ namespace Umea_rana
                 if (_currentState == gameState.Editeur_mapVV || _currentState == gameState.PlayingState && graphics.IsFullScreen)
                     graphics.ToggleFullScreen();
                 else if (_currentState != gameState.Editeur_mapVV && _currentState != gameState.PlayingState && !graphics.IsFullScreen)
-                    graphics.ToggleFullScreen();              
+                    graphics.ToggleFullScreen();
             }
         }
         public void nextgame()
         {
-            if (next!= null && next.Length > 0)
+            if (next != null && next.Length > 0)
             {
                 if (next[0] == 's' || next[0] == 'S')
                 {

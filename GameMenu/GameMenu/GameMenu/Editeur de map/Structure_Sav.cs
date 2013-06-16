@@ -144,4 +144,160 @@ namespace Umea_rana
     public struct OptionProfile
     {
     }
+    public struct unlocked
+    {
+        public string level { get; set; }
+        public bool locked { get; set; }
+        public unlocked (string level, bool locked):this()
+        {
+            this.locked = locked;
+            this.level = level;
+        }
+    }
+    public class unlocklevel
+    {
+        unlocked[] lockedlevel;
+        public unlocklevel()
+        {
+            lockedlevel = new unlocked[12]; 
+        }
+        public void load()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
+
+            FileStream file1 = null;
+            XmlSerializer f = null;
+            DirectoryInfo dir = new DirectoryInfo(path );
+            if (!dir.Exists)
+                dir.Create();
+            else
+            {
+                if (File.Exists(dir.FullName + "\\block.carambar"))
+                {
+                    file1 = new FileStream(dir.FullName + "\\block.carambar", FileMode.Open, FileAccess.Read);
+
+                    f = new XmlSerializer(typeof(unlocked[]));
+                    lockedlevel = (unlocked[])f.Deserialize(file1);
+                    file1.Close();
+                }
+                if (lockedlevel == null)
+                    lockedlevel = new unlocked[12];// a finir avec les nom des niveau
+            }
+        }
+        public void endlevel(string level)
+        {
+            load();
+            for (int i = 0; i < lockedlevel.Length - 2; i++)
+            {
+                if (lockedlevel[i].level == level)
+                    lockedlevel[i + 1].locked = true;
+            }
+            save();
+        }
+        public List<string> unlocklevellist()
+        {
+            List<string > res= new List<string> (){""};
+            load();
+            foreach (unlocked u in lockedlevel)
+                if (u.locked)
+                    res.Add(u.level);
+            return res;
+        }
+        public void save()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
+
+            FileStream file1 = null;
+            XmlSerializer f = null;
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (!dir.Exists)
+                dir.Create();
+            else
+            {
+                file1 = new FileStream(dir.FullName + "\\block.carambar", FileMode.Create, FileAccess.Write);
+                f = new XmlSerializer(typeof(unlocked[]));
+                f.Serialize(file1, this.lockedlevel );
+                file1.Close();
+            }
+        }
+    }
+        
+    public struct  scoring 
+        {
+           public  string level{ get; set ;}
+            public int high{ get; set;}
+            public scoring (string level, int high): this()
+            {
+                this.level= level;
+                this.high = high;
+            }
+
+        }
+    public class Highscore
+    {
+
+        List<scoring > highScore;
+       
+        public Highscore()
+        {
+           highScore= new List<scoring>();
+        }
+        public void load()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
+          
+            FileStream file1 = null;
+            XmlSerializer f = null;
+            DirectoryInfo dir = new DirectoryInfo(path );
+            if (!dir.Exists)
+                dir.Create();
+            else
+            {
+                if (File.Exists(dir.FullName + "\\high.carambar"))
+                {
+                    file1 = new FileStream(dir.FullName + "\\high.carambar", FileMode.Open , FileAccess.Read);
+                    f = new XmlSerializer(typeof(List<scoring>));
+                    highScore= (List<scoring>)f.Deserialize(file1);
+                    file1.Close();
+                }
+                if (highScore == null)
+                    highScore = new List<scoring> ();// a finir avec les nom des niveau
+            }
+        }
+        public int endlevel(string level, int j1, int j2)
+        {
+          int i=0;
+            load();
+            while (i<highScore.Count )
+            {
+                if(highScore[i].level==level )
+                    break;
+                i++;
+            }
+           if(i ==highScore.Count )
+               highScore.Add (new scoring (level ,Math.Max (j1,j2)));
+           else
+               highScore[i]= new scoring (level ,Math.Max (j1,Math.Max(j2,highScore[i].high ))); 
+            save();
+            return highScore[i].high ;
+        }
+        public void save()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
+
+            FileStream file1 = null;
+            XmlSerializer f = null;
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (!dir.Exists)
+                dir.Create();
+            else
+            {
+                file1 = new FileStream(dir.FullName + "\\high.carambar", FileMode.Create, FileAccess.Write);
+                f = new XmlSerializer(typeof(List<scoring>));
+                f.Serialize(file1, highScore );
+                file1.Close();
+            }
+        }
+    
+    }
 }

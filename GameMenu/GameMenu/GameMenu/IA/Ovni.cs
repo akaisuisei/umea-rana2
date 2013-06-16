@@ -408,7 +408,7 @@ namespace Umea_rana
         }
         public void update(GameTime gameTime, int time)
         {
-
+            if(type != "")
             pattern.Update(gameTime);
             if (this.lauchtime < time)
             {
@@ -467,7 +467,13 @@ namespace Umea_rana
             rectangle.Y = fond.Top - rectangle.Height;
             lauchtime = boss.timer;
             this.type = boss.type;
-            this.texture = Content.Load<Texture2D>("bossSEU//" + this.type);
+            if (type != null && type != "")
+                this.texture = Content.Load<Texture2D>("bossSEU//" + this.type);
+            else
+            {
+                this.texture = Content.Load<Texture2D>("bossSEU//null");
+                type = ""; 
+            }
             vie = boss.life;
             this.speed = boss.speed;
             this.color = boss.color;
