@@ -170,7 +170,7 @@ namespace Umea_rana
         {
             if (next!= null && next.Length > 0)
             {
-                if (next[0] == 'S' || next[0] == 'S')
+                if (next[0] == 's' || next[0] == 'S')
                 {
                     level = next;
                     ChangeState(gameState.SEU);
@@ -187,15 +187,7 @@ namespace Umea_rana
         {
             if (level != null && level.Length > 0)
             {
-                if (level[0] == 'S' || level[0] == 'S')
-                {
-             
-                    ChangeState(gameState.SEU);
-                }
-                else
-                {              
-                    ChangeState(gameState.Level2);
-                }
+                ChangeState(_currentState);
             }
         }
 

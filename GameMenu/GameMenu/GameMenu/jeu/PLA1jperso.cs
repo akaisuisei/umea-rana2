@@ -60,7 +60,8 @@ namespace Umea_rana.jeu
             managerAR = new IA_manager_AR(new Rectangle(0, 0, 100, 100), height, width);
             manageS = new IA_manager_S(new Rectangle(0, 0, 100, 100), height, width);
             srollingM = new Scrolling_ManagerV(new Rectangle(0, 0, width, height));
-            allen = new Sprite_PLA(new Rectangle(width / 2 - 50, 0, 100, 100), collision, Content, "P1");
+            allen = new Sprite_PLA(new Rectangle(width / 2 - 50, 0, 100, 100), collision, Content, "P1");  
+            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
             //background
             //sprite brouillon    
 
@@ -70,7 +71,9 @@ namespace Umea_rana.jeu
                 ref manageS, ref platform_M, ref housse, ref boss, ref srollingM, ref Graph, ref allen, ref audio);
 
             //ia
-            
+            if (sprite_color == null)
+                sprite_color = "color";
+
             naruto_stalker = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "naruto");
             eve = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + sprite_color + "//" + "tuc_jaune");
@@ -85,7 +88,7 @@ namespace Umea_rana.jeu
 
             boss.loadContent(Content, new Rectangle(0, 0, width, height));
 
-            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
+        
             
             audio.Play();
         }

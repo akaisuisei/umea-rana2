@@ -768,7 +768,7 @@ namespace Umea_rana
                     for (int i = 0; i < savefile.ia_AA.Count; ++i)
                         manage_AA.Add(savefile.ia_AA[i], i);
                     foreach (Stalker st in manage_AA.Ia_manage)
-                        st.rectangle.X -=(int) X0;
+                        st.rectangle.X -=(int) X0 ;
                     break;
                 case "IA_AR":
                     savefile.ia_AR.RemoveAt(spawn);
@@ -1055,7 +1055,7 @@ namespace Umea_rana
                     {
 
                         manage_S.Add(ias, manage_S.Ia_manage.Count);
-                        iar.X = openX + X0;
+                        iar.X = openX + X0/ width ;
                         savefile.ia_S.Add(ias);
                         this.hidou();
                     }
@@ -1063,7 +1063,7 @@ namespace Umea_rana
                     {
 
                         manage_AR.Add(iar, manage_AR.Ia_manage.Count);
-                        iar.X = openX + X0;
+                        iar.X = openX + X0/ width ;
                         savefile.ia_AR.Add(iar);
                         this.hidou();
                     }
@@ -1071,7 +1071,7 @@ namespace Umea_rana
                     {
 
                         manage_AA.Add(iaa, manage_AA.Ia_manage.Count);
-                        iar.X = openX + X0;
+                        iar.X = openX + X0/width ;
                         savefile.ia_AA.Add(iaa);
                         this.hidou();
                     }
@@ -1124,7 +1124,7 @@ namespace Umea_rana
                     {
 
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-                        platef.X = openX + X0;
+                        platef.X = openX + X0/width ;
                         savefile.plat_f.Add(platef);
                     }
 
@@ -1133,7 +1133,7 @@ namespace Umea_rana
                         platef.speed = int.Parse(textBox1.Text);
                         platef.distance = float.Parse(textBox2.Text);
                         plateform.Add(platef, savefile.plat_f.Count - 1);
-                        platef.X = openX + X0;
+                        platef.X = openX + X0/ width ;
                         savefile.plat_f.Add(platef);
                     }
                 }
@@ -1173,7 +1173,7 @@ namespace Umea_rana
                 busyguy.X = openX;
                 busyguy.Y = openY;
                 bossfuck.parrame(busyguy, Content, 3);
-                busyguy.X = X0 + openX;
+                busyguy.X = X0/ width  + openX;
                 savefile.levelProfile.bossPlatforme = busyguy;
                 hidou();
             }
@@ -1201,7 +1201,7 @@ namespace Umea_rana
             house.X = openX;
             house.Y = openY;
             safe_home.parrametrage(house);
-            house.X = X0 + openX;
+            house.X = X0/width  + openX;
             savefile.levelProfile.house = house;
 
 
