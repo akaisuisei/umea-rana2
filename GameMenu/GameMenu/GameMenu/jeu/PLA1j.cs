@@ -133,7 +133,7 @@ namespace Umea_rana.jeu
                 {
                     allen.air();
                 }
-                allen.update(keyboard);
+                allen.update(keyboard,oldkey);
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);

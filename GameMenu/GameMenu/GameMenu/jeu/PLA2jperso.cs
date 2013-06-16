@@ -136,7 +136,7 @@ namespace Umea_rana.jeu
                     P1.air();
                 }
 
-                P1.update(keyboard);
+                P1.update(keyboard,oldkey);
                 if (collision.Collision_sp_sol(ref P2, ref platform_M))
                 {
                     P2.marche();

@@ -56,10 +56,12 @@ namespace Umea_rana
 
         pos idle, atk, walk, die, jump, fall;
         pos current, last;
+        List<pos> listatq;
+        int intatq;
 
         Texture2D test;
         public int damage { get; set; }
-        Keys K_atq, K_right, K_left, K_jump, K_block;
+        Keys K_atq, K_right, K_left, K_jump, K_block, K_atknext, K_atkdown;
         private int Speed { get; set; }
         public Sprite_PLA(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
         {
@@ -86,7 +88,7 @@ namespace Umea_rana
             longattaque = 17;
             dead = false;
             timer_dead = 200;
-
+            intatq = 0;
             if (type == '2')
             {
                 colunm = 168;
@@ -97,10 +99,10 @@ namespace Umea_rana
                 decallageY = (int)((61f / (float)line) * rectangle.Height);
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);
-                atk = new pos(9, 5, 10);
                 die = new pos(3, 5, 9);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
+                listatq.Add(new pos(9, 5, 10));
 
             }
             else
@@ -113,14 +115,15 @@ namespace Umea_rana
                 decallageY = (int)((30f / (float)line) * rectangle.Height);
                 idle = new pos(1, 1, 4);
                 walk = new pos(1, 5, 12);
-                atk = new pos(8, 5, 10);
                 die = new pos(3, 3, 7);
                 jump = new pos(2, 4, 5);
                 fall = new pos(2, 6, 7);
+                listatq.Add(new pos(8, 5, 10));
             }
             current = fall;
             last = current;
             test = Content.Load<Texture2D>("ListBoxBG");
+            atk = listatq[intatq];
         }
         public Sprite_PLA(Rectangle n_rectangle, Collision n_collision, ContentManager Content, string player)
         {
@@ -135,7 +138,7 @@ namespace Umea_rana
             impulse = 150;
             pos_marche = rectangle.Y;
             marchell = Content.Load<Song>("hero//jogging");
-    
+
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -157,14 +160,18 @@ namespace Umea_rana
                     K_right = Keys.Right;
                     K_left = Keys.Left;
                     K_jump = Keys.Space;
-                    K_block = Keys.B ;
+                    K_block = Keys.B;
+                    K_atkdown = Keys.L;
+                    K_atknext = Keys.K;
                     break;
                 case "P2":
-                      K_atq = Keys.E;
+                    K_atq = Keys.E;
                     K_right = Keys.D;
                     K_left = Keys.A;
                     K_jump = Keys.W;
-                    K_block = Keys.R ;
+                    K_block = Keys.R;
+                    K_atkdown = Keys.C;
+                    K_atknext = Keys.Z;
                     break;
                 default:
                     break;
@@ -172,6 +179,8 @@ namespace Umea_rana
         }
         public void parametrage(levelProfile levelprofile, ref ContentManager Content)
         {
+            listatq = new List<pos>();
+            intatq = 0;
             vie = levelprofile.playerLife;
             damage = levelprofile.damage;
             if (levelprofile.image_sprite)
@@ -189,6 +198,11 @@ namespace Umea_rana
                 jump = new pos(2, 4, 5);
                 fall = new pos(2, 6, 7);
                 texture = Content.Load<Texture2D>("hero/allen1");
+                listatq.Add(new pos(8, 5, 10));
+                listatq.Add(new pos(9, 1, 5));
+                listatq.Add(new pos(9, 6, 12));
+                listatq.Add(new pos(13, 7, 13));
+                listatq.Add(new pos(16, 1, 6));
             }
             else
             {
@@ -205,13 +219,21 @@ namespace Umea_rana
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
                 texture = Content.Load<Texture2D>("hero//yoh");
+                listatq.Add(new pos(8, 8, 12));
+                listatq.Add(new pos(9, 1, 5));
+                listatq.Add(new pos(9, 5, 11));
+                listatq.Add(new pos(10, 2, 7));
+                listatq.Add(new pos(11, 1, 6));
+                listatq.Add(new pos(14, 1, 6));
+                listatq.Add(new pos(5, 7, 12));
             }
             current = fall;
             last = current;
             Speed = 4;
+            atk = listatq[intatq];
         }
 
-        public void update(KeyboardState keyboard)
+        public void update(KeyboardState keyboard, KeyboardState old)
         {
             if (in_air)
             {
@@ -243,8 +265,18 @@ namespace Umea_rana
                 --timer_dead;
             if (timer_dead < 0)
                 dead = true;
-            if (keyboard.IsKeyDown(Keys.LeftControl ) && keyboard.IsKeyDown(Keys.V))
+            if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.V))
                 vie = 300;
+            if (old.IsKeyUp(K_atknext) && keyboard.IsKeyDown(K_atknext))
+            {
+                intatq = (intatq + 1) % listatq.Count;
+                atk = listatq[intatq];
+            }
+            if (old.IsKeyUp(K_atkdown) && keyboard.IsKeyDown(K_atkdown))
+            {
+                intatq = ((intatq - 1) % listatq.Count + listatq.Count) % listatq.Count;
+                atk = listatq[intatq];
+            }
         }
         public void Update(KeyboardState keyboard)
         {
@@ -263,17 +295,17 @@ namespace Umea_rana
                     MediaPlayer.Pause();
             }
 
-            if (keyboard.IsKeyDown(K_jump ) && jump_off)
+            if (keyboard.IsKeyDown(K_jump) && jump_off)
             {
                 collision.jump(this);
             }
-            if (keyboard.IsKeyDown(K_atq ))
+            if (keyboard.IsKeyDown(K_atq))
                 atq = true;
             else
                 atq = false;
             if (keyboard.IsKeyDown(K_right))
                 this.rectangle.X += Speed;
-            if (keyboard.IsKeyDown(K_left ))
+            if (keyboard.IsKeyDown(K_left))
                 this.rectangle.X -= Speed;
             this.AnimeSPrite(ref keyboard);
             Update_rec_collision();
@@ -281,7 +313,7 @@ namespace Umea_rana
                 --timer_dead;
             if (timer_dead < 0)
                 dead = true;
-            if (keyboard.IsKeyDown(Keys.LeftControl ) && keyboard.IsKeyDown(Keys.V))
+            if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.V))
                 vie = 300;
         }
 
