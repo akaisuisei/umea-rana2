@@ -43,20 +43,30 @@ namespace Umea_rana
             //state
             _currentState = gameState.Initialisateur;
             StateManager = new Dictionary<gameState, GameState>();
-            StateManager.Add(gameState.PlayingState, new PlayingState(this, graphics, Content));
+            StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
-            StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
-            StateManager.Add(gameState.SEU, new Shoot_Em_Up(this, graphics, Content));
-            StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
-            StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
-            StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
-            StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
             StateManager.Add(gameState.level_Pselect, new Leveleditorselect(this, graphics, Content));
+            StateManager.Add(gameState.Level_select_state2J, new Level_select_state2J(this, graphics, Content));
+            StateManager.Add(gameState.PlayingState, new PlayingState(this, graphics, Content));
+            StateManager.Add(gameState.Editeur_mapVV, new Editeur_MapVV(this, graphics, Content));
+
+            StateManager.Add(gameState.SEU, new Shoot_Em_Up(this, graphics, Content));
+            StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
+
+
             StateManager.Add(gameState.OptionState, new OptionState(this, graphics, Content, gameconfiguration));
+
             StateManager.Add(gameState.win, new GameWin(this, graphics, Content));
-            StateManager.Add(gameState.level3, new Level3(this, graphics, Content));
+            StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
+
             StateManager.Add(gameState.levelpersoPLA, new PLA1jperso(this, graphics, Content));
+            StateManager.Add(gameState.LevelPersoPLA2J, new PLA2jperso(this, graphics, Content));
+            StateManager.Add(gameState.levelPLA, new PLA1j(this, graphics, Content));
+            StateManager.Add(gameState.LevelPLA2J, new PLA2j(this, graphics, Content));
+
+            StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
+            StateManager.Add(gameState.level3, new Level3(this, graphics, Content));
             graphics.PreferredBackBufferHeight = OptionState._height;
             graphics.PreferredBackBufferWidth = OptionState._width;
             graphics.IsFullScreen = OptionState.fullscreen;
@@ -87,7 +97,7 @@ namespace Umea_rana
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
             StateManager[_currentState].LoadContent(Content, GraphicsDevice, ref level, ref next, graphics, audio);
             base.LoadContent();
-            
+
         }
 
         protected override void UnloadContent()
@@ -127,6 +137,7 @@ namespace Umea_rana
             PlayingState,
             OptionState,
             Level_select_state,
+            Level_select_state2J,
             Level2,
             SEU,
             Pause,
@@ -138,6 +149,9 @@ namespace Umea_rana
             win,
             level3,
             levelpersoPLA,
+            levelPLA,
+            LevelPersoPLA2J,
+            LevelPLA2J,
             Null,
         }
 
@@ -189,7 +203,7 @@ namespace Umea_rana
                 else
                     endlevel = " your are very good gamer";
             score = new Point(P1, P2);
-            highscor= pmax ;
+            highscor = pmax;
 
         }
         public void GetPreviousState()

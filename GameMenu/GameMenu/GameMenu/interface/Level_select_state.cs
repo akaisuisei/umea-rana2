@@ -76,4 +76,68 @@ namespace Umea_rana
             spriteBatch.DrawString(font, "level select", titre_P,Color.White );
         }
     }
+
+    class Level_select_state2J : GameState
+    {
+        Song songMenu;
+        public static float vol = 1.0f;
+        Texture2D background;
+        Rectangle rectangle;
+        Button button;
+        Rectangle rect;
+        int tab = 0;
+        KeyboardState old;
+        SpriteFont font;
+
+
+        public Level_select_state2J(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
+        {
+
+            game1.IsMouseVisible = true;
+            songMenu = Content.Load<Song>("Menu//songMenu");
+        }
+
+        public override void Initialize(GraphicsDeviceManager graphics)
+        {
+
+            old = Keyboard.GetState();
+        }
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
+        {
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            titre_P = new Vector2(width * 0.8f, height * 0.1f);
+            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
+            button.LoadContent(Content);
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "1", "SEU1");
+            button.activate(0, 1, 0.1f, 0.25f, "Level2", "2", "level1");
+            button.activate(0, 2, 0.1f, 0.40f, "Level3", "3", "level1");
+            button.activate(0, 3, 0.1f, 0.6f, "", LocalizedString.Back);
+            background = Content.Load<Texture2D>("Menu//background menu");
+            font = Content.Load<SpriteFont>("FontList");
+        }
+        public override void UnloadContent()
+        {
+            songMenu.Dispose();
+            background.Dispose();
+            button.Dispose();
+
+        }
+        public override void Update(Game1 game, Audio audio)
+        {
+            KeyboardState keyboard = Keyboard.GetState();
+            MouseState mouse = Mouse.GetState();
+            rect = new Rectangle(mouse.X, mouse.Y, 1, 1);
+            button.Update(ref keyboard, ref old, ref mouse, ref rect, ref game, ref tab, "");
+            old = keyboard;
+
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background, rectangle, Color.White);
+            button.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "level select", titre_P, Color.White);
+        }
+    }
 }
