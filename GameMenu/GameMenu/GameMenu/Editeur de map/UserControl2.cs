@@ -563,10 +563,6 @@ namespace Umea_rana
         {
             if (Sauvegarde_.BackColor == System.Drawing.Color.Green && imageB != string.Empty)
             {
-                savefile.ia_AA.Clear();
-                savefile.ia_AR.Clear();
-                savefile.ia_S.Clear();
-                savefile.plat_f.Clear();
                 savefile.levelProfile.background_name = imageB;
                 savefile.levelProfile.fc_speed = int.Parse(Sauvegarde_.Text);
                 savefile.levelProfile.second_background = (string)comboBox1.SelectedItem;
@@ -753,7 +749,22 @@ namespace Umea_rana
             textBox10.Text = savefile.levelProfile.levelname;
 
             if (savefile.levelProfile.musique != null)
+            {
+                listsong = new List<Song>();
+
                 listBox1.Items.AddRange(savefile.levelProfile.musique);
+                foreach (string st in savefile.levelProfile.musique)
+                    if (st != null && st != "")
+                    {
+
+                        listsong.Add(Song.FromUri("s", new Uri("file:" +sauve._path +"//"+type +"//"+savefile.levelProfile.levelname +"//"+ st)));
+                    }
+                if (listsong.Count > 0)
+                {
+                    MediaPlayer.Play(listsong[0]);
+                    song = 0;
+                }
+            }
             scrollingLoad();
         }
 

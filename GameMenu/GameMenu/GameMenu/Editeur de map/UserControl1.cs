@@ -275,7 +275,7 @@ namespace Umea_rana
             ovni.param(3);
             height = fond.Height;
             width = fond.Width;
-            string[] item2 = sauve.filename(Content, "Boss");
+            string[] item2 = sauve.filename(Content, "BossSEU");
             foreach (string st in item2)
                 listBox2.Items.Add(st);
 
@@ -1010,8 +1010,23 @@ namespace Umea_rana
             textBox11.Text = "" + _savefile.levelProfile.damage;
             textBox14.Text = "" + _savefile.levelProfile.playerLife;
             textBox16.Text = "" + _savefile.levelProfile.bullet_speed;
-            if(_savefile.levelProfile.musique != null)
-            listBox1.Items.AddRange(_savefile.levelProfile.musique);
+            if ( _savefile.levelProfile.musique != null)
+            {
+                listsong = new List<Song>();
+
+                listBox1.Items.AddRange(_savefile.levelProfile.musique);
+                foreach (string st in _savefile.levelProfile.musique)
+                    if (st != null && st != "")
+                    {
+
+                        listsong.Add(Song.FromUri("s", new Uri("file:" + sauve._path + "//" + type + "//" + _savefile.levelProfile.levelname + "//" + st)));
+                    }
+                if (listsong.Count > 0)
+                {
+                    MediaPlayer.Play(listsong[0]);
+                    song = 0;
+                }
+            }
             scrollingLoad();
         }
         /// <summary>

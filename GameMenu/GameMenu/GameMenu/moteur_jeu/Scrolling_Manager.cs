@@ -264,6 +264,7 @@ namespace Umea_rana
             rec2 = null;
             couche = null;
             speed = null;
+            count = 0;
         }
         public void dispose()
         {
