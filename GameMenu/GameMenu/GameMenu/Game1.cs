@@ -87,6 +87,7 @@ namespace Umea_rana
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
             StateManager[_currentState].LoadContent(Content, GraphicsDevice, ref level, ref next, graphics, audio);
             base.LoadContent();
+            
         }
 
         protected override void UnloadContent()

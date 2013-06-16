@@ -15,7 +15,7 @@ namespace Umea_rana
     {
 
         spripte_V vaisseau, perso2;
-
+        Boss boss;
         KeyboardState oldkey;
         Texture2D aster_t, planet1, star;
         Texture2D T_sprite, fondt;
@@ -35,7 +35,7 @@ namespace Umea_rana
         Scrolling_ManagerV Scroll;
         Rectangle fond, fond1, fond2;
         Score scrore;
-
+        GameTime gametime;
         public leveleditor(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = false;
@@ -51,10 +51,8 @@ namespace Umea_rana
             // TODO: Add your initialization logic here
 
             timer = -100;
-            taille_sprt = (int)(Math.Min(width, height) * 0.05);
-            taille_sprt2 = (int)(Math.Min(width, height) * 0.1);
-            sizeX = (int)(width * 0.05);
-            sizey = (int)(height * 0.09);
+            boss = new Boss(new List<PatternMgr>(){new PatternMgr (new PatternSettings ())});
+  
             game_time = 0;
 
             // ajout IA
@@ -74,7 +72,10 @@ namespace Umea_rana
             fond2 = new Rectangle(fond.Right, 0, width / 4, height);
             Scroll = new Scrolling_ManagerV(fond);
             T_sprite = Content.Load<Texture2D>("hero//spriteSheet");
-
+          sizeX = (int)(width * 0.05);
+            sizey = (int)(height * 0.09); 
+                    taille_sprt = (int)(Math.Min(width, height) * 0.05);
+            taille_sprt2 = (int)(Math.Min(width, height) * 0.1);
 
             //charge l IA
             aster_t = Content.Load<Texture2D>("IA/asteroid/asteroide-sprite2");
@@ -99,8 +100,9 @@ namespace Umea_rana
             manage_k = new IA_manager_K(aster_t, new Rectangle(0, 0, taille_sprt, taille_sprt), fond);
             ovini = new Ovni(fond);
             ovini.Load(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite"));
-            // ajout IA
-            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph, ref vaisseau, ref ovini, ref audio );
+            // ajout IA 
+                    boss.LoadContent(fond, new Rectangle(0, 0, 300, 300));
+            save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph, ref vaisseau, ref ovini, ref audio , ref boss );
             vaisseau.Load(Content, T_sprite);
            
             perso2.parametrage(ref vaisseau);
@@ -108,7 +110,9 @@ namespace Umea_rana
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
             scrore.LoadContent (fond1,fond2 ,Content );
+        
             audio.Play();
+
         }
 
         public override void UnloadContent()
@@ -171,7 +175,7 @@ namespace Umea_rana
                     collision.Ovni_vaiss(ref ovini, ref perso2);
                 }
                 //update collision
-
+                boss.update(gametime, game_time);
                 collision.collision_ai_missile(ref vaisseau, manage_k);
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
@@ -220,6 +224,7 @@ namespace Umea_rana
             spriteBatch.Draw(fondt, fond1, Color.Black);
             spriteBatch.Draw(fondt, fond2, Color.Black);
             scrore.Draw(spriteBatch);
+            boss.Draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 

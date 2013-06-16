@@ -65,17 +65,17 @@ namespace Umea_rana
         {
             WindoW = width; WindowH = height;
             width1 = (int)(WindoW * 0.05);
-            width2 = (int)(WindoW * 0.05);
-            width3 = (int)(WindoW * 0.05);
-            width4 = (int)(WindoW * 0.05);
-            height1 = (int)(WindowH * 0.07);
+            width2 = (int)(WindoW * 0.07);
+            width3 = (int)(WindoW * 0.09);
+            width4 = (int)(WindoW * 0.13);
+            height1 = (int)(WindowH * 0.05);
             height2 = (int)(WindowH * 0.07);
-            height3 = (int)(WindowH * 0.07);
-            height4 = (int)(WindowH * 0.07);
-            R1 = 30;
-            R2 = 30;
-            R3 = 30;
-            R4 = 40;
+            height3 = (int)(WindowH * 0.09);
+            height4 = (int)(WindowH * 0.13);
+            R1 = width1 / 2;
+            R2 = width2 / 2;
+            R3 = width3 / 2;
+            R4 = width4 / 2;
             ovni = new List<ovnis>();
             line = 64;
             colunm = 64;
@@ -87,17 +87,17 @@ namespace Umea_rana
             WindoW = fond.Width;
             WindowH = fond.Height;
             width1 = (int)(WindoW * 0.05);
-            width2 = (int)(WindoW * 0.05);
-            width3 = (int)(WindoW * 0.05);
-            width4 = (int)(WindoW * 0.05);
-            height1 = (int)(WindowH * 0.07);
+            width2 = (int)(WindoW * 0.07);
+            width3 = (int)(WindoW * 0.09);
+            width4 = (int)(WindoW * 0.13);
+            height1 = (int)(WindowH * 0.05);
             height2 = (int)(WindowH * 0.07);
-            height3 = (int)(WindowH * 0.07);
-            height4 = (int)(WindowH * 0.07);
-            R1 = 30;
-            R2 = 30;
-            R3 = 30;
-            R4 = 40;
+            height3 = (int)(WindowH * 0.09);
+            height4 = (int)(WindowH * 0.13);
+            R1 = width1/2;
+            R2 = width2/2;
+            R3 = width3/2;
+            R4 = width4/2;
             ovni = new List<ovnis>();
             line = 64;
             colunm = 64;
@@ -392,10 +392,10 @@ namespace Umea_rana
         bool avance;
         int timeAvance;
         Double angle;
-        public Boss(List<PatternMgr> _pattern, Boss_setting _boss_setting)
+        public Boss(List<PatternMgr> _pattern)
         {
             pattern = _pattern;
-            boss_setting = _boss_setting;
+
         }
         public void LoadContent(Rectangle fond, Rectangle rectangle)
         {
@@ -467,6 +467,7 @@ namespace Umea_rana
         }
         public void parametrage(ContentManager Content, Boss_setting boss)
         {
+            this.boss_setting = boss;
             rectangle.X = (int)(boss.pos.X * fond.Width + fond.Right);
             rectangle.Y = fond.Top - rectangle.Height;
             lauchtime = boss.timer;
