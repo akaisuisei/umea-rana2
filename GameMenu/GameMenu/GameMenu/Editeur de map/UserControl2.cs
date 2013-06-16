@@ -1106,6 +1106,8 @@ namespace Umea_rana
            
             if (allasuite.BackColor == System.Drawing.Color.Green &&  listBox2.SelectedItem != null  )//+combobox4 a veriff
             {
+                 if(Plateforme_Stable.Checked || (Plateforme_Mobile.Checked && (textBox1.BackColor == System.Drawing.Color.Green) && (textBox2.BackColor == System.Drawing.Color.Green)))
+                 {
                 if (spawn == -1)
                 {
 
@@ -1155,6 +1157,7 @@ namespace Umea_rana
 
                 }
                 this.hidou();
+            }
             }
         }
 
