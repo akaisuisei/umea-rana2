@@ -212,7 +212,7 @@ namespace Umea_rana
                 if ((intecep && mouse.LeftButton == ButtonState.Pressed) || Key.IsKeyDown(Keys.Enter))
                 {
                     /*si on clique sur un button on va voir a quoi il correcpond et le met en action*/
-                    game.menu_select.Play(); 
+                    game.menu_select.Play();
                     if (gameState[X, Y] == "Init")
                         game.ChangeState(Game1.gameState.Initialisateur);
                     else if (gameState[X, Y] == "LevelSelect")
@@ -279,30 +279,48 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.levelpersoPLA);
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "bis")
+                            {
+                                game.level = name1;
+
+                                game.ChangeState(Game1.gameState.levelpersoPLA);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.LevelPersoPLA2J );
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLAPerso2J")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLA")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.levelPLA );
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLA")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.levelPLA);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLA2J")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.LevelPLA2J );
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLA2J")
+                            {
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.LevelPLA2J);
+                            }
                     }
 
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
+
 
                     System.Threading.Thread.Sleep(G_latence);
                 }
@@ -516,26 +534,43 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.levelpersoPLA);
+                         if (name1 != string.Empty && name1 != null)
+                             if (game.level != "bis")
+                             {
+                                 game.level = name1;
+
+                                 game.ChangeState(Game1.gameState.levelpersoPLA);
+                             }
                     }
 
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                         if (name1 != string.Empty && name1 != null)
+                             if (game.level != "PLAPerso2J")
+                             {
+                                 game.level = name1;
+                                 game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                             }
                     }
 
                     else if (gameState[X, Y] == "PLA")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.levelPLA);
+                         if (name1 != string.Empty && name1 != null)
+                             if (game.level != "PLA")
+                             {
+                                 game.level = name1;
+                                 game.ChangeState(Game1.gameState.levelPLA);
+                             }
                     }
 
                     else if (gameState[X, Y] == "PLA2J")
                     {
-                        game.level = name1;
-                        game.ChangeState(Game1.gameState.LevelPLA2J);
+                          if (name1 != string.Empty && name1 != null)
+                              if (game.level != "PLA2J")
+                              {
+                                  game.level = name1;
+                                  game.ChangeState(Game1.gameState.LevelPLA2J);
+                              }
                     }
 
                     else
