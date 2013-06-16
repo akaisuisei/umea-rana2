@@ -16,11 +16,14 @@ namespace Umea_rana
     {
         static Dictionary<string, Song> playlist;
         List<Song> playlist2;
+        static double _elapsed;
         private uint _playing;
         public uint playing { get { return _playing; } set { if (playing < playlist2.Count) _playing = playing; else _playing = 0; } }
+
         public Audio(ContentManager Content)
         {
             playlist = new Dictionary<string, Song>();
+            _elapsed=0;
             playlist2 = new List<Song>();
             playlist.Add("Menu", Content.Load<Song>("Menu//songMenu"));
             playlist.Add("Loading", null);
@@ -70,7 +73,6 @@ namespace Umea_rana
         }
         public void Update()
         {
-
         }
         public static void play(string level)
         {
@@ -107,8 +109,13 @@ namespace Umea_rana
             Song song = Song.FromUri(name_of_song, new Uri(path));
             playlist[level] = song;
         }
-        public static void nextMusic(string current_level)
+        public static void nextMusic(Song song,GameTime gameTime,string level_etape)
         {
+            _elapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            if (_elapsed > song.Duration.Seconds)//si la musique est terminé
+            {
+                Audio.play(level_etape);// tu peux changer selon les fonctions qui existent déja
+            }
         }
         public static void changevolume(float volume)
         {
