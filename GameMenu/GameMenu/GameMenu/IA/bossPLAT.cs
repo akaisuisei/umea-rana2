@@ -20,6 +20,7 @@ namespace Umea_rana
         public int speed;
         public float X { get; set; }
         public float Y { get; set; }
+        
 
     }
     public class bossPLAT : objet
@@ -29,6 +30,7 @@ namespace Umea_rana
             public int lstart = 1, cstart = 1;
             public int Tlstart = 1, Tcstart = 1, Tcend = 1;
             public pos(int ls, int cs, int tl, int tcs, int tce)
+
             {
                 lstart = ls;
                 cstart = cs;
@@ -84,7 +86,8 @@ namespace Umea_rana
         Color color;
         private Rectangle rect, atk;
         Rectangle fond;
-
+        bool attaque = false;
+        bool deplace = false;
 
 
         public bossPLAT()
@@ -94,6 +97,7 @@ namespace Umea_rana
             ptfaible_ = new List<Pointaction>();
             ptfort_ = new List<Pointaction>();
             poid = 10;
+
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -355,6 +359,7 @@ namespace Umea_rana
                             {
                                 ptfort_.Add(new Pointaction(1, new Vector2(0, 1), new Rectangle(fond.Width / 2, 0, 100, 50), new Rectangle(fond.Width / 2, 0, 100, 50)));
                                 timeatk = 60;
+                                
                             }
 
                             foreach (Pointaction pt in ptfaible_)
@@ -365,12 +370,16 @@ namespace Umea_rana
                             {
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
                                 timeatk = 60;
+                                attaque = true;
+                                deplace = false;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
                                 timerrun = 50;
                             if (timerrun >= 0)// se deplace
                             {
                                 rectangle.X += speed;
+                                attaque = false;
+                                deplace = true;
                             }
                             foreach (Pointaction pt in ptfaible_)
                                 pt.affichage = rectangle;
@@ -387,6 +396,7 @@ namespace Umea_rana
                             {
                                 // direction du dernier pt fort
                                 rectangle.X += ptfort_[ptfort_.Count - 1].dir * speed;
+                                dir = ptfort_[ptfort_.Count - 1].dir;
                             }
                             else
                                 ptfort_.Clear();
@@ -624,6 +634,8 @@ namespace Umea_rana
             }
         }
 
+
+
         public void Animated()
         {
             if (type == "Light")
@@ -690,8 +702,8 @@ namespace Umea_rana
             {
                 if (vie > 0)
                 {
-                    FrameLine = 1;
-                    Animation(4);
+                    FrameLine = 2;
+                    Animation(14);
                 }
                 else
                 {
@@ -751,8 +763,22 @@ namespace Umea_rana
 
                 if (vie > 0)
                 {
-                    FrameLine = 1;
-                    Animation(3);
+                    if (deplace)
+                    {
+                        FrameLine = 2;
+                        Animation(4);
+                    }
+                    else if (attaque)
+                    {
+                        FrameLine = 3;
+                        Animation(10);
+                    }
+
+                    else
+                    {
+                        FrameLine = 1;
+                        Animation(3);
+                    }
                 }
                 else
                 {
