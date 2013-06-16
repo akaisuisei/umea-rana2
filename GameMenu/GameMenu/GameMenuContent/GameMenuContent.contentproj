@@ -288,20 +288,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pointfaible\Cascade.png">
-      <Name>Cascade</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pointfaible\Light.png">
-      <Name>Light</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="hero\allen1.png">
       <Name>allen1</Name>
       <Importer>TextureImporter</Importer>
@@ -372,29 +358,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pointfaible\Taizo.png">
-      <Name>Taizo</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pointfort\Taizo.png">
-      <Name>Taizo</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pointfaible\Kinukuman.png">
-      <Name>Kinukuman</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pointfort\Kinukuman.png">
-      <Name>Kinukuman</Name>
+    <Compile Include="pointfort\Boubou.png">
+      <Name>Boubou</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -406,14 +371,6 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="pointfort\Boubou.png">
-      <Name>Boubou</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="Boss\Cascade.png">
       <Name>Cascade</Name>
@@ -494,6 +451,48 @@
   <ItemGroup>
     <Compile Include="pointfort\null.png">
       <Name>null</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfaible\Light.png">
+      <Name>Light</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfaible\Cascade.png">
+      <Name>Cascade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfaible\Kinukuman.png">
+      <Name>Kinukuman</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfaible\Taizo.png">
+      <Name>Taizo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfort\Taizo.png">
+      <Name>Taizo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="pointfort\Kinukuman.png">
+      <Name>Kinukuman</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

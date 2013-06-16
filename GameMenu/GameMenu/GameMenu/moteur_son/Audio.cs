@@ -17,8 +17,8 @@ namespace Umea_rana
         static Dictionary<string, Song> playlist;
         List<Song> playlist2;
         static double _elapsed;
-        private uint _playing;
-        public uint playing { get { return _playing; } set { _playing =(uint)( playing %playlist2.Count) ;} }
+        private int _playing;
+        public int playing { get { return _playing; } }
         int  notupdate;
         
         public Audio(ContentManager Content)
@@ -47,7 +47,8 @@ namespace Umea_rana
             foreach (string st in savefile.levelProfile.musique)
                 if (st != "" && st != null)
                     playlist2.Add(Content.Load<Song>(savefile.levelProfile.levelname + "\\" + st));
-            playing = 0;
+            
+            _playing = 0;
         }
         public void parrametrage(string path, savefile savefile, string type)
         {
@@ -55,21 +56,24 @@ namespace Umea_rana
             foreach (string st in savefile.levelProfile.musique)
                 if (st != "" && st != null)
                     playlist2.Add(Song.FromUri("s", new Uri("file:" + "" + path + "\\" + type + "\\" + savefile.levelProfile.levelname + "\\" + st)));
-            playing = 0;
+            _playing = 0;
         }
         public void Play()
         {
             notupdate = 30;
-            playing = 0;
+            _playing = 0;
             if (playlist2.Count > 0)
                 MediaPlayer.Play(playlist2[(int)playing]);
             else
-                MediaPlayer.Pause();
+            {
+                MediaPlayer.Stop();
+                _playing = -1;
+            }
         }
         public void Newplaylist()
         {
             MediaPlayer.Stop();
-            playing = 0;
+            _playing = 0;
             playlist2.Clear();
 
         }
@@ -121,9 +125,9 @@ namespace Umea_rana
         }
         public void nextMusique()
         {
-            if (notupdate <0 && MediaPlayer.PlayPosition == playlist2[(int)_playing ] .Duration)//si la musique est terminé
+            if (notupdate <0&& _playing!=-1 && MediaPlayer.PlayPosition == playlist2[(int)_playing ] .Duration)//si la musique est terminé
             {
-                _playing =Convert.ToUInt32 (( (int)(_playing + 1) % playlist2.Count));// tu peux changer selon les fonctions qui existent déja
+                _playing =( (int)(_playing + 1) % playlist2.Count);// tu peux changer selon les fonctions qui existent déja
                 MediaPlayer.Play(playlist2[(int)_playing  ]);
                 notupdate = 60;
             }
