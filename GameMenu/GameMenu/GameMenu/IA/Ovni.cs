@@ -376,7 +376,8 @@ namespace Umea_rana
     }
     public class Boss : objet
     {
-        PatternMgr pattern { get; set; }
+        List<PatternMgr> pattern { get; set; }
+        Boss_setting boss_setting { get; set; }
         int lauchtime { get; set; }
         Rectangle fond { get; set; }
         Texture2D texture { get; set; }
@@ -391,9 +392,10 @@ namespace Umea_rana
         bool avance;
         int timeAvance;
         Double angle;
-        public Boss(PatternMgr _pattern)
+        public Boss(List<PatternMgr> _pattern, Boss_setting _boss_setting)
         {
             pattern = _pattern;
+            boss_setting = _boss_setting;
         }
         public void LoadContent(Rectangle fond, Rectangle rectangle)
         {
@@ -409,7 +411,8 @@ namespace Umea_rana
         public void update(GameTime gameTime, int time)
         {
             if(type != "")
-            pattern.Update(gameTime);
+                foreach(PatternMgr _pattern in pattern)
+                    _pattern.Update(gameTime);
             if (this.lauchtime < time)
             {
                 if (avance)
@@ -459,7 +462,8 @@ namespace Umea_rana
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, rectangle, Color.White);
-            pattern.Draw(spriteBatch);
+            foreach(PatternMgr _pattern in pattern)
+                _pattern.Draw(spriteBatch);
         }
         public void parametrage(ContentManager Content, Boss_setting boss)
         {
