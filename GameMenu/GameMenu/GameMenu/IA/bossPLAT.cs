@@ -349,12 +349,13 @@ namespace Umea_rana
                             }
                             if (timerrun >= 0)// se deplace
                                 rectangle.X += speed;
+                                
 
                             if (timeatk <= 0)// lance son attaque
                             {
                                 timeatk = 60;
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
-
+                                
                             }
                             foreach (Pointaction pt in ptfaible_)
                             {
@@ -399,12 +400,14 @@ namespace Umea_rana
                                 ptfort_.Add(new Pointaction(dir, new Vector2(1, 0), rectangle_C, rectangle_C));// cree un pt fort pour garder la diretion
                                 timeatk = 120;
                                 timerrun = 50;
+                                attaque = true;
                             }
                             if (timerrun >= 0)// se deplace
                             {
                                 // direction du dernier pt fort
                                 rectangle.X += ptfort_[ptfort_.Count - 1].dir * speed;
                                 dir = ptfort_[ptfort_.Count - 1].dir;
+                                attaque = false;
                             }
                             else
                                 ptfort_.Clear();
@@ -534,12 +537,16 @@ namespace Umea_rana
                             {
                                 ptfort_.Add(new Pointaction(dir, cibleV, new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60), new Rectangle(rectangle_C.X, rectangle_C.Center.Y, 60, 60)));
                                 timeatk = 60;
+                                deplace = false;
+                                attaque = true;
                             }
                             if (timeatk == 50)// pour lancer le deplacement avec un decallage par rapport a l attaque
                                 timerrun = 5;
                             if (timerrun >= 0)// se deplace
                             {
                                 rectangle.X += speed;
+                                deplace = true;
+                                deplace = false;
                             }
                             foreach (Pointaction pt in ptfaible_)
                                 pt.affichage = rectangle;
@@ -553,11 +560,13 @@ namespace Umea_rana
 
                                 timeatk = 120;
                                 timerrun = 50;
+                                attaque = true;
                             }
                             if (timerrun >= 0)// se deplace
                             {
                                 // direction du dernier pt fort
                                 rectangle.X += ptfort_[ptfort_.Count - 1].dir * speed;
+                                attaque = false;
                             }
                             else
                                 ptfort_.Clear();
@@ -680,8 +689,16 @@ namespace Umea_rana
             {
                 if (vie > 0)
                 {
-                    FrameLine = 1;
-                    Animation(8);
+                    if (timerrun >= 0)
+                    {
+                        FrameLine = 3;
+                        Animation(7);
+                    }
+                    else
+                    {
+                        FrameLine = 1;
+                        Animation(8);
+                    }
                 }
                 else
                 {
@@ -704,6 +721,7 @@ namespace Umea_rana
                     }
 
                 }
+                
             }
 
             else if (type == "Boubou")
@@ -740,8 +758,21 @@ namespace Umea_rana
             {
                 if (vie > 0)
                 {
-                    FrameLine = 1;
-                    Animation(4);
+                    if (timeatk < 0)
+                    {
+                        FrameLine = 4;
+                        Animation(12);
+                    }
+                    else if (timerrun >= 0)
+                    {
+                        FrameLine = 2;
+                        Animation(8);
+                    }
+                    else
+                    {
+                        FrameLine = 1;
+                        Animation(4);
+                    }
                 }
                 else
                 {
@@ -764,6 +795,12 @@ namespace Umea_rana
                     }
 
                 }
+
+                if (dir >= 0)
+                    effects = SpriteEffects.None;
+                else
+                    effects = SpriteEffects.FlipHorizontally;
+
             }
 
             else if (type == "Taizo")
