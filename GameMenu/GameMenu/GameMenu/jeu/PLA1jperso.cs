@@ -113,6 +113,7 @@ namespace Umea_rana.jeu
         {
             KeyboardState keyboard;
             keyboard = Keyboard.GetState();
+            audio.nextMusique();
             if ((keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.Escape) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape)) ^
                (keyboard.IsKeyUp(Microsoft.Xna.Framework.Input.Keys.P) && oldkey.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.P)))
             {

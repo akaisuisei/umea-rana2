@@ -18,8 +18,9 @@ namespace Umea_rana
         List<Song> playlist2;
         static double _elapsed;
         private uint _playing;
-        public uint playing { get { return _playing; } set { if (playing < playlist2.Count) _playing = playing; else _playing = 0; } }
-
+        public uint playing { get { return _playing; } set { _playing =(uint)( playing %playlist2.Count) ;} }
+        int  notupdate;
+        
         public Audio(ContentManager Content)
         {
             playlist = new Dictionary<string, Song>();
@@ -34,6 +35,7 @@ namespace Umea_rana
             playlist.Add("BGMlevel3", null);
             playlist.Add("extraBGMlevel3", null);
             playlist.Add("extraBGM", null);
+            notupdate = 30;
         }
         public void PlayMenu()
         {
@@ -57,7 +59,7 @@ namespace Umea_rana
         }
         public void Play()
         {
-
+            notupdate = 30;
             playing = 0;
             if (playlist2.Count > 0)
                 MediaPlayer.Play(playlist2[(int)playing]);
@@ -116,6 +118,16 @@ namespace Umea_rana
             {
                 playing=(playing+1)%5;// tu peux changer selon les fonctions qui existent déja
             }
+        }
+        public void nextMusique()
+        {
+            if (notupdate <0 && MediaPlayer.PlayPosition == playlist2[(int)_playing ] .Duration)//si la musique est terminé
+            {
+                _playing =Convert.ToUInt32 (( (int)(_playing + 1) % playlist2.Count));// tu peux changer selon les fonctions qui existent déja
+                MediaPlayer.Play(playlist2[(int)_playing  ]);
+                notupdate = 60;
+            }
+            notupdate--;
         }
         public static void changevolume(float volume)
         {
