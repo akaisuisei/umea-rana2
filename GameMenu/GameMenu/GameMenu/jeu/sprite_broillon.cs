@@ -54,7 +54,7 @@ namespace Umea_rana
         public bool block { get; private set; }
         public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
 
-        pos idle, atk, walk, die, jump, fall;
+        pos idle, atk, walk, die, jump, fall, blockstart, blockresume, blockstop;
         pos current, last;
         List<pos> listatq;
         int intatq;
@@ -102,6 +102,9 @@ namespace Umea_rana
                 die = new pos(3, 5, 9);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
+                blockstart = new pos(2, 1, 2);
+                blockresume = new pos(2, 2, 2);
+                blockstop = new pos(2, 2, 3);
                 listatq.Add(new pos(9, 5, 10));
 
             }
@@ -197,6 +200,9 @@ namespace Umea_rana
                 die = new pos(3, 3, 7);
                 jump = new pos(2, 4, 5);
                 fall = new pos(2, 6, 7);
+                blockstart = new pos(2, 1, 2);
+                blockresume = new pos(2, 2, 2);
+                blockstop = new pos(2, 2, 3);
                 texture = Content.Load<Texture2D>("hero/allen1");
                 listatq.Add(new pos(8, 5, 10));
                 listatq.Add(new pos(9, 1, 5));
@@ -218,6 +224,9 @@ namespace Umea_rana
                 die = new pos(3, 3, 7);
                 jump = new pos(2, 8, 8);
                 fall = new pos(2, 9, 9);
+                blockstart = new pos(2, 3, 4);
+                blockresume = new pos(2, 4, 4);
+                blockstop = new pos(2, 4, 4);
                 texture = Content.Load<Texture2D>("hero//yoh");
                 listatq.Add(new pos(8, 8, 12));
                 listatq.Add(new pos(9, 1, 5));
@@ -259,7 +268,7 @@ namespace Umea_rana
             else
                 atq = false;
 
-            this.AnimeSPrite(ref keyboard);
+            this.AnimeSPrite(ref keyboard, ref old );
             Update_rec_collision();
             if (vie < 0)
                 --timer_dead;
@@ -307,7 +316,7 @@ namespace Umea_rana
                 this.rectangle.X += Speed;
             if (keyboard.IsKeyDown(K_left))
                 this.rectangle.X -= Speed;
-            this.AnimeSPrite(ref keyboard);
+            this.AnimSprite(keyboard);
             Update_rec_collision();
             if (vie < 0)
                 --timer_dead;
@@ -491,10 +500,11 @@ namespace Umea_rana
             }
         }
 
-        public void AnimeSPrite(ref KeyboardState keyboard)// line = 151, colunm = 110
+        public void AnimeSPrite(ref KeyboardState keyboard, ref KeyboardState old)// line = 151, colunm = 110
         {
             if (vie > 0)
             {
+                block = false;
                 if (keyboard.IsKeyDown(K_left)) //court vers la gauche
                 {
                     this.Effects = SpriteEffects.FlipHorizontally;
@@ -503,15 +513,14 @@ namespace Umea_rana
                     {
                         current = walk;
                     }
-                    else
-                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
-                        {
-                            current = fall;
-                        }
-                        else                              //phase ascendante
-                        {
-                            current = jump;
-                        }
+                    else if (keyboard.IsKeyUp(K_jump)) //phase descendante
+                    {
+                        current = fall;
+                    }
+                    else                              //phase ascendante
+                    {
+                        current = jump;
+                    }
                 }
                 else if (keyboard.IsKeyDown(K_right)) //court vers la droite
                 {
@@ -521,42 +530,52 @@ namespace Umea_rana
                     {
                         current = walk;
                     }
-                    else
-                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
-                        {
-                            current = fall;
-                        }
-                        else                              //phase ascendante
-                        {
-                            current = jump;
-                        }
+                    else if (keyboard.IsKeyUp(K_jump)) //phase descendante
+                    {
+                        current = fall;
+                    }
+                    else                              //phase ascendante
+                    {
+                        current = jump;
+                    }
                 }
                 else if (keyboard.IsKeyDown(K_atq)) //attaque
                 {
                     current = atk;
                 }
+
+                else if (keyboard.IsKeyDown(K_block) || old.IsKeyDown(K_block))
+                {
+                    if (keyboard.IsKeyDown(K_block) && old.IsKeyDown(K_block))
+
+                        current = blockresume;
+
+                    else if (old.IsKeyDown(K_block))
+                        current = blockstop;
+                    else 
+                        current = blockstart;
+                    block = true;
+                }
                 else if (keyboard.IsKeyUp(K_jump) && chute ^ jump_off) //saut phase descendante
                 {
                     current = fall;
                 }
-                else
-                    if (!in_air)
-                    {
-                        current = walk;
-                    }
-                    else
-                        if (keyboard.IsKeyUp(K_jump)) //phase descendante
-                        {
-                            current = fall;
-                        }
-                        else                              //phase ascendante
-                        {
-                            current = jump;
-                        }
+                else if (!in_air)
+                {
+                    current = walk;
+                }
+                else if (keyboard.IsKeyUp(K_jump)) //phase descendante
+                {
+                    current = fall;
+                }
+                else                              //phase ascendante
+                {
+                    current = jump;
+                }
 
 
-                if ((keyboard.IsKeyUp(K_left) && keyboard.IsKeyUp(K_right) && keyboard.IsKeyUp(K_atq) && !in_air) ||
-                (keyboard.IsKeyDown(K_left) && keyboard.IsKeyDown(K_right))) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
+                if ((keyboard.IsKeyUp(K_left) && keyboard.IsKeyUp(K_right) && keyboard.IsKeyUp(K_atq) && keyboard.IsKeyUp (K_block )&& !in_air) ||
+                (keyboard.IsKeyDown(K_left) && keyboard.IsKeyDown(K_right) )) //cas ou aucune touche n est appuyée ou touche gauche et droite ensemble : ne fais rien
                 {
                     current = idle;
                 }
