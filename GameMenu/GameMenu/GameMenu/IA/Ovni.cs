@@ -377,15 +377,20 @@ namespace Umea_rana
     public class Boss : objet
     {
         PatternMgr pattern { get; set; }
-        int lauchtime;
-        Rectangle fond;
-        Texture2D texture;
-        string type;
-        int damage;
-        int speed;
-        int RPM;
-
+        int lauchtime { get; set; }
+        Rectangle fond { get; set; }
+        Texture2D texture { get; set; }
+        string type { get; set; }
+        int damage { get; set; }
+        int speed { get; set; }
+        int RPM { get; set; }
+        Vector2 dir { get; set; }
+        Point sens { get; set; }
+        int colunm, line;
         Color color;
+        bool avance;
+        int timeAvance;
+        Double angle;
         public Boss(PatternMgr _pattern)
         {
             pattern = _pattern;
@@ -395,7 +400,11 @@ namespace Umea_rana
             this.fond = fond;
             this.rectangle = rectangle;
             this.rectangle_C = rectangle;
-
+            dir = new Vector2(0, 1);
+            sens = new Point (1, 1);
+            avance = true;
+            timeAvance = 200;
+            angle = 0;
         }
         public void update(GameTime gameTime, int time)
         {
@@ -403,7 +412,49 @@ namespace Umea_rana
             pattern.Update(gameTime);
             if (this.lauchtime < time)
             {
+                if (avance)
+                {
+                    dir = new Vector2(0, 1);
+                    if (timeAvance < 0)
+                        avance = false;
+                    else
+                        timeAvance -= speed;
+                }
+                else
+                {
+                    dir = new Vector2((float)Math.Sin(angle), 1);
+               
+                    angle = (angle + 0.05) % (2 * Math.PI);
+                    if(rectangle_C.Left < fond.Left )
+                    {
+                        sens = new Point(1, sens.Y );
+                        rectangle.X = fond.Left;
+                    }
+                    else if (rectangle_C.Right > fond.Right)
+                    {
+                           sens = new Point(-1, sens.Y);
+                           rectangle.X = fond.Right - rectangle_C.Width - 5;
+                    }
+                    
+                    else if (rectangle_C.Top < fond.Top)
+                    {
+                           sens = new Point(sens.X, 1);
+                           rectangle.Y = fond.Top;
+                    }
+                    
+                    else if (rectangle_C.Bottom > fond.Bottom)
+                    {
+                           sens = new Point(sens.X , -1);
+                        rectangle.Y = fond.Bottom - rectangle_C.Height - 10;
+                    }
+                    
+                }
+
+                this.rectangle.X +=(int)( sens.X *dir.X * speed);
+                this.rectangle.Y += (int)(sens.Y *dir.Y * speed);
+                Update_rec_collision();
             }
+            // sinon rien ps da nimation
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -422,6 +473,12 @@ namespace Umea_rana
             this.color = boss.color;
             this.RPM = boss.RPM;
             this.damage = boss.damage;
+
+            this.hauteurY = rectangle_C.Height;
+            this.largeurX = rectangle_C.Width;
+            decalageX = 0;
+            decalageY = 0;
+            
         }
     }
     public struct Boss_setting

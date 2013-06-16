@@ -95,7 +95,7 @@ namespace Umea_rana
 
                             }
                             b3 ^= true;
-                            pos = plato.rectangle_C.Left + ia.Ia_manage[i].decalageX + ia.Ia_manage[i].Speed + 1;
+                            pos = plato.rectangle_C.Left + ia.Ia_manage[i].decalageX  + 1;
                         }
                         break;
                     }
