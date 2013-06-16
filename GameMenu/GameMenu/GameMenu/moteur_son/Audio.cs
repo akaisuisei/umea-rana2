@@ -109,12 +109,12 @@ namespace Umea_rana
             Song song = Song.FromUri(name_of_song, new Uri(path));
             playlist[level] = song;
         }
-        public static void nextMusic(Song song,GameTime gameTime,string level_etape)
+        public static void nextMusic(Song song,GameTime gameTime,int playing)
         {
             _elapsed += gameTime.ElapsedGameTime.TotalSeconds;
             if (_elapsed > song.Duration.Seconds)//si la musique est terminé
             {
-                Audio.play(level_etape);// tu peux changer selon les fonctions qui existent déja
+                playing=(playing+1)%5;// tu peux changer selon les fonctions qui existent déja
             }
         }
         public static void changevolume(float volume)
