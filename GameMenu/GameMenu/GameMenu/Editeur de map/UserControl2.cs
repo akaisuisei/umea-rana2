@@ -1092,7 +1092,8 @@ namespace Umea_rana
 
         private void Valider_p_Click(object sender, EventArgs e)
         {
-            if (allasuite.BackColor == System.Drawing.Color.Green)//+combobox4 a veriff
+           
+            if (allasuite.BackColor == System.Drawing.Color.Green &&  listBox2.SelectedItem != null  )//+combobox4 a veriff
             {
                 if (spawn == -1)
                 {
