@@ -340,6 +340,7 @@ namespace Umea_rana
                             foreach (Pointaction pt in ptfaible_)
                             {
                                 pt.affichage = rectangle;
+                                pt.Update_C();
                             }
                             break;
                         case "Cascade":
@@ -372,7 +373,10 @@ namespace Umea_rana
                             }
 
                             foreach (Pointaction pt in ptfaible_)
+                            {
                                 pt.affichage = rectangle;
+                                pt.Update_C();
+                            }
                             break;
                         case "Taizo":
                             if (timeatk < 0)
@@ -391,7 +395,10 @@ namespace Umea_rana
                                 deplace = true;
                             }
                             foreach (Pointaction pt in ptfaible_)
-                                pt.affichage = rectangle;
+                            {
+                                pt.affichage = rectangle_C;
+                                pt.Update_C();
+                            }
                             break;
                         case "Kinukuman":
                             if (timeatk < 0)
@@ -412,9 +419,15 @@ namespace Umea_rana
                             else
                                 ptfort_.Clear();
                             foreach (Pointaction pt in ptfaible_)
-                                pt.hitbox = rectangle_C;
+                            {
+                                pt.affichage  = rectangle_C;
+                                pt.Update_C();
+                            }
                             foreach (Pointaction pt in ptfaible_)
-                                pt.hitbox = rectangle_C;
+                            {
+                                pt.affichage  = rectangle_C;
+                                pt.Update_C();
+                            }
                             break;
                         default:
                             break;
@@ -500,6 +513,7 @@ namespace Umea_rana
                             foreach (Pointaction pt in ptfaible_)
                             {
                                 pt.affichage = rectangle;
+                                pt.Update_C();
                             }
                             break;
                         case "Cascade":
@@ -530,7 +544,10 @@ namespace Umea_rana
                             }
 
                             foreach (Pointaction pt in ptfaible_)
-                                pt.affichage = rectangle;
+                            {
+                                pt.affichage = rectangle_C;
+                                pt.Update_C();
+                            }
                             break;
                         case "Taizo":
                             if (timeatk < 0)
@@ -549,7 +566,10 @@ namespace Umea_rana
                                 deplace = false;
                             }
                             foreach (Pointaction pt in ptfaible_)
+                            {
                                 pt.affichage = rectangle;
+                                pt.Update_C();
+                            }
                             break;
                         case "Kinukuman":
                             if (timeatk < 0)
@@ -571,9 +591,15 @@ namespace Umea_rana
                             else
                                 ptfort_.Clear();
                             foreach (Pointaction pt in ptfaible_)
-                                pt.hitbox = rectangle_C;
+                            {
+                                pt.affichage = rectangle_C;
+                                pt.Update_C();
+                            }
                             foreach (Pointaction pt in ptfaible_)
-                                pt.hitbox = rectangle_C;
+                            {
+                                pt.affichage = rectangle_C;
+                                pt.Update_C();
+                            }
                             break;
                         default:
                             break;
@@ -882,7 +908,7 @@ namespace Umea_rana
         public void Draw(SpriteBatch sp)
         {
             foreach (Pointaction pt in ptfaible_)
-                sp.Draw(ptfaible_texture, pt.affichage, Color.White);
+                sp.Draw(ptforttexture  , pt.affichage, Color.White);
             foreach (Pointaction pt in ptfort_)
                 sp.Draw(ptforttexture , pt.affichage, Color.White);
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);

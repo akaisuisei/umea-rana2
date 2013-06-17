@@ -581,8 +581,9 @@ namespace Umea_rana
                     else
                         sprite.vie -= boss.degat;
             foreach (bossPLAT.Pointaction pt in boss.ptfaible_ )
-                if (sprite.atq && pt.hitbox .Intersects(sprite.rectangle_C))
-                    boss.vie -= 1;
+                if (sprite.atq)
+                    if((pt.hitbox .Intersects(sprite.hitboxatq )))
+                    boss.vie -= sprite.damage ;
             foreach (platform plato in platform.plato)
                 if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&
                     boss.rectangle_C.Left <= plato.rectangle_C.Right && boss.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)
@@ -612,8 +613,8 @@ namespace Umea_rana
                         p2.vie -= boss.degat;
             }
             foreach (bossPLAT.Pointaction pt in boss.ptfaible_)
-                if ((sprite.atq && pt.hitbox .Intersects(sprite.rectangle_C)) || (p2.atq && pt.hitbox .Intersects(p2.rectangle_C)))
-                    boss.vie -= 1;
+                if ((sprite.atq && pt.hitbox.Intersects(sprite.hitboxatq)) || (p2.atq && pt.hitbox.Intersects(p2.hitboxatq )))
+                    boss.vie -= sprite.damage ;
             foreach (platform plato in platform.plato)
                 if (boss.rectangle_C.Bottom >= plato.rectangle_C.Top && boss.rectangle_C.Right >= boss.rectangle_C.Left &&
                     boss.rectangle_C.Left <= plato.rectangle_C.Right && boss.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)

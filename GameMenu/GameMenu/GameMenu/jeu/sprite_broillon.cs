@@ -65,6 +65,7 @@ namespace Umea_rana
         public int damage { get; set; }
         Keys K_atq, K_right, K_left, K_jump, K_block, K_atknext, K_atkdown;
         private int Speed { get; set; }
+        public Rectangle hitboxatq;
         public Sprite_PLA(Texture2D n_textture, Rectangle n_rectangle, Collision n_collision, ContentManager Content, char type)
         {
             test = Content.Load<Texture2D>("ListBoxBG");
@@ -189,7 +190,7 @@ namespace Umea_rana
             listatq = new List<pos>();
             intatq = 0;
             vie = levelprofile.playerLife;
-            damage = levelprofile.damage;
+            damage = 1;
             if (levelprofile.image_sprite)
             {
                 colunm = 128;
@@ -244,6 +245,7 @@ namespace Umea_rana
             last = current;
             Speed = 4;
             atk = listatq[intatq];
+            hitboxatq = new Rectangle(rectangle_C.X - longattaque, rectangle_C.Top - longattaque, rectangle_C.Width + 2 * longattaque, rectangle_C.Height + 2 * longattaque);
         }
 
         public void update(KeyboardState keyboard, KeyboardState old,GameTime gameTime)
@@ -299,6 +301,8 @@ namespace Umea_rana
                 intatq = ((intatq - 1) % listatq.Count + listatq.Count) % listatq.Count;
                 atk = listatq[intatq];
             }
+            this.hitboxatq.X = rectangle_C.X - longattaque;
+            this.hitboxatq.Y = rectangle_C.Y - longattaque;
         }
         public void Update(KeyboardState keyboard,GameTime gameTime)
         {
@@ -346,6 +350,8 @@ namespace Umea_rana
                 dead = true;
             if (keyboard.IsKeyDown(Keys.LeftControl) && keyboard.IsKeyDown(Keys.V))
                 vie = 300;
+            this.hitboxatq.X = rectangle_C.X - longattaque;
+            this.hitboxatq.Y = rectangle_C.Y - longattaque;
         }
 
 
@@ -627,7 +633,7 @@ namespace Umea_rana
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(test, rectangle_C, Color.Pink);
+            spritebatch.Draw(test, hitboxatq , Color.Pink);
             spritebatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
         }
         public void Dispose()
