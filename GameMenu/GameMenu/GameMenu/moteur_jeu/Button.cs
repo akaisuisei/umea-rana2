@@ -318,6 +318,10 @@ namespace Umea_rana
                             }
                     }
 
+                    else if (gameState[X, Y] == "Credit")
+                    {
+                        game.ChangeState(Game1.gameState.Credit);
+                    }
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
 
@@ -573,6 +577,10 @@ namespace Umea_rana
                               }
                     }
 
+                    else if (gameState[X, Y] == "Credit")
+                    {
+                        game.ChangeState(Game1.gameState.Credit);
+                    }
                     else
                         game.ChangeState(Game1.gameState.MainMenuState);
 

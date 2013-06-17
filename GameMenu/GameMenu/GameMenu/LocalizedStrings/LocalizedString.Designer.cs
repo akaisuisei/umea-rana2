@@ -223,6 +223,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        internal static string Credit {
+            get {
+                return ResourceManager.GetString("Credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Damage.
         /// </summary>
         internal static string Damage {
@@ -525,6 +534,15 @@ namespace Umea_rana.LocalizedStrings {
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        internal static string Nom {
+            get {
+                return ResourceManager.GetString("Nom", resourceCulture);
             }
         }
         

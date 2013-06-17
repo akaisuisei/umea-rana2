@@ -63,6 +63,7 @@ namespace Umea_rana
             StateManager.Add(gameState.LevelPersoPLA2J, new PLA2jperso(this, graphics, Content));
             StateManager.Add(gameState.levelPLA, new PLA1j(this, graphics, Content));
             StateManager.Add(gameState.LevelPLA2J, new PLA2j(this, graphics, Content));
+            StateManager.Add(gameState.Credit, new Credit(this));
 
             StateManager.Add(gameState.Level2, new Level2(this, graphics, Content));
             StateManager.Add(gameState.level3, new Level3(this, graphics, Content));
@@ -153,6 +154,7 @@ namespace Umea_rana
             levelPLA,
             LevelPersoPLA2J,
             LevelPLA2J,
+            Credit,
             Null,
         }
 

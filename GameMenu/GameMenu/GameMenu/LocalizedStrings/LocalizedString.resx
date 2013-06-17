@@ -371,4 +371,10 @@
     <value>Default</value>
     <comment>pp</comment>
   </data>
+  <data name="Credit" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Nom" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -66,4 +66,61 @@ namespace Umea_rana
         }
 
     }
+    class Credit : GameState
+    {
+
+        Texture2D background;
+        Rectangle rectangle;
+        //     Listbox listbox;
+        int timer, taille_logo;
+        Vector2 vect, vect2;
+        SpriteFont font;
+        string credit, nom;
+        public Credit(Game1 game1)
+        {
+
+            game1.IsMouseVisible = false;
+
+
+            //    listbox = new Listbox("SEU", 100, 100, 500, 500);
+        }
+
+        public override void Initialize(GraphicsDeviceManager graphics)
+        {
+            timer = 10;//550;
+        }
+        public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)
+        {
+
+            width = graphics.PreferredBackBufferWidth;
+            height = graphics.PreferredBackBufferHeight;
+            taille_logo = Math.Min(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            rectangle = new Rectangle(graphics.PreferredBackBufferWidth / 2 - taille_logo / 2, graphics.PreferredBackBufferHeight / 2 - taille_logo / 2,
+                taille_logo, taille_logo);
+            background = Content.Load<Texture2D>("ListBoxBG");
+            font = Content.Load<SpriteFont>("FontList");
+            vect = new Vector2(0, 0);
+            vect2= Vector2.Zero ;
+            credit = LocalizedStrings.LocalizedString.Credit ;
+            nom = LocalizedStrings.LocalizedString.Nom;
+  
+            //    listbox.LoadContent(Content);
+        }
+        public override void UnloadContent()
+        {
+        }
+        public override void Update(Game1 game, Audio audio)
+        {
+            vect.X += 0.5f;
+            vect2.X+= 0.5f;
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background, rectangle, Color.Black );
+            spriteBatch.DrawString(font,credit , vect , Color.White );
+            spriteBatch.DrawString(font, nom, vect2, Color.White);
+            //  listbox.Draw(spriteBatch);
+        }
+
+    }
 }
