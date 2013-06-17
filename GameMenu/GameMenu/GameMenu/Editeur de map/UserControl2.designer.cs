@@ -1279,6 +1279,7 @@
             this.Hero.SelectedIndex = 0;
             this.Hero.Size = new System.Drawing.Size(223, 331);
             this.Hero.TabIndex = 0;
+            this.Hero.TabStop = false;
             // 
             // couleur2
             // 

@@ -386,7 +386,91 @@
     <value>
 Alexis Yang
 Kamwa Watanabe Bjay alias Akai-Suisei
-Anne Constance</value>
+Anne Constance Remy-Neris</value>
     <comment>vv</comment>
+  </data>
+  <data name="allen" xml:space="preserve">
+    <value>Allen</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="choix_boss" xml:space="preserve">
+    <value>Boss</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="distance" xml:space="preserve">
+    <value>Distance</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="ennemis" xml:space="preserve">
+    <value>Ennemis</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="equality" xml:space="preserve">
+    <value>Your are friend</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="eve" xml:space="preserve">
+    <value>Kinpatsu</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="goodgame" xml:space="preserve">
+    <value>your are a very good gamer</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="good_gamer" xml:space="preserve">
+    <value>highscore: your are very good gamer</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="hero" xml:space="preserve">
+    <value>Hero</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Maison</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="mob_plat" xml:space="preserve">
+    <value>Plateforme Mobile</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="naruto" xml:space="preserve">
+    <value>Rusco</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="n_et_b" xml:space="preserve">
+    <value>Noir &amp; Blanc</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="p1best" xml:space="preserve">
+    <value>highscore: P1 is the best, p2 is a looser</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="p1win" xml:space="preserve">
+    <value>P1 Win</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="p2best" xml:space="preserve">
+    <value>highscore: P2 is the best, p1 is a looser</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="p2win" xml:space="preserve">
+    <value>P2 Win</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="plateformes" xml:space="preserve">
+    <value>Plateformes</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="stab_plat" xml:space="preserve">
+    <value>Plateforme Stable</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="Tuc" xml:space="preserve">
+    <value>Lemon Lucifer</value>
+    <comment>atrad</comment>
+  </data>
+  <data name="yoh" xml:space="preserve">
+    <value>Yoh</value>
+    <comment>atrad</comment>
   </data>
 </root>

@@ -351,4 +351,7 @@
   <data name="_default" xml:space="preserve">
     <value>Par défaut</value>
   </data>
+  <data name="ennemis" xml:space="preserve">
+    <value>Ennemis</value>
+  </data>
 </root>
