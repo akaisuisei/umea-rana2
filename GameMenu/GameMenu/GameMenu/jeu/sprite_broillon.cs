@@ -50,6 +50,8 @@ namespace Umea_rana
         public bool _dir { get { return dir; } }
         int colunm, line;
 
+        
+
         int prout;
         public bool block { get; private set; }
         public int upsidedown { get { return prout; } set { if (upsidedown < 0) prout = 1; } }
@@ -77,6 +79,8 @@ namespace Umea_rana
             pos_marche = rectangle.Y;
             marchell = Content.Load<Song>("hero//jogging");
             MediaPlayer.Play(marchell);
+
+          
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
