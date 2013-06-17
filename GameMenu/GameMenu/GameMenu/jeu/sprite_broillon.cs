@@ -36,7 +36,8 @@ namespace Umea_rana
         public bool jump_ok, jump_off, atq, dead;
         bool in_air;
         public int impulse, pos_marche, longattaque;
-        SoundEffectInstance footstep;
+        SoundEffect footstep;
+        SoundEffectInstance loop_footstep;
         int _elapsed;
         Direction Direction;
         int FrameLine;
@@ -77,9 +78,9 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            footstep = Content.Load<SoundEffectInstance>("hero//jogging");
-            footstep.Volume = OptionState.sound_effect_volume;
-
+            footstep = Content.Load<SoundEffect>("hero//jogging");
+            loop_footstep = footstep.CreateInstance();
+            loop_footstep.IsLooped = true;
             _elapsed = 601;
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -143,9 +144,9 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            SoundEffect sound = Content.Load<SoundEffect>("hero//footstep");
-            footstep = sound.CreateInstance();
-            footstep.Volume = OptionState.sound_effect_volume;
+            footstep = Content.Load<SoundEffect>("hero//footstep");
+            loop_footstep = footstep.CreateInstance();
+            
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -258,18 +259,9 @@ namespace Umea_rana
             {
                 pos_marche = rectangle.Y;
                 if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
-                    if (_elapsed > 600)
-                    {
-                        footstep.Play();
-                        _elapsed = 0;
-                    }
-                    else
-                        _elapsed += gameTime.ElapsedGameTime.Milliseconds;
+                        loop_footstep.Play();
                 else
-                {
-                    footstep.Stop(true);
-                    _elapsed = 601;
-                }
+                    loop_footstep.Stop(true);
             }
 
             if (keyboard.IsKeyDown(K_jump) && jump_off)
@@ -306,23 +298,15 @@ namespace Umea_rana
             {
                 rectangle.Y += poid;
                 rectangle_C.Y = rectangle.Y;
-                _elapsed=601;
             }
             else
             {
                 pos_marche = rectangle.Y;
                 if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
-                    if (_elapsed > 600)
-                    {
-                        footstep.Play();
-                        _elapsed = 0;
-                    }
-                    else
-                        _elapsed += gameTime.ElapsedGameTime.Milliseconds;
+                        loop_footstep.Play();
                 else
                 {
-                    footstep.Stop(true);
-                    _elapsed = 601;
+                    loop_footstep.Stop(true);
                 }
             }
 
