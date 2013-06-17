@@ -726,7 +726,7 @@ namespace Umea_rana
                     }
 
                 }
-                if (dir >= 0)
+                if (dir >= 0 || timerrun >= 0)
                     effects = SpriteEffects.None;
                 else
                     effects = SpriteEffects.FlipHorizontally;
