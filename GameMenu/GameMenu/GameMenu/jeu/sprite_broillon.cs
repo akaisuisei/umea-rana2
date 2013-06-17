@@ -36,8 +36,8 @@ namespace Umea_rana
         public bool jump_ok, jump_off, atq, dead;
         bool in_air;
         public int impulse, pos_marche, longattaque;
-        Song marchell;
-
+        SoundEffectInstance footstep;
+        int _elapsed;
         Direction Direction;
         int FrameLine;
         int FrameColumn;
@@ -77,11 +77,10 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            marchell = Content.Load<Song>("hero//jogging");
-            MediaPlayer.Play(marchell);
+            footstep = Content.Load<SoundEffectInstance>("hero//jogging");
+            footstep.Volume = OptionState.sound_effect_volume;
 
-          
-
+            _elapsed = 601;
             this.FrameLine = 1;
             this.FrameColumn = 1;
             this.Timer = 0;
@@ -135,7 +134,7 @@ namespace Umea_rana
         public Sprite_PLA(Rectangle n_rectangle, Collision n_collision, ContentManager Content, string player)
         {
             test = Content.Load<Texture2D>("ListBoxBG");
-
+            _elapsed = 0;
             rectangle_C = new Rectangle(n_rectangle.X + 49, n_rectangle.Y + 4, 30, n_rectangle.Height);
             rectangle = n_rectangle;
             poid = 10;
@@ -144,8 +143,8 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            marchell = Content.Load<Song>("hero//jogging");
-
+            footstep = Content.Load<SoundEffectInstance>("hero//footstep");
+            footstep.Volume = OptionState.sound_effect_volume;
 
             this.FrameLine = 1;
             this.FrameColumn = 1;
@@ -246,21 +245,30 @@ namespace Umea_rana
             atk = listatq[intatq];
         }
 
-        public void update(KeyboardState keyboard, KeyboardState old)
+        public void update(KeyboardState keyboard, KeyboardState old,GameTime gameTime)
         {
             if (in_air)
             {
                 rectangle.Y += poid;
-                MediaPlayer.Pause();
                 rectangle_C.Y = rectangle.Y;
+                _elapsed = 601;
             }
             else
             {
                 pos_marche = rectangle.Y;
                 if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
-                    MediaPlayer.Resume();
+                    if (_elapsed > 600)
+                    {
+                        footstep.Play();
+                        _elapsed = 0;
+                    }
+                    else
+                        _elapsed += gameTime.ElapsedGameTime.Milliseconds;
                 else
-                    MediaPlayer.Pause();
+                {
+                    footstep.Stop(true);
+                    _elapsed = 601;
+                }
             }
 
             if (keyboard.IsKeyDown(K_jump) && jump_off)
@@ -291,21 +299,30 @@ namespace Umea_rana
                 atk = listatq[intatq];
             }
         }
-        public void Update(KeyboardState keyboard)
+        public void Update(KeyboardState keyboard,GameTime gameTime)
         {
             if (in_air)
             {
                 rectangle.Y += poid;
-                MediaPlayer.Pause();
                 rectangle_C.Y = rectangle.Y;
+                _elapsed=601;
             }
             else
             {
                 pos_marche = rectangle.Y;
                 if (keyboard.IsKeyDown(K_left) || keyboard.IsKeyDown(K_right))
-                    MediaPlayer.Resume();
+                    if (_elapsed > 600)
+                    {
+                        footstep.Play();
+                        _elapsed = 0;
+                    }
+                    else
+                        _elapsed += gameTime.ElapsedGameTime.Milliseconds;
                 else
-                    MediaPlayer.Pause();
+                {
+                    footstep.Stop(true);
+                    _elapsed = 601;
+                }
             }
 
             if (keyboard.IsKeyDown(K_jump) && jump_off)
@@ -615,7 +632,7 @@ namespace Umea_rana
         public void Dispose()
         {
             texture.Dispose();
-            marchell.Dispose();
+            footstep.Dispose();
         }
     }
 }
