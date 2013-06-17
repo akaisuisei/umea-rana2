@@ -99,8 +99,8 @@ namespace Umea_rana
                 taille_logo, taille_logo);
             background = Content.Load<Texture2D>("ListBoxBG");
             font = Content.Load<SpriteFont>("FontList");
-            vect = new Vector2(0, 0);
-            vect2= Vector2.Zero ;
+            vect = new Vector2(width *0.2f, 0);
+            vect2= new Vector2 (width*0.55f,0);
             credit = LocalizedStrings.LocalizedString.Credit ;
             nom = LocalizedStrings.LocalizedString.Nom;
   
@@ -111,8 +111,8 @@ namespace Umea_rana
         }
         public override void Update(Game1 game, Audio audio)
         {
-            vect.X += 0.5f;
-            vect2.X+= 0.5f;
+            vect.Y += 0.5f;
+            vect2.Y+= 0.5f;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
