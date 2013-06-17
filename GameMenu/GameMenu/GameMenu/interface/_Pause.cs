@@ -15,7 +15,6 @@ namespace Umea_rana
 {
     public class _Pause
     {
-        Song songMenu;
         Texture2D background;
 
         Rectangle rectangle;
@@ -75,7 +74,6 @@ namespace Umea_rana
 
         public void Dispose()
         {
-            songMenu.Dispose();
             background.Dispose();
             button.Dispose();
         }

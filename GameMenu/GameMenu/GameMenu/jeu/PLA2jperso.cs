@@ -147,7 +147,7 @@ namespace Umea_rana.jeu
                 {
                     P2.air();
                 }
-                P2.Update(keyboard);
+                P2.Update(keyboard,new GameTime());
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);
