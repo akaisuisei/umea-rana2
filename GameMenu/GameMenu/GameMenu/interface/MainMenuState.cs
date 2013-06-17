@@ -40,13 +40,15 @@ namespace Umea_rana
             width = graphics.PreferredBackBufferWidth;
             height = graphics.PreferredBackBufferHeight;
             titre_P = new Vector2(width * 0.8f, height * 0.1f);
-            button = new Button(1, 4, width, height, 0.1f, 0.05f, tab);
+            button = new Button(1, 5, width, height, 0.1f, 0.05f, tab);
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", LocalizedString.Play);
             button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", LocalizedString.Map_Editor);
-            button.activate(0, 2, 0.1f, 0.3f, "Option", LocalizedString.Option);
-            button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit);
+            button.activate(0, 2, 0.1f, 0.3f, "Option", LocalizedString.Option);    
+                    button.activate(0, 3, 0.1f, 0.4f, "Credit", LocalizedStrings.LocalizedString.cred );
+            button.activate(0, 4, 0.1f, 0.5f, "Exit", LocalizedString.Exit);
+     
             background = Content.Load<Texture2D>("Menu//background menu");
             font = Content.Load<SpriteFont>("FontList");
         }

@@ -371,10 +371,22 @@
     <value>Default</value>
     <comment>pp</comment>
   </data>
+  <data name="cred" xml:space="preserve">
+    <value>Credit</value>
+    <comment>vv</comment>
+  </data>
   <data name="Credit" xml:space="preserve">
-    <value />
+    <value>this video game is presented by Umea-rana team</value>
+  </data>
+  <data name="Multiplayer" xml:space="preserve">
+    <value>Multiplayer</value>
+    <comment>vv</comment>
   </data>
   <data name="Nom" xml:space="preserve">
-    <value />
+    <value>
+Alexis Yang
+Kamwa Watanabe Bjay alias Akai-Suisei
+Anne Constance</value>
+    <comment>vv</comment>
   </data>
 </root>

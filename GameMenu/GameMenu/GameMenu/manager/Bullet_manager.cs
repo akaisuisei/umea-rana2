@@ -102,17 +102,18 @@ namespace Umea_rana
         }
         public void patternpdate(Boss boss, spripte_V J1, ref List<munition> munition)
         {
+            rdn = new Random();
             if (tem2 <= 0 && enableFire)
             {
                 tem2 = time1;
-                munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 50, 50),
+                munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 15, 15),
                     5, new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)), new Color(rdn.Next(0, 255), rdn.Next(0, 255), rdn.Next(0, 255))));
-                munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 50, 50),
+                munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 15, 15),
            5, new Vector2((float )Math.Pow ( Math.Cos(angle ),2),(float )Math .Pow( Math.Sin(angle ),2)), new Color(rdn.Next(0, 255), rdn.Next(0, 255), rdn.Next(0, 255))));
                 time3++;
                 if (time3 == 7)
                 {
-                    munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 50, 50),
+                    munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 15, 15),
                  4, boss.vise(J1), colo));
                     time3 = 0;
                 }

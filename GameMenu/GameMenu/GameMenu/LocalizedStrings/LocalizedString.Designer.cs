@@ -223,7 +223,16 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Credit.
+        /// </summary>
+        internal static string cred {
+            get {
+                return ResourceManager.GetString("cred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à this video game is presented by Umea-rana team.
         /// </summary>
         internal static string Credit {
             get {
@@ -475,6 +484,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Multiplayer.
+        /// </summary>
+        internal static string Multiplayer {
+            get {
+                return ResourceManager.GetString("Multiplayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Music.
         /// </summary>
         internal static string music {
@@ -538,7 +556,10 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à 
+        ///Alexis Yang
+        ///Kamwa Watanabe Bjay alias Akai-Suisei
+        ///Anne Constance.
         /// </summary>
         internal static string Nom {
             get {

@@ -159,7 +159,7 @@ namespace Umea_rana
         unlocked[] lockedlevel;
         public unlocklevel()
         {
-            lockedlevel = new unlocked[12]; 
+            lockedlevel = new unlocked[12] ; 
         }
         public void load()
         {

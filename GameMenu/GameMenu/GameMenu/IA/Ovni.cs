@@ -478,7 +478,7 @@ namespace Umea_rana
         {
             foreach (munition m in munition)
             {
-                spriteBatch.Draw(T_munition , m.rectangle, Color.White );
+                spriteBatch.Draw(T_munition , m.rectangle, m.colo );
             }
             spriteBatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
     

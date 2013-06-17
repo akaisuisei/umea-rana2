@@ -113,6 +113,8 @@ namespace Umea_rana
         {
             vect.Y += 0.5f;
             vect2.Y+= 0.5f;
+            if (vect.Y > height)
+                game.ChangeState(Game1.gameState.MainMenuState);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
