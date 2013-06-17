@@ -50,7 +50,7 @@ namespace Umea_rana
         }
         public override void UnloadContent()
         {
-            songMenu.Dispose();
+     
             button.Dispose();
         }
         public override void Update(Game1 game, Audio audio)

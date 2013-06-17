@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Umea_rana
 {
@@ -376,13 +377,13 @@ namespace Umea_rana
     }
     public class Boss : objet
     {
-        List<PatternMgr> pattern { get; set; }
-        Boss_setting boss_setting { get; set; }
+
         int lauchtime { get; set; }
         Rectangle fond { get; set; }
         Texture2D texture { get; set; }
+        Texture2D T_munition { get; set; }
         string type { get; set; }
-        int damage { get; set; }
+       public int damage { get; set; }
         int speed { get; set; }
         int RPM { get; set; }
         Vector2 dir { get; set; }
@@ -392,12 +393,14 @@ namespace Umea_rana
         bool avance;
         int timeAvance;
         Double angle;
-        public Boss(List<PatternMgr> _pattern)
+        Bullet_manager bulletM;
+        public List<munition> munition;
+        public Boss()
         {
-            pattern = _pattern;
+
 
         }
-        public void LoadContent(Rectangle fond, Rectangle rectangle)
+        public void LoadContent(Rectangle fond, Rectangle rectangle,ContentManager Content)
         {
             this.fond = fond;
             this.rectangle = rectangle;
@@ -407,67 +410,75 @@ namespace Umea_rana
             avance = true;
             timeAvance = 200;
             angle = 0;
-        }
-        public void update(GameTime gameTime, int time)
-        {
-            if(type != "")
-                foreach(PatternMgr _pattern in pattern)
-                    _pattern.Update(gameTime);
-            if (this.lauchtime < time)
-            {
-                if (avance)
-                {
-                    dir = new Vector2(0, 1);
-                    if (timeAvance < 0)
-                        avance = false;
-                    else
-                        timeAvance -= speed;
-                }
-                else
-                {
-                    dir = new Vector2((float)Math.Sin(angle), 1);
-               
-                    angle = (angle + 0.05) % (2 * Math.PI);
-                    if(rectangle_C.Left < fond.Left )
-                    {
-                        sens = new Point(1, sens.Y );
-                        rectangle.X = fond.Left;
-                    }
-                    else if (rectangle_C.Right > fond.Right)
-                    {
-                           sens = new Point(-1, sens.Y);
-                           rectangle.X = fond.Right - rectangle_C.Width - 5;
-                    }
-                    
-                    else if (rectangle_C.Top < fond.Top)
-                    {
-                           sens = new Point(sens.X, 1);
-                           rectangle.Y = fond.Top;
-                    }
-                    
-                    else if (rectangle_C.Bottom > fond.Bottom)
-                    {
-                           sens = new Point(sens.X , -1);
-                        rectangle.Y = fond.Bottom - rectangle_C.Height - 10;
-                    }
-                    
-                }
 
-                this.rectangle.X +=(int)( sens.X *dir.X * speed);
-                this.rectangle.Y += (int)(sens.Y *dir.Y * speed);
-                Update_rec_collision();
+            munition = new List<munition>();
+            T_munition = Content.Load<Texture2D>("bullet//bullet");
+        }
+        public void update( int time, spripte_V J1)
+        {
+            if (type != "")
+            {
+                if (this.lauchtime < time)
+                {
+                    if (avance)
+                    {
+                        dir = new Vector2(0, 1);
+                        if (timeAvance < 0)
+                            avance = false;
+                        else
+                            timeAvance -= speed;
+                    }
+                    else
+                    {
+                        dir = new Vector2((float)Math.Sin(angle), 1);
+
+                        angle = (angle + 0.05) % (2 * Math.PI);
+                        if (rectangle_C.Left < fond.Left)
+                        {
+                            sens = new Point(1, sens.Y);
+                            rectangle.X = fond.Left;
+                        }
+                        else if (rectangle_C.Right > fond.Right)
+                        {
+                            sens = new Point(-1, sens.Y);
+                            rectangle.X = fond.Right - rectangle_C.Width - 5;
+                        }
+
+                        else if (rectangle_C.Top < fond.Top)
+                        {
+                            sens = new Point(sens.X, 1);
+                            rectangle.Y = fond.Top;
+                        }
+
+                        else if (rectangle_C.Bottom > fond.Bottom)
+                        {
+                            sens = new Point(sens.X, -1);
+                            rectangle.Y = fond.Bottom - rectangle_C.Height - 10;
+                        }
+
+                    }
+
+                    this.rectangle.X += (int)(sens.X * dir.X * speed);
+                    this.rectangle.Y += (int)(sens.Y * dir.Y * speed);
+
+                    bulletM.patternpdate(this, J1, ref munition);
+                    Update_rec_collision();
+                }
+                // sinon rien ps da nimation
             }
-            // sinon rien ps da nimation
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            foreach (munition m in munition)
+            {
+                spriteBatch.Draw(T_munition , m.rectangle, Color.White );
+            }
             spriteBatch.Draw(texture, rectangle, Color.White);
-            foreach(PatternMgr _pattern in pattern)
-                _pattern.Draw(spriteBatch);
+    
         }
         public void parametrage(ContentManager Content, Boss_setting boss)
         {
-            this.boss_setting = boss;
+        
             rectangle.X = (int)(boss.pos.X * fond.Width + fond.Right);
             rectangle.Y = fond.Top - rectangle.Height;
             lauchtime = boss.timer;
@@ -477,7 +488,9 @@ namespace Umea_rana
             else
             {
                 this.texture = Content.Load<Texture2D>("bossSEU//null");
-                type = ""; 
+                type = "";
+                this.rectangle = new Rectangle();
+                this.rectangle_C = new Rectangle();
             }
             vie = boss.life;
             this.speed = boss.speed;
@@ -489,6 +502,8 @@ namespace Umea_rana
             this.largeurX = rectangle_C.Width;
             decalageX = 0;
             decalageY = 0;
+                bulletM = new Bullet_manager(new Rectangle(0, 0, rectangle_C.Width / 2, rectangle_C.Height / 2),
+    20, this.speed, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color, fond.Width, this.RPM);
             
         }
     }
@@ -513,6 +528,18 @@ namespace Umea_rana
             this.life = life;
             this.speed = speed;
 
+        }
+        public Boss_setting(Vector2 pos, int timer, int damage, int rpm, int life, int speed, System.Drawing.Color color, string type)
+            : this()
+        {
+            this.pos = pos;
+            this.timer = timer;
+            this.damage = damage;
+            this.color = new Color(color.R, color.G, color.B, color.A);
+            this.RPM = rpm;
+            this.life = life;
+            this.speed = speed;
+            this.type = type;
         }
         public Boss_setting(Vector2 pos, int timer, int damage, int rpm, int life, int speed, Color color, string type)
             : this()

@@ -18,7 +18,7 @@ namespace Umea_rana
     {
         // Scrolling scrolling1, scrolling2;
         spripte_V vaisseau, perso2;
-
+        Boss boss;
         KeyboardState oldkey;
         Texture2D aster_t, planet1, star, stalkert, fondt;
         Texture2D T_sprite;
@@ -54,7 +54,7 @@ namespace Umea_rana
             game_time = 0;
             oldkey = Keyboard.GetState();
             save = new Sauveguarde();
-
+            boss = new Boss();
             // ajout IA
         }
 
@@ -96,8 +96,8 @@ namespace Umea_rana
             ovini.Load(aster_t);
 
             // ajout IA
-
-            save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini, ref audio );
+            boss.LoadContent(fond, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content);
+            save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini, ref audio ,ref boss);
             vaisseau.Load(Content, T_sprite);
 
             perso2.parametrage(ref vaisseau);
@@ -169,7 +169,8 @@ namespace Umea_rana
                 }
 
                 //update collision
-
+                boss.update(game_time, vaisseau);
+                collision.Boss_vaiss(ref boss, ref vaisseau, ref perso2);
                 collision.collision_ai_missile(ref vaisseau, manage_k);
                 collision.collision_ai_missile(ref vaisseau, manage_V);
                 collision.collision_ai_missile(ref vaisseau, manage_T);
@@ -184,7 +185,7 @@ namespace Umea_rana
                 _pause.Update(game, audio, ref _checkpause, ref keyboard, ref oldkey);
             }
             // update fin de jeu
-            if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0)
+            if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0&& boss.vie >=0)
             {
                 if (timer == -100)
                 {
@@ -193,6 +194,8 @@ namespace Umea_rana
 
                     manage_T.bulletL.Clear();
                     manage_V.bulletL.Clear();
+                    boss.rectangle = new Rectangle();
+                    boss.rectangle_C = new Rectangle();
                 }
                 if (timer < 0 && timer != -100)
                     game.ChangeState(Game1.gameState.win,game.level,vaisseau.scrore ,perso2.scrore );//va au level2
@@ -209,13 +212,16 @@ namespace Umea_rana
             scroll.Draw(spriteBatch);
             //scrolling
             //    scrolling1.Draw(spriteBatch);
-            vaisseau.Draw(spriteBatch);
+      
             //      scrolling2.Draw(spriteBatch);
-            perso2.Draw(spriteBatch);
+       
             manage_T.Draw(spriteBatch);
             manage_V.Draw(spriteBatch);
             manage_k.Draw(spriteBatch);
             ovini.Draw(spriteBatch);
+            boss.Draw(spriteBatch);    
+            vaisseau.Draw(spriteBatch);
+            perso2.Draw(spriteBatch);
             spriteBatch.Draw(fondt, fond1, Color.Black);
             spriteBatch.Draw(fondt, fond2, Color.Black);
             score.Draw(spriteBatch);

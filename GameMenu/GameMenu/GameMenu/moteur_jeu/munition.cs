@@ -30,6 +30,7 @@ namespace Umea_rana
             bool_dexistence = true;
             this.vect = vect;
             this.colo = colo;
+
         }
 
         public void update2()

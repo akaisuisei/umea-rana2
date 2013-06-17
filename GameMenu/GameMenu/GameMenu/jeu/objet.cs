@@ -30,7 +30,7 @@ namespace Umea_rana
             rectangle_C.Height = hauteurY;
             rectangle_C.Width = largeurX;
         }
-        protected Vector2 vise(objet sprt)
+       public Vector2 vise(objet sprt)
         {
             Vector2 _vecteur;
             _vecteur.X = -rectangle.Center.X + sprt.rectangle.Center.X;

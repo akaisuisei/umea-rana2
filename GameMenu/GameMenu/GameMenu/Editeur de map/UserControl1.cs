@@ -1282,7 +1282,7 @@ namespace Umea_rana
             if (selectedbos != "" && textBox19.BackColor == System.Drawing.Color.Green && textBox20.BackColor == System.Drawing.Color.Green &&
                 textBox21.BackColor == System.Drawing.Color.Green && textBox22.BackColor == System.Drawing.Color.Green&& color5!= System.Drawing.Color.Black )
             {
-                Boss_setting boss2 = new Boss_setting(new Vector2(openX, openY), seconde, int.Parse(textBox20.Text), int.Parse(textBox22.Text), int.Parse(textBox19.Text), int.Parse(textBox21.Text), color5);
+                Boss_setting boss2 = new Boss_setting(new Vector2(openX, openY), seconde, int.Parse(textBox20.Text), int.Parse(textBox22.Text), int.Parse(textBox19.Text), int.Parse(textBox21.Text), color5,selectedbos  );
                 _savefile.bossSEU = boss2 ;
                 hidou ();
             }
