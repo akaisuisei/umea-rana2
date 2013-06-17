@@ -395,6 +395,13 @@ namespace Umea_rana
         Double angle;
         Bullet_manager bulletM;
         public List<munition> munition;
+
+        int FrameLine;
+        int FrameColumn;
+        SpriteEffects Effects;
+        int Timer;
+        int AnimationSpeed = 10;
+
         public Boss()
         {
 
@@ -464,7 +471,7 @@ namespace Umea_rana
                     bulletM.patternpdate(this, J1, ref munition);
                     Update_rec_collision();
                 }
-                // sinon rien ps da nimation
+                Animated();
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -473,11 +480,17 @@ namespace Umea_rana
             {
                 spriteBatch.Draw(T_munition , m.rectangle, Color.White );
             }
-            spriteBatch.Draw(texture, rectangle, Color.White);
+            spriteBatch.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.Effects, 0f);
     
         }
         public void parametrage(ContentManager Content, Boss_setting boss)
         {
+            line = 316;
+            colunm = 316;
+            largeurX = (int)((316f / (float)colunm) * rectangle.Width);
+            hauteurY = (int)((316f / (float)colunm) * rectangle.Height);
+            decalageX = (int)((21f / (float)colunm) * rectangle.Width);
+            decalageY = (int)((122f / (float)colunm) * rectangle.Height);
         
             rectangle.X = (int)(boss.pos.X * fond.Width + fond.Right);
             rectangle.Y = fond.Top - rectangle.Height;
@@ -505,6 +518,63 @@ namespace Umea_rana
                 bulletM = new Bullet_manager(new Rectangle(0, 0, rectangle_C.Width / 2, rectangle_C.Height / 2),
     20, this.speed, Content.Load<SoundEffect>("hero//vaisseau//tir2"), color, fond.Width, this.RPM);
             
+        }
+
+        
+
+        public void Animated()
+        {
+            if (FrameLine != 1 && FrameLine != 2)
+            {
+                FrameLine = 1;
+                FrameColumn = 1;
+            }
+            else if (FrameLine == 1)
+            {
+                this.Timer++;
+                if (FrameColumn == 6)
+                {
+                    FrameLine = 2;
+                    FrameColumn = 1;
+                }
+                else if (FrameColumn > 6)
+                {
+                    FrameLine = 2;
+                    FrameColumn = 1;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+
+                }
+
+            }
+
+            else if (FrameLine == 2)
+            {
+                this.Timer++;
+                if (FrameColumn == 6)
+                {
+                    FrameLine = 1;
+                    FrameColumn = 1;
+                }
+                else if (FrameColumn > 6)
+                {
+                    FrameLine = 1;
+                    FrameColumn = 1;
+                }
+                else if (this.Timer == this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    this.FrameColumn++;
+
+                }
+            }
+            if (sens.X == -1)
+                Effects = SpriteEffects.None;
+            else 
+                Effects = SpriteEffects.FlipHorizontally;
         }
     }
     public struct Boss_setting
