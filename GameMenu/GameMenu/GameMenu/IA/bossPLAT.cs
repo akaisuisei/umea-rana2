@@ -681,8 +681,13 @@ namespace Umea_rana
                         this.FrameColumn++;
 
                     }
-
+                    
                 }
+
+                if (dir >= 0)
+                    effects = SpriteEffects.None;
+                else
+                    effects = SpriteEffects.FlipHorizontally;
             }
 
             else if (type == "Cascade")
@@ -721,7 +726,10 @@ namespace Umea_rana
                     }
 
                 }
-                
+                if (dir >= 0)
+                    effects = SpriteEffects.None;
+                else
+                    effects = SpriteEffects.FlipHorizontally;
             }
 
             else if (type == "Boubou")
@@ -752,6 +760,10 @@ namespace Umea_rana
                     }
 
                 }
+                if (dir >= 0)
+                    effects = SpriteEffects.None;
+                else
+                    effects = SpriteEffects.FlipHorizontally;
             }
 
             else if (type == "Kinukuman")
@@ -875,7 +887,10 @@ namespace Umea_rana
 
 
                 }
-
+                if (dir >= 0)
+                    effects = SpriteEffects.None;
+                else
+                    effects = SpriteEffects.FlipHorizontally;
             }
         }
 
