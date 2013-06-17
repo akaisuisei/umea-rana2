@@ -497,6 +497,54 @@ namespace Umea_rana
                         sbire.Play();
                     }
         }
+
+        public void Boss_vaiss(ref Boss boss, ref spripte_V J1,ref spripte_V J2)
+        {
+            if (boss.rectangle_C.Intersects(J1.rectangle_C))
+                J1.vie -= 30;
+            if (boss.rectangle_C.Intersects(J2.rectangle_C))
+                J2.vie -= 30;
+   
+            for (int i = 0; i < J1.bulletL.Count; ++i)
+            
+                if (J1.bulletL[i].rectangle_C.Intersects(boss.rectangle_C))
+                {
+                    boss.vie -= J1.damage;
+                    J1.scrore += 130;
+                    J1.bulletL .RemoveAt(i);
+                    sbire.Play();
+                }
+            for (int i = 0; i < J2.bulletL.Count; ++i)
+
+                if (J2.bulletL[i].rectangle_C.Intersects(boss.rectangle_C))
+                {
+                    boss.vie -= J2.damage;
+                    J2.scrore += 130;
+                    J2.bulletL.RemoveAt(i);
+                    sbire.Play();
+                }
+  
+  
+            for (int i = 0; i < boss.munition.Count; ++i)
+            {
+                if (boss.munition[i].rectangle_C.Intersects(J1.rectangle_C))
+                {
+                    J1.vie -= boss.damage;
+                    J1.scrore += 1;
+                    boss.munition.RemoveAt(i);
+
+                }
+                if (boss.munition[i].rectangle_C.Intersects(J2.rectangle_C))
+                {
+                    J2.vie -= boss.damage;
+                    J2.scrore += 1;
+                    boss.munition.RemoveAt(i);
+
+                }
+            }
+
+        }
+
         #endregion
 
         public void Ovni_vaiss(ref Ovni ovnis, ref spripte_V sprite)

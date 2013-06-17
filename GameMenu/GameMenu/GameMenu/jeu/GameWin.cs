@@ -96,7 +96,10 @@ namespace Umea_rana
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             button = new Button(1, 4, width, height, 0.07f, 0.1f, 0);
             button.LoadContent(Content);
-            button.activate(0, 0, 0.1f, 0.1f, "Next", LocalizedString.Next);
+            if (next != string.Empty)
+                button.activate(0, 0, 0.1f, 0.1f, "Next", LocalizedString.Next);
+            else
+                button.disable(0, 0);
             button.activate(0, 1, 0.1f, 0.2f, "Last", LocalizedString.Replay);
             button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Menu);
             button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit); background = Content.Load<Texture2D>("Menu//gamewin");

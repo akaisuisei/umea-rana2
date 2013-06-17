@@ -49,7 +49,7 @@ namespace Umea_rana
         int AnimationSpeed = 14;
 
         int speedbullet;
-        int damage;
+        public int damage { get; private set; }
         pos Vturn, Vup, Vdown, Rturn, Rup, Rdown, current, last, xplosion;
 
 

@@ -150,7 +150,7 @@ namespace Umea_rana
         /// <param name="iamanage_T"></param>
         /// <param name="iamanage_V"></param>
         public void load_level_SEU(ContentManager Content, ref string level, ref string next, ref IA_manager_K iamanage_K,
-            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref spripte_V sprite, ref Ovni ovni,ref Audio audio)
+            ref IA_manager_T iamanage_T, ref IA_manager_V iamanage_V, ref Scrolling_ManagerV scrollM, ref GraphicsDevice grash, ref spripte_V sprite, ref Ovni ovni,ref Audio audio, ref Boss boss)
         {
             savefile savefil = new savefile();
             FileStream file1 = null;
@@ -178,7 +178,7 @@ namespace Umea_rana
             ovni.param(savefil.levelProfile.fc_speed);
             next = savefil.levelProfile.next_level;
             audio.parrametrage(savefil, Content);
-
+            boss.parametrage(Content,savefil.bossSEU);
         }
         /// <summary>
         ///jeu level perso chargement

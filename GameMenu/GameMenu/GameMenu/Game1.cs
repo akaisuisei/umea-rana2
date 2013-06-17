@@ -92,6 +92,8 @@ namespace Umea_rana
         {
             LocalizedString.Culture = new System.Globalization.CultureInfo(OptionState.langue);
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            MediaPlayer.Volume = OptionState.volume_BGM;
+            SoundEffect.MasterVolume = OptionState.sound_effect_volume;
             menu_cursor = Content.Load<SoundEffect>("Menu//menu_cursor");
             menu_select = Content.Load<SoundEffect>("Menu//menu_select");
             StateManager[_currentState].LoadContent(Content, GraphicsDevice, ref level, ref next, graphics, audio);

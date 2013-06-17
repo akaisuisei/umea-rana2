@@ -143,7 +143,8 @@ namespace Umea_rana
             collision = n_collision;
             impulse = 150;
             pos_marche = rectangle.Y;
-            footstep = Content.Load<SoundEffectInstance>("hero//footstep");
+            SoundEffect sound = Content.Load<SoundEffect>("hero//footstep");
+            footstep = sound.CreateInstance();
             footstep.Volume = OptionState.sound_effect_volume;
 
             this.FrameLine = 1;
