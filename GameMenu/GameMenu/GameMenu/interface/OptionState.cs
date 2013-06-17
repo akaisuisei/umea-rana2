@@ -27,21 +27,6 @@ namespace Umea_rana
         int tab1 = 1;
         int tab2 = 2;
         int tab3 = 3;
-        Color color_volume_BGM { get; set; }
-        Color color_langue { get; set; }
-        Color color_resolution { get; set; }
-        Color color_retour { get; set; }
-        Color color_resolution1280_768 { get; set; }
-        Color color_resolution1024_768 { get; set; }
-        Color color_resolution960_720 { get; set; }
-        Color color_resolution800_600 { get; set; }
-        Color color_resolutionfullscreen { get; set; }
-        Color color_difficulté { get; set; }
-        Color color_volume_SE { get; set; }
-        Color color_defaut { get; set; }
-        Color color_save_apply { get; set; }
-        Color color_difficulte_facile, color_difficulte_normal, color_difficulte_difficile, color_difficulte_extreme;
-        Color color_français, color_anglais, color_finois, color_espagnol, color_japonais, color_chinois;
         int active_item = 0;
         int active_item2 = 0;
         int select_resolution;
@@ -57,9 +42,6 @@ namespace Umea_rana
         public static float sound_effect_volume { get; set; }
         public static string langue;
         public static string difficulté;
-        Vector2 v_volume_BGM, v_volume_soundeffect, v_difficulté, defaut, langage, resolution, retour,
-            v_difficulte_facile, v_difficulte_normal, v_difficulte_difficile, v_difficulte_extreme, v_fr, v_eng, v_fin, v_esp, v_jap, v_cn, enregistre_appliquer,
-            v_fullscreen, resolution1280_768, resolution1024_768, resolution960_720, resolution800_600;
         bool canchange = true;
         SpriteFont spriteFont;
         int latence = 0;
@@ -120,23 +102,18 @@ namespace Umea_rana
             switch (langue) //à changer j'ai oublié les string qu'il faut mettre
             {
                 case "fr-FR":
-                    color_français = Color.White;
                     select_langue = 0;
                     break;
                 case "en-US":
-                    color_anglais = Color.White;
                     select_langue = 1;
                     break;
                 case "es-ES":
-                    color_espagnol = Color.White;
                     select_langue = 2;
                     break;
                 case "fi-FI":
-                    color_finois = Color.White;
                     select_langue = 3;
                     break;
                 case "ja-JP":
-                    color_japonais = Color.White;
                     select_langue = 4;
                     break;
             }
@@ -185,16 +162,6 @@ namespace Umea_rana
             button_resolution.activate(3, 0, 0.5f, 0.6f,  "960X720", "960X720");
             button_resolution.activate(4, 0, 0.6f, 0.6f,  "800X600","800X600");
 
-            resolution = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-            v_fullscreen = new Vector2(graphics.PreferredBackBufferWidth * 20 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-            resolution1280_768 = new Vector2(graphics.PreferredBackBufferWidth * 35 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-            resolution1024_768 = new Vector2(graphics.PreferredBackBufferWidth * 50 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-            resolution960_720 = new Vector2(graphics.PreferredBackBufferWidth * 65 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-            resolution800_600 = new Vector2(graphics.PreferredBackBufferWidth * 80 / 100, graphics.PreferredBackBufferHeight * 60 / 100);
-
-            enregistre_appliquer = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 70 / 100);
-            defaut = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 80 / 100);
-            retour = new Vector2(graphics.PreferredBackBufferWidth * 8 / 100, graphics.PreferredBackBufferHeight * 90 / 100);
         }
         public override void UnloadContent()
         {

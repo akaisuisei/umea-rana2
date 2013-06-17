@@ -16,7 +16,6 @@ namespace Umea_rana
     public class _Pause
     {
         Song songMenu;
-        public static float vol = 1.0f;
         Texture2D background;
 
         Rectangle rectangle;
@@ -28,8 +27,6 @@ namespace Umea_rana
         public _Pause(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
             game1.IsMouseVisible = true;
-            MediaPlayer.Volume = vol;
-            songMenu = Content.Load<Song>("Menu//songMenu");
             button = new Button(1, 4, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 0.07f, 0.1f, 0);
             button.activate(0, 0, 0.1f, 0.1f, "Resume",LocalizedString.Resume  );
 

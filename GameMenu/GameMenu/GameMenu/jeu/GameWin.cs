@@ -14,7 +14,6 @@ namespace Umea_rana
     class GameWin : GameState
     {
         Song songMenu;
-        public static float vol = 1.0f;
         Texture2D background;
 
         Rectangle rectangle;
@@ -80,8 +79,6 @@ namespace Umea_rana
         {
 
             game1.IsMouseVisible = true;
-            MediaPlayer.Volume = vol;
-            songMenu = Content.Load<Song>("Menu//songMenu");
             hict = new hightscorepanel();
         }
 

@@ -26,13 +26,12 @@ namespace Umea_rana
 
         public MainMenuState(Game1 game1, GraphicsDeviceManager graphics, ContentManager Content)
         {
-            Audio.play("Menu");
             game1.IsMouseVisible = true;
+            Audio.play("Menu");
         }
 
         public override void Initialize(GraphicsDeviceManager graphics)
-        {
-
+        { 
             old = Keyboard.GetState();
         }
                 public override void LoadContent(ContentManager Content, GraphicsDevice Graph, ref string level, ref string next, GraphicsDeviceManager graphics, Audio audio)

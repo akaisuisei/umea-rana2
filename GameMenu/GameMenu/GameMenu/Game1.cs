@@ -41,8 +41,10 @@ namespace Umea_rana
             Content.RootDirectory = "Content";
             audio = new Audio(Content);
             //state
+            SoundEffect.MasterVolume = gameconfiguration.sound_effect_volume;
             _currentState = gameState.Initialisateur;
             StateManager = new Dictionary<gameState, GameState>();
+            StateManager.Add(gameState.OptionState, new OptionState(this, graphics, Content, gameconfiguration));
             StateManager.Add(gameState.Initialisateur, new Initialisateur(this, graphics, Content));
             StateManager.Add(gameState.MainMenuState, new MainMenuState(this, graphics, Content));
             StateManager.Add(gameState.Level_select_state, new Level_select_state(this, graphics, Content));
@@ -53,9 +55,6 @@ namespace Umea_rana
 
             StateManager.Add(gameState.SEU, new Shoot_Em_Up(this, graphics, Content));
             StateManager.Add(gameState.leveleditor, new leveleditor(this, graphics, Content));
-
-
-            StateManager.Add(gameState.OptionState, new OptionState(this, graphics, Content, gameconfiguration));
 
             StateManager.Add(gameState.win, new GameWin(this, graphics, Content));
             StateManager.Add(gameState.Pause, new Pause(this, graphics, Content));
