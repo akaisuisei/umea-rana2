@@ -476,4 +476,8 @@ Anne Constance Remy-Neris</value>
   <data name="Finnish" xml:space="preserve">
     <value>Finnish</value>
   </data>
+  <data name="color42" xml:space="preserve">
+    <value>Couleur</value>
+    <comment>atrad</comment>
+  </data>
 </root>
