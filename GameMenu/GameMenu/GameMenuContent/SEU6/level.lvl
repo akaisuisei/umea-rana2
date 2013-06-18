@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<savefile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ia_AA />
+  <ia_AR />
+  <ia_S />
+  <plat_f />
+  <ia_viseur />
+  <ia_tireur />
+  <ia_Kamikaze />
+  <bonus />
+  <levelProfile>
+    <levelname>SEU6</levelname>
+    <next_level>end</next_level>
+    <background_name>backgroundT</background_name>
+    <fc_speed>4</fc_speed>
+    <playerLife>20</playerLife>
+    <player_speed>3</player_speed>
+    <firerate>20</firerate>
+    <color>
+      <R>255</R>
+      <G>128</G>
+      <B>0</B>
+      <A>255</A>
+      <PackedValue>4278223103</PackedValue>
+    </color>
+    <damage>2</damage>
+    <bullet_speed>2</bullet_speed>
+    <musique>
+      <string>niveau6</string>
+      <string />
+      <string />
+      <string />
+    </musique>
+    <image_sprite>false</image_sprite>
+    <house>
+      <X>0</X>
+      <Y>0</Y>
+    </house>
+    <bossPlatforme>
+      <degat>0</degat>
+      <vie>0</vie>
+      <speed>0</speed>
+      <X>0</X>
+      <Y>0</Y>
+    </bossPlatforme>
+  </levelProfile>
+  <bossSEU>
+    <damage>1</damage>
+    <color>
+      <R>255</R>
+      <G>128</G>
+      <B>0</B>
+      <A>255</A>
+      <PackedValue>4278223103</PackedValue>
+    </color>
+    <RPM>1</RPM>
+    <life>200</life>
+    <speed>1</speed>
+    <timer>0</timer>
+    <pos>
+      <X>0.41796875</X>
+      <Y>0.078125</Y>
+    </pos>
+    <type>final_boss</type>
+  </bossSEU>
+</savefile>

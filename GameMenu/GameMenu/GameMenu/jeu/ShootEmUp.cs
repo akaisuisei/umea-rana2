@@ -185,7 +185,7 @@ namespace Umea_rana
                 _pause.Update(game, audio, ref _checkpause, ref keyboard, ref oldkey);
             }
             // update fin de jeu
-            if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0&& boss.vie >=0)
+            if (manage_k.Ia_manage.Count == 0 && manage_T.Ia_manage.Count == 0 && manage_V.Ia_manage.Count == 0&& boss.vie <=0)
             {
                 if (timer == -100)
                 {

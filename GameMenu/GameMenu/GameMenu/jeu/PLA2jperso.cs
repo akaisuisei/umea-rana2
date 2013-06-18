@@ -64,7 +64,7 @@ namespace Umea_rana.jeu
             //background
             //sprite brouillon    
 
-            platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
+            platform_M = new Platform_manager(T_platform, width * 0.07f, height * 0.03f, height, width);
             //platfom 
                     housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
             boss = new bossPLAT(new Rectangle(0, 0, width, height));

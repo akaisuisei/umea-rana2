@@ -213,6 +213,30 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
+    <None Include="SEU2\level.lvl">
+      <Name>level</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+    <None Include="SEU3\level.lvl">
+      <Name>level</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SEU4\level.lvl">
+      <Name>level</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+    <None Include="SEU6\level.lvl">
+      <Name>level</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="hero\yoh.png">
@@ -696,6 +720,59 @@
       <Name>ovni</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SEU6\BackgrounD.png">
+      <Name>BackgrounD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU6\backgroundT.png">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU6\niveau6.mp3">
+      <Name>niveau6</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SEU3\backgroundT.png">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU3\niveau5.mp3">
+      <Name>niveau5</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU4\18_Toy_Story.mp3">
+      <Name>18_Toy_Story</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU4\backgroundT.png">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SEU2\backgroundT.jpg">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SEU2\12 In My Mind %28Axwell Mix%29.mp3">
+      <Name>12 In My Mind %28Axwell Mix%29</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

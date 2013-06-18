@@ -90,12 +90,25 @@ Content\Menu\menu_cursor.xnb
 Content\explosionsbire.xnb
 Content\hero\footstep.xnb
 Content\FontList.xnb
+Content\SEU6\niveau6.xnb
+Content\SEU6\BackgrounD.xnb
+Content\SEU6\backgroundT.xnb
+Content\SEU3\niveau5.xnb
+Content\SEU4\18_Toy_Story.xnb
+Content\SEU2\12 In My Mind (Axwell Mix).xnb
+Content\SEU3\backgroundT.xnb
+Content\SEU4\backgroundT.xnb
+Content\SEU2\backgroundT.xnb
 Content\Menu\songMenu.wma
 Content\Monde_du_Gout2\Oui_Oui.wma
 Content\Monde_Odorat\Gentleman.wma
 Content\Monde_Toucher\Gladiator.wma
 Content\SEU0\01_The_Requiem2.wma
 Content\SEU0\prologue12.wma
+Content\SEU6\niveau6.wma
+Content\SEU3\niveau5.wma
+Content\SEU4\18_Toy_Story.wma
+Content\SEU2\12 In My Mind (Axwell Mix).wma
 Content\Monde_Toucher\level.lvl
 Content\Monde_Vue\level.lvl
 Content\Monde_du_Gout2\level.lvl
@@ -103,3 +116,7 @@ Content\Monde_Odorat\level.lvl
 Content\first\level.lvl
 Content\SEU0\level.lvl
 Content\SEU1\level.lvl
+Content\SEU2\level.lvl
+Content\SEU3\level.lvl
+Content\SEU4\level.lvl
+Content\SEU6\level.lvl
