@@ -191,12 +191,14 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Premier_Monde\level.lvl">
       <Name>level</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="SEU0\level.lvl">
       <Name>level</Name>
@@ -678,8 +680,8 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="SEU0\BackgrounD.jpg">
-      <Name>BackgrounD</Name>
+    <Compile Include="SEU0\BackgroundT.jpg">
+      <Name>BackgroundT</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

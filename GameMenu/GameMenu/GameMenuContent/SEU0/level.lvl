@@ -308,7 +308,8 @@
   </bonus>
   <levelProfile>
     <levelname>SEU0</levelname>
-    <background_name>BackgrounD.jpg</background_name>
+    <background_name>BackgroundT.jpg</background_name>
+    <next_level>Premier_Monde</next_level>
     <fc_speed>3</fc_speed>
     <second_background>cloud</second_background>
     <playerLife>3</playerLife>
