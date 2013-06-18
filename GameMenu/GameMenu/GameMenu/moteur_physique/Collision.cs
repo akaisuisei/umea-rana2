@@ -29,7 +29,7 @@ namespace Umea_rana
                     sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)
                 {
 
-                    sprite.rectangle.Y = plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height;
+                    sprite.rectangle.Y =(int)( plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height - plato.speed *plato.direction.Y  );
 
                     return true;
                 }
@@ -45,7 +45,8 @@ namespace Umea_rana
                 foreach (platform plato in platform_m.plato)
                 {
 
-                    if ( (ia.Ia_manage[i].rectangle_C.Intersects (plato.rectangle_C )))
+                    if ( (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
+                        ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - ia.Ia_manage[i].poid  -4<= plato.rectangle_C.Top))
                     {
                         ia.Ia_manage[i].rectangle.Y = plato.rectangle_C.Top - ia.Ia_manage[i].rectangle_C.Height - ia.Ia_manage[i].decalageY;
                         ia.Ia_manage[i].tombe = false;
@@ -269,7 +270,7 @@ namespace Umea_rana
             {
                 sprite.rectangle.Y -= (i + sprite.poid);
                 sprite.jump_off = true;
-                
+       
             }
             if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
             {
