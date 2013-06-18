@@ -473,4 +473,7 @@ Anne Constance Remy-Neris</value>
     <value>Yoh</value>
     <comment>atrad</comment>
   </data>
+  <data name="Finnish" xml:space="preserve">
+    <value>Finnish</value>
+  </data>
 </root>

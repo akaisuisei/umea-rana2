@@ -147,7 +147,7 @@ namespace Umea_rana
             button_langage.activate(0, 0, 0.2f, 0.5f, "fr-FR", LocalizedString.French);
             button_langage.activate(1, 0, 0.3f, 0.5f, "en-US", LocalizedString.English);
             button_langage.activate(2, 0, 0.4f, 0.5f, "es-ES", LocalizedString.Spanish);
-            button_langage.activate(3, 0, 0.5f, 0.5f, "fi-FI", LocalizedString.Firerate);
+            button_langage.activate(3, 0, 0.5f, 0.5f, "fi-FI", LocalizedString.Finnish);
             button_langage.activate(4, 0, 0.6f, 0.5f, "ja-JP", LocalizedString.japanese);
 
             curseur_BGM.LoadContent(Content);
