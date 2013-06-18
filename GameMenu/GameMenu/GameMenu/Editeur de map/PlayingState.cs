@@ -54,7 +54,7 @@ namespace Umea_rana
             string[] platstring = sauveguarde.filename(Content, "platform");
             foreach (string p in platstring)
                 T_platform.Add(p, Content.Load<Texture2D>("platform//" + p));
-            boss= new bossPLAT ();
+            boss = new bossPLAT(new Rectangle(0, 0, width, height));
             safe_home = new Housse();
             _pause.LoadContent(Content);
             _pause.initbutton(ref level);

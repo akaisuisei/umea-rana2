@@ -90,7 +90,7 @@ namespace Umea_rana
         bool deplace = false;
 
 
-        public bossPLAT()
+        public bossPLAT(Rectangle fond)
         {
             degat = 1;
             vie = 1;
@@ -103,7 +103,7 @@ namespace Umea_rana
             this.FrameColumn = 1;
             this.Timer = 0;
             dir = 1;
-
+            this.fond = fond;
         }
         public void parrametrage(levelProfile levelprofile)
         {
@@ -160,7 +160,7 @@ namespace Umea_rana
         public void loadContent(ContentManager content, Rectangle fond)
         {
             this.fond = fond;
-            this.rectangle = new Rectangle(1000, 0, 100, 100);
+
             this.atk = new Rectangle(1000, 200, 100, 100);
             this.rectangle_C = rectangle;
             this.degat = 1;

@@ -41,7 +41,7 @@ namespace Umea_rana
 
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
-            boss = new bossPLAT();
+        
 
             housse = new Housse();
         }
@@ -64,7 +64,7 @@ namespace Umea_rana
             eve = Content.Load<Texture2D>("IA//" + "BandW" + "//" + "eve");
             truc_jaune = Content.Load<Texture2D>("IA//" + "BandW" + "//" + "tuc_jaune");
             //boss
-
+            boss = new bossPLAT(new Rectangle(0, 0, width, height));
 
 
             //background
