@@ -308,7 +308,7 @@
   </bonus>
   <levelProfile>
     <levelname>SEU0</levelname>
-    <background_name>BackgroundT.jpg</background_name>
+    <background_name>backgroundT</background_name>
     <next_level>Premier_Monde</next_level>
     <fc_speed>3</fc_speed>
     <second_background>cloud</second_background>
@@ -325,8 +325,8 @@
     <damage>1</damage>
     <bullet_speed>4</bullet_speed>
     <musique>
-      <string>prologue12.mp3</string>
-      <string>01_The_Requiem2.mp3</string>
+      <string>prologue12</string>
+      <string>01_The_Requiem2</string>
       <string />
       <string />
     </musique>
