@@ -62,7 +62,7 @@ namespace Umea_rana.jeu
             P2= new Sprite_PLA(new Rectangle(650, 0, 100, 100), collision, Content,"P2");
             //background
             //sprite brouillon    
-
+            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
             platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
             //platfom
             boss = new bossPLAT(new Rectangle(0, 0, width, height));
@@ -85,7 +85,7 @@ namespace Umea_rana.jeu
 
             boss.loadContent(Content, new Rectangle(0, 0, width, height));
 
-            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
+
     
             audio.Play();
         }
@@ -146,7 +146,7 @@ namespace Umea_rana.jeu
                 {
                     P2.air();
                 }
-                P2.Update(keyboard,new GameTime());
+                P2.Update(keyboard,new GameTime(),front_sc );
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);

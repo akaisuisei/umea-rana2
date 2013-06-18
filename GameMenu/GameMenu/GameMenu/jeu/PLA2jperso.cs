@@ -65,7 +65,8 @@ namespace Umea_rana.jeu
             //sprite brouillon    
 
             platform_M = new Platform_manager(T_platform, width * 0.1f, height * 0.1f, height, width);
-            //platfom
+            //platfom 
+                    housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
             boss = new bossPLAT(new Rectangle(0, 0, width, height));
             sauvegarde.Load_Level_PLAperso(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR,
                 ref manageS, ref platform_M, ref housse, ref boss, ref srollingM, ref Graph, ref P1, ref P2,ref audio );
@@ -86,7 +87,7 @@ namespace Umea_rana.jeu
 
             boss.loadContent(Content, new Rectangle(0, 0, width, height));
 
-            housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
+         
     
             audio.Play();
         }
@@ -136,7 +137,7 @@ namespace Umea_rana.jeu
                     P1.air();
                 }
 
-                P1.update(keyboard, oldkey, new GameTime());
+                P1.update(keyboard, oldkey, new GameTime() );
                 if (collision.Collision_sp_sol(ref P2, ref platform_M))
                 {
                     P2.marche();
@@ -147,7 +148,7 @@ namespace Umea_rana.jeu
                 {
                     P2.air();
                 }
-                P2.Update(keyboard,new GameTime());
+                P2.Update(keyboard,new GameTime(),front_sc );
 
                 //collision ia
                 collision.collision_ia_sol(manageS, ref platform_M);

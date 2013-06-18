@@ -34,7 +34,7 @@ namespace Umea_rana
         {
 
             tab = 0;
-            MediaPlayer.Volume = vol;
+            MediaPlayer.Volume = OptionState.volume_BGM ;
 
 
             oldkey = Keyboard.GetState();
@@ -54,9 +54,9 @@ namespace Umea_rana
             butts.activate(0, 2, 0.15f, 0.85f, "", LocalizedString.Back);
 
 
-            butts.activate(1, 0, 0.8f, 0.4f, "LevelEdit", LocalizedString.Play);
-            butts.activate(1, 1, 0.8f, 0.85f, "bis", LocalizedString.Play);
-            butts.disable(1, 2);
+            butts.activate(1, 0, 0.85f, 0.4f, "LevelEdit", LocalizedString.Play);
+            butts.activate(1, 1, 0.85f, 0.8f, "bis", LocalizedString.Play);
+            butts.activate(1, 2, 0.85f, 0.9f, "PLAPerso2J", LocalizedString.Multiplayer);
             background = Content.Load<Texture2D>("Menu//background menu");
             songMenu = Content.Load<Song>("Menu//songMenu");
             font = Content.Load<SpriteFont>("FontList");

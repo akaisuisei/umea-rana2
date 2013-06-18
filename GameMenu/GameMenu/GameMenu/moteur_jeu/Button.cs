@@ -291,8 +291,12 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
                   
-                                game.level = levelname[X, Y];
-                                game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                                if (name1 != string.Empty && name1 != null)
+                                    if (game.level != "PLAPerso2J")
+                                    {
+                                        game.level = name1;
+                                        game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                                    }
                             
                     }
 

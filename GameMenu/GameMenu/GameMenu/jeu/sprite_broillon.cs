@@ -51,7 +51,7 @@ namespace Umea_rana
         public bool _dir { get { return dir; } }
         int colunm, line;
         int keep;
-
+        int fc;
 
         int prout;
         public bool block { get; private set; }
@@ -177,7 +177,7 @@ namespace Umea_rana
                     K_atq = Keys.E;
                     K_right = Keys.D;
                     K_left = Keys.Q ;
-                    K_jump = Keys.Z;
+                    K_jump = Keys.LeftControl ;
                     K_block = Keys.R;
                     K_atkdown = Keys.C;
                     K_atknext = Keys.Z;
@@ -246,6 +246,7 @@ namespace Umea_rana
             last = current;
             Speed = 4;
             atk = listatq[intatq];
+            fc = levelprofile.fc_speed;
             hitboxatq = new Rectangle(rectangle_C.X - longattaque, rectangle_C.Top - longattaque, rectangle_C.Width + 2 * longattaque, rectangle_C.Height + 2 * longattaque);
         }
 
@@ -296,7 +297,7 @@ namespace Umea_rana
             this.hitboxatq.X = rectangle_C.X - longattaque;
             this.hitboxatq.Y = rectangle_C.Y - longattaque;
         }
-        public void Update(KeyboardState keyboard, GameTime gameTime)
+        public void Update(KeyboardState keyboard, GameTime gameTime, int front)
         {
             if (in_air)
             {
@@ -327,7 +328,7 @@ namespace Umea_rana
             if (keyboard.IsKeyDown(K_left))
                 this.rectangle.X -= Speed;
             this.AnimSprite(keyboard);
-            Update_rec_collision();
+          
             if (vie < 0)
                 --timer_dead;
             if (timer_dead < 0)
@@ -336,6 +337,13 @@ namespace Umea_rana
                 vie = 300;
             this.hitboxatq.X = rectangle_C.X - longattaque;
             this.hitboxatq.Y = rectangle_C.Y - longattaque;
+            if (keyboard.IsKeyDown(Keys.Left))
+            {
+                rectangle.X += fc;
+            }
+            if (keyboard.IsKeyDown(Keys.Right))
+                rectangle.X -= fc; 
+            Update_rec_collision();
         }
 
 
