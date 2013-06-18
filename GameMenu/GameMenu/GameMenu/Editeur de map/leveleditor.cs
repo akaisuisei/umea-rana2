@@ -203,7 +203,11 @@ namespace Umea_rana
                     boss.rectangle_C = new Rectangle();
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.win ,game.level ,vaisseau.scrore,perso2.scrore  );//va nul part
+                {
+                    audio.stop();
+                    audio.PlayMenu();
+                    game.ChangeState(Game1.gameState.win, game.level, vaisseau.scrore, perso2.scrore);//va nul part
+                }
                 timer--;
             }
             //update interface

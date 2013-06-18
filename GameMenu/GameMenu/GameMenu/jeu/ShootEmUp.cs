@@ -194,11 +194,16 @@ namespace Umea_rana
 
                     manage_T.bulletL.Clear();
                     manage_V.bulletL.Clear();
-                    boss.rectangle = new Rectangle();
-                    boss.rectangle_C = new Rectangle();
+                    boss.rectangle = new Rectangle(-3000,0,0,0);
+                    boss.rectangle_C = new Rectangle(-30000,0,0,0);
                 }
                 if (timer < 0 && timer != -100)
-                    game.ChangeState(Game1.gameState.win,game.level,vaisseau.scrore ,perso2.scrore );//va au level2
+                {
+                    audio.stop();
+                    audio.PlayMenu();
+                    game.ChangeState(Game1.gameState.win, game.level, vaisseau.scrore, perso2.scrore);//va au level2
+
+                }
                 timer--;
             }
             //update interface

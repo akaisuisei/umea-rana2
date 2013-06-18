@@ -7,7 +7,7 @@
       <seconde>276</seconde>
       <nombre>1</nombre>
       <vie>1</vie>
-      <speed>1</speed>
+      <speed>3</speed>
       <color>
         <R>0</R>
         <G>255</G>
@@ -16,8 +16,8 @@
         <PackedValue>4282449664</PackedValue>
       </color>
       <damage>1</damage>
-      <firerate>1</firerate>
-      <bullet_Speed>1</bullet_Speed>
+      <firerate>30</firerate>
+      <bullet_Speed>2</bullet_Speed>
     </quaintuplet>
   </ia_viseur>
   <ia_tireur>
@@ -62,7 +62,7 @@
   </bonus>
   <levelProfile>
     <levelname>SEU1</levelname>
-    <next_level>PLA1</next_level>
+    <next_level>Monde_Vue</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>3</fc_speed>
     <second_background>cloud</second_background>

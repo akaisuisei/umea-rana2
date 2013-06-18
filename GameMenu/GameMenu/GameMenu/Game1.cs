@@ -24,7 +24,7 @@ namespace Umea_rana
         GameConfiguration gameconfiguration;
         StorageManager storagemanager;
         Dictionary<gameState, GameState> StateManager;
-        Audio audio;
+     public   Audio audio;
         
         public string path = "test";
         public string level = string.Empty, next = string.Empty;
@@ -166,7 +166,7 @@ namespace Umea_rana
             is_fullscreen(OptionState.fullscreen);
             this.Initialize();
             endlevel = "";
-            audio.stop();
+        
         
         }
         public void ChangeState(gameState NewState, string level, gameState previousState = gameState.Null)
@@ -178,7 +178,7 @@ namespace Umea_rana
             unlocklevel unloak = new unlocklevel();
             unloak.endlevel(level);
             endlevel = "";
-            audio.stop();
+       
        
         }
         public void ChangeState(gameState NewState, string level, int P1, int P2, gameState previousState = gameState.Null)
@@ -187,7 +187,7 @@ namespace Umea_rana
             _previousState = _currentState;
             _currentState = NewState;
             is_fullscreen(OptionState.fullscreen);
-            this.Initialize();
+       
             unlocklevel unloak = new unlocklevel();
             unloak.endlevel(level);
             Highscore hgh = new Highscore();
@@ -214,6 +214,7 @@ namespace Umea_rana
             highscor = pmax;
             audio.stop();
             audio.PlayMenu();
+            this.Initialize();
         }
         public void GetPreviousState()
         {
@@ -253,7 +254,7 @@ namespace Umea_rana
                 else
                 {
                     level = next;
-                    ChangeState(gameState.Level2);
+                    ChangeState(gameState.levelPLA  );
                 }
             }
         }

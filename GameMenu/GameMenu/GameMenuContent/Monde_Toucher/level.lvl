@@ -135,7 +135,7 @@
   <bonus />
   <levelProfile>
     <levelname>Monde_Toucher</levelname>
-	<next_level>SEU3</next_level>
+	<next_level>SEU4</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>6</fc_speed>
     <playerLife>300</playerLife>

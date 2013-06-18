@@ -236,12 +236,16 @@ namespace Umea_rana
                     Xplode();
                     if (FrameLine == 45)
                         if (perso == 1)
+                        {
+                           game.audio.stop();
+                           game. audio.PlayMenu();
                             game.ChangeState(Game1.gameState.Pause);
+                        }
                         else
                         {
                             rectangle = new Rectangle(-300, 0, fond.Width / 10, fond.Height / 10);
                             this.activate = false;
-                            this.rectangle.Y  = 2000;
+                            this.rectangle.Y = 2000;
                             vie = 5;
                             colunm = 150f;
                             line = 200f;

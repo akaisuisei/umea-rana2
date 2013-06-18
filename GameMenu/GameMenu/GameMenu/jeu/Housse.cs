@@ -64,7 +64,11 @@ namespace Umea_rana
                 rect.X += fcspeed;
             }
             if (rect.Intersects(sprite.rectangle_C))
+            {
+                game.audio.stop();
+                game.audio.PlayMenu();
                 game.ChangeState(Game1.gameState.win);
+            }
             Animated();
         }
 

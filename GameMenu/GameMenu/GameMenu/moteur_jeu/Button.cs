@@ -251,6 +251,7 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.Pause);
                     else if (gameState[X, Y] == "Play")
                     {
+                        MediaPlayer.Stop();
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.PlayingState);
                     }
@@ -259,6 +260,7 @@ namespace Umea_rana
                         if (name1 != string.Empty && name1 != null)
                             if (game.level != "LevelEdit")
                             {
+                                MediaPlayer.Stop();
                                 game.level = name1;
                                 game.ChangeState(Game1.gameState.leveleditor);
                             }
@@ -270,54 +272,64 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Resume")
                         game.ChangeState2(Game1.gameState.Null);
                     else if (gameState[X, Y] == "Next")
+                    {
+                        MediaPlayer.Stop();
                         game.nextgame();
+                    }
                     else if (gameState[X, Y] == "Replay")
+                    {
+                        MediaPlayer.Stop();
                         game.replay();
+                    }
                     else if (gameState[X, Y] == "Level3")
                     {
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.level3);
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                          if (name1 != string.Empty && name1 != null)
-                              if (game.level != "bis")
-                              {
-                                  game.level = name1;
-                                  game.ChangeState(Game1.gameState.levelpersoPLA);
-                              }
-                            
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "bis")
+                            {
+                                MediaPlayer.Stop();
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.levelpersoPLA);
+                            }
+
                     }
 
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
-                  
-                                if (name1 != string.Empty && name1 != null)
-                                    if (game.level != "PLAPerso2J")
-                                    {
-                                        game.level = name1;
-                                        game.ChangeState(Game1.gameState.LevelPersoPLA2J);
-                                    }
-                            
+
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLAPerso2J")
+                            {
+                                MediaPlayer.Stop();
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                            }
+
                     }
 
                     else if (gameState[X, Y] == "PLA")
                     {
-                    
-                                 game.level = levelname[X, Y];
-                                game.ChangeState(Game1.gameState.levelPLA);
-                            
+                        MediaPlayer.Stop();
+                        game.level = levelname[X, Y];
+                        game.ChangeState(Game1.gameState.levelPLA);
+
                     }
 
                     else if (gameState[X, Y] == "PLA2J")
                     {
-
+                        MediaPlayer.Stop();
                         game.level = levelname[X, Y];
-                                game.ChangeState(Game1.gameState.LevelPLA2J);
-                            
+                        game.ChangeState(Game1.gameState.LevelPLA2J);
+
                     }
 
                     else if (gameState[X, Y] == "Credit")
                     {
+                        game.audio.PlayMenu();
                         game.ChangeState(Game1.gameState.Credit);
                     }
                     else
@@ -488,6 +500,7 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.Checkpause);
                     else if (gameState[X, Y] == "EditSEU")
                     {
+                        MediaPlayer.Stop();
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.Editeur_mapVV);
                     }
@@ -508,6 +521,7 @@ namespace Umea_rana
                         game.ChangeState(Game1.gameState.Pause);
                     else if (gameState[X, Y] == "Play")
                     {
+                        MediaPlayer.Stop();
                         game.level = "edit";
                         game.ChangeState(Game1.gameState.PlayingState);
                     }
@@ -516,6 +530,7 @@ namespace Umea_rana
                         if (name1 != string.Empty && name1 != null)
                             if (game.level != "LevelEdit")
                             {
+                                MediaPlayer.Stop();
                                 game.level = name1;
                                 game.ChangeState(Game1.gameState.leveleditor);
                             }
@@ -527,56 +542,65 @@ namespace Umea_rana
                     else if (gameState[X, Y] == "Resume")
                         game.ChangeState2(Game1.gameState.Null);
                     else if (gameState[X, Y] == "Next")
+                    {
+                        game.audio.stop();
                         game.nextgame();
+                    }
                     else if (gameState[X, Y] == "Replay")
                         game.replay();
                     else if (gameState[X, Y] == "Level3")
                     {
+                        MediaPlayer.Stop();
                         game.ChangeState(Game1.gameState.level3);
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                         if (name1 != string.Empty && name1 != null)
-                             if (game.level != "bis")
-                             {
-                                 game.level = name1;
-
-                                 game.ChangeState(Game1.gameState.levelpersoPLA);
-                             }
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "bis")
+                            {
+                                game.level = name1;
+                                MediaPlayer.Stop();
+                                game.ChangeState(Game1.gameState.levelpersoPLA);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
-                         if (name1 != string.Empty && name1 != null)
-                             if (game.level != "PLAPerso2J")
-                             {
-                                 game.level = name1;
-                                 game.ChangeState(Game1.gameState.LevelPersoPLA2J);
-                             }
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLAPerso2J")
+                            {
+                                MediaPlayer.Stop();
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.LevelPersoPLA2J);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLA")
                     {
-                         if (name1 != string.Empty && name1 != null)
-                             if (game.level != "PLA")
-                             {
-                                 game.level = name1;
-                                 game.ChangeState(Game1.gameState.levelPLA);
-                             }
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLA")
+                            {
+                                MediaPlayer.Stop();
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.levelPLA);
+                            }
                     }
 
                     else if (gameState[X, Y] == "PLA2J")
                     {
-                          if (name1 != string.Empty && name1 != null)
-                              if (game.level != "PLA2J")
-                              {
-                                  game.level = name1;
-                                  game.ChangeState(Game1.gameState.LevelPLA2J);
-                              }
+                        if (name1 != string.Empty && name1 != null)
+                            if (game.level != "PLA2J")
+                            {
+                                MediaPlayer.Stop();
+                                game.level = name1;
+                                game.ChangeState(Game1.gameState.LevelPLA2J);
+                            }
                     }
 
                     else if (gameState[X, Y] == "Credit")
                     {
+                        MediaPlayer.Stop();
+                        game.audio.PlayMenu();
                         game.ChangeState(Game1.gameState.Credit);
                     }
                     else

@@ -91,6 +91,7 @@
   <bonus />
   <levelProfile>
     <levelname>Monde_du_Gout2</levelname>
+    <next_level>SEU3</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>5</fc_speed>
     <playerLife>300</playerLife>
