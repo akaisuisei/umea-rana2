@@ -31,10 +31,10 @@ namespace Umea_rana
             {
                 foreach (platform plato in platform_m.plato)
                     if (sprite.rectangle_C.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
-                        sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle_C.Bottom - 18 - plato.speed * plato.direction.Y <= plato.rectangle_C.Top)
+                        sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle_C.Bottom - 17 -plato.direction.Y *plato.speed<= plato.rectangle_C.Top)
                     {
 
-                        sprite.rectangle.Y = (int)(plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height-  plato.speed * plato.direction.Y+1);
+                        sprite.rectangle.Y = (int)(plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height);
                         last = true;
                         time = (time + 1) % 2;
                         return true;

@@ -77,7 +77,7 @@ namespace Umea_rana
             in_air = false;
             jump_off = false;
             collision = n_collision;
-            impulse = 150;
+            impulse = (int)(this.rectangle.Height *1.5f);
             pos_marche = rectangle.Y;
             footstep = Content.Load<SoundEffect>("hero//jogging");
             loop_footstep = footstep.CreateInstance();
@@ -518,7 +518,8 @@ namespace Umea_rana
 
         public void AnimeSPrite(ref KeyboardState keyboard, ref KeyboardState old)// line = 151, colunm = 110
         {
-            if (keep > 0)
+            if (keep < 0)
+            {
                 if (vie > 0)
                 {
                     block = false;
@@ -533,7 +534,7 @@ namespace Umea_rana
                         else if (keyboard.IsKeyUp(K_jump)) //phase descendante
                         {
                             current = fall;
-                            keep = 2;
+                            keep = 7;
                         }
                         else                              //phase ascendante
                         {
@@ -551,7 +552,7 @@ namespace Umea_rana
                         else if (keyboard.IsKeyUp(K_jump)) //phase descendante
                         {
                             current = fall;
-                            keep =2;
+                            keep = 7;
                         }
                         else                              //phase ascendante
                         {
@@ -578,6 +579,7 @@ namespace Umea_rana
                     else if (keyboard.IsKeyUp(K_jump) && chute ^ jump_off) //saut phase descendante
                     {
                         current = fall;
+                        keep = 7;
                     }
                     else if (!in_air)
                     {
@@ -586,6 +588,7 @@ namespace Umea_rana
                     else if (keyboard.IsKeyUp(K_jump)) //phase descendante
                     {
                         current = fall;
+                        keep = 7;
                     }
                     else                              //phase ascendante
                     {
@@ -619,6 +622,7 @@ namespace Umea_rana
                     }
                     this.Timer++;
                 }
+            }
             last = current;
             keep--;
         }
