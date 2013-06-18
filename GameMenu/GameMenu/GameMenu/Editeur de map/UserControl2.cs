@@ -24,6 +24,7 @@ namespace Umea_rana
         string imagefond, vitessefond, vitesseV, open, cancel, load, save, filepath, filepathlabel, onglet5;
         string scrolling, file, damage, bullet_speed, supp, musique, add, boss, bonus, bomb, missile, power, ovini;
         string aster, comete, sun, angle;
+        string ennemis, naruto, eve, Truc, stab_plat, mob_plat, distance, plateformes, choix_of_boss, home, hero, allen, yoh,bandw;
         string[] playlist;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance",
@@ -324,7 +325,61 @@ namespace Umea_rana
             sun = LocalizedString.Sun;
             angle = LocalizedString.angle;
             color2 = System.Drawing.Color.Black;
+            ennemis = LocalizedString.ennemis;
+            naruto = LocalizedString.naruto;
+            eve = LocalizedString.eve;
+            Truc = LocalizedString.Tuc;
+            stab_plat = LocalizedString.stab_plat;
+            mob_plat = LocalizedString.mob_plat;
+            distance = LocalizedString.distance;
+            plateformes = LocalizedString.plateformes;
+            choix_of_boss = LocalizedString.choix_boss;
+            home = LocalizedString.home;
+            allen = LocalizedString.allen;
+            yoh = LocalizedString.yoh;
+            bandw = LocalizedString.n_et_b;
             //tap page
+
+            //tab ennemis
+            Ennemis.Text = ennemis;
+            Naruto.Text = naruto;
+            Eve.Text = eve;
+            Tuc.Text = Truc;
+            Vie.Text = life;
+            Puissance.Text = power;
+            Vitesse.Text = speed;
+            Valider.Text = OK;
+
+            //tab Plateformes
+            Plateformes.Text = plateformes;
+            Plateforme_Stable.Text = stab_plat;
+            Plateforme_Mobile.Text = mob_plat;
+            vitesse_plat.Text = speed;
+            distance_plat.Text = distance;
+            Valider_p.Text = OK;
+
+            //tab Boss
+            choix_boss.Text = choix_of_boss;
+            Vie_b.Text = life;
+            puissance_b.Text = power;
+            button1_ok.Text = OK;
+
+            //tab Maison
+            Home_point.Text = home;
+            valid_maison.Text = OK;
+
+            //tab Hero
+            choix_hero.Text = hero;
+            Allen.Text = allen;
+            Yoh.Text = yoh;
+            vie_depart.Text = life;
+            valid_hero.Text = OK;
+
+            //tab couleur
+            couleur2.Text = couleur;
+            incolore.Text = bandw;
+            color.Text = couleur;
+            valid_couleur.Text = OK;
 
             // +"/" + onglet2;            
             Fond.Text = onglet4;

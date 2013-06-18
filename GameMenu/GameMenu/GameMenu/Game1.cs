@@ -25,6 +25,7 @@ namespace Umea_rana
         StorageManager storagemanager;
         Dictionary<gameState, GameState> StateManager;
         Audio audio;
+        
         public string path = "test";
         public string level = string.Empty, next = string.Empty;
         public SoundEffect menu_cursor, menu_select;
@@ -189,22 +190,22 @@ namespace Umea_rana
             pmax = hgh.endlevel(level, P1, P2);
             if (P2 != 0)
                 if (pmax == P1 && pmax == P2)
-                    endlevel = "highscore: your are very good gamer";
+                    endlevel = LocalizedString.good_gamer;
                 else if (pmax == P1)
-                    endlevel = "highscore: P1 is the best, p2 is a looser";
+                    endlevel = LocalizedString.p1best;
                 else if (pmax == P2)
-                    endlevel = "highscore: P2 is the best, p1 is a looser";
+                    endlevel = LocalizedString.p2best;
                 else if (P1 == P2)
-                    endlevel = "Your are friend";
+                    endlevel = LocalizedString.equality;
                 else if (P1 > P2)
-                    endlevel = "P1 Win";
+                    endlevel = LocalizedString.p1win;
                 else
-                    endlevel = "P2 Win";
+                    endlevel = LocalizedString.p2win;
             else
                 if (P1 == pmax)
-                    endlevel = "highscore: your are very good gamer";
+                    endlevel = LocalizedString.good_gamer;
                 else
-                    endlevel = " your are very good gamer";
+                    endlevel = LocalizedString.goodgame;
             score = new Point(P1, P2);
             highscor = pmax;
 
