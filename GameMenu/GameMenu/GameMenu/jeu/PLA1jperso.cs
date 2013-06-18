@@ -41,7 +41,7 @@ namespace Umea_rana.jeu
 
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
-            boss = new bossPLAT();
+
 
             housse = new Housse();
             sauvegarde = new Sauveguarde();
@@ -67,6 +67,7 @@ namespace Umea_rana.jeu
 
             platform_M = new Platform_manager(T_platform, width * 0.07f, height * 0.03f, height, width);
             //platfom
+            boss = new bossPLAT(new Rectangle(0, 0, width, height));
             sauvegarde.Load_Level_PLAperso(Content, ref level, ref next, ref sprite_color, ref managerAA, ref managerAR,
                 ref manageS, ref platform_M, ref housse, ref boss, ref srollingM, ref Graph, ref allen, ref audio);
 

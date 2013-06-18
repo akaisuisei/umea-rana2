@@ -265,12 +265,12 @@ namespace Umea_rana
         // saut non fini
         public void jump(Sprite_PLA sprite)
         {
-            int i = 10;
+            int i = 25;
             if (sprite.rectangle.Y >= sprite.pos_marche - sprite.impulse)
             {
                 sprite.rectangle.Y -= (i + sprite.poid);
                 sprite.jump_off = true;
-
+                i -= i/3;
             }
             if (sprite.rectangle.Y == sprite.pos_marche - sprite.impulse)
             {

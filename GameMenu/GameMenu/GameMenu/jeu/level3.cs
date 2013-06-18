@@ -41,7 +41,7 @@ namespace Umea_rana
 
             _pause = new _Pause(game1, graphics, Content);
             score = new scoreplat();
-            boss = new bossPLAT();
+            boss = new bossPLAT(new Rectangle(0, 0, width, height));
 
             housse = new Housse();
         }
