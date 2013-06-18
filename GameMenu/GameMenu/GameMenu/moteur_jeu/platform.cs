@@ -51,10 +51,10 @@ namespace Umea_rana
                     direction = Vector2.Zero;
                     break;
                 case ('R'):// va vers la droite par rapport a son point de depart
-                    direction = new Vector2(1, 0);
+                    direction = new Vector2(-1, 0);
                     break;
                 case ('L')://  vers la gauche par rapport a son point de depart
-                    direction = new Vector2(-1, 0);
+                    direction = new Vector2(1, 0);
                     break;                    
                 case ('U'):// vers le haut par rapport a son pt de depart
                     direction = new Vector2(0, 1);

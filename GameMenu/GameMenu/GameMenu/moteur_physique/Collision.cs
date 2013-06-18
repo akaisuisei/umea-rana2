@@ -46,7 +46,7 @@ namespace Umea_rana
                 {
 
                     if ( (ia.Ia_manage[i].rectangle_C.Bottom >= plato.rectangle_C.Top && ia.Ia_manage[i].rectangle_C.Right >= plato.rectangle_C.Left &&
-                        ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - ia.Ia_manage[i].poid  <= plato.rectangle_C.Top))
+                        ia.Ia_manage[i].rectangle_C.Left <= plato.rectangle_C.Right && ia.Ia_manage[i].rectangle_C.Bottom - ia.Ia_manage[i].poid  -4<= plato.rectangle_C.Top))
                     {
                         ia.Ia_manage[i].rectangle.Y = plato.rectangle_C.Top - ia.Ia_manage[i].rectangle_C.Height - ia.Ia_manage[i].decalageY;
                         ia.Ia_manage[i].tombe = false;
