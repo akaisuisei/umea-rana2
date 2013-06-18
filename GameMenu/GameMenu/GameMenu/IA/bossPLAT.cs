@@ -159,9 +159,11 @@ namespace Umea_rana
         }
         public void loadContent(ContentManager content, Rectangle fond)
         {
-            this.fond = fond;
+
 
             this.atk = new Rectangle(1000, 200, 100, 100);
+            rectangle.Width = 200;
+            rectangle.Height = 200;
             this.rectangle_C = rectangle;
             this.degat = 1;
             this.vie = 15;
