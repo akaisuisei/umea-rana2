@@ -101,7 +101,7 @@ namespace Umea_rana
             ovini = new Ovni(fond);
             ovini.Load(Content.Load<Texture2D>("IA/asteroid/asteroide-sprite"));
             // ajout IA 
-                    boss.LoadContent(fond, new Rectangle(0, 0, 300, 300), Content );
+                    boss.LoadContent(fond, new Rectangle(0, 0, 200, 200), Content );
             save.load_leveleditor_SEU(Content, level, ref manage_k, ref manage_T, ref manage_V, ref Scroll, ref Graph, ref vaisseau, ref ovini, ref audio , ref boss );
             vaisseau.Load(Content, T_sprite);
            
@@ -225,10 +225,11 @@ namespace Umea_rana
             ovini.Draw(spriteBatch);
             perso2.Draw(spriteBatch); 
             vaisseau.Draw(spriteBatch);
+            boss.Draw(spriteBatch);
             spriteBatch.Draw(fondt, fond1, Color.Black);
             spriteBatch.Draw(fondt, fond2, Color.Black);
             scrore.Draw(spriteBatch);
-            boss.Draw(spriteBatch);
+           
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 

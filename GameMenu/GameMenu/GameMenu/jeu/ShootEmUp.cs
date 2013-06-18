@@ -96,7 +96,7 @@ namespace Umea_rana
             ovini.Load(aster_t);
 
             // ajout IA
-            boss.LoadContent(fond, new Rectangle(0, 0, taille_sprt2, taille_sprt2), Content);
+            boss.LoadContent(fond, new Rectangle(0, 0, 200, 200), Content);
             save.load_level_SEU(Content, ref level, ref next, ref manage_k, ref manage_T, ref manage_V, ref scroll, ref Graph, ref vaisseau, ref ovini, ref audio ,ref boss);
             vaisseau.Load(Content, T_sprite);
 
@@ -222,9 +222,10 @@ namespace Umea_rana
             boss.Draw(spriteBatch);    
             vaisseau.Draw(spriteBatch);
             perso2.Draw(spriteBatch);
+        
             spriteBatch.Draw(fondt, fond1, Color.Black);
             spriteBatch.Draw(fondt, fond2, Color.Black);
-            score.Draw(spriteBatch);
+             score.Draw(spriteBatch);
             if (_checkpause)
                 _pause.Draw(spriteBatch);
 
