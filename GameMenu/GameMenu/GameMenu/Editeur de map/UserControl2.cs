@@ -24,7 +24,7 @@ namespace Umea_rana
         string imagefond, vitessefond, vitesseV, open, cancel, load, save, filepath, filepathlabel, onglet5;
         string scrolling, file, damage, bullet_speed, supp, musique, add, boss, bonus, bomb, missile, power, ovini;
         string aster, comete, sun, angle;
-        string ennemis, naruto, eve, Truc, stab_plat, mob_plat, distance, plateformes, choix_of_boss, home, hero, allen, yoh,bandw;
+        string ennemis, naruto, eve, Truc, stab_plat, mob_plat, distance, plateformes, choix_of_boss, home, hero, allen, yoh,bandw, color42;
         string[] playlist;
         // tag
         string t_life = "life", t_speed = "speed", t_damage = "damage", t_plateforme_nombre = "nombre plateformes", t_boss_vie = "vie", t_boss_puiss = "puissance",
@@ -338,6 +338,8 @@ namespace Umea_rana
             allen = LocalizedString.allen;
             yoh = LocalizedString.yoh;
             bandw = LocalizedString.n_et_b;
+            hero = LocalizedString.hero;
+            color42 = LocalizedString.color42;
             //tap page
 
             //tab ennemis
@@ -376,9 +378,9 @@ namespace Umea_rana
             valid_hero.Text = OK;
 
             //tab couleur
-            couleur2.Text = couleur;
+            couleur2.Text = color42;
             incolore.Text = bandw;
-            color.Text = couleur;
+            color.Text = color42;
             valid_couleur.Text = OK;
 
             // +"/" + onglet2;            
