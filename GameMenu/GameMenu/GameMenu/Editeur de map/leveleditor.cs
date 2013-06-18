@@ -109,6 +109,7 @@ namespace Umea_rana
             perso2.Load(Content, Content.Load<Texture2D>("hero//spriteSheet2"));
             //instancie les donnees de la pause
             _pause.LoadContent(Content);
+            _pause.initbutton(ref level);
             scrore.LoadContent (fond1,fond2 ,Content );
         
             audio.Play();

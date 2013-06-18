@@ -235,6 +235,9 @@ namespace Umea_rana
         }
         public void nextgame()
         {
+            if (next != null && next == "end")
+                ChangeState(gameState.Credit);
+            else 
             if (next != null && next.Length > 0)
             {
                 if (next[0] == 's' || next[0] == 'S')

@@ -23,7 +23,8 @@ namespace Umea_rana
         KeyboardState old;
         int tab;
         hightscorepanel hict;
-
+   string gagne;
+   SpriteFont font;
         public class hightscorepanel
         {
             Rectangle fond;
@@ -33,6 +34,7 @@ namespace Umea_rana
             SpriteFont font;
             Texture2D texture;
             string resultaglo, resultj1, resulj2, highscor;
+         
             public hightscorepanel()
             {
             }
@@ -104,7 +106,11 @@ namespace Umea_rana
             button.activate(0, 2, 0.1f, 0.3f, "", LocalizedString.Menu);
             button.activate(0, 3, 0.1f, 0.4f, "Exit", LocalizedString.Exit); background = Content.Load<Texture2D>("Menu//gamewin");
             hict.loadcontent(new Rectangle(width/2, height-120, width / 2, 120), Content);
-
+            if (next == "end")
+                gagne = "this is the end";
+            else
+                gagne = "";
+            font = Content.Load<SpriteFont>("FontList");
         }
         public override void UnloadContent()
         {
@@ -125,6 +131,7 @@ namespace Umea_rana
             spriteBatch.Draw(background, rectangle, Color.White);
             button.Draw(spriteBatch);
             hict.draw(spriteBatch );
+            spriteBatch.DrawString(font, gagne, new Vector2(width / 2, height / 2), Color.White);
         }
     }
 }

@@ -290,7 +290,7 @@ namespace Umea_rana
                 default:
                     ov.damage = 100;
                     ov.circle.R = R4;
-                    ov.rectangle = new Rectangle(x, -height3 - 2, width4, height4);
+                    ov.rectangle = new Rectangle(x, -height4 - 2, width4, height4);
 
                     ov.FrameLine = rnd.Next(6, 8);
                     ov.maxframecolumn = 30;
