@@ -16,24 +16,37 @@ namespace Umea_rana
     public class Collision
     {
         SoundEffect sbire, normal, boss, hit;
+        int time;
+        bool last;
         public Collision(ContentManager content)
         {
             sbire = content.Load<SoundEffect>("explosionsbire");
+            time = 0;
         }
         #region collision avec le sol
         // collision sprite sol fini
         public bool Collision_sp_sol(ref Sprite_PLA sprite, ref Platform_manager platform_m)
         {
-            foreach (platform plato in platform_m.plato)
-                if (sprite.rectangle_C.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
-                    sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle_C.Bottom - 9 <= plato.rectangle_C.Top)
-                {
+            if ( time == 0)
+            {
+                foreach (platform plato in platform_m.plato)
+                    if (sprite.rectangle_C.Bottom >= plato.rectangle_C.Top && sprite.rectangle_C.Right >= plato.rectangle_C.Left &&
+                        sprite.rectangle_C.Left <= plato.rectangle_C.Right && sprite.rectangle_C.Bottom - 18 - plato.speed * plato.direction.Y <= plato.rectangle_C.Top)
+                    {
 
-                    sprite.rectangle.Y =(int)( plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height - plato.speed *plato.direction.Y  );
+                        sprite.rectangle.Y = (int)(plato.rectangle_C.Top - sprite.decalageY - sprite.rectangle_C.Height-  plato.speed * plato.direction.Y+1);
+                        last = true;
+                        time = (time + 1) % 2;
+                        return true;
+                    }
+                time = (time + 1) % 2;
+                last = false;
+                return false;
 
-                    return true;
-                }
-            return false;
+            }
+            
+            time = (time + 1) % 2;
+            return last;
         }
 
         // collision ia_sprite sol fini
