@@ -45,7 +45,7 @@ namespace Umea_rana
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "LevelSelect", LocalizedString.Play);
             button.activate(0, 1, 0.1f, 0.2f, "LevelSelect_P", LocalizedString.Map_Editor);
-            button.activate(0, 2, 0.1f, 0.3f, "Option", LocalizedString.Option);    
+            button.activate(0, 2, 0.1f, 0.3f, "Option", LocalizedString.Options);    
                     button.activate(0, 3, 0.1f, 0.4f, "Credit", LocalizedStrings.LocalizedString.cred );
             button.activate(0, 4, 0.1f, 0.5f, "Exit", LocalizedString.Exit);
      

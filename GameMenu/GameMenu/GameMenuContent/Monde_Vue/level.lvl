@@ -221,7 +221,7 @@
   <bonus />
   <levelProfile>
     <levelname>Monde_Vue</levelname>
-	<next_level>SEU2</next_level>
+	  <next_level>SEU2</next_level>
     <background_name>backgroundT</background_name>
     <fc_speed>5</fc_speed>
     <playerLife>300</playerLife>

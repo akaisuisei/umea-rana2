@@ -167,6 +167,43 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Monde_Toucher\level.lvl">
+      <Name>level</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
+    <None Include="Monde_Vue\level.lvl">
+      <Name>level</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Monde_du_Gout2\level.lvl">
+      <Name>level</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Monde_Odorat\level.lvl">
+      <Name>level</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Premier_Monde\level.lvl">
+      <Name>level</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SEU0\level.lvl">
+      <Name>level</Name>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </None>
     <None Include="SEU1\level.lvl">
       <Name>level</Name>
       <Importer>XmlImporter</Importer>
@@ -581,6 +618,75 @@
       <Name>index</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Monde_Vue\backgroundT.png">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Monde_du_Gout2\Oui_Oui.mp3">
+      <Name>Oui_Oui</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Monde_Odorat\backgroundT.jpg">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Monde_Odorat\Gentleman.mp3">
+      <Name>Gentleman</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Premier_Monde\backgroundT.jpg">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Monde_du_Gout2\backgroundT.jpg">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Monde_Toucher\backgroundT.jpg">
+      <Name>backgroundT</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Monde_Toucher\Gladiator.mp3">
+      <Name>Gladiator</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SEU0\01_The_Requiem2.mp3">
+      <Name>01_The_Requiem2</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU0\BackgrounD.jpg">
+      <Name>BackgrounD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SEU0\prologue12.mp3">
+      <Name>prologue12</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
