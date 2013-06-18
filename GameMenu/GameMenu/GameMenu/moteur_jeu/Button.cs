@@ -279,8 +279,12 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                        game.level = levelname[X, Y];
-                                game.ChangeState(Game1.gameState.levelpersoPLA);
+                          if (name1 != string.Empty && name1 != null)
+                              if (game.level != "bis")
+                              {
+                                  game.level = name1;
+                                  game.ChangeState(Game1.gameState.levelpersoPLA);
+                              }
                             
                     }
 

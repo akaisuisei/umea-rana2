@@ -57,7 +57,7 @@ namespace Umea_rana
     public struct Bonus
     {
         public char type;
-        public int speed,angle,launch;
+        public int speed, angle, launch;
         public float X, Y;
     }
 
@@ -138,8 +138,8 @@ namespace Umea_rana
     }
     public struct housesafe
     {
-       public float X { get; set; }
-       public float Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
     }
     public struct OptionProfile
     {
@@ -148,7 +148,8 @@ namespace Umea_rana
     {
         public string level { get; set; }
         public bool locked { get; set; }
-        public unlocked (string level, bool locked):this()
+        public unlocked(string level, bool locked)
+            : this()
         {
             this.locked = locked;
             this.level = level;
@@ -159,7 +160,18 @@ namespace Umea_rana
         unlocked[] lockedlevel;
         public unlocklevel()
         {
-            lockedlevel = new unlocked[12] ; 
+            lockedlevel = new unlocked[12]{new unlocked ("SEU0",true),
+new unlocked ("first",false),
+new unlocked ("SEU1",false),
+new unlocked ("Monde_Vue",false),
+new unlocked ("SEU2",false),
+new unlocked ("Monde_du_Gout2",false),
+new unlocked ("SEU3",false),
+new unlocked ("Monde_Toucher",false),
+new unlocked ("SEU4",false),
+new unlocked ("Monde_Odorat",false),
+new unlocked ("SEU5",false),
+new unlocked ("SEU6",false)};
         }
         public void load()
         {
@@ -167,7 +179,7 @@ namespace Umea_rana
 
             FileStream file1 = null;
             XmlSerializer f = null;
-            DirectoryInfo dir = new DirectoryInfo(path );
+            DirectoryInfo dir = new DirectoryInfo(path);
             if (!dir.Exists)
                 dir.Create();
             else
@@ -181,7 +193,18 @@ namespace Umea_rana
                     file1.Close();
                 }
                 if (lockedlevel == null)
-                    lockedlevel = new unlocked[12];// a finir avec les nom des niveau
+                    lockedlevel = new unlocked[12]{new unlocked ("SEU0",true),
+new unlocked ("first",false),
+new unlocked ("SEU1",false),
+new unlocked ("Monde_Vue",false),
+new unlocked ("SEU2",false),
+new unlocked ("Monde_du_Gout2",false),
+new unlocked ("SEU3",false),
+new unlocked ("Monde_Toucher",false),
+new unlocked ("SEU4",false),
+new unlocked ("Monde_Odorat",false),
+new unlocked ("SEU5",false),
+new unlocked ("SEU6",false)};// a finir avec les nom des niveau
             }
         }
         public void endlevel(string level)
@@ -196,7 +219,7 @@ namespace Umea_rana
         }
         public List<string> unlocklevellist()
         {
-            List<string > res= new List<string> (){""};
+            List<string> res = new List<string>() { "" };
             load();
             foreach (unlocked u in lockedlevel)
                 if (u.locked)
@@ -216,70 +239,71 @@ namespace Umea_rana
             {
                 file1 = new FileStream(dir.FullName + "\\block.carambar", FileMode.Create, FileAccess.Write);
                 f = new XmlSerializer(typeof(unlocked[]));
-                f.Serialize(file1, this.lockedlevel );
+                f.Serialize(file1, this.lockedlevel);
                 file1.Close();
             }
         }
     }
-        
-    public struct  scoring 
-        {
-           public  string level{ get; set ;}
-            public int high{ get; set;}
-            public scoring (string level, int high): this()
-            {
-                this.level= level;
-                this.high = high;
-            }
 
+    public struct scoring
+    {
+        public string level { get; set; }
+        public int high { get; set; }
+        public scoring(string level, int high)
+            : this()
+        {
+            this.level = level;
+            this.high = high;
         }
+
+    }
     public class Highscore
     {
 
-        List<scoring > highScore;
-       
+        List<scoring> highScore;
+
         public Highscore()
         {
-           highScore= new List<scoring>();
+            highScore = new List<scoring>();
         }
         public void load()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SavedGames\\GameMenu\\MyApplication\\Player1";
-          
+
             FileStream file1 = null;
             XmlSerializer f = null;
-            DirectoryInfo dir = new DirectoryInfo(path );
+            DirectoryInfo dir = new DirectoryInfo(path);
             if (!dir.Exists)
                 dir.Create();
             else
             {
                 if (File.Exists(dir.FullName + "\\high.carambar"))
                 {
-                    file1 = new FileStream(dir.FullName + "\\high.carambar", FileMode.Open , FileAccess.Read);
+                    file1 = new FileStream(dir.FullName + "\\high.carambar", FileMode.Open, FileAccess.Read);
                     f = new XmlSerializer(typeof(List<scoring>));
-                    highScore= (List<scoring>)f.Deserialize(file1);
+                    highScore = (List<scoring>)f.Deserialize(file1);
                     file1.Close();
                 }
                 if (highScore == null)
-                    highScore = new List<scoring> ();// a finir avec les nom des niveau
+                    highScore = new List<scoring>();// a finir avec les nom des niveau
             }
         }
         public int endlevel(string level, int j1, int j2)
         {
-          int i=0;
+            int i = 0;
             load();
-            while (i<highScore.Count )
+            while (i < highScore.Count)
             {
-                if(highScore[i].level==level )
+                if (highScore[i].level == level)
                     break;
                 i++;
             }
-           if(i ==highScore.Count )
-               highScore.Add (new scoring (level ,Math.Max (j1,j2)));
-           else
-               highScore[i]= new scoring (level ,Math.Max (j1,Math.Max(j2,highScore[i].high ))); 
+            if (i == highScore.Count)
+                highScore.Add(new scoring(level, Math.Max(j1, j2)));
+            else
+                highScore[i] = new scoring(level, Math.Max(j1, Math.Max(j2, highScore[i].high)));
             save();
-            return highScore[i].high ;
+            return highScore[i].high;
         }
         public void save()
         {
@@ -294,10 +318,10 @@ namespace Umea_rana
             {
                 file1 = new FileStream(dir.FullName + "\\high.carambar", FileMode.Create, FileAccess.Write);
                 f = new XmlSerializer(typeof(List<scoring>));
-                f.Serialize(file1, highScore );
+                f.Serialize(file1, highScore);
                 file1.Close();
             }
         }
-    
+
     }
 }
