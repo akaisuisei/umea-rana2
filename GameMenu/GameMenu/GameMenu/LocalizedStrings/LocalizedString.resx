@@ -480,4 +480,7 @@ Anne Constance Remy-Neris</value>
     <value>Couleur</value>
     <comment>atrad</comment>
   </data>
+  <data name="singleplayer" xml:space="preserve">
+    <value>Single Player</value>
+  </data>
 </root>

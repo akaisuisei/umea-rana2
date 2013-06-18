@@ -176,8 +176,8 @@ namespace Umea_rana
                 case "P2":
                     K_atq = Keys.E;
                     K_right = Keys.D;
-                    K_left = Keys.A;
-                    K_jump = Keys.W;
+                    K_left = Keys.Q ;
+                    K_jump = Keys.Z;
                     K_block = Keys.R;
                     K_atkdown = Keys.C;
                     K_atknext = Keys.Z;

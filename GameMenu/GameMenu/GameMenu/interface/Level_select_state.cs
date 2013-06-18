@@ -50,7 +50,7 @@ namespace Umea_rana
             button = new Button(3, 5, width, height, 0.1f, 0.05f, 0);
             button.LoadContent(Content);
             button.activate(0, 0, 0.1f, 0.1f, "SEU", "0", "SEU0");//seu0
-            button.activate(0, 1, 0.1f, 0.25f, "PLA", "1", "Premier_Monde",list );
+            button.activate(0, 1, 0.1f, 0.25f, "PLA", "1", "first",list );
             button.activate(0, 2, 0.1f, 0.40f, "Level3", "2", "level1", list);// seu1
             button.activate(0, 3, 0.1f, 0.65f, "PLA", "3", "Monde_Vue", list);
             button.activate(0, 4, 0.1f, 0.9f, "", LocalizedString.Back);
@@ -124,12 +124,25 @@ namespace Umea_rana
             height = graphics.PreferredBackBufferHeight;
             rectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             titre_P = new Vector2(width * 0.8f, height * 0.1f);
-            button = new Button(1, 4, width, height, 0.1f, 0.05f, 0);
+            button = new Button(3, 5, width, height, 0.1f, 0.05f, 0);
             button.LoadContent(Content);
-            button.activate(0, 0, 0.1f, 0.1f, "SEU", "1", "SEU1");
-            button.activate(0, 1, 0.1f, 0.25f, "Level2", "2", "level1");
-            button.activate(0, 2, 0.1f, 0.40f, "Level3", "3", "level1");
-            button.activate(0, 3, 0.1f, 0.6f, "", LocalizedString.Back);
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "0", "SEU0");//seu0
+            button.activate(0, 1, 0.1f, 0.25f, "PLA", "1", "first");
+            button.activate(0, 2, 0.1f, 0.40f, "Level3", "2", "level1");// seu1
+            button.activate(0, 3, 0.1f, 0.65f, "PLA", "3", "Monde_Vue");
+            button.activate(0, 4, 0.1f, 0.9f, "", LocalizedString.Back);
+
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "4", "SEU0");//seu0
+            button.activate(1, 1, 0.4f, 0.25f, "PLA", "5", "Monde_du_Gout2");
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "6", "SEU0");//seu0
+            button.activate(1, 3, 0.4f, 0.40f, "PLA", "7", "Monde_Toucher");
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "8", "SEU0");//seu0
+
+            button.activate(2, 0, 0.7f, 0.1f, "PLA", "9", "Monde_Odorat");
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "10", "SEU0");//seu0
+            button.disable(2, 2);
+            button.activate(0, 0, 0.1f, 0.1f, "SEU", "11", "SEU0");//seu0
+            button.activate(2, 4, 0.5f, 0.9f, "LevelSelect2J", LocalizedStrings.LocalizedString.singleplayer );
             background = Content.Load<Texture2D>("Menu//background menu");
             font = Content.Load<SpriteFont>("FontList");
         }

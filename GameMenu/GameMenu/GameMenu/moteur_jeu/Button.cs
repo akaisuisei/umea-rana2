@@ -279,43 +279,33 @@ namespace Umea_rana
                     }
                     else if (gameState[X, Y] == "bis")
                     {
-                        if (name1 != string.Empty && name1 != null)
-                            if (game.level != "bis")
-                            {
-                                game.level = name1;
-
+                        game.level = levelname[X, Y];
                                 game.ChangeState(Game1.gameState.levelpersoPLA);
-                            }
+                            
                     }
 
                     else if (gameState[X, Y] == "PLAPerso2J")
                     {
-                        if (name1 != string.Empty && name1 != null)
-                            if (game.level != "PLAPerso2J")
-                            {
-                                game.level = name1;
+                  
+                                game.level = levelname[X, Y];
                                 game.ChangeState(Game1.gameState.LevelPersoPLA2J);
-                            }
+                            
                     }
 
                     else if (gameState[X, Y] == "PLA")
                     {
-                        if (name1 != string.Empty && name1 != null)
-                            if (game.level != "PLA")
-                            {
-                                game.level = name1;
+                    
+                                 game.level = levelname[X, Y];
                                 game.ChangeState(Game1.gameState.levelPLA);
-                            }
+                            
                     }
 
                     else if (gameState[X, Y] == "PLA2J")
                     {
-                        if (name1 != string.Empty && name1 != null)
-                            if (game.level != "PLA2J")
-                            {
-                                game.level = name1;
+
+                        game.level = levelname[X, Y];
                                 game.ChangeState(Game1.gameState.LevelPLA2J);
-                            }
+                            
                     }
 
                     else if (gameState[X, Y] == "Credit")

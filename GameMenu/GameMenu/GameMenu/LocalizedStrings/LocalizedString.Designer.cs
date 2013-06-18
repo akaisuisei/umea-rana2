@@ -910,6 +910,15 @@ namespace Umea_rana.LocalizedStrings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Single Player.
+        /// </summary>
+        internal static string singleplayer {
+            get {
+                return ResourceManager.GetString("singleplayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Sniper.
         /// </summary>
         internal static string Sniper {

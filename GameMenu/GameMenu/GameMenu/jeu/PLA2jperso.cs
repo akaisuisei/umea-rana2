@@ -87,8 +87,7 @@ namespace Umea_rana.jeu
             boss.loadContent(Content, new Rectangle(0, 0, width, height));
 
             housse.loadContent(Content, "IA/color/house", new Rectangle(0, 0, 100, 100), height, width);
-            P1.vie = 10;
-            P2.vie = 10;
+    
             audio.Play();
         }
 

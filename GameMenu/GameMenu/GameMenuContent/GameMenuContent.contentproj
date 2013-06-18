@@ -193,7 +193,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Premier_Monde\level.lvl">
+    <None Include="first\level.lvl">
       <Name>level</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
@@ -649,7 +649,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Premier_Monde\backgroundT.jpg">
+    <Compile Include="first\backgroundT.jpg">
       <Name>backgroundT</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
