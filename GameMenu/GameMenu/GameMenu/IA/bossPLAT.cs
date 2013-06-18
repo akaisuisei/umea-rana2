@@ -925,9 +925,9 @@ namespace Umea_rana
         public void Draw(SpriteBatch sp)
         {
             foreach (Pointaction pt in ptfaible_)
-                sp.Draw(ptforttexture  , pt.affichage, Color.White);
+                sp.Draw(ptfaible_texture  , pt.affichage, Color.White);
             foreach (Pointaction pt in ptfort_)
-                sp.Draw(ptfaible_texture , pt.affichage, Color.White);
+                sp.Draw(ptforttexture , pt.affichage, Color.White);
             sp.Draw(texture, rectangle, new Rectangle((this.FrameColumn - 1) * colunm, (this.FrameLine - 1) * line, colunm, line), Color.White, 0f, new Vector2(0, 0), this.effects, 0f);
         }
         public void DrawEDIT(SpriteBatch sp)
