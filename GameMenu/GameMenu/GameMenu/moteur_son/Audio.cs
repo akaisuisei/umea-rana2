@@ -39,8 +39,15 @@ namespace Umea_rana
         }
         public void PlayMenu()
         {
+            
             MediaPlayer.Stop();
             MediaPlayer.Play(playlist["Menu"]);
+        }
+        public void stop()
+        {
+            MediaPlayer.Stop();
+            playlist2.Clear();
+            _playing = 0;
         }
         public void parrametrage(savefile savefile, ContentManager Content)
         {

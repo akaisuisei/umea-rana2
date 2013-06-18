@@ -166,6 +166,8 @@ namespace Umea_rana
             is_fullscreen(OptionState.fullscreen);
             this.Initialize();
             endlevel = "";
+            audio.stop();
+        
         }
         public void ChangeState(gameState NewState, string level, gameState previousState = gameState.Null)
         {
@@ -176,6 +178,8 @@ namespace Umea_rana
             unlocklevel unloak = new unlocklevel();
             unloak.endlevel(level);
             endlevel = "";
+            audio.stop();
+       
         }
         public void ChangeState(gameState NewState, string level, int P1, int P2, gameState previousState = gameState.Null)
         {
@@ -208,7 +212,8 @@ namespace Umea_rana
                     endlevel = LocalizedString.goodgame;
             score = new Point(P1, P2);
             highscor = pmax;
-
+            audio.stop();
+            audio.PlayMenu();
         }
         public void GetPreviousState()
         {

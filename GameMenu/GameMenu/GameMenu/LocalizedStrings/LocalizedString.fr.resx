@@ -354,4 +354,7 @@
   <data name="ennemis" xml:space="preserve">
     <value>Ennemis</value>
   </data>
+  <data name="singleplayer" xml:space="preserve">
+    <value>Jeu Solo</value>
+  </data>
 </root>

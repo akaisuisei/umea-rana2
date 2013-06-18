@@ -47,6 +47,8 @@ namespace Umea_rana
             button.activate(0, 1, 0.1f, 0.2f, "", LocalizedString.Menu);
             button.activate(0, 2, 0.1f, 0.3f, "Exit", LocalizedString.Exit);
             background = Content.Load<Texture2D>("Menu//game_over");
+            audio.stop();
+            audio.PlayMenu();
         }
         public override void UnloadContent()
         {

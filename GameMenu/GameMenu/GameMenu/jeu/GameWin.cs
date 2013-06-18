@@ -111,6 +111,8 @@ namespace Umea_rana
             else
                 gagne = "";
             font = Content.Load<SpriteFont>("FontList");
+            audio.stop();
+            audio.PlayMenu();
         }
         public override void UnloadContent()
         {

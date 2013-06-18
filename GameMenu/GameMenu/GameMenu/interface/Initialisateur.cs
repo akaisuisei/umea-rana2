@@ -103,7 +103,8 @@ namespace Umea_rana
             vect2= new Vector2 (width*0.55f,0);
             credit = LocalizedStrings.LocalizedString.Credit ;
             nom = LocalizedStrings.LocalizedString.Nom;
-  
+            audio.stop();
+            audio.PlayMenu();
             //    listbox.LoadContent(Content);
         }
         public override void UnloadContent()
