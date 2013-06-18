@@ -114,7 +114,7 @@ namespace Umea_rana
                 if (time3 == 7)
                 {
                     munition.Add(new munition(new Rectangle(boss.rectangle_C.Center.X, boss.rectangle_C.Center.Y, 15, 15),
-                 4, boss.vise(J1), colo));
+                 3, boss.vise(J1), colo));
                     time3 = 0;
                 }
               angle =(float ) (( angle + 0.3f)% (2*Math.PI ));
